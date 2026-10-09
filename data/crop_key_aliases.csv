@@ -1,0 +1,17 @@
+legacy_crop_code,mapping_crop_key,note
+asparagus_green,green_asparagus,same crop, different spelling
+asparagus_white,white_asparagus,same crop, different spelling
+bellpepper,bell_pepper,same crop, different spelling
+castor_beans,castor_bean,same crop, different spelling
+citruslime,citrus_lime,same crop, different spelling
+maizegrain,maize_grain,same crop, different spelling
+orange_fresh,orange_fresh_grade,same crop, different spelling
+orange_processing,orange_processing_grade,same crop, different spelling
+palmtree,palm_tree,same crop, different spelling
+strawberry_fresh,strawberry_fresh_grade,same crop, different spelling
+strawberry_processing,strawberry_processing_grade,same crop, different spelling
+sugarbeet,sugar_beet,same crop, different spelling
+sugarcane,sugar_cane,same crop, different spelling
+sweetcorn,sweet_corn,same crop, different spelling
+tomato_fresh,tomato_fresh_grade,same crop, different spelling
+tomato_processing,tomato_processing_grade,same crop, different spelling

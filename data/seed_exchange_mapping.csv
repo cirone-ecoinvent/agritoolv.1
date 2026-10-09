@@ -1,0 +1,73 @@
+crop_key,seed_exchange_name,unit,status,note,reviewed_by
+wheat,"wheat seed, for sowing",kg,confirmed,,FC
+barley,"barley seed, for sowing",kg,confirmed,,FC
+rye,"rye seed, for sowing",kg,confirmed,,FC
+oat,"oat seed, for sowing",kg,confirmed,,FC
+rice,"rice seed, for sowing",kg,confirmed,"MD v3.12 CPC of this exchange is '01161: Rye, seed' (master-data error)",FC
+maize_grain,"maize seed, for sowing",kg,confirmed,,FC
+sweet_corn,"maize seed, for sowing",kg,confirmed,proxy: sweet corn seed is a different product,FC
+sugar_beet,"sugar beet seed, for sowing",kg,confirmed,,FC
+potato,"potato seed, for setting",kg,confirmed,'for setting' not 'for sowing',FC
+rapeseed,"rape seed, for sowing",kg,confirmed,,FC
+sunflower,"sunflower seed, for sowing",kg,confirmed,,FC
+soybean,"soybean seed, for sowing",kg,confirmed,,FC
+cotton,"cottonseed, for sowing",kg,confirmed,,FC
+linseed,"linseed seed, for sowing",kg,confirmed,,FC
+flax,"linseed seed, for sowing",kg,confirmed,same species; fibre flax seed rates differ,FC
+lentil,"lentil seed, for sowing",kg,confirmed,,FC
+peanut,"peanut seed, for sowing",kg,confirmed,,FC
+faba_beans,"fava bean seed, for sowing",kg,confirmed,,FC
+protein_peas,"pea seed, for sowing",kg,confirmed,,FC
+carrot,"carrot seed, for sowing",kg,confirmed,,FC
+onion,"onion seedling, for planting",unit,confirmed,unit = number of seedlings; check legacy amount unit,FC
+tomato_fresh_grade,"tomato seedling, for planting",unit,confirmed,unit = number of seedlings,FC
+tomato_processing_grade,"tomato seedling, for planting",unit,confirmed,unit = number of seedlings,FC
+strawberry_fresh_grade,"strawberry seedling, for planting",unit,confirmed,unit = number of seedlings,FC
+strawberry_processing_grade,"strawberry seedling, for planting",unit,confirmed,unit = number of seedlings,FC
+mint,"mint seedling, for planting",unit,confirmed,unit = number of seedlings,FC
+green_asparagus,"asparagus seedling, for planting",unit,confirmed,perennial: establishment amortised over lifetime?; reviewer: yes,FC
+white_asparagus,"asparagus seedling, for planting",unit,confirmed,perennial: establishment amortised over lifetime?; reviewer: yes,FC
+mango,"mango seedling, for planting",unit,confirmed,perennial: establishment amortised over lifetime?; reviewer: yes,FC
+grass,"grass seed, Swiss integrated production, for sowing",kg,confirmed,only 'grass seed' Swiss IP / organic variants exist in MD v3.12; exchange filled from reviewer instruction; reviewer: keep grass seed' Swiss IP,FC
+chick_pea,"pea seed, for sowing",kg,confirmed,"no chickpea seed in MD v3.12 (pea seed is another species); exchange filled from reviewer instruction; reviewer: use pea seed, for sowing",FC
+sesame_seed,sesame seed,kg,confirmed,only the crop product 'sesame seed' exists (no 'for sowing'); exchange filled from reviewer instruction; reviewer: keep sesame seed,FC
+sugar_cane,,,no_exchange,setts; no exchange in MD v3.12,FC
+cassava,,,no_exchange,stem cuttings; no exchange in MD v3.12,FC
+bell_pepper,,,no_exchange,transplanted; no seedling exchange,FC
+chilli,,,no_exchange,transplanted; no seedling exchange,FC
+eggplant,,,no_exchange,transplanted; no seedling exchange,FC
+cabbage_red,,,no_exchange,transplanted; no seedling exchange,FC
+cabbage_white,,,no_exchange,transplanted; no seedling exchange,FC
+coriander,,,no_exchange,,FC
+ginger,,,no_exchange,rhizomes,FC
+turmeric,,,no_exchange,rhizomes,FC
+guar,,,no_exchange,,FC
+hemp,,,no_exchange,,FC
+castor_bean,,,no_exchange,,FC
+pearl_millet,,,no_exchange,,FC
+almond,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+apple,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+apricot,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+peach,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+pear,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+lemon,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+citrus_lime,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+mandarin,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+orange_fresh_grade,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+orange_processing_grade,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+pomegranate,"fruit tree seedling, for planting",unit,confirmed,"perennial; candidate 'fruit tree seedling, for planting'; exchange filled from reviewer instruction",FC
+cashew,"tree seedling, for planting",unit,confirmed,"perennial; candidate 'tree seedling, for planting'; exchange filled from reviewer instruction",FC
+olive,"tree seedling, for planting",unit,confirmed,"perennial; candidate 'tree seedling, for planting'; exchange filled from reviewer instruction",FC
+cocoa,"tree seedling, for planting",unit,confirmed,"perennial; candidate 'tree seedling, for planting'; exchange filled from reviewer instruction",FC
+coconut,"tree seedling, for planting",unit,confirmed,"perennial; candidate 'tree seedling, for planting'; exchange filled from reviewer instruction",FC
+palm_tree,"tree seedling, for planting",unit,confirmed,"perennial; candidate 'tree seedling, for planting'; exchange filled from reviewer instruction",FC
+coffee_arabica,"tree seedling, for planting",unit,confirmed,"perennial; candidate 'tree seedling, for planting'; exchange filled from reviewer instruction",FC
+coffee_robusta,"tree seedling, for planting",unit,confirmed,"perennial; candidate 'tree seedling, for planting'; exchange filled from reviewer instruction",FC
+tea,"tree seedling, for planting",unit,confirmed,"perennial; candidate 'tree seedling, for planting'; exchange filled from reviewer instruction",FC
+banana,"fruit tree seedling, for planting",unit,confirmed,perennial; no specific exchange; exchange filled from reviewer instruction; reviewer: Use perennial; candidate 'fruit tree seedling,FC
+grape,"fruit tree seedling, for planting",unit,confirmed,perennial; no specific exchange; exchange filled from reviewer instruction; reviewer: Use perennial; candidate 'fruit tree seedling,FC
+blueberry,"fruit tree seedling, for planting",unit,confirmed,perennial; no specific exchange; exchange filled from reviewer instruction; reviewer: Use perennial; candidate 'fruit tree seedling,FC
+cranberry,"fruit tree seedling, for planting",unit,confirmed,perennial; no specific exchange; exchange filled from reviewer instruction; reviewer: Use perennial; candidate 'fruit tree seedling,FC
+raspberry,"fruit tree seedling, for planting",unit,confirmed,perennial; no specific exchange; exchange filled from reviewer instruction; reviewer: Use perennial; candidate 'fruit tree seedling,FC
+mulberry,"fruit tree seedling, for planting",unit,confirmed,perennial; no specific exchange; exchange filled from reviewer instruction; reviewer: Use perennial; candidate 'fruit tree seedling,FC
+pineapple,"fruit tree seedling, for planting",unit,confirmed,suckers/crowns; no specific exchange; exchange filled from reviewer instruction; reviewer: Use perennial; candidate 'fruit tree seedling,FC

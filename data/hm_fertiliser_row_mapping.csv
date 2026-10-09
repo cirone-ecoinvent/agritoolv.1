@@ -1,0 +1,28 @@
+legacy_fertiliser_type,nutrient_basis_of_input,tab6_row,input_to_row_factor,note,status,reviewed_by
+fert_n_ammonium_nitrate,N,ammonium_nitrate,1,explicit in legacy code,confirmed,FC
+fert_n_urea,N,urea,1,explicit in legacy code,confirmed,FC
+fert_n_ureaAN,N,urea,1,legacy code used the urea row for UAN,confirmed,FC
+fert_n_mono_ammonium_phosphate,N,generic_mean_n,1,compound fertiliser: generic mean N (as in legacy code),confirmed,FC
+fert_n_di_ammonium_phosphate,N,generic_mean_n,1,compound fertiliser: generic mean N (as in legacy code),confirmed,FC
+fert_n_an_phosphate,N,generic_mean_n,1,compound fertiliser: generic mean N (as in legacy code),confirmed,FC
+fert_n_lime_ammonium_nitrate,N,generic_mean_n,1,legacy code used the generic mean; Tab. 6 also has calcium_ammonium_nitrate_20 and _27 (to decide),confirmed,FC
+fert_n_ammonium_sulphate,N,ammonium_sulphate,1,explicit in legacy code,confirmed,FC
+fert_n_potassium_nitrate,N,generic_mean_n,1,compound fertiliser: generic mean N (as in legacy code),confirmed,FC
+fert_n_ammonia_liquid,N,generic_mean_n,1,generic mean N (as in legacy code),confirmed,FC
+fert_p_triple_superphosphate,P2O5,triple_superphosphate,1,explicit in legacy code,confirmed,FC
+fert_p_superphosphate,P2O5,superphosphate,1,explicit in legacy code,confirmed,FC
+fert_p_mono_ammonium_phosphate,P2O5,generic_mean_p,1,compound fertiliser: generic mean P (as in legacy code),confirmed,FC
+fert_p_di_ammonium_phosphate,P2O5,generic_mean_p,1,compound fertiliser: generic mean P (as in legacy code),confirmed,FC
+fert_p_an_phosphate,P2O5,generic_mean_p,1,compound fertiliser: generic mean P (as in legacy code),confirmed,FC
+fert_p_hypophosphate_raw_phosphate,P2O5,raw_phosphate,1,explicit in legacy code (hyperphosphate / raw phosphate),confirmed,FC
+fert_p_ground_basic_slag,P2O5,thomas_meal,1,explicit in legacy code (Thomas meal),confirmed,FC
+fert_k_potassium_salt,K2O,potassium_chloride,1,explicit in legacy code,confirmed,FC
+fert_k_potassium_sulphate,K2O,potassium_sulphate,1,explicit in legacy code,confirmed,FC
+fert_k_potassium_nitrate,K2O,generic_mean_k,1,compound fertiliser: generic mean K (as in legacy code),confirmed,FC
+fert_k_patent_potassium,K2O,raw_potassium,1,explicit in legacy code (raw potassium),confirmed,FC
+fert_ca_limestone,Ca,lime,1.39919,lime row is per kg CaO: kg Ca x 56.0774/40.078 (stoichiometric),confirmed,FC
+fert_ca_carbonation_limestone,Ca,lime,1.39919,lime row is per kg CaO: kg Ca x 56.0774/40.078 (stoichiometric),confirmed,FC
+fert_ca_seaweed_limestone,Ca,lime,1.39919,lime row is per kg CaO: kg Ca x 56.0774/40.078 (stoichiometric),confirmed,FC
+fert_zn_zinc_sulfate,Zn,elemental_zinc,1,stoichiometric: 1 kg Zn = 1e6 mg Zn (no Tab. 6 row),confirmed,FC
+fert_zn_zinc_oxide,Zn,elemental_zinc,1,stoichiometric: 1 kg Zn = 1e6 mg Zn (no Tab. 6 row),confirmed,FC
+fert_zn_other,Zn,elemental_zinc,1,stoichiometric: 1 kg Zn = 1e6 mg Zn (legacy code wrongly counted it as Pb),confirmed,FC

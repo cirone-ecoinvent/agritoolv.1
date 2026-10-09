@@ -1,0 +1,13 @@
+fertiliser_type,category,tan_kg_n_per_t_fm,ef_nh3_n_fraction,proxy_used,source
+composttype_compost,compost,0.83,0.71,green waste compost,Agribalyse methodology report v1.1 Tab. 67 (TAN) x Tab. 154 (EF) as cited in the legacy code
+composttype_meat_and_bone_meal,compost,6.50,0.71,feather meal,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code
+composttype_castor_oil_shell_coarse,compost,0.83,0.71,green waste compost,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code
+composttype_vinasse,compost,0.96,0.81,vinasse,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code
+composttype_dried_poultry_manure,compost,0.83,0.69,dry layer droppings,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code
+composttype_stone_meal,compost,6.50,0.71,feather meal,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code (legacy assumption for stone meal)
+composttype_feather_meal,compost,6.50,0.71,feather meal,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code
+composttype_horn_meal,compost,6.50,0.71,feather meal,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code
+composttype_horn_shavings_fine,compost,6.50,0.71,feather meal,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code
+sewagesludge_liquid,sludge,2.13,0.4,liquid sludge,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code
+sewagesludge_dehydrated,sludge,3.20,0.4,semi-solid sludge,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code
+sewagesludge_dried,sludge,1.80,0.4,dried sludge,Agribalyse methodology report v1.1 Tab. 67 x Tab. 154 as cited in the legacy code

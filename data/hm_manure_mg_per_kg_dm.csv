@@ -1,0 +1,10 @@
+manure,Cd,Cu,Zn,Pb,Ni,Cr,Hg,dm_fraction
+cattle_liquid_manure,0.18,37.1,162.2,3.77,4.3,3.9,0.4,0.09
+cattle_slurry,0.16,19.1,123.3,2.92,3.1,2.1,0.6,0.075
+cattle_staple_manure,0.17,23.9,117.7,3.77,4.3,3.9,0.4,0.19
+cattle_manure_loose_housing,0.15,22.0,91.1,2.81,4.3,3.9,0.4,0.21
+pig_liquid_manure,0.21,115.3,746.5,1.76,8.6,6.7,0.8,0.05
+pig_solid_manure,0.21,115.3,746.5,1.76,8.6,6.7,0.8,0.27
+broiler_litter,0.29,43.8,349.2,2.92,40.0,10.0,0.2,0.65
+laying_hen_litter_belts,0.25,39.6,468.4,2.24,7.9,5.5,0.2,0.30
+laying_hen_litter_deep_pit,0.25,39.6,468.4,2.24,7.9,5.5,0.2,0.45

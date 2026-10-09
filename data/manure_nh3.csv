@@ -1,0 +1,11 @@
+manure_type,form,quantity_unit,tan_kg_n_per_unit,ef_nh3_n_fraction,nh3_n_kg_per_unit,source,status,reviewed_by
+liquid_manure_cattle,liquid,m3,2.75,0.55,1.5125,Legacy code manuremodel.py (unsourced): TAN content x emission fraction; values consistent with GRUDAF (Flisch et al. 2009) contents and EMEP/EEA Tier 2 spreading fractions [inferred],proposed,
+liquid_manure_pig,liquid,m3,3.75,0.345,1.29375,Legacy code manuremodel.py (unsourced): mean of fattening pigs and piglets,proposed,
+liquid_manure_laying_hen,liquid,m3,6.3,0.69,4.347,Legacy code manuremodel.py (unsourced),proposed,
+liquid_manure_other,liquid,m3,,,1.7765461,Legacy code manuremodel.py: sum-product of concentrations with world proportions; TAN and EF not separable,proposed,
+solid_manure_cattle,solid,t,1.05,0.79,0.8295,Legacy code manuremodel.py (unsourced),proposed,
+solid_manure_horses,solid,t,0.7,0.9,0.63,Legacy code manuremodel.py (unsourced),proposed,
+solid_manure_laying_hen,solid,t,8.5,0.675,5.7375,Legacy code manuremodel.py (unsourced): mean with broiler litter,proposed,
+solid_manure_pig,solid,t,2.3,0.81,1.863,Legacy code manuremodel.py (unsourced),proposed,
+solid_manure_sheep_goat,solid,t,2.3,0.9,2.07,Legacy code manuremodel.py (unsourced),proposed,
+solid_manure_other,solid,t,,,2.00410305,Legacy code manuremodel.py: sum-product of concentrations with world proportions; TAN and EF not separable,proposed,
