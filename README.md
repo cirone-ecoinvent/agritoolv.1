@@ -37,6 +37,14 @@ src/agritool/
 tests/                 Standard-library unit tests
 DEVELOPMENT.rst        Development rules and methodology review checklist
 progress/              Tracked milestone records and recovery instructions
+
+src/legacy_model/      Port of the legacy ecoinvent crop tool models, with fixes F1-F9
+data/                  All external parameters, tables, mappings and review tables (CSV)
+scripts/               Regression comparison, Master Data alignment, review status
+tests/legacy_model/    Tests and regression cases of the legacy model port (pytest)
+templates/             Excel data-collection template of the legacy tool
+legacy_fixes/          Specification package of the fixes (read-only)
+docs/                  Legacy analysis, fixes report, decision log, writer requirements
 ```
 
 Keep one implementation of each equation in its calculation module; do not
@@ -118,3 +126,37 @@ There is no configured linter or separate application server.
 Record validated milestones in [progress/](progress/README.rst). Use Git
 commits to recover earlier code; do not store duplicate source trees or
 confidential field data in the progress folder.
+
+## Legacy model port (`src/legacy_model`)
+
+The field-emission models of the legacy ecoinvent LCI calculation tool for crop production
+(Quantis, 2015-2019) were ported here with the verified fixes F1-F9
+(`docs/legacy_fixes_report.md`). The legacy repository itself is not modified and will be
+retired; every decision is recorded in [docs/DECISIONS.md](docs/DECISIONS.md).
+
+Rules that apply to every change:
+
+* All external values live in `data/*.csv`, are registered in `data/sources.csv` and are read
+  only through `src/legacy_model/dataloader.py`; nothing is hardcoded.
+* The ecoinvent Master Data is never changed or committed: the tool harmonises with it. Set its
+  path once in a local, git-ignored `agritool.cfg`:
+
+  ```ini
+  [master_data]
+  path = C:/python/external_data/MasterData (3.12, undef).xlsx
+  ```
+
+Run from the repository root with the project virtual environment (needs `pytest`,
+`openpyxl` and `python-dateutil`):
+
+```sh
+.venv\Scripts\python -m pytest tests/legacy_model -q        # tests and regression snapshots
+.venv\Scripts\python scripts\compare_regression.py          # old vs new outputs of the reference cases
+.venv\Scripts\python scripts\review_status.py               # rows still to review in data/
+.venv\Scripts\python scripts\check_master_data.py           # align names with the Master Data
+```
+
+Review workflow: the tables with columns `status` and `reviewed_by` are confirmed row by row
+(status `confirmed`, `no_exchange` or `not_needed` plus the reviewer's initials). Unreviewed rows
+of `seed_exchange_mapping.csv` stop a calculation; the other tables are listed by
+`review_status.py` until they are signed.

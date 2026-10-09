@@ -1,0 +1,29 @@
+name,value,unit,source,doc_section
+ef_nox_n,0.012173913,kg NOx-N / kg N,EEA 2016 3.D Tab. 3.1: 0.04 kg NO2/kg N (note a; Annex A2.3) * 14/46. Deviation from Quantis 2019 (0.04*14/30),2.3
+ef1_direct_n2o,0.01,kg N2O-N / kg N,"IPCC 2006 Vol.4 Tab. 11.1, EF1",2.2
+ef1_flooded_rice,0.003,kg N2O-N / kg N,"IPCC 2006 Vol.4 Tab. 11.1, EF1FR",2.2
+ef4_volatilisation,0.01,kg N2O-N / kg (NH3-N + NOx-N),"IPCC 2006 Vol.4 Tab. 11.3, EF4",2.2
+ef5_leaching,0.0075,kg N2O-N / kg NO3-N,"IPCC 2006 Vol.4 Tab. 11.3, EF5",2.2
+cn_ratio_luc,15,-,"IPCC 2006, forest/grassland to cropland",2.9.1.2
+cn_ratio_cropland,11,-,Scheffer 2002; IPCC 2006b; Batjes 2008,2.4 / 2.9.1.2
+sqcb_intercept,21.37,kg N/(ha*yr),Faist Emmenegger et al. 2009,2.4
+sqcb_coef_s,0.0037,-,Faist Emmenegger et al. 2009,2.4
+sqcb_coef_norg,0.0000601,-,Faist Emmenegger et al. 2009 (implicit 1.6% mineralisation),2.4
+sqcb_coef_u,0.00362,-,Faist Emmenegger et al. 2009,2.4
+soil_volume_m3,5000,m3/ha,pers. comm. J. Leifeld 2011 (0-50 cm),2.4
+bulk_density_kg_m3,1300,kg/m3,SQCB report,2.4
+soil_cn_ratio,11,-,Scheffer 2002; IPCC 2006b; Batjes 2008,2.4
+norg_ntot_ratio,0.85,-,Scheffer 2002,2.4
+legume_uptake_share,0.4,-,Schmid et al. 2000,2.4
+p_gw_arable,0.07,kg P/(ha*yr),Prasuhn 2006,2.5.1
+p_gw_grassland,0.06,kg P/(ha*yr),Prasuhn 2006,2.5.1
+p_ro_arable,0.175,kg P/(ha*yr),Prasuhn 2006,2.5.2
+p_ro_grassland_intensive,0.25,kg P/(ha*yr),Prasuhn 2006,2.5.2
+p_ro_grassland_extensive,0.15,kg P/(ha*yr),Prasuhn 2006,2.5.2
+p_topsoil_content,0.00095,kg P/kg soil,Prasuhn 2006,2.5.3
+p_enrichment_factor,1.86,-,Wilke & Schaub 1996,2.5.3
+erosion_delivery_ratio,0.2,-,Prasuhn 2006,2.5.3
+hm_accumulation_factor,1.86,-,Wilke & Schaub 1996 (as for P),2.7
+hm_erosion_factor,0.2,-,Freiermuth 2006,2.7
+p_drainage_factor,6.0,-,Prasuhn 2006; Nemecek et al. 2023 ESM5 (SALCAfieldP) Eq. 5,"2.5 (drainage, no equation in doc)"
+p_runoff_slope_threshold_pct,3,%,"Prasuhn 2006; Nemecek et al. 2023 ESM5 (SALCAfieldP) Eq. 2, factor s",2.5.2

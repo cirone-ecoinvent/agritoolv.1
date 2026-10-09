@@ -221,3 +221,8 @@ __marimo__/
 
 # Private milestone data and local recovery scratch files
 progress/local/
+
+# AgriToolV.1 local files
+agritool.cfg
+Literature/
+legacy_fixes/.pytest_cache/
