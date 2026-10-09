@@ -1,0 +1,21 @@
+legacy_manure_type,form,tab7_manure_class,share,note,status,reviewed_by
+liquid_manure_cattle,liquid,cattle_liquid_manure,0.5,legacy code: 50 % liquid manure / 50 % slurry,confirmed,FC
+liquid_manure_cattle,liquid,cattle_slurry,0.5,legacy code: 50 % liquid manure / 50 % slurry,confirmed,FC
+liquid_manure_pig,liquid,pig_liquid_manure,1.0,legacy code,confirmed,FC
+liquid_manure_laying_hen,liquid,laying_hen_litter_belts,1.0,legacy code (laying hen manure DM 30 % = litter from belts),confirmed,FC
+liquid_manure_other,liquid,cattle_liquid_manure,0.33,legacy code: world proportions,confirmed,FC
+liquid_manure_other,liquid,cattle_slurry,0.33,legacy code: world proportions,confirmed,FC
+liquid_manure_other,liquid,pig_liquid_manure,0.25,legacy code: world proportions,confirmed,FC
+liquid_manure_other,liquid,laying_hen_litter_belts,0.09,legacy code: world proportions,confirmed,FC
+solid_manure_cattle,solid,cattle_staple_manure,0.5,legacy code: 50 % stackable / 50 % loose housing,confirmed,FC
+solid_manure_cattle,solid,cattle_manure_loose_housing,0.5,legacy code: 50 % stackable / 50 % loose housing,confirmed,FC
+solid_manure_horses,solid,cattle_manure_loose_housing,1.0,legacy code: proxy,confirmed,FC
+solid_manure_laying_hen,solid,broiler_litter,0.5,legacy code: mean of broiler litter and deep-pit laying-hen litter,confirmed,FC
+solid_manure_laying_hen,solid,laying_hen_litter_deep_pit,0.5,legacy code: mean of broiler litter and deep-pit laying-hen litter,confirmed,FC
+solid_manure_pig,solid,pig_solid_manure,1.0,legacy code,confirmed,FC
+solid_manure_sheep_goat,solid,cattle_manure_loose_housing,1.0,legacy code: proxy,confirmed,FC
+solid_manure_other,solid,cattle_staple_manure,0.31,legacy code: world proportions,confirmed,FC
+solid_manure_other,solid,cattle_manure_loose_housing,0.31,legacy code: world proportions,confirmed,FC
+solid_manure_other,solid,pig_solid_manure,0.21,legacy code: world proportions,confirmed,FC
+solid_manure_other,solid,broiler_litter,0.085,legacy code: world proportions (0.17 laying hen litter split 50/50),confirmed,FC
+solid_manure_other,solid,laying_hen_litter_deep_pit,0.085,legacy code: world proportions (0.17 laying hen litter split 50/50),confirmed,FC

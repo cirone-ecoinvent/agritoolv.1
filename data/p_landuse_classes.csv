@@ -1,0 +1,8 @@
+land_use_category,p_leaching_kg_p_per_ha_yr,p_runoff_kg_p_per_ha_yr,source
+Arable land,0.07,0.175,Prasuhn 2006 via Quantis 2019 sections 2.5.1-2.5.2 (model_parameters p_gw_arable / p_ro_arable)
+Grassland intensive,0.06,0.25,Prasuhn 2006 via Quantis 2019 sections 2.5.1-2.5.2 (p_gw_grassland / p_ro_grassland_intensive)
+Grassland extensive,0.06,0.15,Prasuhn 2006 via Quantis 2019 sections 2.5.1-2.5.2 (p_gw_grassland / p_ro_grassland_extensive)
+Fruit trees,0.06,0.25,Legacy code pmodel.py (not in Quantis 2019; presumably Prasuhn 2006; to be confirmed)
+Summer alpine pastures,0.055,0.25,Legacy code pmodel.py (not in Quantis 2019; presumably Prasuhn 2006; to be confirmed)
+Vegetables,0.07,0.175,Legacy code pmodel.py (not in Quantis 2019; same values as arable land)
+Viticulture,0.07,0.175,Legacy code pmodel.py (not in Quantis 2019; same values as arable land)
