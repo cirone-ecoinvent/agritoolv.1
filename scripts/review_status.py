@@ -2,7 +2,9 @@
 
 Review tables (all in data/):
   seed_exchange_mapping.csv               usable when status is confirmed or no_exchange (F6)
-  hm_crop_product_mapping.csv             usable when status is confirmed (F4b)
+  hm_crop_product_mapping_salca2023.csv   usable when status is confirmed (heavy metals, L10)
+  hm_coproduct_mapping.csv                idem
+  hm_organic_fertiliser_mapping.csv       idem
   hm_fertiliser_row_mapping.csv           usable when status is confirmed (F4c)
   hm_manure_class_mapping.csv             usable when status is confirmed (F4d)
   manure_nh3.csv                          usable when status is confirmed (F3)
@@ -34,9 +36,11 @@ import dataloader  # noqa: E402
 TABLES = [
     # file, final statuses, columns shown for open rows
     ("seed_exchange_mapping.csv", ("confirmed", "no_exchange"), ("crop_key", "seed_exchange_name", "unit", "status", "note")),
-    ("hm_crop_product_mapping.csv", ("confirmed",), ("legacy_crop_code", "plant_product_tab5", "status")),
-    ("hm_fertiliser_row_mapping.csv", ("confirmed",), ("legacy_fertiliser_type", "tab6_row", "input_to_row_factor", "status", "note")),
-    ("hm_manure_class_mapping.csv", ("confirmed",), ("legacy_manure_type", "tab7_manure_class", "share", "status", "note")),
+    ("hm_crop_product_mapping_salca2023.csv", ("confirmed",), ("legacy_crop_code", "salca2023_main_product", "status", "note")),
+    ("hm_coproduct_mapping.csv", ("confirmed",), ("by_product_label", "salca2023_product", "status")),
+    ("hm_organic_fertiliser_mapping.csv", ("confirmed",), ("legacy_fertiliser_type", "salca2023_row", "status", "note")),
+    ("hm_fertiliser_row_mapping.csv", ("confirmed",), ("legacy_fertiliser_type", "salca2023_row", "status", "note")),
+    ("hm_manure_class_mapping.csv", ("confirmed",), ("legacy_manure_type", "salca2023_class", "share", "status", "note")),
     ("manure_nh3.csv", ("confirmed",), ("manure_type", "tan_kg_n_per_unit", "ef_nh3_n_fraction", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),

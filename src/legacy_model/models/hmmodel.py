@@ -12,11 +12,6 @@ class PesticideType(Enum):
         zineb="zineb" #fungicide
         ziram="ziram" #fungicide
 
-class LandUseCategoryForHM(Enum):
-        permanent_grassland=1
-        arable_land=2
-        horticultural_crops=3
-
 # Column names of the heavy-metal CSV tables, in the order of HeavyMetalType
 METAL_COLUMNS = {HeavyMetalType.cd: "Cd", HeavyMetalType.cu: "Cu", HeavyMetalType.zn: "Zn",
                  HeavyMetalType.pb: "Pb", HeavyMetalType.ni: "Ni", HeavyMetalType.cr: "Cr",

@@ -7,18 +7,23 @@ def test_params_are_read_from_csv():
     assert dl.param("hm_accumulation_factor") == 1.86
 
 
-def test_metal_tables_na_becomes_zero():
-    metals = ("Cd", "Cu", "Zn", "Pb", "Ni", "Cr", "Hg")
-    leaching = dl.single_metal_row("hm_leaching_mg_per_ha_yr.csv", metals)
+def test_hm_entry_reads_the_salca2023_table_by_name():
+    leaching = dl.hm_entry("leaching")
     assert leaching["Ni"] == 0.0 and leaching["Zn"] == 33000.0
-    rice = dl.metal_row("hm_plant_content_mg_per_kg_dm.csv", "rice_grains", metals)
-    assert rice["Hg"] == 0.0 and rice["Cu"] == 5.27
+    rice = dl.hm_entry("rice")
+    assert rice["Hg"] == 0.0 and rice["Cu"] == 5.27 and rice["dm"] == 0.87
+
+
+def test_hm_entry_names_the_table_when_a_row_is_missing():
+    import pytest
+    with pytest.raises(KeyError, match="hm_salca2023_table1.csv"):
+        dl.hm_entry("quinoa")
 
 
 def test_table_keeps_text_columns():
-    fert = dl.table("hm_mineral_fertiliser_mg_per_kg_nutrient.csv")
-    assert fert["urea"]["nutrient"] == "N"
-    assert fert["urea"]["Zn"] == 95.65
+    row = dl.table("hm_salca2023_table1.csv", key_column="name_en")["N urea (kg N)"]
+    assert row["concentration_unit"] == "mg/kg N"
+    assert row["Zn"] == 95.7
 
 
 def test_every_data_file_is_registered_in_sources():

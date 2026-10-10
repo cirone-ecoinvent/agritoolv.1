@@ -27,7 +27,7 @@ from models.atomicmass import MA_CO2, MA_C
 from models.erosionmodel import TillageMethod, AntiErosionPractice
 from models.fertilisermodel import CaFertiliserType, ZnFertiliserType
 import dataloader
-from models.hmmodel import LandUseCategoryForHM, PesticideType, METAL_COLUMNS
+from models.hmmodel import PesticideType, METAL_COLUMNS
 from models.irrigationmodel import IrrigationType
 from models.modelEnums import SoilTexture
 from models.otherorganicfertilisermodel import CompostType, SludgeType
@@ -235,17 +235,6 @@ class HeavyMetalExportWithHarvestGenerator(object):
                 export[element] += float(fresh) * coproduct["dm"] * coproduct[column]
         return export
 
-
-class LandUseCategoryForHMDefaultGenerator(object):
-    def generateDefault(self, field, generators):
-        if (generators["land_use_category"] == LandUseCategory.arable_land):
-            return LandUseCategoryForHM.arable_land
-        elif (generators["land_use_category"] in [LandUseCategory.grassland_intensive,
-                                                  LandUseCategory.grassland_extensive,
-                                                  LandUseCategory.summer_alpine_pastures]):
-            return LandUseCategoryForHM.permanent_grassland
-        else:
-            return LandUseCategoryForHM.horticultural_crops
 
 
 class SoilTextureDefaultGenerator(object):
@@ -575,7 +564,6 @@ DEFAULTS_VALUES_GENERATORS = {
     # P model from data/model_parameters.csv since Fix F8)
     "land_use_category": TableLookupDefaultGenerator("crop", LAND_USE_CATEGORY_PER_CROP),
     # HM defaults
-    "hm_land_use_category": LandUseCategoryForHMDefaultGenerator(),
     "hm_export_with_harvest": HeavyMetalExportWithHarvestGenerator(),
     "pest_total": CropCountryMatrixLookupDefaultGenerator(TOTAL_PESTICIDES_PER_CROP_PER_COUNTRY),
     "hm_pesticides_quantities": ZeroMapDefaultGenerator(PesticideType),
