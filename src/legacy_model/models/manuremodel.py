@@ -94,10 +94,9 @@ class ManureModel(object):
         """TAN (soluble N) per m3 or per t of manure [kg N]; None when not separable."""
         return dataloader.table(cls._NH3_TABLE)[manure_type.value]["tan_kg_n_per_unit"]
 
-    # Heavy metals (Fix F4d): contents and dry-matter shares of the Freiermuth 2006 Tab. 7
-    # manure classes in data/hm_manure_mg_per_kg_dm.csv; the legacy input types are
-    # redistributed to those classes by data/hm_manure_class_mapping.csv (legacy shares).
-    _HM_TABLE = "hm_manure_mg_per_kg_dm.csv"
+    # Heavy metals: contents [mg/kg DM] and dry-matter shares of the farmyard-manure rows of
+    # SALCAheavymetal 2023 Table 1 (decision L10); the legacy input types are redistributed to
+    # those rows by data/hm_manure_class_mapping.csv.
     _HM_CLASS_MAPPING = "hm_manure_class_mapping.csv"
     _MG_PER_KG = 1000000.0
 
@@ -155,16 +154,15 @@ class ManureModel(object):
         therefore returned g/ha, 1000 times too low.
         """
         kg_fresh_matter = self._fresh_matter_kg()
-        contents = dataloader.table(self._HM_TABLE)
         hm_element_values = dict.fromkeys(HeavyMetalType, 0.0)
         for row in dataloader.rows(self._HM_CLASS_MAPPING):
             kg_fm = kg_fresh_matter.get(row["legacy_manure_type"], 0.0) * float(row["share"])
             if kg_fm == 0.0:
                 continue
-            manure_class = contents[row["tab7_manure_class"]]
-            kg_dm = kg_fm * manure_class["dm_fraction"]
+            manure_class = dataloader.hm_entry(row["salca2023_class"])
+            kg_dm = kg_fm * manure_class["dm"]
             for element in HeavyMetalType:
-                hm_element_values[element] += kg_dm * (manure_class.get(element.name.capitalize()) or 0.0)
+                hm_element_values[element] += kg_dm * manure_class[element.name.capitalize()]
         return hm_element_values
 
     def _fresh_matter_kg(self):

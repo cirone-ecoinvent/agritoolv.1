@@ -1,5 +1,5 @@
-"""Fix F4d: heavy metals of manure in mg: kg FM x DM x mg/kg DM (Freiermuth 2006 Tab. 7, CSV).
-Reference: reference_models.hm_input_manure (10 t cattle slurry -> 92 475 mg Zn)."""
+"""Heavy metals of manure in mg: kg FM x DM x mg/kg DM, with the farmyard-manure rows of
+SALCAheavymetal 2023 Table 1 (decision L10). Expected values use the numbers of Table 1."""
 import pytest
 
 from models.manuremodel import LiquidManureType, ManureModel, SolidManureType
@@ -16,27 +16,23 @@ def _model(liquid=None, solid=None, dilution=1.0):
 
 
 def test_solid_pig_manure_in_mg():
-    # 10 000 kg FM x 0.27 DM x 746.5 mg Zn/kg DM
+    # 10 000 kg FM x 0.27 DM x 1370 mg Zn/kg DM ("pigs, solid manure")
     hm = _model(solid={SolidManureType.pigs: 10_000.0}).computeHeavyMetal()
-    assert hm[HeavyMetalType.zn] == pytest.approx(10_000 * 0.27 * 746.5)
+    assert hm[HeavyMetalType.zn] == pytest.approx(10_000 * 0.27 * 1370)
     assert hm[HeavyMetalType.hg] == pytest.approx(10_000 * 0.27 * 0.8)
 
 
-def test_liquid_cattle_manure_split_between_two_classes():
-    # 10 m3 undiluted x 1006 kg/m3 = 10 060 kg FM; 50 % liquid manure (9 % DM, 162.2) + 50 % slurry (7.5 % DM, 123.3)
+def test_liquid_cattle_manure_split_between_two_rows():
+    # 10 m3 undiluted x 1006 kg/m3 = 10 060 kg FM; 50 % liquid manure (9 % DM, 162) + 50 % slurry (7.5 % DM, 123)
     hm = _model(liquid={LiquidManureType.cattle: 10.0}).computeHeavyMetal()
-    expected = 10_060 * (0.5 * 0.09 * 162.2 + 0.5 * 0.075 * 123.3)
-    assert hm[HeavyMetalType.zn] == pytest.approx(expected, rel=1e-9)
+    assert hm[HeavyMetalType.zn] == pytest.approx(10_060 * (0.5 * 0.09 * 162 + 0.5 * 0.075 * 123), rel=1e-9)
 
 
-def test_reference_slurry_value_through_the_slurry_class():
-    # reference: 10 t fresh cattle slurry, 7.5 % DM, 123.3 mg Zn/kg DM -> 92 475 mg.
-    # 20 m3 cattle liquid manure (50 % of it is the slurry class) at 1 t/m3 -> 10 t slurry share
-    hm = _model(liquid={LiquidManureType.cattle: 20.0 * 1000 / 1006}).computeHeavyMetal()
-    slurry_part = 10_000 * 0.075 * 123.3
-    liquid_part = 10_000 * 0.09 * 162.2
-    assert hm[HeavyMetalType.zn] == pytest.approx(slurry_part + liquid_part, rel=1e-9)
-    assert slurry_part == pytest.approx(92_475)
+def test_other_manure_uses_the_unspecified_rows():
+    hm = _model(solid={SolidManureType.other: 1000.0}).computeHeavyMetal()
+    assert hm[HeavyMetalType.cu] == pytest.approx(1000 * 0.33 * 61)
+    hm = _model(liquid={LiquidManureType.other: 1000 / 1006}).computeHeavyMetal()
+    assert hm[HeavyMetalType.zn] == pytest.approx(1000 * 0.07 * 766)
 
 
 def test_dilution_share_reduces_the_fresh_matter():
@@ -45,7 +41,6 @@ def test_dilution_share_reduces_the_fresh_matter():
     assert half[HeavyMetalType.cu] == pytest.approx(full[HeavyMetalType.cu] / 2)
 
 
-def test_laying_hen_litter_is_the_mean_of_broiler_and_deep_pit_classes():
+def test_hens_and_poultry_litter_is_the_mean_of_broiler_and_laying_hen_litter():
     hm = _model(solid={SolidManureType.laying_hen_litter: 1000.0}).computeHeavyMetal()
-    expected_ni = 1000 * (0.5 * 0.65 * 40.0 + 0.5 * 0.45 * 7.9)
-    assert hm[HeavyMetalType.ni] == pytest.approx(expected_ni)
+    assert hm[HeavyMetalType.ni] == pytest.approx(1000 * (0.5 * 0.65 * 40.0 + 0.5 * 0.45 * 7.9))
