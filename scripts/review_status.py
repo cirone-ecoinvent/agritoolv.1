@@ -58,8 +58,8 @@ LEGACY_TAG = "legacy, undocumented, provisional"
 
 def print_legacy_tags():
     """List the places kept from the legacy tool without a documented source (decision O7)."""
-    print("
-Parts marked '%s' (kept from the legacy tool, to be updated):" % LEGACY_TAG)
+    print()
+    print("Parts marked '%s' (kept from the legacy tool, to be updated):" % LEGACY_TAG)
     for folder, pattern in (("data", "*.csv"), ("src", "*.py")):
         for path in sorted((ROOT / folder).rglob(pattern)):
             text = path.read_text(encoding="utf-8")
