@@ -31,6 +31,8 @@ FC = Francesco Cirone (Sector Manager Agriculture, ecoinvent).
 | L8 | 2026-10-09 | FC | No Java changes (no JDK available); the requirements for the ecoSpold writer are listed in `docs/java_changes_pending.md`. | With O3 the Java code will not be changed at all; the list now serves as requirements for the new writer of AgriToolV.1. |
 | L9 | 2026-10-09 | FC | Terminology of flows and products follows Master Data 3.12. Pure renames (e.g. "Cadmium, ion" -> "Cadmium II", capitalisation) are final without signature; proposals and decisions are reviewed in `data/elementary_flow_alignment.csv` and `data/intermediate_exchange_alignment.csv`. | O4. Open: Chromium III or VI; mineral fertilisers as generic "inorganic ... fertiliser" (same nutrient basis) or as products in kg (needs nutrient contents). |
 
+| L10 | 2026-10-10 | FC | Heavy metals: switch the whole set of tables (plant, fertiliser, manure, organic fertiliser, pesticide contents, soil contents, deposition, leaching) from Quantis 2019 / Freiermuth 2006 to SALCAheavymetal V1.0 (Nemecek et al. 2023, Appendix 7, Table 1). | Newer version of the same Agroscope model, corrects implausible values (e.g. rape seed Cd 1.6 -> 0.047 mg/kg DM), covers more crops; mixing 2023 plant contents with 2006 deposition and soil would make the balance inconsistent. Rejected: keeping Quantis 2019. Step 1 (2026-10-10): Table 1 transcribed to data/hm_salca2023_table1.csv for verification; open points listed in the chat of 2026-10-10 before the model is switched. |
+
 ## Data reviews (signed in the tables)
 
 | # | Date | By | Table | Decision |

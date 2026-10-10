@@ -1,0 +1,153 @@
+category,name_en,name_de,concentration_unit,Cd,Cu,Zn,Pb,Ni,Cr,Hg,dm_kg_per_kg,source_in_document
+animal_products,cow_milk,Kuhmilch,mg/kg DM,0.01,2.3,17.6,0.3,1.1,0.1,0.00752,0.133,"Schultheiss et al. (2004), Hg: Boudebbouz el al. (2021)"
+animal_products,sheep_milk,Schafmilch,mg/kg DM,0.01,0.15,2.46,0.3,0.0312,0.00185,0.00578,0.173,"Souci et al. (2000) (cu, zn, ni, cr, TS), Rest same as cow milk Hg: Boudebbouz el al. (2021)"
+animal_products,goat_milk,Ziegenmilch,mg/kg DM,0.01,0.0821,1.85,0.3,0.0485,0.0343,0.00746,0.134,"Souci et al. (2000) (cu, zn, ni, cr, TS), Rest same as cow milk Hg: Boudebbouz el al. (2021)"
+animal_products,horse_milk,Pferdemilch,mg/kg DM,0.01,0.291,1.46,0.3,0.393,0.0454,0.00971,0.103,"Souci et al. (2000) (cu, zn, ni, cr, TS), Rest same as cow milk Hg: Boudebbouz el al. (2021)"
+animal_products,sheep_wool,Wolle,mg/kg DM,0.223,35.3,476,2.78,0.65,0.225,0.145,1,Özyol (1990)
+animal_products,eggs,Ei,mg/kg DM,0.002,2.5,39,0.1,0.1,0.2,2.31,0.26,Schultheiss et al. (2004)
+animal_body,animals_cattle,Tiere_Rinder,mg/kg DM,0.03,6,81,0.4,0.9,0.3,0.0032,0.25,"Schultheiss et al. (2004), Hg: Nawrocka et al. (2020)"
+animal_body,animals_pigs,Tiere_Schweine,mg/kg DM,0.04,3.7,56,0.4,0.7,0.2,0.0032,0.25,"Schultheiss et al. (2004), Hg: Nawrocka et al. (2020)"
+animal_body,animals_poultry,Tiere_Geflügel,mg/kg DM,0.03,5,60,0.1,0.1,0.1,0.00214,0.28,"Schultheiss et al. (2004), Hg: Nawrocka et al. (2020)"
+animal_body,animals_horses,Tiere_Pferde,mg/kg DM,0.0325,5.18,69.5,0.325,0.65,0.225,0.00286,0.28,Mean
+animal_body,animals_sheep,Tiere_Schafe,mg/kg DM,0.0325,5.18,69.5,0.325,0.65,0.225,0.00286,0.28,Mean
+animal_body,animals_goats,Tiere_Ziegen,mg/kg DM,0.0325,5.18,69.5,0.325,0.65,0.225,0.00286,0.28,Mean
+animal_body,animals_unspec,Tiere_unspez.,mg/kg DM,0.0325,5.18,69.5,0.325,0.65,0.225,0.00291,0.275,Mean
+min_fert,N mineral fertilizers unspecified (kg N),N Mineraldünger unspezifiziert,mg/kg N,0.212,22.3,121,5.37,17.2,7.81,0.403,1,Desaules and Studer (1993)
+min_fert,N ammonium nitrate (kg N),N Ammoniumnitrat,mg/kg N,0.182,25.5,182,6.91,47.3,14.5,0.364,1,Desaules and Studer (1993)
+min_fert,N urea (kg N),N Harnstoff,mg/kg N,0.109,13,95.7,2.39,4.35,4.35,0.435,1,Desaules and Studer (1993)
+min_fert,N urea-AN (kg N),N Harnstoff-AN,mg/kg N,0.109,13,95.7,2.39,4.35,4.35,0.435,1,Desaules and Studer (1993)
+min_fert,"N mono-ammonium phosphate (MAP, kg N)",N Monoammoniumphosphat,mg/kg N,51.3,118,751,49.4,100,589,0.46,1,Desaules and Studer (1993)
+min_fert,"N di-ammonium phosphate (DAP, kg N)",N Diammoniumphosphat,mg/kg N,51.3,118,751,49.4,100,589,0.46,1,Desaules and Studer (1993)
+min_fert,N AN-phosphate (kg N),N AN-Phosphat,mg/kg N,51.3,118,751,49.4,100,589,0.46,1,Desaules and Studer (1993)
+min_fert,N lime-ammonium nitrate (kg N),N Kalk-Ammoniumnitrat,mg/kg N,0.185,8.52,100,5.93,12.6,2.96,0.37,1,Desaules and Studer (1993)
+min_fert,N ammonium sulphate (kg N),N Ammoniumsulfat,mg/kg N,0.238,19,143,5.24,8.57,9.52,0,1,Desaules and Studer (1993)
+min_fert,N potassium nitrate (kg N),N Kaliumnitrat,mg/kg N,0.212,22.3,121,5.37,17.2,7.81,0.403,1,Desaules and Studer (1993)
+min_fert,N liquid ammonia (kg N),N Ammoniak flüssig,mg/kg N,0.212,22.3,121,5.37,17.2,7.81,0.403,1,Desaules and Studer (1993)
+min_fert,P mineral fertiliser unspecified (kg P2O5),P Mineraldünger unspezifiziert,mg/kg P2O5,51.3,118,751,49.4,100,589,0.46,1,Desaules and Studer (1993)
+min_fert,P triple-superphos. (kg P2O5),P Triple-Superphos.,mg/kg P2O5,113,97.8,650,7.61,95.7,567,0.261,1,Desaules and Studer (1993)
+min_fert,P superphosphate (kg P2O5),P Superphosphat,mg/kg P2O5,52.6,121,853,579,105,342,0.579,1,Desaules and Studer (1993)
+min_fert,"P mono-ammonium phosphate (MAP, kg P2O5)",P Monoammoniumphosphat,mg/kg P2O5,51.3,118,751,49.4,100,589,0.46,1,Desaules and Studer (1993)
+min_fert,"P di-ammonium phosphate (DAP, kg P2O5)",P Diammoniumphosphat,mg/kg P2O5,51.3,118,751,49.4,100,589,0.46,1,Desaules and Studer (1993)
+min_fert,P AN-phosphate (kg P2O5),P AN-Phosphat,mg/kg P2O5,51.3,118,751,49.4,100,589,0.46,1,Desaules and Studer (1993)
+min_fert,"P hyperphosphate (raw phosphate, kg P2O5)",P Hyperphosphat,mg/kg P2O5,50,115,915,23.8,76.9,612,0.499,1,Desaules and Studer (1993)
+min_fert,P Thomas phosphate (kg P2O5),P Thomasmehl,mg/kg P2O5,1.56,250,425,75,125,12200,0.42,1,Desaules and Studer (1993)
+min_fert,K mineral fertiliser unspecified (kg K2O),K Mineraldünger unspezifiziert,mg/kg K2O,0.1,8.33,76.7,9.17,3.5,4,0.112,1,Desaules and Studer (1993)
+min_fert,"K potassium salt (KCl, kg K2O)",K Kalisalz,mg/kg K2O,0.1,8.33,76.7,9.17,3.5,3.33,0.0833,1,Desaules and Studer (1993)
+min_fert,"K potassium sulphate (K2SO4, kg K2O)",K Kaliumsulfat,mg/kg K2O,0.1,4,64,6.6,1.6,4,0.14,1,Desaules and Studer (1993)
+min_fert,K potassium nitrate (kg K2O),K Kaliumnitrat,mg/kg K2O,0.1,8.33,76.7,9.17,3.5,4,0.112,1,Desaules and Studer (1993)
+min_fert,K patentkali (kg K2O),K Patentkali,mg/kg K2O,0.192,173,154,11.5,11.5,173,0.112,1,Desaules and Studer (1993)
+min_fert,Ca limestone (kg Ca),Ca Kalk,mg/kg Ca,0.12,4,8,3.6,12.2,314,0.446,1,Desaules and Studer (1993)
+min_fert,Ca carbonation limestone (kg Ca),Ca Karbonationskalk,mg/kg Ca,0.12,4,8,3.6,12.2,314,0.446,1,Desaules and Studer (1993)
+min_fert,Ca seaweed limestone (kg Ca),Ca Meeresalgenkalk,mg/kg Ca,0.12,4,8,3.6,12.2,314,0.446,1,Desaules and Studer (1993)
+min_fert,Mg magnesium (kg Mg),Mg Magnesium,mg/kg Mg,0.12,4,8,3.6,12.2,314,0.446,1,Desaules and Studer (1993)
+org_fert,"cattle, liquid manure",Rindvieh Vollgülle,mg/kg DM,0.178,37.1,162,3.77,4.3,3.9,0.4,0.09,"Cd, Cu, Zn, Pb: Menzi and Kessler (1998). Ni, Cr: Desaules and Studer (1993)"
+org_fert,"cattle, slurry",Rindvieh Gülle kotarm,mg/kg DM,0.16,19.1,123,2.92,3.1,2.1,0.6,0.075,"Cd, Cu, Zn, Pb: Menzi and Kessler (1998). Ni, Cr: Desaules and Studer (1993)"
+org_fert,"cattle, staple manure",Rindvieh Stapelmist,mg/kg DM,0.19,26.2,130,3.77,4.3,3.9,0.4,0.19,"Cd, Cu, Zn: Gross et al. (2021), Pb: Menzi and Kessler (1998). Ni, Cr: Desaules and Studer (1993)"
+org_fert,"cattle, solid manure, loose housing",Rindvieh Laufstallmist,mg/kg DM,0.151,22,91.1,2.81,4.3,3.9,0.4,0.21,"Cd, Cu, Zn, Pb: Menzi and Kessler (1998). Ni, Cr: Desaules and Studer (1993)"
+org_fert,"pigs, liquid manure",Schweine Gülle,mg/kg DM,0.12,125,1370,1.76,8.6,6.7,0.8,0.05,"Cd, Cu, Zn, Pb: Menzi and Kessler (1998). Ni, Cr: Desaules and Studer (1993)"
+org_fert,"pigs, solid manure",Schweine Mist,mg/kg DM,0.12,125,1370,1.76,8.6,6.7,0.8,0.27,Pig manure assumed as pig slurry
+org_fert,broiler litter,Mastpoulets Mist,mg/kg DM,0.33,71,378,2.92,40,10,0.2,0.65,"Cd, Cu, Zn: Gross et al. (2021), Pb: Menzi and Kessler (1998). Ni, Cr: Desaules and Studer (1993)"
+org_fert,laying hen manure,Legehennen Kot,mg/kg DM,0.33,71,378,2.24,7.9,5.5,0.2,0.3,"Cd, Cu, Zn: Gross et al. (2021), Pb: Menzi and Kessler (1998). Ni, Cr: Desaules and Studer (1993)"
+org_fert,laying hen litter,Legehennen Mist,mg/kg DM,0.33,71,378,2.24,7.9,5.5,0.2,0.45,Laying hen litter assumed as laying hen manure
+org_fert,"solid manure, unspecified",Mist unspezifiziert,mg/kg DM,0.198,61,492,2.82,14.3,6.13,0.45,0.33,Mean solid manure
+org_fert,"liquid manure, unspecified",Gülle unspezifiziert,mg/kg DM,0.149,81,766,2.77,6.45,5.3,0.6,0.07,Mean liquid manure
+org_fert,animal meal,Tiermehl,mg/kg DM,0,11,116,2,2,1.9,0.0008,1,"Nottrodt (2001), Herter and Külling (2001)"
+org_fert,castor bean meal,Rizinusschrot,mg/kg DM,0.102,6.63,32,0.541,1.04,0.545,0.0406,0.722,"Nottrodt (2001), Herter and Külling (2001)"
+org_fert,vinasse,Vinasse,mg/kg DM,0.64,21.5,52.9,3.2,3,8.7,0.15,0.55,Koch and Salou (2015)
+org_fert,"poultry manure, dried",Hühnermist getrocknet,mg/kg DM,0.253,39.6,468,2.24,7.9,5.5,0.2,0.45,"Nottrodt (2001), Herter and Külling (2001)"
+org_fert,horn meal,Hornmehl,mg/kg DM,0.2,7.3,135,8.3,2.8,65,0.1,1,"Nottrodt (2001), Herter and Külling (2001)"
+org_fert,compost,Kompost,mg/kg DM,0.188,30.2,96,25.8,8.52,11.7,0.0628,1,Candinas et al. (1999)
+org_fert,"sewage sludge, dried",Klärschlamm getrocknet,mg/kg DM,1.6,339,945,97,32,76.2,1.8,1,Külling  et al. (2002)
+org_fert,"sewage sludge, dehydrated",Klärschlamm entwässert,mg/kg DM,0.64,136,378,38.8,12.8,30.5,0.72,0.4,Külling  et al. (2002)
+org_fert,"sewage sludge, liquid",Klärschlamm flüssig,mg/kg DM,0.16,33.9,94.5,9.7,3.2,7.62,0.18,0.1,Külling  et al. (2002)
+plants_feed,alfalfa,Luzerne,mg/kg DM,0.13,8.6,40,1.2,1.68,1.09,0.15,0.3,"Koch and Salou (2015), Houba and Uittenbogaard (1994)"
+plants_feed,animal feed salt,Viehsalz,mg/kg DM,0.1,3.5,13.5,0.3,2,0.2,0,0.99,Schultheiss et al. (2004)
+plants_feed,barley grains,Gerstenkörner,mg/kg DM,0.03,4.3,26.6,0.2,0.1,0.1,0,0.85,"Koch and Salou (2015), Schultheiss et al (2004)"
+plants_feed,barley straw,Gerstenstroh,mg/kg DM,0.1,4.8,11.1,0.6,0.8,1.2,0,0.85,"Koch and Salou (2015), Schultheiss et al (2004)"
+plants_feed,barley whole plant,Gerstenganzpflanzen,mg/kg DM,0.065,4.55,18.9,0.4,0.45,0.65,0,0.85,Mean of barley grains and barley straw
+plants_feed,beet pulp,Zuckerrüben-Pressschnitzel,mg/kg DM,0.5,10.3,41.4,1.8,1.5,1.9,0,0.2,Schultheiss et al. (2004)
+plants_feed,broiler feed,Pouletmastfutter,mg/kg DM,0.03,40.2,123,0.2,1.1,0.9,0,0.85,Schultheiss et al. (2004)
+plants_feed,carrots,Karotten,mg/kg DM,0.1,7.18,19.9,0.58,0.39,0,0,0.103,"Koch and Salou (2015), Hermanescu et al. (2011)"
+plants_feed,complete feed sows,Alleinfutter Sauen,mg/kg DM,0.1,42,189,0.5,1.5,1.3,0,0.85,Schultheiss et al. (2004)
+plants_feed,"co-product, mean","Nebenprodukt, Mittel",mg/kg DM,0.14,4.92,20.6,0.82,0.96,0.93,0.15,0.6,"Koch and Salou (2015), Mean"
+plants_feed,corn gluten,Maiskleber,mg/kg DM,0.03,6.6,61.7,0.2,3.8,1.5,0,0.9,Schultheiss et al. (2004)
+plants_feed,corn-cob-mix,CCM (Corn-Cob-Mix),mg/kg DM,0.03,3.1,27.2,0.2,0.3,0.3,0,0.61,Schultheiss et al. (2004)
+plants_feed,dairy cow feed,"Ergänzungsfuttermittel, Milchkühe",mg/kg DM,0.1,31.4,176,0.9,3.9,2.4,0,0.85,Schultheiss et al. (2004)
+plants_feed,durum wheat grains,"Hartweizen, Körner",mg/kg DM,0.069,4.54,22,0.014,0.06,0.045,0.001,0.85,"Koch and Salou (2015), Arvalis (1998)"
+plants_feed,durum wheat straw,"Hartweizen, Stroh",mg/kg DM,0.2,2.5,9.6,0.6,0.6,0.7,0,0.85,"Koch and Salou (2015), Schultheiss et al. (2004)"
+plants_feed,fattening pig feed phase 1,Alleinfutter Vormast,mg/kg DM,0.1,66,236,0.2,1.6,1.7,0,0.85,Schultheiss et al. (2004)
+plants_feed,fattening pig feed phase 2,Alleinfutter Endmast,mg/kg DM,0.1,30.2,158,0.3,1.6,1.5,0,0.85,Schultheiss et al. (2004)
+plants_feed,fava beans,Ackerbohnen,mg/kg DM,0.04,6,30.1,0.87,1.3,0.69,0,0.86,"Houba and Uittenbogaard (1994), IPE94"
+plants_feed,feed lime,Futterkalk,mg/kg DM,0.1,8.1,10.4,5.3,2.1,3.5,0,1,Schultheiss et al. (2004)
+plants_feed,fish meal,Fischmehl,mg/kg DM,0.4,4.3,89.6,0.8,1.6,1.5,0,0.92,Schultheiss et al. (2004)
+plants_feed,fruit pomace,Obsttrester,mg/kg DM,0.1,15.2,27.5,1.9,21,6,0.1,0.9,"Freiermuth (2006), Nottrodt (2001), Herter and Külling (2001)"
+plants_feed,grape pomace,Traubentrester,mg/kg DM,0.2,65,53.7,2.1,1.9,3.1,0,0.9,"Freiermuth (2006), Nottrodt (2001), Herter and Külling (2001)"
+plants_feed,grapes,Trauben,mg/kg DM,0.11,6.48,29.1,0.58,0.91,0.58,0.06,0.18,"Koch and Salou (2015), Mean values"
+plants_feed,grass,Gras,mg/kg DM,0.13,8.6,40,1.2,1.68,1.09,0.15,0.166,"Koch and Salou (2015), Houba and Uittenbogaard (1994)"
+plants_feed,green waste shredding,Grünguthäcksel,mg/kg DM,0.3,14,71,20,10,14.7,0.1,0.5,"Freiermuth (2006), Nottrodt (2001), Herter and Külling (2001)"
+plants_feed,laying hen feed,Leghennenfutter,mg/kg DM,0.06,14.6,119,0.7,3.5,3.8,0,0.85,Schultheiss et al. (2004)
+plants_feed,"main product, mean","Hauptprodukt, Mittel",mg/kg DM,0.11,6.48,29.1,0.58,0.91,0.58,0.06,0.48,"Koch and Salou (2015), Mean"
+plants_feed,maize grains,Maiskörner,mg/kg DM,0.03,2.5,21.5,0.3,1.16,0.32,0,0.72,"Koch and Salou (2015), Houba and Uittenbogaard (1994)"
+plants_feed,maize silage,Maissilage,mg/kg DM,0.1,5,34.5,1.61,0.48,0.7,0.01,0.81,"Koch and Salou (2015), Houba and Uittenbogaard (1994)"
+plants_feed,malt,Biertreber,mg/kg DM,0.1,15,76.1,0.3,0.5,0.5,0,0.85,Schultheiss et al. (2004)
+plants_feed,milk replacer,Milchaustauscher,mg/kg DM,0.003,7.9,70.9,0.2,0.3,0.4,0,0.85,Schultheiss et al. (2004)
+plants_feed,mineral feed cattle,Mineralfutter Rind,mg/kg DM,0.4,747,3480,5.2,25.6,38.1,0,0.99,Schultheiss et al. (2004)
+plants_feed,mineral feed fattening pigs,Mineralfutter Mastschweine,mg/kg DM,0.8,818,4810,3.7,16.6,17.8,0,0.99,Schultheiss et al. (2004)
+plants_feed,mineral feed piglets,Mineralfutter Ferkel,mg/kg DM,0.3,3130,3650,6.9,11.6,24,0,0.99,Schultheiss et al. (2004)
+plants_feed,mineral feed sows,Mineralfutter Sauen,mg/kg DM,1.6,734,2360,3.6,14.3,55,0,0.99,Schultheiss et al. (2004)
+plants_feed,Miscanthus,Miscanthus,mg/kg DM,0.07,2.2,110,0.8,2.6,0.5,0.004,0.85,Wolfensberger and Dinkel (1997)
+plants_feed,oats,Hafer,mg/kg DM,0.1,4.8,29.1,0.2,0.7,0.4,0,0.85,Schultheiss et al. (2004)
+plants_feed,peas,Erbsen,mg/kg DM,0.018,6.65,24.7,0.15,1.73,0.82,0.002,0.85,"Koch and Salou (2015), Arvalis (1998)"
+plants_feed,potato digestate,Kartoffelschlempe,mg/kg DM,0.2,40.1,48.7,0.6,0.9,1.1,0,0.94,Schultheiss et al. (2004)
+plants_feed,potato skins,Kartoffelschalen,mg/kg DM,0.2,7.2,15.1,0.4,1,1.2,0,0.15,Schultheiss et al. (2004)
+plants_feed,potato starch,Kartoffelstärke,mg/kg DM,0.04,1.2,3.5,0.3,0.3,0.6,0,0.83,Schultheiss et al. (2004)
+plants_feed,potatoes,Kartoffeln,mg/kg DM,0.029,0.82,2.87,0.029,0.076,0.01,0.008,0.2,"Koch and Salou (2015), Arvalis (1998)"
+plants_feed,rapeseed,Rapskörner,mg/kg DM,0.047,4.74,39,0.035,0.57,0.22,0.007,0.91,Koch and Salou (2015)
+plants_feed,rapeseed meal,Rapsextraktionsschrot,mg/kg DM,0.1,7.2,78.8,0.2,1.2,0.6,0,0.86,Schultheiss et al. (2004)
+plants_feed,rice,Reis,mg/kg DM,0.02,5.27,43.9,0.96,0.97,0.49,0,0.87,WFLDB (2015)
+plants_feed,rye straw,Roggenstroh,mg/kg DM,0.1,3.2,13,0.4,0.7,0.5,0,0.85,Schultheiss et al. (2004)
+plants_feed,Salix,Salix,mg/kg DM,0.61,3.33,68,0.2,0.2,0.58,0,0.85,Hölscher et al. (2007)
+plants_feed,sow feed,Alleinfutter Sauen,mg/kg DM,0.1,42,189,0.5,1.5,1.3,0,0.85,Schultheiss et al. (2004)
+plants_feed,soya beans,Sojabohnen,mg/kg DM,0.06,15.1,47.7,0.08,5.32,0.52,0,0.86,"Houba and Uittenbogaard (1994), IPE94"
+plants_feed,soya meal,Sojaextraktionsschrot,mg/kg DM,0.1,15.7,47.4,0.3,6.1,2.1,0,0.86,Schultheiss et al. (2004)
+plants_feed,sugar beet,Zuckerrübe,mg/kg DM,0.4,12,36.4,1.16,1.08,1.78,0.095,0.23,"Koch and Salou (2015), Houba and Uittenbogaard (1994)"
+plants_feed,sugar,Zucker,mg/kg DM,0,0,0,0,0,0,0,0,Feedbase.ch and own assumption
+plants_feed,sunflower,Sonnenblume,mg/kg DM,0.358,17.1,47.1,0.047,1.9,0.18,0.0056,0.91,Koch and Salou (2015)
+plants_feed,supplementary feed dairy cows,Ergänzungsfutter Milchkühe,mg/kg DM,0.1,31.4,176,0.9,3.9,2.4,0,0.85,Schultheiss et al. (2004)
+plants_feed,supplementary feed weaned piglets,Ergänzungsfutter Aufzuchtferkel,mg/kg DM,0.1,139,177,0.4,2.2,1.6,0,0.85,Schultheiss et al. (2004)
+plants_feed,supplementary feed weaner piglets,Ergänzungsfutter Saugferkel,mg/kg DM,0.1,120,221,0.3,1.9,1.7,0,0.85,Schultheiss et al. (2004)
+plants_feed,triticale grains,Triticalekörner,mg/kg DM,0.1,4.3,28.4,0.2,0.2,0.1,0,0.85,"Koch and Salou (2015), Schultheiss et al. (2004)"
+plants_feed,triticale straw,Triticalestroh,mg/kg DM,0.1,2.5,13.1,0.7,0.4,0.8,0,0.85,"Koch and Salou (2015), Schultheiss et al. (2004)"
+plants_feed,triticale whole plant,Triticaleganzpflanzen,mg/kg DM,0.1,3.4,20.8,0.45,0.3,0.45,0,0.85,Mean of triticale grains and triticale straw
+plants_feed,turkey feed,Truthahnmastfutter,mg/kg DM,0.1,29.9,80,0.5,1.5,1.3,0,0.85,Schultheiss et al. (2004)
+plants_feed,vegetable/fruit pulp,Gemüse/Obstbrei,mg/kg DM,0.2,22.6,62,2.8,2.5,2.9,0,0.14,"Freiermuth (2006), Nottrodt (2001), Herter and Külling (2001)"
+plants_feed,vegetal oil,Pflanzenöl,mg/kg DM,0,0,0,0,0,0,0,1,Own assumption
+plants_feed,wheat bran,Weizenkleie,mg/kg DM,0.1,10.4,87,0.4,0.6,0.6,0,0.87,Schultheiss et al. (2004)
+plants_feed,wheat grains,"Weizen, Körner",mg/kg DM,0.048,3.76,17.2,0.13,0.16,0.2,0.012,0.85,"Koch and Salou (2015), Arvalis (1998)"
+plants_feed,wheat straw,"Weizen, Stroh",mg/kg DM,0.2,2.5,9.6,0.6,0.6,0.7,0,0.85,"Koch and Salou (2015), Schultheiss et al. (2004)"
+plants_feed,wheat whole plant,Weizenganzpflanzen,mg/kg DM,0.124,3.13,13.4,0.365,0.38,0.45,0.006,0.85,Mean of wheat grains and wheat straw
+plants_feed,wood chips,Holzhäcksel,mg/kg DM,0.5,11.9,107,22,5.3,12,0.7,0.3,"Freiermuth (2006), Nottrodt (2001), Herter and Külling (2001)"
+plants_feed,zero_HM,keine_SM,mg/kg DM,0,0,0,0,0,0,0,1,Own assumption
+pesticides,pesti_copper,Kupfer,mg/kg,0,1e+06,0,0,0,0,0,1,Pure substance
+pesticides,pesti_copper oxide,Kupfer (als Oxid),mg/kg,0,890000,0,0,0,0,0,1,Perkow and Ploss (1994)
+pesticides,pesti_copper hydroxide,Kupfer (als Hydroxyd),mg/kg,0,640000,0,0,0,0,0,1,Perkow and Ploss (1994)
+pesticides,pesti_copper oxychloride,Kupfer (als Oxychlorid),mg/kg,0,570000,0,0,0,0,0,1,PPDB: Pesticide Properties DataBase
+pesticides,pesti_copper sulphate,Kupfersulfat,mg/kg,0,250000,0,0,0,0,0,1,Perkow and Ploss (1994)
+pesticides,pesti_copper naphthenate,Kupfernaphthenat,mg/kg,0,80000,0,0,0,0,0,1,Perkow and Ploss (1994)
+pesticides,pesti_tribasic_copper_sulfate,Kupfersulfat (tribasisch),mg/kg,0,457000,0,0,0,0,0,1,Perkow and Ploss (1994)
+pesticides,pesti_mancozeb,Mancozeb,mg/kg,0,0,25000,0,0,0,0,1,Perkow and Ploss (1994)
+pesticides,pesti_metiram,Metiram,mg/kg,0,0,180000,0,0,0,0,1,Perkow and Ploss (1994)
+pesticides,pesti_propineb,Propineb,mg/kg,0,0,220000,0,0,0,0,1,Perkow and Ploss (1994)
+pesticides,pesti_zineb,Zineb,mg/kg,0,0,240000,0,0,0,0,1,Perkow and Ploss (1994)
+pesticides,pesti_ziram,Ziram,mg/kg,0,0,210000,0,0,0,0,1,Perkow and Ploss (1994)
+pesticides,pesti_zinc,Zink,mg/kg,0,0,1e+06,0,0,0,0,1,Pure substance
+pesticides,pesti_zinc_phosphide,Zinkphosphid,mg/kg,0,0,760000,0,0,0,0,1,Perkow and Ploss (1994)
+soil,soil_arable land,Ackerland,mg/kg DM,0.27,23.7,58,22.9,28.7,28.5,0.09,1,Gubler et al. (2015)
+soil,soil_grassland intensive,Grasland intensive,mg/kg DM,0.36,17.5,68.7,26,32.5,52.8,0.07,1,Gubler et al. (2015)
+soil,soil_grassland extensive,Grasland extensiv,mg/kg DM,0.36,17.5,68.7,26,32.5,52.8,0.07,1,Gubler et al. (2015)
+soil,soil_summer alpine pastures,Sömmerungsweiden,mg/kg DM,0.36,17.5,68.7,26,32.5,52.8,0.07,1,Gubler et al. (2015)
+soil,soil_viticulture,Weinbau,mg/kg DM,0.31,126,75.4,24.8,26.8,26.8,0.1,1,Gubler et al. (2015)
+soil,soil_fruit trees,Obstbau,mg/kg DM,0.31,126,75.4,24.8,26.8,26.8,0.1,1,Gubler et al. (2015)
+soil,soil_vegetables,Gemüsebau,mg/kg DM,0.31,126,75.4,24.8,26.8,26.8,0.1,1,Gubler et al. (2015)
+deposition,deposition,Deposition,mg/ha/year,589,23800,54800,10800,6710,3650,50,1,"Cd, Cu, Zn, Pb: BAFU and Empa (2016), Ni: BAFU and Empa (2020), Cr, Hg: Thöni et al. (2008)"
+leaching,leaching,Auswaschung,mg/ha/year,50,3600,33000,600,0,21200,1.3,1,Wolfensberger and Dinkel (1997)
