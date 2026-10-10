@@ -33,3 +33,4 @@ p_corr_slurry_runoff,0.00875,1/(kg P2O5),"Prasuhn 2006 via Quantis 2019: Fro ter
 p_corr_manure_runoff,0.005,1/(kg P2O5),"Prasuhn 2006 via Quantis 2019: Fro term 0.4/80 x P2O5 solid manure",2.5.2
 hm_pesticide_soil_fraction,0.95,-,"Legacy code hmmodel.py (_PEST_TO_SOIL_RATIO, unsourced): share of the applied Cu / Zn fungicide reaching the soil",2.7
 liquid_manure_density_kg_per_m3,1006,kg/m3,"Legacy code outputMapping.py (_LIQUID_MANURE_FACTORS, unsourced): density used to convert m3 of liquid manure to kg fresh matter",2.7
+hm_pesticide_harvest_export_fraction,0.05,-,"Audsley et al. (1997) via SALCAheavymetal V1.0 (Nemecek et al. 2023, Appendix 7) Eq. 4, A_p: fraction of the metals of pesticides exported with the harvest",2.7

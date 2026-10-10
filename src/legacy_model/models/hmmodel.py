@@ -44,7 +44,7 @@ class HmModel(object):
       hm_from_other_organic_fert : map HeavyMetalType -> mg i/(ha*crop cycle)
       hm_from_seed: map HeavyMetalType -> mg i/(ha*crop cycle)
       hm_pesticides_quantities: map PesticideType -> g a.i./(ha*crop cycle)
-      hm_export_with_harvest: map HeavyMetalType -> mg i/(ha*crop cycle) in the harvested product
+      hm_export_with_harvest: map HeavyMetalType -> mg i/(ha*crop cycle) in the harvested main and co-products
       drained_part: ratio (decision D5: template "drainage")
       eroded_soil: kg/(ha*year)
       land_use_category: pmodel.LandUseCategory (7 classes, soil rows of Table 1)
@@ -95,7 +95,9 @@ class HmModel(object):
             agro_input = self._compute_agro_input(pesticides, element)  # mg/ha
             allocation = agro_input / (agro_input + deposition[column] * t) if agro_input > 0 else 0.0
             self.last_allocation[element] = allocation
-            harvest = self.hm_export_with_harvest[element] * allocation
+            # Eq. 4: harvested products x A, plus the metals of pesticides exported with the
+            # harvest (fraction A_p of the pesticide input reaching the field, not allocated)
+            harvest = self.hm_export_with_harvest[element] * allocation                 + pesticides[element] * dataloader.param("hm_pesticide_harvest_export_fraction")
             leaching = leaching_rate[column] * t * allocation
             erosion = soil_content[column] * self.eroded_soil * t * accumulation * erosion_factor * allocation
             soil = agro_input - leaching - erosion

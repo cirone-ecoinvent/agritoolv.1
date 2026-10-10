@@ -109,12 +109,25 @@ def test_zinc_fungicide_share_from_csv():
     assert values[HeavyMetalType.cu] == pytest.approx(100.0 * 0.95 * 1000.0)
 
 
-def test_harvest_export_generator_uses_tab5_product():
+def test_harvest_export_generator_uses_2023_products_and_coproducts():
     gen = HeavyMetalExportWithHarvestGenerator()
-    export = gen.generateDefault("", {"crop": "wheat", "yield_main_product_dry_per_crop_cycle": 8000.0})
-    assert export[HeavyMetalType.zn] == pytest.approx(8000 * 21.1)
-    assert export[HeavyMetalType.hg] == pytest.approx(8000 * 0.01)
-    generic = gen.generateDefault("", {"crop": "apple", "yield_main_product_dry_per_crop_cycle": 1000.0})
-    assert generic[HeavyMetalType.cu] == pytest.approx(1000 * 6.6)
-    rice = gen.generateDefault("", {"crop": "rice", "yield_main_product_dry_per_crop_cycle": 1000.0})
-    assert rice[HeavyMetalType.hg] == 0.0  # NA -> 0
+    base = {"yield_BP1_per_crop_cycle": "", "yield_BP2_per_crop_cycle": "", "yield_BP3_per_crop_cycle": ""}
+    wheat = gen.generateDefault("", dict(base, crop="wheat", yield_main_product_dry_per_crop_cycle=8000.0))
+    assert wheat[HeavyMetalType.zn] == pytest.approx(8000 * 17.2)      # wheat grains, Table 1
+    assert wheat[HeavyMetalType.cd] == pytest.approx(8000 * 0.048)
+    apple = gen.generateDefault("", dict(base, crop="apple", yield_main_product_dry_per_crop_cycle=1000.0))
+    assert apple[HeavyMetalType.cu] == pytest.approx(1000 * 6.48)      # main product, mean
+    straw = gen.generateDefault("", dict(base, crop="wheat", yield_main_product_dry_per_crop_cycle=0.0,
+                                         yield_BP1_per_crop_cycle=5000.0))
+    assert straw[HeavyMetalType.zn] == pytest.approx(5000 * 0.6 * 20.6)  # co-product, mean, DM 0.6
+
+
+def test_pesticide_metals_exported_with_the_harvest():
+    pest = {p: 0.0 for p in PesticideType}
+    pest[PesticideType.cu] = 1000.0  # g Cu
+    model = HmModel(_inputs(hm_pesticides_quantities=pest))
+    out = model.compute()
+    cu_to_field = 1000.0 * 0.95 * 1000.0
+    a = model.last_allocation[HeavyMetalType.cu]
+    assert out["m_hm_heavymetal_to_soil_minus_uptake"][HeavyMetalType.cu] == pytest.approx(
+        (cu_to_field - 0.05 * cu_to_field - 3600 * a) * 1e-6)

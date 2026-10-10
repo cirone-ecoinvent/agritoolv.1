@@ -1,68 +1,68 @@
 legacy_crop_code,salca2023_main_product,note,status,reviewed_by
-almond,"main product, mean",crop not in Table 1: mean of main products,proposed,
-apple,"main product, mean",crop not in Table 1: mean of main products,proposed,
-apricot,"main product, mean",crop not in Table 1: mean of main products,proposed,
-asparagus_green,"main product, mean",crop not in Table 1: mean of main products,proposed,
-asparagus_white,"main product, mean",crop not in Table 1: mean of main products,proposed,
-banana,"main product, mean",crop not in Table 1: mean of main products,proposed,
-bellpepper,"main product, mean",crop not in Table 1: mean of main products,proposed,
-blueberry,"main product, mean",crop not in Table 1: mean of main products,proposed,
-cabbage_red,"main product, mean",crop not in Table 1: mean of main products,proposed,
-cabbage_white,"main product, mean",crop not in Table 1: mean of main products,proposed,
-carrot,carrots,same product in Table 1,proposed,
-cashew,"main product, mean",crop not in Table 1: mean of main products,proposed,
-cassava,"main product, mean",crop not in Table 1: mean of main products,proposed,
-castor_beans,"main product, mean",crop not in Table 1: mean of main products,proposed,
-chick_pea,"main product, mean",candidate proxy 'peas' (other species),proposed,
-chilli,"main product, mean",crop not in Table 1: mean of main products,proposed,
-cocoa,"main product, mean",crop not in Table 1: mean of main products,proposed,
-coconut,"main product, mean",crop not in Table 1: mean of main products,proposed,
-coffee_arabica,"main product, mean",crop not in Table 1: mean of main products,proposed,
-coffee_robusta,"main product, mean",crop not in Table 1: mean of main products,proposed,
-coriander,"main product, mean",crop not in Table 1: mean of main products,proposed,
-cotton,"main product, mean",crop not in Table 1: mean of main products,proposed,
-cranberry,"main product, mean",crop not in Table 1: mean of main products,proposed,
-eggplant,"main product, mean",crop not in Table 1: mean of main products,proposed,
-flax,"main product, mean",crop not in Table 1: mean of main products,proposed,
-ginger,"main product, mean",crop not in Table 1: mean of main products,proposed,
-grape,grapes,same product in Table 1,proposed,
-guar,"main product, mean",crop not in Table 1: mean of main products,proposed,
-hemp,"main product, mean",crop not in Table 1: mean of main products,proposed,
-lemon,"main product, mean",crop not in Table 1: mean of main products,proposed,
-citruslime,"main product, mean",crop not in Table 1: mean of main products,proposed,
-lentil,"main product, mean",candidate proxy 'peas' (other species),proposed,
-linseed,"main product, mean",crop not in Table 1: mean of main products,proposed,
-maizegrain,maize grains,same product in Table 1,proposed,
-mandarin,"main product, mean",crop not in Table 1: mean of main products,proposed,
-mango,"main product, mean",crop not in Table 1: mean of main products,proposed,
-mint,"main product, mean",crop not in Table 1: mean of main products,proposed,
-mulberry,"main product, mean",crop not in Table 1: mean of main products,proposed,
-oat,oats,same product in Table 1,proposed,
-olive,"main product, mean",crop not in Table 1: mean of main products,proposed,
-onion,"main product, mean",crop not in Table 1: mean of main products,proposed,
-orange_fresh,"main product, mean",crop not in Table 1: mean of main products,proposed,
-orange_processing,"main product, mean",crop not in Table 1: mean of main products,proposed,
-palmtree,"main product, mean",crop not in Table 1: mean of main products,proposed,
-peach,"main product, mean",crop not in Table 1: mean of main products,proposed,
-peanut,"main product, mean",crop not in Table 1: mean of main products,proposed,
-pear,"main product, mean",crop not in Table 1: mean of main products,proposed,
-pearl_millet,"main product, mean",crop not in Table 1: mean of main products,proposed,
-pineapple,"main product, mean",crop not in Table 1: mean of main products,proposed,
-pomegranate,"main product, mean",crop not in Table 1: mean of main products,proposed,
-potato,potatoes,same product in Table 1,proposed,
-rapeseed,rapeseed,same product in Table 1,proposed,
-raspberry,"main product, mean",crop not in Table 1: mean of main products,proposed,
-rice,rice,same product in Table 1,proposed,
-sesame_seed,"main product, mean",crop not in Table 1: mean of main products,proposed,
-soybean,soya beans,same product in Table 1,proposed,
-strawberry_fresh,"main product, mean",crop not in Table 1: mean of main products,proposed,
-strawberry_processing,"main product, mean",crop not in Table 1: mean of main products,proposed,
-sugarbeet,sugar beet,same product in Table 1,proposed,
-sugarcane,"main product, mean",crop not in Table 1: mean of main products,proposed,
-sunflower,sunflower,same product in Table 1,proposed,
-sweetcorn,maize grains,"proxy: same species, sweet corn not in Table 1",proposed,
-tea,"main product, mean",crop not in Table 1: mean of main products,proposed,
-tomato_fresh,"main product, mean",crop not in Table 1: mean of main products,proposed,
-tomato_processing,"main product, mean",crop not in Table 1: mean of main products,proposed,
-turmeric,"main product, mean",crop not in Table 1: mean of main products,proposed,
-wheat,wheat grains,same product in Table 1,proposed,
+almond,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+apple,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+apricot,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+asparagus_green,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+asparagus_white,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+banana,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+bellpepper,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+blueberry,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+cabbage_red,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+cabbage_white,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+carrot,carrots,same product in Table 1; approved in chat 2026-10-10,confirmed,FC
+cashew,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+cassava,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+castor_beans,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+chick_pea,"main product, mean",candidate proxy 'peas' (other species); approved in chat 2026-10-10,confirmed,FC
+chilli,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+cocoa,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+coconut,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+coffee_arabica,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+coffee_robusta,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+coriander,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+cotton,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+cranberry,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+eggplant,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+flax,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+ginger,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+grape,grapes,same product in Table 1; approved in chat 2026-10-10,confirmed,FC
+guar,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+hemp,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+lemon,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+citruslime,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+lentil,"main product, mean",candidate proxy 'peas' (other species); approved in chat 2026-10-10,confirmed,FC
+linseed,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+maizegrain,maize grains,same product in Table 1; approved in chat 2026-10-10,confirmed,FC
+mandarin,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+mango,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+mint,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+mulberry,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+oat,oats,same product in Table 1; approved in chat 2026-10-10,confirmed,FC
+olive,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+onion,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+orange_fresh,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+orange_processing,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+palmtree,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+peach,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+peanut,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+pear,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+pearl_millet,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+pineapple,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+pomegranate,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+potato,potatoes,same product in Table 1; approved in chat 2026-10-10,confirmed,FC
+rapeseed,rapeseed,same product in Table 1; approved in chat 2026-10-10,confirmed,FC
+raspberry,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+rice,rice,same product in Table 1; approved in chat 2026-10-10,confirmed,FC
+sesame_seed,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+soybean,soya beans,same product in Table 1; approved in chat 2026-10-10,confirmed,FC
+strawberry_fresh,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+strawberry_processing,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+sugarbeet,sugar beet,same product in Table 1; approved in chat 2026-10-10,confirmed,FC
+sugarcane,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+sunflower,sunflower,same product in Table 1; approved in chat 2026-10-10,confirmed,FC
+sweetcorn,maize grains,"proxy: same species, sweet corn not in Table 1; approved in chat 2026-10-10",confirmed,FC
+tea,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+tomato_fresh,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+tomato_processing,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+turmeric,"main product, mean",crop not in Table 1: mean of main products; approved in chat 2026-10-10,confirmed,FC
+wheat,wheat grains,same product in Table 1; approved in chat 2026-10-10,confirmed,FC

@@ -210,17 +210,30 @@ class WaterUseDefaultGenerator(object):
 
 
 class HeavyMetalExportWithHarvestGenerator(object):
-    """Heavy metals exported with the harvested main product [mg/(ha*crop cycle)] (Fix F4).
+    """Heavy metals exported with the harvested products [mg/(ha*crop cycle)], without the
+    allocation factor (applied in hmmodel). SALCAheavymetal 2023 (Nemecek et al., Appendix 7)
+    Eq. 4, concentrations from Table 1 (decision L10):
 
-    Dry yield of the main product x content of the plant product of Freiermuth (2006) Tab. 5
-    mapped to the crop in data/hm_crop_product_mapping.csv (generic mean when the crop is not
-    in the table; NA contents count as 0). By-products are not included (user decision).
+    * main product: dry yield x concentration of the product mapped to the crop in
+      data/hm_crop_product_mapping_salca2023.csv ("main product, mean" when not in Table 1);
+    * co-products (template fields yield_BP1..3_per_crop_cycle, kg fresh matter): fresh mass x
+      DM x concentration of the row in data/hm_coproduct_mapping.csv ("co-product, mean").
+    The pesticide term of Eq. 4 is computed in hmmodel.
     """
     def generateDefault(self, field, generators):
-        product = dataloader.table("hm_crop_product_mapping.csv", numeric=False)[generators["crop"]]["plant_product_tab5"]
-        content = dataloader.metal_row("hm_plant_content_mg_per_kg_dm.csv", product, METAL_COLUMNS.values())
+        product = dataloader.table("hm_crop_product_mapping_salca2023.csv", numeric=False)[generators["crop"]]["salca2023_main_product"]
+        main = dataloader.hm_entry(product)
         dry_yield = generators["yield_main_product_dry_per_crop_cycle"]
-        return {element: dry_yield * content[column] for element, column in METAL_COLUMNS.items()}
+        export = {element: dry_yield * main[column] for element, column in METAL_COLUMNS.items()}
+        coproduct = dataloader.hm_entry(
+            dataloader.table("hm_coproduct_mapping.csv", numeric=False)["any"]["salca2023_product"])
+        for field_name in ("yield_BP1_per_crop_cycle", "yield_BP2_per_crop_cycle", "yield_BP3_per_crop_cycle"):
+            fresh = generators[field_name]
+            if fresh in ("", None):
+                continue
+            for element, column in METAL_COLUMNS.items():
+                export[element] += float(fresh) * coproduct["dm"] * coproduct[column]
+        return export
 
 
 class LandUseCategoryForHMDefaultGenerator(object):
