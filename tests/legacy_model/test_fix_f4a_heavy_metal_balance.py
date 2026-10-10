@@ -99,13 +99,13 @@ def test_nickel_leaching_na_is_zero():
     assert out["m_hm_heavymetal_to_ground_water"][HeavyMetalType.ni] == 0.0
 
 
-def test_zinc_fungicide_share_from_csv():
+def test_pesticide_metal_contents_from_2023_table():
     pest = {p: 0.0 for p in PesticideType}
     pest[PesticideType.mancozeb] = 1000.0  # g
     pest[PesticideType.cu] = 100.0  # g Cu
     model = HmModel(_inputs(hm_pesticides_quantities=pest))
     values = model._compute_pesticides()
-    assert values[HeavyMetalType.zn] == pytest.approx(1000.0 * 65.39 / 541.07 * 0.95 * 1000.0, rel=1e-6)
+    assert values[HeavyMetalType.zn] == pytest.approx(1.0 * 25000 * 0.95)  # mancozeb 2.5 % Zn, Table 1
     assert values[HeavyMetalType.cu] == pytest.approx(100.0 * 0.95 * 1000.0)
 
 

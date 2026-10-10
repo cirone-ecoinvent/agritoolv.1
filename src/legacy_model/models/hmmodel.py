@@ -1,7 +1,6 @@
 from enum import Enum
 
 import dataloader
-from models.atomicmass import MA_Zn
 from models.modelEnums import HeavyMetalType
 
 
@@ -55,7 +54,7 @@ class HmModel(object):
         m_hm_heavymetal_to_ground_water, m_hm_heavymetal_to_surface_water
 
     Parameters (data/): hm_salca2023_table1.csv (SALCAheavymetal V1.0, Nemecek et al. 2023,
-    Appendix 7, Table 1: deposition, leaching, soil contents), hm_pesticide_fungicides.csv,
+    Appendix 7, Table 1: deposition, leaching, soil and pesticide contents), hm_pesticide_mapping.csv,
     model_parameters.csv
     (hm_accumulation_factor 1.86, hm_erosion_factor 0.2, hm_pesticide_soil_fraction 0.95).
     """
@@ -127,17 +126,15 @@ class HmModel(object):
                 + pesticides[element]
 
     def _compute_pesticides(self):
-        """Cu and Zn reaching the soil with fungicides [mg/ha]: g a.i. x metal share x
-        hm_pesticide_soil_fraction x 1000 (data/hm_pesticide_fungicides.csv)."""
-        table = dataloader.table("hm_pesticide_fungicides.csv")
+        """Cu and Zn of metal-containing pesticides reaching the field [mg/ha] (Eq. 2):
+        g a.i. / 1000 x metal concentration [mg/kg a.i.] of Table 1 (row from
+        data/hm_pesticide_mapping.csv) x hm_pesticide_soil_fraction (0.95, legacy value kept in
+        place of 1 - f_air - f_OFS until Nemecek et al. 2022 is available)."""
+        mapping = dataloader.table("hm_pesticide_mapping.csv", numeric=False)
         soil_fraction = dataloader.param("hm_pesticide_soil_fraction")
         hm_values = dict.fromkeys(HeavyMetalType, 0.0)
         for pest, grams in self.hm_pesticides_quantities.items():
-            row = table[pest.value]
-            if row["molar_mass_g_per_mol"] is None:
-                metal_share = 1.0  # elemental metal (copper)
-            else:
-                metal_share = MA_Zn / row["molar_mass_g_per_mol"] * row["metal_atoms_per_molecule"]
-            element = HeavyMetalType[row["metal"].lower()]
-            hm_values[element] += grams * metal_share * soil_fraction * 1000.0
+            content = dataloader.hm_entry(mapping[pest.value]["salca2023_row"])
+            for element, column in METAL_COLUMNS.items():
+                hm_values[element] += grams / 1000.0 * content[column] * soil_fraction
         return hm_values
