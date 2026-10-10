@@ -40,6 +40,7 @@ class OtherOrganicFertModel(object):
                         "sludge_quantities"
                        ]
     
+    # legacy, undocumented, provisional: N contents of compost and sludge below (cited sources not verified)
     #kg/t FM
     _N_CONCENTRATION_ORG_COMPOST = {CompostType.compost: 7.0,#Walther Ryser 2001, Tab. 48
                                 CompostType.meat_and_bone_meal: 90.0 * 0.95,#Tiermehl
@@ -58,6 +59,7 @@ class OtherOrganicFertModel(object):
                                 SludgeType.sewagesludge_dried: 8.4 #Walther Ryser 2001, Tab. 48
                                 }
     
+    # legacy, undocumented, provisional: P2O5 content of liquid sewage sludge (cited source not verified)
     #src: Walther Ryser 2001, Tab. 48
     #kg/t FM
     _P205_CONCENTRATION_IN_LIQUID_SEWAGE_SLUDGE = 3.5

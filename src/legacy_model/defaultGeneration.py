@@ -183,6 +183,7 @@ class WaterUseDefaultGenerator(object):
         return default_evapo_transpiration / irrigation_efficiency_ratio * generators[
             "yield_main_product_per_crop_cycle"] / 1000.0;
 
+    # legacy, undocumented, provisional: irrigation efficiencies (duplicate of irrigationmodel)
     _IRRIGATION_EFFICIENCY_FACTOR_SURFACE = 0.45
     _IRRIGATION_EFFICIENCY_FACTOR_SPRINKLER = 0.75
     _IRRIGATION_EFFICIENCY_FACTOR_DRIP = 0.9
@@ -266,6 +267,7 @@ class PerCropCycleYieldDefaultGenerator(object):
         return generators["yield_main_product_per_year"] / generators["crop_cycle_per_year"]
 
 
+# legacy, undocumented, provisional: default slope 3 % (0 % for rice)
 class SlopePerCropGenerator(object):
     def generateDefault(self, field, generators):
         if (generators["crop"] == "rice"):
@@ -326,6 +328,7 @@ class EolWaterWasteGenerator(object):
                + generators["utilities_wateruse_non_conventional_sources"];
 
 
+# legacy, undocumented, provisional: orchard lifetime 20 years (3 for sugarcane)
 class OrchardLifetimeDefaultGenerator(object):
     def generateDefault(self, field, generators):
         crop = generators["crop"]
@@ -400,6 +403,7 @@ class SafeDefaultGenerator(object):
 # Sesame seed: http://www.arccjournals.com/uploads/articles/D33414.pdf
 # Turmenic: root, estimated to be the same as cassava, ginger, potato ? (see ALCIG engine)
 # Pomegranate: Tree, estimated to be 0 (see ALCIG engine)
+# legacy, undocumented, provisional: crop-residue N coefficients and fixed values
 class NitrogenFromCropResiduesDefaultGenerator(object):
     def generateDefault(self, field, generators):
         crop = generators["crop"]
@@ -458,6 +462,7 @@ class NitrogenFromCropResiduesDefaultGenerator(object):
             return 0.0
 
 
+# legacy, undocumented, provisional: scalar default values of this table (e.g. 180 wet days, 700 m, slope length 50 m, 0.5 undiluted slurry, plastic EoL 50/50)
 DEFAULTS_VALUES_GENERATORS = {
     "yield_BP1_per_crop_cycle": SimpleValueDefaultGenerator(""),
     "yield_BP2_per_crop_cycle": SimpleValueDefaultGenerator(""),

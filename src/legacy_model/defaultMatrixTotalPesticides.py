@@ -1,3 +1,4 @@
+# legacy, undocumented, provisional: all matrices of this module (generated from the Quantis workbook GD_crop)
 #From GD_crop Pesticides_L1
 #g/ha
 TOTAL_PESTICIDES_PER_CROP_PER_COUNTRY = {

@@ -53,6 +53,7 @@ class ManureModel(object):
                         "solid_manure_quantities"
                        ]
 
+    # legacy, undocumented, provisional: P2O5 and N contents of manure below
     _P205_CONCENTRATION_IN_LIQUID_MANURE = {LiquidManureType.cattle: 1.5,
                                             LiquidManureType.pig: 3.5,#mean fattening pigs + piglets
                                             LiquidManureType.laying_hens: 17.0,

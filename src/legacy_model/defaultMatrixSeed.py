@@ -1,3 +1,4 @@
+# legacy, undocumented, provisional: all matrices of this module (generated from the Quantis workbook GD_crop)
 
 #from GD_crop Seeds_L0
 #only glo as all values per country are the same

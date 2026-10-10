@@ -237,6 +237,7 @@ class OutputMapping(object):
         for k,v in enumdict.items():
             self.output[k.value] = v * factors[k]
 
+    # legacy, undocumented, provisional: unit conversion factors (fuel heating values, diesel 45.0045 MJ/kg, fleece 0.017 kg/m2, petrol)
     _DIRECT_OUTPUT_MAPPING = {
         # FIXME: No system_boundary input anymore, use ecospold name metadata instead?
         # "system_boundary":identity,
@@ -293,6 +294,7 @@ class OutputMapping(object):
         manure_type: dataloader.param("liquid_manure_density_kg_per_m3") for manure_type in LiquidManureType
     }
 
+    # legacy, undocumented, provisional: diesel intensities of the machinery operations below
     _PLANTPROTECTION_FACTORS = {
         Plantprotection.spraying: 1.0 / 1.76,
         Plantprotection.flaming: 46.35,

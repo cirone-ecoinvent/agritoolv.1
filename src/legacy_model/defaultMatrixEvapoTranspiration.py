@@ -1,3 +1,4 @@
+# legacy, undocumented, provisional: all matrices of this module (generated from the Quantis workbook GD_crop)
 
 #from GD_crop ETirr_m3t_L1
 #glo is calculated as a mean of other country values

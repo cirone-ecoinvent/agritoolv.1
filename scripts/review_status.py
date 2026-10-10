@@ -53,6 +53,21 @@ def is_open(row, final_statuses):
     return row.get("status") not in final_statuses or not row.get("reviewed_by", "").strip()
 
 
+LEGACY_TAG = "legacy, undocumented, provisional"
+
+
+def print_legacy_tags():
+    """List the places kept from the legacy tool without a documented source (decision O7)."""
+    print("
+Parts marked '%s' (kept from the legacy tool, to be updated):" % LEGACY_TAG)
+    for folder, pattern in (("data", "*.csv"), ("src", "*.py")):
+        for path in sorted((ROOT / folder).rglob(pattern)):
+            text = path.read_text(encoding="utf-8")
+            n = text.count(LEGACY_TAG)
+            if n and path.name != "sources.csv":
+                print("   %-55s %d" % (path.relative_to(ROOT).as_posix(), n))
+
+
 def main():
     show_all = "--all" in sys.argv
     problems = 0
@@ -71,6 +86,8 @@ def main():
         if len(open_rows) > 15 and not show_all:
             print("   ... %d more (use --all)" % (len(open_rows) - 15))
         problems += len(open_rows)
+
+    print_legacy_tags()
 
     path = config.master_data_path()
     if path is not None and path.is_file():

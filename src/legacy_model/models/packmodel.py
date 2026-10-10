@@ -29,6 +29,7 @@ class PackModel(object):
                         "pest_horticultural_oil"
                         ]
 
+    # legacy, undocumented, provisional: packaging dilution factors
     _DILUTION_FACTOR = 2.0;
     _ECOINVENT_FERT_DILUTION_FACTOR = 2.0;
     _ECOINVENT_PEST_DILUTION_FACTOR = 3.0;

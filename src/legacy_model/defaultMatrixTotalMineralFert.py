@@ -1,3 +1,4 @@
+# legacy, undocumented, provisional: all matrices of this module (generated from the Quantis workbook GD_crop)
 #from GD_crop NMineral_L1
 #country: =SI(ESTNUM(B4),""""&B$3&""":"&B4&",","")
 #glo: =MOYENNE(B4:AM4)

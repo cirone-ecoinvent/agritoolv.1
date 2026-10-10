@@ -16,6 +16,7 @@ FC = Francesco Cirone (Sector Manager Agriculture, ecoinvent).
 | O4 | 2026-10-09 | FC | The ecoinvent Master Data (`C:\python\external_data\MasterData (3.12, undef).xlsx`) is never changed and never copied into a repository; the tool harmonises with it. Its path is set in the git-ignored `agritool.cfg` or in `AGRITOOL_MASTER_DATA_PATH`. | The Master Data is the basis of ecoinvent. |
 | O5 | 2026-10-09 | FC | Git in AgriToolV.1, pushed to the private repository github.com/cirone-ecoinvent/agritoolv.1 on top of its existing history (no force push; Copilot PR #2 left untouched); decisions recorded in this file. | Track every change during development. Rejected: keeping the project only on the local disk. |
 | O6 | 2026-10-09 | FC | Review workflow: mapping and alignment tables carry `status` and `reviewed_by`; a row is final only when signed. `scripts/review_status.py` lists open rows. | The tables contain judgements (mappings, proposals) and unsourced legacy values that need an explicit owner. |
+| O7 | 2026-10-10 | FC | Every value, table, mapping or code constant kept from the legacy tool without being updated from a documented source carries the exact note "legacy, undocumented, provisional" (CSV note/source column, data/sources.csv, or code comment). The note is removed when the value gets a documented source. `scripts/review_status.py` lists the marked places. | Find every not-yet-updated part later with one search. |
 
 ## Legacy analysis and fixes
 

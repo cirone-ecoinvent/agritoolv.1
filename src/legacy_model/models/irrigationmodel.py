@@ -29,6 +29,7 @@ class IrrigationModel(object):
                         "irrigation_types_proportions"
                        ]
 
+    # legacy, undocumented, provisional: irrigation efficiencies and river / groundwater split
     _IRRIGATION_EFFICIENCY_FACTOR_SURFACE = 0.45
     _IRRIGATION_EFFICIENCY_FACTOR_SPRINKLER = 0.75
     _IRRIGATION_EFFICIENCY_FACTOR_DRIP = 0.9

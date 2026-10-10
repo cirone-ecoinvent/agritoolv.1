@@ -27,10 +27,10 @@ hm_accumulation_factor,1.86,-,Wilke & Schaub 1996 (as for P),2.7
 hm_erosion_factor,0.2,-,Freiermuth 2006,2.7
 p_drainage_factor,6.0,-,Prasuhn 2006; Nemecek et al. 2023 ESM5 (SALCAfieldP) Eq. 5,"2.5 (drainage, no equation in doc)"
 p_runoff_slope_threshold_pct,3,%,"Prasuhn 2006; Nemecek et al. 2023 ESM5 (SALCAfieldP) Eq. 2, factor s",2.5.2
-p_corr_slurry_leaching,0.0025,1/(kg P2O5),"Prasuhn 2006 via Quantis 2019: Fgw = 1 + 0.2/80 x P2O5 slurry",2.5.1
-p_corr_mineral_runoff,0.0025,1/(kg P2O5),"Prasuhn 2006 via Quantis 2019: Fro term 0.2/80 x P2O5 mineral",2.5.2
-p_corr_slurry_runoff,0.00875,1/(kg P2O5),"Prasuhn 2006 via Quantis 2019: Fro term 0.7/80 x P2O5 slurry or liquid sludge",2.5.2
-p_corr_manure_runoff,0.005,1/(kg P2O5),"Prasuhn 2006 via Quantis 2019: Fro term 0.4/80 x P2O5 solid manure",2.5.2
-hm_pesticide_soil_fraction,0.95,-,"Legacy code hmmodel.py (_PEST_TO_SOIL_RATIO, unsourced): share of the applied Cu / Zn fungicide reaching the soil",2.7
-liquid_manure_density_kg_per_m3,1006,kg/m3,"Legacy code outputMapping.py (_LIQUID_MANURE_FACTORS, unsourced): density used to convert m3 of liquid manure to kg fresh matter",2.7
+p_corr_slurry_leaching,0.0025,1/(kg P2O5),Prasuhn 2006 via Quantis 2019: Fgw = 1 + 0.2/80 x P2O5 slurry,2.5.1
+p_corr_mineral_runoff,0.0025,1/(kg P2O5),Prasuhn 2006 via Quantis 2019: Fro term 0.2/80 x P2O5 mineral,2.5.2
+p_corr_slurry_runoff,0.00875,1/(kg P2O5),Prasuhn 2006 via Quantis 2019: Fro term 0.7/80 x P2O5 slurry or liquid sludge,2.5.2
+p_corr_manure_runoff,0.005,1/(kg P2O5),Prasuhn 2006 via Quantis 2019: Fro term 0.4/80 x P2O5 solid manure,2.5.2
+hm_pesticide_soil_fraction,0.95,-,"Legacy code hmmodel.py (_PEST_TO_SOIL_RATIO, unsourced): share of the applied Cu / Zn fungicide reaching the soil; legacy, undocumented, provisional",2.7
+liquid_manure_density_kg_per_m3,1006,kg/m3,"Legacy code outputMapping.py (_LIQUID_MANURE_FACTORS, unsourced): density used to convert m3 of liquid manure to kg fresh matter; legacy, undocumented, provisional",2.7
 hm_pesticide_harvest_export_fraction,0.05,-,"Audsley et al. (1997) via SALCAheavymetal V1.0 (Nemecek et al. 2023, Appendix 7) Eq. 4, A_p: fraction of the metals of pesticides exported with the harvest",2.7

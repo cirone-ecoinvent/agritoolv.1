@@ -44,6 +44,7 @@ class LUCModel(object):
     def _compute_shared_responsability(self):
         return max(0.0, self._EXPANSION_ALL_CROPS_TOTAL_PER_COUNTRY[self.country]) / self.crop_cycle_per_year
 
+    # legacy, undocumented, provisional: land-use change expansion tables below
     # country averages column AD
     _EXPANSION_ALL_CROPS_TOTAL_PER_COUNTRY = {
    "AR":0.401547621623345,

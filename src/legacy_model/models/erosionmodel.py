@@ -50,6 +50,7 @@ class ErosionModel(object):
                         "climate_zone_specific"
                         ]
 
+    # legacy, undocumented, provisional: slope exponents, tillage and practice factors, R-factor formulas below
     _POW_FOR_SLOPE_UNDER_1_PERCENT = 0.2
     _POW_FOR_SLOPE_1_TO_3_5_PERCENT = 0.3
     _POW_FOR_SLOPE_3_5_TO_5_PERCENT = 0.4

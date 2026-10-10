@@ -1,3 +1,4 @@
+# legacy, undocumented, provisional: all tables of this module (country and crop defaults generated from the Quantis workbook GD_crop)
 from models.fertilisermodel import NFertiliserType, KFertiliserType, \
     PFertiliserType
 from models.irrigationmodel import IrrigationType, WaterUseType
