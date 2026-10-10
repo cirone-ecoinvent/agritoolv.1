@@ -256,3 +256,444 @@ complete diff of the three snapshots.
 | `nitrate_to_groundwater` | 135.9 | 123.6 | 0.910 |
 | `nitrate_to_surfacewater` | 58.24 | 52.99 | 0.910 |
 | `seed_exchange_status` | None | 'master data not configured: legacy seed lookup' |  |
+
+## 7. Heavy metals on SALCAheavymetal 2023 (decision L10, 2026-10-10)
+
+Old vs new outputs of the three reference cases after each of the commits that switched the
+heavy-metal model from Quantis 2019 / Freiermuth 2006 to SALCAheavymetal V1.0 (Nemecek et al.
+2023, Appendix 7, Table 1). Values in kg per ha and crop cycle; ratio = new / old. Step 8
+(ed6b10a, removal of the old tables) changed no output.
+
+### Step 1: Deposition, leaching and soil contents (commit 9a1699e)
+
+**apple_FR** (25 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 3.41222e-05 | 3.54823e-05 | 1.0399 |
+| `heavymetal_to_ground_water_cu` | 0.00323736 | 0.003214 | 0.9928 |
+| `heavymetal_to_ground_water_pb` | 0.000427727 | 0.000468914 | 1.0963 |
+| `heavymetal_to_ground_water_zn` | 0.0237005 | 0.0257488 | 1.0864 |
+| `heavymetal_to_soil_cd` | 0.00214177 | 0.00213945 | 0.9989 |
+| `heavymetal_to_soil_cr` | 0.0173607 | 0.0173733 | 1.0007 |
+| `heavymetal_to_soil_cu` | 2.93518 | 2.92926 | 0.9980 |
+| `heavymetal_to_soil_hg` | 0.000543123 | 0.000541663 | 0.9973 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00174102 | 0.00172273 | 0.9895 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.0147061 | 0.0147187 | 1.0009 |
+| `heavymetal_to_soil_minus_uptake_cu` | 2.90033 | 2.89466 | 0.9980 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000349363 | 0.000347903 | 0.9958 |
+| `heavymetal_to_soil_minus_uptake_ni` | 0.0224092 | 0.0225096 | 1.0045 |
+| `heavymetal_to_soil_minus_uptake_pb` | 0.0671403 | 0.0667514 | 0.9942 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.191956 | 0.177363 | 0.9240 |
+| `heavymetal_to_soil_ni` | 0.0270187 | 0.0269573 | 0.9977 |
+| `heavymetal_to_soil_pb` | 0.0694009 | 0.0692296 | 0.9975 |
+| `heavymetal_to_soil_zn` | 0.326913 | 0.323984 | 0.9910 |
+| `heavymetal_to_surface_water_cd` | 1.9907e-05 | 2.08642e-05 | 1.0481 |
+| `heavymetal_to_surface_water_cr` | 0.00364314 | 0.00363049 | 0.9965 |
+| `heavymetal_to_surface_water_cu` | 0.00307125 | 0.00900988 | 2.9336 |
+| `heavymetal_to_surface_water_hg` | 5.00493e-06 | 6.46432e-06 | 1.2916 |
+| `heavymetal_to_surface_water_ni` | 0.00143986 | 0.00150134 | 1.0427 |
+| `heavymetal_to_surface_water_pb` | 0.00141292 | 0.00154296 | 1.0920 |
+| `heavymetal_to_surface_water_zn` | 0.00650601 | 0.00738638 | 1.1353 |
+
+**rice_IN** (25 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 1.83933e-05 | 1.87413e-05 | 1.0189 |
+| `heavymetal_to_ground_water_cu` | 0.0014551 | 0.00114853 | 0.7893 |
+| `heavymetal_to_ground_water_pb` | 8.67059e-05 | 0.00011975 | 1.3811 |
+| `heavymetal_to_ground_water_zn` | 0.0116831 | 0.0124182 | 1.0629 |
+| `heavymetal_to_soil_cd` | 0.00208389 | 0.00206946 | 0.9931 |
+| `heavymetal_to_soil_cr` | 0.00871013 | 0.00681561 | 0.7825 |
+| `heavymetal_to_soil_cu` | 0.0220897 | 0.0230104 | 1.0417 |
+| `heavymetal_to_soil_hg` | 0.000235708 | 0.000228542 | 0.9696 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00200717 | 0.00199129 | 0.9921 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.00669282 | 0.0047983 | 0.7169 |
+| `heavymetal_to_soil_minus_uptake_cu` | -0.000122996 | 0.00547768 | -44.5355 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000235708 | 0.000228542 | 0.9696 |
+| `heavymetal_to_soil_minus_uptake_ni` | -0.00110416 | -0.00271972 | 2.4632 |
+| `heavymetal_to_soil_minus_uptake_pb` | -0.000469432 | -0.00296511 | 6.3164 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.019999 | 0.00441336 | 0.2207 |
+| `heavymetal_to_soil_ni` | 0.00238944 | 0.00064407 | 0.2695 |
+| `heavymetal_to_soil_pb` | 0.000977239 | -0.000967107 | -0.9896 |
+| `heavymetal_to_soil_zn` | 0.182071 | 0.176683 | 0.9704 |
+| `heavymetal_to_surface_water_cd` | 9.62873e-05 | 0.000110373 | 1.1463 |
+| `heavymetal_to_surface_water_cr` | 0.0103768 | 0.0122713 | 1.1826 |
+| `heavymetal_to_surface_water_cu` | 0.00886043 | 0.00824625 | 0.9307 |
+| `heavymetal_to_surface_water_hg` | 3.07715e-05 | 3.79375e-05 | 1.2329 |
+| `heavymetal_to_surface_water_ni` | 0.00866359 | 0.010409 | 1.2015 |
+| `heavymetal_to_surface_water_pb` | 0.00307328 | 0.00498458 | 1.6219 |
+| `heavymetal_to_surface_water_zn` | 0.0191511 | 0.0238036 | 1.2429 |
+
+**wheat_IT** (25 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 2.56695e-05 | 2.59725e-05 | 1.0118 |
+| `heavymetal_to_ground_water_cu` | 0.00188997 | 0.00128618 | 0.6805 |
+| `heavymetal_to_ground_water_pb` | 8.0388e-05 | 0.000118274 | 1.4713 |
+| `heavymetal_to_ground_water_zn` | 0.0142197 | 0.0155849 | 1.0960 |
+| `heavymetal_to_soil_cd` | 0.00687588 | 0.00686654 | 0.9986 |
+| `heavymetal_to_soil_cr` | 0.0162334 | 0.0150484 | 0.9270 |
+| `heavymetal_to_soil_cu` | 0.0259736 | 0.0279259 | 1.0752 |
+| `heavymetal_to_soil_hg` | 0.000388745 | 0.000384255 | 0.9885 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00636403 | 0.00634865 | 0.9976 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.0152059 | 0.0140208 | 0.9221 |
+| `heavymetal_to_soil_minus_uptake_cu` | 0.00870101 | 0.0161714 | 1.8586 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.00033837 | 0.000333881 | 0.9867 |
+| `heavymetal_to_soil_minus_uptake_ni` | 0.00722213 | 0.00635918 | 0.8805 |
+| `heavymetal_to_soil_minus_uptake_pb` | 0.00297299 | 0.00179916 | 0.6052 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.128046 | 0.114248 | 0.8922 |
+| `heavymetal_to_soil_ni` | 0.00805166 | 0.00714455 | 0.8873 |
+| `heavymetal_to_soil_pb` | 0.00324014 | 0.00219222 | 0.6766 |
+| `heavymetal_to_soil_zn` | 0.218693 | 0.213597 | 0.9767 |
+| `heavymetal_to_surface_water_cd` | 7.53972e-05 | 8.44319e-05 | 1.1198 |
+| `heavymetal_to_surface_water_cr` | 0.0111728 | 0.0123578 | 1.1061 |
+| `heavymetal_to_surface_water_cu` | 0.00632503 | 0.00497657 | 0.7868 |
+| `heavymetal_to_surface_water_hg` | 1.95586e-05 | 2.40477e-05 | 1.2295 |
+| `heavymetal_to_surface_water_ni` | 0.00500082 | 0.00590794 | 1.1814 |
+| `heavymetal_to_surface_water_pb` | 0.0013999 | 0.00240994 | 1.7215 |
+| `heavymetal_to_surface_water_zn` | 0.0172644 | 0.0209952 | 1.2161 |
+
+### Step 2: Harvest export with Table 1 plant contents, co-products and pesticide term (2a3840a)
+
+**apple_FR** (7 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00172273 | 0.00168106 | 0.9758 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.0147187 | 0.0145739 | 0.9902 |
+| `heavymetal_to_soil_minus_uptake_cu` | 2.89466 | 2.75279 | 0.9510 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000347903 | 0.000251024 | 0.7215 |
+| `heavymetal_to_soil_minus_uptake_ni` | 0.0225096 | 0.0230655 | 1.0247 |
+| `heavymetal_to_soil_minus_uptake_pb` | 0.0667514 | 0.0665678 | 0.9972 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.177363 | 0.190651 | 1.0749 |
+
+**rice_IN** (0 changed keys)
+
+
+**wheat_IT** (6 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00634865 | 0.00661796 | 1.0424 |
+| `heavymetal_to_soil_minus_uptake_cu` | 0.0161714 | 0.0145329 | 0.8987 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000333881 | 0.000323806 | 0.9698 |
+| `heavymetal_to_soil_minus_uptake_ni` | 0.00635918 | 0.00651625 | 1.0247 |
+| `heavymetal_to_soil_minus_uptake_pb` | 0.00179916 | 0.00193673 | 1.0765 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.114248 | 0.12974 | 1.1356 |
+
+### Step 3: Metal contents of pesticides (ca839bc)
+
+**apple_FR** (0 changed keys)
+
+
+**rice_IN** (0 changed keys)
+
+
+**wheat_IT** (4 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_zn` | 0.0155849 | 0.0150888 | 0.9682 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.12974 | 0.0902292 | 0.6955 |
+| `heavymetal_to_soil_zn` | 0.213597 | 0.169231 | 0.7923 |
+| `heavymetal_to_surface_water_zn` | 0.0209952 | 0.0203268 | 0.9682 |
+
+### Step 4: Mineral-fertiliser heavy metals, Hg, Ca per kg Ca, Mg (f1d5dd7)
+
+**apple_FR** (27 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 3.54823e-05 | 3.54797e-05 | 0.9999 |
+| `heavymetal_to_ground_water_cr` | 0.017425 | 0.0174247 | 1.0000 |
+| `heavymetal_to_ground_water_cu` | 0.003214 | 0.003214 | 1.0000 |
+| `heavymetal_to_ground_water_hg` | 1.07237e-06 | 1.08132e-06 | 1.0083 |
+| `heavymetal_to_ground_water_pb` | 0.000468914 | 0.000468915 | 1.0000 |
+| `heavymetal_to_ground_water_zn` | 0.0257488 | 0.0257491 | 1.0000 |
+| `heavymetal_to_soil_cd` | 0.00213945 | 0.00213872 | 0.9997 |
+| `heavymetal_to_soil_cr` | 0.0173733 | 0.0173664 | 0.9996 |
+| `heavymetal_to_soil_cu` | 2.92926 | 2.92927 | 1.0000 |
+| `heavymetal_to_soil_hg` | 0.000541663 | 0.00060209 | 1.1116 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00168106 | 0.00168036 | 0.9996 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.0145739 | 0.014567 | 0.9995 |
+| `heavymetal_to_soil_minus_uptake_cu` | 2.75279 | 2.75279 | 1.0000 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000251024 | 0.000309024 | 1.2311 |
+| `heavymetal_to_soil_minus_uptake_ni` | 0.0230655 | 0.0230603 | 0.9998 |
+| `heavymetal_to_soil_minus_uptake_pb` | 0.0665678 | 0.0665693 | 1.0000 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.190651 | 0.190675 | 1.0001 |
+| `heavymetal_to_soil_ni` | 0.0269573 | 0.0269519 | 0.9998 |
+| `heavymetal_to_soil_pb` | 0.0692296 | 0.0692311 | 1.0000 |
+| `heavymetal_to_soil_zn` | 0.323984 | 0.324009 | 1.0001 |
+| `heavymetal_to_surface_water_cd` | 2.08642e-05 | 2.08627e-05 | 0.9999 |
+| `heavymetal_to_surface_water_cr` | 0.00363049 | 0.00363044 | 1.0000 |
+| `heavymetal_to_surface_water_cu` | 0.00900988 | 0.00900988 | 1.0000 |
+| `heavymetal_to_surface_water_hg` | 6.46432e-06 | 6.51829e-06 | 1.0083 |
+| `heavymetal_to_surface_water_ni` | 0.00150134 | 0.00150128 | 1.0000 |
+| `heavymetal_to_surface_water_pb` | 0.00154296 | 0.00154296 | 1.0000 |
+| `heavymetal_to_surface_water_zn` | 0.00738638 | 0.00738645 | 1.0000 |
+
+**rice_IN** (27 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 1.87413e-05 | 1.87405e-05 | 1.0000 |
+| `heavymetal_to_ground_water_cr` | 0.00836973 | 0.00836944 | 1.0000 |
+| `heavymetal_to_ground_water_cu` | 0.00114853 | 0.00114841 | 0.9999 |
+| `heavymetal_to_ground_water_hg` | 5.02458e-07 | 5.10182e-07 | 1.0154 |
+| `heavymetal_to_ground_water_pb` | 0.00011975 | 0.000119738 | 0.9999 |
+| `heavymetal_to_ground_water_zn` | 0.0124182 | 0.0124182 | 1.0000 |
+| `heavymetal_to_soil_cd` | 0.00206946 | 0.00206855 | 0.9996 |
+| `heavymetal_to_soil_cr` | 0.00681561 | 0.00679794 | 0.9974 |
+| `heavymetal_to_soil_cu` | 0.0230104 | 0.0229978 | 0.9994 |
+| `heavymetal_to_soil_hg` | 0.000228542 | 0.000298551 | 1.3063 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00199129 | 0.00199037 | 0.9995 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.0047983 | 0.0047807 | 0.9963 |
+| `heavymetal_to_soil_minus_uptake_cu` | 0.00547768 | 0.00546673 | 0.9980 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000228542 | 0.000298551 | 1.3063 |
+| `heavymetal_to_soil_minus_uptake_ni` | -0.00271972 | -0.00273348 | 1.0051 |
+| `heavymetal_to_soil_minus_uptake_pb` | -0.00296511 | -0.00296519 | 1.0000 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.00441336 | 0.0044072 | 0.9986 |
+| `heavymetal_to_soil_ni` | 0.00064407 | 0.000629173 | 0.9769 |
+| `heavymetal_to_soil_pb` | -0.000967107 | -0.000967392 | 1.0003 |
+| `heavymetal_to_soil_zn` | 0.176683 | 0.176677 | 1.0000 |
+| `heavymetal_to_surface_water_cd` | 0.000110373 | 0.000110369 | 1.0000 |
+| `heavymetal_to_surface_water_cr` | 0.0122713 | 0.0122708 | 1.0000 |
+| `heavymetal_to_surface_water_cu` | 0.00824625 | 0.00824544 | 0.9999 |
+| `heavymetal_to_surface_water_hg` | 3.79375e-05 | 3.85206e-05 | 1.0154 |
+| `heavymetal_to_surface_water_ni` | 0.010409 | 0.0104055 | 0.9997 |
+| `heavymetal_to_surface_water_pb` | 0.00498458 | 0.00498407 | 0.9999 |
+| `heavymetal_to_surface_water_zn` | 0.0238036 | 0.0238035 | 1.0000 |
+
+**wheat_IT** (23 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 2.59725e-05 | 2.5972e-05 | 1.0000 |
+| `heavymetal_to_ground_water_cr` | 0.0109248 | 0.0109242 | 1.0000 |
+| `heavymetal_to_ground_water_cu` | 0.00128618 | 0.00128616 | 1.0000 |
+| `heavymetal_to_ground_water_hg` | 6.56841e-07 | 6.66692e-07 | 1.0150 |
+| `heavymetal_to_ground_water_zn` | 0.0150888 | 0.0150891 | 1.0000 |
+| `heavymetal_to_soil_cd` | 0.00686654 | 0.00686422 | 0.9997 |
+| `heavymetal_to_soil_cr` | 0.0150484 | 0.0150224 | 0.9983 |
+| `heavymetal_to_soil_cu` | 0.0279259 | 0.0279249 | 1.0000 |
+| `heavymetal_to_soil_hg` | 0.000384255 | 0.000466134 | 1.2131 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00661796 | 0.00661564 | 0.9996 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.0140208 | 0.0139949 | 0.9981 |
+| `heavymetal_to_soil_minus_uptake_cu` | 0.0145329 | 0.014532 | 0.9999 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000323806 | 0.000404778 | 1.2501 |
+| `heavymetal_to_soil_minus_uptake_ni` | 0.00651625 | 0.00652074 | 1.0007 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.0902292 | 0.0902469 | 1.0002 |
+| `heavymetal_to_soil_ni` | 0.00714455 | 0.00714911 | 1.0006 |
+| `heavymetal_to_soil_zn` | 0.169231 | 0.16925 | 1.0001 |
+| `heavymetal_to_surface_water_cd` | 8.44319e-05 | 8.44301e-05 | 1.0000 |
+| `heavymetal_to_surface_water_cr` | 0.0123578 | 0.0123572 | 1.0000 |
+| `heavymetal_to_surface_water_cu` | 0.00497657 | 0.00497651 | 1.0000 |
+| `heavymetal_to_surface_water_hg` | 2.40477e-05 | 2.44084e-05 | 1.0150 |
+| `heavymetal_to_surface_water_ni` | 0.00590794 | 0.00590863 | 1.0001 |
+| `heavymetal_to_surface_water_zn` | 0.0203268 | 0.0203272 | 1.0000 |
+
+### Step 5: Farmyard manure (bbf65a2)
+
+**apple_FR** (12 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 3.54797e-05 | 3.55139e-05 | 1.0010 |
+| `heavymetal_to_ground_water_cu` | 0.003214 | 0.003214 | 1.0000 |
+| `heavymetal_to_ground_water_zn` | 0.0257491 | 0.0258043 | 1.0021 |
+| `heavymetal_to_soil_cd` | 0.00213872 | 0.00214869 | 1.0047 |
+| `heavymetal_to_soil_cu` | 2.92927 | 2.93036 | 1.0004 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00168036 | 0.00168989 | 1.0057 |
+| `heavymetal_to_soil_minus_uptake_cu` | 2.75279 | 2.75389 | 1.0004 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.190675 | 0.19616 | 1.0288 |
+| `heavymetal_to_soil_zn` | 0.324009 | 0.329781 | 1.0178 |
+| `heavymetal_to_surface_water_cd` | 2.08627e-05 | 2.08828e-05 | 1.0010 |
+| `heavymetal_to_surface_water_cu` | 0.00900988 | 0.00900991 | 1.0000 |
+| `heavymetal_to_surface_water_zn` | 0.00738645 | 0.0074023 | 1.0021 |
+
+**rice_IN** (27 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 1.87405e-05 | 1.87521e-05 | 1.0006 |
+| `heavymetal_to_ground_water_cr` | 0.00836944 | 0.00837823 | 1.0011 |
+| `heavymetal_to_ground_water_cu` | 0.00114841 | 0.00121815 | 1.0607 |
+| `heavymetal_to_ground_water_hg` | 5.10182e-07 | 5.13978e-07 | 1.0074 |
+| `heavymetal_to_ground_water_pb` | 0.000119738 | 0.000123434 | 1.0309 |
+| `heavymetal_to_ground_water_zn` | 0.0124182 | 0.012818 | 1.0322 |
+| `heavymetal_to_soil_cd` | 0.00206855 | 0.00208205 | 1.0065 |
+| `heavymetal_to_soil_cr` | 0.00679794 | 0.00733554 | 1.0791 |
+| `heavymetal_to_soil_cu` | 0.0229978 | 0.0328959 | 1.4304 |
+| `heavymetal_to_soil_hg` | 0.000298551 | 0.000347399 | 1.1636 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00199037 | 0.00200383 | 1.0068 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.0047807 | 0.00531618 | 1.1120 |
+| `heavymetal_to_soil_minus_uptake_cu` | 0.00546673 | 0.0143003 | 2.6159 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000298551 | 0.000347399 | 1.1636 |
+| `heavymetal_to_soil_minus_uptake_ni` | -0.00273348 | -0.00143712 | 0.5257 |
+| `heavymetal_to_soil_minus_uptake_pb` | -0.00296519 | -0.0029322 | 0.9889 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.0044072 | 0.0988321 | 22.4251 |
+| `heavymetal_to_soil_ni` | 0.000629173 | 0.00201746 | 3.2065 |
+| `heavymetal_to_soil_pb` | -0.000967392 | -0.000872733 | 0.9021 |
+| `heavymetal_to_soil_zn` | 0.176677 | 0.276649 | 1.5658 |
+| `heavymetal_to_surface_water_cd` | 0.000110369 | 0.000110437 | 1.0006 |
+| `heavymetal_to_surface_water_cr` | 0.0122708 | 0.0122837 | 1.0011 |
+| `heavymetal_to_surface_water_cu` | 0.00824544 | 0.00874615 | 1.0607 |
+| `heavymetal_to_surface_water_hg` | 3.85206e-05 | 3.88073e-05 | 1.0074 |
+| `heavymetal_to_surface_water_ni` | 0.0104055 | 0.0106899 | 1.0273 |
+| `heavymetal_to_surface_water_pb` | 0.00498407 | 0.00513792 | 1.0309 |
+| `heavymetal_to_surface_water_zn` | 0.0238035 | 0.0245699 | 1.0322 |
+
+**wheat_IT** (8 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 2.5972e-05 | 2.59718e-05 | 1.0000 |
+| `heavymetal_to_ground_water_zn` | 0.0150891 | 0.0150864 | 0.9998 |
+| `heavymetal_to_soil_cd` | 0.00686422 | 0.00686331 | 0.9999 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00661564 | 0.00661474 | 0.9999 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.0902469 | 0.090063 | 0.9980 |
+| `heavymetal_to_soil_zn` | 0.16925 | 0.169053 | 0.9988 |
+| `heavymetal_to_surface_water_cd` | 8.44301e-05 | 8.44294e-05 | 1.0000 |
+| `heavymetal_to_surface_water_zn` | 0.0203272 | 0.0203236 | 0.9998 |
+
+### Step 6: Compost and sewage sludge (b7726d5)
+
+**apple_FR** (27 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 3.55139e-05 | 3.55679e-05 | 1.0015 |
+| `heavymetal_to_ground_water_cr` | 0.0174247 | 0.0174669 | 1.0024 |
+| `heavymetal_to_ground_water_cu` | 0.003214 | 0.00321403 | 1.0000 |
+| `heavymetal_to_ground_water_hg` | 1.08132e-06 | 1.08207e-06 | 1.0007 |
+| `heavymetal_to_ground_water_pb` | 0.000468915 | 0.000471099 | 1.0047 |
+| `heavymetal_to_ground_water_zn` | 0.0258043 | 0.025882 | 1.0030 |
+| `heavymetal_to_soil_cd` | 0.00214869 | 0.0021646 | 1.0074 |
+| `heavymetal_to_soil_cr` | 0.0173664 | 0.0184154 | 1.0604 |
+| `heavymetal_to_soil_cu` | 2.93036 | 2.93306 | 1.0009 |
+| `heavymetal_to_soil_hg` | 0.00060209 | 0.000607685 | 1.0093 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00168989 | 0.0017051 | 1.0090 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.014567 | 0.0156093 | 1.0715 |
+| `heavymetal_to_soil_minus_uptake_cu` | 2.75389 | 2.75659 | 1.0010 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000309024 | 0.000314417 | 1.0174 |
+| `heavymetal_to_soil_minus_uptake_ni` | 0.0230603 | 0.0237741 | 1.0310 |
+| `heavymetal_to_soil_minus_uptake_pb` | 0.0665693 | 0.0691476 | 1.0387 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.19616 | 0.204158 | 1.0408 |
+| `heavymetal_to_soil_ni` | 0.0269519 | 0.0276846 | 1.0272 |
+| `heavymetal_to_soil_pb` | 0.0692311 | 0.0718218 | 1.0374 |
+| `heavymetal_to_soil_zn` | 0.329781 | 0.338181 | 1.0255 |
+| `heavymetal_to_surface_water_cd` | 2.08828e-05 | 2.09146e-05 | 1.0015 |
+| `heavymetal_to_surface_water_cr` | 0.00363044 | 0.00363922 | 1.0024 |
+| `heavymetal_to_surface_water_cu` | 0.00900991 | 0.00900998 | 1.0000 |
+| `heavymetal_to_surface_water_hg` | 6.51829e-06 | 6.52279e-06 | 1.0007 |
+| `heavymetal_to_surface_water_ni` | 0.00150128 | 0.00150858 | 1.0049 |
+| `heavymetal_to_surface_water_pb` | 0.00154296 | 0.00155015 | 1.0047 |
+| `heavymetal_to_surface_water_zn` | 0.0074023 | 0.00742459 | 1.0030 |
+
+**rice_IN** (0 changed keys)
+
+
+**wheat_IT** (0 changed keys)
+
+
+### Step 7: Seed (c1c8857)
+
+**apple_FR** (27 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 3.55679e-05 | 3.53163e-05 | 0.9929 |
+| `heavymetal_to_ground_water_cr` | 0.0174669 | 0.0174517 | 0.9991 |
+| `heavymetal_to_ground_water_cu` | 0.00321403 | 0.00321399 | 1.0000 |
+| `heavymetal_to_ground_water_hg` | 1.08207e-06 | 1.07803e-06 | 0.9963 |
+| `heavymetal_to_ground_water_pb` | 0.000471099 | 0.000470776 | 0.9993 |
+| `heavymetal_to_ground_water_zn` | 0.025882 | 0.0256607 | 0.9914 |
+| `heavymetal_to_soil_cd` | 0.0021646 | 0.002092 | 0.9665 |
+| `heavymetal_to_soil_cr` | 0.0184154 | 0.0180322 | 0.9792 |
+| `heavymetal_to_soil_cu` | 2.93306 | 2.92824 | 0.9984 |
+| `heavymetal_to_soil_hg` | 0.000607685 | 0.000578514 | 0.9520 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.0017051 | 0.00163575 | 0.9593 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.0156093 | 0.0152285 | 0.9756 |
+| `heavymetal_to_soil_minus_uptake_cu` | 2.75659 | 2.75177 | 0.9983 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000314417 | 0.000286339 | 0.9107 |
+| `heavymetal_to_soil_minus_uptake_ni` | 0.0237741 | 0.0230418 | 0.9692 |
+| `heavymetal_to_soil_minus_uptake_pb` | 0.0691476 | 0.0687566 | 0.9943 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.204158 | 0.182229 | 0.8926 |
+| `heavymetal_to_soil_ni` | 0.0276846 | 0.0269329 | 0.9728 |
+| `heavymetal_to_soil_pb` | 0.0718218 | 0.0714289 | 0.9945 |
+| `heavymetal_to_soil_zn` | 0.338181 | 0.315106 | 0.9318 |
+| `heavymetal_to_surface_water_cd` | 2.09146e-05 | 2.07667e-05 | 0.9929 |
+| `heavymetal_to_surface_water_cr` | 0.00363922 | 0.00363607 | 0.9991 |
+| `heavymetal_to_surface_water_cu` | 0.00900998 | 0.00900986 | 1.0000 |
+| `heavymetal_to_surface_water_hg` | 6.52279e-06 | 6.49845e-06 | 0.9963 |
+| `heavymetal_to_surface_water_ni` | 0.00150858 | 0.00150109 | 0.9950 |
+| `heavymetal_to_surface_water_pb` | 0.00155015 | 0.00154909 | 0.9993 |
+| `heavymetal_to_surface_water_zn` | 0.00742459 | 0.00736109 | 0.9914 |
+
+**rice_IN** (27 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 1.87521e-05 | 1.87465e-05 | 0.9997 |
+| `heavymetal_to_ground_water_cr` | 0.00837823 | 0.00837838 | 1.0000 |
+| `heavymetal_to_ground_water_cu` | 0.00121815 | 0.00121826 | 1.0001 |
+| `heavymetal_to_ground_water_hg` | 5.13978e-07 | 5.13943e-07 | 0.9999 |
+| `heavymetal_to_ground_water_pb` | 0.000123434 | 0.000124028 | 1.0048 |
+| `heavymetal_to_ground_water_zn` | 0.012818 | 0.012818 | 1.0000 |
+| `heavymetal_to_soil_cd` | 0.00208205 | 0.00207548 | 0.9968 |
+| `heavymetal_to_soil_cr` | 0.00733554 | 0.00734543 | 1.0013 |
+| `heavymetal_to_soil_cu` | 0.0328959 | 0.0329151 | 1.0006 |
+| `heavymetal_to_soil_hg` | 0.000347399 | 0.000346892 | 0.9985 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00200383 | 0.00199728 | 0.9967 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.00531618 | 0.00532603 | 1.0019 |
+| `heavymetal_to_soil_minus_uptake_cu` | 0.0143003 | 0.0143178 | 1.0012 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000347399 | 0.000346892 | 0.9985 |
+| `heavymetal_to_soil_minus_uptake_ni` | -0.00143712 | -0.00140886 | 0.9803 |
+| `heavymetal_to_soil_minus_uptake_pb` | -0.0029322 | -0.00292551 | 0.9977 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.0988321 | 0.0988288 | 1.0000 |
+| `heavymetal_to_soil_ni` | 0.00201746 | 0.00204745 | 1.0149 |
+| `heavymetal_to_soil_pb` | -0.000872733 | -0.000856124 | 0.9810 |
+| `heavymetal_to_soil_zn` | 0.276649 | 0.276645 | 1.0000 |
+| `heavymetal_to_surface_water_cd` | 0.000110437 | 0.000110404 | 0.9997 |
+| `heavymetal_to_surface_water_cr` | 0.0122837 | 0.012284 | 1.0000 |
+| `heavymetal_to_surface_water_cu` | 0.00874615 | 0.00874692 | 1.0001 |
+| `heavymetal_to_surface_water_hg` | 3.88073e-05 | 3.88046e-05 | 0.9999 |
+| `heavymetal_to_surface_water_ni` | 0.0106899 | 0.0106953 | 1.0005 |
+| `heavymetal_to_surface_water_pb` | 0.00513792 | 0.00516267 | 1.0048 |
+| `heavymetal_to_surface_water_zn` | 0.0245699 | 0.0245699 | 1.0000 |
+
+**wheat_IT** (27 changed keys)
+
+| key | old | new | ratio new/old |
+|---|---|---|---|
+| `heavymetal_to_ground_water_cd` | 2.59718e-05 | 2.59681e-05 | 0.9999 |
+| `heavymetal_to_ground_water_cr` | 0.0109242 | 0.0109239 | 1.0000 |
+| `heavymetal_to_ground_water_cu` | 0.00128616 | 0.00128362 | 0.9980 |
+| `heavymetal_to_ground_water_hg` | 6.66692e-07 | 6.66723e-07 | 1.0000 |
+| `heavymetal_to_ground_water_pb` | 0.000118274 | 0.0001182 | 0.9994 |
+| `heavymetal_to_ground_water_zn` | 0.0150864 | 0.0150305 | 0.9963 |
+| `heavymetal_to_soil_cd` | 0.00686331 | 0.00684772 | 0.9977 |
+| `heavymetal_to_soil_cr` | 0.0150224 | 0.0150077 | 0.9990 |
+| `heavymetal_to_soil_cu` | 0.0279249 | 0.0277475 | 0.9936 |
+| `heavymetal_to_soil_hg` | 0.000466134 | 0.000466439 | 1.0007 |
+| `heavymetal_to_soil_minus_uptake_cd` | 0.00661474 | 0.00659918 | 0.9976 |
+| `heavymetal_to_soil_minus_uptake_cr` | 0.0139949 | 0.0139803 | 0.9990 |
+| `heavymetal_to_soil_minus_uptake_cu` | 0.014532 | 0.0143812 | 0.9896 |
+| `heavymetal_to_soil_minus_uptake_hg` | 0.000404778 | 0.00040508 | 1.0007 |
+| `heavymetal_to_soil_minus_uptake_ni` | 0.00652074 | 0.00650242 | 0.9972 |
+| `heavymetal_to_soil_minus_uptake_pb` | 0.00193673 | 0.00193388 | 0.9985 |
+| `heavymetal_to_soil_minus_uptake_zn` | 0.090063 | 0.0862313 | 0.9575 |
+| `heavymetal_to_soil_ni` | 0.00714911 | 0.00713049 | 0.9974 |
+| `heavymetal_to_soil_pb` | 0.00219222 | 0.00218921 | 0.9986 |
+| `heavymetal_to_soil_zn` | 0.169053 | 0.16493 | 0.9756 |
+| `heavymetal_to_surface_water_cd` | 8.44294e-05 | 8.44176e-05 | 0.9999 |
+| `heavymetal_to_surface_water_cr` | 0.0123572 | 0.0123569 | 1.0000 |
+| `heavymetal_to_surface_water_cu` | 0.00497651 | 0.00496666 | 0.9980 |
+| `heavymetal_to_surface_water_hg` | 2.44084e-05 | 2.44096e-05 | 1.0000 |
+| `heavymetal_to_surface_water_ni` | 0.00590863 | 0.00590582 | 0.9995 |
+| `heavymetal_to_surface_water_pb` | 0.00240994 | 0.00240843 | 0.9994 |
+| `heavymetal_to_surface_water_zn` | 0.0203236 | 0.0202484 | 0.9963 |
+
