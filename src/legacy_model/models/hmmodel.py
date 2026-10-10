@@ -47,15 +47,16 @@ class HmModel(object):
       hm_export_with_harvest: map HeavyMetalType -> mg i/(ha*crop cycle) in the harvested product
       drained_part: ratio (decision D5: template "drainage")
       eroded_soil: kg/(ha*year)
-      hm_land_use_category: LandUseCategoryForHM
+      land_use_category: pmodel.LandUseCategory (7 classes, soil rows of Table 1)
 
     Outputs (kg i/(ha*crop cycle), map HeavyMetalType -> value):
         m_hm_heavymetal_to_soil: balance without the harvest export ("heavy_metal_uptake" off)
         m_hm_heavymetal_to_soil_minus_uptake: balance with the harvest export (default)
         m_hm_heavymetal_to_ground_water, m_hm_heavymetal_to_surface_water
 
-    Parameters (data/): hm_deposition_mg_per_ha_yr.csv, hm_leaching_mg_per_ha_yr.csv (Ni NA -> 0),
-    hm_soil_content_mg_per_kg.csv, hm_pesticide_fungicides.csv, model_parameters.csv
+    Parameters (data/): hm_salca2023_table1.csv (SALCAheavymetal V1.0, Nemecek et al. 2023,
+    Appendix 7, Table 1: deposition, leaching, soil contents), hm_pesticide_fungicides.csv,
+    model_parameters.csv
     (hm_accumulation_factor 1.86, hm_erosion_factor 0.2, hm_pesticide_soil_fraction 0.95).
     """
 
@@ -68,7 +69,7 @@ class HmModel(object):
                         'hm_export_with_harvest',
                         'drained_part',
                         'eroded_soil',
-                        'hm_land_use_category'
+                        'land_use_category'
                         ]
 
     def __init__(self, inputs):
@@ -78,10 +79,11 @@ class HmModel(object):
 
     def compute(self):
         t = self._duration_years()
-        deposition = dataloader.single_metal_row("hm_deposition_mg_per_ha_yr.csv", METAL_COLUMNS.values())
-        leaching_rate = dataloader.single_metal_row("hm_leaching_mg_per_ha_yr.csv", METAL_COLUMNS.values())
-        soil_content = dataloader.metal_row("hm_soil_content_mg_per_kg.csv",
-                                            self.hm_land_use_category.name, METAL_COLUMNS.values())
+        # SALCAheavymetal 2023 Table 1: deposition and leaching rates [mg/(ha*yr)], soil
+        # concentration of the land-use class [mg/kg] (row "soil_<land use category>").
+        deposition = dataloader.hm_entry("deposition")
+        leaching_rate = dataloader.hm_entry("leaching")
+        soil_content = dataloader.hm_entry(self._soil_row_name())
         accumulation = dataloader.param("hm_accumulation_factor")
         erosion_factor = dataloader.param("hm_erosion_factor")
         pesticides = self._compute_pesticides()  # mg/ha
@@ -109,6 +111,10 @@ class HmModel(object):
 
     def _duration_years(self):
         return 1.0 / self.crop_cycle_per_year
+
+    def _soil_row_name(self):
+        """Table 1 soil row of the land-use class, e.g. LandUseCategory.fruit_trees -> 'soil_fruit trees'."""
+        return "soil_" + self.land_use_category.value.lower()
 
     def _compute_agro_input(self, pesticides, element):
         """Total agricultural input of a metal [mg/ha]; atmospheric deposition excluded."""

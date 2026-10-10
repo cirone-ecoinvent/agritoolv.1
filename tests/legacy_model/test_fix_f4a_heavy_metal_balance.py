@@ -1,11 +1,14 @@
-"""Fix F4 (part a/b): heavy-metal balance with accumulation factor 1.86, allocation factor applied
-once to each output, deposition and leaching scaled by the occupation period, harvest export from
-Freiermuth 2006 Tab. 5. Reference: reference_models.heavy_metals / hm_biomass."""
+"""Heavy-metal balance (SALCAheavymetal, Nemecek et al. 2023, Appendix 7, Eq. 3-7): allocation
+factor applied once to each output, accumulation factor 1.86, deposition and leaching scaled by the
+occupation period. Since decision L10 the deposition, leaching and soil values come from Table 1 of
+the 2023 document (expected values below use the numbers of that table: deposition Zn 54 800,
+leaching Zn 33 000 mg/(ha*yr), arable soil Zn 58 mg/kg)."""
 import pytest
 
 import dataloader
 from defaultGeneration import HeavyMetalExportWithHarvestGenerator
-from models.hmmodel import HmModel, LandUseCategoryForHM, PesticideType
+from models.hmmodel import HmModel, PesticideType
+from models.pmodel import LandUseCategory
 from models.modelEnums import HeavyMetalType
 
 ZERO = {m: 0.0 for m in HeavyMetalType}
@@ -17,7 +20,7 @@ def _inputs(**overrides):
         "hm_from_other_organic_fert": dict(ZERO), "hm_from_seed": dict(ZERO),
         "hm_pesticides_quantities": {p: 0.0 for p in PesticideType},
         "hm_export_with_harvest": dict(ZERO), "drained_part": 0.0, "eroded_soil": 0.0,
-        "hm_land_use_category": LandUseCategoryForHM.arable_land,
+        "land_use_category": LandUseCategory.arable_land,
     }
     inputs.update(overrides)
     return inputs
@@ -34,13 +37,29 @@ def _reference_case(**overrides):
     return _inputs(**case)
 
 
-def test_zinc_balance_matches_reference():
+A_ZN = 12143 / (12143 + 54800)
+EROSION_ZN = 58 * 10_000 * 1.86 * 0.2
+
+
+def test_zinc_balance_with_2023_table():
     model = HmModel(_reference_case())
     out = model.compute()
-    assert model.last_allocation[HeavyMetalType.zn] == pytest.approx(0.1184186, rel=1e-6)
-    assert out["m_hm_heavymetal_to_ground_water"][HeavyMetalType.zn] == pytest.approx(0.0039078, rel=1e-4)
-    assert out["m_hm_heavymetal_to_surface_water"][HeavyMetalType.zn] == pytest.approx(0.0218497, rel=1e-4)  # a = 1.86
-    assert out["m_hm_heavymetal_to_soil_minus_uptake"][HeavyMetalType.zn] == pytest.approx(-0.0336035, rel=1e-4)
+    assert model.last_allocation[HeavyMetalType.zn] == pytest.approx(A_ZN, rel=1e-12)
+    assert out["m_hm_heavymetal_to_ground_water"][HeavyMetalType.zn] == pytest.approx(33000 * A_ZN * 1e-6)
+    assert out["m_hm_heavymetal_to_surface_water"][HeavyMetalType.zn] == pytest.approx(EROSION_ZN * A_ZN * 1e-6)
+    assert out["m_hm_heavymetal_to_soil_minus_uptake"][HeavyMetalType.zn] == pytest.approx(
+        (12143 - (168800 + 33000 + EROSION_ZN) * A_ZN) * 1e-6)
+
+
+def test_soil_row_follows_the_seven_land_use_classes():
+    copper = dict(ZERO)
+    copper[HeavyMetalType.cu] = 1000.0
+    fruit = HmModel(_inputs(hm_from_mineral_fert=copper, eroded_soil=10_000.0,
+                            land_use_category=LandUseCategory.fruit_trees))
+    out = fruit.compute()
+    a = fruit.last_allocation[HeavyMetalType.cu]
+    assert a == pytest.approx(1000.0 / (1000.0 + 23800))
+    assert out["m_hm_heavymetal_to_surface_water"][HeavyMetalType.cu] == pytest.approx(126 * 10_000 * 0.372 * a * 1e-6)
 
 
 def test_balance_equals_freiermuth_form():
@@ -48,7 +67,7 @@ def test_balance_equals_freiermuth_form():
     model = HmModel(_reference_case())
     out = model.compute()
     a = model.last_allocation[HeavyMetalType.zn]
-    old = (12143 + 90400 - 168800 - 33000 - 49.6 * 10_000 * 1.86 * 0.2) * a * 1e-6
+    old = (12143 + 54800 - 168800 - 33000 - EROSION_ZN) * a * 1e-6
     assert out["m_hm_heavymetal_to_soil_minus_uptake"][HeavyMetalType.zn] == pytest.approx(old, rel=1e-9)
 
 
@@ -68,7 +87,7 @@ def test_leaching_split_by_drained_fraction():
 def test_deposition_and_leaching_scale_with_occupation_period():
     half = HmModel(_reference_case(crop_cycle_per_year=2.0, eroded_soil=0.0))
     out = half.compute()
-    assert half.last_allocation[HeavyMetalType.zn] == pytest.approx(12143 / (12143 + 90400 * 0.5))
+    assert half.last_allocation[HeavyMetalType.zn] == pytest.approx(12143 / (12143 + 54800 * 0.5))
     assert out["m_hm_heavymetal_to_ground_water"][HeavyMetalType.zn] == pytest.approx(
         33000 * 0.5 * half.last_allocation[HeavyMetalType.zn] * 1e-6)
 

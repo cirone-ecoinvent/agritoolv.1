@@ -87,6 +87,26 @@ def metal_row(filename, key, metals):
     return {m: (row.get(m) or 0.0) for m in metals}
 
 
+HM_TABLE = "hm_salca2023_table1.csv"
+HM_METALS = ("Cd", "Cu", "Zn", "Pb", "Ni", "Cr", "Hg")
+
+
+def hm_entry(name):
+    """One row of SALCAheavymetal 2023 Table 1 (data/hm_salca2023_table1.csv) by its English name.
+
+    Returns {"Cd": ..., ..., "Hg": ..., "dm": kg DM/kg, "unit": concentration unit}. Raises a
+    KeyError naming the table when the row does not exist.
+    """
+    rows = table(HM_TABLE, key_column="name_en")
+    if name not in rows:
+        raise KeyError("'%s' is not a row of %s" % (name, HM_TABLE))
+    row = rows[name]
+    entry = {m: (row.get(m) or 0.0) for m in HM_METALS}
+    entry["dm"] = row["dm_kg_per_kg"]
+    entry["unit"] = row["concentration_unit"]
+    return entry
+
+
 def single_metal_row(filename, metals):
     """Heavy-metal vector of a one-row table (deposition, leaching); NA -> 0.0."""
     row = next(iter(table(filename).values()))
