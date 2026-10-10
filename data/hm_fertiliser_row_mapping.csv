@@ -1,28 +1,29 @@
-legacy_fertiliser_type,nutrient_basis_of_input,tab6_row,input_to_row_factor,note,status,reviewed_by
-fert_n_ammonium_nitrate,N,ammonium_nitrate,1,explicit in legacy code,confirmed,FC
-fert_n_urea,N,urea,1,explicit in legacy code,confirmed,FC
-fert_n_ureaAN,N,urea,1,legacy code used the urea row for UAN,confirmed,FC
-fert_n_mono_ammonium_phosphate,N,generic_mean_n,1,compound fertiliser: generic mean N (as in legacy code),confirmed,FC
-fert_n_di_ammonium_phosphate,N,generic_mean_n,1,compound fertiliser: generic mean N (as in legacy code),confirmed,FC
-fert_n_an_phosphate,N,generic_mean_n,1,compound fertiliser: generic mean N (as in legacy code),confirmed,FC
-fert_n_lime_ammonium_nitrate,N,generic_mean_n,1,legacy code used the generic mean; Tab. 6 also has calcium_ammonium_nitrate_20 and _27 (to decide),confirmed,FC
-fert_n_ammonium_sulphate,N,ammonium_sulphate,1,explicit in legacy code,confirmed,FC
-fert_n_potassium_nitrate,N,generic_mean_n,1,compound fertiliser: generic mean N (as in legacy code),confirmed,FC
-fert_n_ammonia_liquid,N,generic_mean_n,1,generic mean N (as in legacy code),confirmed,FC
-fert_p_triple_superphosphate,P2O5,triple_superphosphate,1,explicit in legacy code,confirmed,FC
-fert_p_superphosphate,P2O5,superphosphate,1,explicit in legacy code,confirmed,FC
-fert_p_mono_ammonium_phosphate,P2O5,generic_mean_p,1,compound fertiliser: generic mean P (as in legacy code),confirmed,FC
-fert_p_di_ammonium_phosphate,P2O5,generic_mean_p,1,compound fertiliser: generic mean P (as in legacy code),confirmed,FC
-fert_p_an_phosphate,P2O5,generic_mean_p,1,compound fertiliser: generic mean P (as in legacy code),confirmed,FC
-fert_p_hypophosphate_raw_phosphate,P2O5,raw_phosphate,1,explicit in legacy code (hyperphosphate / raw phosphate),confirmed,FC
-fert_p_ground_basic_slag,P2O5,thomas_meal,1,explicit in legacy code (Thomas meal),confirmed,FC
-fert_k_potassium_salt,K2O,potassium_chloride,1,explicit in legacy code,confirmed,FC
-fert_k_potassium_sulphate,K2O,potassium_sulphate,1,explicit in legacy code,confirmed,FC
-fert_k_potassium_nitrate,K2O,generic_mean_k,1,compound fertiliser: generic mean K (as in legacy code),confirmed,FC
-fert_k_patent_potassium,K2O,raw_potassium,1,explicit in legacy code (raw potassium),confirmed,FC
-fert_ca_limestone,Ca,lime,1.39919,lime row is per kg CaO: kg Ca x 56.0774/40.078 (stoichiometric),confirmed,FC
-fert_ca_carbonation_limestone,Ca,lime,1.39919,lime row is per kg CaO: kg Ca x 56.0774/40.078 (stoichiometric),confirmed,FC
-fert_ca_seaweed_limestone,Ca,lime,1.39919,lime row is per kg CaO: kg Ca x 56.0774/40.078 (stoichiometric),confirmed,FC
-fert_zn_zinc_sulfate,Zn,elemental_zinc,1,stoichiometric: 1 kg Zn = 1e6 mg Zn (no Tab. 6 row),confirmed,FC
-fert_zn_zinc_oxide,Zn,elemental_zinc,1,stoichiometric: 1 kg Zn = 1e6 mg Zn (no Tab. 6 row),confirmed,FC
-fert_zn_other,Zn,elemental_zinc,1,stoichiometric: 1 kg Zn = 1e6 mg Zn (legacy code wrongly counted it as Pb),confirmed,FC
+legacy_fertiliser_type,nutrient_basis_of_input,salca2023_row,input_to_row_factor,note,status,reviewed_by
+fert_n_ammonium_nitrate,N,N ammonium nitrate (kg N),1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_n_urea,N,N urea (kg N),1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_n_ureaAN,N,N urea-AN (kg N),1,"same fertiliser row (values equal to urea, as before); approved in chat 2026-10-10",confirmed,FC
+fert_n_mono_ammonium_phosphate,N,N mineral fertilizers unspecified (kg N),1,"DEVIATION from Table 1 (recommendation 4): the table row 'N mono-ammonium phosphate (kg N)' repeats the P values per kg N, which would count the metals twice with the P row; approved in chat 2026-10-10",confirmed,FC
+fert_n_di_ammonium_phosphate,N,N mineral fertilizers unspecified (kg N),1,"DEVIATION from Table 1 (recommendation 4), as for MAP; approved in chat 2026-10-10",confirmed,FC
+fert_n_an_phosphate,N,N mineral fertilizers unspecified (kg N),1,"DEVIATION from Table 1 (recommendation 4), as for MAP; approved in chat 2026-10-10",confirmed,FC
+fert_n_lime_ammonium_nitrate,N,N lime-ammonium nitrate (kg N),1,Table 1 has this fertiliser (Cd 0.185 vs 0.212 of the unspecified row used before): to confirm,proposed,
+fert_n_ammonium_sulphate,N,N ammonium sulphate (kg N),1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_n_potassium_nitrate,N,N potassium nitrate (kg N),1,"same fertiliser row (values equal to unspecified N, as before); approved in chat 2026-10-10",confirmed,FC
+fert_n_ammonia_liquid,N,N liquid ammonia (kg N),1,"same fertiliser row (values equal to unspecified N, as before); approved in chat 2026-10-10",confirmed,FC
+fert_p_triple_superphosphate,P2O5,P triple-superphos. (kg P2O5),1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_p_superphosphate,P2O5,P superphosphate (kg P2O5),1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_p_mono_ammonium_phosphate,P2O5,"P mono-ammonium phosphate (MAP, kg P2O5)",1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_p_di_ammonium_phosphate,P2O5,"P di-ammonium phosphate (DAP, kg P2O5)",1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_p_an_phosphate,P2O5,P AN-phosphate (kg P2O5),1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_p_hypophosphate_raw_phosphate,P2O5,"P hyperphosphate (raw phosphate, kg P2O5)",1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_p_ground_basic_slag,P2O5,P Thomas phosphate (kg P2O5),1,same fertiliser row (Thomas meal); approved in chat 2026-10-10,confirmed,FC
+fert_k_potassium_salt,K2O,"K potassium salt (KCl, kg K2O)",1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_k_potassium_sulphate,K2O,"K potassium sulphate (K2SO4, kg K2O)",1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
+fert_k_potassium_nitrate,K2O,K potassium nitrate (kg K2O),1,Table 1 has this fertiliser (Cr 4.0 vs 88.54 of the generic K mean used before): to confirm,proposed,
+fert_k_patent_potassium,K2O,K patentkali (kg K2O),1,same fertiliser row (raw potassium); approved in chat 2026-10-10,confirmed,FC
+fert_ca_limestone,Ca,Ca limestone (kg Ca),1,Table 1 row per kg Ca: no CaO conversion (recommendation 7); approved in chat 2026-10-10,confirmed,FC
+fert_ca_carbonation_limestone,Ca,Ca carbonation limestone (kg Ca),1,Table 1 row per kg Ca (recommendation 7); approved in chat 2026-10-10,confirmed,FC
+fert_ca_seaweed_limestone,Ca,Ca seaweed limestone (kg Ca),1,Table 1 row per kg Ca (recommendation 7); approved in chat 2026-10-10,confirmed,FC
+fert_zn_zinc_sulfate,Zn,elemental_zinc,1,stoichiometric: 1 kg Zn = 1e6 mg Zn (no Table 1 row); approved in chat 2026-10-10,confirmed,FC
+fert_zn_zinc_oxide,Zn,elemental_zinc,1,stoichiometric: 1 kg Zn = 1e6 mg Zn (no Table 1 row); approved in chat 2026-10-10,confirmed,FC
+fert_zn_other,Zn,elemental_zinc,1,stoichiometric: 1 kg Zn = 1e6 mg Zn; approved in chat 2026-10-10,confirmed,FC
+magnesium_from_fertilizer,Mg,Mg magnesium (kg Mg),1,new input: Mg fertilisers were ignored by the legacy heavy-metal model (recommendation 7); approved in chat 2026-10-10,confirmed,FC

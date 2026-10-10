@@ -52,6 +52,7 @@ class FertModel(object):
       k_fertiliser_quantities: map KFertiliserType -> kg K2O/ha
       ca_fertiliser_quantities: map CaFertiliserType -> kg Ca/ha
       zn_fertiliser_quantities: map ZnFertiliserType -> kg Zn/ha
+      magnesium_from_fertilizer: kg Mg/ha
       soil_with_ph_under_or_7: ratio
       climate_zone_1: text
       cultivation_type: text
@@ -68,6 +69,7 @@ class FertModel(object):
                         "k_fertiliser_quantities",
                         "ca_fertiliser_quantities",
                         "zn_fertiliser_quantities",
+                        "magnesium_from_fertilizer",
                         "soil_with_ph_under_or_7",
                         "climate_zone_1",
                         "cultivation_type"
@@ -143,13 +145,13 @@ class FertModel(object):
         NFertiliserType.ammonia_liquid: 0.04  # Anhydrous ammonia
     }}
 
-    # Heavy-metal contents of mineral fertilisers (Fix F4c): Freiermuth 2006 Tab. 6 in
-    # data/hm_mineral_fertiliser_mg_per_kg_nutrient.csv (mg per kg N, P2O5, K2O or CaO; no Hg
-    # data -> 0), rows assigned to the legacy fertiliser types by data/hm_fertiliser_row_mapping.csv
-    # (generic means for compound and "other" fertilisers; Zn fertilisers stoichiometric).
-    _HM_TABLE = "hm_mineral_fertiliser_mg_per_kg_nutrient.csv"
+    # Heavy-metal contents of mineral fertilisers: SALCAheavymetal 2023 Table 1 (decision L10,
+    # data/hm_salca2023_table1.csv, mg per kg N, P2O5, K2O, Ca or Mg, Hg included), rows assigned
+    # to the legacy fertiliser types by data/hm_fertiliser_row_mapping.csv; Zn fertilisers are
+    # stoichiometric (1 kg Zn = 1e6 mg Zn).
     _HM_ROW_MAPPING = "hm_fertiliser_row_mapping.csv"
     _ELEMENTAL_ZINC_ROW = "elemental_zinc"
+    _MAGNESIUM_KEY = "magnesium_from_fertilizer"
     _MG_PER_KG = 1000000.0
 
     def __init__(self, inputs):
@@ -177,25 +179,24 @@ class FertModel(object):
     def computeHeavyMetal(self):
         """Heavy-metal input with mineral fertilisers, map HeavyMetalType -> mg/ha.
 
-        kg nutrient x input_to_row_factor x mg/kg nutrient of the Tab. 6 row (keyed by metal
-        name, so that each metal lands in its own column); Zn fertilisers: kg Zn x 1e6 mg/kg.
+        kg nutrient x input_to_row_factor x mg/kg nutrient of the Table 1 row, for N, P, K, Ca and
+        Zn fertilisers and for the Mg applied (magnesium_from_fertilizer, kg Mg).
         """
         total_hm_values = dict.fromkeys(HeavyMetalType, 0.0)
         for quantities in (self.n_fertiliser_quantities, self.p_fertiliser_quantities,
                            self.k_fertiliser_quantities, self.ca_fertiliser_quantities,
                            self.zn_fertiliser_quantities):
-            self._add_hm_values_for_fert_type(total_hm_values, quantities)
+            for fert_type, quantity in quantities.items():
+                self._add_hm_values(total_hm_values, fert_type.value, quantity)
+        self._add_hm_values(total_hm_values, self._MAGNESIUM_KEY, self.magnesium_from_fertilizer)
         return total_hm_values
 
-    def _add_hm_values_for_fert_type(self, total_hm_values, fert_quantities):
-        mapping = dataloader.table(self._HM_ROW_MAPPING)
-        contents = dataloader.table(self._HM_TABLE)
-        for fert_type, quantity in fert_quantities.items():
-            row = mapping[fert_type.value]
-            kg_reference_nutrient = quantity * row["input_to_row_factor"]
-            if row["tab6_row"] == self._ELEMENTAL_ZINC_ROW:
-                total_hm_values[HeavyMetalType.zn] += kg_reference_nutrient * self._MG_PER_KG
-                continue
-            content = contents[row["tab6_row"]]
-            for element in HeavyMetalType:
-                total_hm_values[element] += kg_reference_nutrient * (content.get(element.name.capitalize()) or 0.0)
+    def _add_hm_values(self, total_hm_values, mapping_key, quantity):
+        row = dataloader.table(self._HM_ROW_MAPPING)[mapping_key]
+        kg_reference_nutrient = quantity * row["input_to_row_factor"]
+        if row["salca2023_row"] == self._ELEMENTAL_ZINC_ROW:
+            total_hm_values[HeavyMetalType.zn] += kg_reference_nutrient * self._MG_PER_KG
+            return
+        content = dataloader.hm_entry(row["salca2023_row"])
+        for element in HeavyMetalType:
+            total_hm_values[element] += kg_reference_nutrient * content[element.name.capitalize()]
