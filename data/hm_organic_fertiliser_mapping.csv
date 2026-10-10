@@ -1,0 +1,13 @@
+legacy_fertiliser_type,salca2023_row,apply_dm,note,status,reviewed_by
+composttype_compost,compost,yes,Table 1 gives DM 1.0 for compost (legacy used 0.5): to confirm whether the compost values are per kg DM or per kg product,proposed,
+composttype_meat_and_bone_meal,animal meal,yes,Tiermehl (legacy proxy) = animal meal,proposed,
+composttype_castor_oil_shell_coarse,castor bean meal,yes,castor-oil shell mapped to castor bean meal,proposed,
+composttype_vinasse,vinasse,yes,same product; approved in chat 2026-10-10,confirmed,FC
+composttype_dried_poultry_manure,"poultry manure, dried",yes,same product; approved in chat 2026-10-10,confirmed,FC
+composttype_stone_meal,zero_HM,yes,"legacy assumption: no heavy metals (Table 1 row zero_HM, own assumption)",proposed,
+composttype_feather_meal,horn meal,yes,legacy proxy Hornmehl,proposed,
+composttype_horn_meal,horn meal,yes,same product; approved in chat 2026-10-10,confirmed,FC
+composttype_horn_shavings_fine,horn meal,yes,horn shavings mapped to horn meal (legacy proxy),proposed,
+sewagesludge_liquid,"sewage sludge, liquid",no,values used per kg fresh matter (recommendation 5): Table 1 values equal the dried sludge x DM; approved in chat 2026-10-10,confirmed,FC
+sewagesludge_dehydrated,"sewage sludge, dehydrated",no,values used per kg fresh matter (recommendation 5); approved in chat 2026-10-10,confirmed,FC
+sewagesludge_dried,"sewage sludge, dried",no,values used per kg fresh matter (recommendation 5; DM 1.0); approved in chat 2026-10-10,confirmed,FC
