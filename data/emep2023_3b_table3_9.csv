@@ -1,0 +1,23 @@
+nfr,livestock,housing_period_d_per_yr,nex_kg_n_per_head_yr,proportion_tan,manure_type,ef_housing,ef_yard,ef_storage,ef_application,ef_grazing_outdoor,notes
+3B1a,Dairy cattle,180,105,0.6,Slurry,0.24,0.30,0.25,0.55,0.14,EF yard from NARSES (note e)
+3B1a,Dairy cattle,180,105,0.6,Solid,0.08,0.30,0.32,0.68,0.14,EF yard from NARSES (note e)
+3B1a,"Dairy cattle, tied housing",180,105,0.6,Slurry,0.09,0.30,0.25,0.55,0.14,
+3B1a,"Dairy cattle, tied housing",180,105,0.6,Solid,0.09,0.30,0.32,0.68,0.14,
+3B1b,Non-dairy cattle (all other cattle),180,41,0.6,Slurry,0.24,0.53,0.25,0.55,0.14,
+3B1b,Non-dairy cattle (all other cattle),180,41,0.6,Solid,0.08,0.53,0.32,0.68,0.14,
+3B2,Sheep,30,15.5,0.5,Solid,0.22,0.75,0.32,0.90,0.09,
+3B3,"Swine (finishing pigs, 8-110 kg)",365,12.1,0.7,Slurry,0.27,0.53,0.11,0.40,,
+3B3,"Swine (finishing pigs, 8-110 kg)",365,12.1,0.7,Solid,0.23,0.53,0.29,0.45,,
+3B3,Swine (sows and piglets to 8 kg),365,34.5,0.7,Slurry,0.35,,0.11,0.29,,
+3B3,Swine (sows and piglets to 8 kg),365,34.5,0.7,Solid,0.24,,0.29,0.45,,
+3B3,Swine (sows and piglets to 8 kg),0,34.5,0.7,Outdoor,,,,,0.31,outdoor sows and weaners (note d)
+3B4a,Buffalo,140,82.0,0.5,Solid,0.20,,0.17,0.55,0.14,Nex from EAGER (note c)
+3B4d,Goats,30,15.5,0.5,Solid,0.22,0.75,0.28,0.90,0.09,
+3B4e/3B4f,"Horses (and mules, asses)",180,47.5,0.6,Solid,0.22,,0.35,0.90,0.35,EF application from NARSES (note e)
+3B4gi,Laying hens (laying hens and parents),365,0.77,0.7,"Solid, can be stacked",0.20,,0.08,0.45,,
+3B4gi,Laying hens (laying hens and parents),365,0.77,0.7,"Slurry, can be pumped",0.41,,0.14,0.69,,
+3B4gii,Broilers (broilers and parents),365,0.36,0.7,Solid,0.21,,0.30,0.38,,
+3B4giii,Turkeys,365,1.64,0.7,Solid,0.35,,0.24,0.54,,
+3B4giv,Other poultry (ducks),365,1.26,0.7,Solid,0.24,,0.24,0.54,,
+3B4giv,Other poultry (geese),365,0.55,0.7,Solid,0.57,,0.16,0.45,,Nex from Rösemann et al. 2015 (note f)
+3B4h,Other animals (fur animals),365,4.60,0.6,Solid,0.27,,0.09,,,Nex from EAGER (note c)
