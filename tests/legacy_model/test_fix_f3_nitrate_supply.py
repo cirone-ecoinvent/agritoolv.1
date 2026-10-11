@@ -75,8 +75,8 @@ def test_manure_soluble_n_is_tan():
     model = ManureModel({"liquid_manure_part_before_dilution": 0.5,
                          "liquid_manure_quantities": quantities, "solid_manure_quantities": solid})
     assert model.computeSolubleN() == pytest.approx(10 * 2.75 + 10 * 1.05)
-    # NH3 unchanged: TAN x EF products as before, converted to NH3
-    nh3_as_n = 10 * 2.75 * 0.55 + 10 * 1.05 * 0.79
+    # NH3: TAN (GRUDAF 2009 Table 39) x spreading EF (EMEP/EEA 2023 3.B Table 3-9), decision L12
+    nh3_as_n = 10 * 2.75 * 0.55 + 10 * 1.05 * 0.68
     assert model.computeNH3() * NH3_TO_N_FACTOR == pytest.approx(nh3_as_n)
 
 

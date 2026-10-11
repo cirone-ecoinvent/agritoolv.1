@@ -1,0 +1,3 @@
+manure_type,form,quantity_unit,n_kg_per_unit,p2o5_kg_per_unit,nh3_n_kg_per_unit,source
+liquid_manure_other,liquid,m3,6.33529,3.40798,1.7765461,"legacy, undocumented, provisional: legacy manuremodel.py sum-product of the type contents with world proportions (proportions not stated); to be replaced by FAOSTAT shares"
+solid_manure_other,solid,t,10.40797,7.40504,2.00410305,"legacy, undocumented, provisional: legacy manuremodel.py sum-product of the type contents with world proportions (proportions not stated); to be replaced by FAOSTAT shares"

@@ -30,3 +30,15 @@ def test_every_data_file_is_registered_in_sources():
     registered = {row["file"] for row in dl.rows("sources.csv")}
     on_disk = {p.name for p in dl.DATA_DIR.iterdir() if p.name != "sources.csv"}
     assert on_disk <= registered, "unregistered data files: %s" % sorted(on_disk - registered)
+
+
+def test_manure_composition_references_existing_rows_and_weights_sum_to_one():
+    from collections import defaultdict
+    contents = dl.table("grudaf2009_table39.csv")
+    emep = {(r["livestock"], r["manure_type"]) for r in dl.rows("emep2023_3b_table3_9.csv")}
+    weights = defaultdict(float)
+    for row in dl.rows("manure_type_composition.csv"):
+        assert row["grudaf_row_id"] in contents
+        assert (row["emep_livestock"], row["emep_manure_type"]) in emep
+        weights[row["manure_type"]] += float(row["weight"])
+    assert all(abs(w - 1.0) < 1e-12 for w in weights.values()), dict(weights)

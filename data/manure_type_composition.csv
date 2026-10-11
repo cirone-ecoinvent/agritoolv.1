@@ -1,0 +1,13 @@
+manure_type,form,quantity_unit,grudaf_row_id,emep_livestock,emep_manure_type,weight,status,reviewed_by,note
+liquid_manure_cattle,liquid,m3,dairy_slurry,Dairy cattle,Slurry,0.5,proposed,,legacy 4.6 kg N/m3 = mean of complete and low-dung slurry
+liquid_manure_cattle,liquid,m3,dairy_slurry_low_dung,Dairy cattle,Slurry,0.5,proposed,,
+liquid_manure_pig,liquid,m3,pig_slurry_fattening,"Swine (finishing pigs, 8-110 kg)",Slurry,0.5,proposed,,legacy 5.35 kg N/m3 = mean of fattening and breeding slurry
+liquid_manure_pig,liquid,m3,pig_slurry_breeding,Swine (sows and piglets to 8 kg),Slurry,0.5,proposed,,
+liquid_manure_laying_hen,liquid,m3,hen_droppings_belt,Laying hens (laying hens and parents),"Slurry, can be pumped",1.0,proposed,,
+solid_manure_cattle,solid,t,dairy_stackable,Dairy cattle,Solid,0.5,proposed,,legacy 5.1 kg N/t = mean of stackable and deep-litter manure
+solid_manure_cattle,solid,t,dairy_deep_litter,Dairy cattle,Solid,0.5,proposed,,
+solid_manure_horses,solid,t,horse_manure,"Horses (and mules, asses)",Solid,1.0,proposed,,stored horse manure (legacy 6.8 kg N/t)
+solid_manure_laying_hen,solid,t,hen_manure_pit_floor,Laying hens (laying hens and parents),"Solid, can be stacked",0.5,proposed,,legacy 30.5 kg N/t = mean of hen manure and broiler manure
+solid_manure_laying_hen,solid,t,broiler_manure,Broilers (broilers and parents),Solid,0.5,proposed,,
+solid_manure_pig,solid,t,pig_manure,"Swine (finishing pigs, 8-110 kg)",Solid,1.0,proposed,,EF application 0.45 is the same for finishing pigs and sows
+solid_manure_sheep_goat,solid,t,sheep_goat_manure,Sheep,Solid,1.0,proposed,,EF application 0.90 is the same for sheep and goats

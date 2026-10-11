@@ -697,3 +697,41 @@ heavy-metal model from Quantis 2019 / Freiermuth 2006 to SALCAheavymetal V1.0 (N
 | `heavymetal_to_surface_water_pb` | 0.00240994 | 0.00240843 | 0.9994 |
 | `heavymetal_to_surface_water_zn` | 0.0203236 | 0.0202484 | 0.9963 |
 
+
+## 8. Manure contents and NH3 on GRUDAF 2009 Table 39 and EMEP/EEA 2023 3.B (decision L12, 2026-10-11)
+
+N, P2O5 and TAN (soluble N, Nlös) per m3 of undiluted slurry or per t of solid manure come from
+GRUDAF 2009 Table 39 (`grudaf2009_table39.csv`). NH3-N after spreading is TAN x EF application
+of EMEP/EEA 2023 3.B Table 3-9 (`emep2023_3b_table3_9.csv`). The combination per legacy input
+type is in `manure_type_composition.csv` (status proposed). The legacy constants were already
+the Table 39 values, so N and P2O5 do not change; only the EFs change.
+
+| Manure type | Table 39 rows (weight) | EMEP 3-9 row, EF | TAN | NH3-N old | NH3-N new |
+|---|---|---|---|---|---|
+| liquid cattle (kg/m3) | complete slurry, low-dung slurry (0.5 each) | dairy cattle slurry, 0.55 | 2.75 | 1.5125 | 1.5125 |
+| liquid pig (kg/m3) | fattening, breeding slurry (0.5 each) | finishing pigs 0.40, sows 0.29 | 3.75 | 1.29375 | 1.3185 |
+| liquid laying hen (kg/m3) | hen droppings, belt | laying hens slurry, 0.69 | 6.3 | 4.347 | 4.347 |
+| solid cattle (kg/t) | stackable, deep litter (0.5 each) | dairy cattle solid, 0.68 | 1.05 | 0.8295 | 0.714 |
+| solid horses (kg/t) | horse manure (stored) | horses solid, 0.90 | 0.7 | 0.63 | 0.63 |
+| solid laying hen + broiler (kg/t) | hen manure pit/floor, broiler manure (0.5 each) | laying hens solid 0.45, broilers 0.38 | 8.5 | 5.7375 | 3.475 |
+| solid pig (kg/t) | pig manure | finishing pigs solid, 0.45 | 2.3 | 1.863 | 1.035 |
+| solid sheep / goat (kg/t) | sheep / goat manure | sheep solid, 0.90 | 2.3 | 2.07 | 2.07 |
+| liquid other (kg/m3) | legacy sum-product (O7) | - | - | 1.7765461 | 1.7765461 |
+| solid other (kg/t) | legacy sum-product (O7) | - | - | 2.00410305 | 2.00410305 |
+
+Reference cases (wheat_IT has only liquid cattle manure and does not change):
+
+| Case | Key | Old | New | New/old |
+|---|---|---|---|---|
+| apple_FR | `ammonia_total` | 7.8377 | 7.13553 | 0.9104 |
+| apple_FR | `N2o_air` | 2.38936 | 2.38088 | 0.9965 |
+| apple_FR | `Nox_as_n2o_air` | 4.52052 | 4.54362 | 1.0051 |
+| apple_FR | `nitrate_to_groundwater` | 131.509 | 131.675 | 1.0013 |
+| apple_FR | `nitrate_to_surfacewater` | 14.6121 | 14.6305 | 1.0013 |
+| rice_IN | `ammonia_total` | 30.514 | 30.3304 | 0.9940 |
+| rice_IN | `N2o_air` | 1.91678 | 1.91538 | 0.9993 |
+| rice_IN | `Nox_as_n2o_air` | 4.78204 | 4.78808 | 1.0013 |
+| rice_IN | `nitrate_to_groundwater` | 225.51 | 225.865 | 1.0016 |
+
+Open: the "other" types. Candidate world shares from FAOSTAT (`faostat_manure_n_applied_world.csv`,
+manure N applied to soils, mean 2021-2023) are not yet used; the choice of method is with FC.

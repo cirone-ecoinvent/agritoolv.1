@@ -53,47 +53,54 @@ class ManureModel(object):
                         "solid_manure_quantities"
                        ]
 
-    # legacy, undocumented, provisional: P2O5 and N contents of manure below
-    _P205_CONCENTRATION_IN_LIQUID_MANURE = {LiquidManureType.cattle: 1.5,
-                                            LiquidManureType.pig: 3.5,#mean fattening pigs + piglets
-                                            LiquidManureType.laying_hens: 17.0,
-                                            LiquidManureType.other: 3.40798 #Sumprod of concentration with world proportions
-                                           }
-
-    _P205_CONCENTRATION_IN_SOLID_MANURE = {SolidManureType.cattle: 2.7,
-                                           SolidManureType.horses: 5.0,
-                                           SolidManureType.laying_hen_litter: 25.0,#mean with broiler
-                                           SolidManureType.pigs: 7.0,
-                                           SolidManureType.sheep_goats: 3.3,
-                                           SolidManureType.other: 7.40504 #Sumprod of concentration with world proportions
-                                          }
-
-    _N_CONCENTRATION_IN_LIQUID_MANURE = {LiquidManureType.cattle: 4.6,
-                                         LiquidManureType.pig: 5.35,#mean fattening pigs + piglets
-                                         LiquidManureType.laying_hens: 21.0,
-                                         LiquidManureType.other: 6.33529 #Sumprod of concentration with world proportions
-                                        }
-
-    _N_CONCENTRATION_IN_SOLID_MANURE = {SolidManureType.cattle: 5.1,
-                                        SolidManureType.horses: 6.8,
-                                        SolidManureType.laying_hen_litter: 30.5,#mean with broiler
-                                        SolidManureType.pigs: 7.8,
-                                        SolidManureType.sheep_goats: 8.0,
-                                        SolidManureType.other: 10.40797 #Sumprod of concentration with world proportions
-                                       }
-    # TAN content and NH3 emission fraction per manure type: data/manure_nh3.csv
-    # (kg N per m3 for liquid manure, per t for solid manure).
-    _NH3_TABLE = "manure_nh3.csv"
+    # Contents per manure type (kg per m3 of undiluted liquid manure, per t of solid manure),
+    # decision L12: N, P2O5 and TAN (soluble N) from GRUDAF 2009 Table 39, NH3-N = TAN x
+    # spreading EF of EMEP/EEA 2023 3.B Table 3-9, combined with the weights of
+    # data/manure_type_composition.csv. The "other" types keep the legacy sum-products
+    # (data/manure_other_legacy.csv), for which TAN is not separable.
+    _COMPOSITION_TABLE = "manure_type_composition.csv"
+    _CONTENT_TABLE = "grudaf2009_table39.csv"
+    _EF_TABLE = "emep2023_3b_table3_9.csv"
+    _OTHER_TABLE = "manure_other_legacy.csv"
 
     @classmethod
-    def _nh3_n_per_unit(cls, manure_type):
-        """NH3-N emitted per m3 (liquid) or per t (solid) of manure [kg N]."""
-        return dataloader.table(cls._NH3_TABLE)[manure_type.value]["nh3_n_kg_per_unit"]
+    def _application_ef(cls, livestock, manure_type):
+        """EMEP/EEA 2023 3.B Table 3-9 spreading EF (fraction of TAN) of one row."""
+        for row in dataloader.rows(cls._EF_TABLE):
+            if row["livestock"] == livestock and row["manure_type"] == manure_type:
+                return float(row["ef_application"])
+        raise KeyError("No row %s / %s in %s" % (livestock, manure_type, cls._EF_TABLE))
 
     @classmethod
-    def _tan_per_unit(cls, manure_type):
-        """TAN (soluble N) per m3 or per t of manure [kg N]; None when not separable."""
-        return dataloader.table(cls._NH3_TABLE)[manure_type.value]["tan_kg_n_per_unit"]
+    def _content(cls, manure_type, quantity):
+        """Content per m3 or per t of manure [kg]; quantity is n_total, p2o5, tan or nh3_n.
+
+        Returns None for the TAN of the "other" types (not separable).
+        """
+        other = dataloader.table(cls._OTHER_TABLE)
+        if manure_type.value in other:
+            column = {"n_total": "n_kg_per_unit", "p2o5": "p2o5_kg_per_unit",
+                      "nh3_n": "nh3_n_kg_per_unit", "tan": None}[quantity]
+            return other[manure_type.value][column] if column else None
+        contents = dataloader.table(cls._CONTENT_TABLE)
+        total = 0.0
+        found = False
+        for row in dataloader.rows(cls._COMPOSITION_TABLE):
+            if row["manure_type"] != manure_type.value:
+                continue
+            found = True
+            content = contents[row["grudaf_row_id"]]
+            if quantity == "tan":
+                value = content["n_soluble"]
+            elif quantity == "nh3_n":
+                value = content["n_soluble"] * cls._application_ef(row["emep_livestock"],
+                                                                  row["emep_manure_type"])
+            else:
+                value = content[quantity]
+            total += float(row["weight"]) * value
+        if not found:
+            raise KeyError("Manure type %s not in %s" % (manure_type.value, cls._COMPOSITION_TABLE))
+        return total
 
     # Heavy metals: contents [mg/kg DM] and dry-matter shares of the farmyard-manure rows of
     # SALCAheavymetal 2023 Table 1 (decision L10); the legacy input types are redistributed to
@@ -107,33 +114,30 @@ class ManureModel(object):
             setattr(self, key, inputs[key])
 
     def computeP2O5(self):
-        return (self._sum_prod(self._P205_CONCENTRATION_IN_LIQUID_MANURE, self.liquid_manure_quantities)
+        def p2o5(manure_type):
+            return self._content(manure_type, "p2o5")
+        return (sum(v * p2o5(k) for k, v in self.liquid_manure_quantities.items())
                     * self.liquid_manure_part_before_dilution,
-                self._sum_prod(self._P205_CONCENTRATION_IN_SOLID_MANURE, self.solid_manure_quantities)/ 1000.0)
+                sum(v * p2o5(k) for k, v in self.solid_manure_quantities.items()) / 1000.0)
 
     def computeN(self):
-        return self._sum_prod(self._N_CONCENTRATION_IN_LIQUID_MANURE, self.liquid_manure_quantities) \
-                    * self.liquid_manure_part_before_dilution \
-                + self._sum_prod(self._N_CONCENTRATION_IN_SOLID_MANURE, self.solid_manure_quantities)/ 1000.0
+        return self._sum_per_unit(lambda manure_type: self._content(manure_type, "n_total"))
 
     def computeNH3(self):
         """NH3 [kg NH3/ha] after spreading: TAN x emission fraction per manure type."""
-        nh3_as_n = self._sum_per_unit(self._nh3_n_per_unit)
+        nh3_as_n = self._sum_per_unit(lambda manure_type: self._content(manure_type, "nh3_n"))
         return nh3_as_n * N_TO_NH3_FACTOR
 
     def computeSolubleN(self):
         """Soluble (ammoniacal) N applied with manure [kg N/ha] (Fix F3).
 
-        TAN content per manure type from data/manure_nh3.csv; for the "other" categories the
-        TAN is not separable from the legacy sum-product and the total N is used instead.
+        TAN content per manure type (GRUDAF 2009 Table 39, decision L12); for the "other"
+        categories the TAN is not separable from the legacy sum-product and the total N is used
+        instead.
         """
         def soluble(manure_type):
-            tan = self._tan_per_unit(manure_type)
-            if tan is not None:
-                return tan
-            table = (self._N_CONCENTRATION_IN_LIQUID_MANURE if isinstance(manure_type, LiquidManureType)
-                     else self._N_CONCENTRATION_IN_SOLID_MANURE)
-            return table[manure_type]
+            tan = self._content(manure_type, "tan")
+            return tan if tan is not None else self._content(manure_type, "n_total")
         return self._sum_per_unit(soluble)
 
     def _sum_per_unit(self, value_per_unit):
@@ -142,9 +146,6 @@ class ManureModel(object):
                  * self.liquid_manure_part_before_dilution
         solid = sum(v * value_per_unit(k) for k, v in self.solid_manure_quantities.items()) / 1000.0
         return liquid + solid
-
-    def _sum_prod(self, reference, factors):
-        return sum(v*factors[k] for k,v in reference.items())
 
     def computeHeavyMetal(self):
         """Heavy-metal input with manure, map HeavyMetalType -> mg/ha (Fix F4d,

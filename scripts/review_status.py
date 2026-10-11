@@ -7,7 +7,7 @@ Review tables (all in data/):
   hm_organic_fertiliser_mapping.csv       idem
   hm_fertiliser_row_mapping.csv           usable when status is confirmed (F4c)
   hm_manure_class_mapping.csv             usable when status is confirmed (F4d)
-  manure_nh3.csv                          usable when status is confirmed (F3)
+  manure_type_composition.csv             usable when status is confirmed (F3, L12)
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -41,7 +41,7 @@ TABLES = [
     ("hm_organic_fertiliser_mapping.csv", ("confirmed",), ("legacy_fertiliser_type", "salca2023_row", "status", "note")),
     ("hm_fertiliser_row_mapping.csv", ("confirmed",), ("legacy_fertiliser_type", "salca2023_row", "status", "note")),
     ("hm_manure_class_mapping.csv", ("confirmed",), ("legacy_manure_type", "salca2023_class", "share", "status", "note")),
-    ("manure_nh3.csv", ("confirmed",), ("manure_type", "tan_kg_n_per_unit", "ef_nh3_n_fraction", "status")),
+    ("manure_type_composition.csv", ("confirmed",), ("manure_type", "grudaf_row_id", "emep_livestock", "emep_manure_type", "weight", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]
