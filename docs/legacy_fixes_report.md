@@ -768,3 +768,37 @@ The TAN of the "other" types is now known; before, the total N was used as solub
 | rice_IN | `nitrate_to_groundwater` | 225.865 | 200.614 | 0.8882 |
 
 apple_FR and wheat_IT have no "other" manure and do not change.
+
+## 9. Pesticide metals reaching the field from OLCA-Pest (decision L14, 2026-10-12)
+
+SALCAheavymetal 2023 Eq. 2 multiplies the metals of the pesticides by 1 - f_air - f_OFS, the
+share of the applied pesticide staying on the field in the OLCA-Pest primary distribution
+(Nemecek et al. 2022, no buffer zone). It replaces the legacy constant 0.95. The values come from
+sheet OLCA CALC of the OLCApest mapping tool (`olca_pest_default_fractions.csv`), the crop
+archetypes from sheets crop-class_C and CLASSIFICATION (`pesticide_crop_archetype_mapping.csv`).
+All metal-containing pesticides of the model are fungicides.
+
+| Crop archetype (examples) | Field fraction, fungicide | Old |
+|---|---|---|
+| Grapes/ Vines (grape) | 0.8017 | 0.95 |
+| Berries (strawberry, blueberry) | 0.8648 | 0.95 |
+| Vegetables fruit / leafy (tomato, cabbage) | 0.8852 | 0.95 |
+| Fruit trees temperate / tropical, Citrus, Oil-Bearing trees | 0.8865 | 0.95 |
+| Average annual crops (cotton, flax, tea) | 0.8882 | 0.95 |
+| Roots and tubers, Bulbs | 0.8885 / 0.8880 | 0.95 |
+| Pooideae, Panicoideae, Paddy rice (wheat, maize, rice) | 0.8895 | 0.95 |
+| Pulses (soybean, lentil) | 0.9295 | 0.95 |
+
+| Case | Key | Old | New | New/old |
+|---|---|---|---|---|
+| apple_FR | `heavymetal_to_soil_cu` | 2.92824 | 2.7379 | 0.9350 |
+| apple_FR | `heavymetal_to_soil_minus_uptake_cu` | 2.75177 | 2.57096 | 0.9343 |
+| apple_FR | `heavymetal_to_ground_water_cu` | 0.00321399 | 0.0032122 | 0.9994 |
+| apple_FR | `heavymetal_to_surface_water_cu` | 0.00900986 | 0.00900485 | 0.9994 |
+| wheat_IT | `heavymetal_to_soil_zn` | 0.16493 | 0.164198 | 0.9956 |
+| wheat_IT | `heavymetal_to_soil_minus_uptake_zn` | 0.0862313 | 0.085589 | 0.9926 |
+| wheat_IT | `heavymetal_to_ground_water_zn` | 0.0150305 | 0.0150204 | 0.9993 |
+| wheat_IT | `heavymetal_to_surface_water_zn` | 0.0202484 | 0.0202347 | 0.9993 |
+
+rice_IN has no metal-containing pesticides and does not change.
+

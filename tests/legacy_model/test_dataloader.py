@@ -62,3 +62,15 @@ def test_fertiliser_basis_matches_the_confirmed_alignment_rows():
         assert row["amount_basis"] in ("N", "P2O5", "K2O", "Ca")
     groups = Counter(row["compound_group"] for row in basis.values() if row["compound_group"])
     assert groups and all(n == 2 for n in groups.values()), groups
+
+
+def test_every_crop_has_an_olca_pest_archetype_with_fungicide_fractions():
+    fractions = {(r["crop_archetype"], r["pest_class"]) for r in dl.rows("olca_pest_default_fractions.csv")}
+    mapping = dl.table("pesticide_crop_archetype_mapping.csv", numeric=False)
+    classes = {r["olca_pest_class"] for r in dl.rows("hm_pesticide_mapping.csv")}
+    for crop in dl.table("crop_types.csv", numeric=False):
+        for pest_class in classes:
+            assert (mapping[crop]["olca_crop_archetype"], pest_class) in fractions, crop
+    for r in dl.rows("olca_pest_default_fractions.csv"):
+        total = sum(float(r[k]) for k in ("f_air", "f_soil", "f_crop", "f_off_field"))
+        assert abs(total - 1.0) < 1e-6, r["scenario_id"]

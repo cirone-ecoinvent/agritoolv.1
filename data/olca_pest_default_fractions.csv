@@ -1,95 +1,138 @@
-scenario_id,crop_archetype,pest_class,f_air,f_soil,f_crop,f_off_field
-SC1,Berries,Hrb-post,0.1,0.605357735,0.259439029,0.035203235
-SC2,Berries,Ins,0.1,0.432398382,0.432398382,0.035203235
-SC3,Berries,Fun,0.1,0.259439029,0.605357735,0.035203235
-SC4,Berries,PGR,0.1,0.345918706,0.518878059,0.035203235
-SC5,Berries,Ac/Mi,0.1,0.518878059,0.345918706,0.035203235
-SC6,Berries,Hrb-pre,0.1,0.864796765,0.0,0.035203235
-SC7,Bulbs,Hrb-post,0.1,0.799198747,0.088799861,0.012001392
-SC8,Bulbs,Ins,0.1,0.532799165,0.355199443,0.012001392
-SC9,Bulbs,Fun,0.1,0.532799165,0.355199443,0.012001392
-SC10,Bulbs,PGR,0.1,0.799198747,0.088799861,0.012001392
-SC11,Bulbs,Ac/Mi,0.1,0.532799165,0.355199443,0.012001392
-SC12,Bulbs,Hrb-pre,0.1,0.888475633,0.0,0.011524367
-SC13,Citrus fruit trees,Hrb-post,0.2,0.758427928,0.0,0.041572072
-SC14,Citrus fruit trees,Ins,0.08,0.265964823,0.620584586,0.033450591
-SC15,Citrus fruit trees,Fun,0.08,0.265964823,0.620584586,0.033450591
-SC16,Citrus fruit trees,Ac/Mi,0.08,0.443274705,0.443274705,0.033450591
-SC17,Citrus fruit trees,PGR,0.2,0.379213964,0.379213964,0.041572072
-SC18,Fruit trees temperate,Hrb-post,0.2,0.758427928,0.0,0.041572072
-SC19,Fruit trees temperate,Ins,0.08,0.177309882,0.709239527,0.033450591
-SC20,Fruit trees temperate,Fun,0.08,0.265964823,0.620584586,0.033450591
-SC21,Fruit trees temperate,Ac/Mi,0.08,0.265964823,0.620584586,0.033450591
-SC22,Fruit trees temperate,PGR,0.2,0.455056757,0.303371171,0.041572072
-SC23,Fruit trees tropical,Hrb-post,0.2,0.758427928,0.0,0.041572072
-SC24,Fruit trees tropical,Ins,0.08,0.177309882,0.709239527,0.033450591
-SC25,Fruit trees tropical,Fun,0.08,0.265964823,0.620584586,0.033450591
-SC26,Fruit trees tropical,Ac/Mi,0.08,0.265964823,0.620584586,0.033450591
-SC27,Fruit trees tropical,PGR,0.2,0.455056757,0.303371171,0.041572072
-SC28,Grapes/ Vines,Hrb-post,0.15,0.801662823,0.0,0.048337177
-SC29,Grapes/ Vines,Ins,0.15,0.160332565,0.641330259,0.048337177
-SC30,Grapes/ Vines,Fun,0.15,0.400831412,0.400831412,0.048337177
-SC31,Grapes/ Vines,PGR,0.15,0.320665129,0.480997694,0.048337177
-SC32,Grapes/ Vines,Ac/Mi,0.15,0.320665129,0.480997694,0.048337177
-SC33,Grass,Hrb-pre,0.1,0.888763865,0.0,0.011236135
-SC34,Grass,Hrb-post,0.1,0.533683508,0.355789006,0.010527486
-SC35,Grass,Ins,0.1,0.533683508,0.355789006,0.010527486
-SC36,Grass,Fun,0.1,0.533683508,0.355789006,0.010527486
-SC37,Oil-Bearing crops,Hrb-post,0.08,0.727341025,0.181835256,0.010823718
-SC38,Oil-Bearing crops,Ins,0.1,0.088747173,0.798724559,0.012528268
-SC39,Oil-Bearing crops,Fun,0.1,0.088747173,0.798724559,0.012528268
-SC40,Oil-Bearing crops,PGR,0.1,0.354988693,0.532483039,0.012528268
-SC41,Oil-Bearing crops,Ac/Mi,0.1,0.354988693,0.532483039,0.012528268
-SC42,Oil-Bearing crops,Hrb-pre,0.1,0.888763865,0.0,0.011236135
-SC43,Oil-Bearing trees,Hrb-post,0.2,0.53089955,0.227528378,0.041572072
-SC44,Oil-Bearing trees,Ins,0.08,0.265964823,0.620584586,0.033450591
-SC45,Oil-Bearing trees,Fun,0.08,0.265964823,0.620584586,0.033450591
-SC46,Oil-Bearing trees,PGR,0.08,0.443274705,0.443274705,0.033450591
-SC47,Oil-Bearing trees,Ac/Mi,0.2,0.379213964,0.379213964,0.041572072
-SC48,Other permanent crops,Hrb-post,0.1,0.691837412,0.172959353,0.035203235
-SC49,Other permanent crops,Ins,0.1,0.086479676,0.778317088,0.035203235
-SC50,Other permanent crops,Fun,0.1,0.345918706,0.518878059,0.035203235
-SC51,Other permanent crops,PGR,0.1,0.345918706,0.518878059,0.035203235
-SC52,Other permanent crops,Ac/Mi,0.1,0.432398382,0.432398382,0.035203235
-SC53,Paddy rice,Hrb-post,0.1,0.711578011,0.177894503,0.010527486
-SC54,Paddy rice,Ins,0.1,0.266841754,0.62263076,0.010527486
-SC55,Paddy rice,Fun,0.1,0.266841754,0.62263076,0.010527486
-SC56,Paddy rice,PGR,0.1,0.444736257,0.444736257,0.010527486
-SC57,Paddy rice,Ac/Mi,0.1,0.266841754,0.62263076,0.010527486
-SC58,Paddy rice,Hrb-pre,0.1,0.888763865,0.0,0.011236135
-SC59,Panicoideae,Hrb-post,0.1,0.667104385,0.222368128,0.010527486
-SC60,Panicoideae,Ins,0.1,0.222368128,0.667104385,0.010527486
-SC61,Panicoideae,Fun,0.1,0.088947251,0.800525263,0.010527486
-SC62,Panicoideae,PGR,0.1,0.222368128,0.667104385,0.010527486
-SC63,Panicoideae,Ac/Mi,0.1,0.088947251,0.800525263,0.010527486
-SC64,Panicoideae,Hrb-pre,0.1,0.888763865,0.0,0.011236135
-SC65,Pooideae,Hrb-post,0.1,0.667104385,0.222368128,0.010527486
-SC66,Pooideae,Ins,0.1,0.266841754,0.62263076,0.010527486
-SC67,Pooideae,Fun,0.1,0.266841754,0.62263076,0.010527486
-SC68,Pooideae,PGR,0.1,0.088947251,0.800525263,0.010527486
-SC69,Pooideae,Ac/Mi,0.1,0.444736257,0.444736257,0.010527486
-SC70,Pooideae,Hrb-pre,0.1,0.888763865,0.0,0.011236135
-SC71,Pulses,Hrb-post,0.1,0.663934694,0.221311565,0.014753741
-SC72,Pulses,Ins,0.1,0.177049252,0.708197007,0.014753741
-SC73,Pulses,Fun,0.06,0.185899973,0.743599892,0.010500135
-SC74,Pulses,PGR,0.06,0.27884996,0.650649906,0.010500135
-SC75,Pulses,Ac/Mi,0.1,0.265573878,0.619672381,0.014753741
-SC76,Pulses,Hrb-pre,0.1,0.864796765,0.0,0.035203235
-SC77,Roots and tubers,Hrb-post,0.1,0.755204288,0.133271345,0.011524367
-SC78,Roots and tubers,Ins,0.1,0.177695127,0.710780506,0.011524367
-SC79,Roots and tubers,Fun,0.1,0.177695127,0.710780506,0.011524367
-SC80,Roots and tubers,PGR,0.1,0.488661598,0.399814035,0.011524367
-SC81,Roots and tubers,Ac/Mi,0.1,0.444237816,0.444237816,0.011524367
-SC82,Roots and tubers,Hrb-pre,0.1,0.888763865,0.0,0.011236135
-SC83,Vegetables fruit,Hrb-post,0.1,0.432398382,0.432398382,0.035203235
-SC84,Vegetables fruit,Ins,0.1,0.265573878,0.619672381,0.014753741
-SC85,Vegetables fruit,Fun,0.1,0.265573878,0.619672381,0.014753741
-SC86,Vegetables fruit,PGR,0.06,0.371799946,0.557699919,0.010500135
-SC87,Vegetables fruit,Ac/Mi,0.06,0.464749933,0.464749933,0.010500135
-SC88,Vegetables fruit,Hrb-pre,0.1,0.888763865,0.0,0.011236135
-SC89,Vegetables leafy,Hrb-post,0.1,0.648597574,0.216199191,0.035203235
-SC90,Vegetables leafy,Ins,0.1,0.177049252,0.708197007,0.014753741
-SC91,Vegetables leafy,Fun,0.1,0.177049252,0.708197007,0.014753741
-SC92,Vegetables leafy,PGR,0.06,0.092949987,0.836549879,0.010500135
-SC93,Vegetables leafy,Ac/Mi,0.06,0.185899973,0.743599892,0.010500135
-SC94,Vegetables leafy,Hrb-pre,0.1,0.888763865,0.0,0.011236135
+scenario_id,crop_archetype,pest_class,f_air,f_soil,f_crop,f_off_field,note
+SC1,Berries,Hrb-post,0.1,0.605357735,0.259439029,0.035203235,
+SC2,Berries,Ins,0.1,0.432398382,0.432398382,0.035203235,
+SC3,Berries,Fun,0.1,0.259439029,0.605357735,0.035203235,
+SC4,Berries,PGR,0.1,0.345918706,0.518878059,0.035203235,
+SC5,Berries,Ac/Mi,0.1,0.518878059,0.345918706,0.035203235,
+SC6,Berries,Hrb-pre,0.1,0.864796765,0.0,0.035203235,
+SC7,Berries,W-Avg,0.09999999999999999,0.5044647793333333,0.36033198516666665,0.035203235,"average over the pest classes of the archetype, computed in the source file"
+SC8,Berries,Hrb-Avg,0.1,0.73507725,0.1297195145,0.035203235,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC9,Bulbs,Hrb-post,0.1,0.799198747,0.088799861,0.012001392,
+SC10,Bulbs,Ins,0.1,0.532799165,0.355199443,0.012001392,
+SC11,Bulbs,Fun,0.1,0.532799165,0.355199443,0.012001392,
+SC12,Bulbs,PGR,0.1,0.799198747,0.088799861,0.012001392,
+SC13,Bulbs,Ac/Mi,0.1,0.532799165,0.355199443,0.012001392,
+SC14,Bulbs,Hrb-pre,0.1,0.888475633,0.0,0.011524367,
+SC15,Bulbs,W-Avg,0.09999999999999999,0.6808784370000001,0.20719967516666668,0.011921887833333334,"average over the pest classes of the archetype, computed in the source file"
+SC16,Bulbs,Hrb-Avg,0.1,0.84383719,0.0443999305,0.0117628795,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC17,Citrus fruit trees,Hrb-post,0.2,0.758427928,0.0,0.041572072,
+SC18,Citrus fruit trees,Ins,0.08,0.265964823,0.620584586,0.033450591,
+SC19,Citrus fruit trees,Fun,0.08,0.265964823,0.620584586,0.033450591,
+SC20,Citrus fruit trees,Ac/Mi,0.08,0.443274705,0.443274705,0.033450591,
+SC21,Citrus fruit trees,PGR,0.2,0.379213964,0.379213964,0.041572072,
+SC22,Citrus fruit trees,W-Avg,0.12800000000000003,0.4225692486,0.4127315682,0.0366991834,"average over the pest classes of the archetype, computed in the source file"
+SC23,Fruit trees temperate,Hrb-post,0.2,0.758427928,0.0,0.041572072,
+SC24,Fruit trees temperate,Ins,0.08,0.177309882,0.709239527,0.033450591,
+SC25,Fruit trees temperate,Fun,0.08,0.265964823,0.620584586,0.033450591,
+SC26,Fruit trees temperate,Ac/Mi,0.08,0.265964823,0.620584586,0.033450591,
+SC27,Fruit trees temperate,PGR,0.2,0.455056757,0.303371171,0.041572072,
+SC28,Fruit trees temperate,W-Avg,0.12800000000000003,0.3845448426,0.45075597399999995,0.0366991834,"average over the pest classes of the archetype, computed in the source file"
+SC29,Fruit trees tropical,Hrb-post,0.2,0.758427928,0.0,0.041572072,
+SC30,Fruit trees tropical,Ins,0.08,0.177309882,0.709239527,0.033450591,
+SC31,Fruit trees tropical,Fun,0.08,0.265964823,0.620584586,0.033450591,
+SC32,Fruit trees tropical,Ac/Mi,0.08,0.265964823,0.620584586,0.033450591,
+SC33,Fruit trees tropical,PGR,0.2,0.455056757,0.303371171,0.041572072,
+SC34,Fruit trees tropical,W-Avg,0.12800000000000003,0.3845448426,0.45075597399999995,0.0366991834,"average over the pest classes of the archetype, computed in the source file"
+SC35,Grapes/ Vines,Hrb-post,0.15,0.801662823,0.0,0.048337177,
+SC36,Grapes/ Vines,Ins,0.15,0.160332565,0.641330259,0.048337177,
+SC37,Grapes/ Vines,Fun,0.15,0.400831412,0.400831412,0.048337177,
+SC38,Grapes/ Vines,PGR,0.15,0.320665129,0.480997694,0.048337177,
+SC39,Grapes/ Vines,Ac/Mi,0.15,0.320665129,0.480997694,0.048337177,
+SC40,Grapes/ Vines,W-Avg,0.15,0.4008314116,0.4008314117999999,0.048337177,"average over the pest classes of the archetype, computed in the source file"
+SC41,Grass,Hrb-pre,0.1,0.888763865,0.0,0.011236135,
+SC42,Grass,Hrb-post,0.1,0.533683508,0.355789006,0.010527486,
+SC43,Grass,Ins,0.1,0.533683508,0.355789006,0.010527486,
+SC44,Grass,Fun,0.1,0.533683508,0.355789006,0.010527486,
+SC45,Grass,W-Avg,0.1,0.62245359725,0.26684175450000003,0.01070464825,"average over the pest classes of the archetype, computed in the source file"
+SC46,Grass,Hrb-Avg,0.1,0.7112236865,0.177894503,0.0108818105,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC47,Oil-Bearing crops,Hrb-post,0.08,0.727341025,0.181835256,0.010823718,
+SC48,Oil-Bearing crops,Ins,0.1,0.088747173,0.798724559,0.012528268,
+SC49,Oil-Bearing crops,Fun,0.1,0.088747173,0.798724559,0.012528268,
+SC50,Oil-Bearing crops,PGR,0.1,0.354988693,0.532483039,0.012528268,
+SC51,Oil-Bearing crops,Ac/Mi,0.1,0.354988693,0.532483039,0.012528268,
+SC52,Oil-Bearing crops,Hrb-pre,0.1,0.888763865,0.0,0.011236135,
+SC53,Oil-Bearing crops,W-Avg,0.09666666666666666,0.41726277033333337,0.47404174200000004,0.012028820833333334,"average over the pest classes of the archetype, computed in the source file"
+SC54,Oil-Bearing crops,Hrb-Avg,0.09,0.808052445,0.090917628,0.011029926499999999,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC55,Oil-Bearing trees,Hrb-post,0.2,0.53089955,0.227528378,0.041572072,
+SC56,Oil-Bearing trees,Ins,0.08,0.265964823,0.620584586,0.033450591,
+SC57,Oil-Bearing trees,Fun,0.08,0.265964823,0.620584586,0.033450591,
+SC58,Oil-Bearing trees,PGR,0.08,0.443274705,0.443274705,0.033450591,
+SC59,Oil-Bearing trees,Ac/Mi,0.2,0.379213964,0.379213964,0.041572072,
+SC60,Oil-Bearing trees,W-Avg,0.12800000000000003,0.377063573,0.4582372437999999,0.0366991834,"average over the pest classes of the archetype, computed in the source file"
+SC61,Other permanent crops,Hrb-post,0.1,0.691837412,0.172959353,0.035203235,
+SC62,Other permanent crops,Ins,0.1,0.086479676,0.778317088,0.035203235,
+SC63,Other permanent crops,Fun,0.1,0.345918706,0.518878059,0.035203235,
+SC64,Other permanent crops,PGR,0.1,0.345918706,0.518878059,0.035203235,
+SC65,Other permanent crops,Ac/Mi,0.1,0.432398382,0.432398382,0.035203235,
+SC66,Other permanent crops,W-Avg,0.1,0.3805105764,0.4842861882,0.035203235,"average over the pest classes of the archetype, computed in the source file"
+SC67,Paddy rice,Hrb-post,0.1,0.711578011,0.177894503,0.010527486,
+SC68,Paddy rice,Ins,0.1,0.266841754,0.62263076,0.010527486,
+SC69,Paddy rice,Fun,0.1,0.266841754,0.62263076,0.010527486,
+SC70,Paddy rice,PGR,0.1,0.444736257,0.444736257,0.010527486,
+SC71,Paddy rice,Ac/Mi,0.1,0.266841754,0.62263076,0.010527486,
+SC72,Paddy rice,Hrb-pre,0.1,0.888763865,0.0,0.011236135,
+SC73,Paddy rice,W-Avg,0.09999999999999999,0.47426723249999997,0.4150871733333333,0.010645594166666668,"average over the pest classes of the archetype, computed in the source file"
+SC74,Paddy rice,Hrb-Avg,0.1,0.8001709379999999,0.0889472515,0.0108818105,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC75,Panicoideae,Hrb-post,0.1,0.667104385,0.222368128,0.010527486,
+SC76,Panicoideae,Ins,0.1,0.222368128,0.667104385,0.010527486,
+SC77,Panicoideae,Fun,0.1,0.088947251,0.800525263,0.010527486,
+SC78,Panicoideae,PGR,0.1,0.222368128,0.667104385,0.010527486,
+SC79,Panicoideae,Ac/Mi,0.1,0.088947251,0.800525263,0.010527486,
+SC80,Panicoideae,Hrb-pre,0.1,0.888763865,0.0,0.011236135,
+SC81,Panicoideae,W-Avg,0.09999999999999999,0.363083168,0.5262712373333334,0.010645594166666668,"average over the pest classes of the archetype, computed in the source file"
+SC82,Panicoideae,Hrb-Avg,0.1,0.777934125,0.111184064,0.0108818105,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC83,Pooideae,Hrb-post,0.1,0.667104385,0.222368128,0.010527486,
+SC84,Pooideae,Ins,0.1,0.266841754,0.62263076,0.010527486,
+SC85,Pooideae,Fun,0.1,0.266841754,0.62263076,0.010527486,
+SC86,Pooideae,PGR,0.1,0.088947251,0.800525263,0.010527486,
+SC87,Pooideae,Ac/Mi,0.1,0.444736257,0.444736257,0.010527486,
+SC88,Pooideae,Hrb-pre,0.1,0.888763865,0.0,0.011236135,
+SC89,Pooideae,W-Avg,0.09999999999999999,0.4372058776666667,0.452148528,0.010645594166666668,"average over the pest classes of the archetype, computed in the source file"
+SC90,Pooideae,Hrb-Avg,0.1,0.777934125,0.111184064,0.0108818105,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC91,Pulses,Hrb-post,0.1,0.663934694,0.221311565,0.014753741,
+SC92,Pulses,Ins,0.1,0.177049252,0.708197007,0.014753741,
+SC93,Pulses,Fun,0.06,0.185899973,0.743599892,0.010500135,
+SC94,Pulses,PGR,0.06,0.27884996,0.650649906,0.010500135,
+SC95,Pulses,Ac/Mi,0.1,0.265573878,0.619672381,0.014753741,
+SC96,Pulses,Hrb-pre,0.1,0.864796765,0.0,0.035203235,
+SC97,Pulses,W-Avg,0.08666666666666667,0.4060174203333333,0.4905717918333334,0.016744121333333334,"average over the pest classes of the archetype, computed in the source file"
+SC98,Pulses,Hrb-Avg,0.1,0.7643657295,0.1106557825,0.024978488,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC99,Roots and tubers,Hrb-post,0.1,0.755204288,0.133271345,0.011524367,
+SC100,Roots and tubers,Ins,0.1,0.177695127,0.710780506,0.011524367,
+SC101,Roots and tubers,Fun,0.1,0.177695127,0.710780506,0.011524367,
+SC102,Roots and tubers,PGR,0.1,0.488661598,0.399814035,0.011524367,
+SC103,Roots and tubers,Ac/Mi,0.1,0.444237816,0.444237816,0.011524367,
+SC104,Roots and tubers,Hrb-pre,0.1,0.888763865,0.0,0.011236135,
+SC105,Roots and tubers,W-Avg,0.09999999999999999,0.4887096368333333,0.3998140346666667,0.011476328333333334,"average over the pest classes of the archetype, computed in the source file"
+SC106,Roots and tubers,Hrb-Avg,0.1,0.8219840764999999,0.0666356725,0.011380251000000001,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC107,Vegetables fruit,Hrb-post,0.1,0.432398382,0.432398382,0.035203235,
+SC108,Vegetables fruit,Ins,0.1,0.265573878,0.619672381,0.014753741,
+SC109,Vegetables fruit,Fun,0.1,0.265573878,0.619672381,0.014753741,
+SC110,Vegetables fruit,PGR,0.06,0.371799946,0.557699919,0.010500135,
+SC111,Vegetables fruit,Ac/Mi,0.06,0.464749933,0.464749933,0.010500135,
+SC112,Vegetables fruit,Hrb-pre,0.1,0.888763865,0.0,0.011236135,
+SC113,Vegetables fruit,W-Avg,0.08666666666666667,0.44814331366666665,0.449032166,0.016157853666666663,"average over the pest classes of the archetype, computed in the source file"
+SC114,Vegetables fruit,Hrb-Avg,0.1,0.6605811235000001,0.216199191,0.023219685,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC115,Vegetables leafy,Hrb-post,0.1,0.648597574,0.216199191,0.035203235,
+SC116,Vegetables leafy,Ins,0.1,0.177049252,0.708197007,0.014753741,
+SC117,Vegetables leafy,Fun,0.1,0.177049252,0.708197007,0.014753741,
+SC118,Vegetables leafy,PGR,0.06,0.092949987,0.836549879,0.010500135,
+SC119,Vegetables leafy,Ac/Mi,0.06,0.185899973,0.743599892,0.010500135,
+SC120,Vegetables leafy,Hrb-pre,0.1,0.888763865,0.0,0.011236135,
+SC121,Vegetables leafy,W-Avg,0.08666666666666667,0.36171831716666664,0.5354571626666668,0.016157853666666663,"average over the pest classes of the archetype, computed in the source file"
+SC122,Vegetables leafy,Hrb-Avg,0.1,0.7686807195,0.1080995955,0.023219685,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC123,Average trees,Hrb-post,0.19000000000000003,0.7215692314,0.0455056756,0.042925093000000004,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC124,Average trees,Ins,0.094,0.209376395,0.660195697,0.036427908200000005,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC125,Average trees,Fun,0.094,0.2929381408,0.5766339512,0.036427908200000005,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC126,Average trees,Ac/Mi,0.11800000000000002,0.3350166888,0.508931107,0.0380522044,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC127,Average trees,PGR,0.166,0.4106534624,0.38204574100000005,0.0413007968,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC128,Average trees,W-Avg,0.13240000000000002,0.39391078368,0.43466243436,0.039026782120000006,"average over the pest classes of the archetype, computed in the source file"
+SC129,Average trees,Hrb-Avg,0.19000000000000003,0.7215692314,0.0455056756,0.042925093000000004,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"
+SC130,Average annual crops,Hrb-pre,0.1,0.8887638649999999,0.0,0.011236135,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC131,Average annual crops,Hrb-post,0.096,0.6487661754,0.23971194180000005,0.0155218822,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC132,Average annual crops,Ins,0.1,0.25773796299999996,0.6304891434,0.011772893400000001,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC133,Average annual crops,Fun,0.1,0.23105378759999998,0.657173319,0.011772893400000001,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC134,Average annual crops,Ac/Mi,0.09000000000000001,0.2686430435,0.63033611275,0.01102084375,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC135,Average annual crops,PGR,0.09000000000000001,0.18981351475,0.7091656415,0.01102084375,"average over the archetypes of the group (trees or annual crops), computed in the source file"
+SC136,Average annual crops,W-Avg,0.09600000000000002,0.414129724875,0.477812693075,0.012057581916666666,"average over the pest classes of the archetype, computed in the source file"
+SC137,Average annual crops,Hrb-Avg,0.098,0.7687650202,0.11985597090000003,0.013379008599999999,"average of the pre- and post-emergence herbicide scenarios, computed in the source file"

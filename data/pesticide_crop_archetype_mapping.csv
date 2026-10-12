@@ -1,68 +1,68 @@
-crop,olca_crop_archetype,status,reviewed_by,note
-almond,Fruit trees temperate,proposed,,"nut tree, temperate"
-apple,Fruit trees temperate,proposed,,
-apricot,Fruit trees temperate,proposed,,
-asparagus_green,Vegetables leafy,proposed,,stem vegetable; no stem-vegetable archetype
-asparagus_white,Vegetables leafy,proposed,,stem vegetable; no stem-vegetable archetype
-banana,Fruit trees tropical,proposed,,
-bellpepper,Vegetables fruit,proposed,,
-blueberry,Berries,proposed,,
-cabbage_red,Vegetables leafy,proposed,,
-cabbage_white,Vegetables leafy,proposed,,
-carrot,Roots and tubers,proposed,,
-cashew,Fruit trees tropical,proposed,,"nut tree, tropical"
-cassava,Roots and tubers,proposed,,
-castor_beans,Oil-Bearing crops,proposed,,
-chick_pea,Pulses,proposed,,
-chilli,Vegetables fruit,proposed,,
-cocoa,Fruit trees tropical,proposed,,tropical tree crop
-coconut,Oil-Bearing trees,proposed,,
-coffee_arabica,Other permanent crops,proposed,,shrub plantation
-coffee_robusta,Other permanent crops,proposed,,shrub plantation
-coriander,Vegetables leafy,proposed,,herb
-cotton,Oil-Bearing crops,proposed,,fibre and oilseed crop
-cranberry,Berries,proposed,,
-eggplant,Vegetables fruit,proposed,,
-flax,Oil-Bearing crops,proposed,,"fibre flax, same species as linseed"
-ginger,Roots and tubers,proposed,,rhizome
-grape,Grapes/ Vines,proposed,,
-guar,Pulses,proposed,,
-hemp,Oil-Bearing crops,proposed,,fibre and oilseed crop
-lemon,Citrus fruit trees,proposed,,
-citruslime,Citrus fruit trees,proposed,,
-lentil,Pulses,proposed,,
-linseed,Oil-Bearing crops,proposed,,
-maizegrain,Panicoideae,proposed,,
-mandarin,Citrus fruit trees,proposed,,
-mango,Fruit trees tropical,proposed,,
-mint,Vegetables leafy,proposed,,herb
-mulberry,Other permanent crops,proposed,,tree or shrub plantation (leaves or fruit)
-oat,Pooideae,proposed,,
-olive,Oil-Bearing trees,proposed,,
-onion,Bulbs,proposed,,
-orange_fresh,Citrus fruit trees,proposed,,
-orange_processing,Citrus fruit trees,proposed,,
-palmtree,Oil-Bearing trees,proposed,,oil palm
-peach,Fruit trees temperate,proposed,,
-peanut,Oil-Bearing crops,proposed,,oilseed legume
-pear,Fruit trees temperate,proposed,,
-pearl_millet,Panicoideae,proposed,,
-pineapple,Other permanent crops,proposed,,herbaceous perennial
-pomegranate,Fruit trees temperate,proposed,,subtropical fruit tree
-potato,Roots and tubers,proposed,,
-rapeseed,Oil-Bearing crops,proposed,,
-raspberry,Berries,proposed,,
-rice,Paddy rice,proposed,,
-sesame_seed,Oil-Bearing crops,proposed,,
-soybean,Oil-Bearing crops,proposed,,oilseed legume (Pulses would also fit)
-strawberry_fresh,Berries,proposed,,
-strawberry_processing,Berries,proposed,,
-sugarbeet,Roots and tubers,proposed,,
-sugarcane,Panicoideae,proposed,,Saccharum belongs to the Panicoideae
-sunflower,Oil-Bearing crops,proposed,,
-sweetcorn,Panicoideae,proposed,,
-tea,Other permanent crops,proposed,,shrub plantation
-tomato_fresh,Vegetables fruit,proposed,,
-tomato_processing,Vegetables fruit,proposed,,
-turmeric,Roots and tubers,proposed,,rhizome
-wheat,Pooideae,proposed,,
+crop,olca_crop_archetype,source_sheet,source_name,status,reviewed_by,note
+almond,Fruit trees temperate,crop-class_C,almond production,confirmed,FC,approved with the plan 2026-10-12
+apple,Fruit trees temperate,crop-class_C,apple production,confirmed,FC,approved with the plan 2026-10-12
+apricot,Fruit trees temperate,crop-class_C,apricot production,confirmed,FC,approved with the plan 2026-10-12
+asparagus_green,Vegetables leafy,crop-class_C,green asparagus production,confirmed,FC,approved with the plan 2026-10-12
+asparagus_white,Vegetables leafy,crop-class_C,white asparagus production,confirmed,FC,approved with the plan 2026-10-12
+banana,Fruit trees tropical,CLASSIFICATION,Banana,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+bellpepper,Vegetables fruit,CLASSIFICATION,Bell pepper,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+blueberry,Berries,CLASSIFICATION,Blueberry,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+cabbage_red,Vegetables leafy,crop-class_C,red cabbage production,confirmed,FC,approved with the plan 2026-10-12
+cabbage_white,Vegetables leafy,crop-class_C,white cabbage production,confirmed,FC,approved with the plan 2026-10-12
+carrot,Roots and tubers,crop-class_C,carrot production,confirmed,FC,approved with the plan 2026-10-12
+cashew,Fruit trees tropical,crop-class_C,cashew production,confirmed,FC,approved with the plan 2026-10-12
+cassava,Roots and tubers,CLASSIFICATION,Cassava,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+castor_beans,Oil-Bearing crops,crop-class_C,castor bean production,confirmed,FC,approved with the plan 2026-10-12
+chick_pea,Pulses,crop-class_C,chickpea production,confirmed,FC,approved with the plan 2026-10-12
+chilli,Vegetables fruit,crop-class_C,chilli production,confirmed,FC,approved with the plan 2026-10-12
+cocoa,Fruit trees tropical,crop-class_C,"cocoa bean production, sun-dried",confirmed,FC,approved with the plan 2026-10-12
+coconut,Fruit trees tropical,crop-class_C,"coconut production, dehusked",confirmed,FC,approved with the plan 2026-10-12
+coffee_arabica,Fruit trees tropical,crop-class_C,"coffee green bean production, arabica",confirmed,FC,approved with the plan 2026-10-12
+coffee_robusta,Fruit trees tropical,crop-class_C,"coffee green bean production, robusta",confirmed,FC,approved with the plan 2026-10-12
+coriander,Average annual crops,crop-class_C,coriander production,confirmed,FC,approved with the plan 2026-10-12
+cotton,Average annual crops,crop-class_C,"seed-cotton production, conventional",confirmed,FC,CLASSIFICATION gives 'Vegetables leafy' for 'Cotton'; crop-class_C used (FC instruction); approved with the plan 2026-10-12
+cranberry,Berries,CLASSIFICATION,Cranberry,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+eggplant,Vegetables fruit,crop-class_C,"aubergine production, open field",confirmed,FC,approved with the plan 2026-10-12
+flax,Average annual crops,crop-class_C,flax production,confirmed,FC,approved with the plan 2026-10-12
+ginger,Roots and tubers,CLASSIFICATION,Ginger,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+grape,Grapes/ Vines,crop-class_C,grape production,confirmed,FC,approved with the plan 2026-10-12
+guar,Pulses,CLASSIFICATION,Guar,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+hemp,Vegetables leafy,CLASSIFICATION,Hemp,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+lemon,Citrus fruit trees,crop-class_C,lemon production,confirmed,FC,approved with the plan 2026-10-12
+citruslime,Citrus fruit trees,CLASSIFICATION,Citrus lime,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+lentil,Pulses,crop-class_C,lentil production,confirmed,FC,approved with the plan 2026-10-12
+linseed,Average annual crops,crop-class_C,linseed production,confirmed,FC,approved with the plan 2026-10-12
+maizegrain,Panicoideae,crop-class_C,maize grain production,confirmed,FC,approved with the plan 2026-10-12
+mandarin,Citrus fruit trees,crop-class_C,mandarin production,confirmed,FC,approved with the plan 2026-10-12
+mango,Fruit trees tropical,crop-class_C,mango production,confirmed,FC,approved with the plan 2026-10-12
+mint,Average annual crops,crop-class_C,mint production,confirmed,FC,approved with the plan 2026-10-12
+mulberry,Fruit trees temperate,crop-class_C,mulberry production,confirmed,FC,approved with the plan 2026-10-12
+oat,Pooideae,crop-class_C,oat grain production,confirmed,FC,approved with the plan 2026-10-12
+olive,Oil-Bearing trees,crop-class_C,olive production,confirmed,FC,approved with the plan 2026-10-12
+onion,Bulbs,crop-class_C,onion production,confirmed,FC,approved with the plan 2026-10-12
+orange_fresh,Citrus fruit trees,crop-class_C,"orange production, fresh grade",confirmed,FC,approved with the plan 2026-10-12
+orange_processing,Citrus fruit trees,crop-class_C,"orange production, processing grade",confirmed,FC,approved with the plan 2026-10-12
+palmtree,Oil-Bearing trees,crop-class_C,palm fruit bunch production,confirmed,FC,CLASSIFICATION gives 'Oil-Bearing crops' for 'Palm tree'; crop-class_C used (FC instruction); approved with the plan 2026-10-12
+peach,Fruit trees temperate,crop-class_C,peach production,confirmed,FC,approved with the plan 2026-10-12
+peanut,Pulses,crop-class_C,peanut production,confirmed,FC,approved with the plan 2026-10-12
+pear,Fruit trees temperate,crop-class_C,pear production,confirmed,FC,approved with the plan 2026-10-12
+pearl_millet,Panicoideae,CLASSIFICATION,Millet,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+pineapple,Vegetables fruit,crop-class_C,pineapple production,confirmed,FC,approved with the plan 2026-10-12
+pomegranate,Fruit trees temperate,crop-class_C,pomegranate production,confirmed,FC,approved with the plan 2026-10-12
+potato,Roots and tubers,crop-class_C,potato production,confirmed,FC,approved with the plan 2026-10-12
+rapeseed,Oil-Bearing crops,crop-class_C,rape seed production,confirmed,FC,approved with the plan 2026-10-12
+raspberry,Berries,CLASSIFICATION,Raspberry,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+rice,Paddy rice,crop-class_C,"rice production, non-basmati",confirmed,FC,approved with the plan 2026-10-12
+sesame_seed,Vegetables leafy,CLASSIFICATION,Sesame seed,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+soybean,Pulses,crop-class_C,soybean production,confirmed,FC,approved with the plan 2026-10-12
+strawberry_fresh,Berries,crop-class_C,"strawberry production, open field, macro tunnel",confirmed,FC,approved with the plan 2026-10-12
+strawberry_processing,Berries,crop-class_C,"strawberry production, open field, macro tunnel",confirmed,FC,approved with the plan 2026-10-12
+sugarbeet,Roots and tubers,crop-class_C,sugar beet production,confirmed,FC,approved with the plan 2026-10-12
+sugarcane,Panicoideae,crop-class_C,sugarcane production,confirmed,FC,approved with the plan 2026-10-12
+sunflower,Oil-Bearing crops,crop-class_C,sunflower production,confirmed,FC,approved with the plan 2026-10-12
+sweetcorn,Panicoideae,crop-class_C,sweet corn production,confirmed,FC,approved with the plan 2026-10-12
+tea,Average annual crops,crop-class_C,"tea production, dried",confirmed,FC,approved with the plan 2026-10-12
+tomato_fresh,Vegetables fruit,crop-class_C,"tomato production, fresh grade, open field",confirmed,FC,approved with the plan 2026-10-12
+tomato_processing,Vegetables fruit,crop-class_C,"tomato production, processing grade, open field",confirmed,FC,approved with the plan 2026-10-12
+turmeric,Roots and tubers,CLASSIFICATION,Turmeric,confirmed,FC,not in crop-class_C; approved with the plan 2026-10-12
+wheat,Pooideae,crop-class_C,wheat grain production,confirmed,FC,approved with the plan 2026-10-12

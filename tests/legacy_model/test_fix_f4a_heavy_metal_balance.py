@@ -20,7 +20,7 @@ def _inputs(**overrides):
         "hm_from_other_organic_fert": dict(ZERO), "hm_from_seed": dict(ZERO),
         "hm_pesticides_quantities": {p: 0.0 for p in PesticideType},
         "hm_export_with_harvest": dict(ZERO), "drained_part": 0.0, "eroded_soil": 0.0,
-        "land_use_category": LandUseCategory.arable_land,
+        "land_use_category": LandUseCategory.arable_land, "crop": "wheat",
     }
     inputs.update(overrides)
     return inputs
@@ -38,6 +38,8 @@ def _reference_case(**overrides):
 
 
 A_ZN = 12143 / (12143 + 54800)
+# OLCA-Pest primary distribution, fungicide, no buffer zone: f_soil + f_crop (decision L14)
+FIELD_POOIDEAE = 0.266841754 + 0.62263076
 EROSION_ZN = 58 * 10_000 * 1.86 * 0.2
 
 
@@ -105,8 +107,26 @@ def test_pesticide_metal_contents_from_2023_table():
     pest[PesticideType.cu] = 100.0  # g Cu
     model = HmModel(_inputs(hm_pesticides_quantities=pest))
     values = model._compute_pesticides()
-    assert values[HeavyMetalType.zn] == pytest.approx(1.0 * 25000 * 0.95)  # mancozeb 2.5 % Zn, Table 1
-    assert values[HeavyMetalType.cu] == pytest.approx(100.0 * 0.95 * 1000.0)
+    assert values[HeavyMetalType.zn] == pytest.approx(1.0 * 25000 * FIELD_POOIDEAE)  # mancozeb 2.5 % Zn
+    assert values[HeavyMetalType.cu] == pytest.approx(100.0 * FIELD_POOIDEAE * 1000.0)
+
+
+@pytest.mark.parametrize("crop, field_fraction", [
+    ("apple", 0.265964823 + 0.620584586),   # Fruit trees temperate, Fun
+    ("grape", 0.400831412 + 0.400831412),   # Grapes/ Vines, Fun
+    ("cotton", 0.23105378759999998 + 0.657173319),  # Average annual crops (crop-class_C)
+])
+def test_pesticide_field_fraction_depends_on_the_crop_archetype(crop, field_fraction):
+    pest = {p: 0.0 for p in PesticideType}
+    pest[PesticideType.cu] = 100.0  # g Cu
+    values = HmModel(_inputs(hm_pesticides_quantities=pest, crop=crop))._compute_pesticides()
+    assert values[HeavyMetalType.cu] == pytest.approx(100.0 * field_fraction * 1000.0)
+
+
+def test_unmapped_crop_names_the_mapping_table():
+    model = HmModel(_inputs(crop="quinoa"))
+    with pytest.raises(KeyError, match="pesticide_crop_archetype_mapping.csv"):
+        model._pesticide_field_fraction("Fun")
 
 
 def test_harvest_export_generator_uses_2023_products_and_coproducts():
@@ -127,7 +147,7 @@ def test_pesticide_metals_exported_with_the_harvest():
     pest[PesticideType.cu] = 1000.0  # g Cu
     model = HmModel(_inputs(hm_pesticides_quantities=pest))
     out = model.compute()
-    cu_to_field = 1000.0 * 0.95 * 1000.0
+    cu_to_field = 1000.0 * FIELD_POOIDEAE * 1000.0
     a = model.last_allocation[HeavyMetalType.cu]
     assert out["m_hm_heavymetal_to_soil_minus_uptake"][HeavyMetalType.cu] == pytest.approx(
         (cu_to_field - 0.05 * cu_to_field - 3600 * a) * 1e-6)

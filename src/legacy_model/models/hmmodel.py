@@ -42,6 +42,7 @@ class HmModel(object):
       drained_part: ratio (decision D5: template "drainage")
       eroded_soil: kg/(ha*year)
       land_use_category: pmodel.LandUseCategory (7 classes, soil rows of Table 1)
+      crop: crop key (OLCA-Pest crop archetype of the pesticide field fraction)
 
     Outputs (kg i/(ha*crop cycle), map HeavyMetalType -> value):
         m_hm_heavymetal_to_soil: balance without the harvest export ("heavy_metal_uptake" off)
@@ -50,8 +51,9 @@ class HmModel(object):
 
     Parameters (data/): hm_salca2023_table1.csv (SALCAheavymetal V1.0, Nemecek et al. 2023,
     Appendix 7, Table 1: deposition, leaching, soil and pesticide contents), hm_pesticide_mapping.csv,
-    model_parameters.csv
-    (hm_accumulation_factor 1.86, hm_erosion_factor 0.2, hm_pesticide_soil_fraction 0.95).
+    olca_pest_default_fractions.csv and pesticide_crop_archetype_mapping.csv (OLCA-Pest primary
+    distribution, Nemecek et al. 2022), model_parameters.csv
+    (hm_accumulation_factor 1.86, hm_erosion_factor 0.2).
     """
 
     _input_variables = ['crop_cycle_per_year',
@@ -63,7 +65,8 @@ class HmModel(object):
                         'hm_export_with_harvest',
                         'drained_part',
                         'eroded_soil',
-                        'land_use_category'
+                        'land_use_category',
+                        'crop'
                         ]
 
     def __init__(self, inputs):
@@ -123,13 +126,30 @@ class HmModel(object):
     def _compute_pesticides(self):
         """Cu and Zn of metal-containing pesticides reaching the field [mg/ha] (Eq. 2):
         g a.i. / 1000 x metal concentration [mg/kg a.i.] of Table 1 (row from
-        data/hm_pesticide_mapping.csv) x hm_pesticide_soil_fraction (0.95, legacy value kept in
-        place of 1 - f_air - f_OFS until Nemecek et al. 2022 is available)."""
+        data/hm_pesticide_mapping.csv) x (1 - f_air - f_OFS) of the crop and pest class
+        (decision L14)."""
         mapping = dataloader.table("hm_pesticide_mapping.csv", numeric=False)
-        soil_fraction = dataloader.param("hm_pesticide_soil_fraction")
         hm_values = dict.fromkeys(HeavyMetalType, 0.0)
         for pest, grams in self.hm_pesticides_quantities.items():
-            content = dataloader.hm_entry(mapping[pest.value]["salca2023_row"])
+            row = mapping[pest.value]
+            content = dataloader.hm_entry(row["salca2023_row"])
+            field_fraction = self._pesticide_field_fraction(row["olca_pest_class"])
             for element, column in METAL_COLUMNS.items():
-                hm_values[element] += grams / 1000.0 * content[column] * soil_fraction
+                hm_values[element] += grams / 1000.0 * content[column] * field_fraction
         return hm_values
+
+    _ARCHETYPE_MAPPING = "pesticide_crop_archetype_mapping.csv"
+    _FRACTIONS_TABLE = "olca_pest_default_fractions.csv"
+
+    def _pesticide_field_fraction(self, pest_class):
+        """Share of the applied pesticide staying on the field, 1 - f_air - f_OFS = f_soil + f_crop
+        of the OLCA-Pest primary distribution without buffer zone (Nemecek et al. 2022); the
+        crop deposit is counted on the field, as in SALCAheavymetal 2023 Eq. 2."""
+        archetypes = dataloader.table(self._ARCHETYPE_MAPPING, numeric=False)
+        if self.crop not in archetypes:
+            raise KeyError("Crop '%s' is not in %s" % (self.crop, self._ARCHETYPE_MAPPING))
+        archetype = archetypes[self.crop]["olca_crop_archetype"]
+        for row in dataloader.rows(self._FRACTIONS_TABLE):
+            if row["crop_archetype"] == archetype and row["pest_class"] == pest_class:
+                return float(row["f_soil"]) + float(row["f_crop"])
+        raise KeyError("No %s / %s row in %s" % (archetype, pest_class, self._FRACTIONS_TABLE))
