@@ -74,3 +74,13 @@ def test_every_crop_has_an_olca_pest_archetype_with_fungicide_fractions():
     for r in dl.rows("olca_pest_default_fractions.csv"):
         total = sum(float(r[k]) for k in ("f_air", "f_soil", "f_crop", "f_off_field"))
         assert abs(total - 1.0) < 1e-6, r["scenario_id"]
+
+
+def test_organic_fertiliser_composition_covers_every_type_with_an_emep_category():
+    from models.otherorganicfertilisermodel import CompostType, SludgeType
+    composition = dl.table("organic_fertiliser_composition.csv")
+    categories = {r["nfr"] for r in dl.rows("emep2023_3d_table3_1.csv") if r["pollutant"] == "NH3"}
+    assert set(composition) == {t.value for t in (*CompostType, *SludgeType)}
+    for fert_type, row in composition.items():
+        assert row["emep_nfr"] in categories, fert_type
+        assert 0.0 <= row["tan_kg_n_per_t_fm"] <= row["n_total_kg_per_t_fm"], fert_type

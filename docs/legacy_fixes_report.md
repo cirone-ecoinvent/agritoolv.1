@@ -802,3 +802,50 @@ All metal-containing pesticides of the model are fungicides.
 
 rice_IN has no metal-containing pesticides and does not change.
 
+
+## 10. NH3 from compost and sewage sludge with EMEP/EEA 2023 3.D (decision L15, 2026-10-12)
+
+The legacy NH3 of compost and sewage sludge was TAN x emission fraction from Agribalyse v1.1
+Tab. 67 and Tab. 154, values only cited in the legacy code (`organic_fertiliser_nh3.csv`, O7).
+EMEP/EEA 2023 3.D Tier 1, Eq. (1), multiplies the total N applied by an EF in kg NH3 per kg N
+(Table 3-1, `emep2023_3d_table3_1.csv`): 0.13 for sewage sludge (3Da2b; Annex 1 assumes one third
+of the N ammoniacal and one third of that lost) and 0.08 for other organic wastes including
+compost (3Da2c). Dried poultry manure is assigned to 3Da2c, because the 3.B method needs the TAN
+at spreading, which is not available for the dried product.
+
+The N, TAN and P2O5 contents moved from the code to `organic_fertiliser_composition.csv`. The values
+are unchanged except two TAN values:
+- compost: Nlös 0.3 kg/t FM from GRUDAF 2009 Table 42 (median), instead of 0.83; the same table
+  documents the compost N of 7.0 kg/t FM;
+- stone meal: 0, because the product has no N (the legacy code gave it the TAN of feather meal).
+
+The TAN enters only the N supply of the nitrate model (Fix F3). The other N, TAN and P2O5 values
+are still legacy, undocumented, provisional.
+
+| Type | NFR | N (kg/t FM) | Old NH3 (kg/t FM) | EF (kg NH3/kg N) | New NH3 (kg/t FM) | TAN old -> new |
+|---|---|---|---|---|---|---|
+| `composttype_compost` | 3Da2c | 7.0 | 0.72 | 0.08 | 0.56 | 0.83 -> 0.3 |
+| `composttype_meat_and_bone_meal` | 3Da2c | 85.5 | 5.61 | 0.08 | 6.84 | 6.50 |
+| `composttype_castor_oil_shell_coarse` | 3Da2c | 10.0 | 0.72 | 0.08 | 0.80 | 0.83 |
+| `composttype_vinasse` | 3Da2c | 3.5 | 0.95 | 0.08 | 0.28 | 0.96 |
+| `composttype_dried_poultry_manure` | 3Da2c | 45.0 | 0.70 | 0.08 | 3.60 | 0.83 |
+| `composttype_stone_meal` | 3Da2c | 0.0 | 5.61 | 0.08 | 0.00 | 6.50 -> 0.0 |
+| `composttype_feather_meal`, `horn_meal`, `horn_shavings_fine` | 3Da2c | 130.15 | 5.61 | 0.08 | 10.41 | 6.50 |
+| `sewagesludge_liquid` | 3Da2b | 2.5 | 1.04 | 0.13 | 0.33 | 2.13 |
+| `sewagesludge_dehydrated` | 3Da2b | 9.7 | 1.56 | 0.13 | 1.26 | 3.20 |
+| `sewagesludge_dried` | 3Da2b | 8.4 | 0.88 | 0.13 | 1.09 | 1.80 |
+
+Only apple_FR (2 t of green-waste compost) changes. The NH3 of the compost falls from 1.43 to
+1.12 kg. Less NH3-N raises the NOx base (N applied minus NH3-N) and the N supply S. The lower
+compost TAN (-1.06 kg N) more than compensates for that, so S falls by 0.80 kg N and the nitrate
+falls slightly.
+
+| Case | Key | Old | New | New/old |
+|---|---|---|---|---|
+| apple_FR | `ammonia_total` | 7.13553 | 6.82249 | 0.9561 |
+| apple_FR | `Nox_as_n2o_air` | 4.54362 | 4.55391 | 1.0023 |
+| apple_FR | `N2o_air` | 2.38088 | 2.3762 | 0.9980 |
+| apple_FR | `nitrate_to_groundwater` | 131.675 | 131.441 | 0.9982 |
+| apple_FR | `nitrate_to_surfacewater` | 14.6305 | 14.6045 | 0.9982 |
+
+wheat_IT and rice_IN use neither compost nor sewage sludge and do not change.

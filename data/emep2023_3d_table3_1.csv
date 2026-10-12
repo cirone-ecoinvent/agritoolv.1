@@ -1,0 +1,3 @@
+nfr,source_category,pollutant,ef,unit,note
+3Da2b,Sewage sludge applied to soils,NH3,0.13,kg NH3 per kg N applied,"Tier 1 default of Table 3-1; derivation in Annex 1 (p. 35): one third of the sludge N is ammoniacal and one third of it is lost as NH3; the per-capita alternative of Table 3-1 (0.0066 kg NH3 per capita) is not used"
+3Da2c,Other organic wastes applied to soils (including compost),NH3,0.08,kg NH3 per kg waste N applied,"Tier 1 default of Table 3-1, reference given there: method for fertiliser applications; no separate derivation in Annex 1"

@@ -95,7 +95,7 @@ def test_manure_other_is_the_faostat_volume_mix_of_the_specific_types():
 
 def test_compost_soluble_n_is_tan():
     compost = {k: 0.0 for k in CompostType}
-    compost[CompostType.compost] = 10_000.0  # 10 t x 0.83 kg TAN/t
+    compost[CompostType.compost] = 10_000.0  # 10 t x 0.3 kg Nlös/t (GRUDAF 2009 Table 42, L15)
     sludge = {k: 0.0 for k in SludgeType}
     model = OtherOrganicFertModel({"compost_quantities": compost, "sludge_quantities": sludge})
-    assert model.computeSolubleN() == pytest.approx(8.3)
+    assert model.computeSolubleN() == pytest.approx(3.0)

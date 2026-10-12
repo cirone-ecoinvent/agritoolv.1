@@ -1,7 +1,6 @@
 from enum import Enum
 
 import dataloader
-from models.atomicmass import N_TO_NH3_FACTOR
 from models.modelEnums import HeavyMetalType
 
 class CompostType(Enum):
@@ -40,43 +39,28 @@ class OtherOrganicFertModel(object):
                         "sludge_quantities"
                        ]
     
-    # legacy, undocumented, provisional: N contents of compost and sludge below (cited sources not verified)
-    #kg/t FM
-    _N_CONCENTRATION_ORG_COMPOST = {CompostType.compost: 7.0,#Walther Ryser 2001, Tab. 48
-                                CompostType.meat_and_bone_meal: 90.0 * 0.95,#Tiermehl
-                                CompostType.castor_oil_shell_coarse: 10.0,
-                                CompostType.vinasse: 7.0 * 0.5,
-                                CompostType.dried_poultry_manure: 45.0,
-                                CompostType.stone_meal: 0.0 * 0.0,#Strange assumption based on a strange PDF :p
-                                CompostType.feather_meal: 137.0 * 0.95,#Hornmehl
-                                CompostType.horn_meal: 137.0 * 0.95,#Hornmehl
-                                CompostType.horn_shavings_fine: 137.0 * 0.95#Hornmehl
-                                }
-    
-    _N_CONCENTRATION_ORG_SLUDGE = {
-                                SludgeType.sewagesludge_liquid: 2.5, #Walther Ryser 2001, Tab. 48
-                                SludgeType.sewagesludge_dehydrated: 9.7, #Walther Ryser 2001, Tab. 48
-                                SludgeType.sewagesludge_dried: 8.4 #Walther Ryser 2001, Tab. 48
-                                }
-    
-    # legacy, undocumented, provisional: P2O5 content of liquid sewage sludge (cited source not verified)
-    #src: Walther Ryser 2001, Tab. 48
-    #kg/t FM
-    _P205_CONCENTRATION_IN_LIQUID_SEWAGE_SLUDGE = 3.5
-
-    # TAN content [kg N/t FM] and NH3 emission fraction of TAN per fertiliser type are read
-    # from data/organic_fertiliser_nh3.csv (Agribalyse Tab. 67 x Tab. 154, as in the legacy code).
-    _NH3_TABLE = "organic_fertiliser_nh3.csv"
+    # Contents per t of fresh matter (N, TAN, P2O5) and the EMEP/EEA 2023 3.D source category
+    # of each type are read from data/organic_fertiliser_composition.csv; the NH3 EF per kg N
+    # applied of that category from data/emep2023_3d_table3_1.csv (decision L15).
+    _COMPOSITION_TABLE = "organic_fertiliser_composition.csv"
+    _EF_TABLE = "emep2023_3d_table3_1.csv"
 
     @classmethod
-    def _tan_content(cls, fert_type):
-        """TAN (soluble N) content [kg N/t FM] of a compost or sludge type."""
-        return dataloader.table(cls._NH3_TABLE)[fert_type.value]["tan_kg_n_per_t_fm"]
+    def _content(cls, fert_type, column):
+        """Content [kg/t FM] of a compost or sludge type, column of the composition table."""
+        rows = dataloader.table(cls._COMPOSITION_TABLE)
+        if fert_type.value not in rows:
+            raise KeyError("Fertiliser type %s not in %s" % (fert_type.value, cls._COMPOSITION_TABLE))
+        return rows[fert_type.value][column]
 
     @classmethod
-    def _nh3_emission_fraction(cls, fert_type):
-        """Share of TAN emitted as NH3-N after spreading [kg NH3-N/kg TAN]."""
-        return dataloader.table(cls._NH3_TABLE)[fert_type.value]["ef_nh3_n_fraction"]
+    def _nh3_ef(cls, fert_type):
+        """EMEP/EEA 2023 3.D Table 3-1 Tier 1 EF [kg NH3/kg N applied] of the type's category."""
+        nfr = dataloader.table(cls._COMPOSITION_TABLE)[fert_type.value]["emep_nfr"]
+        for row in dataloader.rows(cls._EF_TABLE):
+            if row["nfr"] == nfr and row["pollutant"] == "NH3":
+                return float(row["ef"])
+        raise KeyError("No NH3 row for %s in %s" % (nfr, cls._EF_TABLE))
 
     def __init__(self, inputs):
         #TODO: Should we log usage of default value?
@@ -84,26 +68,29 @@ class OtherOrganicFertModel(object):
             setattr(self, key, inputs[key])
             
     def computeP2O5(self):
-        return self.sludge_quantities[SludgeType.sewagesludge_liquid] * self._P205_CONCENTRATION_IN_LIQUID_SEWAGE_SLUDGE / 1000.0
+        """P2O5 [kg/ha] of liquid sewage sludge, the only type whose P2O5 the model counts."""
+        return (self.sludge_quantities[SludgeType.sewagesludge_liquid]
+                * self._content(SludgeType.sewagesludge_liquid, "p2o5_kg_per_t_fm") / 1000.0)
 
     def computeN(self):
-        return (sum(v * self._N_CONCENTRATION_ORG_COMPOST[k] for k,v in self.compost_quantities.items()) \
-              + sum(v * self._N_CONCENTRATION_ORG_SLUDGE[k] for k,v in self.sludge_quantities.items())) / 1000.0
-    
-    def computeNH3(self):
-        """NH3 [kg NH3/ha] after spreading of compost and sewage sludge.
+        return self._sum_per_t(lambda fert_type: self._content(fert_type, "n_total_kg_per_t_fm"))
 
-        NH3-N = sum(quantity [kg FM] / 1000 * TAN [kg N/t FM] * EF); converted to kg NH3 with
-        17/14 (Fix F5: the legacy code returned kg NH3-N and summed it with kg NH3).
+    def computeNH3(self):
+        """NH3 [kg NH3/ha] after spreading of compost and sewage sludge (decision L15).
+
+        EMEP/EEA 2023 3.D Tier 1, Eq. (1): sum(quantity [kg FM] / 1000 * N [kg N/t FM] * EF),
+        with EF in kg NH3 per kg N applied (Table 3-1), so the result is already kg NH3 (Fix F5).
         """
-        nh3_as_n = sum(v * self._tan_content(k) * self._nh3_emission_fraction(k)
-                       for quantities in (self.compost_quantities, self.sludge_quantities)
-                       for k, v in quantities.items()) / 1000.0
-        return nh3_as_n * N_TO_NH3_FACTOR
+        return self._sum_per_t(lambda fert_type: self._content(fert_type, "n_total_kg_per_t_fm")
+                               * self._nh3_ef(fert_type))
 
     def computeSolubleN(self):
         """Soluble (ammoniacal) N applied with compost and sludge [kg N/ha] (Fix F3)."""
-        return sum(v * self._tan_content(k)
+        return self._sum_per_t(lambda fert_type: self._content(fert_type, "tan_kg_n_per_t_fm"))
+
+    def _sum_per_t(self, value_per_t):
+        """sum(kg FM / 1000 x value_per_t(type)) over compost and sludge."""
+        return sum(v * value_per_t(k)
                    for quantities in (self.compost_quantities, self.sludge_quantities)
                    for k, v in quantities.items()) / 1000.0
 
