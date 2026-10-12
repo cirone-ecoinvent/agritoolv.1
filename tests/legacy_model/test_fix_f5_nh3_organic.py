@@ -1,5 +1,6 @@
 """Fix F5 / decision L15: NH3 from compost and sewage sludge in kg NH3, EMEP/EEA 2023 3.D Tier 1:
-N applied x EF of Table 3-1 (sewage sludge 3Da2b 0.13, other organic wastes 3Da2c 0.08 kg NH3/kg N)."""
+N applied x EF of Table 3-1 (sewage sludge 3Da2b 0.13, other organic wastes 3Da2c 0.08 kg NH3/kg N).
+Contents of sludge, feather meal and dried poultry manure from Agribalyse 3.1 (decision L20)."""
 import pytest
 
 from models.atomicmass import N_TO_NH3_FACTOR as N_TO_NH3
@@ -20,12 +21,23 @@ def test_compost_nh3_is_n_times_other_organic_waste_ef():
 
 
 def test_sludge_nh3_uses_sewage_sludge_ef():
-    # 1 t liquid sludge: 2.5 kg N/t x 0.13 kg NH3/kg N
-    assert _model(sludge={SludgeType.sewagesludge_liquid: 1_000}).computeNH3() == pytest.approx(2.5 * 0.13)
+    # 1 t liquid sludge: 3 kg N/t (Agribalyse 3.1 Table 142) x 0.13 kg NH3/kg N
+    assert _model(sludge={SludgeType.sewagesludge_liquid: 1_000}).computeNH3() == pytest.approx(3.0 * 0.13)
 
 
 def test_dried_poultry_manure_is_other_organic_waste():
-    assert _model(compost={CompostType.dried_poultry_manure: 1_000}).computeNH3() == pytest.approx(45.0 * 0.08)
+    # 1 t dry poultry droppings: 38.2 kg N/t (Agribalyse 3.1 Table 142) x 0.08 kg NH3/kg N
+    assert _model(compost={CompostType.dried_poultry_manure: 1_000}).computeNH3() == pytest.approx(38.2 * 0.08)
+
+
+def test_agribalyse_contents_of_sludge_and_dried_poultry_manure():
+    # decision L20: N and TAN per t FM from Agribalyse 3.1 Table 142 and Table 59, P2O5 of liquid sludge
+    dried = _model(sludge={SludgeType.sewagesludge_dried: 1_000})
+    assert dried.computeN() == pytest.approx(40.0)
+    assert dried.computeSolubleN() == pytest.approx(1.80)
+    poultry = _model(compost={CompostType.dried_poultry_manure: 1_000})
+    assert poultry.computeSolubleN() == pytest.approx(4.0)
+    assert _model(sludge={SludgeType.sewagesludge_liquid: 1_000}).computeP2O5() == pytest.approx(2.5)
 
 
 def test_stone_meal_without_n_emits_no_nh3():

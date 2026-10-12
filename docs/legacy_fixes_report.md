@@ -935,3 +935,42 @@ Regression (1020 / 1006 = 1.0139):
 The heavy-metal outputs of wheat_IT and rice_IN change by -0.2 % to +1.9 % (the decreases are negative
 soil balances that become less negative). New key `CO2_non_fossil_from_fertilisers` = 0 in all three
 cases (no seaweed lime); `CO2_from_fertilisers` unchanged. apple_FR has no liquid manure.
+
+## 13. Contents of compost-type products and sewage sludge from Agribalyse 3.1 (decision L20, 2026-10-12)
+
+FC supplied the Agribalyse 3.1 methodology report (agricultural stage). Two tables give the
+contents of the organic fertilisers that are not farmyard manure:
+
+- Table 59 (p. 130), TAN of organic fertilizers from outside the farm, kg TAN per t or m3: liquid
+  sewage sludge 2.13, semi-solid 3.20, dried 1.80 (printed "1.,80"), green waste compost 0.83,
+  feather meal 6.50, concentrated sugar beet vinasse and distillery vinasse 0.96. These are the
+  values the legacy code cited from Agribalyse v1.1 Tab. 67.
+- Table 142 (Appendix G, p. 230-231), composition per t of fresh matter: liquid sewage sludge N 3,
+  P2O5 2.5; semi-solid N 10, P2O5 7.5; dried N 40, P2O5 60 (source 6, Arvalis); feather meal N 130
+  (source 7, Arvalis); dry poultry droppings N 38.2, N-NH4 4.0, P2O5 37.9 (source 11, ITAVI 2003).
+
+The text was extracted with `pdftotext -table` and each value assigned to its column by character
+position. In the vinasse row of Table 142 the total N column is empty in the extracted text, so the
+vinasse N stays legacy.
+
+| Type | N old -> new (kg/t FM) | TAN old -> new | NH3 old -> new (kg NH3/t FM) | Source |
+|---|---|---|---|---|
+| `sewagesludge_liquid` | 2.5 -> 3 | 2.13 | 0.33 -> 0.39 | Agribalyse 3.1; P2O5 3.5 -> 2.5 |
+| `sewagesludge_dehydrated` | 9.7 -> 10 | 3.20 | 1.26 -> 1.30 | Agribalyse 3.1 (semi-solid) |
+| `sewagesludge_dried` | 8.4 -> 40 | 1.80 | 1.09 -> 5.20 | Agribalyse 3.1 |
+| `composttype_feather_meal` | 130.15 -> 130 | 6.50 | 10.41 -> 10.40 | Agribalyse 3.1 |
+| `composttype_horn_meal`, `horn_shavings_fine` | 130.15 -> 130 | 6.50 | 10.41 -> 10.40 | proxy feather meal (FC) |
+| `composttype_dried_poultry_manure` | 45.0 -> 38.2 | 0.83 -> 4.0 | 3.60 -> 3.06 | Agribalyse 3.1 (dry poultry droppings) |
+| `composttype_meat_and_bone_meal` | 85.5 (legacy) | 6.50 | 6.84 | TAN: proxy feather meal (FC) |
+| `composttype_castor_oil_shell_coarse` | 10.0 (legacy) | 0.83 | 0.80 | TAN: proxy green waste compost (FC) |
+| `composttype_vinasse` | 3.5 (legacy) | 0.96 | 0.28 | TAN: Agribalyse 3.1 |
+| `composttype_stone_meal` | 0 | 0 | 0 | no N (confirmed by FC) |
+
+NH3 = N x EF of EMEP/EEA 2023 3.D Table 3-1 (0.13 sewage sludge, 0.08 other organic wastes). The
+TAN enters the N supply of the nitrate model (Fix F3). Three values remain legacy, undocumented,
+provisional: the N of meat and bone meal, castor oil shell and vinasse.
+
+Dried poultry manure stays in 3Da2c. L15 placed it there because no TAN at spreading was available;
+Agribalyse 3.1 now gives one, so the 3.B method (TAN x EF of Table 3-9) would be possible (open point).
+
+Regression: unchanged (the three cases use only green-waste compost).
