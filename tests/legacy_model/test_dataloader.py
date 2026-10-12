@@ -50,3 +50,15 @@ def test_faostat_mapping_uses_existing_items_and_manure_types():
     for row in dl.rows("manure_other_faostat_mapping.csv"):
         assert row["faostat_item"] in items
         assert row["manure_type"] in composition and row["manure_type"].startswith(row["form"])
+
+
+def test_fertiliser_basis_matches_the_confirmed_alignment_rows():
+    from collections import Counter
+    alignment = {r["model_variable"]: r for r in dl.rows("intermediate_exchange_alignment.csv")}
+    basis = dl.table(dl.FERTILISER_BASIS_TABLE)
+    for model_variable, row in basis.items():
+        assert alignment[model_variable]["status"] == "confirmed"
+        assert alignment[model_variable]["md312_name"] == row["md312_name"]
+        assert row["amount_basis"] in ("N", "P2O5", "K2O", "Ca")
+    groups = Counter(row["compound_group"] for row in basis.values() if row["compound_group"])
+    assert groups and all(n == 2 for n in groups.values()), groups

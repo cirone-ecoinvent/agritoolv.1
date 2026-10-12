@@ -1,0 +1,24 @@
+model_variable,amount_variable,amount_basis,md312_name,md_property,basis_product,compound_group,fallback_content,fallback_source,note
+fert_n_ammonium_nitrate,fert_n_ammonium_nitrate,N,ammonium nitrate,nitrogen content,"inorganic nitrogen fertiliser, as N",,,,
+fert_n_urea,fert_n_urea,N,urea,nitrogen content,"inorganic nitrogen fertiliser, as N",,0.466461,"stoichiometric N content of CH4N2O (formula stated in the MD 3.12 carbon-content comment of urea), atomic masses of models/atomicmass.py; nitrogen content property missing in MD 3.12",
+fert_n_ureaAN,fert_n_ureaAN,N,urea ammonium nitrate mix,nitrogen content,"inorganic nitrogen fertiliser, as N",,,,
+fert_n_mono_ammonium_phosphate,fert_n_mono_ammonium_phosphate,N,monoammonium phosphate,nitrogen content,"inorganic nitrogen fertiliser, as N",MAP,,,
+fert_n_di_ammonium_phosphate,fert_n_di_ammonium_phosphate,N,diammonium phosphate,nitrogen content,"inorganic nitrogen fertiliser, as N",DAP,,,
+fert_n_an_phosphate,fert_n_an_phosphate,N,ammonium nitrate phosphate,nitrogen content,"inorganic nitrogen fertiliser, as N",ANP,,,
+fert_n_lime_ammonium_nitrate,fert_n_lime_ammonium_nitrate,N,calcium ammonium nitrate,nitrogen content,"inorganic nitrogen fertiliser, as N",,,,
+fert_n_ammonium_sulphate,fert_n_ammonium_sulphate,N,ammonium sulfate,nitrogen content,"inorganic nitrogen fertiliser, as N",,,,
+fert_n_potassium_nitrate,fert_n_potassium_nitrate,N,potassium nitrate,nitrogen content,"inorganic nitrogen fertiliser, as N",KNO3,,,
+fert_p_triple_superphosphate,fert_p_triple_superphosphate,P2O5,triple superphosphate,phosphorus content,"inorganic phosphorus fertiliser, as P2O5",,,,
+fert_p_superphosphate,fert_p_superphosphate,P2O5,single superphosphate,phosphorus content,"inorganic phosphorus fertiliser, as P2O5",,,,
+fert_p_mono_ammonium_phosphate,fert_p_mono_ammonium_phosphate,P2O5,monoammonium phosphate,phosphorus content,"inorganic phosphorus fertiliser, as P2O5",MAP,,,
+fert_p_di_ammonium_phosphate,fert_p_di_ammonium_phosphate,P2O5,diammonium phosphate,phosphorus content,"inorganic phosphorus fertiliser, as P2O5",DAP,,,
+fert_p_an_phosphate,fert_p_an_phosphate,P2O5,ammonium nitrate phosphate,phosphorus content,"inorganic phosphorus fertiliser, as P2O5",ANP,,,
+fert_p_hypophosphate_raw_phosphate,fert_p_hypophosphate_raw_phosphate,P2O5,"inorganic phosphorus fertiliser, as P2O5",phosphorus content,"inorganic phosphorus fertiliser, as P2O5",,,,"generic: phosphate rock, beneficiated has no phosphorus content in MD 3.12"
+fert_p_ground_basic_slag,fert_p_ground_basic_slag,P2O5,"inorganic phosphorus fertiliser, as P2O5",phosphorus content,"inorganic phosphorus fertiliser, as P2O5",,,,generic: no basic-slag fertiliser product in MD 3.12
+fert_k_potassium_salt,fert_k_potassium_salt,K2O,potassium chloride,potassium content,"inorganic potassium fertiliser, as K2O",,,,
+fert_k_potassium_sulphate,fert_k_potassium_sulphate,K2O,potassium sulfate,potassium content,"inorganic potassium fertiliser, as K2O",,,,
+fert_k_potassium_nitrate,fert_k_potassium_nitrate,K2O,potassium nitrate,potassium content,"inorganic potassium fertiliser, as K2O",KNO3,,,
+fert_k_patent_potassium,fert_k_patent_potassium,K2O,"inorganic potassium fertiliser, as K2O",potassium content,"inorganic potassium fertiliser, as K2O",,,,generic: no potassium magnesium sulfate product in MD 3.12
+fert_ca_limestone_as_limestone,fert_ca_limestone,Ca,"limestone, milled, loose",calcium content,,,,,
+fert_ca_carbonation_limestone_as_limestone,fert_ca_carbonation_limestone,Ca,"limestone, milled, loose",calcium content,,,,,proxy: no carbonation-lime product in MD 3.12
+fert_ca_seaweed_limestone_as_seaweed_lime,fert_ca_seaweed_limestone,Ca,"limestone, from algae",calcium content,,,,,

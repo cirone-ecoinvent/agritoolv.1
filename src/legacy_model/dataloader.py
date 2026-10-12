@@ -158,3 +158,45 @@ def load_intermediate_exchanges(path, sheet="IntermediateExchanges", name_col="n
         with open(path, newline="", encoding="utf-8") as f:
             records = [(r[id_col], r[name_col].strip(), r[unit_col]) for r in csv.DictReader(f)]
     return {name: IntermediateExchange(uuid, name, unit) for uuid, name, unit in records if name}
+
+
+@lru_cache(maxsize=None)
+def load_intermediate_exchange_properties(path, sheet="IntermediateExchanges prop."):
+    """Properties of the Master Data intermediate exchanges, read only from the ``.xlsx`` workbook.
+
+    Returns {(product name, property name): amount}. Elemental contents (nitrogen content,
+    phosphorus content, ...) are given by the Master Data on a dry-mass basis.
+    """
+    path = Path(path)
+    if not path.is_file():
+        raise FileNotFoundError("Master data file not found: %s" % path)
+    from openpyxl import load_workbook  # optional dependency, only for xlsx master data
+    it = load_workbook(path, read_only=True, data_only=True)[sheet].iter_rows(values_only=True)
+    header = [str(h).strip() if h is not None else "" for h in next(it)]
+    i_name, i_prop, i_amount = (header.index(c) for c in ("name", "propertyName", "amount"))
+    return {(str(r[i_name]).strip(), str(r[i_prop]).strip()): float(r[i_amount])
+            for r in it if r[i_name] and r[i_amount] is not None}
+
+
+FERTILISER_BASIS_TABLE = "fertiliser_product_basis.csv"
+
+
+def fertiliser_nutrient_content(master_data_path, model_variable):
+    """kg of the amount basis (N, P2O5, K2O or Ca) per kg of the Master Data fertiliser product.
+
+    From ``fertiliser_product_basis.csv``: the elemental content (property ``md_property`` of the
+    Master Data, or ``fallback_content`` where the property is missing) times the dry mass of the
+    product, divided by the same content of ``basis_product`` (the generic "as N / as P2O5 /
+    as K2O" product), which converts P and K to P2O5 and K2O with the Master Data's own values.
+    """
+    row = table(FERTILISER_BASIS_TABLE)[model_variable]
+    props = load_intermediate_exchange_properties(str(master_data_path))
+    name, prop = row["md312_name"], row["md_property"]
+    content = props.get((name, prop), row["fallback_content"])
+    if content is None:
+        raise KeyError("No '%s' for '%s' in the Master Data and no fallback in %s"
+                       % (prop, name, FERTILISER_BASIS_TABLE))
+    content *= props.get((name, "dry mass"), 1.0)
+    if row["basis_product"]:
+        content /= props[(row["basis_product"], prop)]
+    return content
