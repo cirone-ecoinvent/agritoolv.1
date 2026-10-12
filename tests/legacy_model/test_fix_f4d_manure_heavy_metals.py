@@ -23,15 +23,15 @@ def test_solid_pig_manure_in_mg():
 
 
 def test_liquid_cattle_manure_split_between_two_rows():
-    # 10 m3 undiluted x 1006 kg/m3 = 10 060 kg FM; 50 % liquid manure (9 % DM, 162) + 50 % slurry (7.5 % DM, 123)
+    # 10 m3 undiluted x 1020 kg/m3 (decision L18) = 10 200 kg FM; 50 % liquid manure (9 % DM, 162) + 50 % slurry (7.5 % DM, 123)
     hm = _model(liquid={LiquidManureType.cattle: 10.0}).computeHeavyMetal()
-    assert hm[HeavyMetalType.zn] == pytest.approx(10_060 * (0.5 * 0.09 * 162 + 0.5 * 0.075 * 123), rel=1e-9)
+    assert hm[HeavyMetalType.zn] == pytest.approx(10_200 * (0.5 * 0.09 * 162 + 0.5 * 0.075 * 123), rel=1e-9)
 
 
 def test_other_manure_uses_the_unspecified_rows():
     hm = _model(solid={SolidManureType.other: 1000.0}).computeHeavyMetal()
     assert hm[HeavyMetalType.cu] == pytest.approx(1000 * 0.33 * 61)
-    hm = _model(liquid={LiquidManureType.other: 1000 / 1006}).computeHeavyMetal()
+    hm = _model(liquid={LiquidManureType.other: 1000 / 1020}).computeHeavyMetal()
     assert hm[HeavyMetalType.zn] == pytest.approx(1000 * 0.07 * 766)
 
 

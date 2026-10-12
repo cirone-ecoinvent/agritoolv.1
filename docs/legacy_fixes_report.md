@@ -889,3 +889,49 @@ The statistical LUC method of Quantis (2024), used by WFLDB 3.8, is not adopted.
 LUC over time on the crop side (linear discounting) and puts the full emissions per ha in the LUC
 dataset, gives no values per crop and country, and the Master Data 3.12 products still follow the
 Blonk structure (five former land uses, land tenure products).
+
+## 12. Seaweed lime CO2, liquid manure density, P land-use classes (decisions L17-L19, 2026-10-12)
+
+CO2 from seaweed lime (L17). Master Data 3.12 gives "limestone, from algae" carbon content, fossil 0
+and carbon content, non-fossil 0.107040 (CaCO3 from algae). The legacy `co2model.py` added the Ca of
+seaweed lime to limestone and carbonation lime and wrote all of it as "Carbon dioxide, fossil".
+Seaweed lime now has its own output `CO2_non_fossil_from_fertilisers`, aligned with "Carbon dioxide,
+non-fossil" (air, non-urban air or from high stacks, `d6235194-e4e6-4548-bfa3-ac095131aef4`) in
+`elementary_flow_alignment.csv`. The amount keeps the stoichiometry of the other limes,
+44.0095 / 40.078 = 1.0981 kg CO2 per kg Ca; the Master Data C/Ca ratio would give 1.1005 (+0.2 %).
+The sum of fossil and non-fossil CO2 is the legacy total.
+
+Liquid manure density (L18). FC set `liquid_manure_density_kg_per_m3` to 1020 kg/m3, from the general
+comment of the ecoinvent v3.12 dataset "manure, liquid, cattle" (Recycled Content cut-off, 7.5 %
+dry matter), instead of the unsourced legacy 1006 kg/m3. The density converts m3 of undiluted liquid
+manure to kg of fresh matter for the manure product exchange and for the heavy metals of manure.
+
+P land-use classes (L19). The 7 rows of `p_landuse_classes.csv` were checked against Prasuhn (2006)
+SALCA-Phosphor, Tab. 1 (leaching, p. 5) and Tab. 2 (run-off, p. 9):
+
+| Class in the tool | Prasuhn category | Leaching kg P/ha | Run-off kg P/ha |
+|---|---|---|---|
+| Arable land | Ackerland / offenes Ackerland | 0.07 | 0.175 |
+| Grassland intensive | Dauerwiesen | 0.06 | 0.25 |
+| Grassland extensive | Dauerwiesen (Tab. 1) / extensive und wenig intensive Wiesen und Weiden (Tab. 2) | 0.06 | 0.15 |
+| Fruit trees | Obstbau | 0.06 | 0.25 |
+| Summer alpine pastures | Alpwirtschaftliche Nutzfläche | 0.055 | 0.25 |
+| Vegetables | Gartenbau | 0.07 | 0.175 |
+| Viticulture | Rebbau | 0.07 | 0.175 |
+
+All values equal the table; the four classes taken from the legacy code (fruit trees, summer alpine
+pastures, vegetables, viticulture) lose the tag "legacy, undocumented, provisional". Prasuhn states
+that the values apply to Switzerland.
+
+Regression (1020 / 1006 = 1.0139):
+
+| Case | Key | Old | New |
+|---|---|---|---|
+| wheat_IT | liquid_manure_cattle (kg) | 20120 | 20400 |
+| rice_IN | liquid_manure_cattle (kg) | 1615.21 | 1637.69 |
+| rice_IN | liquid_manure_laying_hen (kg) | 34.767 | 35.2509 |
+| rice_IN | liquid_manure_pig (kg) | 39.3942 | 39.9424 |
+
+The heavy-metal outputs of wheat_IT and rice_IN change by -0.2 % to +1.9 % (the decreases are negative
+soil balances that become less negative). New key `CO2_non_fossil_from_fertilisers` = 0 in all three
+cases (no seaweed lime); `CO2_from_fertilisers` unchanged. apple_FR has no liquid manure.

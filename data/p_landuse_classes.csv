@@ -1,8 +1,8 @@
 land_use_category,p_leaching_kg_p_per_ha_yr,p_runoff_kg_p_per_ha_yr,source
-Arable land,0.07,0.175,Prasuhn 2006 via Quantis 2019 sections 2.5.1-2.5.2 (model_parameters p_gw_arable / p_ro_arable)
-Grassland intensive,0.06,0.25,Prasuhn 2006 via Quantis 2019 sections 2.5.1-2.5.2 (p_gw_grassland / p_ro_grassland_intensive)
-Grassland extensive,0.06,0.15,Prasuhn 2006 via Quantis 2019 sections 2.5.1-2.5.2 (p_gw_grassland / p_ro_grassland_extensive)
-Fruit trees,0.06,0.25,"Legacy code pmodel.py (not in Quantis 2019; presumably Prasuhn 2006; to be confirmed); legacy, undocumented, provisional"
-Summer alpine pastures,0.055,0.25,"Legacy code pmodel.py (not in Quantis 2019; presumably Prasuhn 2006; to be confirmed); legacy, undocumented, provisional"
-Vegetables,0.07,0.175,"Legacy code pmodel.py (not in Quantis 2019; same values as arable land); legacy, undocumented, provisional"
-Viticulture,0.07,0.175,"Legacy code pmodel.py (not in Quantis 2019; same values as arable land); legacy, undocumented, provisional"
+Arable land,0.07,0.175,"Prasuhn 2006 Tab. 1 Ackerland (p. 5), Tab. 2 offenes Ackerland (p. 9); model_parameters p_gw_arable / p_ro_arable"
+Grassland intensive,0.06,0.25,"Prasuhn 2006 Tab. 1 Dauerwiesen (p. 5), Tab. 2 Dauerwiesen (p. 9); model_parameters p_gw_grassland / p_ro_grassland_intensive"
+Grassland extensive,0.06,0.15,"Prasuhn 2006 Tab. 1 Dauerwiesen (p. 5; no separate extensive class), Tab. 2 extensive und wenig intensive Wiesen und Weiden (p. 9); model_parameters p_gw_grassland / p_ro_grassland_extensive"
+Fruit trees,0.06,0.25,"Prasuhn 2006 Tab. 1 Obstbau (p. 5), Tab. 2 Obstbau (p. 9)"
+Summer alpine pastures,0.055,0.25,"Prasuhn 2006 Tab. 1 Alpwirtschaftliche Nutzfläche (p. 5), Tab. 2 Alpwirtschaftliche Nutzfläche (p. 9)"
+Vegetables,0.07,0.175,"Prasuhn 2006 Tab. 1 Gartenbau (horticulture, p. 5), Tab. 2 Gartenbau (p. 9)"
+Viticulture,0.07,0.175,"Prasuhn 2006 Tab. 1 Rebbau (p. 5), Tab. 2 Rebbau (p. 9)"

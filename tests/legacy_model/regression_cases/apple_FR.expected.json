@@ -1,6 +1,7 @@
 {
   "CO2_from_fertilisers": 0.0,
   "CO2_from_yield": 8361.68407258831,
+  "CO2_non_fossil_from_fertilisers": 0.0,
   "N2o_air": 2.376196093208689,
   "Nox_as_n2o_air": 4.553910604184409,
   "PO4_groundwater": 0.16557412522250284,

@@ -22,6 +22,7 @@ EcospoldTemplateSubstanceUsages.java,transformation_to_peren_irr,"Transformation
 EcospoldTemplateSubstanceUsages.java,transformation_to_peren_non-irr,"Transformation, to permanent crop, non-irrigated",m2,natural resource,land,ok,"Transformation, to permanent crop, non-irrigated",3f8e24d7-3d44-4a47-870f-9e3e74decca4,m2,,,
 EcospoldTemplateSubstanceUsages.java,ammonia_total,Ammonia,kg,air,non-urban air or from high stacks,ok,Ammonia,0f440cc0-0f74-446d-99d6-8ff0e97a2444,kg,,,
 EcospoldTemplateSubstanceUsages.java,CO2_from_fertilisers,"Carbon dioxide, fossil",kg,air,non-urban air or from high stacks,ok,"Carbon dioxide, fossil",aa7cac3a-3625-41d4-bc54-33e2cf11ec46,kg,,,
+AgriToolV.1 decision L17,CO2_non_fossil_from_fertilisers,"Carbon dioxide, non-fossil",kg,air,non-urban air or from high stacks,confirmed,"Carbon dioxide, non-fossil",d6235194-e4e6-4548-bfa3-ac095131aef4,kg,,"CO2 from seaweed lime (limestone, from algae: carbon content fossil 0, non-fossil 0.107 in MD 3.12); requested by FC 2026-10-12",FC
 EcospoldTemplateSubstanceUsages.java,Nox_as_n2o_air,Nitrogen oxides,kg,air,non-urban air or from high stacks,ok,Nitrogen oxides,77357947-ccc5-438e-9996-95e65e1e1bce,kg,,,
 EcospoldTemplateSubstanceUsages.java,N2o_air,Dinitrogen monoxide,kg,air,non-urban air or from high stacks,ok,Dinitrogen monoxide,afd6d670-bbb0-4625-9730-04088a5b035e,kg,,,
 EcospoldTemplateSubstanceUsages.java,ecoinvent_water_to_air,Water,m3,air,non-urban air or from high stacks,ok,Water,09872080-d143-4fb1-a3a5-647b077107ff,m3,,,
