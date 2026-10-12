@@ -47,6 +47,7 @@ FC = Francesco Cirone (Sector Manager Agriculture, ecoinvent).
 | R4 | 2026-10-09 | FC | `hm_manure_class_mapping.csv` | All 20 rows confirmed as proposed (legacy shares of the Tab. 7 manure classes). |
 
 | R5 | 2026-10-10 | FC | `hm_crop_product_mapping_salca2023.csv`, `hm_coproduct_mapping.csv`, `hm_manure_class_mapping.csv`, most of `hm_fertiliser_row_mapping.csv` and the sewage-sludge rows of `hm_organic_fertiliser_mapping.csv` | Approved in chat ("ok a tutte le raccomandazioni"); signed FC with the note "approved in chat 2026-10-10". Still proposed: lime-ammonium nitrate and potassium nitrate rows (Table 1 has a more specific row than before), compost DM and the compost proxies. |
+| R6 | 2026-10-12 | FC | `hm_fertiliser_row_mapping.csv`, `hm_organic_fertiliser_mapping.csv` | The rows left open by R5 signed by FC in the tables: lime-ammonium nitrate and potassium nitrate use their specific Table 1 rows; compost (DM 1.0 of Table 1, note "compost is kg DM / kg of product"), meat and bone meal -> animal meal, castor-oil shell -> castor bean meal, stone meal -> zero_HM, feather meal and horn shavings -> horn meal confirmed. |
 
 ## Moves
 

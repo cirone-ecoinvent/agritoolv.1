@@ -5,7 +5,7 @@ fert_n_ureaAN,N,N urea-AN (kg N),1,"same fertiliser row (values equal to urea, a
 fert_n_mono_ammonium_phosphate,N,N mineral fertilizers unspecified (kg N),1,"DEVIATION from Table 1 (recommendation 4): the table row 'N mono-ammonium phosphate (kg N)' repeats the P values per kg N, which would count the metals twice with the P row; approved in chat 2026-10-10",confirmed,FC
 fert_n_di_ammonium_phosphate,N,N mineral fertilizers unspecified (kg N),1,"DEVIATION from Table 1 (recommendation 4), as for MAP; approved in chat 2026-10-10",confirmed,FC
 fert_n_an_phosphate,N,N mineral fertilizers unspecified (kg N),1,"DEVIATION from Table 1 (recommendation 4), as for MAP; approved in chat 2026-10-10",confirmed,FC
-fert_n_lime_ammonium_nitrate,N,N lime-ammonium nitrate (kg N),1,Table 1 has this fertiliser (Cd 0.185 vs 0.212 of the unspecified row used before): to confirm,proposed,
+fert_n_lime_ammonium_nitrate,N,N lime-ammonium nitrate (kg N),1,Table 1 has this fertiliser (Cd 0.185 vs 0.212 of the unspecified row used before): to confirm,confirmed,FC
 fert_n_ammonium_sulphate,N,N ammonium sulphate (kg N),1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
 fert_n_potassium_nitrate,N,N potassium nitrate (kg N),1,"same fertiliser row (values equal to unspecified N, as before); approved in chat 2026-10-10",confirmed,FC
 fert_n_ammonia_liquid,N,N liquid ammonia (kg N),1,"same fertiliser row (values equal to unspecified N, as before); approved in chat 2026-10-10",confirmed,FC
@@ -18,7 +18,7 @@ fert_p_hypophosphate_raw_phosphate,P2O5,"P hyperphosphate (raw phosphate, kg P2O
 fert_p_ground_basic_slag,P2O5,P Thomas phosphate (kg P2O5),1,same fertiliser row (Thomas meal); approved in chat 2026-10-10,confirmed,FC
 fert_k_potassium_salt,K2O,"K potassium salt (KCl, kg K2O)",1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
 fert_k_potassium_sulphate,K2O,"K potassium sulphate (K2SO4, kg K2O)",1,same fertiliser row; approved in chat 2026-10-10,confirmed,FC
-fert_k_potassium_nitrate,K2O,K potassium nitrate (kg K2O),1,Table 1 has this fertiliser (Cr 4.0 vs 88.54 of the generic K mean used before): to confirm,proposed,
+fert_k_potassium_nitrate,K2O,K potassium nitrate (kg K2O),1,Table 1 has this fertiliser (Cr 4.0 vs 88.54 of the generic K mean used before): to confirm,confirmed,FC
 fert_k_patent_potassium,K2O,K patentkali (kg K2O),1,same fertiliser row (raw potassium); approved in chat 2026-10-10,confirmed,FC
 fert_ca_limestone,Ca,Ca limestone (kg Ca),1,Table 1 row per kg Ca: no CaO conversion (recommendation 7); approved in chat 2026-10-10,confirmed,FC
 fert_ca_carbonation_limestone,Ca,Ca carbonation limestone (kg Ca),1,Table 1 row per kg Ca (recommendation 7); approved in chat 2026-10-10,confirmed,FC
