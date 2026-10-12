@@ -56,12 +56,15 @@ class ManureModel(object):
     # Contents per manure type (kg per m3 of undiluted liquid manure, per t of solid manure),
     # decision L12: N, P2O5 and TAN (soluble N) from GRUDAF 2009 Table 39, NH3-N = TAN x
     # spreading EF of EMEP/EEA 2023 3.B Table 3-9, combined with the weights of
-    # data/manure_type_composition.csv. The "other" types keep the legacy sum-products
-    # (data/manure_other_legacy.csv), for which TAN is not separable.
+    # data/manure_type_composition.csv. The "other" types are world mixes of the specific types
+    # of the same form (decision L13): FAOSTAT manure N applied to soils per livestock item,
+    # grouped by data/manure_other_faostat_mapping.csv and converted to volume (mass) shares.
     _COMPOSITION_TABLE = "manure_type_composition.csv"
     _CONTENT_TABLE = "grudaf2009_table39.csv"
     _EF_TABLE = "emep2023_3b_table3_9.csv"
-    _OTHER_TABLE = "manure_other_legacy.csv"
+    _OTHER_MAPPING = "manure_other_faostat_mapping.csv"
+    _FAOSTAT_TABLE = "faostat_manure_n_applied_world.csv"
+    _OTHER_TYPES = {LiquidManureType.other: LiquidManureType, SolidManureType.other: SolidManureType}
 
     @classmethod
     def _application_ef(cls, livestock, manure_type):
@@ -73,15 +76,10 @@ class ManureModel(object):
 
     @classmethod
     def _content(cls, manure_type, quantity):
-        """Content per m3 or per t of manure [kg]; quantity is n_total, p2o5, tan or nh3_n.
-
-        Returns None for the TAN of the "other" types (not separable).
-        """
-        other = dataloader.table(cls._OTHER_TABLE)
-        if manure_type.value in other:
-            column = {"n_total": "n_kg_per_unit", "p2o5": "p2o5_kg_per_unit",
-                      "nh3_n": "nh3_n_kg_per_unit", "tan": None}[quantity]
-            return other[manure_type.value][column] if column else None
+        """Content per m3 or per t of manure [kg]; quantity is n_total, p2o5, tan or nh3_n."""
+        if manure_type in cls._OTHER_TYPES:
+            return sum(share * cls._content(component, quantity)
+                       for component, share in cls._other_shares(manure_type).items())
         contents = dataloader.table(cls._CONTENT_TABLE)
         total = 0.0
         found = False
@@ -101,6 +99,26 @@ class ManureModel(object):
         if not found:
             raise KeyError("Manure type %s not in %s" % (manure_type.value, cls._COMPOSITION_TABLE))
         return total
+
+    @classmethod
+    def _other_shares(cls, other_type):
+        """Volume (liquid) or mass (solid) shares of the specific types in an "other" mix.
+
+        FAOSTAT gives the world manure N per livestock item; the N share of each type is
+        divided by its N content per unit and normalised, so that the shares refer to m3 or t.
+        """
+        enum = cls._OTHER_TYPES[other_type]
+        form = "liquid" if enum is LiquidManureType else "solid"
+        faostat = dataloader.table(cls._FAOSTAT_TABLE)
+        n_applied = {}
+        for row in dataloader.rows(cls._OTHER_MAPPING):
+            if row["form"] == form:
+                component = enum(row["manure_type"])
+                n_applied[component] = (n_applied.get(component, 0.0)
+                                        + faostat[row["faostat_item"]]["n_applied_mean_2021_2023_kg"])
+        units = {k: v / cls._content(k, "n_total") for k, v in n_applied.items()}
+        total_units = sum(units.values())
+        return {k: v / total_units for k, v in units.items()}
 
     # Heavy metals: contents [mg/kg DM] and dry-matter shares of the farmyard-manure rows of
     # SALCAheavymetal 2023 Table 1 (decision L10); the legacy input types are redistributed to
@@ -131,14 +149,9 @@ class ManureModel(object):
     def computeSolubleN(self):
         """Soluble (ammoniacal) N applied with manure [kg N/ha] (Fix F3).
 
-        TAN content per manure type (GRUDAF 2009 Table 39, decision L12); for the "other"
-        categories the TAN is not separable from the legacy sum-product and the total N is used
-        instead.
+        TAN content per manure type (GRUDAF 2009 Table 39, decisions L12 and L13).
         """
-        def soluble(manure_type):
-            tan = self._content(manure_type, "tan")
-            return tan if tan is not None else self._content(manure_type, "n_total")
-        return self._sum_per_unit(soluble)
+        return self._sum_per_unit(lambda manure_type: self._content(manure_type, "tan"))
 
     def _sum_per_unit(self, value_per_unit):
         """sum(quantity x value_per_unit(type)): liquid m3 x dilution share, solid kg -> t."""

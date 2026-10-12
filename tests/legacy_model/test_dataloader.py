@@ -42,3 +42,11 @@ def test_manure_composition_references_existing_rows_and_weights_sum_to_one():
         assert (row["emep_livestock"], row["emep_manure_type"]) in emep
         weights[row["manure_type"]] += float(row["weight"])
     assert all(abs(w - 1.0) < 1e-12 for w in weights.values()), dict(weights)
+
+
+def test_faostat_mapping_uses_existing_items_and_manure_types():
+    items = dl.table("faostat_manure_n_applied_world.csv")
+    composition = {row["manure_type"] for row in dl.rows("manure_type_composition.csv")}
+    for row in dl.rows("manure_other_faostat_mapping.csv"):
+        assert row["faostat_item"] in items
+        assert row["manure_type"] in composition and row["manure_type"].startswith(row["form"])

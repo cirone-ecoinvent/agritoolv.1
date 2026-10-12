@@ -716,8 +716,8 @@ the Table 39 values, so N and P2O5 do not change; only the EFs change.
 | solid laying hen + broiler (kg/t) | hen manure pit/floor, broiler manure (0.5 each) | laying hens solid 0.45, broilers 0.38 | 8.5 | 5.7375 | 3.475 |
 | solid pig (kg/t) | pig manure | finishing pigs solid, 0.45 | 2.3 | 1.863 | 1.035 |
 | solid sheep / goat (kg/t) | sheep / goat manure | sheep solid, 0.90 | 2.3 | 2.07 | 2.07 |
-| liquid other (kg/m3) | legacy sum-product (O7) | - | - | 1.7765461 | 1.7765461 |
-| solid other (kg/t) | legacy sum-product (O7) | - | - | 2.00410305 | 2.00410305 |
+| liquid other (kg/m3) | FAOSTAT world mix (L13) | - | 3.174 | 1.7765461 | 1.5568 |
+| solid other (kg/t) | FAOSTAT world mix (L13) | - | 1.902 | 2.00410305 | 1.0619 |
 
 Reference cases (wheat_IT has only liquid cattle manure and does not change):
 
@@ -733,5 +733,38 @@ Reference cases (wheat_IT has only liquid cattle manure and does not change):
 | rice_IN | `Nox_as_n2o_air` | 4.78204 | 4.78808 | 1.0013 |
 | rice_IN | `nitrate_to_groundwater` | 225.51 | 225.865 | 1.0016 |
 
-Open: the "other" types. Candidate world shares from FAOSTAT (`faostat_manure_n_applied_world.csv`,
-manure N applied to soils, mean 2021-2023) are not yet used; the choice of method is with FC.
+The reference-case table above is for L12 alone (commit c3d64dc). The 12 rows of
+`manure_type_composition.csv` were signed by FC on 2026-10-12.
+
+### "Other" manure as FAOSTAT world mix (decision L13, 2026-10-12)
+
+World manure N applied to soils, mean 2021-2023 (`faostat_manure_n_applied_world.csv`), grouped
+by `manure_other_faostat_mapping.csv`; N shares converted to volume (liquid) or mass (solid)
+shares with the N content of each type.
+
+| Mix | Type | N share | Volume / mass share |
+|---|---|---|---|
+| liquid | cattle (incl. buffalo) | 0.5672 | 0.6673 |
+| liquid | pig | 0.2934 | 0.2967 |
+| liquid | laying hen | 0.1394 | 0.0359 |
+| solid | cattle (incl. buffalo) | 0.4320 | 0.6422 |
+| solid | horses, asses, mules | 0.0035 | 0.0039 |
+| solid | hen, broiler, turkey, duck litter | 0.2668 | 0.0663 |
+| solid | pig | 0.2234 | 0.2172 |
+| solid | sheep / goat | 0.0742 | 0.0703 |
+
+| Mix | N old | N new | P2O5 old | P2O5 new | TAN new | NH3-N old | NH3-N new |
+|---|---|---|---|---|---|---|---|
+| liquid other (kg/m3) | 6.33529 | 5.4119 | 3.40798 | 2.6505 | 3.1743 | 1.7765 | 1.5568 |
+| solid other (kg/t) | 10.40797 | 7.5819 | 7.40504 | 5.1644 | 1.9022 | 2.0041 | 1.0619 |
+
+The TAN of the "other" types is now known; before, the total N was used as soluble N (F3).
+
+| Case | Key | Old | New | New/old |
+|---|---|---|---|---|
+| rice_IN | `ammonia_total` | 30.3304 | 28.7146 | 0.9467 |
+| rice_IN | `N2o_air` | 1.91538 | 1.80799 | 0.9439 |
+| rice_IN | `Nox_as_n2o_air` | 4.78808 | 4.68184 | 0.9778 |
+| rice_IN | `nitrate_to_groundwater` | 225.865 | 200.614 | 0.8882 |
+
+apple_FR and wheat_IT have no "other" manure and do not change.

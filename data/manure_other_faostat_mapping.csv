@@ -1,0 +1,21 @@
+form,faostat_item,manure_type,status,reviewed_by,note
+liquid,"Cattle, dairy",liquid_manure_cattle,confirmed,FC,approved in chat 2026-10-12
+liquid,"Cattle, non-dairy",liquid_manure_cattle,confirmed,FC,approved in chat 2026-10-12
+liquid,Buffalo,liquid_manure_cattle,confirmed,FC,approved in chat 2026-10-12; buffalo grouped with cattle
+liquid,"Swine, breeding",liquid_manure_pig,confirmed,FC,approved in chat 2026-10-12
+liquid,"Swine, market",liquid_manure_pig,confirmed,FC,approved in chat 2026-10-12
+liquid,"Chickens, layers",liquid_manure_laying_hen,confirmed,FC,approved in chat 2026-10-12
+solid,"Cattle, dairy",solid_manure_cattle,confirmed,FC,approved in chat 2026-10-12
+solid,"Cattle, non-dairy",solid_manure_cattle,confirmed,FC,approved in chat 2026-10-12
+solid,Buffalo,solid_manure_cattle,confirmed,FC,approved in chat 2026-10-12; buffalo grouped with cattle
+solid,Horses,solid_manure_horses,confirmed,FC,approved in chat 2026-10-12
+solid,Asses,solid_manure_horses,confirmed,FC,approved in chat 2026-10-12
+solid,Mules and hinnies,solid_manure_horses,confirmed,FC,approved in chat 2026-10-12
+solid,"Chickens, layers",solid_manure_laying_hen,confirmed,FC,approved in chat 2026-10-12
+solid,"Chickens, broilers",solid_manure_laying_hen,confirmed,FC,approved in chat 2026-10-12
+solid,Turkeys,solid_manure_laying_hen,confirmed,FC,approved in chat 2026-10-12; turkeys grouped with hen and broiler litter
+solid,Ducks,solid_manure_laying_hen,confirmed,FC,approved in chat 2026-10-12; ducks grouped with hen and broiler litter
+solid,"Swine, breeding",solid_manure_pig,confirmed,FC,approved in chat 2026-10-12
+solid,"Swine, market",solid_manure_pig,confirmed,FC,approved in chat 2026-10-12
+solid,Sheep,solid_manure_sheep_goat,confirmed,FC,approved in chat 2026-10-12
+solid,Goats,solid_manure_sheep_goat,confirmed,FC,approved in chat 2026-10-12

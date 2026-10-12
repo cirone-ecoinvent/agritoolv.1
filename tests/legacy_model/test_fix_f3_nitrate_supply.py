@@ -80,13 +80,17 @@ def test_manure_soluble_n_is_tan():
     assert model.computeNH3() * NH3_TO_N_FACTOR == pytest.approx(nh3_as_n)
 
 
-def test_manure_other_without_tan_falls_back_to_total_n():
-    quantities = {k: 0.0 for k in LiquidManureType}
-    quantities[LiquidManureType.other] = 10.0
-    solid = {k: 0.0 for k in SolidManureType}
-    model = ManureModel({"liquid_manure_part_before_dilution": 1.0,
-                         "liquid_manure_quantities": quantities, "solid_manure_quantities": solid})
-    assert model.computeSolubleN() == pytest.approx(model.computeN())
+def test_manure_other_is_the_faostat_volume_mix_of_the_specific_types():
+    shares = ManureModel._other_shares(LiquidManureType.other)
+    assert sum(shares.values()) == pytest.approx(1.0)
+    for quantity in ("n_total", "p2o5", "tan", "nh3_n"):
+        mix = sum(s * ManureModel._content(k, quantity) for k, s in shares.items())
+        assert ManureModel._content(LiquidManureType.other, quantity) == pytest.approx(mix)
+    # N shares converted to volume shares: N per m3 of the mix is the harmonic mean
+    faostat = {k: s * ManureModel._content(k, "n_total") for k, s in shares.items()}
+    n_share = {k: v / sum(faostat.values()) for k, v in faostat.items()}
+    assert ManureModel._content(LiquidManureType.other, "n_total") == pytest.approx(
+        1.0 / sum(w / ManureModel._content(k, "n_total") for k, w in n_share.items()))
 
 
 def test_compost_soluble_n_is_tan():
