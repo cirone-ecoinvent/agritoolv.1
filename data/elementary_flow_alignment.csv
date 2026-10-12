@@ -32,8 +32,8 @@ EcospoldTemplateSubstanceUsages.java,PO4_surfacewater,Phosphate,kg,water,surface
 EcospoldTemplateSubstanceUsages.java,PO4_groundwater,Phosphate,kg,water,ground-,ok,Phosphate,329fc7d8-4011-4327-84e4-34ff76f0e42d,kg,,,
 EcospoldTemplateSubstanceUsages.java,heavymetal_to_surface_water_cd,"Cadmium, ion",kg,water,surface water,renamed,Cadmium II,af83b42f-a4e6-4457-be74-46a87798f82a,kg,,Master Data 3.12 name of the same flow,
 EcospoldTemplateSubstanceUsages.java,heavymetal_to_ground_water_cd,"Cadmium, ion",kg,water,ground-,renamed,Cadmium II,3937f5a5-b4a4-434d-9fc3-1d29064fc3f8,kg,,Master Data 3.12 name of the same flow,
-EcospoldTemplateSubstanceUsages.java,heavymetal_to_surface_water_cr,"Chromium, ion",kg,water,surface water,decision,,,,Chromium III | Chromium VI,two different substances,
-EcospoldTemplateSubstanceUsages.java,heavymetal_to_ground_water_cr,"Chromium, ion",kg,water,ground-,decision,,,,Chromium III | Chromium VI,two different substances,
+EcospoldTemplateSubstanceUsages.java,heavymetal_to_surface_water_cr,"Chromium, ion",kg,water,surface water,confirmed,Chromium III,e34d3da4-a3d5-41be-84b5-458afe32c990,kg,Chromium III | Chromium VI,"speciation chosen by FC: Cr III (dominant species in soils, fertilisers and manure; no speciation in the sources); approved in chat 2026-10-12",FC
+EcospoldTemplateSubstanceUsages.java,heavymetal_to_ground_water_cr,"Chromium, ion",kg,water,ground-,confirmed,Chromium III,1c87de06-e58f-4684-a54c-d29f1a251a87,kg,Chromium III | Chromium VI,"speciation chosen by FC: Cr III (dominant species in soils, fertilisers and manure; no speciation in the sources); approved in chat 2026-10-12",FC
 EcospoldTemplateSubstanceUsages.java,heavymetal_to_surface_water_cu,"Copper, ion",kg,water,surface water,renamed,Copper ion,6d9550e2-e670-44c1-bad8-c0c4975ffca7,kg,,Master Data 3.12 name of the same flow,
 EcospoldTemplateSubstanceUsages.java,heavymetal_to_ground_water_cu,"Copper, ion",kg,water,ground-,renamed,Copper ion,c3b659e5-35f1-408c-8cb5-b5f9b295c76e,kg,,Master Data 3.12 name of the same flow,
 EcospoldTemplateSubstanceUsages.java,heavymetal_to_surface_water_pb,Lead,kg,water,surface water,renamed,Lead II,b3ebdcc3-c588-4997-95d2-9785b26b34e1,kg,,Master Data 3.12 name of the same flow,
@@ -52,7 +52,7 @@ EcospoldTemplateSubstanceUsages.java,doc_in_waste_water,"DOC, Dissolved Organic 
 EcospoldTemplateSubstanceUsages.java,toc_in_waste_water,"TOC, Total Organic Carbon",kg,water,ground-,ok,"TOC, Total Organic Carbon",73b225ab-ddc4-4a38-9ed0-ceedee987424,kg,,,
 EcospoldTemplateSubstanceUsages.java,bod5_in_waste_water,"BOD5, Biological Oxygen Demand",kg,water,ground-,ok,"BOD5, Biological Oxygen Demand",57c27ba7-a61a-4932-8cd5-095c88ff0245,kg,,,
 EcospoldTemplateSubstanceUsages.java,heavymetal_to_soil_minus_uptake_cd,Cadmium,kg,soil,agricultural,renamed,Cadmium II,e429b852-e421-4fcb-8a9b-b0241863bfb2,kg,,Master Data 3.12 name of the same flow,
-EcospoldTemplateSubstanceUsages.java,heavymetal_to_soil_minus_uptake_cr,Chromium,kg,soil,agricultural,decision,,,,Chromium III | Chromium VI,two different substances,
+EcospoldTemplateSubstanceUsages.java,heavymetal_to_soil_minus_uptake_cr,Chromium,kg,soil,agricultural,confirmed,Chromium III,e7881581-21b3-4f5c-bd63-6b0684b5e712,kg,Chromium III | Chromium VI,"speciation chosen by FC: Cr III (dominant species in soils, fertilisers and manure; no speciation in the sources); approved in chat 2026-10-12",FC
 EcospoldTemplateSubstanceUsages.java,heavymetal_to_soil_minus_uptake_cu,Copper,kg,soil,agricultural,ok,Copper,fb876e1f-7bc3-54fb-9bb2-c06a863283de,kg,,,
 EcospoldTemplateSubstanceUsages.java,heavymetal_to_soil_minus_uptake_pb,Lead,kg,soil,agricultural,renamed,Lead II,4010918f-7fd0-4925-8fbb-8fd7a44a806c,kg,,Master Data 3.12 name of the same flow,
 EcospoldTemplateSubstanceUsages.java,heavymetal_to_soil_minus_uptake_hg,Mercury,kg,soil,agricultural,renamed,Mercury II,ed2d49f8-110d-4db4-9488-f61c349e6117,kg,,Master Data 3.12 name of the same flow,
@@ -85,7 +85,7 @@ ecospold_pesticides_substance_mapping.properties,pesti_herbicides_carfentrazone_
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_chlorbromuron,Chlorbromuron,kg,soil,agricultural,ok,Chlorbromuron,4cf834bb-0a24-5503-b163-12688b35af1e,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_chlorbufam,Chlorbufam,kg,soil,agricultural,ok,Chlorbufam,d5694174-f34c-5f47-a385-564ac1712c69,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_chloridazon,Chloridazon,kg,soil,agricultural,ok,Chloridazon,2e3da68d-e404-4377-bce9-b35244980811,kg,,,
-ecospold_pesticides_substance_mapping.properties,pesti_herbicides_chlorophen,"Phenol, pentachloro-",kg,soil,agricultural,proposed,Pentachlorophenol,ebca692a-4ef2-5ca0-86c9-435f9071b7ed,kg,,"same substance, index name vs common name",
+ecospold_pesticides_substance_mapping.properties,pesti_herbicides_chlorophen,"Phenol, pentachloro-",kg,soil,agricultural,confirmed,Pentachlorophenol,ebca692a-4ef2-5ca0-86c9-435f9071b7ed,kg,,"same substance, index name vs common name; approved in chat 2026-10-12",FC
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_chlorthal,Chlorthal,kg,soil,agricultural,ok,Chlorthal,c5a71ba0-3eee-5b52-a75b-829c650a05d4,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_chlortoluron,Chlorotoluron,kg,soil,agricultural,ok,Chlorotoluron,e8bc4c9e-c34f-4983-aea0-2433f3397a3a,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_cinidon_ethyl,Cinidon-ethyl,kg,soil,agricultural,ok,Cinidon-ethyl,c0f2ec91-162c-4706-b08c-9aa212fbe176,kg,,,
@@ -106,7 +106,7 @@ ecospold_pesticides_substance_mapping.properties,pesti_herbicides_dichlorprop_p,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_diflufenican,Diflufenican,kg,soil,agricultural,ok,Diflufenican,016da38a-40a6-483c-b328-9782dc46e802,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_dimefuron,Dimefuron,kg,soil,agricultural,ok,Dimefuron,d0193bc5-365b-4a30-b30e-34ede49d069a,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_dimethachlor,Dimethachlor,kg,soil,agricultural,ok,Dimethachlor,b3b430f2-1a9e-4db3-8379-85097a24de1f,kg,,,
-ecospold_pesticides_substance_mapping.properties,pesti_herbicides_dimethenamid,Dimethenamid,kg,soil,agricultural,proposed,Dimethenamide,71525276-3417-4d4b-9af8-0baa265de4a2,kg,,racemic dimethenamid; Dimethenamid-P is the S-enantiomer,
+ecospold_pesticides_substance_mapping.properties,pesti_herbicides_dimethenamid,Dimethenamid,kg,soil,agricultural,confirmed,Dimethenamide,71525276-3417-4d4b-9af8-0baa265de4a2,kg,,racemic dimethenamid; Dimethenamid-P is the S-enantiomer; approved in chat 2026-10-12,FC
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_dinoseb_dnbp,Dinoseb,kg,soil,agricultural,ok,Dinoseb,1eb38c24-2814-4c8e-bfdc-13467bab783c,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_diquat,Diquat,kg,soil,agricultural,ok,Diquat,063a0cee-aa71-4ea6-85ca-045c74ca1a66,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_diuron,Diuron,kg,soil,agricultural,ok,Diuron,934c5e25-5370-421c-b079-07d01c49dedb,kg,,,
@@ -175,7 +175,7 @@ ecospold_pesticides_substance_mapping.properties,pesti_herbicides_prosulfocarb,P
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_prosulfuron,Prosulfuron,kg,soil,agricultural,ok,Prosulfuron,04cd03b8-8206-4d3a-a910-59ffc0550c2c,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_pyraflufen_ethyl,Pyraflufen-ethyl,kg,soil,agricultural,ok,Pyraflufen-ethyl,2fee2825-acaa-562e-8611-e607b8f94fcc,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_pyridate,Pyridate,kg,soil,agricultural,ok,Pyridate,46bce580-a40e-4bb4-a835-083a519f3b50,kg,,,
-ecospold_pesticides_substance_mapping.properties,pesti_herbicides_quinoclamine,"2-Amino-3-chloro-1,4-naphthoquinone",kg,soil,agricultural,proposed,Quinoclamine,f9ba52c4-ffe0-53fc-9724-6c1daebcbc1c,kg,,chemical name of quinoclamine (CAS 2797-51-5),
+ecospold_pesticides_substance_mapping.properties,pesti_herbicides_quinoclamine,"2-Amino-3-chloro-1,4-naphthoquinone",kg,soil,agricultural,confirmed,Quinoclamine,f9ba52c4-ffe0-53fc-9724-6c1daebcbc1c,kg,,chemical name of quinoclamine (CAS 2797-51-5); approved in chat 2026-10-12,FC
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_quizalofop_p_ethyl,Quizalofop-P-ethyl,kg,soil,agricultural,renamed,Quizalofop-p-ethyl,7bddbf65-6f39-4ae1-bddf-d8d4632c8efe,kg,,capitalisation only,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_rimsulfuron,Rimsulfuron,kg,soil,agricultural,ok,Rimsulfuron,8b4f0e68-38d5-4bee-b647-680d3a117560,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_siduron,Siduron,kg,soil,agricultural,ok,Siduron,e6f95937-83c5-55a9-8bbb-80be75452175,kg,,,
@@ -198,7 +198,7 @@ ecospold_pesticides_substance_mapping.properties,pesti_herbicides_trifluralin,Tr
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_triclopyr,Triclopyr,kg,soil,agricultural,ok,Triclopyr,e44fd74a-5967-4e79-bad0-08e7363b630c,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_herbicides_triflusulfuron_methyl,Triflusulfuron-methyl,kg,soil,agricultural,ok,Triflusulfuron-methyl,8638150a-6413-4a26-9a97-c9fc2bbef19b,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_acibenzolar_s_methyl,Acibenzolar-S-methyl,kg,soil,agricultural,ok,Acibenzolar-S-methyl,5b834f01-a5dd-5d6c-94cb-2f5d262d3ccf,kg,,,
-ecospold_pesticides_substance_mapping.properties,pesti_fungicides_fosetyl_aluminium,Fosetyl-aluminium,kg,soil,agricultural,proposed,Fosetyl-Al,4c44e04f-9b3d-4389-bf08-1bddf9dfa9e7,kg,,"same substance, abbreviated name",
+ecospold_pesticides_substance_mapping.properties,pesti_fungicides_fosetyl_aluminium,Fosetyl-aluminium,kg,soil,agricultural,confirmed,Fosetyl-Al,4c44e04f-9b3d-4389-bf08-1bddf9dfa9e7,kg,,"same substance, abbreviated name; approved in chat 2026-10-12",FC
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_anilazine,Anilazine,kg,soil,agricultural,ok,Anilazine,dc941853-32f2-5a2b-87de-0cc7d6ce3a13,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_azaconazol,Azaconazol,kg,soil,agricultural,ok,Azaconazol,0f74b213-664e-5da8-b700-bf2c01a9c57a,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_azoxystrobin,Azoxystrobin,kg,soil,agricultural,ok,Azoxystrobin,e69b028e-e549-4869-ae4a-b85ef8bcb7a9,kg,,,
@@ -250,7 +250,7 @@ ecospold_pesticides_substance_mapping.properties,pesti_fungicides_guazatine,Guaz
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_hexaconazole,Hexaconazole,kg,soil,agricultural,ok,Hexaconazole,94ba16db-16b4-4652-b121-8682c317db58,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_hymexazol,Hymexazol,kg,soil,agricultural,ok,Hymexazol,3aa11bfe-0524-5028-8371-c98857c61949,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_imazalil,Imazalil,kg,soil,agricultural,ok,Imazalil,0964b6e9-08a5-4103-8ad6-610e8cd718c1,kg,,,
-ecospold_pesticides_substance_mapping.properties,pesti_fungicides_iprodione,Iprodion,kg,soil,agricultural,proposed,Iprodione,299f371a-61c1-4ea2-8c38-901aa74acf7d,kg,,German spelling,
+ecospold_pesticides_substance_mapping.properties,pesti_fungicides_iprodione,Iprodion,kg,soil,agricultural,confirmed,Iprodione,299f371a-61c1-4ea2-8c38-901aa74acf7d,kg,,German spelling; approved in chat 2026-10-12,FC
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_iprovalicarb,Iprovalicarb,kg,soil,agricultural,ok,Iprovalicarb,4ab7bb85-d6b6-5adc-9ccd-b0ebc9fd11ad,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_kresoxim_methyl,Kresoxim-methyl,kg,soil,agricultural,ok,Kresoxim-methyl,e7c5db65-775c-4ada-8a63-32c67792bd52,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_copper_cu,Copper,kg,soil,agricultural,ok,Copper,fb876e1f-7bc3-54fb-9bb2-c06a863283de,kg,,,
@@ -260,7 +260,7 @@ ecospold_pesticides_substance_mapping.properties,pesti_fungicides_mepanipyrim,Me
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_mepronil,Mepronil,kg,soil,agricultural,ok,Mepronil,7690a454-91c0-59bf-aaa0-3a7fdc985475,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_metalaxil,Metalaxil,kg,soil,agricultural,ok,Metalaxil,08f3db43-3185-4d9d-846a-404e27928eaf,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_metconazole,Metconazole,kg,soil,agricultural,ok,Metconazole,1defe52a-bc9b-4c03-90fb-91bd35f6ce49,kg,,,
-ecospold_pesticides_substance_mapping.properties,pesti_fungicides_metiram,Metiram,kg,soil,agricultural,missing,,,,Ziram | Mecarbam | Metosulam | Thiram,,
+ecospold_pesticides_substance_mapping.properties,pesti_fungicides_metiram,Metiram,kg,soil,agricultural,confirmed,Zineb,02156abf-3839-5778-897a-4c06444701d4,kg,Ziram | Mecarbam | Metosulam | Thiram,PROXY: Metiram not in MD 3.12; Zineb is the closest compound (zinc ethylenebis(dithiocarbamate)); new flow to be requested from the Master Data team; approved in chat 2026-10-12,FC
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_myclobutanil,Myclobutanil,kg,soil,agricultural,ok,Myclobutanil,b10642d6-cd29-4cf0-9ebe-755902c9a3ae,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_nitrothal_isopropyl,Nitrothal-isopropyl,kg,soil,agricultural,ok,Nitrothal-isopropyl,90917976-dfa0-56d0-8937-fec6deaf00b4,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_2_phenylphenol,2-Phenylphenol,kg,soil,agricultural,ok,2-Phenylphenol,5357f101-f2df-5f6e-b534-f1705b597773,kg,,,
@@ -275,8 +275,8 @@ ecospold_pesticides_substance_mapping.properties,pesti_fungicides_propamocarb_hy
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_propiconazole,Propiconazole,kg,soil,agricultural,ok,Propiconazole,f7c6455a-51e5-4aba-8361-99b98d47c47b,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_propineb,Propineb,kg,soil,agricultural,ok,Propineb,8704d23b-dc6c-5fd8-94be-60e6fabb02f5,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_proquinazid,Proquinazid,kg,soil,agricultural,ok,Proquinazid,19c48bf5-6116-5941-877a-ad23501dedb1,kg,,,
-ecospold_pesticides_substance_mapping.properties,pesti_fungicides_prothioconazol,Prothioconazol,kg,soil,agricultural,proposed,Prothioconazole,cfa6de56-8a29-4a27-8868-fb6d1f092d36,kg,,German spelling,
-ecospold_pesticides_substance_mapping.properties,pesti_fungicides_pyraclostrobin,Pyraclostrobin (prop),kg,soil,agricultural,proposed,Pyraclostrobin,c7328f5c-abaa-4786-a9ef-6706a9108382,kg,,suffix (prop) dropped,
+ecospold_pesticides_substance_mapping.properties,pesti_fungicides_prothioconazol,Prothioconazol,kg,soil,agricultural,confirmed,Prothioconazole,cfa6de56-8a29-4a27-8868-fb6d1f092d36,kg,,German spelling; approved in chat 2026-10-12,FC
+ecospold_pesticides_substance_mapping.properties,pesti_fungicides_pyraclostrobin,Pyraclostrobin (prop),kg,soil,agricultural,confirmed,Pyraclostrobin,c7328f5c-abaa-4786-a9ef-6706a9108382,kg,,suffix (prop) dropped; approved in chat 2026-10-12,FC
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_pyrazophos,Pyrazophos,kg,soil,agricultural,ok,Pyrazophos,0b27924a-660d-5cbc-8b67-c2d30dd91d39,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_pyrifenox,Pyrifenox,kg,soil,agricultural,ok,Pyrifenox,d5946f74-8384-5bb7-93f3-50d5f794e02a,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_fungicides_pyrimethanil,Pyrimethanil,kg,soil,agricultural,ok,Pyrimethanil,b2663551-c9e2-446c-88e1-0a87435667dc,kg,,,
@@ -320,7 +320,7 @@ ecospold_pesticides_substance_mapping.properties,pesti_insecticides_chlorfenvinp
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_chlorpyrifos_methyl,Chlorpyrifos methyl,kg,soil,agricultural,ok,Chlorpyrifos methyl,2b3cf153-0dd6-4b79-b0d4-b4df832f3a7e,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_clofentezine,Clofentezine,kg,soil,agricultural,ok,Clofentezine,e5d2097d-8edd-52d6-80fd-b449548e416f,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_clothianidin,Clothianidin,kg,soil,agricultural,ok,Clothianidin,1541559e-1e25-5d7b-9d0b-dc45386e7c1c,kg,,,
-ecospold_pesticides_substance_mapping.properties,pesti_insecticides_cyfluthrin,Cyfluthrin,kg,soil,agricultural,decision,,,,Beta-cyfluthrin,only the beta isomer mixture exists: use it or drop the flow,
+ecospold_pesticides_substance_mapping.properties,pesti_insecticides_cyfluthrin,Cyfluthrin,kg,soil,agricultural,confirmed,Beta-cyfluthrin,dd786e61-d387-4dc4-8314-2a5f958e7168,kg,Beta-cyfluthrin,only flow available; MD comment: CAS number is for cyfluthrin; approved in chat 2026-10-12,FC
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_cyhalothrin,Cyhalothrin,kg,soil,agricultural,ok,Cyhalothrin,63c262e9-5fd4-4160-98aa-cb0b3d0dc2d7,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_cyhexatin,Cyhexatin,kg,soil,agricultural,ok,Cyhexatin,3be7b00e-61f9-5b00-8ca4-4e497692bda1,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_cypermethrin_high_cis,Beta-cypermethrin,kg,soil,agricultural,ok,Beta-cypermethrin,6098e65f-3e52-5672-89b4-519dd8987d19,kg,,,
@@ -375,8 +375,8 @@ ecospold_pesticides_substance_mapping.properties,pesti_insecticides_pirimiphos_m
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_potassium_soap,Potassium soap,kg,soil,agricultural,ok,Potassium soap,e888a409-63ef-5a7f-aea9-92bac7f51c8c,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_profenofos,Profenofos,kg,soil,agricultural,ok,Profenofos,cab8d859-018a-4919-9324-f3febdea35e0,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_pymetrozine,Pymetrozine,kg,soil,agricultural,ok,Pymetrozine,066a904d-beba-47a4-a153-3981ca3554e0,kg,,,
-ecospold_pesticides_substance_mapping.properties,pesti_insecticides_pyrethrine,Pyrethrine,kg,soil,agricultural,decision,,,,Pyrethrins | Pyrethrin I | Pyrethrin II,group vs single components,
-ecospold_pesticides_substance_mapping.properties,pesti_insecticides_pyrethrum,Pyrethrum,kg,soil,agricultural,decision,,,,"Pyrethrum, natural | Pyrethrins",natural extract vs active components,
+ecospold_pesticides_substance_mapping.properties,pesti_insecticides_pyrethrine,Pyrethrine,kg,soil,agricultural,confirmed,Pyrethrins,69edbf6f-66cb-5e8f-8741-f34a16fed5ca,kg,Pyrethrins | Pyrethrin I | Pyrethrin II,group of the active components (CAS 8003-34-7); no data to split into Pyrethrin I and II; approved in chat 2026-10-12,FC
+ecospold_pesticides_substance_mapping.properties,pesti_insecticides_pyrethrum,Pyrethrum,kg,soil,agricultural,confirmed,"Pyrethrum, natural",3406eb86-58bf-5b89-bf9d-b858423cd168,kg,"Pyrethrum, natural | Pyrethrins",same substance: natural extract (CAS 89997-63-7); approved in chat 2026-10-12,FC
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_rotenone,Rotenone,kg,soil,agricultural,ok,Rotenone,6d9d5607-330d-4f8d-95bb-e6280c9dad6c,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_spinosad,Spinosad,kg,soil,agricultural,ok,Spinosad,f7340d88-d66b-45c8-89af-251646b2c12e,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_spirodiclofen,Spirodiclofen,kg,soil,agricultural,ok,Spirodiclofen,4bfde0c0-e613-5241-b586-f8145e5d65e4,kg,,,
@@ -387,7 +387,7 @@ ecospold_pesticides_substance_mapping.properties,pesti_insecticides_rabon,Rabon,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_thiacloprid,Thiacloprid,kg,soil,agricultural,ok,Thiacloprid,53f7bad5-fba1-54ca-94af-7abfbc18d21e,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_thiamethoxam,Thiamethoxam,kg,soil,agricultural,ok,Thiamethoxam,9a8e2785-9175-4818-83ae-fc394e2d695a,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_thiocyclam,Thiocyclam,kg,soil,agricultural,ok,Thiocyclam,2c25d5de-bb2f-5fff-bb42-f7177e88e84e,kg,,,
-ecospold_pesticides_substance_mapping.properties,pesti_insecticides_thiophanate_methyl,Thiophanat-methyl,kg,soil,agricultural,proposed,Thiophanate-methyl,423112a9-b4c4-4041-8854-57bffde7b9cc,kg,,German spelling,
+ecospold_pesticides_substance_mapping.properties,pesti_insecticides_thiophanate_methyl,Thiophanat-methyl,kg,soil,agricultural,confirmed,Thiophanate-methyl,423112a9-b4c4-4041-8854-57bffde7b9cc,kg,,German spelling; approved in chat 2026-10-12,FC
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_triazamate,Triazamate,kg,soil,agricultural,ok,Triazamate,58db0688-dd63-5506-a03e-0345b9a9294b,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_trichlorfon,Trichlorfon,kg,soil,agricultural,ok,Trichlorfon,51e8811b-04e2-4801-987c-fb0015535965,kg,,,
 ecospold_pesticides_substance_mapping.properties,pesti_insecticides_triflumuron,Triflumuron,kg,soil,agricultural,ok,Triflumuron,165e28f3-4377-573c-9d2f-52c664f43d42,kg,,,
