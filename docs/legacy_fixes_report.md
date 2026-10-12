@@ -849,3 +849,43 @@ falls slightly.
 | apple_FR | `nitrate_to_surfacewater` | 14.6305 | 14.6045 | 0.9982 |
 
 wheat_IT and rice_IN use neither compost nor sewage sludge and do not change.
+
+## 11. Land use change from the WFLDB-adapted Blonk tool, in ha (decision L16, 2026-10-12)
+
+The tool does not compute LUC emissions. It writes an input of the ecoinvent product
+"land use change, annual crop / perennial crop / paddy rice" whose amount is the formula
+`<REC_CS> * LUC_crop_specific + <REC_SR> * (1-LUC_crop_specific)` per ha and crop cycle (REC / crop
+cycles), divided by the yield of the cycle. The dataset parameter LUC_crop_specific = 1 selects the
+crop-specific approach.
+
+Source of the ratios. The two tables of the legacy `lucmodel.py` were compared with the
+WFLDB-adapted Blonk direct land use change assessment tool 2016-06-09a supplied by FC:
+
+| Table | Workbook | Values | Identical to the legacy code (1e-12) |
+|---|---|---|---|
+| `luc_blonk_country_expansion.csv` (REC_SR) | sheet "5. Country averages", column AD | 39 countries | 38; MA corrected |
+| `luc_blonk_crop_expansion.csv` (REC_CS) | sheet "6. Crop data", column AE | 1583 crop-country pairs | 1583 |
+
+The legacy value for Morocco, 0.032242306728212, has lost one digit of the workbook value
+0.03322423067282125. Turmeric uses the FAOSTAT item Ginger and pomegranate the item "Fruit,
+tropical fresh nes" as proxies, as in the legacy code (legacy, undocumented, provisional).
+
+Unit. The Blonk tool gives the element to insert in the crop process as
+`(0.4016*LUC_crop_specific+0.1999*(1-LUC_crop_specific))` in ha (apples, Brazil; the same REC values
+as the legacy code). Its land use change process "is described for 1 ha of LUC" and already contains
+the 20-year amortisation: transformation of 500 m2 per ha of LUC and emissions (CSR - CA) x 3.664 x
+1/20. The amount is therefore not divided by 20. The legacy Java template declared the exchange in
+kg, while the Master Data has ha; the writer will use ha.
+
+Rice. The Blonk tool has three crop types (annual, perennial, paddy rice), and Master Data 3.12 has
+the product "land use change, paddy rice". The legacy Java writer built the name "land use change,
+Paddy rice crop", which does not exist, so rice had no LUC exchange. Flooded rice now gets
+"land use change, paddy rice" (`luc_product_mapping.csv`).
+
+Regression: new key `luc_product` in all cases; in rice_IN the last digit of the ratios changes
+(full precision instead of 15 significant digits). No other output changes.
+
+The statistical LUC method of Quantis (2024), used by WFLDB 3.8, is not adopted. It distributes the
+LUC over time on the crop side (linear discounting) and puts the full emissions per ha in the LUC
+dataset, gives no values per crop and country, and the Master Data 3.12 products still follow the
+Blonk structure (five former land uses, land tenure products).

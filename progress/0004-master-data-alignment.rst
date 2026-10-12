@@ -37,3 +37,9 @@ Open points
 * The ecoSpold writer must apply the compound-fertiliser rule (one MAP / DAP / ANP / KNO3
   exchange, mass = min over its nutrients, rest on the generic product).
 * CO2 from seaweed lime: biogenic carbon in the Master Data, fossil in ``co2model.py``.
+* Land use change (decision L16): the exchange is in ha and is linked by geography. Master Data
+  3.12 has no "land use change, annual crop" dataset for CL, CO, CR, CI, EC, GH, ID, KE, MA, PH,
+  ZA, LK, TR, VN (BE, PL and CS are covered by the market group RER), no "land use change,
+  perennial crop" dataset for AU, CA, FI, DE, HU, IL, MA, NL, NZ, PL, RU, CS, CH, TH, UA, and
+  "land use change, paddy rice" only for CN and IN. The writer must handle crops with a non-zero
+  amount in these countries (to be agreed with the Master Data team).

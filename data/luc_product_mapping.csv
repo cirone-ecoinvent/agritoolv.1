@@ -1,0 +1,4 @@
+crop_type,flooded,md312_name,note
+annual,no,"land use change, annual crop","Blonk tool crop type Annual crops; Master Data 3.12 product in ha (decision L16)"
+annual,yes,"land use change, paddy rice","Blonk tool crop type Paddy rice; Master Data 3.12 product in ha, datasets for CN and IN only (decision L16)"
+perennial,no,"land use change, perennial crop","Blonk tool crop type Perennial crops; Master Data 3.12 product in ha (decision L16)"

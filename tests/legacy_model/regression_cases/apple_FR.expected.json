@@ -111,6 +111,7 @@
   "luc_crop_specific": 0.0,
   "luc_crop_type": "perennial",
   "luc_formula": "0.0 * LUC_crop_specific + 0.0 * (1-LUC_crop_specific)",
+  "luc_product": "land use change, perennial crop",
   "magnesium_from_fertilizer": 0.0,
   "magnesium_from_fertilizer_as_dolomite": 0.0,
   "magnesium_from_fertilizer_as_mgso4": 0.0,

@@ -84,3 +84,17 @@ def test_organic_fertiliser_composition_covers_every_type_with_an_emep_category(
     for fert_type, row in composition.items():
         assert row["emep_nfr"] in categories, fert_type
         assert 0.0 <= row["tan_kg_n_per_t_fm"] <= row["n_total_kg_per_t_fm"], fert_type
+
+
+def test_luc_tables_use_known_crops_countries_and_products():
+    crops = dl.table("crop_types.csv", numeric=False)
+    countries = dl.table("luc_blonk_country_expansion.csv")
+    for row in dl.rows("luc_blonk_crop_expansion.csv"):
+        assert row["crop"] in crops and row["country"] in countries, row
+        assert float(row["rec_crop_specific"]) >= 0.0, row
+    products = {(r["crop_type"], r["flooded"]) for r in dl.rows("luc_product_mapping.csv")}
+    assert {(r["crop_type"], r["flooded"]) for r in crops.values()} <= products
+    alignment = {r["md312_name"]: r for r in dl.rows("intermediate_exchange_alignment.csv")}
+    for row in dl.rows("luc_product_mapping.csv"):
+        assert alignment[row["md312_name"]]["status"] == "confirmed"
+        assert alignment[row["md312_name"]]["md312_unit"] == "ha"
