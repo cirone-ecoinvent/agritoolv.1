@@ -80,9 +80,14 @@ def test_organic_fertiliser_composition_covers_every_type_with_an_emep_category(
     from models.otherorganicfertilisermodel import CompostType, SludgeType
     composition = dl.table("organic_fertiliser_composition.csv")
     categories = {r["nfr"] for r in dl.rows("emep2023_3d_table3_1.csv") if r["pollutant"] == "NH3"}
+    manure_rows = {(r["nfr"], r["livestock"], r["manure_type"]) for r in dl.rows("emep2023_3b_table3_9.csv")
+                   if r["ef_application"]}
     assert set(composition) == {t.value for t in (*CompostType, *SludgeType)}
     for fert_type, row in composition.items():
-        assert row["emep_nfr"] in categories, fert_type
+        if row["emep_nfr"].startswith("3B"):  # livestock manure, decision L21
+            assert (row["emep_nfr"], row["emep_livestock"], row["emep_manure_type"]) in manure_rows, fert_type
+        else:
+            assert row["emep_nfr"] in categories, fert_type
         assert 0.0 <= row["tan_kg_n_per_t_fm"] <= row["n_total_kg_per_t_fm"], fert_type
 
 

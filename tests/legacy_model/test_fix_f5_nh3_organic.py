@@ -25,9 +25,11 @@ def test_sludge_nh3_uses_sewage_sludge_ef():
     assert _model(sludge={SludgeType.sewagesludge_liquid: 1_000}).computeNH3() == pytest.approx(3.0 * 0.13)
 
 
-def test_dried_poultry_manure_is_other_organic_waste():
-    # 1 t dry poultry droppings: 38.2 kg N/t (Agribalyse 3.1 Table 142) x 0.08 kg NH3/kg N
-    assert _model(compost={CompostType.dried_poultry_manure: 1_000}).computeNH3() == pytest.approx(38.2 * 0.08)
+def test_dried_poultry_manure_uses_the_livestock_manure_method():
+    # decision L21: 1 t dry poultry droppings, TAN 4.0 kg N/t (Agribalyse 3.1 Table 142) x EF
+    # application 0.45 (EMEP/EEA 2023 3.B Table 3-9, laying hens, solid) as NH3-N, x 17/14
+    nh3 = _model(compost={CompostType.dried_poultry_manure: 1_000}).computeNH3()
+    assert nh3 == pytest.approx(4.0 * 0.45 * N_TO_NH3)
 
 
 def test_agribalyse_contents_of_sludge_and_dried_poultry_manure():

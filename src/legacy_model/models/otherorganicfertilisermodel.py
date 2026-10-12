@@ -1,6 +1,8 @@
 from enum import Enum
 
 import dataloader
+from models.atomicmass import N_TO_NH3_FACTOR
+from models.manuremodel import ManureModel
 from models.modelEnums import HeavyMetalType
 
 class CompostType(Enum):
@@ -39,9 +41,11 @@ class OtherOrganicFertModel(object):
                         "sludge_quantities"
                        ]
     
-    # Contents per t of fresh matter (N, TAN, P2O5) and the EMEP/EEA 2023 3.D source category
-    # of each type are read from data/organic_fertiliser_composition.csv; the NH3 EF per kg N
-    # applied of that category from data/emep2023_3d_table3_1.csv (decision L15).
+    # Contents per t of fresh matter (N, TAN, P2O5) and the EMEP/EEA 2023 source category of each
+    # type are read from data/organic_fertiliser_composition.csv; the NH3 EF per kg N applied of a
+    # 3.D category from data/emep2023_3d_table3_1.csv (decision L15). Livestock manure (3.B
+    # category, decision L21) uses the spreading EF of its emep_livestock / emep_manure_type row
+    # of data/emep2023_3b_table3_9.csv, as the manure model.
     _COMPOSITION_TABLE = "organic_fertiliser_composition.csv"
     _EF_TABLE = "emep2023_3d_table3_1.csv"
 
@@ -76,13 +80,23 @@ class OtherOrganicFertModel(object):
         return self._sum_per_t(lambda fert_type: self._content(fert_type, "n_total_kg_per_t_fm"))
 
     def computeNH3(self):
-        """NH3 [kg NH3/ha] after spreading of compost and sewage sludge (decision L15).
+        """NH3 [kg NH3/ha] after spreading of compost and sewage sludge (decisions L15, L21).
 
         EMEP/EEA 2023 3.D Tier 1, Eq. (1): sum(quantity [kg FM] / 1000 * N [kg N/t FM] * EF),
         with EF in kg NH3 per kg N applied (Table 3-1), so the result is already kg NH3 (Fix F5).
+        Livestock manure (3.B category): TAN [kg N/t FM] x EF application (fraction of TAN emitted
+        as NH3-N, 3.B Table 3-9) x 17/14.
         """
-        return self._sum_per_t(lambda fert_type: self._content(fert_type, "n_total_kg_per_t_fm")
-                               * self._nh3_ef(fert_type))
+        return self._sum_per_t(self._nh3_per_t)
+
+    @classmethod
+    def _nh3_per_t(cls, fert_type):
+        """NH3 [kg NH3/t FM] after spreading of one type."""
+        row = dataloader.table(cls._COMPOSITION_TABLE)[fert_type.value]
+        if row["emep_nfr"].startswith("3B"):
+            ef = ManureModel._application_ef(row["emep_livestock"], row["emep_manure_type"])
+            return row["tan_kg_n_per_t_fm"] * ef * N_TO_NH3_FACTOR
+        return row["n_total_kg_per_t_fm"] * cls._nh3_ef(fert_type)
 
     def computeSolubleN(self):
         """Soluble (ammoniacal) N applied with compost and sludge [kg N/ha] (Fix F3)."""

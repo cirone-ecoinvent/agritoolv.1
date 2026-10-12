@@ -960,17 +960,22 @@ vinasse N stays legacy.
 | `sewagesludge_dried` | 8.4 -> 40 | 1.80 | 1.09 -> 5.20 | Agribalyse 3.1 |
 | `composttype_feather_meal` | 130.15 -> 130 | 6.50 | 10.41 -> 10.40 | Agribalyse 3.1 |
 | `composttype_horn_meal`, `horn_shavings_fine` | 130.15 -> 130 | 6.50 | 10.41 -> 10.40 | proxy feather meal (FC) |
-| `composttype_dried_poultry_manure` | 45.0 -> 38.2 | 0.83 -> 4.0 | 3.60 -> 3.06 | Agribalyse 3.1 (dry poultry droppings) |
+| `composttype_dried_poultry_manure` | 45.0 -> 38.2 | 0.83 -> 4.0 | 3.60 -> 2.19 (L21) | Agribalyse 3.1 (dry poultry droppings) |
 | `composttype_meat_and_bone_meal` | 85.5 (legacy) | 6.50 | 6.84 | TAN: proxy feather meal (FC) |
 | `composttype_castor_oil_shell_coarse` | 10.0 (legacy) | 0.83 | 0.80 | TAN: proxy green waste compost (FC) |
 | `composttype_vinasse` | 3.5 (legacy) | 0.96 | 0.28 | TAN: Agribalyse 3.1 |
 | `composttype_stone_meal` | 0 | 0 | 0 | no N (confirmed by FC) |
 
-NH3 = N x EF of EMEP/EEA 2023 3.D Table 3-1 (0.13 sewage sludge, 0.08 other organic wastes). The
+NH3 = N x EF of EMEP/EEA 2023 3.D Table 3-1 (0.13 sewage sludge, 0.08 other organic wastes), except
+dried poultry manure (see below). The
 TAN enters the N supply of the nitrate model (Fix F3). Three values remain legacy, undocumented,
 provisional: the N of meat and bone meal, castor oil shell and vinasse.
 
-Dried poultry manure stays in 3Da2c. L15 placed it there because no TAN at spreading was available;
-Agribalyse 3.1 now gives one, so the 3.B method (TAN x EF of Table 3-9) would be possible (open point).
+Dried poultry manure (decision L21). L15 placed it in 3Da2c because no TAN at spreading was
+available. With the TAN of Agribalyse 3.1 it is now treated as livestock manure, as the manure
+model does (L12): NH3-N = TAN x EF application of EMEP/EEA 2023 3.B Table 3-9, laying hens,
+"Solid, can be stacked", 0.45 (Agribalyse 3.1 Table 140 maps dry layer droppings to dry poultry
+droppings). Per t FM: 4.0 x 0.45 x 17.0306/14.0067 = 2.19 kg NH3, instead of 38.2 x 0.08 = 3.06
+with the 3.D EF. NFR 3B4gi; the row gets the new columns emep_livestock and emep_manure_type.
 
 Regression: unchanged (the three cases use only green-waste compost).
