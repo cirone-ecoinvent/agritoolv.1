@@ -9,6 +9,7 @@ Review tables (all in data/):
   hm_manure_class_mapping.csv             usable when status is confirmed (F4d)
   manure_type_composition.csv             usable when status is confirmed (F3, L12)
   manure_other_faostat_mapping.csv        idem (L13)
+  pesticide_crop_archetype_mapping.csv    usable when status is confirmed (pesticide primary distribution)
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -44,6 +45,7 @@ TABLES = [
     ("hm_manure_class_mapping.csv", ("confirmed",), ("legacy_manure_type", "salca2023_class", "share", "status", "note")),
     ("manure_type_composition.csv", ("confirmed",), ("manure_type", "grudaf_row_id", "emep_livestock", "emep_manure_type", "weight", "status")),
     ("manure_other_faostat_mapping.csv", ("confirmed",), ("form", "faostat_item", "manure_type", "status")),
+    ("pesticide_crop_archetype_mapping.csv", ("confirmed",), ("crop", "olca_crop_archetype", "status", "note")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]

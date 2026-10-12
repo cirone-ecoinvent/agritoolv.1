@@ -1,0 +1,68 @@
+crop,olca_crop_archetype,status,reviewed_by,note
+almond,Fruit trees temperate,proposed,,"nut tree, temperate"
+apple,Fruit trees temperate,proposed,,
+apricot,Fruit trees temperate,proposed,,
+asparagus_green,Vegetables leafy,proposed,,stem vegetable; no stem-vegetable archetype
+asparagus_white,Vegetables leafy,proposed,,stem vegetable; no stem-vegetable archetype
+banana,Fruit trees tropical,proposed,,
+bellpepper,Vegetables fruit,proposed,,
+blueberry,Berries,proposed,,
+cabbage_red,Vegetables leafy,proposed,,
+cabbage_white,Vegetables leafy,proposed,,
+carrot,Roots and tubers,proposed,,
+cashew,Fruit trees tropical,proposed,,"nut tree, tropical"
+cassava,Roots and tubers,proposed,,
+castor_beans,Oil-Bearing crops,proposed,,
+chick_pea,Pulses,proposed,,
+chilli,Vegetables fruit,proposed,,
+cocoa,Fruit trees tropical,proposed,,tropical tree crop
+coconut,Oil-Bearing trees,proposed,,
+coffee_arabica,Other permanent crops,proposed,,shrub plantation
+coffee_robusta,Other permanent crops,proposed,,shrub plantation
+coriander,Vegetables leafy,proposed,,herb
+cotton,Oil-Bearing crops,proposed,,fibre and oilseed crop
+cranberry,Berries,proposed,,
+eggplant,Vegetables fruit,proposed,,
+flax,Oil-Bearing crops,proposed,,"fibre flax, same species as linseed"
+ginger,Roots and tubers,proposed,,rhizome
+grape,Grapes/ Vines,proposed,,
+guar,Pulses,proposed,,
+hemp,Oil-Bearing crops,proposed,,fibre and oilseed crop
+lemon,Citrus fruit trees,proposed,,
+citruslime,Citrus fruit trees,proposed,,
+lentil,Pulses,proposed,,
+linseed,Oil-Bearing crops,proposed,,
+maizegrain,Panicoideae,proposed,,
+mandarin,Citrus fruit trees,proposed,,
+mango,Fruit trees tropical,proposed,,
+mint,Vegetables leafy,proposed,,herb
+mulberry,Other permanent crops,proposed,,tree or shrub plantation (leaves or fruit)
+oat,Pooideae,proposed,,
+olive,Oil-Bearing trees,proposed,,
+onion,Bulbs,proposed,,
+orange_fresh,Citrus fruit trees,proposed,,
+orange_processing,Citrus fruit trees,proposed,,
+palmtree,Oil-Bearing trees,proposed,,oil palm
+peach,Fruit trees temperate,proposed,,
+peanut,Oil-Bearing crops,proposed,,oilseed legume
+pear,Fruit trees temperate,proposed,,
+pearl_millet,Panicoideae,proposed,,
+pineapple,Other permanent crops,proposed,,herbaceous perennial
+pomegranate,Fruit trees temperate,proposed,,subtropical fruit tree
+potato,Roots and tubers,proposed,,
+rapeseed,Oil-Bearing crops,proposed,,
+raspberry,Berries,proposed,,
+rice,Paddy rice,proposed,,
+sesame_seed,Oil-Bearing crops,proposed,,
+soybean,Oil-Bearing crops,proposed,,oilseed legume (Pulses would also fit)
+strawberry_fresh,Berries,proposed,,
+strawberry_processing,Berries,proposed,,
+sugarbeet,Roots and tubers,proposed,,
+sugarcane,Panicoideae,proposed,,Saccharum belongs to the Panicoideae
+sunflower,Oil-Bearing crops,proposed,,
+sweetcorn,Panicoideae,proposed,,
+tea,Other permanent crops,proposed,,shrub plantation
+tomato_fresh,Vegetables fruit,proposed,,
+tomato_processing,Vegetables fruit,proposed,,
+turmeric,Roots and tubers,proposed,,rhizome
+wheat,Pooideae,proposed,,
