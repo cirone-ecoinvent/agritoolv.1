@@ -1,6 +1,15 @@
 AgriTool development guidelines
 ==============================
 
+Project folders (general rule)
+------------------------------
+
+All changes are made in ``C:\python\AgriToolV.1``. ``C:\python\sri-crop-tool`` (the legacy
+Quantis tool) is never modified: it stays only as the starting model and the reference for the
+new tool, and is read, never written (decision O3 in ``docs/DECISIONS.md``). The ecoinvent Master
+Data is never changed either; the tool adapts to it (O4). The full list of standing rules is in
+``CLAUDE.md``.
+
 Purpose and module boundaries
 -----------------------------
 
