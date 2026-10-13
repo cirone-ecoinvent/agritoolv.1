@@ -1040,3 +1040,22 @@ therefore read as `yield_main_product_per_crop_cycle` (the template field), and 
 is the yield per cycle times `crop_cycle_per_year`. The legacy code read the table as a yearly
 yield and divided it by the crop cycles, which halved the default for crops with two harvests a
 year (rice IN with two cycles: 2134 instead of 4267 kg/ha). Regression unchanged.
+
+## 16. Potato pesticides from the WFLDB Documentation 2017 (decision L25, 2026-10-13)
+
+The default total of pesticide active ingredients now comes from `default_pesticides.csv`. For
+potato the legacy values (GD_crop Pesticides_L1) were about 27.2 times the values of the WFLDB
+3.1 Documentation (Excel annex, sheet "2a) Main inputs_Arable", row 19) in all four documented
+countries. They are replaced:
+
+| Country | Legacy (kg a.i./ha) | WFLDB 2017 (kg a.i./ha) | Data level |
+|---|---|---|---|
+| CN | 75.23 | 2.76 | L1 |
+| IN | 27.22 | 1.00 | L3 |
+| RU | 23.73 | 0.87 | L1 |
+| UA | 51.92 | 1.91 | L1 |
+| US | 74.04 | - (uses GLO) | - |
+| GLO | 50.43 | 1.635 (mean of the four) | - |
+
+The other crops keep the legacy values, marked legacy, undocumented, provisional. Regression:
+unchanged (no potato case).
