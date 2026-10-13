@@ -10,6 +10,22 @@ new tool, and is read, never written (decision O3 in ``docs/DECISIONS.md``). The
 Data is never changed either; the tool adapts to it (O4). The full list of standing rules is in
 ``CLAUDE.md``.
 
+Branches and pull requests
+--------------------------
+
+Work is never committed on ``main`` (decision O8 in ``docs/DECISIONS.md``):
+
+1. Start each piece of work on its own branch from an up-to-date ``main``, named
+   ``<area>/<topic>`` (for example ``defaults/manure-yields``).
+2. Commit on the branch in small steps, running the checks before each commit.
+3. When the work is complete, push the branch and open a pull request to ``main``. Fill in
+   ``.github/pull_request_template.md``: summary, main changes, decisions, data and sources,
+   effect on results, checks, open points. The pull request is the long-term record of the
+   change.
+4. FC (``@cirone-ecoinvent``) is the only reviewer and the only person who merges into ``main``
+   (``.github/CODEOWNERS``).
+5. After the merge, update the local ``main`` and delete the branch.
+
 Purpose and module boundaries
 -----------------------------
 
