@@ -262,9 +262,9 @@ complete diff of the three snapshots.
 Old vs new outputs of the three reference cases after each of the commits that switched the
 heavy-metal model from Quantis 2019 / Freiermuth 2006 to SALCAheavymetal V1.0 (Nemecek et al.
 2023, Appendix 7, Table 1). Values in kg per ha and crop cycle; ratio = new / old. Step 8
-(ed6b10a, removal of the old tables) changed no output.
+(b5e3568, removal of the old tables) changed no output.
 
-### Step 1: Deposition, leaching and soil contents (commit 9a1699e)
+### Step 1: Deposition, leaching and soil contents (commit ef0d259)
 
 **apple_FR** (25 changed keys)
 
@@ -356,7 +356,7 @@ heavy-metal model from Quantis 2019 / Freiermuth 2006 to SALCAheavymetal V1.0 (N
 | `heavymetal_to_surface_water_pb` | 0.0013999 | 0.00240994 | 1.7215 |
 | `heavymetal_to_surface_water_zn` | 0.0172644 | 0.0209952 | 1.2161 |
 
-### Step 2: Harvest export with Table 1 plant contents, co-products and pesticide term (2a3840a)
+### Step 2: Harvest export with Table 1 plant contents, co-products and pesticide term (5f1701f)
 
 **apple_FR** (7 changed keys)
 
@@ -384,7 +384,7 @@ heavy-metal model from Quantis 2019 / Freiermuth 2006 to SALCAheavymetal V1.0 (N
 | `heavymetal_to_soil_minus_uptake_pb` | 0.00179916 | 0.00193673 | 1.0765 |
 | `heavymetal_to_soil_minus_uptake_zn` | 0.114248 | 0.12974 | 1.1356 |
 
-### Step 3: Metal contents of pesticides (ca839bc)
+### Step 3: Metal contents of pesticides (3c98a67)
 
 **apple_FR** (0 changed keys)
 
@@ -401,7 +401,7 @@ heavy-metal model from Quantis 2019 / Freiermuth 2006 to SALCAheavymetal V1.0 (N
 | `heavymetal_to_soil_zn` | 0.213597 | 0.169231 | 0.7923 |
 | `heavymetal_to_surface_water_zn` | 0.0209952 | 0.0203268 | 0.9682 |
 
-### Step 4: Mineral-fertiliser heavy metals, Hg, Ca per kg Ca, Mg (f1d5dd7)
+### Step 4: Mineral-fertiliser heavy metals, Hg, Ca per kg Ca, Mg (0a315b6)
 
 **apple_FR** (27 changed keys)
 
@@ -495,7 +495,7 @@ heavy-metal model from Quantis 2019 / Freiermuth 2006 to SALCAheavymetal V1.0 (N
 | `heavymetal_to_surface_water_ni` | 0.00590794 | 0.00590863 | 1.0001 |
 | `heavymetal_to_surface_water_zn` | 0.0203268 | 0.0203272 | 1.0000 |
 
-### Step 5: Farmyard manure (bbf65a2)
+### Step 5: Farmyard manure (89defa7)
 
 **apple_FR** (12 changed keys)
 
@@ -559,7 +559,7 @@ heavy-metal model from Quantis 2019 / Freiermuth 2006 to SALCAheavymetal V1.0 (N
 | `heavymetal_to_surface_water_cd` | 8.44301e-05 | 8.44294e-05 | 1.0000 |
 | `heavymetal_to_surface_water_zn` | 0.0203272 | 0.0203236 | 0.9998 |
 
-### Step 6: Compost and sewage sludge (b7726d5)
+### Step 6: Compost and sewage sludge (b13918a)
 
 **apple_FR** (27 changed keys)
 
@@ -599,7 +599,7 @@ heavy-metal model from Quantis 2019 / Freiermuth 2006 to SALCAheavymetal V1.0 (N
 **wheat_IT** (0 changed keys)
 
 
-### Step 7: Seed (c1c8857)
+### Step 7: Seed (0536e59)
 
 **apple_FR** (27 changed keys)
 
@@ -733,7 +733,7 @@ Reference cases (wheat_IT has only liquid cattle manure and does not change):
 | rice_IN | `Nox_as_n2o_air` | 4.78204 | 4.78808 | 1.0013 |
 | rice_IN | `nitrate_to_groundwater` | 225.51 | 225.865 | 1.0016 |
 
-The reference-case table above is for L12 alone (commit c3d64dc). The 12 rows of
+The reference-case table above is for L12 alone (commit f53c846). The 12 rows of
 `manure_type_composition.csv` were signed by FC on 2026-10-12.
 
 ### "Other" manure as FAOSTAT world mix (decision L13, 2026-10-12)
