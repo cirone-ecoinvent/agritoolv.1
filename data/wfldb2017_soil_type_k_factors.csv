@@ -1,0 +1,7 @@
+soil_type,wfldb_soil_type,clay_content_ratio,k_factor_from_clay_t_h_per_mj_mm,k_factor_panagos2014_t_h_per_mj_mm,note
+hac,HAC soil (High Activity Clay soils),0.3,0.0371,0.0347,"clay 30 %: mean of 20-40 % of arable soils (pers. com. H. Oberholzer, Tab. 6 note ***)"
+lac,LAC soils (Low Activity Clay soils),0.5,0.0359,0.01325,
+sandy,Sandy soils,0.04,0.0122,0.0122,
+spodic,Spodic soils (Podzols),0.35,0.0385,0.02735,
+volcanic,Volcanic soils,0.35,0.0385,0.0385,
+wetland,Wetland soils,0.35,0.0385,0.0032,

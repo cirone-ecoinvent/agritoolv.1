@@ -101,3 +101,31 @@ def test_water_sources_and_manure_shares_equal_the_workbook(workbook):
             continue
         cells = [ws.cell(int(r[1:]), cols[row["country"]]).value for r in row["wfldb_rows"].split("+")]
         assert float(row["share"]) == sum(cells), row
+
+
+def test_erodibility_is_the_soil_type_mix_of_documentation_tab6():
+    # decision L27: K = sum of the soil-type shares (sheet 1 rows 5-10) x K-factor ** of Tab. 6 (p. 14)
+    k_factors = dataloader.table("wfldb2017_soil_type_k_factors.csv")
+    assert {t: r["k_factor_panagos2014_t_h_per_mj_mm"] for t, r in k_factors.items()} == {
+        "hac": 0.0347, "lac": 0.01325, "sandy": 0.0122, "spodic": 0.02735, "volcanic": 0.0385, "wetland": 0.0032}
+    parameters = dataloader.table("wfldb2017_agr_system_parameters.csv")
+    for country, k in t.SOIL_ERODIBILITY_FACTOR_PER_COUNTRY.items():
+        shares = {soil: parameters[country][soil + "_soils_ratio"] for soil in k_factors}
+        assert sum(shares.values()) == pytest.approx(1.0, abs=1e-9), country
+        assert k == pytest.approx(sum(shares[s] * k_factors[s]["k_factor_panagos2014_t_h_per_mj_mm"] for s in shares))
+    assert t.SOIL_ERODIBILITY_FACTOR_PER_COUNTRY["IT"] == pytest.approx(0.0346, abs=5e-5)
+    assert set(t.SOIL_ERODIBILITY_FACTOR_PER_COUNTRY) == set(t.CLAY_CONTENT_PER_COUNTRY) - NOT_IN_WFLDB
+
+
+def test_k_factor_from_clay_column_matches_the_tab6_formula():
+    for row in dataloader.table("wfldb2017_soil_type_k_factors.csv").values():
+        x = 100.0 * row["clay_content_ratio"]
+        assert row["k_factor_from_clay_t_h_per_mj_mm"] == pytest.approx(
+            -0.00002217 * x * x + 0.00171117 * x + 0.00572691, abs=5e-5)
+
+
+@pytest.mark.parametrize("country", sorted(NOT_IN_WFLDB))
+def test_countries_without_wfldb_soil_types_keep_the_texture_lookup(country):
+    from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS
+    defaults = DefaultValuesWrapper({"country": country}, DEFAULTS_VALUES_GENERATORS)
+    assert defaults["soil_erodibility_factor"] == t.SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE[defaults["soil_texture"]]

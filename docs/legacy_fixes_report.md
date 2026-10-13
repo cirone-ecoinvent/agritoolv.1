@@ -1059,3 +1059,23 @@ countries. They are replaced:
 
 The other crops keep the legacy values, marked legacy, undocumented, provisional. Regression:
 unchanged (no potato case).
+
+## 17. Soil erodibility from the WFLDB 2017 soil types (decision L27, 2026-10-13)
+
+The default K factor was looked up by soil texture, classified from the clay content and a "sand
+content" that was in fact the WFLDB share of sandy soils (a WRB soil type, mostly below 15 %). Almost
+every country therefore fell into "medium_fine" (K 0.0438) or "fine" (0.0339). The default is now
+the national average of the WFLDB Documentation 2017 (Tab. 6, p. 14): the shares of the six soil
+types (Background Parameters sheet 1, rows 5-10) times the K-factor ** recalculated from Panagos et
+al. (2014).
+
+| Soil type | HAC | LAC | Sandy | Spodic | Volcanic | Wetland |
+|---|---|---|---|---|---|---|
+| K ** (t h/(MJ mm)) | 0.0347 | 0.01325 | 0.0122 | 0.02735 | 0.0385 | 0.0032 |
+
+New K: IT 0.0346 (was 0.0438), IN 0.0285 (0.0438), FR 0.0335 (0.0438), BR 0.0169 (0.0339); range
+0.43-0.86 x legacy. Morocco and Serbia have no WFLDB soil types and keep the texture lookup.
+
+Regression (22 keys per case): P_surfacewater_erosion wheat_IT 0.275 -> 0.217, rice_IN 0.432 ->
+0.281, apple_FR 0.066 -> 0.050 kg P/ha; heavy metals to surface water change by the same factor,
+heavy metals to soil rise accordingly (less is eroded).

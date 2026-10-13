@@ -17,7 +17,7 @@ from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUN
     YEARLY_PRECIPITATION_AS_SNOW_PER_COUNTRY, \
     WATER_CONTENT_FM_RATIO_PER_CROP, IRR_TECH_RATIO_PER_COUNTRY, \
     LAND_USE_CATEGORY_PER_CROP, CROP_FACTOR_PER_CROP, SAND_CONTENT_PER_COUNTRY, \
-    SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE, \
+    SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE, SOIL_ERODIBILITY_FACTOR_PER_COUNTRY, \
     ENERGY_GROSS_CALORIFIC_VALUE_PER_CROP_PARTIAL, \
     SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY, CARBON_CONTENT_PER_CROP, IRR_WATERUSE_RATIO_PER_COUNTRY, \
     ANNUAL_PRECIPITATION_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR
@@ -255,6 +255,16 @@ class SoilTextureDefaultGenerator(object):
             return SoilTexture.very_fine
         else:
             return SoilTexture.unknown
+
+
+class ErodibilityDefaultGenerator(object):
+    """K factor of the country from the WFLDB 2017 soil types (decision L27). Countries without WFLDB soil
+    types (MA, CS) keep the legacy lookup by soil texture, whose sand content is the share of sandy soils
+    (legacy, undocumented, provisional)."""
+    def generateDefault(self, field, generators):
+        if generators["country"] in SOIL_ERODIBILITY_FACTOR_PER_COUNTRY:
+            return SOIL_ERODIBILITY_FACTOR_PER_COUNTRY[generators["country"]]
+        return SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE[generators["soil_texture"]]
 
 
 class PerCropCyclePrecipitationDefaultGenerator(object):
@@ -538,7 +548,7 @@ DEFAULTS_VALUES_GENERATORS = {
     "anti_erosion_practice": SimpleValueDefaultGenerator(AntiErosionPractice.unknown),
     "sand_content": TableLookupDefaultGenerator("country", SAND_CONTENT_PER_COUNTRY),
     "soil_texture": SoilTextureDefaultGenerator(),
-    "soil_erodibility_factor": TableLookupDefaultGenerator("soil_texture", SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE),
+    "soil_erodibility_factor": ErodibilityDefaultGenerator(),
     "crop_factor": TableLookupDefaultGenerator("crop", CROP_FACTOR_PER_CROP),
     # CO2 model defaults
     "part_of_urea_in_UAN": SimpleValueDefaultGenerator(0.5),

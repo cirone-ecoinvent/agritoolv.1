@@ -14,10 +14,24 @@ from models.pmodel import LandUseCategory
 _WFLDB_PARAMETERS = "wfldb2017_agr_system_parameters.csv"
 _WFLDB_WATER_SOURCES = "wfldb2017_irrigation_water_sources.csv"
 _WFLDB_MANURE_SHARES = "wfldb2017_manure_animal_shares.csv"
+_WFLDB_K_FACTORS = "wfldb2017_soil_type_k_factors.csv"
 
 
 def _wfldb_country_column(column):
     return {country: row[column] for country, row in dataloader.table(_WFLDB_PARAMETERS).items()}
+
+
+def _wfldb_erodibility_per_country():
+    """K = sum of the soil-type shares x K-factor ** (recalculated from Panagos et al. 2014) of the WFLDB
+    Documentation 2017, Tab. 6 (decision L27); countries without WFLDB soil types (MA, CS) are left out."""
+    k_factors = {soil_type: row["k_factor_panagos2014_t_h_per_mj_mm"]
+                 for soil_type, row in dataloader.table(_WFLDB_K_FACTORS).items()}
+    erodibility = {}
+    for country, row in dataloader.table(_WFLDB_PARAMETERS).items():
+        shares = {soil_type: row[soil_type + "_soils_ratio"] for soil_type in k_factors}
+        if None not in shares.values():
+            erodibility[country] = sum(shares[t] * k_factors[t] for t in k_factors)
+    return erodibility
 
 
 def _wfldb_manure_shares(manure, manure_type):
@@ -44,6 +58,8 @@ IRR_WATERUSE_RATIO_PER_COUNTRY = {
     for country, row in dataloader.table(_WFLDB_WATER_SOURCES).items()}
 MANURE_LIQUID_RATIO_PER_COUNTRY = _wfldb_manure_shares("liquid", LiquidManureType)
 MANURE_SOLID_RATIO_PER_COUNTRY = _wfldb_manure_shares("solid", SolidManureType)
+# t h/(MJ mm)
+SOIL_ERODIBILITY_FACTOR_PER_COUNTRY = _wfldb_erodibility_per_country()
 
 #Generated from GD_crop GrossEnergy_C_L1 column D, kgC/kgDM
 # Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
