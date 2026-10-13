@@ -1,0 +1,36 @@
+wfldb_crop,n_main_g_per_kg_fm,n_residue_g_per_kg_fm,p2o5_main_g_per_kg_fm,k2o_main_g_per_kg_fm,comment,source,wfldb_row
+Almond,20.369400000000002,3.1,6.022018348623853,12.525783132530123,"entire fruit (kernel 51%, hull 25% , fruit 24% (taken from peach))",Souci et al. 2000,4
+Apple,0.5,3.1,0.25229357798165136,1.4698795180722892,only edible part of main product,Souci et al. 2000,5
+Apricot,1.4000000000000001,3.1,0.48165137614678905,3.3614457831325306,only edible part of main product,Souci et al. 2000,6
+Asparagus,3.1,3.0700800000000004,1.0321100917431192,2.433734939759036,only edible part of main product; N  in haulm taken from carrots,Souci et al. 2000,7
+Banana,1.82208,0.5875199999999999,0.45206422018348624,5.27710843373494,main product = fruits with peel,feedipedia.org,8
+Carrot,1.6,3.0700800000000004,0.8027522935779817,3.8674698795180724,"main product = carrot root (only edible part!), co-product = tops, fresh",Souci et al. 2000,9
+Cocoa,17.860392,3.1,9.648715596330275,43.886819277108444,entire fruit (beans i.e. powder = 33% and pod 66%),Souci et al. 2000,10
+Coconut,8.116624000000002,3.1,3.4050000000000002,18.086469879518077,"entire fruit (meat 68%, mesokarp 27% and water 5%)",Souci et al. 2000,11
+Coffee,15.22504504,3.1,2.9566614678899086,14.347518072289159,"entire fruit (green bean 55%, hull 12% and pulp 28%)",Souci et al. 2000,12
+Lemon,1.6432,3.1,0.7247706422018348,1.987951807228916,"citrus fruits, whole fruit (including peel)",feedipedia (K from orange: Souci et al. 2000),13
+Linseed,54.5,6.0,12.0,9.5,grains and straw,Flisch et al. 2009,14
+MaizeGrain,13.0,7.3,5.9,4.0,grains and haulm ,Flisch et al. 2009,15
+Mandarin,1.6432,3.1,0.7247706422018348,1.987951807228916,"citrus fruits, whole fruit (including peel)",feedipedia (K from orange: Souci et al. 2000),16
+Mint,6.1,1.4,1.7201834862385321,3.132530120481928,edible part = leaves. N haulm taken from patato,www.naehrwertdaten.ch,17
+Oat,16.0,5.0,8.0,5.0,"winter, grains and straw",Flisch et al. 2009,18
+Olive,4.55072,3.1,1.7436697247706423,1.2550361445783134,"green marinated, whole fruit (including kernel). Kernel: oil palm kernel used as proxy ",Souci et al. 2000,19
+Onion,1.9,1.4,0.7568807339449541,1.951807228915663,"only edible part of main product, N haulm taken from patato",Souci et al. 2000,20
+Orange,1.6432,3.1,0.7247706422018348,1.987951807228916,"citrus fruits, whole fruit (including peel)",feedipedia (K from orange: Souci et al. 2000),21
+PalmFruitBunch,6.0,0.0,2.293577981651376,9.63855421686747,whole plant,ecocrop.fao.org,22
+Peach,1.2,3.1,0.48165137614678905,2.3373493975903616,only edible part of main product,Souci et al. 2000,23
+Peanut,40.089279999999995,35.0,6.549082568807339,7.9060240963855435,"entire fruit (kernel 80%, hull 20%), N haulm or stem from soybean ",Souci et al. 2000,24
+Pear,0.8,3.1,0.27522935779816515,1.3975903614457834,only edible part of main product,Souci et al. 2000,25
+Potato,3.0,1.4,1.3,5.4,tuber and haulm,Flisch et al. 2009,26
+Rapeseed,26.1,7.0,14.6,8.5,grains,Flisch et al. 2009,27
+Rice,12.5,6.23616,6.467889908256881,2.8674698795180724,grain (unpolished) and straw,Souci et al. 2000,28
+Soybean,60.0,35.0,11.7,19.3,grain and straw,Flisch et al. 2009,29
+Strawberry,1.3,1.4,0.5963302752293578,1.9397590361445787,"only edible part of main product, N haulm or stem taken from patato",Souci et al. 2000,30
+SugarBeet,1.2,3.3,0.6,2.0,main product and haulm,Flisch et al. 2009,31
+SugarCane,1.779072,0.0,0.570183486238532,5.55469879518072,"forage, whole plant, fesh. N multiplied by 1.2 (20% remain on field)",feedipedia.org,32
+Sunflower,31.5,9.0,11.0,8.4,grains and haulm,Flisch et al. 2009,33
+SweetCorn,7.788000000000001,0.0,3.168,8.58,whole plant,Flisch et al. 2009,34
+Tea,40.7,3.1,7.201834862385321,19.759036144578314,"black tea, only consumed part",Souci et al. 2000,35
+Tomato,1.5,1.4,0.5045871559633027,2.91566265060241,"only edible part of main product, N haulm or stem taken from patato",Souci et al. 2000,36
+Vanilla,9.6,3.1,0.0,0.0,only edible part of product ,www.naehrwertdaten.ch,37
+Wheat,20.2,3.1,8.2,4.3,grains and straw,Flisch et al. 2009,38

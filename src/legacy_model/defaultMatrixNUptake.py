@@ -1,4 +1,5 @@
 # legacy, undocumented, provisional: all matrices of this module (generated from the Quantis workbook GD_crop)
+# Not used for the crops of data/n_uptake_crop_parameters.csv: their default N uptake is computed from the yield (decision L28)
 
 #from GD_crop Nuptake_L1
 # country: =SI(ESTNUM(B4),""""&B$3&""":"&B4&",","")

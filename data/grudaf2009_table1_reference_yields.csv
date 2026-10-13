@@ -1,0 +1,10 @@
+grudaf_crop,main_product,main_reference_yield_dt_per_ha,by_product,by_product_reference_yield_dt_per_ha,n_uptake_main_kg_per_ha,n_uptake_by_product_kg_per_ha,page
+Winterweizen (Brot- und Biskuitweizen),Körner,60,Stroh,70,121,22,7
+Winterhafer,Körner,55,Stroh,70,88,35,8
+Körnermais,Körner,95,Stroh,105,124,77,9
+Kartoffeln (Speisekartoffeln und technische Verarbeitung),Knollen,450,Kraut,200,135,28,9
+Zuckerrüben,Rüben,750,Kraut/Köpfe,500,90,165,9
+Winterraps,Körner,35,Stroh,65,91,46,10
+Sonnenblume,Körner,30,Stroh,60,95,54,10
+Öllein,Körner,20,Stroh,25,109,15,10
+Sojabohnen,Körner,30,Stroh,30,180,105,11

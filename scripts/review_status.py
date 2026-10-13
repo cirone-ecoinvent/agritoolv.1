@@ -12,6 +12,7 @@ Review tables (all in data/):
   pesticide_crop_archetype_mapping.csv    usable when status is confirmed (pesticide primary distribution)
   faostat_crop_item_mapping.csv           usable when status is confirmed (default yield, L23)
   faostat_country_mapping.csv             idem
+  n_uptake_crop_parameters.csv            usable when status is confirmed (default N uptake, L28)
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -50,6 +51,7 @@ TABLES = [
     ("pesticide_crop_archetype_mapping.csv", ("confirmed",), ("crop", "olca_crop_archetype", "status", "note")),
     ("faostat_crop_item_mapping.csv", ("confirmed",), ("crop", "faostat_item_code", "faostat_item", "match", "status")),
     ("faostat_country_mapping.csv", ("confirmed",), ("country", "faostat_area_code", "faostat_area", "status")),
+    ("n_uptake_crop_parameters.csv", ("confirmed",), ("crop", "wfldb_crop", "grudaf_crop", "residue_ratio", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]

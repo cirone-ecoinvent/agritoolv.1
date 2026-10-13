@@ -1,0 +1,24 @@
+crop,wfldb_crop,grudaf_crop,residue_ratio,note,status,reviewed_by
+wheat,Wheat,Winterweizen (Brot- und Biskuitweizen),,,confirmed,FC
+oat,Oat,Winterhafer,,Sommerhafer has the same reference yields,confirmed,FC
+maizegrain,MaizeGrain,Körnermais,,,confirmed,FC
+potato,Potato,Kartoffeln (Speisekartoffeln und technische Verarbeitung),,,confirmed,FC
+sugarbeet,SugarBeet,Zuckerrüben,,,confirmed,FC
+rapeseed,Rapeseed,Winterraps,,,confirmed,FC
+sunflower,Sunflower,Sonnenblume,,,confirmed,FC
+linseed,Linseed,Öllein,,,confirmed,FC
+soybean,Soybean,Sojabohnen,,,confirmed,FC
+palmtree,PalmFruitBunch,,,no residue N in WFLDB sheet 4 (whole plant),confirmed,FC
+sugarcane,SugarCane,,,no residue N in WFLDB sheet 4 (whole plant),confirmed,FC
+sweetcorn,SweetCorn,,,no residue N in WFLDB sheet 4 (whole plant),confirmed,FC
+asparagus_green,Asparagus,,1.0,"residue ratio of the legacy N uptake matrix; legacy, undocumented, provisional",confirmed,FC
+asparagus_white,Asparagus,,1.0,"residue ratio of the legacy N uptake matrix; legacy, undocumented, provisional",confirmed,FC
+banana,Banana,,0.3333333333333333,"residue ratio of the legacy N uptake matrix (1/3); legacy, undocumented, provisional",confirmed,FC
+carrot,Carrot,,0.67,"residue ratio of the legacy N uptake matrix; legacy, undocumented, provisional",confirmed,FC
+onion,Onion,,0.2,"residue ratio of the legacy N uptake matrix; legacy, undocumented, provisional",confirmed,FC
+peanut,Peanut,,1.0,"residue ratio of the legacy N uptake matrix; legacy, undocumented, provisional",confirmed,FC
+rice,Rice,,1.0,"residue ratio of the legacy N uptake matrix; legacy, undocumented, provisional",confirmed,FC
+strawberry_fresh,Strawberry,,0.2,"residue ratio of the legacy N uptake matrix; legacy, undocumented, provisional",confirmed,FC
+strawberry_processing,Strawberry,,0.2,"residue ratio of the legacy N uptake matrix; legacy, undocumented, provisional",confirmed,FC
+tomato_fresh,Tomato,,0.4444,"residue ratio of the legacy N uptake matrix; legacy, undocumented, provisional",confirmed,FC
+tomato_processing,Tomato,,0.4444,"residue ratio of the legacy N uptake matrix; legacy, undocumented, provisional",confirmed,FC

@@ -61,6 +61,29 @@ MANURE_SOLID_RATIO_PER_COUNTRY = _wfldb_manure_shares("solid", SolidManureType)
 # t h/(MJ mm)
 SOIL_ERODIBILITY_FACTOR_PER_COUNTRY = _wfldb_erodibility_per_country()
 
+
+def _n_uptake_per_kg_main_product():
+    """kg N per kg fresh main product, residues included (WFLDB Guidelines v3.0 section 3.6.1; decision L28):
+    (N main product + residue ratio x N residues) / 1000, with the contents of the WFLDB Background Parameters
+    2017 sheet 4 and the residue ratio = by-product / main product reference yield of GRUDAF 2009 Tab. 1
+    (or the legacy ratio given in n_uptake_crop_parameters.csv)."""
+    contents = dataloader.table("wfldb2017_crop_nutrient_contents.csv")
+    grudaf = dataloader.table("grudaf2009_table1_reference_yields.csv")
+    n_uptake = {}
+    for row in dataloader.rows("n_uptake_crop_parameters.csv"):
+        content = contents[row["wfldb_crop"]]
+        if row["grudaf_crop"]:
+            reference = grudaf[row["grudaf_crop"]]
+            ratio = reference["by_product_reference_yield_dt_per_ha"] / reference["main_reference_yield_dt_per_ha"]
+        else:
+            ratio = float(row["residue_ratio"] or 0.0)
+        n_uptake[row["crop"]] = (content["n_main_g_per_kg_fm"] + ratio * content["n_residue_g_per_kg_fm"]) / 1000.0
+    return n_uptake
+
+
+# kg N / kg FM of the main product
+N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP = _n_uptake_per_kg_main_product()
+
 #Generated from GD_crop GrossEnergy_C_L1 column D, kgC/kgDM
 # Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
 # Castor bean: http://www.modernscientificpress.com/Journals/ViewArticle.aspx?gkN1Z6Pb60HNQPymfPQlZIiDnrBBtQSfoCsKufNADqZ4TrWuS7h5KvbfIK0SLlFq

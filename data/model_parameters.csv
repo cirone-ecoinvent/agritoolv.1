@@ -33,3 +33,4 @@ p_corr_slurry_runoff,0.00875,1/(kg P2O5),Prasuhn 2006 via Quantis 2019: Fro term
 p_corr_manure_runoff,0.005,1/(kg P2O5),Prasuhn 2006 via Quantis 2019: Fro term 0.4/80 x P2O5 solid manure,2.5.2
 liquid_manure_density_kg_per_m3,1020,kg/m3,"Derived by FC (2026-10-12) from the general comment of the ecoinvent v3.12 dataset ""manure, liquid, cattle"" (Recycled Content cut-off), which reports 7.5 % dry matter; replaces the legacy 1006 kg/m3 (decision L18)",2.7
 hm_pesticide_harvest_export_fraction,0.05,-,"Audsley et al. (1997) via SALCAheavymetal V1.0 (Nemecek et al. 2023, Appendix 7) Eq. 4, A_p: fraction of the metals of pesticides exported with the harvest",2.7
+mineral_n_share_of_n_uptake,0.8,kg N mineral / kg N uptake,WFLDB Guidelines v3.0 (2016) section 3.6.2: ratio of N applied as mineral fertilisers to total N = 0.8 for all crops and countries (L0); total N input = N uptake (section 3.6.1). Decision L28,-

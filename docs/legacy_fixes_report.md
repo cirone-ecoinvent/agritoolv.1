@@ -1079,3 +1079,34 @@ New K: IT 0.0346 (was 0.0438), IN 0.0285 (0.0438), FR 0.0335 (0.0438), BR 0.0169
 Regression (22 keys per case): P_surfacewater_erosion wheat_IT 0.275 -> 0.217, rice_IN 0.432 ->
 0.281, apple_FR 0.066 -> 0.050 kg P/ha; heavy metals to surface water change by the same factor,
 heavy metals to soil rise accordingly (less is eroded).
+
+## 18. N uptake and mineral N computed from the yield (decision L28, 2026-10-13)
+
+The default N uptake and mineral N were crop x country matrices (GD_crop Nuptake_L1 and
+NMineral_L1). Analysis showed that they are the WFLDB L1 formula applied to the 2009-2012 yields:
+N uptake = yield x (N main product + k x N residues), with the contents of the WFLDB Background
+Parameters 2017 (sheet 4) and k = by-product / main product reference yield of GRUDAF 2009 (Tab. 1,
+supplied by FC), and mineral N = 0.8 x N uptake (WFLDB Guidelines v3.0, 3.6.2). The formula is now
+evaluated with the yield per crop cycle of the dataset, so N uptake no longer stays at the value of
+an unrelated yield.
+
+| Crop | GRUDAF 2009 Tab. 1 (dt/ha, main / by-product) | k | kg N per t main product |
+|---|---|---|---|
+| wheat | 60 / 70 | 1.167 | 23.82 |
+| oat | 55 / 70 | 1.273 | 22.36 |
+| grain maize | 95 / 105 | 1.105 | 21.07 |
+| potato | 450 / 200 | 0.444 | 3.62 |
+| sugar beet | 750 / 500 | 0.667 | 3.40 |
+| rapeseed | 35 / 65 | 1.857 | 39.10 |
+| sunflower | 30 / 60 | 2.000 | 49.50 |
+| linseed | 20 / 25 | 1.250 | 62.00 |
+| soybean | 30 / 30 | 1.000 | 95.00 |
+
+Palm, sugar cane and sweet corn have no residue N in sheet 4. Asparagus, banana, carrot, onion,
+peanut, rice, strawberry and tomato use the k of the legacy matrix (legacy, undocumented,
+provisional). Tree crops and the crops outside sheet 4 keep the legacy matrices.
+
+Regression: wheat_IT N uptake 56.0 (legacy GLO, no IT value) -> 154.8 kg N/ha with the template
+yield 6500 kg/ha; nitrate to groundwater 123.6 -> 81.6, to surface water 53.0 -> 35.0, N2O 4.995 ->
+4.835 kg/ha. rice_IN 64.5 -> 93.7 kg N/ha; nitrate to groundwater 200.6 -> 132.8, N2O 1.808 -> 1.628.
+apple_FR unchanged. Mineral N is given in all three templates.

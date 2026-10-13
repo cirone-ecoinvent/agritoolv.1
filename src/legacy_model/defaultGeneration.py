@@ -20,7 +20,8 @@ from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUN
     SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE, SOIL_ERODIBILITY_FACTOR_PER_COUNTRY, \
     ENERGY_GROSS_CALORIFIC_VALUE_PER_CROP_PARTIAL, \
     SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY, CARBON_CONTENT_PER_CROP, IRR_WATERUSE_RATIO_PER_COUNTRY, \
-    ANNUAL_PRECIPITATION_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR
+    ANNUAL_PRECIPITATION_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR, \
+    N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP
 from directMappingEnums import PlasticDisposal, Plantprotection, Soilcultivation, \
     Sowingplanting, Fertilisation, Harvesting, OtherWorkProcesses, Biowaste
 from models.atomicmass import MA_CO2, MA_C
@@ -375,7 +376,12 @@ class CropCountryMatrixLookupDefaultGenerator(object):
 
 
 class NitrogenUptakeGenerator(object):
+    """kg N/(ha and crop cycle). Crops of n_uptake_crop_parameters.csv: yield per crop cycle x N per kg of main
+    product incl. residues (WFLDB 2017 / GRUDAF 2009, decision L28). Other crops: legacy matrix (legacy,
+    undocumented, provisional; pineapple 2 % of the dry yield)."""
     def generateDefault(self, field, generators):
+        if generators["crop"] in N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP:
+            return generators["yield_main_product_per_crop_cycle"] * N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP[generators["crop"]]
         if (generators["crop"] == "pineapple"):
             return generators["yield_main_product_dry_per_crop_cycle"] * 0.02
         currentCropTable = NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY[generators["crop"]]
@@ -383,6 +389,16 @@ class NitrogenUptakeGenerator(object):
             return currentCropTable[generators["country"]]
         else:
             return currentCropTable["GLO"]
+
+
+class MineralNitrogenDefaultGenerator(object):
+    """kg N/(ha and crop cycle). Crops with a computed N uptake: mineral share of the N input (WFLDB Guidelines
+    v3.0 section 3.6.2, total N input = N uptake) x N uptake (decision L28). Other crops: legacy matrix."""
+    def generateDefault(self, field, generators):
+        if generators["crop"] in N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP:
+            return dataloader.param("mineral_n_share_of_n_uptake") * generators["nitrogen_uptake_by_crop"]
+        return CropCountryMatrixLookupDefaultGenerator(
+            NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY).generateDefault(field, generators)
 
 
 class FlatRatioRepartitionGenerator(object):
@@ -494,8 +510,7 @@ DEFAULTS_VALUES_GENERATORS = {
     "yield_main_product_dry_per_crop_cycle": DryYieldGenerator(),
     "pest_horticultural_oil": SimpleValueDefaultGenerator(0.0),
     # Fertiliser defaults
-    "nitrogen_from_mineral_fert": CropCountryMatrixLookupDefaultGenerator(
-        NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY),
+    "nitrogen_from_mineral_fert": MineralNitrogenDefaultGenerator(),
     "p2O5_from_mineral_fert": SimpleValueDefaultGenerator(0.0),
     # NOTE: No default for now, maybe in fertistat
     "k2O_from_mineral_fert": SimpleValueDefaultGenerator(0.0),
