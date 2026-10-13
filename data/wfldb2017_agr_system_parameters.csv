@@ -1,11 +1,11 @@
-country,annual_precipitation_mm,clay_content_ratio,sandy_soils_ratio,humus_content_ratio,soil_ph_le7_ratio,precipitation_as_snow_ratio,note
+country,annual_precipitation_mm,clay_content_ratio,sandy_soils_ratio,soil_organic_carbon_ratio,soil_ph_le7_ratio,precipitation_as_snow_ratio,note
 AR,559.045870807,0.29246666331203136,0.04018014391385297,0.0148,0.0,0.0,
 AU,473.091499829,0.25492118947026327,0.25338194670133246,0.0063,0.4,0.0,
 BE,874.297532025,0.30817850637522765,0.020036429872495442,0.0132,0.8,0.0,"soil_ph_le7_ratio: proxy in WFLDB 2017 (L0, orange cell)"
 BR,1762.97099306,0.4373764127764128,0.04285012285012285,0.0121,0.95,0.0,
 CA,457.469053257,0.3112352587154503,0.0100422280913798,0.042800000000000005,0.9,0.5354418939120925,
 CL,631.170165709,0.30654616511968735,0.0180752320468979,0.0223,0.5,0.0,
-CN,574.773938266,0.2949143349440012,0.08859422407012023,0.02,0.35,0.09326265718673231,"humus_content_ratio: estimate of 2% from WFLDB Documentation 2017 p. 14 note 3 (""except for China where an estimate of 2% is used as default""); workbook cell J13 is 0; legacy code had 0.0229 (mean of the other countries)"
+CN,574.773938266,0.2949143349440012,0.08859422407012023,0.02,0.35,0.09326265718673231,"soil_organic_carbon_ratio: estimate of 2% from WFLDB Documentation 2017 p. 14 note 3 (""except for China where an estimate of 2% is used as default""); workbook cell J13 is 0; legacy code had 0.0229 (mean of the other countries)"
 CO,2618.58518334,0.3668298192771084,0.08132530120481928,0.0382,0.95,0.0,
 CR,3268.2661656,0.3652136752136752,0.0,0.033,1.0,0.0,
 CI,1356.08177591,0.4740684309008287,0.014969259556268377,0.0089,1.0,0.0,

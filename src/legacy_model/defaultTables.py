@@ -33,8 +33,8 @@ ANNUAL_PRECIPITATION_PER_COUNTRY = _wfldb_country_column("annual_precipitation_m
 CLAY_CONTENT_PER_COUNTRY = _wfldb_country_column("clay_content_ratio")
 # WFLDB share of sandy soils (WRB soil type), used as sand content of the soil texture (L22)
 SAND_CONTENT_PER_COUNTRY = _wfldb_country_column("sandy_soils_ratio")
-# WFLDB "Humus content", calculated from the carbon content of the topsoil; used as kg C/kg soil (L22)
-SOIL_CARBON_CONTENT_PER_COUNTRY = _wfldb_country_column("humus_content_ratio")
+# topsoil organic carbon, kg C/kg soil (WFLDB row "Humus content", calculated from the carbon content; L26)
+SOIL_CARBON_CONTENT_PER_COUNTRY = _wfldb_country_column("soil_organic_carbon_ratio")
 SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY = _wfldb_country_column("soil_ph_le7_ratio")
 YEARLY_PRECIPITATION_AS_SNOW_PER_COUNTRY = _wfldb_country_column("precipitation_as_snow_ratio")
 IRR_WATERUSE_RATIO_PER_COUNTRY = {
