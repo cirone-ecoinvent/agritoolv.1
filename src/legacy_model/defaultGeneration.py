@@ -13,7 +13,7 @@ from defaultMatrixTotalPesticides import TOTAL_PESTICIDES_PER_CROP_PER_COUNTRY
 from defaultMatrixYieldPerCropCycle import YIELD_PER_CROP_CYCLE_PER_CROP_PER_COUNTRY
 from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUNTRY, \
     ROOTING_DEPTH_PER_CROP, FERT_N_RATIO_PER_COUNTRY, FERT_P_RATIO_PER_COUNTRY, FERT_K_RATIO_PER_COUNTRY, \
-    MANURE_LIQUID_RATIO_PER_COUNTRY, MANURE_SOLID_RATIO_PER_COUNTRY, \
+    MANURE_LIQUID_RATIO_PER_COUNTRY, MANURE_SOLID_RATIO_PER_COUNTRY, MANURE_LIQUID_N_FRACTION_PER_COUNTRY, \
     YEARLY_PRECIPITATION_AS_SNOW_PER_COUNTRY, \
     WATER_CONTENT_FM_RATIO_PER_CROP, IRR_TECH_RATIO_PER_COUNTRY, \
     LAND_USE_CATEGORY_PER_CROP, CROP_FACTOR_PER_CROP, SAND_CONTENT_PER_COUNTRY, \
@@ -30,6 +30,7 @@ from models.fertilisermodel import CaFertiliserType, ZnFertiliserType
 import dataloader
 from models.hmmodel import PesticideType, METAL_COLUMNS
 from models.irrigationmodel import IrrigationType
+from models.manuremodel import ManureModel
 from models.modelEnums import SoilTexture
 from models.otherorganicfertilisermodel import CompostType, SludgeType
 from models.pmodel import LandUseCategory
@@ -401,6 +402,30 @@ class MineralNitrogenDefaultGenerator(object):
             NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY).generateDefault(field, generators)
 
 
+class ManureDefaultGenerator(object):
+    """Total liquid manure [m3/ha] or solid manure [kg/ha] (decision L29). Crops with a computed N uptake: the
+    available N (GRUDAF Nverf) of the manure is the organic share of the N input, (1 - mineral share) x N uptake
+    (WFLDB Guidelines v3.0 section 3.6.2), split with the country's share of manure N applied as liquid manure and
+    divided by the available N per m3 (diluted) or per kg of the manure mix in use. Other crops: legacy matrix."""
+    def __init__(self, liquid, legacy_table):
+        self._liquid = liquid
+        self._legacy = CropCountryMatrixLookupDefaultGenerator(legacy_table)
+
+    def generateDefault(self, field, generators):
+        if generators["crop"] not in N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP:
+            return self._legacy.generateDefault(field, generators)
+        organic_n = (1.0 - dataloader.param("mineral_n_share_of_n_uptake")) * generators["nitrogen_uptake_by_crop"]
+        liquid_fraction = MANURE_LIQUID_N_FRACTION_PER_COUNTRY[generators["country"]]
+        if self._liquid:
+            n_per_unit = generators["liquid_manure_part_before_dilution"] * ManureModel.mix_content(
+                generators["liquid_manure_proportions"], "n_available")
+            n_manure = organic_n * liquid_fraction
+        else:
+            n_per_unit = ManureModel.mix_content(generators["solid_manure_proportions"], "n_available") / 1000.0
+            n_manure = organic_n * (1.0 - liquid_fraction)
+        return n_manure / n_per_unit if n_per_unit else 0.0
+
+
 class FlatRatioRepartitionGenerator(object):
     def __init__(self, enumClass):
         self._enumClass = enumClass
@@ -530,8 +555,8 @@ DEFAULTS_VALUES_GENERATORS = {
     "soil_with_ph_under_or_7": TableLookupDefaultGenerator("country", SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY),
     # Manure defaults
     "liquid_manure_part_before_dilution": SimpleValueDefaultGenerator(0.5),
-    "total_manureliquid": CropCountryMatrixLookupDefaultGenerator(TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY),
-    "total_manuresolid": CropCountryMatrixLookupDefaultGenerator(TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY),
+    "total_manureliquid": ManureDefaultGenerator(True, TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY),
+    "total_manuresolid": ManureDefaultGenerator(False, TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY),
     "liquid_manure_proportions": TableLookupDefaultGenerator("country", MANURE_LIQUID_RATIO_PER_COUNTRY),
     "solid_manure_proportions": TableLookupDefaultGenerator("country", MANURE_SOLID_RATIO_PER_COUNTRY),
     "liquid_manure_quantities": RatiosToValuesConvertor("liquid_manure_proportions", "total_manureliquid"),

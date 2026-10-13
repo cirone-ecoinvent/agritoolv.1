@@ -59,11 +59,14 @@ class ManureModel(object):
     # data/manure_type_composition.csv. The "other" types are world mixes of the specific types
     # of the same form (decision L13): FAOSTAT manure N applied to soils per livestock item,
     # grouped by data/manure_other_faostat_mapping.csv and converted to volume (mass) shares.
+    # The default shares per country use the same mapping with the FAOSTAT N of the country
+    # (decision L29).
     _COMPOSITION_TABLE = "manure_type_composition.csv"
     _CONTENT_TABLE = "grudaf2009_table39.csv"
     _EF_TABLE = "emep2023_3b_table3_9.csv"
-    _OTHER_MAPPING = "manure_other_faostat_mapping.csv"
+    _FAOSTAT_MAPPING = "manure_other_faostat_mapping.csv"
     _FAOSTAT_TABLE = "faostat_manure_n_applied_world.csv"
+    _FAOSTAT_COUNTRY_TABLE = "faostat_manure_n_applied_country.csv"
     _OTHER_TYPES = {LiquidManureType.other: LiquidManureType, SolidManureType.other: SolidManureType}
 
     @classmethod
@@ -76,7 +79,8 @@ class ManureModel(object):
 
     @classmethod
     def _content(cls, manure_type, quantity):
-        """Content per m3 or per t of manure [kg]; quantity is n_total, p2o5, tan or nh3_n."""
+        """Content per m3 or per t of manure [kg]; quantity is n_total, p2o5, tan, nh3_n or
+        n_available (GRUDAF Nverf, plant-available N: mean of the range of Table 39)."""
         if manure_type in cls._OTHER_TYPES:
             return sum(share * cls._content(component, quantity)
                        for component, share in cls._other_shares(manure_type).items())
@@ -93,6 +97,8 @@ class ManureModel(object):
             elif quantity == "nh3_n":
                 value = content["n_soluble"] * cls._application_ef(row["emep_livestock"],
                                                                   row["emep_manure_type"])
+            elif quantity == "n_available":
+                value = (content["n_available_min"] + content["n_available_max"]) / 2.0
             else:
                 value = content[quantity]
             total += float(row["weight"]) * value
@@ -111,14 +117,65 @@ class ManureModel(object):
         form = "liquid" if enum is LiquidManureType else "solid"
         faostat = dataloader.table(cls._FAOSTAT_TABLE)
         n_applied = {}
-        for row in dataloader.rows(cls._OTHER_MAPPING):
+        for row in dataloader.rows(cls._FAOSTAT_MAPPING):
             if row["form"] == form:
                 component = enum(row["manure_type"])
                 n_applied[component] = (n_applied.get(component, 0.0)
                                         + faostat[row["faostat_item"]]["n_applied_mean_2021_2023_kg"])
-        units = {k: v / cls._content(k, "n_total") for k, v in n_applied.items()}
+        return cls._unit_shares(n_applied)
+
+    @classmethod
+    def _unit_shares(cls, n_per_type):
+        """Volume (liquid) or mass (solid) shares from the N per manure type: N / N content per
+        m3 or t, normalised."""
+        units = {k: v / cls._content(k, "n_total") for k, v in n_per_type.items()}
         total_units = sum(units.values())
         return {k: v / total_units for k, v in units.items()}
+
+    @classmethod
+    def _country_n(cls, country):
+        """FAOSTAT manure N applied to soils of a country per manure type, {enum: {type: kg N}}.
+
+        Items are grouped by data/manure_other_faostat_mapping.csv. WFLDB rule (Guidelines v3.0
+        section 3.6.2): an item mapped to both forms (cattle, buffalo, pigs, laying hens) is half
+        liquid and half solid, the other items are solid only; items not in the mapping (camels,
+        llamas) are left out.
+        """
+        n_item = {row["item"]: float(row["n_applied_mean_kg"])
+                  for row in dataloader.rows(cls._FAOSTAT_COUNTRY_TABLE) if row["country"] == country}
+        if not n_item:
+            raise KeyError("Country %s not in %s" % (country, cls._FAOSTAT_COUNTRY_TABLE))
+        mapping = {}
+        for row in dataloader.rows(cls._FAOSTAT_MAPPING):
+            mapping.setdefault(row["faostat_item"], []).append(row)
+        n_per_type = {LiquidManureType: dict.fromkeys(LiquidManureType, 0.0),
+                      SolidManureType: dict.fromkeys(SolidManureType, 0.0)}
+        for item, rows in mapping.items():
+            for row in rows:
+                enum = LiquidManureType if row["form"] == "liquid" else SolidManureType
+                n_per_type[enum][enum(row["manure_type"])] += n_item.get(item, 0.0) / len(rows)
+        return n_per_type
+
+    @classmethod
+    def country_shares(cls, country):
+        """Default shares of the manure types in a country (decision L29): liquid volume shares
+        and solid mass shares, ({LiquidManureType: share}, {SolidManureType: share})."""
+        n_per_type = cls._country_n(country)
+        return tuple(cls._unit_shares(n_per_type[enum]) for enum in (LiquidManureType, SolidManureType))
+
+    @classmethod
+    def liquid_n_fraction(cls, country):
+        """Share of the country's manure N applied as liquid manure (decision L29)."""
+        n_per_type = cls._country_n(country)
+        liquid = sum(n_per_type[LiquidManureType].values())
+        return liquid / (liquid + sum(n_per_type[SolidManureType].values()))
+
+    @classmethod
+    def mix_content(cls, proportions, quantity):
+        """Content per m3 of undiluted liquid manure or per t of solid manure [kg] of a mix of
+        manure types, {type: share}; quantity as for _content."""
+        return sum(share * cls._content(manure_type, quantity)
+                   for manure_type, share in proportions.items() if share)
 
     # Heavy metals: contents [mg/kg DM] and dry-matter shares of the farmyard-manure rows of
     # SALCAheavymetal 2023 Table 1 (decision L10); the legacy input types are redistributed to

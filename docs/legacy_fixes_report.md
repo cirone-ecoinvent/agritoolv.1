@@ -992,7 +992,7 @@ Parameters (04 May 2017) for the country parameters.
 |---|---|---|---|
 | `wfldb2017_agr_system_parameters.csv` | sheet 1, rows 17, 12, 7, 13, 14, 18 | 39 x 6 | 37 countries; CN humus changed |
 | `wfldb2017_irrigation_water_sources.csv` | sheet 2, rows 4-6 | 39 x 3 | 37 countries |
-| `wfldb2017_manure_animal_shares.csv` | sheet 3, rows 5-9 and 11-17 | 39 x 10 | 37 countries |
+| `wfldb2017_manure_animal_shares.csv` (removed by L29, section 19) | sheet 3, rows 5-9 and 11-17 | 39 x 10 | 37 countries |
 
 The nine dictionaries of `defaultTables.py` (precipitation, clay, sand, soil carbon, pH <= 7, snow,
 irrigation water sources, liquid and solid manure shares) are now built from these files, with
@@ -1110,3 +1110,48 @@ Regression: wheat_IT N uptake 56.0 (legacy GLO, no IT value) -> 154.8 kg N/ha wi
 yield 6500 kg/ha; nitrate to groundwater 123.6 -> 81.6, to surface water 53.0 -> 35.0, N2O 4.995 ->
 4.835 kg/ha. rice_IN 64.5 -> 93.7 kg N/ha; nitrate to groundwater 200.6 -> 132.8, N2O 1.808 -> 1.628.
 apple_FR unchanged. Mineral N is given in all three templates.
+
+## 19. Default manure computed from the N uptake (decision L29, 2026-10-13)
+
+The default liquid and solid manure were crop x country matrices (GD_crop ManureLiquid_L1 and
+ManureSolid_L1). They follow the WFLDB L1 method (Guidelines v3.0, 3.6.2; Documentation 2017, 2.3):
+the organic N is 0.2 x the N input (= N uptake), split between liquid and solid manure with the
+country's FAOSTAT manure N (2009-2012; cattle, pigs and laying hens half liquid and half solid,
+other animals solid), and divided by the country's mean available N (Nav, GRUDAF Nverf) per m3 of
+liquid manure diluted 50 % and per t of solid manure. In every country, m3 and kg per kg N uptake
+are constant across the L1 crops, and the Nav of the default manure is 0.20 x N uptake (AR 0.1995,
+DE 0.1992, FR 0.2007, HU 0.2000 with the mean of the GRUDAF Nverf range). The WFLDB 2017 animal
+shares are volume and mass shares (FAOSTAT N / GRUDAF total N per m3 or t).
+
+For the 23 crops whose N uptake is computed from the yield (L28) the default manure is now:
+
+- organic N = (1 - mineral_n_share_of_n_uptake) x N uptake, counted as available N;
+- share of N applied as liquid manure and manure shares per country from FAOSTAT GLE, element
+  72381 (manure applied to soils, N content), mean 2021-2023 (`faostat_manure_n_applied_country.csv`),
+  items grouped by `manure_other_faostat_mapping.csv` (L13) with the WFLDB split;
+- liquid m3 = organic N x liquid share / (undiluted part x Nav per m3 of the liquid mix in use),
+  solid kg = 1000 x organic N x (1 - liquid share) / Nav per t of the solid mix in use.
+
+The manure shares of all crops (`MANURE_LIQUID_RATIO_PER_COUNTRY`, `MANURE_SOLID_RATIO_PER_COUNTRY`)
+now come from the same FAOSTAT data and replace the WFLDB 2017 sheet 3 shares; "other" is 0 (buffalo
+with cattle, turkeys and ducks with hen and broiler litter, horses with asses and mules). The other
+44 crops keep the legacy totals.
+
+| Country | Liquid N share | m3 per kg N uptake (legacy) | kg solid per kg N uptake (legacy) |
+|---|---|---|---|
+| DE | 0.46 | 0.0559 (0.0563) | 39.0 (39.9) |
+| FR | 0.43 | 0.0523 (0.0530) | 40.6 (42.1) |
+| IN | 0.43 | 0.0522 (0.0260) | 48.0 (35.1) |
+| IT | 0.48 | 0.0604 (0.0446) | 47.7 (33.6) |
+| US | 0.36 | 0.0421 (0.0315) | 30.7 (26.5) |
+| TR | 0.34 | 0.0360 (0.0438) | 27.3 (43.1) |
+| MA | 0.16 | 0.0179 (0) | 28.4 (148.2) |
+| CS | 0.45 | 0.0543 (0) | 37.5 (2220.1) |
+
+Full table for the 39 countries, confirmed by FC: `Literature/review_manure_defaults_faostat_2021_2023.csv`.
+
+Regression: rice_IN (default manure, N uptake 93.7 kg N/ha) liquid manure 1.68 -> 4.89 m3/ha, solid
+manure 2.26 -> 4.50 t/ha (solid "other" 1.41 t -> 0); NH3 28.71 -> 34.12, N2O 1.628 -> 1.803, NOx as
+N2O 4.68 -> 5.26, nitrate to groundwater 132.8 -> 137.8 kg/ha; heavy metals to soil from x0.63 (Zn)
+to x2.1 (Pb), because the manure classes of the mix change. wheat_IT and apple_FR give their manure
+and are unchanged.

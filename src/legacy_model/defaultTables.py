@@ -1,19 +1,19 @@
 # legacy, undocumented, provisional: the crop tables, fertiliser mixes, irrigation techniques, EI_IRR ratios
 # and soil erodibility of this module (generated from the Quantis workbook GD_crop); the country soil,
-# precipitation, irrigation water source and manure tables are read from data/wfldb2017_*.csv (decision L22)
+# precipitation and irrigation water source tables are read from data/wfldb2017_*.csv (decision L22), the
+# manure shares are computed from FAOSTAT (decision L29)
 import dataloader
 from models.fertilisermodel import NFertiliserType, KFertiliserType, \
     PFertiliserType
 from models.irrigationmodel import IrrigationType, WaterUseType
-from models.manuremodel import LiquidManureType, SolidManureType
+from models.manuremodel import ManureModel
 from models.modelEnums import SoilTexture
 from models.pmodel import LandUseCategory
 
 # Country tables of the WFLDB 2017 background parameters (decision L22): ecoinvent 3 report
-# WFLDB_BackgroundParameters_2017.xlsx, sheets 1-3; MA and CS are not in WFLDB (legacy values).
+# WFLDB_BackgroundParameters_2017.xlsx, sheets 1-2; MA and CS are not in WFLDB (legacy values).
 _WFLDB_PARAMETERS = "wfldb2017_agr_system_parameters.csv"
 _WFLDB_WATER_SOURCES = "wfldb2017_irrigation_water_sources.csv"
-_WFLDB_MANURE_SHARES = "wfldb2017_manure_animal_shares.csv"
 _WFLDB_K_FACTORS = "wfldb2017_soil_type_k_factors.csv"
 
 
@@ -34,14 +34,6 @@ def _wfldb_erodibility_per_country():
     return erodibility
 
 
-def _wfldb_manure_shares(manure, manure_type):
-    shares = {}
-    for row in dataloader.rows(_WFLDB_MANURE_SHARES):
-        if row["manure"] == manure:
-            shares.setdefault(row["country"], {})[manure_type[row["animal"]]] = float(row["share"])
-    return shares
-
-
 # mm/year
 ANNUAL_PRECIPITATION_PER_COUNTRY = _wfldb_country_column("annual_precipitation_mm")
 CLAY_CONTENT_PER_COUNTRY = _wfldb_country_column("clay_content_ratio")
@@ -56,8 +48,13 @@ IRR_WATERUSE_RATIO_PER_COUNTRY = {
               WaterUseType.surfacewater: row["surfacewater"],
               WaterUseType.nonconventional: row["nonconventional"]}
     for country, row in dataloader.table(_WFLDB_WATER_SOURCES).items()}
-MANURE_LIQUID_RATIO_PER_COUNTRY = _wfldb_manure_shares("liquid", LiquidManureType)
-MANURE_SOLID_RATIO_PER_COUNTRY = _wfldb_manure_shares("solid", SolidManureType)
+# Manure types per country (decision L29): FAOSTAT manure N applied to soils 2021-2023, WFLDB rule for
+# the liquid/solid split, liquid volume shares and solid mass shares; share of the N applied as liquid manure
+_COUNTRIES = [row["country"] for row in dataloader.rows("faostat_country_mapping.csv") if row["country"] != "GLO"]
+_MANURE_SHARES = {country: ManureModel.country_shares(country) for country in _COUNTRIES}
+MANURE_LIQUID_RATIO_PER_COUNTRY = {country: shares[0] for country, shares in _MANURE_SHARES.items()}
+MANURE_SOLID_RATIO_PER_COUNTRY = {country: shares[1] for country, shares in _MANURE_SHARES.items()}
+MANURE_LIQUID_N_FRACTION_PER_COUNTRY = {country: ManureModel.liquid_n_fraction(country) for country in _COUNTRIES}
 # t h/(MJ mm)
 SOIL_ERODIBILITY_FACTOR_PER_COUNTRY = _wfldb_erodibility_per_country()
 

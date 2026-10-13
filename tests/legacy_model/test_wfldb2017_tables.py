@@ -1,5 +1,6 @@
-"""Decision L22: country soil, precipitation, irrigation water source and manure tables of
-defaultTables.py from the WFLDB 2017 background parameters (ecoinvent 3 report, 04 May 2017)."""
+"""Decision L22: country soil, precipitation and irrigation water source tables of defaultTables.py
+from the WFLDB 2017 background parameters (ecoinvent 3 report, 04 May 2017). The manure shares of
+sheet 3 were replaced by FAOSTAT 2021-2023 (decision L29, test_manure_defaults.py)."""
 from pathlib import Path
 
 import pytest
@@ -7,14 +8,12 @@ import pytest
 import dataloader
 import defaultTables as t
 from models.irrigationmodel import WaterUseType
-from models.manuremodel import LiquidManureType, SolidManureType
 
 WORKBOOK = (Path(__file__).resolve().parents[2] / "Literature"
             / "ecoinvent 3 report_WFLDB_BackgroundParameters_2017.xlsx")
 COUNTRY_TABLES = ["ANNUAL_PRECIPITATION_PER_COUNTRY", "CLAY_CONTENT_PER_COUNTRY", "SAND_CONTENT_PER_COUNTRY",
                   "SOIL_CARBON_CONTENT_PER_COUNTRY", "SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY",
-                  "YEARLY_PRECIPITATION_AS_SNOW_PER_COUNTRY", "IRR_WATERUSE_RATIO_PER_COUNTRY",
-                  "MANURE_LIQUID_RATIO_PER_COUNTRY", "MANURE_SOLID_RATIO_PER_COUNTRY"]
+                  "YEARLY_PRECIPITATION_AS_SNOW_PER_COUNTRY", "IRR_WATERUSE_RATIO_PER_COUNTRY"]
 NOT_IN_WFLDB = {"MA", "CS"}
 
 
@@ -23,14 +22,9 @@ def test_tables_cover_the_39_countries_of_the_tool(name):
     assert set(getattr(t, name)) == set(dataloader.table("luc_blonk_country_expansion.csv"))
 
 
-def test_share_tables_keep_the_enum_keys_and_water_and_liquid_shares_sum_to_one():
+def test_water_shares_keep_the_enum_keys_and_sum_to_one():
     for shares in t.IRR_WATERUSE_RATIO_PER_COUNTRY.values():
         assert set(shares) == set(WaterUseType) and sum(shares.values()) == pytest.approx(1.0, abs=1e-9)
-    for shares in t.MANURE_LIQUID_RATIO_PER_COUNTRY.values():
-        assert set(shares) == set(LiquidManureType) and sum(shares.values()) == pytest.approx(1.0, abs=1e-9)
-    for shares in t.MANURE_SOLID_RATIO_PER_COUNTRY.values():
-        # solid shares sum to less than 1 for 33 countries already in the workbook
-        assert set(shares) == set(SolidManureType) and sum(shares.values()) <= 1.0 + 1e-9
 
 
 def test_spot_values_from_the_workbook():
@@ -38,10 +32,6 @@ def test_spot_values_from_the_workbook():
     assert t.CLAY_CONTENT_PER_COUNTRY["FR"] == 0.304420218037661
     assert t.ANNUAL_PRECIPITATION_PER_COUNTRY["IT"] == 930.193617321
     assert t.SAND_CONTENT_PER_COUNTRY["AR"] == 0.04018014391385297
-    # sheet '3) Animal shares org.Fertiliser', column C (AR): pig = r6 + r7, laying_hen_litter = r14 + r15
-    assert t.MANURE_LIQUID_RATIO_PER_COUNTRY["AR"][LiquidManureType.pig] == 0 + 0.006943975890980679
-    assert t.MANURE_SOLID_RATIO_PER_COUNTRY["AR"][SolidManureType.laying_hen_litter] == \
-        0.021349697278433374 + 0.03737728870097202
 
 
 def test_china_humus_is_the_documented_estimate():
@@ -86,7 +76,7 @@ def test_clay_is_the_soil_type_mix_of_documentation_tab6(workbook):
             assert t.CLAY_CONTENT_PER_COUNTRY[country] == pytest.approx(mix, abs=1e-12), country
 
 
-def test_water_sources_and_manure_shares_equal_the_workbook(workbook):
+def test_water_sources_equal_the_workbook(workbook):
     ws = workbook["2) Irrigation water sources"]
     cols = _columns(ws, 2)
     for country, shares in t.IRR_WATERUSE_RATIO_PER_COUNTRY.items():
@@ -94,13 +84,6 @@ def test_water_sources_and_manure_shares_equal_the_workbook(workbook):
             for member, row in ((WaterUseType.groundwater, 4), (WaterUseType.surfacewater, 5),
                                 (WaterUseType.nonconventional, 6)):
                 assert shares[member] == ws.cell(row, cols[country]).value, (country, member)
-    ws = workbook["3) Animal shares org.Fertiliser"]
-    cols = _columns(ws, 3)
-    for row in dataloader.rows("wfldb2017_manure_animal_shares.csv"):
-        if row["country"] in NOT_IN_WFLDB or row["wfldb_rows"] == "-":
-            continue
-        cells = [ws.cell(int(r[1:]), cols[row["country"]]).value for r in row["wfldb_rows"].split("+")]
-        assert float(row["share"]) == sum(cells), row
 
 
 def test_erodibility_is_the_soil_type_mix_of_documentation_tab6():
