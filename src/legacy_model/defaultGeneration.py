@@ -10,7 +10,7 @@ from defaultMatrixTotalManure import TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY, \
     TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY
 from defaultMatrixTotalMineralFert import NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY
 from defaultMatrixTotalPesticides import TOTAL_PESTICIDES_PER_CROP_PER_COUNTRY
-from defaultMatrixYieldPerYear import YIELD_PER_YEAR_PER_CROP_PER_COUNTRY
+from defaultMatrixYieldPerCropCycle import YIELD_PER_CROP_CYCLE_PER_CROP_PER_COUNTRY
 from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUNTRY, \
     ROOTING_DEPTH_PER_CROP, FERT_N_RATIO_PER_COUNTRY, FERT_P_RATIO_PER_COUNTRY, FERT_K_RATIO_PER_COUNTRY, \
     MANURE_LIQUID_RATIO_PER_COUNTRY, MANURE_SOLID_RATIO_PER_COUNTRY, \
@@ -262,9 +262,9 @@ class PerCropCyclePrecipitationDefaultGenerator(object):
         return generators["average_annual_precipitation"] * 10.0 / generators["crop_cycle_per_year"]
 
 
-class PerCropCycleYieldDefaultGenerator(object):
+class PerYearYieldDefaultGenerator(object):
     def generateDefault(self, field, generators):
-        return generators["yield_main_product_per_year"] / generators["crop_cycle_per_year"]
+        return generators["yield_main_product_per_crop_cycle"] * generators["crop_cycle_per_year"]
 
 
 # legacy, undocumented, provisional: default slope 3 % (0 % for rice)
@@ -477,8 +477,10 @@ DEFAULTS_VALUES_GENERATORS = {
     "crop_cycle_per_year": CropCyclePerYearDefaultGenerator(),
     "precipitation_per_crop_cycle": PerCropCyclePrecipitationDefaultGenerator(),
     "water_use_total": WaterUseDefaultGenerator(),
-    "yield_main_product_per_year": CropCountryMatrixLookupDefaultGenerator(YIELD_PER_YEAR_PER_CROP_PER_COUNTRY),
-    "yield_main_product_per_crop_cycle": PerCropCycleYieldDefaultGenerator(),
+    # FAOSTAT yield is per area harvested, i.e. per crop cycle (decision L24)
+    "yield_main_product_per_crop_cycle": CropCountryMatrixLookupDefaultGenerator(
+        YIELD_PER_CROP_CYCLE_PER_CROP_PER_COUNTRY),
+    "yield_main_product_per_year": PerYearYieldDefaultGenerator(),
     "yield_main_product_dry_per_crop_cycle": DryYieldGenerator(),
     "pest_horticultural_oil": SimpleValueDefaultGenerator(0.0),
     # Fertiliser defaults

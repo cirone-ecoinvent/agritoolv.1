@@ -1,7 +1,8 @@
 """Build data/default_yield.csv, the default yield per crop and country, from a FAOSTAT download.
 
-Method (decision L23; WFLDB Guidelines v3.0, section 3.2.1): FAOSTAT yield (element 5412, kg/ha)
-of the crop's item (data/faostat_crop_item_mapping.csv), mean of the latest 4 years of the
+Method (decisions L23-L24; WFLDB Guidelines v3.0, section 3.2.1): FAOSTAT yield (element 5412,
+kg/ha; per area harvested, i.e. per harvest = per crop cycle) of the crop's item
+(data/faostat_crop_item_mapping.csv), mean of the latest 4 years of the
 download, per country of the tool (data/faostat_country_mapping.csv); GLO = FAOSTAT World
 (World production / area harvested when FAOSTAT reports no World yield for the item). When the
 tool's product differs from the FAOSTAT item (tea: made tea vs green leaf), the yield is divided
@@ -31,7 +32,7 @@ PRODUCTION = ("5510", "t")
 AREA_HARVESTED = ("5312", "ha")
 N_YEARS = 4
 LEGACY_TAG = "legacy, undocumented, provisional"
-COLUMNS = ["crop", "country", "yield_kg_per_ha_year", "years", "n_years", "faostat_item_code", "flags", "note"]
+COLUMNS = ["crop", "country", "yield_kg_per_ha_crop_cycle", "years", "n_years", "faostat_item_code", "flags", "note"]
 
 
 def read_faostat(path, items, areas, world):
@@ -74,7 +75,7 @@ def build(faostat_csv):
     rows = []
     for crop in crops:
         if not crop["faostat_item_code"]:
-            rows.append({"crop": crop["crop"], "country": "GLO", "yield_kg_per_ha_year": 0.0, "years": "",
+            rows.append({"crop": crop["crop"], "country": "GLO", "yield_kg_per_ha_crop_cycle": 0.0, "years": "",
                          "n_years": 0, "faostat_item_code": "", "flags": "",
                          "note": "no FAOSTAT item; 0 = no default yield, as in the legacy matrix; " + LEGACY_TAG})
             continue
@@ -95,7 +96,7 @@ def build(faostat_csv):
             if factor != 1.0:
                 source += "FAOSTAT yield / %s (faostat_kg_per_kg_product); " % crop["faostat_kg_per_kg_product"]
             rows.append({"crop": crop["crop"], "country": country["country"],
-                         "yield_kg_per_ha_year": round(statistics.mean(v for v, _ in values) / factor, 3),
+                         "yield_kg_per_ha_crop_cycle": round(statistics.mean(v for v, _ in values) / factor, 3),
                          "years": label, "n_years": len(values), "faostat_item_code": crop["faostat_item_code"],
                          "flags": " ".join("%s:%d" % kv for kv in sorted(flags.items()) if kv[0]),
                          "note": (source + ("no value for " + ", ".join(missing) if missing else "")).rstrip("; ")})

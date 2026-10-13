@@ -1,4 +1,4 @@
-crop,country,yield_kg_per_ha_year,years,n_years,faostat_item_code,flags,note
+crop,country,yield_kg_per_ha_crop_cycle,years,n_years,faostat_item_code,flags,note
 almond,AR,1792.625,2021-2024,4,221,E:4,
 almond,AU,6038.175,2021-2024,4,221,E:4,
 almond,CL,5327.05,2021-2024,4,221,E:4,

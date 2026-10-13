@@ -1,12 +1,12 @@
-"""Decision L23: default yield per crop and country from FAOSTAT (mean 2021-2024, GLO = World),
-used when the template gives no yield."""
+"""Decisions L23-L24: default yield per crop cycle and country from FAOSTAT (mean 2021-2024,
+GLO = World), used when the template gives no yield."""
 import statistics
 
 import pytest
 
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS
-from defaultMatrixYieldPerYear import YIELD_PER_YEAR_PER_CROP_PER_COUNTRY as YIELDS
+from defaultMatrixYieldPerCropCycle import YIELD_PER_CROP_CYCLE_PER_CROP_PER_COUNTRY as YIELDS
 
 
 def _default(field, **inputs):
@@ -60,12 +60,14 @@ def test_crops_without_faostat_item_keep_no_default_yield(crop):
     assert YIELDS[crop] == {"GLO": 0.0}
 
 
-def test_empty_template_yield_uses_the_country_default_divided_by_cycles():
-    assert _default("yield_main_product_per_year", crop="wheat", country="FR") == YIELDS["wheat"]["FR"]
-    per_cycle = _default("yield_main_product_per_crop_cycle", crop="rice", country="IN", crop_cycle_per_year=2.0)
-    assert per_cycle == pytest.approx(4267.2 / 2.0)
+def test_empty_template_yield_uses_the_faostat_yield_per_crop_cycle():
+    # FAOSTAT yield is per area harvested: two harvests a year do not halve it (decision L24)
+    inputs = dict(crop="rice", country="IN", crop_cycle_per_year=2.0)
+    assert _default("yield_main_product_per_crop_cycle", **inputs) == pytest.approx(4267.2)
+    assert _default("yield_main_product_per_year", **inputs) == pytest.approx(4267.2 * 2.0)
+    assert _default("yield_main_product_per_crop_cycle", crop="wheat", country="FR") == YIELDS["wheat"]["FR"]
 
 
 def test_country_without_faostat_value_falls_back_to_glo():
     assert "CH" not in YIELDS["cocoa"]
-    assert _default("yield_main_product_per_year", crop="cocoa", country="CH") == YIELDS["cocoa"]["GLO"]
+    assert _default("yield_main_product_per_crop_cycle", crop="cocoa", country="CH") == YIELDS["cocoa"]["GLO"]

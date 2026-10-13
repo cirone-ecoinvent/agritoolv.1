@@ -1033,3 +1033,10 @@ producers, e.g. peach NZ, pineapple GH). The full comparison is in
 `Literature/review_default_yield_faostat_2021_2024.csv`.
 
 Regression: unchanged (all three cases give the yield in the template).
+
+Yield per crop cycle (decision L24). FAOSTAT divides production by the area harvested, and the
+area harvested counts every harvest, so the FAOSTAT yield is a yield per harvest. The table is
+therefore read as `yield_main_product_per_crop_cycle` (the template field), and the yearly yield
+is the yield per cycle times `crop_cycle_per_year`. The legacy code read the table as a yearly
+yield and divided it by the crop cycles, which halved the default for crops with two harvests a
+year (rice IN with two cycles: 2134 instead of 4267 kg/ha). Regression unchanged.
