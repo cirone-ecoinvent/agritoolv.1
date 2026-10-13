@@ -10,6 +10,8 @@ Review tables (all in data/):
   manure_type_composition.csv             usable when status is confirmed (F3, L12)
   manure_other_faostat_mapping.csv        idem (L13)
   pesticide_crop_archetype_mapping.csv    usable when status is confirmed (pesticide primary distribution)
+  faostat_crop_item_mapping.csv           usable when status is confirmed (default yield, L23)
+  faostat_country_mapping.csv             idem
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -46,6 +48,8 @@ TABLES = [
     ("manure_type_composition.csv", ("confirmed",), ("manure_type", "grudaf_row_id", "emep_livestock", "emep_manure_type", "weight", "status")),
     ("manure_other_faostat_mapping.csv", ("confirmed",), ("form", "faostat_item", "manure_type", "status")),
     ("pesticide_crop_archetype_mapping.csv", ("confirmed",), ("crop", "olca_crop_archetype", "status", "note")),
+    ("faostat_crop_item_mapping.csv", ("confirmed",), ("crop", "faostat_item_code", "faostat_item", "match", "status")),
+    ("faostat_country_mapping.csv", ("confirmed",), ("country", "faostat_area_code", "faostat_area", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]

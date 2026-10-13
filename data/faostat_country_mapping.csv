@@ -1,0 +1,41 @@
+country,faostat_area_code,m49_code,faostat_area,note,status,reviewed_by
+AR,9,032,Argentina,,confirmed,FC
+AU,10,036,Australia,,confirmed,FC
+BE,255,056,Belgium,,confirmed,FC
+BR,21,076,Brazil,,confirmed,FC
+CA,33,124,Canada,,confirmed,FC
+CL,40,152,Chile,,confirmed,FC
+CN,41,156,China; mainland,"mainland China (M49 156 = ISO 3166 CN); FAOSTAT 'China' (M49 159) also includes Hong Kong, Macao and Taiwan",confirmed,FC
+CO,44,170,Colombia,,confirmed,FC
+CR,48,188,Costa Rica,,confirmed,FC
+CI,107,384,Côte d'Ivoire,,confirmed,FC
+EC,58,218,Ecuador,,confirmed,FC
+FI,67,246,Finland,,confirmed,FC
+FR,68,250,France,,confirmed,FC
+DE,79,276,Germany,,confirmed,FC
+GH,81,288,Ghana,,confirmed,FC
+HU,97,348,Hungary,,confirmed,FC
+IN,100,356,India,,confirmed,FC
+ID,101,360,Indonesia,,confirmed,FC
+IL,105,376,Israel,,confirmed,FC
+IT,106,380,Italy,,confirmed,FC
+KE,114,404,Kenya,,confirmed,FC
+MX,138,484,Mexico,,confirmed,FC
+MA,143,504,Morocco,,confirmed,FC
+NL,150,528,Netherlands (Kingdom of the),,confirmed,FC
+NZ,156,554,New Zealand,,confirmed,FC
+PE,170,604,Peru,,confirmed,FC
+PH,171,608,Philippines,,confirmed,FC
+PL,173,616,Poland,,confirmed,FC
+RU,185,643,Russian Federation,,confirmed,FC
+CS,272,688,Serbia,legacy code CS = Serbia (retired ISO code of Serbia and Montenegro),confirmed,FC
+ZA,202,710,South Africa,,confirmed,FC
+ES,203,724,Spain,,confirmed,FC
+LK,38,144,Sri Lanka,,confirmed,FC
+CH,211,756,Switzerland,,confirmed,FC
+TH,216,764,Thailand,,confirmed,FC
+TR,223,792,Türkiye,,confirmed,FC
+UA,230,804,Ukraine,,confirmed,FC
+US,231,840,United States of America,,confirmed,FC
+VN,237,704,Viet Nam,,confirmed,FC
+GLO,5000,001,World,FAOSTAT World aggregate,confirmed,FC

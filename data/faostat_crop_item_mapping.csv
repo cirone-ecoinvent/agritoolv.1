@@ -1,0 +1,68 @@
+crop,faostat_item_code,faostat_cpc_code,faostat_item,match,faostat_kg_per_kg_product,legacy_faostat_item,note,status,reviewed_by
+almond,221,01371,Almonds; in shell,exact,,"Almonds, with shell",,confirmed,FC
+apple,515,01341,Apples,exact,,Apples,,confirmed,FC
+apricot,526,01343,Apricots,exact,,Apricots,,confirmed,FC
+asparagus_green,367,01211,Asparagus,shared,,Asparagus,same FAOSTAT item for green and white asparagus,confirmed,FC
+asparagus_white,367,01211,Asparagus,shared,,Asparagus,same FAOSTAT item for green and white asparagus,confirmed,FC
+banana,486,01312,Bananas,exact,,Bananas,,confirmed,FC
+bellpepper,401,01231,Chillies and peppers; green (Capsicum spp. and Pimenta spp.),shared,,"Chillies and peppers, green","same FAOSTAT item for bell pepper and chilli (green, fresh)",confirmed,FC
+blueberry,552,01355.01,Blueberries,exact,,Blueberries,,confirmed,FC
+cabbage_red,358,01212,Cabbages,shared,,Cabbages and other brassicas,same FAOSTAT item for red and white cabbage,confirmed,FC
+cabbage_white,358,01212,Cabbages,shared,,Cabbages and other brassicas,same FAOSTAT item for red and white cabbage,confirmed,FC
+carrot,426,01251,Carrots and turnips,group,,Carrots and turnips,FAOSTAT item includes turnips,confirmed,FC
+cashew,217,01372,Cashew nuts; in shell,exact,,"Cashew nuts, with shell",,confirmed,FC
+cassava,125,01520.01,Cassava; fresh,exact,,Cassava,,confirmed,FC
+castor_beans,265,01447,Castor oil seeds,exact,,Castor oil seed,,confirmed,FC
+chick_pea,191,01703,Chick peas; dry,exact,,Chick peas,,confirmed,FC
+chilli,401,01231,Chillies and peppers; green (Capsicum spp. and Pimenta spp.),shared,,"Chillies and peppers, green","same FAOSTAT item for bell pepper and chilli (green, fresh)",confirmed,FC
+cocoa,661,01640,Cocoa beans,exact,,Cocoa beans,,confirmed,FC
+coconut,249,01460,Coconuts; in shell,exact,,Coconuts,,confirmed,FC
+coffee_arabica,656,01610,Coffee; green,shared,,"Coffee, green",same FAOSTAT item for arabica and robusta,confirmed,FC
+coffee_robusta,656,01610,Coffee; green,shared,,"Coffee, green",same FAOSTAT item for arabica and robusta,confirmed,FC
+coriander,711,01654,Anise; badian; coriander; cumin; caraway; fennel and juniper berries; raw,group,,"Anise, badian, fennel, corian.","FAOSTAT item groups anise, badian, coriander, cumin, caraway, fennel and juniper berries",confirmed,FC
+cotton,328,01921.01,Seed cotton; unginned,exact,,Seed cotton,"seed cotton, unginned",confirmed,FC
+cranberry,554,01355.02,Cranberries,exact,,Cranberries,,confirmed,FC
+eggplant,399,01233,Eggplants (aubergines),exact,,Eggplants (aubergines),,confirmed,FC
+flax,771,01929.01,Flax; raw or retted,exact,,Flax fibre and tow,fibre flax,confirmed,FC
+ginger,720,01657,Ginger; raw,exact,,Ginger,,confirmed,FC
+grape,560,01330,Grapes,exact,,Grapes,,confirmed,FC
+guar,,,,none,,"Beans, green","not in FAOSTAT; the legacy proxy 'Beans, green' (fresh pods) is not used because guar is harvested as dry seed (FC 2026-10-13)",confirmed,FC
+hemp,777,01929.02,True hemp; raw or retted,exact,,Flax fibre and tow,legacy proxy was 'Flax fibre and tow'; FAOSTAT now has true hemp,confirmed,FC
+lemon,497,01322,Lemons and limes,shared,,Lemons and limes,same FAOSTAT item for lemon and lime,confirmed,FC
+citruslime,497,01322,Lemons and limes,shared,,Lemons and limes,same FAOSTAT item for lemon and lime,confirmed,FC
+lentil,201,01704,Lentils; dry,exact,,Lentils,,confirmed,FC
+linseed,333,01441,Linseed,exact,,Linseed,,confirmed,FC
+maizegrain,56,0112,Maize (corn),exact,,Maize,,confirmed,FC
+mandarin,495,01324,Tangerines; mandarins; clementines,exact,,"Tangerines, mandarins, clem.",,confirmed,FC
+mango,571,01316,Mangoes; guavas and mangosteens,group,,"Mangoes, mangosteens, guavas",FAOSTAT item includes guavas and mangosteens,confirmed,FC
+mint,748,01930.01,Peppermint; spearmint,exact,,Peppermint,,confirmed,FC
+mulberry,,,,none,,Tea,not in FAOSTAT; legacy proxy was Tea (leaves of a different crop),confirmed,FC
+oat,75,0117,Oats,exact,,Oats,,confirmed,FC
+olive,260,01450,Olives,exact,,Olives,,confirmed,FC
+onion,403,01253.02,Onions and shallots; dry (excluding dehydrated),exact,,"Onions, dry",dry onions and shallots,confirmed,FC
+orange_fresh,490,01323,Oranges,shared,,Oranges,same FAOSTAT item for fresh and processing grade,confirmed,FC
+orange_processing,490,01323,Oranges,shared,,Oranges,same FAOSTAT item for fresh and processing grade,confirmed,FC
+palmtree,254,01491.01,Oil palm fruit,exact,,Oil palm fruit,oil palm fruit (fresh fruit bunches),confirmed,FC
+peach,534,01345,Peaches and nectarines,exact,,Peaches and nectarines,,confirmed,FC
+peanut,242,0142,Groundnuts; excluding shelled,exact,,"Groundnuts, with shell",groundnuts in shell,confirmed,FC
+pear,521,01342.01,Pears,exact,,Pears,,confirmed,FC
+pearl_millet,79,0118,Millet,group,,Millet,FAOSTAT item groups all millets,confirmed,FC
+pineapple,574,01318,Pineapples,exact,,Pineapples,,confirmed,FC
+pomegranate,,,,none,,"Fruit, tropical fresh nes","not in FAOSTAT; legacy proxy was 'Fruit, tropical fresh nes' (now 'Other tropical fruits, n.e.c.')",confirmed,FC
+potato,116,01510,Potatoes,exact,,Potatoes,,confirmed,FC
+rapeseed,270,01443,Rape or colza seed,exact,,Rapeseed,,confirmed,FC
+raspberry,547,01353.01,Raspberries,exact,,Raspberries,,confirmed,FC
+rice,27,0113,Rice,exact,,"Rice, paddy",paddy rice,confirmed,FC
+sesame_seed,289,01444,Sesame seed,exact,,Sesame seed,,confirmed,FC
+soybean,236,0141,Soya beans,exact,,Soybeans,,confirmed,FC
+strawberry_fresh,544,01354,Strawberries,shared,,Strawberries,same FAOSTAT item for fresh and processing grade,confirmed,FC
+strawberry_processing,544,01354,Strawberries,shared,,Strawberries,same FAOSTAT item for fresh and processing grade,confirmed,FC
+sugarbeet,157,01801,Sugar beet,exact,,Sugar beet,,confirmed,FC
+sugarcane,156,01802,Sugar cane,exact,,Sugar cane,,confirmed,FC
+sunflower,267,01445,Sunflower seed,exact,,Sunflower seed,,confirmed,FC
+sweetcorn,446,01290.01,Green corn (maize),exact,,"Maize, green",green corn; the legacy matrix used the yields of maize grain,confirmed,FC
+tea,667,01620,Tea leaves,exact,4.5,Tea,"FAOSTAT 'Tea leaves' is green leaf; the product is made tea: 4.5 kg green leaf per kg made tea (22.2 % out-turn), Thevathasan & Thevadasan 1987, S. L. J. Tea Sci. 56(2) p. 87",confirmed,FC
+tomato_fresh,388,01234,Tomatoes,shared,,Tomatoes,same FAOSTAT item for fresh and processing grade,confirmed,FC
+tomato_processing,388,01234,Tomatoes,shared,,Tomatoes,same FAOSTAT item for fresh and processing grade,confirmed,FC
+turmeric,720,01657,Ginger; raw,proxy,,Ginger,"proxy of the legacy code (Ginger, fresh rhizome), confirmed by FC 2026-10-13; turmeric is not a separate FAOSTAT item",confirmed,FC
+wheat,15,0111,Wheat,exact,,Wheat,,confirmed,FC

@@ -832,6 +832,7 @@ generic-data (L0/L1) layer of the WFLDB, documented in the ecoinvent 3 reports W
 v3.0 (2016) and WFLDB 3.1 Documentation / Background Parameters (2017). The country tables for
 precipitation, clay, sand, soil carbon, pH, snow, irrigation water sources and manure shares are
 now read from `data/wfldb2017_*.csv`.
+The yield matrix is replaced by FAOSTAT 2021-2024 (`data/default_yield.csv`, DECISIONS L23).
 
 ### 5.3 Output mapping conversion factors (`py/outputMapping.py`)
 

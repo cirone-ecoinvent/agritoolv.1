@@ -1004,3 +1004,32 @@ Morocco and Serbia (CS) are not in WFLDB; their values were added by Quantis in 
 legacy, undocumented, provisional.
 
 Regression: unchanged (no case in China; the other values differ only in the last digit).
+
+## 15. Default yield from FAOSTAT 2021-2024 (decision L23, 2026-10-13)
+
+When the template gives no yield, the tool takes `yield_main_product_per_year` from a crop x
+country table. The legacy table was the GD_crop sheet Yield_2009_2012_L1: FAOSTAT yields
+2009-2012 of an older FAOSTAT vintage (the current FAOSTAT 2009-2012 means match it for only part
+of the countries), with GLO as the simple mean of the countries and GLO = 0 for 23 crops
+(bell pepper, cabbage, cashew, cassava, cotton, grape, mango, sesame and others).
+
+The new table `default_yield.csv` is built by `scripts/build_default_yield.py` from the FAOSTAT
+QCL bulk download of 2026-10-13, with the method of the WFLDB Guidelines v3.0 (section 3.2.1):
+
+| Element | Rule |
+|---|---|
+| Value | FAOSTAT yield (element 5412, kg/ha), mean of 2021-2024 over the years with a value |
+| Countries | the 39 countries of the tool (`faostat_country_mapping.csv`; CN = China; mainland) |
+| GLO | FAOSTAT World; flax: World production / area harvested (no World yield in FAOSTAT) |
+| Items | `faostat_crop_item_mapping.csv`, signed by FC: 43 exact, 16 shared, 4 group, 1 proxy, 3 none |
+| Tea | FAOSTAT green leaf / 4.5 = made tea (Thevathasan & Thevadasan 1987, p. 87) |
+| No item | guar, mulberry, pomegranate: GLO 0 as in the legacy table (legacy, undocumented, provisional) |
+
+Checks: wheat FR 6775.05 (legacy 6916.7), rice IN 4267.2 (3444.3), coffee GLO 892.1 (863.5), tea
+GLO 1348 (1883); after the conversion, the tea values of the main producers are within 0.9-1.3
+of the legacy values. 581 crop-country pairs are new, 37 legacy pairs have no FAOSTAT value in
+2021-2024 and use GLO, and 77 values differ from the legacy by more than a factor 2 (mostly small
+producers, e.g. peach NZ, pineapple GH). The full comparison is in
+`Literature/review_default_yield_faostat_2021_2024.csv`.
+
+Regression: unchanged (all three cases give the yield in the template).
