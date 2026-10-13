@@ -15,6 +15,9 @@ from functools import lru_cache
 from pathlib import Path
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
+# Raw input files supplied by FC (Master Data, FAOSTAT downloads, source workbooks). Git-ignored
+# and read only by the scripts that build or check the tables of DATA_DIR, never by the models.
+EXTERNAL_DATA_DIR = DATA_DIR / "external_data"
 
 IntermediateExchange = namedtuple("IntermediateExchange", ["uuid", "name", "unit"])
 

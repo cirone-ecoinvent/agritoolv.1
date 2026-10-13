@@ -225,4 +225,5 @@ progress/local/
 # AgriToolV.1 local files
 agritool.cfg
 Literature/
+data/external_data/
 legacy_fixes/.pytest_cache/

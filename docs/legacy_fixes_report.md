@@ -60,7 +60,7 @@ C:\python\AgriToolV.1\.venv\Scripts\python scripts/compare_regression.py --markd
 
 ## Update 2026-10-09: Master Data 3.12 available
 
-`C:\python\external_data\MasterData (3.12, undef).xlsx` is configured in the git-ignored
+`C:\python\external_data\MasterData (3.12, undef).xlsx` (since 2026-10-13 in `data/external_data/`, O10) is configured in the git-ignored
 `sri-crop-tool\agritool.cfg`. Results (commits `056c0f4`, `6a6bcc9`):
 
 - Seed mapping: all 29 exchange names exist in the Master Data with the mapped unit.
