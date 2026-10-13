@@ -28,7 +28,7 @@ def test_table_keeps_text_columns():
 
 def test_every_data_file_is_registered_in_sources():
     registered = {row["file"] for row in dl.rows("sources.csv")}
-    on_disk = {p.name for p in dl.DATA_DIR.iterdir() if p.name != "sources.csv"}
+    on_disk = {p.name for p in dl.DATA_DIR.iterdir() if p.name != "sources.csv" and p != dl.EXTERNAL_DATA_DIR}
     assert on_disk <= registered, "unregistered data files: %s" % sorted(on_disk - registered)
 
 

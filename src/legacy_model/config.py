@@ -1,8 +1,8 @@
 """Runtime configuration of the Python model layer.
 
 Only one setting exists for now: the location of the ecoinvent Master Data file used to resolve
-seed and seedling exchanges (F6). The file is licensed material and is kept outside every git
-repository; it is never copied into the repository.
+seed and seedling exchanges (F6). The file is licensed material and is never committed: it is
+kept in ``data/external_data/``, which is git-ignored.
 
 Resolution order:
 1. environment variable ``AGRITOOL_MASTER_DATA_PATH``;

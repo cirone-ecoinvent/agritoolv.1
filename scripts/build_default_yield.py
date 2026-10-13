@@ -11,8 +11,8 @@ The mean is taken over the years that have a value; a country without any value 
 (the tool then uses GLO). Crops mapped to no item keep the legacy default 0 (no default yield).
 
 Usage (repository root):
-    python scripts/build_default_yield.py --faostat "C:/python/external_data/Production_Crops_Livestock_E_All_Data_(Normalized).csv"
-    python scripts/build_default_yield.py --faostat <csv> --out <path>   # write elsewhere (review)
+    python scripts/build_default_yield.py                                # FAOSTAT file in data/external_data/
+    python scripts/build_default_yield.py --faostat <csv> --out <path>   # other download, write elsewhere (review)
 """
 import argparse
 import csv
@@ -26,6 +26,7 @@ sys.path.insert(0, str(ROOT / "src" / "legacy_model"))
 
 import dataloader  # noqa: E402
 
+FAOSTAT_FILE = "Production_Crops_Livestock_E_All_Data_(Normalized).csv"
 YIELD_ELEMENT = "5412"
 YIELD_UNIT = "kg/ha"
 PRODUCTION = ("5510", "t")
@@ -105,7 +106,8 @@ def build(faostat_csv):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--faostat", required=True, help="FAOSTAT Production_Crops_Livestock_E_All_Data_(Normalized).csv")
+    parser.add_argument("--faostat", default=str(dataloader.EXTERNAL_DATA_DIR / FAOSTAT_FILE),
+                        help="FAOSTAT bulk download (default: data/external_data/%s)" % FAOSTAT_FILE)
     parser.add_argument("--out", default=str(dataloader.DATA_DIR / "default_yield.csv"))
     args = parser.parse_args()
     rows = build(args.faostat)

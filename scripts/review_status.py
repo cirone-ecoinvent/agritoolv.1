@@ -72,6 +72,8 @@ def print_legacy_tags():
     print("Parts marked '%s' (kept from the legacy tool, to be updated):" % LEGACY_TAG)
     for folder, pattern in (("data", "*.csv"), ("src", "*.py")):
         for path in sorted((ROOT / folder).rglob(pattern)):
+            if dataloader.EXTERNAL_DATA_DIR in path.parents:
+                continue
             text = path.read_text(encoding="utf-8")
             n = text.count(LEGACY_TAG)
             if n and path.name != "sources.csv":
