@@ -827,6 +827,12 @@ documentation says; blank means nothing is stated.
 "GD_crop" is an internal Quantis Excel workbook (the Python files even contain the Excel formulas
 used to generate them, e.g. `=MOYENNE(B4:AM4)` for GLO); it is not in the repository [V].
 
+Update 2026-10-13 (DECISIONS L22): GD_crop was not found in the ecoinvent archives; it is the
+generic-data (L0/L1) layer of the WFLDB, documented in the ecoinvent 3 reports WFLDB Guidelines
+v3.0 (2016) and WFLDB 3.1 Documentation / Background Parameters (2017). The country tables for
+precipitation, clay, sand, soil carbon, pH, snow, irrigation water sources and manure shares are
+now read from `data/wfldb2017_*.csv`.
+
 ### 5.3 Output mapping conversion factors (`py/outputMapping.py`)
 
 Lines 188-237 (`_DIRECT_OUTPUT_MAPPING`): fuel LHV-type divisors (0.111, 0.0318, 0.02342, 0.025,
@@ -1175,6 +1181,7 @@ developers (Quantis):
 7. **"GD_crop" workbook**: does ecoinvent hold the Quantis workbook from which all `defaultTables.py`
    and `defaultMatrix*.py` were generated (yield 2009-2012, N uptake, N mineral, manure, pesticides,
    soil, precipitation, fertiliser mixes)? Without it every default table is unsourced.
+   *Update 2026-10-13: not found; see DECISIONS L22 (WFLDB 2017 as source).*
 8. **LUC**: are the expansion ratios (`lucmodel.py`) the output of the "WFLDB-adapted Blonk tool
    2015-06-11a"? Which ecoinvent "land use change, annual/perennial crop" datasets are expected to
    exist for the mathematical relation to resolve, and is the per-country GLO fallback acceptable?

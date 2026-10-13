@@ -979,3 +979,28 @@ droppings). Per t FM: 4.0 x 0.45 x 17.0306/14.0067 = 2.19 kg NH3, instead of 38.
 with the 3.D EF. NFR 3B4gi; the row gets the new columns emep_livestock and emep_manure_type.
 
 Regression: unchanged (the three cases use only green-waste compost).
+
+## 14. Country default tables from the WFLDB 2017 background parameters (decision L22, 2026-10-13)
+
+The Quantis workbook "GD_crop", from which `defaultTables.py` and `defaultMatrix*.py` were
+generated, was not found in the ecoinvent archives. Its L0/L1 terminology and its sheet names are
+those of the World Food LCA Database (WFLDB), whose generic data are published as ecoinvent 3
+reports: WFLDB Guidelines v3.0 (2016) for the method, WFLDB 3.1 Documentation and Background
+Parameters (04 May 2017) for the country parameters.
+
+| Table | Workbook (Background Parameters 2017) | Values | Identical to the legacy code (15 digits) |
+|---|---|---|---|
+| `wfldb2017_agr_system_parameters.csv` | sheet 1, rows 17, 12, 7, 13, 14, 18 | 39 x 6 | 37 countries; CN humus changed |
+| `wfldb2017_irrigation_water_sources.csv` | sheet 2, rows 4-6 | 39 x 3 | 37 countries |
+| `wfldb2017_manure_animal_shares.csv` | sheet 3, rows 5-9 and 11-17 | 39 x 10 | 37 countries |
+
+The nine dictionaries of `defaultTables.py` (precipitation, clay, sand, soil carbon, pH <= 7, snow,
+irrigation water sources, liquid and solid manure shares) are now built from these files, with
+the same names and enum keys. Clay content is the soil-type mix of rows 5-10 times the clay
+content per soil type of the Documentation, Tab. 6 (p. 14); this was recalculated for all 37
+countries. The soil carbon of China is 0.02, the estimate given in the Documentation, p. 14,
+note 3; the workbook cell is 0 and the legacy code used 0.0229, the mean of the other countries.
+Morocco and Serbia (CS) are not in WFLDB; their values were added by Quantis in 2017 and stay
+legacy, undocumented, provisional.
+
+Regression: unchanged (no case in China; the other values differ only in the last digit).
