@@ -1193,3 +1193,53 @@ Regression: no case is a legume, snapshots unchanged. In a test run of soybean B
 fertilisers (rain-fed, 1400 mm), NH3 falls from 54.3 to 21.7 kg/ha and N2O from 7.25 to 3.38 kg/ha,
 while nitrate to groundwater rises from 40.8 to 61.0 kg/ha: S and U of the SQCB regression fall
 together, the intercept and the soil organic N term stay.
+
+## 21. Mineral P and K from the crop offtake (decision L31, 2026-10-13)
+
+The legacy tool had no default for mineral P and K: `p2O5_from_mineral_fert` and
+`k2O_from_mineral_fert` were 0 for every crop ("No default for now, maybe in fertistat"). The
+WFLDB L1 method (Guidelines v3.0 sections 3.6.1-3.6.2, Documentation 2017 sections 2.2-2.3)
+derives them from the same nutrient balance as N and manure (L28, L29):
+
+- total P2O5 (K2O) = yield per crop cycle x content of the main product (WFLDB Background
+  Parameters 2017 sheet 4); for P and K only the products taken off the field count, not the
+  residues;
+- P2O5 (K2O) of the manure = m3 of liquid manure x undiluted part x content per m3 + t of solid
+  manure x content per t (GRUDAF 2009 Table 39), for the manure in use (template or default);
+- mineral P2O5 (K2O) = total - manure, 0 when the manure brings more.
+
+The rule applies to 39 crops: the 23 of `n_uptake_crop_parameters.csv` and 16 crops with a sheet-4
+content that keep the legacy N uptake and manure matrices (`pk_crop_parameters.csv`). The other 28
+crops keep 0. With the yield of the L1 fertilisers the rule reproduces the WFLDB 3.1 datasets with
+P and K at L1 within 4 kg (potato RU 5.6 / 42.6 against 6 / 41 kg P2O5 / K2O; carrot IL 0 / 163.8
+against 0 / 167; lemon MX 0 / 11.1 against 0 / 10; tea KE and LK 0 / 0).
+
+| Crop | Country | Yield (kg/ha) | P2O5 total | P2O5 manure | P2O5 mineral | K2O total | K2O manure | K2O mineral |
+|---|---|---|---|---|---|---|---|---|
+| wheat | FR | 6775 | 55.6 | 37.9 | **17.7** | 29.1 | 102.3 | **0.0** |
+| wheat | IN | 3534 | 29.0 | 17.5 | **11.5** | 15.2 | 62.4 | **0.0** |
+| maizegrain | US | 11091 | 65.4 | 61.5 | **3.9** | 44.4 | 122.6 | **0.0** |
+| rice | IN | 4267 | 27.6 | 16.6 | **11.0** | 12.2 | 59.3 | **0.0** |
+| potato | IN | 24930 | 32.4 | 18.7 | **13.7** | 134.6 | 67.0 | **67.7** |
+| sugarbeet | FR | 80555 | 48.3 | 64.3 | **0.0** | 161.1 | 173.7 | **0.0** |
+| soybean | BR | 3243 | 37.9 | 32.3 | **5.6** | 62.6 | 60.9 | **1.7** |
+| sugarcane | BR | 74672 | 42.6 | 34.9 | **7.7** | 414.8 | 65.7 | **349.1** |
+| palmtree | ID | 17354 | 39.8 | 29.8 | **10.0** | 167.3 | 44.2 | **123.1** |
+| tomato_fresh | IT | 61832 | 31.2 | 29.0 | **2.2** | 180.3 | 90.6 | **89.7** |
+| apple | IT | 42366 | 10.7 | 6.0 | **4.7** | 62.3 | 18.9 | **43.4** |
+| orange_fresh | ES | 20994 | 15.2 | 11.0 | **4.2** | 41.7 | 23.5 | **18.2** |
+| coffee_arabica | BR | 1708 | 5.0 | 11.3 | **0.0** | 24.5 | 20.9 | **3.6** |
+| tea | KE | 2494 | 18.0 | 23.2 | **0.0** | 49.3 | 74.8 | **0.0** |
+
+kg P2O5 and K2O per ha and crop cycle, defaults of the default yield and manure. Full table (39
+crops, 39 countries), confirmed by FC: `Literature/review_mineral_pk_defaults.csv`. The default
+manure carries 0.2 x the N uptake as available N and often more P and K than the crop takes off:
+K2O is 0 for the cereals, rice, the oil crops and peanut in all countries, P2O5 for sugar beet,
+linseed, asparagus and most tree crops. The WFLDB 3.1 L3 datasets apply much more, e.g. potato IN
+230 kg P2O5 and 150 kg K2O, sugar beet FR 68 and 146, sunflower FR 25 and 22 (open point).
+
+Regression: the three cases give mineral P and K in the template, snapshots unchanged. In a test
+run of rice_IN without them, the default (12.9 kg P2O5, 0 K2O, against 40 and 0 in the template)
+changes the P fertiliser exchanges (IN shares), the packaging of the fertilisers (320 -> 266 kg)
+and the heavy metals from fertilisers (e.g. Cd to soil 0.0022 -> 0.0008 kg/ha); P run-off stays 0
+(slope below 3 %).

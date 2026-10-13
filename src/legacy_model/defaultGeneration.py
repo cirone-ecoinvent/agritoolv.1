@@ -21,7 +21,7 @@ from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUN
     ENERGY_GROSS_CALORIFIC_VALUE_PER_CROP_PARTIAL, \
     SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY, CARBON_CONTENT_PER_CROP, IRR_WATERUSE_RATIO_PER_COUNTRY, \
     ANNUAL_PRECIPITATION_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR, \
-    N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, LEGUME_CROPS
+    N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, LEGUME_CROPS, PK_PER_KG_MAIN_PRODUCT_PER_CROP
 from directMappingEnums import PlasticDisposal, Plantprotection, Soilcultivation, \
     Sowingplanting, Fertilisation, Harvesting, OtherWorkProcesses, Biowaste
 from models.atomicmass import MA_CO2, MA_C
@@ -435,6 +435,26 @@ class ManureDefaultGenerator(object):
         return n_manure / n_per_unit if n_per_unit else 0.0
 
 
+class MineralPhosphorusPotassiumDefaultGenerator(object):
+    """kg P2O5 or kg K2O/(ha and crop cycle) (decision L31). Crops of PK_PER_KG_MAIN_PRODUCT_PER_CROP: the P2O5 (K2O)
+    taken off the field with the main product, yield per crop cycle x content (WFLDB Guidelines v3.0 section 3.6.1),
+    minus the P2O5 (K2O) of the manure in use (template or default; GRUDAF 2009 Table 39), 0 when the manure brings
+    more (Guidelines section 3.6.2). Other crops: 0, no default."""
+    def __init__(self, nutrient):
+        self._nutrient = nutrient
+
+    def generateDefault(self, field, generators):
+        per_kg = PK_PER_KG_MAIN_PRODUCT_PER_CROP.get(generators["crop"])
+        if per_kg is None:
+            return 0.0
+        taken_off = generators["yield_main_product_per_crop_cycle"] * per_kg[self._nutrient]
+        # mix_content of the quantities: kg per m3 of undiluted liquid manure x m3, kg per t x kg of solid manure
+        manure = (generators["liquid_manure_part_before_dilution"]
+                  * ManureModel.mix_content(generators["liquid_manure_quantities"], self._nutrient)
+                  + ManureModel.mix_content(generators["solid_manure_quantities"], self._nutrient) / 1000.0)
+        return max(0.0, taken_off - manure)
+
+
 class FlatRatioRepartitionGenerator(object):
     def __init__(self, enumClass):
         self._enumClass = enumClass
@@ -545,10 +565,8 @@ DEFAULTS_VALUES_GENERATORS = {
     "pest_horticultural_oil": SimpleValueDefaultGenerator(0.0),
     # Fertiliser defaults
     "nitrogen_from_mineral_fert": MineralNitrogenDefaultGenerator(),
-    "p2O5_from_mineral_fert": SimpleValueDefaultGenerator(0.0),
-    # NOTE: No default for now, maybe in fertistat
-    "k2O_from_mineral_fert": SimpleValueDefaultGenerator(0.0),
-    # NOTE: No default for now, maybe in fertistat
+    "p2O5_from_mineral_fert": MineralPhosphorusPotassiumDefaultGenerator("p2o5"),
+    "k2O_from_mineral_fert": MineralPhosphorusPotassiumDefaultGenerator("k2o"),
     "n_fertiliser_proportions": TableLookupDefaultGenerator("country", FERT_N_RATIO_PER_COUNTRY),
     "p_fertiliser_proportions": TableLookupDefaultGenerator("country", FERT_P_RATIO_PER_COUNTRY),
     "k_fertiliser_proportions": TableLookupDefaultGenerator("country", FERT_K_RATIO_PER_COUNTRY),
