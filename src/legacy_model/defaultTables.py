@@ -80,6 +80,9 @@ def _n_uptake_per_kg_main_product():
 
 # kg N / kg FM of the main product
 N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP = _n_uptake_per_kg_main_product()
+# Legumes: their default N uptake counts only legume_uptake_share of the uptake (decision L30)
+LEGUME_CROPS = frozenset(crop for crop, row in dataloader.table("crop_types.csv", numeric=False).items()
+                         if row["legume"] == "yes")
 
 #Generated from GD_crop GrossEnergy_C_L1 column D, kgC/kgDM
 # Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry

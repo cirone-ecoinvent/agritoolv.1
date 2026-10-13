@@ -1155,3 +1155,41 @@ manure 2.26 -> 4.50 t/ha (solid "other" 1.41 t -> 0); NH3 28.71 -> 34.12, N2O 1.
 N2O 4.68 -> 5.26, nitrate to groundwater 132.8 -> 137.8 kg/ha; heavy metals to soil from x0.63 (Zn)
 to x2.1 (Pb), because the manure classes of the mix change. wheat_IT and apple_FR give their manure
 and are unchanged.
+
+## 20. Legume N uptake (decision L30, 2026-10-13)
+
+The WFLDB Guidelines v3.0 (section 3.9.7.2, after Schmid et al. 2000) count only 40 % of the N
+uptake of legumes: the other 60 % is fixed from the air and is not directly relevant to the balance
+of N supplied by fertilisers and the soil. The legacy tool documentation (Quantis 2019, section 2.4)
+has the same rule for the nitrate model, and `legume_uptake_share` = 0.4 was already in
+`model_parameters.csv`, but the legacy code never used it.
+
+The default N uptake of the legumes (column `legume` of `crop_types.csv`: soybean, peanut,
+chick_pea, lentil, guar) is now `legume_uptake_share` x the uptake. With the WFLDB L1 rule N input =
+N uptake, the default mineral N (L28) and manure (L29) of soybean and peanut follow, and the same
+value is U of the SQCB nitrate model. Chick_pea, lentil and guar keep the legacy matrices: their
+uptake is reduced, their default fertilisers are already 0.
+
+| Crop | Country | Yield (kg/ha) | N uptake | Mineral N | Liquid manure (m3) | Solid manure (t) |
+|---|---|---|---|---|---|---|
+| soybean | AR | 2565 | 243.7 -> 97.5 | 194.9 -> 78.0 | 12.99 -> 5.20 | 7.92 -> 3.17 |
+| soybean | BR | 3243 | 308.1 -> 123.2 | 246.5 -> 98.6 | 15.37 -> 6.15 | 9.66 -> 3.87 |
+| soybean | US | 3406 | 323.6 -> 129.4 | 258.9 -> 103.6 | 13.62 -> 5.45 | 9.95 -> 3.98 |
+| soybean | IN | 1092 | 103.8 -> 41.5 | 83.0 -> 33.2 | 5.42 -> 2.17 | 4.98 -> 1.99 |
+| soybean | CN | 1980 | 188.1 -> 75.2 | 150.5 -> 60.2 | 7.75 -> 3.10 | 5.41 -> 2.16 |
+| peanut | IN | 2024 | 152.0 -> 60.8 | 121.6 -> 48.6 | 7.94 -> 3.18 | 7.30 -> 2.92 |
+| peanut | CN | 3943 | 296.1 -> 118.4 | 236.8 -> 94.7 | 12.20 -> 4.88 | 8.51 -> 3.40 |
+| peanut | US | 4368 | 328.0 -> 131.2 | 262.4 -> 105.0 | 13.80 -> 5.52 | 10.08 -> 4.03 |
+| chick_pea | all | - | 37.0 -> 14.8 | 0 | 0 | 0 |
+| guar | all | - | 45.0 -> 18.0 | 0 | 0 | 0 |
+| lentil | all | - | 0 | 0 | 0 | 0 |
+
+N uptake and mineral N in kg N/ha and crop cycle, defaults of the default yield. Full table (5
+crops, 39 countries), confirmed by FC: `Literature/review_legume_n_uptake.csv`. For comparison,
+the WFLDB 3.1 L3 datasets (Documentation 2017, sheet 2a) apply 4 kg N to soybean AR and 0, 80 and
+60 kg N to peanut AR, CN and IN, without manure.
+
+Regression: no case is a legume, snapshots unchanged. In a test run of soybean BR with the default
+fertilisers (rain-fed, 1400 mm), NH3 falls from 54.3 to 21.7 kg/ha and N2O from 7.25 to 3.38 kg/ha,
+while nitrate to groundwater rises from 40.8 to 61.0 kg/ha: S and U of the SQCB regression fall
+together, the intercept and the soil organic N term stay.
