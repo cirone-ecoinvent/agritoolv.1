@@ -84,6 +84,21 @@ N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP = _n_uptake_per_kg_main_product()
 LEGUME_CROPS = frozenset(crop for crop, row in dataloader.table("crop_types.csv", numeric=False).items()
                          if row["legume"] == "yes")
 
+
+def _pk_per_kg_main_product():
+    """kg P2O5 and kg K2O per kg fresh main product (WFLDB Guidelines v3.0 section 3.6.1: for P and K only the
+    products taken off the field; decision L31), with the contents of the WFLDB Background Parameters 2017 sheet 4,
+    for the crops of n_uptake_crop_parameters.csv and pk_crop_parameters.csv."""
+    contents = dataloader.table("wfldb2017_crop_nutrient_contents.csv")
+    crops = dataloader.rows("n_uptake_crop_parameters.csv") + dataloader.rows("pk_crop_parameters.csv")
+    return {row["crop"]: {"p2o5": contents[row["wfldb_crop"]]["p2o5_main_g_per_kg_fm"] / 1000.0,
+                          "k2o": contents[row["wfldb_crop"]]["k2o_main_g_per_kg_fm"] / 1000.0}
+            for row in crops}
+
+
+# kg P2O5 and kg K2O / kg FM of the main product, {crop: {"p2o5": ..., "k2o": ...}}
+PK_PER_KG_MAIN_PRODUCT_PER_CROP = _pk_per_kg_main_product()
+
 #Generated from GD_crop GrossEnergy_C_L1 column D, kgC/kgDM
 # Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
 # Castor bean: http://www.modernscientificpress.com/Journals/ViewArticle.aspx?gkN1Z6Pb60HNQPymfPQlZIiDnrBBtQSfoCsKufNADqZ4TrWuS7h5KvbfIK0SLlFq
