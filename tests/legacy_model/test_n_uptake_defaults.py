@@ -3,7 +3,7 @@ Background Parameters 2017 sheet 4, residue ratio from GRUDAF 2009 Tab. 1), defa
 import pytest
 
 import dataloader
-from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS
+from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, MineralNitrogenDefaultGenerator
 from defaultTables import N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP as N_PER_KG
 
 
@@ -20,7 +20,8 @@ def test_wheat_reproduces_grudaf_table1():
 def test_n_uptake_and_mineral_n_follow_the_yield_of_the_crop_cycle():
     defaults = _defaults(crop="wheat", country="IT", yield_main_product_per_crop_cycle=6500.0)
     assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(6.5 * (20.2 + 70.0 / 60.0 * 3.1))
-    assert defaults["nitrogen_from_mineral_fert"] == pytest.approx(0.8 * defaults["nitrogen_uptake_by_crop"])
+    # level 1; the default is level 2 where IFA gives a rate (decision L33, test_ifa_level2_defaults.py)
+    assert MineralNitrogenDefaultGenerator.level1(defaults) == pytest.approx(0.8 * defaults["nitrogen_uptake_by_crop"])
 
 
 def test_crop_without_residue_n_uses_the_main_product_only():

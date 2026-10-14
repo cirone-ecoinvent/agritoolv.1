@@ -4,7 +4,7 @@ follow from it (WFLDB L1: N input = N uptake)."""
 import pytest
 
 import dataloader
-from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS
+from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, MineralNitrogenDefaultGenerator
 from defaultMatrixNUptake import NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY
 from defaultMatrixTotalMineralFert import NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY
 from defaultTables import N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP as N_PER_KG, LEGUME_CROPS
@@ -24,7 +24,7 @@ def test_legume_inputs_follow_the_share_of_the_uptake(crop, country, yield_per_c
     defaults = _defaults(crop=crop, country=country, yield_main_product_per_crop_cycle=yield_per_cycle)
     uptake = 0.4 * yield_per_cycle * N_PER_KG[crop]
     assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(uptake)
-    assert defaults["nitrogen_from_mineral_fert"] == pytest.approx(0.8 * uptake)
+    assert MineralNitrogenDefaultGenerator.level1(defaults) == pytest.approx(0.8 * uptake)  # L2: L33
     # manure per kg of N uptake depends only on the country (L29): same as for a non-legume crop
     wheat = _defaults(crop="wheat", country=country, yield_main_product_per_crop_cycle=5000.0)
     for field in ("total_manureliquid", "total_manuresolid"):
