@@ -1,5 +1,5 @@
 name,value,unit,source,doc_section
-ef_nox_n,0.012173913,kg NOx-N / kg N,EEA 2016 3.D Tab. 3.1: 0.04 kg NO2/kg N (note a; Annex A2.3) * 14/46. Deviation from Quantis 2019 (0.04*14/30),2.3
+ef_nox_n,0.012173913,kg NOx-N / kg N,"EEA 2023 3.D Table 3-1: 0.04 kg NO2/kg fertiliser and manure N applied (note a: NO reported as NO2; Skiba et al. 2021; 95 % CI 0.005-0.104; same value as EEA 2016, decision L39) * 14/46. Deviation from Quantis 2019 (0.04*14/30)",2.3
 ef1_direct_n2o,0.01,kg N2O-N / kg N,"IPCC 2006 Vol.4 Tab. 11.1, EF1",2.2
 ef1_flooded_rice,0.003,kg N2O-N / kg N,"IPCC 2006 Vol.4 Tab. 11.1, EF1FR",2.2
 ef4_volatilisation,0.01,kg N2O-N / kg (NH3-N + NOx-N),"IPCC 2006 Vol.4 Tab. 11.3, EF4",2.2

@@ -1,0 +1,12 @@
+emep_fertiliser_type,ef_normal_ph,ef_high_ph,unit,ifa_category,base_model_category,nh3_n_pct_normal_ph,nh3_n_pct_high_ph,note
+Anhydrous ammonia (AH),20,20,g NH3 per kg N applied,Ammonia dir. applic.,none,,,"Annex 1 A1.1.2: insufficient data for anhydrous and aqueous NH3, 20 g NH3 per kg N adopted"
+AN,24,52,g NH3 per kg N applied,Ammonium nitrate,ammonia+2,2.0,4.3,
+Ammonium phosphate (AP),84,187,g NH3 per kg N applied,Ammonium phosphate,ammonia+1,6.9,15.4,Table 3-2 note (c): AP is the sum of ammonium monophosphate (MAP) and diammonium phosphate (DAP)
+AS,84,187,g NH3 per kg N applied,Ammonium sulphate,ammonia+1,6.9,15.4,
+CAN,24,52,g NH3 per kg N applied,Calc. amm. nitrate,ammonia+2,2.0,4.3,
+NK mixtures,24,52,g NH3 per kg N applied,N K compound,ammonia+2,2.0,4.3,Table 3-2 note (d): NK mixtures are equivalent to AN
+NPK mixtures,84,187,g NH3 per kg N applied,N P K compound,ammonia+1,6.9,15.4,Table 3-2 note (d): 50 % MAP plus 50 % DAP
+NP mixtures,84,187,g NH3 per kg N applied,Other NP,ammonia+1,6.9,15.4,Table 3-2 note (d): 50 % MAP plus 50 % DAP
+N solutions,87,161,g NH3 per kg N applied,Nitrogen solutions,UAN,7.2,13.3,Table 3-2 note (e): N solutions are equivalent to urea AN
+Other straight N compounds,24,187,g NH3 per kg N applied,Other N straight,ammonia+1,6.9,15.4,"Table 3-2 note (f): equivalent to calcium nitrate. Transcribed as printed in Table 3-2; Annex Table A1.1 gives 84 for normal pH (ammonia+1, 6.9 % NH3-N) and its weighted average (3.5 g NH3 per kg N at 4 % of the consumption) agrees only with 84: probable misprint. Not used by the model (decision L38)"
+Urea,195,206,g NH3 per kg N applied,Urea,urea+,16.1,17.0,
