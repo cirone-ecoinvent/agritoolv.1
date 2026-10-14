@@ -1,0 +1,40 @@
+country,fubc_country,region_ifa,note,status,reviewed_by
+AR,Argentina,Latin America,,confirmed,FC
+AU,Australia,Oceania,,confirmed,FC
+BE,Belgium,Western and Central Europe,,confirmed,FC
+BR,Brazil,Latin America,,confirmed,FC
+CA,Canada,North America,,confirmed,FC
+CH,Switzerland,Western and Central Europe,"FUBC 5 (1999/2000), used without time scaling",confirmed,FC
+CI,Cote d'Ivoire,Africa,"FUBC 4 (1994), used without time scaling",confirmed,FC
+CL,Chile,Latin America,,confirmed,FC
+CN,China,East Asia,"FUBC 'China' without 'China, Taiwan' (separate entry) = mainland China",confirmed,FC
+CO,Colombia,Latin America,"FUBC 5 (1997), used without time scaling",confirmed,FC
+CR,Costa Rica,Latin America,"FUBC 5 (1997), used without time scaling",confirmed,FC
+CS,,Western and Central Europe,not in FUBC; region of Serbia in IFA_regions.csv,confirmed,FC
+DE,Germany,Western and Central Europe,,confirmed,FC
+EC,Ecuador,Latin America,"FUBC 5 (1995), used without time scaling",confirmed,FC
+ES,Spain,Western and Central Europe,,confirmed,FC
+FI,Finland,Western and Central Europe,,confirmed,FC
+FR,France,Western and Central Europe,,confirmed,FC
+GH,,Africa,not in FUBC; region of Ghana in IFA_regions.csv,confirmed,FC
+HU,Hungary,Western and Central Europe,,confirmed,FC
+ID,Indonesia,East Asia,,confirmed,FC
+IL,Israel,West Asia,,confirmed,FC
+IN,India,South Asia,,confirmed,FC
+IT,Italy,Western and Central Europe,,confirmed,FC
+KE,Kenya,Africa,"FUBC 5 (1997), used without time scaling",confirmed,FC
+LK,Sri Lanka,South Asia,"FUBC 5 (1998), used without time scaling",confirmed,FC
+MA,Morocco,Africa,,confirmed,FC
+MX,Mexico,Latin America,,confirmed,FC
+NL,Netherlands,Western and Central Europe,,confirmed,FC
+NZ,New Zealand,Oceania,,confirmed,FC
+PE,Peru,Latin America,,confirmed,FC
+PH,Philippines,East Asia,,confirmed,FC
+PL,Poland,Western and Central Europe,,confirmed,FC
+RU,Russian Federation,Eastern Europe and Central Asia,,confirmed,FC
+TH,Thailand,East Asia,,confirmed,FC
+TR,Turkey,West Asia,,confirmed,FC
+UA,Ukraine,Eastern Europe and Central Asia,,confirmed,FC
+US,United States of America,North America,,confirmed,FC
+VN,Viet Nam,East Asia,,confirmed,FC
+ZA,South Africa,Africa,,confirmed,FC
