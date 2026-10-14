@@ -1526,3 +1526,62 @@ Limits: the factor of the country multiplies the region rate, so marginal crops 
 a high factor get high values (TH P2O5 1.87: wheat TH 202 / 234 / 127, tea TH 533 / 215 / 206).
 
 Regression: snapshots unchanged.
+
+## 27. NH3 of mineral N fertilisers and NO from EMEP/EEA 2023 (decisions L38, L39, 2026-10-14)
+
+The NH3 after mineral N fertiliser application used the factors of EMEP/EEA 2016 3.D Table 3-2,
+written in `fertilisermodel.py` without a source comment: 10 fertiliser types x 3 climates
+(cool, temperate, warm) x 2 pH classes, in kg NH3-N per kg N, times 17/14.
+
+New: EMEP/EEA 2023 3.D Tier 2, Table 3-2 (p. 17), in `data/emep2023_3d_table3_2.csv`:
+
+- g NH3 per kg N applied, on soils of normal pH (<= 7.0) and high pH (> 7.0); the 2023 table has
+  no climate classes (the meta-analysis of Annex 1 A1.1.2 found no significant effect of the
+  temperature);
+- NH3 = sum over the types of kg N x (p x EF normal pH + (1 - p) x EF high pH), with p =
+  `soil_with_ph_under_or_7`; hydroponic greenhouses keep p = 1 as in the legacy code;
+- legacy types to Table 3-2 rows in `data/emep2023_fertiliser_type_mapping.csv`, signed by FC.
+
+| Legacy type | Table 3-2 row | Legacy, temperate (normal / high pH) | 2023 (normal / high pH) |
+|---|---|---|---|
+| ammonium nitrate | AN | 0.012 / 0.036 | **0.024 / 0.052** |
+| urea | Urea | 0.158 / 0.170 | **0.195 / 0.206** |
+| urea AN | N solutions (note e) | 0.097 / 0.097 | **0.087 / 0.161** |
+| MAP, DAP | AP (note c) | 0.049 / 0.097 | **0.084 / 0.187** |
+| ammonium nitrate phosphate | NP mixtures | 0.073 / 0.097 | **0.084 / 0.187** |
+| calcium ammonium nitrate | CAN | 0.012 / 0.012 | **0.024 / 0.052** |
+| ammonium sulphate | AS | 0.097 / 0.170 | **0.084 / 0.187** |
+| potassium nitrate | NK mixtures | 0.073 / 0.097 | **0.024 / 0.052** |
+| liquid ammonia | Anhydrous ammonia (AH) | 0.024 / 0.036 | **0.020 / 0.020** |
+
+kg NH3 per kg N. The legacy warm-climate factors were higher than the temperate ones (urea 0.194 /
+0.206). Ammonium nitrate phosphate and potassium nitrate were both "other complex NK, NPK" in the
+2016 table; in 2023 they follow the IFA categories of Annex Table A1.1 (Other NP, N K compound).
+
+Transcription: the `-layout` text of the PDF shifts the rows; `-table` and `-raw` agree with each
+other and with Annex Table A1.1 (pp. 32-33), where each factor is the NH3-N % of the base model
+category x 17/14. Exception: Other straight N compounds prints 24 g for normal pH, the Annex gives
+84 (its weighted average agrees only with 84). The row is transcribed as printed with a note; no
+legacy type uses it.
+
+With the default N fertiliser mix and pH share of the 39 countries, the mean factor per kg N changes
+by x0.93 (FI) to x1.49 (NL), median x1.23 (`Literature/review_emep2023_fertiliser_nh3.csv`).
+
+Not applied: the 22 % for urea and AS on rice paddies cited in Annex 1 (Yan et al. 2003, guidance
+kept from the 2019 Guidebook, not a Table 3-2 factor). Open.
+
+Regression (kg/ha and crop cycle):
+
+| Case | ammonia_total | N2o_air | Nox_as_n2o_air | nitrate_to_groundwater |
+|---|---|---|---|---|
+| apple_FR | 6.822 -> 7.829 | 2.375 -> 2.387 | 4.554 -> 4.521 | 131.10 -> 130.86 |
+| wheat_IT | 31.704 -> 35.400 | 4.835 -> 4.877 | 6.795 -> 6.673 | 81.58 -> 80.27 |
+| rice_IN | 34.118 -> 34.104 | 1.8027 -> 1.8026 | 5.2608 -> 5.2613 | 137.85 -> 137.88 |
+
+`nitrate_to_surfacewater` follows the groundwater change (apple_FR 14.567 -> 14.540, wheat_IT
+34.961 -> 34.401). No other output changes.
+
+NO (decision L39): the NO emission factor of fix F1 (L3) cited EMEP/EEA 2016 3.D Table 3-1. The
+2023 Table 3-1 (p. 14) keeps 0.04 kg NO2 per kg fertiliser and manure N applied (note a: NO reported
+as NO2; Skiba et al. 2021, 95 % CI 0.005-0.104), so `ef_nox_n` stays 0.012174 kg NOx-N/kg N; only
+the citations change. No numerical change.

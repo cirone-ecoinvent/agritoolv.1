@@ -1,0 +1,11 @@
+legacy_fertiliser_type,emep_fertiliser_type,note,status,reviewed_by
+fert_n_ammonium_nitrate,AN,same fertiliser; approved in chat 2026-10-14,confirmed,FC
+fert_n_urea,Urea,same fertiliser; approved in chat 2026-10-14,confirmed,FC
+fert_n_ureaAN,N solutions,Table 3-2 note (e): N solutions are equivalent to urea AN; approved in chat 2026-10-14,confirmed,FC
+fert_n_mono_ammonium_phosphate,Ammonium phosphate (AP),Table 3-2 note (c): AP is the sum of MAP and DAP; approved in chat 2026-10-14,confirmed,FC
+fert_n_di_ammonium_phosphate,Ammonium phosphate (AP),Table 3-2 note (c): AP is the sum of MAP and DAP; approved in chat 2026-10-14,confirmed,FC
+fert_n_an_phosphate,NP mixtures,"ammonium nitrate phosphate (ANP), an NP compound: IFA category Other NP of Annex Table A1.1 (legacy: other complex NK, NPK of the 2016 table); approved in chat 2026-10-14",confirmed,FC
+fert_n_lime_ammonium_nitrate,CAN,calcium ammonium nitrate; approved in chat 2026-10-14,confirmed,FC
+fert_n_ammonium_sulphate,AS,same fertiliser; approved in chat 2026-10-14,confirmed,FC
+fert_n_potassium_nitrate,NK mixtures,"potassium nitrate, an NK compound: IFA category N K compound of Annex Table A1.1 (legacy: other complex NK, NPK of the 2016 table); approved in chat 2026-10-14",confirmed,FC
+fert_n_ammonia_liquid,Anhydrous ammonia (AH),anhydrous ammonia; approved in chat 2026-10-14,confirmed,FC

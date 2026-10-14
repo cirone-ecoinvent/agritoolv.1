@@ -1,7 +1,6 @@
 from enum import Enum
 
 import dataloader
-from models.atomicmass import N_TO_NH3_FACTOR
 from models.modelEnums import HeavyMetalType
 
 
@@ -54,7 +53,6 @@ class FertModel(object):
       zn_fertiliser_quantities: map ZnFertiliserType -> kg Zn/ha
       magnesium_from_fertilizer: kg Mg/ha
       soil_with_ph_under_or_7: ratio
-      climate_zone_1: text
       cultivation_type: text
 
     Outputs:
@@ -71,79 +69,16 @@ class FertModel(object):
                         "zn_fertiliser_quantities",
                         "magnesium_from_fertilizer",
                         "soil_with_ph_under_or_7",
-                        "climate_zone_1",
                         "cultivation_type"
                         ]
 
-    _EF_NH3N_MIN_N_FERT_PH_UNDER_OR_SEVEN = {"cool_climate": {
-        NFertiliserType.ammonium_nitrate: 0.01,
-        NFertiliserType.urea: 0.13,
-        NFertiliserType.ureaAN: 0.08,
-        NFertiliserType.mono_ammonium_phosphate: 0.04,
-        NFertiliserType.di_ammonium_phosphate: 0.04,
-        NFertiliserType.an_phosphate: 0.04,  # Other complex NK, NPK fertilizers
-        NFertiliserType.lime_ammonium_nitrate: 0.01,  # Calcium ammonium nitrate (CAN)
-        NFertiliserType.ammonium_sulphate: 0.07,
-        NFertiliserType.potassium_nitrate: 0.04,  # Other complex NK, NPK fertilizers
-        NFertiliserType.ammonia_liquid: 0.02  # Anhydrous ammonia
-    }, "temperate_climate": {
-        NFertiliserType.ammonium_nitrate: 0.01,
-        NFertiliserType.urea: 0.13,
-        NFertiliserType.ureaAN: 0.08,
-        NFertiliserType.mono_ammonium_phosphate: 0.04,
-        NFertiliserType.di_ammonium_phosphate: 0.04,
-        NFertiliserType.an_phosphate: 0.06,  # Other complex NK, NPK fertilizers
-        NFertiliserType.lime_ammonium_nitrate: 0.01,  # Calcium ammonium nitrate (CAN)
-        NFertiliserType.ammonium_sulphate: 0.08,
-        NFertiliserType.potassium_nitrate: 0.06,  # Other complex NK, NPK fertilizers
-        NFertiliserType.ammonia_liquid: 0.02  # Anhydrous ammonia
-    }, "warm_climate": {
-        NFertiliserType.ammonium_nitrate: 0.02,
-        NFertiliserType.urea: 0.16,
-        NFertiliserType.ureaAN: 0.10,
-        NFertiliserType.mono_ammonium_phosphate: 0.05,
-        NFertiliserType.di_ammonium_phosphate: 0.05,
-        NFertiliserType.an_phosphate: 0.05,  # Other complex NK, NPK fertilizers
-        NFertiliserType.lime_ammonium_nitrate: 0.01,  # Calcium ammonium nitrate (CAN)
-        NFertiliserType.ammonium_sulphate: 0.09,
-        NFertiliserType.potassium_nitrate: 0.05,  # Other complex NK, NPK fertilizers
-        NFertiliserType.ammonia_liquid: 0.02  # Anhydrous ammonia
-    }}
-
-    _EF_NH3N_MIN_N_FERT_PH_OVER_SEVEN = {"cool_climate": {
-        NFertiliserType.ammonium_nitrate: 0.03,
-        NFertiliserType.urea: 0.14,
-        NFertiliserType.ureaAN: 0.08,
-        NFertiliserType.mono_ammonium_phosphate: 0.07,
-        NFertiliserType.di_ammonium_phosphate: 0.07,
-        NFertiliserType.an_phosphate: 0.07,  # Other complex NK, NPK fertilizers
-        NFertiliserType.lime_ammonium_nitrate: 0.01,  # Calcium ammonium nitrate (CAN)
-        NFertiliserType.ammonium_sulphate: 0.14,
-        NFertiliserType.potassium_nitrate: 0.07,  # Other complex NK, NPK fertilizers
-        NFertiliserType.ammonia_liquid: 0.03  # Anhydrous ammonia
-    }, "temperate_climate": {
-        NFertiliserType.ammonium_nitrate: 0.03,
-        NFertiliserType.urea: 0.14,
-        NFertiliserType.ureaAN: 0.08,
-        NFertiliserType.mono_ammonium_phosphate: 0.08,
-        NFertiliserType.di_ammonium_phosphate: 0.08,
-        NFertiliserType.an_phosphate: 0.08,  # Other complex NK, NPK fertilizers
-        NFertiliserType.lime_ammonium_nitrate: 0.01,  # Calcium ammonium nitrate (CAN)
-        NFertiliserType.ammonium_sulphate: 0.14,
-        NFertiliserType.potassium_nitrate: 0.08,  # Other complex NK, NPK fertilizers
-        NFertiliserType.ammonia_liquid: 0.03  # Anhydrous ammonia
-    }, "warm_climate": {
-        NFertiliserType.ammonium_nitrate: 0.03,
-        NFertiliserType.urea: 0.17,
-        NFertiliserType.ureaAN: 0.10,
-        NFertiliserType.mono_ammonium_phosphate: 0.10,
-        NFertiliserType.di_ammonium_phosphate: 0.10,
-        NFertiliserType.an_phosphate: 0.10,  # Other complex NK, NPK fertilizers
-        NFertiliserType.lime_ammonium_nitrate: 0.02,  # Calcium ammonium nitrate (CAN)
-        NFertiliserType.ammonium_sulphate: 0.17,
-        NFertiliserType.potassium_nitrate: 0.10,  # Other complex NK, NPK fertilizers
-        NFertiliserType.ammonia_liquid: 0.04  # Anhydrous ammonia
-    }}
+    # NH3 after mineral N fertiliser application: EMEP/EEA 2023 3.D Tier 2, Table 3-2 (decision L38,
+    # data/emep2023_3d_table3_2.csv, g NH3 per kg N applied on soils of normal pH <= 7.0 and of high
+    # pH > 7.0, no climate classes), rows assigned to the legacy fertiliser types by
+    # data/emep2023_fertiliser_type_mapping.csv.
+    _NH3_EF_TABLE = "emep2023_3d_table3_2.csv"
+    _NH3_EF_MAPPING = "emep2023_fertiliser_type_mapping.csv"
+    _G_PER_KG = 1000.0
 
     # Heavy-metal contents of mineral fertilisers: SALCAheavymetal 2023 Table 1 (decision L10,
     # data/hm_salca2023_table1.csv, mg per kg N, P2O5, K2O, Ca or Mg, Hg included), rows assigned
@@ -160,21 +95,27 @@ class FertModel(object):
             setattr(self, key, inputs[key])
 
     def computeNH3(self):
-        return N_TO_NH3_FACTOR * sum(self._compute_nh3_as_n().values())
+        """NH3 after mineral N fertiliser application, kg NH3/ha (EMEP/EEA 2023 3.D Tier 2, Eq. (4)).
 
-    def _compute_nh3_as_n(self):
-        return {fertKey: fertValue * self._compute_nh3_as_n_for_fert(fertKey) for fertKey, fertValue in
-                self.n_fertiliser_quantities.items()}
-
-    def _compute_nh3_as_n_for_fert(self,fert):
-        climate = self.climate_zone_1
-        soil_ph_under_or_7 = self.soil_with_ph_under_or_7
+        Sum over the N fertiliser types of kg N x (p x EF normal pH + (1 - p) x EF high pH), with
+        p = soil_with_ph_under_or_7, the share of soils with pH <= 7.0.
+        """
+        share_normal_ph = self.soil_with_ph_under_or_7
         if self.cultivation_type.startswith("greenhouse_hydroponic"):
-            climate = "temperate_climate"
-            soil_ph_under_or_7 = 1.0
-        Ef_low_ph = self._EF_NH3N_MIN_N_FERT_PH_UNDER_OR_SEVEN[climate][fert]
-        Ef_high_ph = self._EF_NH3N_MIN_N_FERT_PH_OVER_SEVEN[climate][fert]
-        return soil_ph_under_or_7 * Ef_low_ph + (1.0 - soil_ph_under_or_7) * Ef_high_ph
+            # legacy, undocumented, provisional: hydroponic greenhouses count as normal pH
+            share_normal_ph = 1.0
+        total = 0.0
+        for fert_type, quantity in self.n_fertiliser_quantities.items():
+            ef_normal_ph, ef_high_ph = self.nh3_emission_factors(fert_type)
+            total += quantity * (share_normal_ph * ef_normal_ph + (1.0 - share_normal_ph) * ef_high_ph)
+        return total
+
+    @classmethod
+    def nh3_emission_factors(cls, fert_type):
+        """kg NH3 per kg N applied of an NFertiliserType, (normal pH, high pH)."""
+        emep_type = dataloader.table(cls._NH3_EF_MAPPING, numeric=False)[fert_type.value]["emep_fertiliser_type"]
+        row = dataloader.table(cls._NH3_EF_TABLE)[emep_type]
+        return row["ef_normal_ph"] / cls._G_PER_KG, row["ef_high_ph"] / cls._G_PER_KG
 
     def computeHeavyMetal(self):
         """Heavy-metal input with mineral fertilisers, map HeavyMetalType -> mg/ha.

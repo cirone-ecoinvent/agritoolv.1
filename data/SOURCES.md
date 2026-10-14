@@ -31,6 +31,8 @@ for crop production* (Ecoinvent_Tool_Model_Description_20191015.pdf), unless sta
   change) in the field N2O with EF 0.01; C:N ratios from Quantis 2.9.1.2.
 * NOx: SALCAfieldN still uses 0.012 kg NOx-N/kg N (0.026 * 14/30), numerically the same as
   the corrected EEA 2016 value (0.04 * 14/46 = 0.0122). Only Quantis 2019 (0.0187) deviates.
+  EEA 2023 3.D Table 3-1 keeps 0.04 kg NO2/kg N (Skiba et al. 2021); source updated on
+  2026-10-14 (decision L39).
 
 ## Master Data v3.12 remarks
 
