@@ -66,9 +66,9 @@ def test_reviewed_country_factors():
 
 
 def test_other_crops_keep_the_legacy_matrices():
-    defaults = _defaults(crop="apple", country="IT", yield_main_product_per_crop_cycle=35000.0)
-    assert defaults["total_manureliquid"] == TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY["apple"]["IT"]
-    assert defaults["total_manuresolid"] == TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY["apple"]["IT"]
+    defaults = _defaults(crop="blueberry", country="US", yield_main_product_per_crop_cycle=9000.0)
+    assert defaults["total_manureliquid"] == TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY["blueberry"]["US"]
+    assert defaults["total_manuresolid"] == TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY["blueberry"]["US"]
 
 
 def test_country_shares_cover_the_tool_countries_and_sum_to_one():

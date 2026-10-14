@@ -1243,3 +1243,60 @@ run of rice_IN without them, the default (12.9 kg P2O5, 0 K2O, against 40 and 0 
 changes the P fertiliser exchanges (IN shares), the packaging of the fertilisers (320 -> 266 kg)
 and the heavy metals from fertilisers (e.g. Cd to soil 0.0022 -> 0.0008 kg/ha); P run-off stays 0
 (slope below 3 %).
+
+## 22. N uptake of the tree crops computed from the yield (decision L32, 2026-10-14)
+
+L28 kept the tree crops on the legacy matrices because their N uptake is not proportional to the
+yield. It is affine: in every country of the 15 tree crops with a WFLDB sheet-4 content (46
+crop-country rows), GD_crop Nuptake_L1 = yield (2009-2012) x N of the main product + 18.6 kg N/ha.
+18.6 kg N = 6000 kg FM of residues per ha x 3.1 g N/kg FM, the N of haulm or stem that sheet 4 gives
+for all tree crops. The amount of residues is not stated in the WFLDB reports (parameter tagged
+"legacy, undocumented, provisional" by FC), but the rule reproduces the WFLDB 3.1 datasets with N
+mineral at L1 (Documentation 2017 Excel annex, sheet 2c), mineral N = 0.8 x N uptake: coconut PH
+43.5 against 44 kg N/ha, lemon MX 33.0 against 33, tea KE 82.1 against 82, tea LK 61.8 against 62,
+pear BE 36.3 against 36 (at the GD_crop yield).
+
+New: the 16 tree crops are in `n_uptake_crop_parameters.csv` (column `tree_residues` = yes; moved
+from `pk_crop_parameters.csv`, which keeps only mint):
+
+- N uptake = yield per crop cycle x N of the main product + `tree_crop_residues_kg_fm_per_ha`
+  (6000, `model_parameters.csv`) x N of haulm or stem (`defaultTables.py`
+  N_UPTAKE_OF_TREE_RESIDUES_PER_CROP);
+- mineral N = 0.8 x N uptake (L28), manure from the N uptake (L29), mineral P and K = offtake minus
+  manure (L31), as for the 23 crops of L28;
+- citruslime -> Lemon of sheet 4 (proxy: every legacy value of citruslime equals lemon); it now
+  also gets the P and K defaults (40 crops).
+
+| Crop | Country | Yield (kg/ha) | N uptake | Mineral N | Liquid manure (m3) | Solid manure (t) | P2O5 mineral | K2O mineral |
+|---|---|---|---|---|---|---|---|---|
+| almond | CN | 4393 | 78.1 -> 108.1 | 62.5 -> 86.5 | 2.92 -> 4.45 | 2.32 -> 3.11 | 6.2 -> 0.0 | 17.3 -> 2.4 |
+| apple | IT | 42366 | 38.2 -> 39.8 | 30.5 -> 31.8 | 1.70 -> 2.40 | 1.28 -> 1.90 | 4.7 -> 1.9 | 43.4 -> 34.8 |
+| apricot | TR | 6274 | 34.1 -> 27.4 | 27.2 -> 21.9 | 1.49 -> 0.99 | 1.47 -> 0.75 | 0.0 -> 0.0 | 0.0 -> 7.1 |
+| citruslime | MX | 15344 | 41.2 -> 43.8 | 33.0 -> 35.1 | 1.67 -> 2.06 | 1.07 -> 1.13 | 0.0 -> 0.0 | 0.0 -> 12.4 |
+| cocoa | CI | 502 | 29.5 -> 27.6 | 23.6 -> 22.1 | 1.19 -> 0.83 | 0.75 -> 0.68 | 0.0 -> 0.0 | 8.4 -> 10.4 |
+| coconut | IN | 6425 | 61.9 -> 70.7 | 49.5 -> 56.6 | 1.61 -> 3.70 | 2.17 -> 3.40 | 13.2 -> 7.2 | 86.3 -> 63.7 |
+| coffee_arabica | VN | 2927 | 52.3 -> 63.2 | 41.8 -> 50.5 | 1.87 -> 2.45 | 1.43 -> 1.68 | 0.0 -> 0.0 | 18.2 -> 13.0 |
+| lemon | TR | 31656 | 79.5 -> 70.6 | 63.6 -> 56.5 | 3.49 -> 2.54 | 3.43 -> 1.93 | 0.0 -> 4.4 | 3.9 -> 26.8 |
+| orange_fresh | US | 16706 | 69.6 -> 46.1 | 55.7 -> 36.8 | 2.20 -> 1.94 | 1.85 -> 1.42 | 0.0 -> 0.0 | 3.1 -> 9.1 |
+| orange_fresh | ZA | 45029 | 75.6 -> 92.6 | 60.5 -> 74.1 | 3.07 -> 3.76 | 2.14 -> 2.82 | 14.1 -> 8.6 | 54.2 -> 43.8 |
+| pear | BE | 31914 | 45.4 -> 44.1 | 36.3 -> 35.3 | 2.56 -> 2.43 | 1.71 -> 1.59 | 0.0 -> 0.0 | 18.5 -> 20.2 |
+| tea | KE | 2494 | 102.6 -> 120.1 | 82.1 -> 96.1 | 5.26 -> 5.43 | 4.67 -> 5.22 | 0.0 -> 0.0 | 0.0 -> 0.0 |
+
+kg N, P2O5 and K2O per ha and crop cycle, legacy matrices (P and K: L31 with the legacy manure) ->
+new, at the default yield (FAOSTAT 2021-2024, L23) and default manure mix. Full table (16 crops, 39
+countries): `Literature/review_tree_crop_n_uptake_manure.csv`. In the 49 rows of the legacy
+matrices the new N uptake is 0.66-1.38 x the legacy (median 1.07), the change coming from the
+yield; the manure also takes the FAOSTAT 2021-2023 country factors of L29 (e.g. coconut IN liquid
+x 2.3). In the other countries the legacy default was the GLO mean of the matrix; the new N uptake
+follows the FAOSTAT yield of the country, 0.28-5.8 x the legacy GLO (tea RU 96 kg/ha: 80.7 -> 22.5;
+almond IL 22712 kg/ha: 82.7 -> 481 kg N/ha, a FAOSTAT yield to check).
+
+Unchanged (legacy, undocumented, provisional): the berries (blueberry, cranberry, raspberry, added
+by Quantis in 2017: N uptake = yield x 1.58 g N/kg, the strawberry row; mineral N and manure flat
+values not linked to it) and the 25 crops without default mineral N and manure (their legacy N
+uptake, partly with web sources, is used by the nitrate model only; mint included).
+
+Regression: apple_FR gives mineral N, P, K and manure in the template, so only its N uptake
+changes: 34.9 (legacy GLO) -> 36.1 kg N/ha (35000 kg/ha x 0.5 g/kg + 18.6); nitrate to
+groundwater 131.44 -> 131.10 kg/ha and to surface water 14.60 -> 14.57 (x 0.9974), N2O 2.3762 ->
+2.3752 (x 0.9996, indirect N2O of the leached N). wheat_IT and rice_IN unchanged.

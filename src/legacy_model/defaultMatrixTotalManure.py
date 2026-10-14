@@ -1,5 +1,5 @@
 # legacy, undocumented, provisional: all matrices of this module (generated from the Quantis workbook GD_crop)
-# Not used for the crops of data/n_uptake_crop_parameters.csv: their default manure is computed from the N uptake (decision L29)
+# Not used for the crops of data/n_uptake_crop_parameters.csv: their default manure is computed from the N uptake (decisions L29, L32)
 #From GD_crop ManureLiquid_L1
 #country: =SI(ESTNUM(B4),""""&B$3&""":"&B4&",","")
 #glo: =MOYENNE(B4:AM4)
