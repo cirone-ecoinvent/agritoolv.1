@@ -66,7 +66,8 @@ def test_berries_and_crops_without_fertiliser_defaults_keep_the_legacy_matrices(
     assert blueberry["total_manuresolid"] == TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY["blueberry"]["US"]
     grape = _defaults(crop="grape", country="FR", yield_main_product_per_crop_cycle=9000.0)
     assert grape["nitrogen_uptake_by_crop"] == pytest.approx(30.0)
-    assert grape["nitrogen_from_mineral_fert"] == grape["total_manureliquid"] == grape["total_manuresolid"] == 0.0
+    assert grape["total_manureliquid"] == grape["total_manuresolid"] == 0.0
+    # the mineral N of the berries and of these crops: IFA rate where there is one (decision L34)
 
 
 def test_tree_rows_are_signed():
