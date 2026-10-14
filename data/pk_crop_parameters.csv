@@ -1,17 +1,2 @@
 crop,wfldb_crop,note,status,reviewed_by
-almond,Almond,,confirmed,FC
-apple,Apple,,confirmed,FC
-apricot,Apricot,,confirmed,FC
-cocoa,Cocoa,,confirmed,FC
-coconut,Coconut,,confirmed,FC
-coffee_arabica,Coffee,same WFLDB content for arabica and robusta,confirmed,FC
-coffee_robusta,Coffee,same WFLDB content for arabica and robusta,confirmed,FC
-lemon,Lemon,,confirmed,FC
-mandarin,Mandarin,,confirmed,FC
 mint,Mint,,confirmed,FC
-olive,Olive,,confirmed,FC
-orange_fresh,Orange,same WFLDB content for fresh and processing oranges,confirmed,FC
-orange_processing,Orange,same WFLDB content for fresh and processing oranges,confirmed,FC
-peach,Peach,,confirmed,FC
-pear,Pear,,confirmed,FC
-tea,Tea,,confirmed,FC

@@ -26,9 +26,10 @@ def test_crops_and_contents():
     n_uptake_crops = {r["crop"] for r in dataloader.rows("n_uptake_crop_parameters.csv")}
     pk_crops = {r["crop"] for r in dataloader.rows("pk_crop_parameters.csv")}
     assert not n_uptake_crops & pk_crops
-    assert set(PK_PER_KG) == n_uptake_crops | pk_crops and len(PK_PER_KG) == 39
+    assert set(PK_PER_KG) == n_uptake_crops | pk_crops and len(PK_PER_KG) == 40
     assert PK_PER_KG["wheat"] == {"p2o5": pytest.approx(0.0082), "k2o": pytest.approx(0.0043)}
     assert PK_PER_KG["coffee_robusta"] == PK_PER_KG["coffee_arabica"]
+    assert PK_PER_KG["citruslime"] == PK_PER_KG["lemon"]  # proxy, decision L32
 
 
 @pytest.mark.parametrize("crop, country, yield_per_cycle", [

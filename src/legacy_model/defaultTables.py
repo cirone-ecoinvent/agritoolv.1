@@ -63,7 +63,8 @@ def _n_uptake_per_kg_main_product():
     """kg N per kg fresh main product, residues included (WFLDB Guidelines v3.0 section 3.6.1; decision L28):
     (N main product + residue ratio x N residues) / 1000, with the contents of the WFLDB Background Parameters
     2017 sheet 4 and the residue ratio = by-product / main product reference yield of GRUDAF 2009 Tab. 1
-    (or the legacy ratio given in n_uptake_crop_parameters.csv)."""
+    (or the legacy ratio given in n_uptake_crop_parameters.csv). Tree crops: main product only, their residues are a
+    fixed amount per ha (N_UPTAKE_OF_TREE_RESIDUES_PER_CROP)."""
     contents = dataloader.table("wfldb2017_crop_nutrient_contents.csv")
     grudaf = dataloader.table("grudaf2009_table1_reference_yields.csv")
     n_uptake = {}
@@ -78,8 +79,20 @@ def _n_uptake_per_kg_main_product():
     return n_uptake
 
 
+def _n_uptake_of_tree_residues():
+    """kg N/(ha and crop cycle) in the residues of the tree crops (tree_residues = yes in n_uptake_crop_parameters.csv;
+    decision L32): tree_crop_residues_kg_fm_per_ha x N of haulm or stem of the WFLDB Background Parameters 2017
+    sheet 4, independent of the yield."""
+    contents = dataloader.table("wfldb2017_crop_nutrient_contents.csv")
+    residues = dataloader.param("tree_crop_residues_kg_fm_per_ha")
+    return {row["crop"]: residues * contents[row["wfldb_crop"]]["n_residue_g_per_kg_fm"] / 1000.0
+            for row in dataloader.rows("n_uptake_crop_parameters.csv") if row["tree_residues"] == "yes"}
+
+
 # kg N / kg FM of the main product
 N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP = _n_uptake_per_kg_main_product()
+# kg N / ha of the tree residues
+N_UPTAKE_OF_TREE_RESIDUES_PER_CROP = _n_uptake_of_tree_residues()
 # Legumes: their default N uptake counts only legume_uptake_share of the uptake (decision L30)
 LEGUME_CROPS = frozenset(crop for crop, row in dataloader.table("crop_types.csv", numeric=False).items()
                          if row["legume"] == "yes")
