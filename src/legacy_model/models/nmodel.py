@@ -96,7 +96,7 @@ class NModel(object):
     def _compute_nox_as_no2(self, total_fert_nitrogen, ammonia_total):
         """NOx [kg NO2/ha] from mineral and organic N (Fix F1, reference_models.nox).
 
-        EF = 0.04 kg NO2/kg N (EEA 2016, 3.D Tab. 3-1, note a: reported as NO2), stored as
+        EF = 0.04 kg NO2/kg N (EEA 2023, 3.D Table 3-1, note a: reported as NO2; decision L39), stored as
         ef_nox_n = 0.012174 kg NOx-N/kg N in model_parameters.csv, applied to the N applied
         minus the N volatilised as NH3, then converted to NO2 with 46/14.
         Deviation from Quantis (2019), which converted the factor with 14/30 as if it were

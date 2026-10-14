@@ -21,7 +21,7 @@ def _model(n=None, p=None, k=None, ca=None, zn=None, mg=0.0):
         "ca_fertiliser_quantities": quantities(CaFertiliserType, ca),
         "zn_fertiliser_quantities": quantities(ZnFertiliserType, zn),
         "magnesium_from_fertilizer": mg,
-        "soil_with_ph_under_or_7": 1.0, "climate_zone_1": "temperate_climate",
+        "soil_with_ph_under_or_7": 1.0,
         "cultivation_type": "open_ground",
     })
 

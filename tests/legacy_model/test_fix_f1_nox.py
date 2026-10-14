@@ -1,4 +1,4 @@
-"""Fix F1: NOx = 0.04 kg NO2 per kg N applied net of NH3-N (EEA 2016 3.D Tab. 3-1)."""
+"""Fix F1: NOx = 0.04 kg NO2 per kg N applied net of NH3-N (EEA 2023 3.D Table 3-1, same value as EEA 2016; decision L39)."""
 import pytest
 
 from models.atomicmass import NH3_TO_N_FACTOR, N_TO_NO2_FACTOR
