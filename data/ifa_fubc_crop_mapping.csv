@@ -31,14 +31,18 @@ Sunflower seeds,sunflower,exact,,confirmed,FC
 Peanut,peanut,exact,,confirmed,FC
 Ground nut,peanut,exact,,confirmed,FC
 Groundnut,peanut,exact,FUBC 5 (KE),confirmed,FC
+Pulses,chick_pea guar lentil,subgroup,,confirmed,FC
+"Pulses (pea, bean)",chick_pea guar lentil,subgroup,FUBC 5 (CH),confirmed,FC
+"Pulses (peas, beans)",chick_pea guar lentil,subgroup,,confirmed,FC
+Sesame,sesame_seed,exact,SN (region of GH),confirmed,FC
 Coconut,coconut,exact,,confirmed,FC
 Other Oil Crops (Coconut),coconut,exact,TH: other oil crops reported as coconut,confirmed,FC
 Oil palm,palmtree,exact,,confirmed,FC
 Oil Palm,palmtree,exact,,confirmed,FC
 Oil palm fruit,palmtree,exact,,confirmed,FC
-Other oil crops,coconut linseed peanut rapeseed soybean sunflower,group,"Fertilizers Europe: sunflower, soya, linseed; AU: includes rapeseed",confirmed,FC
-Other Oil Crops,coconut linseed peanut rapeseed soybean sunflower,group,"Fertilizers Europe: sunflower, soya, linseed; AU: includes rapeseed",confirmed,FC
-Oth Oilseeds,coconut linseed peanut rapeseed soybean sunflower,group,,confirmed,FC
+Other oil crops,castor_beans coconut linseed peanut rapeseed sesame_seed soybean sunflower,group,"Fertilizers Europe: sunflower, soya, linseed; AU: includes rapeseed",confirmed,FC
+Other Oil Crops,castor_beans coconut linseed peanut rapeseed sesame_seed soybean sunflower,group,"Fertilizers Europe: sunflower, soya, linseed; AU: includes rapeseed",confirmed,FC
+Oth Oilseeds,castor_beans coconut linseed peanut rapeseed sesame_seed soybean sunflower,group,,confirmed,FC
 Sugar beet,sugarbeet,exact,,confirmed,FC
 Sugar Beet,sugarbeet,exact,,confirmed,FC
 "Sugar, Total (Beet)",sugarbeet,exact,,confirmed,FC
@@ -48,15 +52,18 @@ Sugarcane,sugarcane,exact,,confirmed,FC
 Sugar beet and sugar cane,sugarbeet sugarcane,group,,confirmed,FC
 Sugar beet and Sugar cane,sugarbeet sugarcane,group,,confirmed,FC
 Sugar cane and Sugar beet,sugarbeet sugarcane,group,,confirmed,FC
+Cotton,cotton,exact,,confirmed,FC
+Seed cotton,cotton,exact,,confirmed,FC
 Potato,potato,exact,,confirmed,FC
 Potatoe,potato,exact,,confirmed,FC
 Irish potatos,potato,exact,,confirmed,FC
 Roots & Tubers (Potato),potato,exact,,confirmed,FC
 Roots & Tubers (potato),potato,exact,,confirmed,FC
-Roots & Tubers,potato,group,,confirmed,FC
-"Roots and Tubers, Total",potato,group,,confirmed,FC
-Roots/Tubers,potato,group,,confirmed,FC
-Edible roots and tubers with high starch and inulin content,potato,group,,confirmed,FC
+Roots & Tubers,cassava potato,group,"BR: potato only (IFA area 125.5 kha, FAOSTAT 2018 potato 119.6 kha, cassava 1216 kha)",confirmed,FC
+"Roots and Tubers, Total",cassava potato,group,,confirmed,FC
+Roots/Tubers,cassava potato,group,,confirmed,FC
+Edible roots and tubers with high starch and inulin content,cassava potato,group,,confirmed,FC
+Cassava,cassava,exact,,confirmed,FC
 Tea,tea,exact,,confirmed,FC
 Coffee,coffee_arabica coffee_robusta,exact,FUBC does not separate arabica and robusta,confirmed,FC
 Cocoa,cocoa,exact,,confirmed,FC
@@ -64,34 +71,41 @@ irrigated olives,olive,exact,IL; combined with non irrigated olives by area,conf
 non irrigated olives,olive,exact,IL; combined with irrigated olives by area,confirmed,FC
 Banana,banana,exact,FUBC 4 and 5,confirmed,FC
 Orange,orange_fresh orange_processing,exact,,confirmed,FC
+Pineapple,pineapple,exact,FUBC 5 (CR),confirmed,FC
+Vineyards,grape,exact,ZA,confirmed,FC
+Vineyards + Raisins,grape,exact,AR,confirmed,FC
 Tomato,tomato_fresh tomato_processing,exact,FUBC 5 (CO and CR),confirmed,FC
 Tomato - Industrial,tomato_processing,exact,,confirmed,FC
 Other Crop 2 (Onion),onion,exact,,confirmed,FC
+Ginger,ginger,exact,NG (region of GH),confirmed,FC
+fresh herbs,coriander mint,subgroup,IL,confirmed,FC
 Citrus,citruslime lemon mandarin orange_fresh orange_processing,subgroup,,confirmed,FC
 citrus,citruslime lemon mandarin orange_fresh orange_processing,subgroup,,confirmed,FC
 Citrus fruits,citruslime lemon mandarin orange_fresh orange_processing,subgroup,,confirmed,FC
 "Fruits (apples, citrus, oranges)",apple citruslime lemon mandarin orange_fresh orange_processing,subgroup,CN: apples and citrus only,confirmed,FC
-Fruits (Pineapple+Mangoe+Longan+Rambutan+Durian+Mangosteen+Lychee+Tangerine+Longkong+Lime) & Treenuts,citruslime mandarin,subgroup,TH: includes tangerine and lime,confirmed,FC
-Fruits & Treenuts,almond apple apricot banana citruslime lemon mandarin olive orange_fresh orange_processing peach pear strawberry_fresh strawberry_processing,group,"Fertilizers Europe: fruits, nuts, herbs, bushes, vineyards (olive groves not separate)",confirmed,FC
-Fruits & Tree-nuts,almond apple apricot banana citruslime lemon mandarin olive orange_fresh orange_processing peach pear strawberry_fresh strawberry_processing,group,,confirmed,FC
-Fruits and treenuts,almond apple apricot banana citruslime lemon mandarin olive orange_fresh orange_processing peach pear strawberry_fresh strawberry_processing,group,,confirmed,FC
-Fruit Primary,almond apple apricot banana citruslime lemon mandarin olive orange_fresh orange_processing peach pear strawberry_fresh strawberry_processing,group,,confirmed,FC
-Fruits,almond apple apricot banana citruslime lemon mandarin olive orange_fresh orange_processing peach pear strawberry_fresh strawberry_processing,group,AR and IL: without citrus (citrus reported separately),confirmed,FC
-Fruits (other),almond apple apricot banana citruslime lemon mandarin olive orange_fresh orange_processing peach pear strawberry_fresh strawberry_processing,group,FUBC 5 (CR and KE): without citrus (citrus reported separately),confirmed,FC
-orchards,almond apple apricot banana citruslime lemon mandarin olive orange_fresh orange_processing peach pear strawberry_fresh strawberry_processing,group,IL: citrus and olives reported separately,confirmed,FC
-Perennial crops,almond apple apricot banana citruslime lemon mandarin olive orange_fresh orange_processing peach pear strawberry_fresh strawberry_processing,group,UA,confirmed,FC
-"Permanent Crops (fruit, vineyard)",almond apple apricot banana citruslime lemon mandarin olive orange_fresh orange_processing peach pear strawberry_fresh strawberry_processing,group,FUBC 5 (CH),confirmed,FC
-Fruits and vegetables,almond apple apricot banana citruslime lemon mandarin olive orange_fresh orange_processing peach pear strawberry_fresh strawberry_processing asparagus_green asparagus_white carrot onion sweetcorn tomato_fresh tomato_processing,group,,confirmed,FC
-Vegetables (Garlic+Shallot+Onion+Potato+Tomato+Baby corn+Pepper),onion potato sweetcorn tomato_fresh tomato_processing,subgroup,TH,confirmed,FC
-Vegetables,asparagus_green asparagus_white carrot onion sweetcorn tomato_fresh tomato_processing,group,,confirmed,FC
-Vegetables Primary,asparagus_green asparagus_white carrot onion sweetcorn tomato_fresh tomato_processing,group,,confirmed,FC
-Vegetables6,asparagus_green asparagus_white carrot onion sweetcorn tomato_fresh tomato_processing,group,,confirmed,FC
-Vegetables (including root & tuber veg),asparagus_green asparagus_white carrot onion potato sweetcorn tomato_fresh tomato_processing,group,NZ,confirmed,FC
-open field vegetables,asparagus_green asparagus_white carrot onion sweetcorn tomato_fresh tomato_processing,group,IL; covered vegetables not used,confirmed,FC
-"Vegetables grown in open-field, including for seed",asparagus_green asparagus_white carrot onion sweetcorn tomato_fresh tomato_processing,group,UA; vegetables in greenhouses not used,confirmed,FC
-Other cereals,oat rice,group,"Fertilizers Europe: barley, rye, triticale, oats, rice",confirmed,FC
-Other Cereals,oat rice,group,,confirmed,FC
-Oth Cereals,oat rice,group,,confirmed,FC
+Fruits (Pineapple+Mangoe+Longan+Rambutan+Durian+Mangosteen+Lychee+Tangerine+Longkong+Lime) & Treenuts,cashew citruslime mandarin mango pineapple,subgroup,TH: includes tangerine and lime,confirmed,FC
+Fruits & Treenuts,almond apple apricot banana blueberry cashew citruslime cranberry grape lemon mandarin mango olive orange_fresh orange_processing peach pear pineapple pomegranate raspberry strawberry_fresh strawberry_processing,group,"Fertilizers Europe: fruits, nuts, herbs, bushes, vineyards (olive groves not separate)",confirmed,FC
+Fruits & Tree-nuts,almond apple apricot banana blueberry cashew citruslime cranberry grape lemon mandarin mango olive orange_fresh orange_processing peach pear pineapple pomegranate raspberry strawberry_fresh strawberry_processing,group,,confirmed,FC
+Fruits and treenuts,almond apple apricot banana blueberry cashew citruslime cranberry grape lemon mandarin mango olive orange_fresh orange_processing peach pear pineapple pomegranate raspberry strawberry_fresh strawberry_processing,group,,confirmed,FC
+Fruit Primary,almond apple apricot banana blueberry cashew citruslime cranberry grape lemon mandarin mango olive orange_fresh orange_processing peach pear pineapple pomegranate raspberry strawberry_fresh strawberry_processing,group,,confirmed,FC
+Fruits,almond apple apricot banana blueberry cashew citruslime cranberry grape lemon mandarin mango olive orange_fresh orange_processing peach pear pineapple pomegranate raspberry strawberry_fresh strawberry_processing,group,AR and IL: without citrus (citrus reported separately),confirmed,FC
+Fruits (other),almond apple apricot banana blueberry cashew citruslime cranberry grape lemon mandarin mango olive orange_fresh orange_processing peach pear pineapple pomegranate raspberry strawberry_fresh strawberry_processing,group,FUBC 5 (CR and KE): without citrus (citrus reported separately),confirmed,FC
+orchards,almond apple apricot banana blueberry cashew citruslime cranberry grape lemon mandarin mango olive orange_fresh orange_processing peach pear pineapple pomegranate raspberry strawberry_fresh strawberry_processing,group,IL: citrus and olives reported separately,confirmed,FC
+Perennial crops,almond apple apricot banana blueberry cashew citruslime cranberry grape lemon mandarin mango olive orange_fresh orange_processing peach pear pineapple pomegranate raspberry strawberry_fresh strawberry_processing,group,UA,confirmed,FC
+"Permanent Crops (fruit, vineyard)",almond apple apricot banana blueberry cashew citruslime cranberry grape lemon mandarin mango olive orange_fresh orange_processing peach pear pineapple pomegranate raspberry strawberry_fresh strawberry_processing,group,FUBC 5 (CH),confirmed,FC
+Fruits and vegetables,almond apple apricot banana blueberry cashew citruslime cranberry grape lemon mandarin mango olive orange_fresh orange_processing peach pear pineapple pomegranate raspberry strawberry_fresh strawberry_processing asparagus_green asparagus_white bellpepper cabbage_red cabbage_white carrot chilli eggplant onion sweetcorn tomato_fresh tomato_processing,group,,confirmed,FC
+Vegetables (Garlic+Shallot+Onion+Potato+Tomato+Baby corn+Pepper),bellpepper chilli onion potato sweetcorn tomato_fresh tomato_processing,subgroup,TH,confirmed,FC
+Vegetables,asparagus_green asparagus_white bellpepper cabbage_red cabbage_white carrot chilli eggplant onion sweetcorn tomato_fresh tomato_processing,group,,confirmed,FC
+Vegetables Primary,asparagus_green asparagus_white bellpepper cabbage_red cabbage_white carrot chilli eggplant onion sweetcorn tomato_fresh tomato_processing,group,,confirmed,FC
+Vegetables6,asparagus_green asparagus_white bellpepper cabbage_red cabbage_white carrot chilli eggplant onion sweetcorn tomato_fresh tomato_processing,group,,confirmed,FC
+Vegetables (including root & tuber veg),asparagus_green asparagus_white bellpepper cabbage_red cabbage_white carrot chilli eggplant onion potato sweetcorn tomato_fresh tomato_processing,group,NZ,confirmed,FC
+open field vegetables,asparagus_green asparagus_white bellpepper cabbage_red cabbage_white carrot chilli eggplant onion sweetcorn tomato_fresh tomato_processing,group,IL; covered vegetables not used,confirmed,FC
+"Vegetables grown in open-field, including for seed",asparagus_green asparagus_white bellpepper cabbage_red cabbage_white carrot chilli eggplant onion sweetcorn tomato_fresh tomato_processing,group,UA; vegetables in greenhouses not used,confirmed,FC
+Other cereals,oat pearl_millet rice,group,"Fertilizers Europe: barley, rye, triticale, oats, rice",confirmed,FC
+Other Cereals,oat pearl_millet rice,group,,confirmed,FC
+Oth Cereals,oat pearl_millet rice,group,,confirmed,FC
 "Rye, oat rice",oat rice,subgroup,FUBC 5 (CH),confirmed,FC
-Other cereal and leguminous crops,oat,group,UA,confirmed,FC
-Grain and other crops,maizegrain oat wheat,group,NZ: all arable crops in one group,confirmed,FC
+Other cereal and leguminous crops,oat pearl_millet,group,UA; not used for pulses (cereals and legumes together),confirmed,FC
+Millet,pearl_millet,subgroup,"all millets; BF, NG, SN (region of GH)",confirmed,FC
+Mil - Sorghum,pearl_millet,group,ML: millet and sorghum,confirmed,FC
+Grain and other crops,maizegrain oat wheat,group,NZ: all arable crops in one group; not used for pulses,confirmed,FC
