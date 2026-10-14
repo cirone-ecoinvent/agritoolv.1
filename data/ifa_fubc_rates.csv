@@ -1,0 +1,903 @@
+fubc_country,region_ifa,fubc_report,year,reference_years,fubc_crop,area_ha,n_kg_per_ha,p2o5_kg_per_ha,k2o_kg_per_ha,rate_basis,note
+Argentina,Latin America,9,2018/19,2018,Barley,1353128,52.72,22.59,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Citrus,120000,74.34,7.12,20.99,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Fruits,110000,41.98,9.6,25.67,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Maize,9039594,48.67,20.42,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Pastures,17300000,4.72,2.59,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Potatoe,70000,152.75,139.2,24.44,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Residual,2946097,6.09,1.94,4.24,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Rice,194835,55.83,42.43,41.95,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Sorghum,522221,29.56,24.34,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Soybeans,17010277,0.0,10.11,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Sugarcane,350000,88.29,5.27,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Sunflowers,1941002,12.99,8.47,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Tobacco,60569,133.04,72.47,271.28,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Vineyards + Raisins,220000,47.92,17.21,11.64,IFA_<nutrient>_t / IFA_area_ha,
+Argentina,Latin America,9,2018/19,2018,Wheat,6287149,66.46,29.32,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Australia,Oceania,9,2018,2018,Fruit Primary,272884,116.76,85.55,111.09,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Australia,Oceania,9,2018,2018,Grassland,327589000,0.25,0.98,0.27,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Australia,Oceania,9,2018,2018,Maize,52783,255.49,95.77,0.0,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Australia,Oceania,9,2018,2018,Other Oil Crops,3241027,39.47,19.8,5.59,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Includes Rapeseed.
+Australia,Oceania,9,2018,2018,Other cereals,5603105,34.06,26.33,2.63,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Australia,Oceania,9,2018,2018,Residual,2166894,107.13,33.29,6.96,IFA_<nutrient>_t / FAO_area_ha,"Based on 2014 fertilizer application rates and 2018 FAO harvested area. The residual area includes Citrus Fruit, Maize green, Pulses, Treenuts, Roots and Tubers, Vegetables."
+Australia,Oceania,9,2018,2018,"Rice, paddy",61151,98.2,26.27,0.0,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Australia,Oceania,9,2018,2018,Seed cotton,485101,182.93,57.86,33.32,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Area refers to cotton; nutrient quantities refers to fiber crops.
+Australia,Oceania,9,2018,2018,Soybeans,32073,0.0,0.0,0.0,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Australia,Oceania,9,2018,2018,Sugar cane,442958,142.61,53.06,118.57,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Australia,Oceania,9,2018,2018,Wheat,10919180,39.1,24.85,3.49,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Austria,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,62000,31.0,10.0,13.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Austria,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",209500,105.0,46.0,50.0,IFA_<nutrient>_t / IFA_area_ha,
+Austria,Western and Central Europe,9,2017/18,2018,Green maize,82200,90.64,26.7,32.97,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Austria,Western and Central Europe,9,2017/18,2018,Oilseed rape,40500,118.0,27.16,35.0,IFA_<nutrient>_t / IFA_area_ha,
+Austria,Western and Central Europe,9,2017/18,2018,Other cereals,285100,73.89,7.69,10.58,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Austria,Western and Central Europe,9,2017/18,2018,Other crops,157300,34.91,13.78,16.18,IFA_<nutrient>_t / IFA_area_ha,"Other crops include tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Austria,Western and Central Europe,9,2017/18,2018,Other oil crops,115300,25.22,8.73,11.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Austria,Western and Central Europe,9,2017/18,2018,Potato,23000,95.0,53.35,70.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Austria,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",22900,1.09,0.97,1.0,IFA_<nutrient>_t / IFA_area_ha,
+Austria,Western and Central Europe,9,2017/18,2018,Sugar beet,42700,80.0,48.5,63.0,IFA_<nutrient>_t / IFA_area_ha,
+Austria,Western and Central Europe,9,2017/18,2018,Total Grassland,1190000,7.64,2.29,2.55,IFA_<nutrient>_t / IFA_area_ha,
+Austria,Western and Central Europe,9,2017/18,2018,Vegetables,16300,105.0,55.29,70.0,IFA_<nutrient>_t / IFA_area_ha,
+Austria,Western and Central Europe,9,2017/18,2018,Wheat,282000,108.0,10.0,15.0,IFA_<nutrient>_t / IFA_area_ha,
+Bangladesh,South Asia,9,2018,2018,Fruit Primary,389619,117.22,119.43,65.89,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Bangladesh,South Asia,9,2018,2018,Grassland,600000,0.0,0.0,0.0,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Bangladesh,South Asia,9,2018,2018,Maize,400478,105.56,118.12,57.94,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Bangladesh,South Asia,9,2018,2018,Other Oil Crops,433623,24.83,41.67,58.14,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Bangladesh,South Asia,9,2018,2018,Other cereals,8230,0.0,0.0,0.0,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Bangladesh,South Asia,9,2018,2018,Residual,516199,67.93,38.0,23.86,IFA_<nutrient>_t / FAO_area_ha,"Based on 2014 fertilizer application rates and 2018 FAO harvested area. The residual area includes Citrus Fruit, Pulses, Soybeans and Tea."
+Bangladesh,South Asia,9,2018,2018,"Rice, paddy",11515000,91.75,35.1,22.59,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Bangladesh,South Asia,9,2018,2018,"Roots and Tubers, Total",501394,103.9,112.91,74.75,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Bangladesh,South Asia,9,2018,2018,Seed cotton,37458,39.83,24.76,17.27,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Area refers to cotton; nutrient quantities refers to fiber crops.
+Bangladesh,South Asia,9,2018,2018,Sugar cane,90156,99.77,93.03,97.36,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Bangladesh,South Asia,9,2018,2018,Vegetables Primary,616749,83.13,112.93,74.76,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Bangladesh,South Asia,9,2018,2018,Wheat,351213,47.15,26.38,13.8,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Flax (fiber),50000,22.0,56.0,102.0,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Fruits & Treenuts,27600,10.57,3.25,11.78,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Grassland (grasses and meadows and pastures),4092100,19.97,2.25,20.06,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Maize Grain,170500,104.4,34.02,102.05,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,"Maize, Green (silage, bioenergy)",802700,92.56,21.68,79.48,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Other Cereals,1263300,76.55,21.61,73.7,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Pulses,172600,26.07,18.54,59.68,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Rapeseed / Canola,352000,125.0,33.52,89.77,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Residual,32800,76.46,15.55,72.41,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Roots & Tubers (potato),26200,83.97,57.25,133.59,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Sugar Beet,99600,146.59,74.3,194.78,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Vegetables,5900,67.8,33.9,101.69,IFA_<nutrient>_t / IFA_area_ha,
+Belarus,Eastern Europe and Central Asia,9,2018,2018,Wheat,613500,105.62,28.36,86.39,IFA_<nutrient>_t / IFA_area_ha,
+Belgium,Western and Central Europe,9,2017/18,2018,Fertilized forests,8000,15.0,15.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Belgium,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,25031,50.0,22.0,40.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Belgium,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",49093,50.0,23.0,26.0,IFA_<nutrient>_t / IFA_area_ha,
+Belgium,Western and Central Europe,9,2017/18,2018,Green maize,188904,50.0,23.0,42.21,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Belgium,Western and Central Europe,9,2017/18,2018,Oilseed rape,14093,150.0,33.0,106.0,IFA_<nutrient>_t / IFA_area_ha,
+Belgium,Western and Central Europe,9,2017/18,2018,Other cereals,86877,110.58,8.58,33.82,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Belgium,Western and Central Europe,9,2017/18,2018,Other crops,31969,40.91,11.24,23.03,IFA_<nutrient>_t / IFA_area_ha,"Other crops include tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Belgium,Western and Central Europe,9,2017/18,2018,Other oil crops,16112,20.0,27.0,78.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Belgium,Western and Central Europe,9,2017/18,2018,Potato,93478,146.0,23.0,136.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Belgium,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",4043,20.0,16.0,60.0,IFA_<nutrient>_t / IFA_area_ha,
+Belgium,Western and Central Europe,9,2017/18,2018,Sugar beet,62581,117.0,37.0,129.0,IFA_<nutrient>_t / IFA_area_ha,
+Belgium,Western and Central Europe,9,2017/18,2018,Total Grassland,637993,153.0,4.5,23.4,IFA_<nutrient>_t / IFA_area_ha,
+Belgium,Western and Central Europe,9,2017/18,2018,Vegetables,52095,150.0,50.0,73.0,IFA_<nutrient>_t / IFA_area_ha,
+Belgium,Western and Central Europe,9,2017/18,2018,Wheat,197454,166.0,9.0,25.0,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Cocoa,10341,0.0,0.01,0.01,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Coffee,24596,0.19,0.25,0.26,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Cotton,3646,0.0,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Forages,120963,0.5,0.79,0.1,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Fruits & Treenuts,148107,3.57,1.08,0.46,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Grassland,2349062,0.42,0.03,0.03,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Maize Grain,452656,13.23,9.2,6.06,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Other Cereals,571719,3.83,0.38,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Other Oil Crops,155986,0.08,0.1,0.03,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Rice,169650,14.44,3.13,3.58,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Roots & Tubers,225716,0.24,0.24,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Soybeans,1317103,2.09,8.71,9.97,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Sugar Cane,164812,7.14,2.5,1.64,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Tea,274,0.0,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Vegetables,168831,2.14,2.46,0.37,IFA_<nutrient>_t / IFA_area_ha,
+Bolivia (Plurinational State of),Latin America,9,2018,2018,Wheat,203373,13.0,6.3,2.73,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Coffee,2192248,161.09,41.81,113.38,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Commercial Forests,8415084,16.37,19.19,21.16,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Cotton,1641231,238.51,133.26,166.88,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Fruits & Treenuts,1761224,48.66,39.61,65.78,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Grain Maize,17496750,68.46,39.99,44.45,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Grassland,2598856,43.0,16.0,34.52,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Orange,713047,80.75,32.96,35.6,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Other Cereals,732300,29.91,26.58,45.56,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Residual,2681887,23.46,15.46,20.51,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Rice,1850700,82.77,35.55,37.0,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Roots & Tubers,125548,147.11,412.77,301.65,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Soybeans,35874100,15.67,92.41,89.22,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Sugar Cane,11772103,76.08,20.31,65.65,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Tobacco,360321,223.21,134.97,84.55,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Vegetables,3152055,39.29,32.65,39.3,IFA_<nutrient>_t / IFA_area_ha,
+Brazil,Latin America,9,2018,2018,Wheat,2441500,55.46,32.06,44.29,IFA_<nutrient>_t / IFA_area_ha,
+Bulgaria,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,150000,90.0,27.0,22.5,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Bulgaria,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",445000,130.0,15.0,13.0,IFA_<nutrient>_t / IFA_area_ha,
+Bulgaria,Western and Central Europe,9,2017/18,2018,Green maize,27000,90.0,10.0,5.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Bulgaria)
+Bulgaria,Western and Central Europe,9,2017/18,2018,Oilseed rape,183000,115.0,25.0,16.0,IFA_<nutrient>_t / IFA_area_ha,
+Bulgaria,Western and Central Europe,9,2017/18,2018,Other cereals,162000,81.16,13.06,4.49,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Bulgaria,Western and Central Europe,9,2017/18,2018,Other crops,197000,42.28,34.44,2.78,IFA_<nutrient>_t / IFA_area_ha,"Other crops include tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Bulgaria,Western and Central Europe,9,2017/18,2018,Other oil crops,798000,90.0,16.0,13.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Bulgaria,Western and Central Europe,9,2017/18,2018,Potato,14000,130.0,86.0,66.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Bulgaria,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",96000,4.0,4.0,2.0,IFA_<nutrient>_t / IFA_area_ha,
+Bulgaria,Western and Central Europe,9,2017/18,2018,Total Grassland,1395000,0.01,0.0,0.01,IFA_<nutrient>_t / IFA_area_ha,
+Bulgaria,Western and Central Europe,9,2017/18,2018,Vegetables,58000,130.0,50.0,38.0,IFA_<nutrient>_t / IFA_area_ha,
+Bulgaria,Western and Central Europe,9,2017/18,2018,Wheat,1212000,125.0,23.0,8.0,IFA_<nutrient>_t / IFA_area_ha,
+Burkina Faso,Africa,9,2017,2017,Cotton,645000,63.64,37.81,37.81,IFA_<nutrient>_t / IFA_area_ha,
+Burkina Faso,Africa,9,2017,2017,Cow pea,228000,1.98,1.59,1.09,IFA_<nutrient>_t / IFA_area_ha,belongs to pulses
+Burkina Faso,Africa,9,2017,2017,Fruits and vegetables,64000,7.38,4.67,3.72,IFA_<nutrient>_t / IFA_area_ha,
+Burkina Faso,Africa,9,2017,2017,Maize,911000,35.83,19.38,13.28,IFA_<nutrient>_t / IFA_area_ha,
+Burkina Faso,Africa,9,2017,2017,Millet,1187000,1.04,0.79,0.57,IFA_<nutrient>_t / IFA_area_ha,
+Burkina Faso,Africa,9,2017,2017,Rice,170000,17.2,7.95,5.41,IFA_<nutrient>_t / IFA_area_ha,
+Burkina Faso,Africa,9,2017,2017,Sorghum,173000,18.23,16.54,11.8,IFA_<nutrient>_t / IFA_area_ha,
+Burkina Faso,Africa,9,2017,2017,Sugar cane,4000,40.5,55.0,134.5,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Fruits & Treenuts,128597,85.83,43.9,93.27,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Grain Maize,1495500,144.98,50.06,54.49,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Grassland,5081309,1.6,1.5,0.41,IFA_<nutrient>_t / IFA_area_ha,FAO has no estimate of grassland area for 2019
+Canada,North America,9,2018/19,2019,Green Maize,429700,72.49,25.03,27.24,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Other Cereals,4940100,72.87,29.21,6.06,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Other Oil Crops,608000,63.19,22.92,2.79,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Pulses,3639500,8.87,28.58,5.25,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Rapeseed/Canola,8480600,107.62,35.34,7.84,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Residual,717812,0.0,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,Fertilizer Canada reports no fertilizer use on Residual category
+Canada,North America,9,2018/19,2019,Roots & Tubers,146538,171.67,87.81,186.54,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Soybeans,2312500,5.85,24.68,23.72,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,"Sugar, Total (Beet)",16700,79.34,39.7,52.93,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Tame Hay,5541760,16.01,14.99,4.12,IFA_<nutrient>_t / IFA_area_ha,FAO has no estimate for tame hay
+Canada,North America,9,2018/19,2019,Vegetables,101684,85.83,43.9,93.27,IFA_<nutrient>_t / IFA_area_ha,
+Canada,North America,9,2018/19,2019,Wheat,10125700,85.35,31.54,8.01,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Fruits & Treenuts,475000,94.74,18.95,73.68,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Grassland,1000000,25.0,20.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Grassland (intensive),300000,100.0,100.0,66.67,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Maize Grain,105000,285.71,109.52,104.76,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,"Maize, Green (silage, bioenergy)",15000,233.33,133.33,166.67,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Other Cereals,150000,166.67,133.33,53.33,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Rapeseed / Canola,40000,187.5,125.0,37.5,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Rice,18000,94.44,83.33,20.0,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Roots & Tubers,45000,155.56,200.0,155.56,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Sugar Beet,15000,200.0,166.67,133.33,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Vegetables,80000,162.5,125.0,100.0,IFA_<nutrient>_t / IFA_area_ha,
+Chile,Latin America,9,2018,2018,Wheat,270000,200.0,83.33,22.22,IFA_<nutrient>_t / IFA_area_ha,
+China,East Asia,9,2018,2018,Cotton,3354410,294.2,197.9,49.9,IFA_<nutrient>_t / FAO_area_ha,
+China,East Asia,9,2018,2018,"Fruits (apples, citrus, oranges)",5062032,321.0,270.0,241.0,IFA_<nutrient>_t / FAO_area_ha,"Apples, citrus and oranges only"
+China,East Asia,9,2018,2018,"Maize, Total",37348000,189.6,110.6,71.3,IFA_<nutrient>_t / IFA_area_ha,"Area estimate (2015) taken from Luo Y, Zhang Z, Ziyue L, Chen Y, Zhang L, Cao J, Tao F. 2020. Identifying the spatiotemporal changes of annual harvesting areas for three staple crops in China by integrating multi-data sources. Environmental Research Letters 15: 074003."
+China,East Asia,9,2018,2018,Rapeseed / Canola,6550610,126.9,64.1,45.6,IFA_<nutrient>_t / FAO_area_ha,
+China,East Asia,9,2018,2018,Rice,28336000,177.6,77.8,82.9,IFA_<nutrient>_t / IFA_area_ha,"Area estimate (2015) taken from Luo Y, Zhang Z, Ziyue L, Chen Y, Zhang L, Cao J, Tao F. 2020. Identifying the spatiotemporal changes of annual harvesting areas for three staple crops in China by integrating multi-data sources. Environmental Research Letters 15: 074003."
+China,East Asia,9,2018,2018,Roots & Tubers,7523380,147.4,87.68,77.65,IFA_<nutrient>_t / FAO_area_ha,"Average application rates provided by Dr. Weifeng Zhang: 324 samples, mainly potato, 2018."
+China,East Asia,9,2018,2018,Soybeans,8412770,48.5,49.1,29.5,IFA_<nutrient>_t / FAO_area_ha,
+China,East Asia,9,2018,2018,Sugar Beet,216130,334.6,191.3,40.4,IFA_<nutrient>_t / FAO_area_ha,
+China,East Asia,9,2018,2018,Sugar Cane,1405840,432.8,183.6,230.5,IFA_<nutrient>_t / FAO_area_ha,
+China,East Asia,9,2018,2018,Tea,2985800,444.0,115.0,119.0,IFA_<nutrient>_t / FAO_area_ha,"Average application rates provided by Dr. Weifeng Zhang (6190 samples, 2010-2014)"
+China,East Asia,9,2018,2018,Vegetables,23215444,281.6,200.1,152.5,IFA_<nutrient>_t / FAO_area_ha,
+China,East Asia,9,2018,2018,Wheat,22889000,212.1,124.8,74.4,IFA_<nutrient>_t / IFA_area_ha,"Area estimate (2015) taken from Luo Y, Zhang Z, Ziyue L, Chen Y, Zhang L, Cao J, Tao F. 2020. Identifying the spatiotemporal changes of annual harvesting areas for three staple crops in China by integrating multi-data sources. Environmental Research Letters 15: 074003."
+Colombia,Latin America,5,1997,1997,Banana,52000,200.0,50.0,400.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Barley,9600,54.0,54.0,27.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Cocoa,109600,36.0,18.0,30.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Coffee,1006000,112.5,30.0,90.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Cotton,61300,52.0,19.5,26.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Maize,573400,50.0,40.0,15.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Oil Palm,120000,100.0,30.0,150.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Orange,22500,48.0,12.0,36.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Potato,167000,100.0,100.0,80.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Pulses,139000,40.0,80.0,60.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,"Rice, paddy",394000,108.0,72.0,63.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Sorghum,102600,90.0,72.0,45.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Soybean,43400,13.0,19.5,26.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Sugar cane,50000,70.0,105.0,70.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Tobacco,10000,56.0,7.0,21.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Tomato,12000,81.0,72.0,36.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Colombia,Latin America,5,1997,1997,Vegetables,82000,100.0,80.0,40.0,Aver_<nutrient>_rate_kg_ha,
+Colombia,Latin America,5,1997,1997,Wheat,23600,80.0,64.0,16.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Banana,66200,450.0,100.0,450.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Citrus fruits,23500,72.0,36.0,48.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Cocoa,3500,35.0,17.5,21.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Coffee,180000,200.0,50.0,100.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Cotton,300,72.0,72.0,60.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Fruits (other),17000,75.0,37.5,37.5,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Maize,13200,40.0,16.0,8.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Oil Palm,26600,60.0,40.0,100.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Pineapple,9200,160.0,80.0,280.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Potato,3700,150.0,400.0,150.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Pulses,43300,60.0,40.0,120.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,"Rice, paddy",84100,140.0,40.0,30.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Sugar cane,47900,90.0,36.0,54.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Tobacco,300,200.0,300.0,200.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Tomato,300,81.0,108.0,135.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Costa Rica,Latin America,5,1997,1997,Vegetables,10800,200.0,150.0,150.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Cote d'Ivoire,Africa,4,1994,1994,Banana,6100,92.0,,288.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Cote d'Ivoire,Africa,4,1994,1994,Cotton,242400,25.8,21.6,21.6,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Cote d'Ivoire,Africa,4,1994,1994,Maize,1008000,7.26,3.96,3.96,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Cote d'Ivoire,Africa,4,1994,1994,Oil palm,142700,10.72,15.02,21.45,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Cote d'Ivoire,Africa,4,1994,1994,Rice,624000,19.8,9.6,9.6,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Cote d'Ivoire,Africa,4,1994,1994,Sugar cane,18100,80.5,48.3,126.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Croatia,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,76000,40.0,30.0,30.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Croatia,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",252567,145.0,23.0,20.0,IFA_<nutrient>_t / IFA_area_ha,
+Croatia,Western and Central Europe,9,2017/18,2018,Oilseed rape,23122,140.0,40.0,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Croatia,Western and Central Europe,9,2017/18,2018,Other cereals,87766,105.0,20.0,20.0,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Croatia,Western and Central Europe,9,2017/18,2018,Other crops,36196,74.26,22.87,30.0,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Croatia,Western and Central Europe,9,2017/18,2018,Other oil crops,81973,40.0,30.0,20.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Croatia,Western and Central Europe,9,2017/18,2018,Potato,10310,130.0,80.0,80.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Croatia,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",1799,0.0,20.0,20.0,IFA_<nutrient>_t / IFA_area_ha,
+Croatia,Western and Central Europe,9,2017/18,2018,Sugar beet,21900,130.0,80.0,80.0,IFA_<nutrient>_t / IFA_area_ha,
+Croatia,Western and Central Europe,9,2017/18,2018,Total Grassland,273000,70.0,25.0,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Croatia,Western and Central Europe,9,2017/18,2018,Vegetables,7769,40.0,50.0,60.0,IFA_<nutrient>_t / IFA_area_ha,
+Croatia,Western and Central Europe,9,2017/18,2018,Wheat,156139,133.0,23.0,20.0,IFA_<nutrient>_t / IFA_area_ha,
+Cyprus,West Asia,9,2017/18,2018,Fruits & Treenuts,32000,30.0,20.0,30.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Cyprus,West Asia,9,2017/18,2018,Other cereals,30000,49.67,19.67,11.87,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Cyprus,West Asia,9,2017/18,2018,Other crops,23000,40.0,10.0,5.0,IFA_<nutrient>_t / IFA_area_ha,"Other crops include tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Cyprus,West Asia,9,2017/18,2018,Potato,5000,60.0,30.0,12.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Cyprus,West Asia,9,2017/18,2018,"Pulses (peas, beans)",1000,20.0,15.0,5.0,IFA_<nutrient>_t / IFA_area_ha,
+Cyprus,West Asia,9,2017/18,2018,Total Grassland,1000,10.0,4.0,3.0,IFA_<nutrient>_t / IFA_area_ha,
+Cyprus,West Asia,9,2017/18,2018,Vegetables,3000,60.0,35.0,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Cyprus,West Asia,9,2017/18,2018,Wheat,5000,55.0,20.0,12.0,IFA_<nutrient>_t / IFA_area_ha,
+Czechia,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,76000,76.05,29.34,64.34,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Czechia,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",86000,160.0,20.0,15.0,IFA_<nutrient>_t / IFA_area_ha,
+Czechia,Western and Central Europe,9,2017/18,2018,Green maize,224100,180.0,30.0,15.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Czech Rep)
+Czechia,Western and Central Europe,9,2017/18,2018,Oilseed rape,394000,180.0,30.0,15.0,IFA_<nutrient>_t / IFA_area_ha,
+Czechia,Western and Central Europe,9,2017/18,2018,Other cereals,436730,91.39,16.2,7.94,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Czechia,Western and Central Europe,9,2017/18,2018,Other crops,444400,43.56,0.5,1.9,IFA_<nutrient>_t / IFA_area_ha,"Other crops include tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Czechia,Western and Central Europe,9,2017/18,2018,Other oil crops,38600,90.0,15.0,20.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Czechia,Western and Central Europe,9,2017/18,2018,Potato,23400,130.0,25.0,35.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Czechia,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",42857,30.0,5.0,4.0,IFA_<nutrient>_t / IFA_area_ha,
+Czechia,Western and Central Europe,9,2017/18,2018,Sugar beet,66100,150.0,30.0,35.0,IFA_<nutrient>_t / IFA_area_ha,
+Czechia,Western and Central Europe,9,2017/18,2018,Total Grassland,950000,7.89,0.32,0.47,IFA_<nutrient>_t / IFA_area_ha,
+Czechia,Western and Central Europe,9,2017/18,2018,Vegetables,14248,170.0,60.0,70.0,IFA_<nutrient>_t / IFA_area_ha,
+Czechia,Western and Central Europe,9,2017/18,2018,Wheat,832000,165.0,22.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+Denmark,Western and Central Europe,9,2017/18,2018,Fertilized forests,20000,10.0,8.0,27.0,IFA_<nutrient>_t / IFA_area_ha,
+Denmark,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,5000,100.0,29.0,65.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Denmark,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",8000,40.0,9.0,22.0,IFA_<nutrient>_t / IFA_area_ha,
+Denmark,Western and Central Europe,9,2017/18,2018,Green maize,183000,40.0,12.0,9.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Denmark,Western and Central Europe,9,2017/18,2018,Oilseed rape,143000,125.0,12.0,25.0,IFA_<nutrient>_t / IFA_area_ha,
+Denmark,Western and Central Europe,9,2017/18,2018,Other cereals,991000,78.03,15.21,24.8,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Denmark,Western and Central Europe,9,2017/18,2018,Other crops,426000,106.03,7.33,27.88,IFA_<nutrient>_t / IFA_area_ha,"Other crops include tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Denmark,Western and Central Europe,9,2017/18,2018,Potato,52000,137.0,21.0,68.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Denmark,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",32000,0.0,14.0,24.0,IFA_<nutrient>_t / IFA_area_ha,
+Denmark,Western and Central Europe,9,2017/18,2018,Sugar beet,34000,105.0,23.0,50.0,IFA_<nutrient>_t / IFA_area_ha,
+Denmark,Western and Central Europe,9,2017/18,2018,Total Grassland,225000,26.0,1.04,4.85,IFA_<nutrient>_t / IFA_area_ha,
+Denmark,Western and Central Europe,9,2017/18,2018,Vegetables,19000,172.0,39.0,50.0,IFA_<nutrient>_t / IFA_area_ha,
+Denmark,Western and Central Europe,9,2017/18,2018,Wheat,426000,132.0,16.0,33.0,IFA_<nutrient>_t / IFA_area_ha,
+Ecuador,Latin America,5,1995,1995,Banana,110000,210.0,14.0,280.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Barley,45000,4.0,1.0,3.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Cassava,20000,2.0,2.0,2.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Cocoa,310000,4.0,0.75,3.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Coffee,380000,4.0,1.0,2.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Cotton,20000,50.0,10.0,15.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Maize,320000,72.0,24.0,24.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Oil Palm,70000,56.0,14.0,42.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Potato,57000,120.0,150.0,60.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Rice,356000,60.0,24.0,18.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Soybean,81000,5.0,10.0,10.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Sugar cane,45000,49.0,14.0,70.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Ecuador,Latin America,5,1995,1995,Wheat,35000,4.0,1.0,1.5,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Egypt,Africa,9,2018,2019,Fruit Primary,682030,180.8,44.43,32.42,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Egypt,Africa,9,2018,2019,Maize,994818,276.66,28.38,14.94,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Egypt,Africa,9,2018,2019,Other Oil Crops,197942,172.41,45.95,12.42,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Includes Rapeseed.
+Egypt,Africa,9,2018,2019,Other cereals,230552,73.46,37.71,22.93,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Egypt,Africa,9,2018,2019,Residual,261691,303.72,81.58,39.69,IFA_<nutrient>_t / FAO_area_ha,"Based on 2014 fertilizer application rates and 2018 FAO harvested area. The residual area includes Citrus Fruit, Pulses and Treenuts."
+Egypt,Africa,9,2018,2019,"Rice, paddy",799032,233.66,16.97,0.0,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Egypt,Africa,9,2018,2019,"Roots and Tubers, Total",195592,194.38,96.22,52.01,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Egypt,Africa,9,2018,2019,Seed cotton,100000,219.75,50.76,23.52,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Area refers to cotton; nutrient quantities refers to fiber crops.
+Egypt,Africa,9,2018,2019,Soybeans,14000,50.61,35.97,0.0,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Egypt,Africa,9,2018,2019,Sugar beet and sugar cane,348496,241.95,68.16,38.68,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Egypt,Africa,9,2018,2019,Vegetables Primary,636001,204.42,51.26,32.74,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Egypt,Africa,9,2018,2019,Wheat,1410912,180.36,21.84,16.35,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Estonia,Eastern Europe and Central Asia,9,2017/18,2018,Fruits & Treenuts,7000,25.71,21.43,17.14,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Estonia,Eastern Europe and Central Asia,9,2017/18,2018,Green maize,11000,85.0,15.0,20.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Estonia)
+Estonia,Eastern Europe and Central Asia,9,2017/18,2018,Oilseed rape,73000,110.0,40.0,70.0,IFA_<nutrient>_t / IFA_area_ha,
+Estonia,Eastern Europe and Central Asia,9,2017/18,2018,Other cereals,195000,88.54,13.54,24.15,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Estonia,Eastern Europe and Central Asia,9,2017/18,2018,Other crops,159000,34.65,5.0,5.35,IFA_<nutrient>_t / IFA_area_ha,"Other crops include tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Estonia,Eastern Europe and Central Asia,9,2017/18,2018,Potato,5000,75.0,70.0,90.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Estonia,Eastern Europe and Central Asia,9,2017/18,2018,"Pulses (peas, beans)",47000,30.0,15.0,15.0,IFA_<nutrient>_t / IFA_area_ha,
+Estonia,Eastern Europe and Central Asia,9,2017/18,2018,Total Grassland,314000,5.57,0.8,0.8,IFA_<nutrient>_t / IFA_area_ha,
+Estonia,Eastern Europe and Central Asia,9,2017/18,2018,Vegetables,4000,80.0,60.0,90.0,IFA_<nutrient>_t / IFA_area_ha,
+Estonia,Eastern Europe and Central Asia,9,2017/18,2018,Wheat,155000,125.0,25.0,45.0,IFA_<nutrient>_t / IFA_area_ha,
+Finland,Western and Central Europe,9,2017/18,2018,Fertilized forests,50000,50.0,15.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+Finland,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,4000,40.0,31.0,70.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Finland,Western and Central Europe,9,2017/18,2018,Green maize,1000,50.0,9.0,0.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Finland)
+Finland,Western and Central Europe,9,2017/18,2018,Oilseed rape,56000,82.0,18.0,18.0,IFA_<nutrient>_t / IFA_area_ha,
+Finland,Western and Central Europe,9,2017/18,2018,Other cereals,865000,55.18,8.54,8.54,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Finland,Western and Central Europe,9,2017/18,2018,Other crops,75000,56.67,12.05,14.39,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Finland,Western and Central Europe,9,2017/18,2018,Other oil crops,4000,40.0,18.0,20.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Finland,Western and Central Europe,9,2017/18,2018,Potato,21000,65.0,79.0,88.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Finland,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",31000,35.0,24.0,25.0,IFA_<nutrient>_t / IFA_area_ha,
+Finland,Western and Central Europe,9,2017/18,2018,Sugar beet,10000,85.0,55.0,54.0,IFA_<nutrient>_t / IFA_area_ha,
+Finland,Western and Central Europe,9,2017/18,2018,Total Grassland,763000,81.0,8.0,28.0,IFA_<nutrient>_t / IFA_area_ha,
+Finland,Western and Central Europe,9,2017/18,2018,Vegetables,15000,80.0,63.0,88.0,IFA_<nutrient>_t / IFA_area_ha,
+Finland,Western and Central Europe,9,2017/18,2018,Wheat,178000,79.0,10.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+France,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,930000,35.16,20.0,20.16,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+France,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",1490000,145.0,38.0,35.0,IFA_<nutrient>_t / IFA_area_ha,
+France,Western and Central Europe,9,2017/18,2018,Green maize,1420000,35.0,20.0,20.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in France)
+France,Western and Central Europe,9,2017/18,2018,Oilseed rape,1617000,160.0,32.0,35.0,IFA_<nutrient>_t / IFA_area_ha,
+France,Western and Central Europe,9,2017/18,2018,Other cereals,2333000,121.48,18.0,15.52,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+France,Western and Central Europe,9,2017/18,2018,Other crops,721000,22.75,23.72,48.27,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+France,Western and Central Europe,9,2017/18,2018,Other oil crops,741000,36.0,26.0,20.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+France,Western and Central Europe,9,2017/18,2018,Potato,191000,120.0,50.0,85.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+France,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",227000,0.0,35.0,30.0,IFA_<nutrient>_t / IFA_area_ha,
+France,Western and Central Europe,9,2017/18,2018,Sugar beet,486000,100.0,50.0,75.0,IFA_<nutrient>_t / IFA_area_ha,
+France,Western and Central Europe,9,2017/18,2018,Total Grassland,12260000,32.81,3.2,4.0,IFA_<nutrient>_t / IFA_area_ha,
+France,Western and Central Europe,9,2017/18,2018,Vegetables,240000,90.0,50.0,55.0,IFA_<nutrient>_t / IFA_area_ha,
+France,Western and Central Europe,9,2017/18,2018,Wheat,5236000,165.0,19.0,16.0,IFA_<nutrient>_t / IFA_area_ha,
+Germany,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,206000,40.0,6.0,50.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards; revised in December 2021"
+Germany,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",432000,120.0,45.0,54.0,IFA_<nutrient>_t / IFA_area_ha,revised in Dec. 2021
+Germany,Western and Central Europe,9,2017/18,2018,Green maize,2144000,51.32,8.0,15.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Germany,Western and Central Europe,9,2017/18,2018,Oilseed rape,1224000,140.0,25.0,75.0,IFA_<nutrient>_t / IFA_area_ha,revised in Dec. 2021
+Germany,Western and Central Europe,9,2017/18,2018,Other cereals,2643000,116.68,13.83,14.0,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice; revised in December 2021"
+Germany,Western and Central Europe,9,2017/18,2018,Other crops,813000,64.11,11.9,35.58,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Germany,Western and Central Europe,9,2017/18,2018,Other oil crops,45000,40.0,17.0,44.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed; revised in December 2021"
+Germany,Western and Central Europe,9,2017/18,2018,Potato,252000,135.0,60.0,165.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers; revised in December 2021
+Germany,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",115000,7.0,15.0,45.0,IFA_<nutrient>_t / IFA_area_ha,revised in Dec. 2021
+Germany,Western and Central Europe,9,2017/18,2018,Sugar beet,410000,125.0,60.0,139.0,IFA_<nutrient>_t / IFA_area_ha,revised in Dec. 2021
+Germany,Western and Central Europe,9,2017/18,2018,Total Grassland,4650000,49.27,3.4,4.25,IFA_<nutrient>_t / IFA_area_ha,revised in Dec. 2021
+Germany,Western and Central Europe,9,2017/18,2018,Vegetables,140000,165.0,50.0,130.0,IFA_<nutrient>_t / IFA_area_ha,revised in Dec. 2021
+Germany,Western and Central Europe,9,2017/18,2018,Wheat,3202000,150.0,12.0,15.0,IFA_<nutrient>_t / IFA_area_ha,revised in Dec. 2021
+Greece,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,1116000,43.22,15.13,14.13,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Greece,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",100000,250.0,24.0,7.0,IFA_<nutrient>_t / IFA_area_ha,
+Greece,Western and Central Europe,9,2017/18,2018,Green maize,20000,180.0,22.0,5.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Greece)
+Greece,Western and Central Europe,9,2017/18,2018,Oilseed rape,10000,50.0,15.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+Greece,Western and Central Europe,9,2017/18,2018,Other cereals,280000,50.0,15.14,0.54,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Greece,Western and Central Europe,9,2017/18,2018,Other crops,790000,54.25,14.86,18.35,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Greece,Western and Central Europe,9,2017/18,2018,Other oil crops,80000,45.0,22.0,10.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Greece,Western and Central Europe,9,2017/18,2018,Potato,20000,165.0,92.0,148.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Greece,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",17000,15.0,6.0,6.0,IFA_<nutrient>_t / IFA_area_ha,
+Greece,Western and Central Europe,9,2017/18,2018,Sugar beet,5000,95.0,30.0,16.0,IFA_<nutrient>_t / IFA_area_ha,
+Greece,Western and Central Europe,9,2017/18,2018,Total Grassland,3560000,0.0,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Greece,Western and Central Europe,9,2017/18,2018,Vegetables,64000,220.0,76.0,163.0,IFA_<nutrient>_t / IFA_area_ha,
+Greece,Western and Central Europe,9,2017/18,2018,Wheat,430000,52.0,13.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Hungary,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,164000,80.98,4.88,0.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Hungary,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",990000,120.0,22.0,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Hungary,Western and Central Europe,9,2017/18,2018,Green maize,62000,119.68,2.9,5.81,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Hungary,Western and Central Europe,9,2017/18,2018,Oilseed rape,293000,130.0,40.0,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Hungary,Western and Central Europe,9,2017/18,2018,Other cereals,455000,59.66,15.0,13.02,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Hungary,Western and Central Europe,9,2017/18,2018,Other crops,217500,32.46,5.8,4.93,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Hungary,Western and Central Europe,9,2017/18,2018,Other oil crops,730000,75.0,16.0,23.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Hungary,Western and Central Europe,9,2017/18,2018,Potato,13000,55.0,20.0,22.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Hungary,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",20000,50.0,15.0,22.0,IFA_<nutrient>_t / IFA_area_ha,
+Hungary,Western and Central Europe,9,2017/18,2018,Sugar beet,15000,83.0,12.0,37.0,IFA_<nutrient>_t / IFA_area_ha,
+Hungary,Western and Central Europe,9,2017/18,2018,Total Grassland,790000,2.23,0.2,0.2,IFA_<nutrient>_t / IFA_area_ha,
+Hungary,Western and Central Europe,9,2017/18,2018,Vegetables,75000,88.0,17.0,48.0,IFA_<nutrient>_t / IFA_area_ha,
+Hungary,Western and Central Europe,9,2017/18,2018,Wheat,960000,120.0,25.0,13.0,IFA_<nutrient>_t / IFA_area_ha,
+India,South Asia,9,2018/19,2018,Cocoa,10000,23.7,5.3,20.1,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Coffee,366000,136.78,55.76,29.85,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Cotton,12440000,122.12,49.11,16.42,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Fruits & Treenuts,4771000,79.0,28.8,42.69,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Jute,687000,70.42,21.54,21.93,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,"Maize, Grain",8992000,104.16,42.41,18.77,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Oil Palm,79000,112.32,51.87,79.92,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Other Cereals,14940000,65.51,17.19,3.42,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Other Oil Crops,10217000,49.62,23.35,8.59,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Pulses,28352000,28.43,14.38,2.26,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Rapeseed / Canola,5629000,55.5,26.53,11.33,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Residual,14717000,36.59,15.24,8.3,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Rice,45530000,135.37,51.64,22.01,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Roots & Tubers,540000,86.83,51.9,42.59,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Soybeans,10945000,36.46,31.35,3.62,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Sugar Cane,5094000,183.97,91.23,54.64,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Tea,675000,30.07,4.09,1.68,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Vegetables,6615000,68.36,33.82,23.66,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+India,South Asia,9,2018/19,2018,Wheat,31478000,112.33,33.38,5.76,IFA_<nutrient>_t / IFA_area_ha,FAI applied 2017/18 crop area breakdown to 2018/19 total area and applied 2016/17 breakdown of nutrient use by crop to 2018/19 total use.
+Indonesia,East Asia,9,2018,2018,Fruit Primary,837319,142.86,45.75,66.48,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Indonesia,East Asia,9,2018,2018,Maize,5680360,117.14,25.01,14.54,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Indonesia,East Asia,9,2018,2018,Oil palm fruit,14327093,100.84,49.08,131.4,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Indonesia,East Asia,9,2018,2018,Other Oil Crops,3347446,4.07,3.91,1.89,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Indonesia,East Asia,9,2018,2018,Residual,4118641,18.41,6.88,5.47,IFA_<nutrient>_t / FAO_area_ha,"Based on 2014 fertilizer application rates and 2018 FAO harvested area. The residual area includes Citrus Fruit, Cocoa, Coffee, Maize Green, Pulses, Tea and Treenuts."
+Indonesia,East Asia,9,2018,2018,"Rice, paddy",11377934,86.87,20.86,10.11,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Indonesia,East Asia,9,2018,2018,"Roots and Tubers, Total",935117,68.62,18.31,15.97,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Indonesia,East Asia,9,2018,2018,Seed cotton,5162,17.75,11.37,4.13,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Area refers to cotton; nutrient quantities refers to fiber crops.
+Indonesia,East Asia,9,2018,2018,Soybeans,723804,24.33,23.38,11.32,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Indonesia,East Asia,9,2018,2018,Sugar cane,415663,107.78,25.88,62.7,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Indonesia,East Asia,9,2018,2018,Vegetables Primary,1147863,139.13,44.55,51.8,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Iran (Islamic Republic of),West Asia,9,2018,2018,Fruit Primary,1159337,175.24,14.39,9.65,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Iran (Islamic Republic of),West Asia,9,2018,2018,Grassland,29477000,2.05,0.15,0.04,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Iran (Islamic Republic of),West Asia,9,2018,2018,Maize,90984,188.79,22.74,3.67,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Iran (Islamic Republic of),West Asia,9,2018,2018,Other Oil Crops,354785,90.97,18.04,9.47,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Includes Rapeseed.
+Iran (Islamic Republic of),West Asia,9,2018,2018,Other cereals,1880553,53.71,4.7,0.73,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Iran (Islamic Republic of),West Asia,9,2018,2018,Residual,1121968,30.83,2.25,0.57,IFA_<nutrient>_t / FAO_area_ha,"Based on 2014 fertilizer application rates and 2018 FAO harvested area. The residual area includes Citrus Fruit, Pulses, Tea, Treenuts."
+Iran (Islamic Republic of),West Asia,9,2018,2018,"Rice, paddy",427373,126.4,11.95,1.86,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Iran (Islamic Republic of),West Asia,9,2018,2018,"Roots and Tubers, Total",106426,271.38,34.29,14.95,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Iran (Islamic Republic of),West Asia,9,2018,2018,Seed cotton,44810,161.77,24.53,5.94,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Area refers to cotton; nutrient quantities refers to fiber crops.
+Iran (Islamic Republic of),West Asia,9,2018,2018,Soybeans,72000,13.83,13.98,6.09,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Iran (Islamic Republic of),West Asia,9,2018,2018,Sugar beet and sugar cane,207504,184.62,22.88,13.12,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area for all sugar crops
+Iran (Islamic Republic of),West Asia,9,2018,2018,Vegetables Primary,354935,146.16,10.75,7.11,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Iran (Islamic Republic of),West Asia,9,2018,2018,Wheat,6684622,49.05,5.53,0.66,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Ireland,Western and Central Europe,9,2017/18,2018,Green maize,18000,160.0,85.0,110.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Ireland)
+Ireland,Western and Central Europe,9,2017/18,2018,Oilseed rape,10000,180.0,43.0,70.0,IFA_<nutrient>_t / IFA_area_ha,
+Ireland,Western and Central Europe,9,2017/18,2018,Other cereals,203000,156.45,61.85,96.35,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Ireland,Western and Central Europe,9,2017/18,2018,Other crops,18000,108.61,63.06,128.33,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Ireland,Western and Central Europe,9,2017/18,2018,Potato,9000,150.0,200.0,200.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Ireland,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",8500,20.0,30.0,65.0,IFA_<nutrient>_t / IFA_area_ha,
+Ireland,Western and Central Europe,9,2017/18,2018,Total Grassland,4159000,85.65,20.1,26.22,IFA_<nutrient>_t / IFA_area_ha,
+Ireland,Western and Central Europe,9,2017/18,2018,Vegetables,5000,60.0,100.0,100.0,IFA_<nutrient>_t / IFA_area_ha,
+Ireland,Western and Central Europe,9,2017/18,2018,Wheat,58000,200.0,63.0,96.0,IFA_<nutrient>_t / IFA_area_ha,
+Israel,West Asia,9,2018,2018,citrus,20000,250.0,100.0,250.0,IFA_<nutrient>_t / IFA_area_ha,
+Israel,West Asia,9,2018,2018,covered vegetables,7000,285.71,142.86,428.57,IFA_<nutrient>_t / IFA_area_ha,
+Israel,West Asia,9,2018,2018,flowers,6000,250.0,83.33,166.67,IFA_<nutrient>_t / IFA_area_ha,
+Israel,West Asia,9,2018,2018,fresh herbs,2000,300.0,150.0,300.0,IFA_<nutrient>_t / IFA_area_ha,
+Israel,West Asia,9,2018,2018,irrigated field crops,30000,200.0,33.33,100.0,IFA_<nutrient>_t / IFA_area_ha,
+Israel,West Asia,9,2018,2018,irrigated olives,10000,150.0,30.0,100.0,IFA_<nutrient>_t / IFA_area_ha,
+Israel,West Asia,9,2018,2018,non irrigated olives,20000,50.0,10.0,20.0,IFA_<nutrient>_t / IFA_area_ha,
+Israel,West Asia,9,2018,2018,non irrigated winter crops (mainly wheat),200000,60.0,10.0,5.0,IFA_<nutrient>_t / IFA_area_ha,
+Israel,West Asia,9,2018,2018,open field vegetables,30000,266.67,66.67,200.0,IFA_<nutrient>_t / IFA_area_ha,
+Israel,West Asia,9,2018,2018,orchards,50000,200.0,20.0,160.0,IFA_<nutrient>_t / IFA_area_ha,
+Italy,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,2270000,56.39,12.33,14.1,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Italy,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",293000,194.0,50.0,47.0,IFA_<nutrient>_t / IFA_area_ha,
+Italy,Western and Central Europe,9,2017/18,2018,Green maize,470000,149.13,6.4,13.51,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Italy,Western and Central Europe,9,2017/18,2018,Oilseed rape,16000,65.0,10.0,5.0,IFA_<nutrient>_t / IFA_area_ha,
+Italy,Western and Central Europe,9,2017/18,2018,Other cereals,703000,76.63,17.13,21.02,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Italy,Western and Central Europe,9,2017/18,2018,Other crops,1651000,6.44,6.23,2.37,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Italy,Western and Central Europe,9,2017/18,2018,Other oil crops,513000,35.0,5.0,3.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Italy,Western and Central Europe,9,2017/18,2018,Potato,50000,100.0,57.0,90.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Italy,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",83000,0.0,10.0,4.0,IFA_<nutrient>_t / IFA_area_ha,
+Italy,Western and Central Europe,9,2017/18,2018,Sugar beet,45000,90.0,65.0,50.0,IFA_<nutrient>_t / IFA_area_ha,
+Italy,Western and Central Europe,9,2017/18,2018,Total Grassland,3140000,3.49,1.16,0.46,IFA_<nutrient>_t / IFA_area_ha,
+Italy,Western and Central Europe,9,2017/18,2018,Vegetables,440000,95.0,65.0,68.0,IFA_<nutrient>_t / IFA_area_ha,
+Italy,Western and Central Europe,9,2017/18,2018,Wheat,1915000,104.0,29.0,2.0,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Flowers,13000,237.69,180.69,170.92,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Fruits & Tree-nuts,200000,154.03,91.71,85.0,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Grassland,787000,83.57,26.01,17.62,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Maize (Green),95000,126.26,161.18,87.84,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Other Cereals,125000,73.15,86.34,74.52,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Residual,359000,75.0,78.54,63.35,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Rice,1470000,58.4,69.09,66.02,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Roots & Tubers,196000,107.01,148.22,113.5,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Soybeans,147000,17.47,134.23,58.52,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Sugar Beet,57000,156.54,135.3,110.61,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Sugar Cane,28000,240.71,106.54,50.79,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Tea,42000,384.69,124.12,144.98,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Vegetables,319000,154.0,155.7,123.03,IFA_<nutrient>_t / IFA_area_ha,
+Japan,East Asia,9,2018/19,2019,Wheat,212000,145.92,125.56,73.32,IFA_<nutrient>_t / IFA_area_ha,
+Kenya,Africa,5,1997,1997,Banana,41000,12.0,8.0,,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Barley,23000,20.0,64.0,32.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Citrus fruits,6600,36.0,18.0,24.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Coffee,159000,48.0,16.0,32.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Fruits (other),130000,36.0,18.0,48.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Groundnut,18000,16.0,24.0,,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Maize,1500000,12.0,9.0,,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Plantain,86000,4.0,3.0,,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Potato,95000,60.0,36.0,,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Pulses,700000,10.0,15.0,5.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Rice (irrigated),13000,60.0,30.0,,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Rice (rainfed),6000,18.0,24.0,,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Sisal,21000,3.0,45.0,9.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Sorghum,140000,24.0,12.0,,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Sugar cane,58000,30.0,20.0,20.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Tea,117000,50.0,10.0,10.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Tobacco,8800,24.0,64.0,24.0,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Kenya,Africa,5,1997,1997,Vegetables,81900,60.0,80.0,20.0,Aver_<nutrient>_rate_kg_ha,
+Kenya,Africa,5,1997,1997,Wheat,135000,28.0,56.0,,<nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100,
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,Fruits & Treenuts,10000,50.0,10.0,20.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,Green maize,26000,80.0,16.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Latvia)
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,Oilseed rape,124000,125.0,22.0,45.0,IFA_<nutrient>_t / IFA_area_ha,
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,Other cereals,271000,85.39,17.62,26.88,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,Other crops,177000,39.27,15.56,23.73,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,Other oil crops,2000,35.0,17.0,30.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,Potato,22000,85.0,30.0,70.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,"Pulses (peas, beans)",54000,30.0,17.0,28.0,IFA_<nutrient>_t / IFA_area_ha,
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,Total Grassland,650000,10.0,1.69,2.46,IFA_<nutrient>_t / IFA_area_ha,
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,Vegetables,8000,80.0,20.0,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Latvia,Eastern Europe and Central Asia,9,2017/18,2018,Wheat,420000,135.0,23.0,42.0,IFA_<nutrient>_t / IFA_area_ha,
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Fruits & Treenuts,30000,17.0,10.0,14.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,"Grain maize, including corn cob maize",13000,96.0,21.0,23.0,IFA_<nutrient>_t / IFA_area_ha,
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Green maize,28000,84.0,16.0,24.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Lithuania)
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Oilseed rape,209000,100.0,23.0,36.0,IFA_<nutrient>_t / IFA_area_ha,
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Other cereals,498000,67.57,20.57,23.44,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Other crops,91000,20.47,16.53,24.7,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Other oil crops,3000,35.0,17.0,24.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Potato,17000,91.0,35.0,69.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,"Pulses (peas, beans)",206000,17.0,17.0,26.0,IFA_<nutrient>_t / IFA_area_ha,
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Sugar beet,16000,100.0,39.0,72.0,IFA_<nutrient>_t / IFA_area_ha,
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Total Grassland,894000,32.09,8.02,10.21,IFA_<nutrient>_t / IFA_area_ha,
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Vegetables,14000,35.0,17.0,25.0,IFA_<nutrient>_t / IFA_area_ha,
+Lithuania,Eastern Europe and Central Asia,9,2017/18,2018,Wheat,773000,95.0,24.0,26.0,IFA_<nutrient>_t / IFA_area_ha,
+Malaysia,East Asia,9,2018,2018,Fruit Primary,87501,166.85,160.45,74.51,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Malaysia,East Asia,9,2018,2018,Maize,9548,74.42,47.79,69.04,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Malaysia,East Asia,9,2018,2018,Oil palm fruit,5189344,76.8,35.21,257.98,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Malaysia,East Asia,9,2018,2018,Residual,261173,27.07,13.41,44.18,IFA_<nutrient>_t / FAO_area_ha,"Based on 2014 fertilizer application rates and 2018 FAO harvested area. The residual area includes Citrus Fruit, Cocoa, Coffee, Other Oil Crops, Tea and Treenuts."
+Malaysia,East Asia,9,2018,2018,"Rice, paddy",699980,91.72,39.9,97.19,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Malaysia,East Asia,9,2018,2018,"Roots and Tubers, Total",5051,75.05,36.15,104.43,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Malaysia,East Asia,9,2018,2018,Sugar cane,1400,240.78,115.98,335.07,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Malaysia,East Asia,9,2018,2018,Vegetables Primary,55558,168.84,137.11,79.59,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mali,Africa,9,2017/18,2017,Cotton,703700,50.86,41.91,34.59,IFA_<nutrient>_t / IFA_area_ha,
+Mali,Africa,9,2017/18,2017,Fruits and vegetables,183600,34.53,6.7,8.93,IFA_<nutrient>_t / IFA_area_ha,"FAO area for Fruits, vegetables, citrus fruits"
+Mali,Africa,9,2017/18,2017,Maize,1232600,51.76,11.72,11.72,IFA_<nutrient>_t / IFA_area_ha,
+Mali,Africa,9,2017/18,2017,Mil - Sorghum,3741700,0.65,0.65,0.65,IFA_<nutrient>_t / IFA_area_ha,
+Mali,Africa,9,2017/18,2017,Pulses,1091100,0.87,1.81,,IFA_<nutrient>_t / IFA_area_ha,
+Mali,Africa,9,2017/18,2017,Rice,767900,47.95,21.23,1.81,IFA_<nutrient>_t / IFA_area_ha,
+Mali,Africa,9,2017/18,2017,Sugar cane,4800,242.5,92.71,141.04,IFA_<nutrient>_t / IFA_area_ha,
+Mali,Africa,9,2017/18,2017,Wheat,7000,46.29,19.29,,IFA_<nutrient>_t / IFA_area_ha,
+Mexico,Latin America,9,2018,2018,Fruit Primary,1514399,111.94,75.41,61.75,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mexico,Latin America,9,2018,2018,Grassland,80279000,0.0,0.0,0.0,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mexico,Latin America,9,2018,2018,Maize,7122562,123.38,25.89,3.36,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mexico,Latin America,9,2018,2018,Oil palm fruit,72841,136.38,116.37,79.41,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mexico,Latin America,9,2018,2018,Other Oil Crops,383628,18.67,4.78,0.65,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Includes Rapeseed.
+Mexico,Latin America,9,2018,2018,Other cereals,1717278,20.6,3.3,0.24,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mexico,Latin America,9,2018,2018,Residual,3373220,37.31,15.4,7.26,IFA_<nutrient>_t / FAO_area_ha,"Based on 2014 fertilizer application rates and 2018 FAO harvested area. The residual area includes Citrus Fruit, Cocoa, Coffee, Maize green, Pulses and Treenuts."
+Mexico,Latin America,9,2018,2018,"Rice, paddy",45150,173.16,88.65,54.45,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mexico,Latin America,9,2018,2018,"Roots and Tubers, Total",72931,121.64,66.19,74.02,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mexico,Latin America,9,2018,2018,Seed cotton,240580,58.12,37.19,20.3,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Area refers to cotton; nutrient quantities refers to fiber crops.
+Mexico,Latin America,9,2018,2018,Soybeans,190628,0.0,36.17,14.81,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mexico,Latin America,9,2018,2018,Sugar cane and Sugar beet,786151,125.29,59.15,100.46,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mexico,Latin America,9,2018,2018,Vegetables Primary,703734,117.89,82.3,63.65,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Mexico,Latin America,9,2018,2018,Wheat,541345,112.93,19.77,4.47,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Morocco,Africa,9,2018,2019,Fruits,461501,94.22,59.51,100.83,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2019 FAO harvested area
+Morocco,Africa,9,2018,2019,Maize,63292,73.95,37.69,7.59,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2019 FAO harvested area
+Morocco,Africa,9,2018,2019,Oth Cereals,1076488,22.47,11.05,2.18,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2019 FAO harvested area
+Morocco,Africa,9,2018,2019,Oth Oilseeds,1113240,7.22,5.89,2.68,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2019 FAO harvested area. Includes Rapeseed.
+Morocco,Africa,9,2018,2019,Residual,739340,22.43,18.39,2.75,IFA_<nutrient>_t / FAO_area_ha,"Based on 2014 fertilizer application rates and 2019 FAO harvested area. The residual area includes Citrus Fruit, Cotton, Soybeans, Pulses and Treenuts."
+Morocco,Africa,9,2018,2019,Rice,7973,111.26,37.77,20.43,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2019 FAO harvested area
+Morocco,Africa,9,2018,2019,Roots/Tubers,62943,92.17,67.67,69.49,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2019 FAO harvested area
+Morocco,Africa,9,2018,2019,Sugar beet and Sugar cane,68477,155.98,83.5,73.5,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2019 FAO harvested area
+Morocco,Africa,9,2018,2019,Vegetables,142944,136.24,95.26,92.94,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2019 FAO harvested area
+Morocco,Africa,9,2018,2019,Wheat,2505987,31.0,18.48,5.09,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2019 FAO harvested area
+Myanmar,East Asia,9,2017,2017,Coffee,19667,1.86,13.66,12.14,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Cotton,224623,12.1,2.73,3.64,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Fruits & Treenuts,610098,5.58,1.82,6.56,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Maize Grain,347215,13.96,9.11,14.57,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,"Maize, Green (silage, bioenergy)",504673,9.31,4.55,6.07,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Oil Palm,162104,7.45,7.28,7.28,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Other Cereals,9615,9.31,4.55,6.07,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Other Crop 1 (Garlic),27700,13.96,9.11,6.07,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Other Crop 2 (Onion),70267,18.62,18.21,12.14,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Other Oil Crops,309534,6.89,4.01,1.46,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Pulses,4441085,2.23,7.28,6.07,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Rapeseed / Canola,2283,7.45,9.11,6.07,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Rice,7259228,18.62,9.11,12.14,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Roots & Tubers (Potato),32725,18.62,18.21,12.14,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Soybeans,139859,9.31,13.66,24.28,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Sugar Cane,294855,18.62,13.66,48.56,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Tea,96566,1.12,6.56,12.14,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Vegetables,551937,13.96,4.73,21.85,IFA_<nutrient>_t / IFA_area_ha,
+Myanmar,East Asia,9,2017,2017,Wheat,65474,13.96,9.11,6.07,IFA_<nutrient>_t / IFA_area_ha,
+Netherlands,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,20000,58.0,24.0,65.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Netherlands,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",19000,35.0,6.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+Netherlands,Western and Central Europe,9,2017/18,2018,Green maize,229000,49.67,5.11,3.15,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Netherlands,Western and Central Europe,9,2017/18,2018,Oilseed rape,2000,175.0,15.0,23.0,IFA_<nutrient>_t / IFA_area_ha,
+Netherlands,Western and Central Europe,9,2017/18,2018,Other cereals,39000,56.0,1.9,5.0,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Netherlands,Western and Central Europe,9,2017/18,2018,Other crops,8000,18.75,5.38,27.12,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Netherlands,Western and Central Europe,9,2017/18,2018,Other oil crops,1000,40.0,20.0,20.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Netherlands,Western and Central Europe,9,2017/18,2018,Potato,158000,145.0,50.0,150.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Netherlands,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",2000,29.0,25.0,100.0,IFA_<nutrient>_t / IFA_area_ha,
+Netherlands,Western and Central Europe,9,2017/18,2018,Sugar beet,71000,130.0,25.0,40.0,IFA_<nutrient>_t / IFA_area_ha,
+Netherlands,Western and Central Europe,9,2017/18,2018,Total Grassland,975000,144.0,0.0,2.88,IFA_<nutrient>_t / IFA_area_ha,
+Netherlands,Western and Central Europe,9,2017/18,2018,Vegetables,38000,150.0,35.0,85.0,IFA_<nutrient>_t / IFA_area_ha,
+Netherlands,Western and Central Europe,9,2017/18,2018,Wheat,128000,159.0,2.0,5.0,IFA_<nutrient>_t / IFA_area_ha,
+New Zealand,Oceania,9,2016/17,2017,Amenity Horticulture,3501,73.69,75.98,75.41,IFA_<nutrient>_t / IFA_area_ha,
+New Zealand,Oceania,9,2016/17,2017,Forestry,1671799,0.53,0.8,0.24,IFA_<nutrient>_t / IFA_area_ha,
+New Zealand,Oceania,9,2016/17,2017,Fruits & Treenuts,71608,41.48,48.86,59.49,IFA_<nutrient>_t / IFA_area_ha,
+New Zealand,Oceania,9,2016/17,2017,Grain and other crops,92680,253.54,136.63,81.56,IFA_<nutrient>_t / IFA_area_ha,
+New Zealand,Oceania,9,2016/17,2017,Grain mixed sheep & Beef,54735,166.37,89.6,44.63,IFA_<nutrient>_t / IFA_area_ha,
+New Zealand,Oceania,9,2016/17,2017,Grassland (Dairy),2101716,109.47,53.43,30.16,IFA_<nutrient>_t / IFA_area_ha,
+New Zealand,Oceania,9,2016/17,2017,Grassland (Deer),202587,16.38,24.2,7.75,IFA_<nutrient>_t / IFA_area_ha,
+New Zealand,Oceania,9,2016/17,2017,Grassland (Sheep & Beef ),7213628,11.47,20.81,5.73,IFA_<nutrient>_t / IFA_area_ha,
+New Zealand,Oceania,9,2016/17,2017,Residual,198216,6.6,5.23,2.03,IFA_<nutrient>_t / IFA_area_ha,
+New Zealand,Oceania,9,2016/17,2017,Vegetables (including root & tuber veg),45201,132.72,102.56,102.32,IFA_<nutrient>_t / IFA_area_ha,The FAO area includes Roots and tubers
+Nigeria,Africa,9,2016/17,2017,Cassava,8929000,4.18,1.11,1.01,IFA_<nutrient>_t / IFA_area_ha,
+Nigeria,Africa,9,2016/17,2017,Cocoyam / Taro,1066000,2.31,0.63,0.6,IFA_<nutrient>_t / IFA_area_ha,
+Nigeria,Africa,9,2016/17,2017,Cotton,556000,14.28,3.28,3.28,IFA_<nutrient>_t / IFA_area_ha,
+Nigeria,Africa,9,2016/17,2017,Ginger,96000,21.69,4.51,3.96,IFA_<nutrient>_t / IFA_area_ha,
+Nigeria,Africa,9,2016/17,2017,Ground nut,3597000,10.52,2.56,2.48,IFA_<nutrient>_t / IFA_area_ha,
+Nigeria,Africa,9,2016/17,2017,Maize,5961000,9.18,2.13,2.13,IFA_<nutrient>_t / IFA_area_ha,
+Nigeria,Africa,9,2016/17,2017,Millet,1800000,11.3,2.59,2.59,IFA_<nutrient>_t / IFA_area_ha,
+Nigeria,Africa,9,2016/17,2017,RIce,3899000,8.38,1.94,1.94,IFA_<nutrient>_t / IFA_area_ha,
+Nigeria,Africa,9,2016/17,2017,Residual,20727575,1.88,0.5,0.44,IFA_<nutrient>_t / FAO_area_ha,
+Nigeria,Africa,9,2016/17,2017,Sorghum,5666000,15.34,3.54,3.54,IFA_<nutrient>_t / IFA_area_ha,
+Nigeria,Africa,9,2016/17,2017,Soybean,1120000,11.62,3.02,2.7,IFA_<nutrient>_t / IFA_area_ha,
+Nigeria,Africa,9,2016/17,2017,Yam,6446000,2.74,0.73,0.68,IFA_<nutrient>_t / IFA_area_ha,
+Norway,Western and Central Europe,9,2016/17,2017,Fertilized forests,8000,130.0,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Norway,Western and Central Europe,9,2016/17,2017,Oilseed rape,2000,100.0,23.0,38.0,IFA_<nutrient>_t / IFA_area_ha,
+Norway,Western and Central Europe,9,2016/17,2017,Other cereals,210000,100.0,31.43,33.0,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Norway,Western and Central Europe,9,2016/17,2017,Other crops,23000,43.48,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Norway,Western and Central Europe,9,2016/17,2017,Potato,12000,100.0,73.0,128.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Norway,Western and Central Europe,9,2016/17,2017,Total Grassland,643000,104.06,14.22,42.65,IFA_<nutrient>_t / IFA_area_ha,
+Norway,Western and Central Europe,9,2016/17,2017,Vegetables,8000,120.0,70.0,145.0,IFA_<nutrient>_t / IFA_area_ha,
+Norway,Western and Central Europe,9,2016/17,2017,Wheat,74000,120.0,34.0,35.0,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Cotton,2373000,198.31,30.47,0.61,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Fruits and treenuts,1446628,110.95,56.82,9.68,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Grain Maize,893100,222.24,55.98,2.53,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Green Maize,480900,180.08,33.27,1.1,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Other cereals,802000,119.89,26.18,0.62,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Other oil crops,316518,71.02,34.75,1.11,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Potato,195537,254.79,132.46,58.81,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Pulses,1329000,63.78,21.14,0.53,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Rapeseed/Canola,223482,69.67,27.07,1.12,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Residual,1584000,87.25,11.87,0.54,IFA_<nutrient>_t / IFA_area_ha,FAO residual: citrus fruits + rest of roots and tubers
+Pakistan,South Asia,9,2018/19,2018,Rice,2810000,120.55,34.93,0.5,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Soybeans,300,50.0,50.0,6.67,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Sugar beet,5000,180.0,114.0,20.0,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Sugar cane,1102000,238.41,70.78,9.98,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Vegetables6,677694,128.86,56.81,6.64,IFA_<nutrient>_t / IFA_area_ha,
+Pakistan,South Asia,9,2018/19,2018,Wheat,8678000,154.25,69.72,0.58,IFA_<nutrient>_t / IFA_area_ha,
+Paraguay,Latin America,9,2018,2018,Cotton,12000,25.0,30.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Cultivated Pastures,323656,25.0,20.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia. Cultivated pastures = Forage crops being planted either annually or perennial.
+Paraguay,Latin America,9,2018,2018,Fruits & Treenuts,68465,25.0,20.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Grain Maize,925948,35.0,40.0,15.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,"Green Maize (silage, bioenergy)",120530,25.0,30.0,,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Other Cereals,135000,20.0,30.0,,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Other Oil Crops,155986,5.0,20.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Rangeland,349062,21.77,20.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia. Rangeland = Natural perennial and annual grasses.
+Paraguay,Latin America,9,2018,2018,Rapeseed / Canola,42000,20.0,30.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Rice,185000,40.0,50.0,10.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Roots & Tubers,12450,25.0,20.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Soybeans,3544245,2.0,40.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Sugar Cane,163000,50.0,20.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Vegetables,18000,25.0,20.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Paraguay,Latin America,9,2018,2018,Wheat,485000,20.0,50.0,10.0,IFA_<nutrient>_t / IFA_area_ha,Data gathered by Martin Torres Duggan and Fernando Garcia
+Peru,Latin America,9,2018,2018,Cocoa,120000,81.71,46.28,29.06,IFA_<nutrient>_t / IFA_area_ha,
+Peru,Latin America,9,2018,2018,Coffee,225500,54.48,37.03,29.06,IFA_<nutrient>_t / IFA_area_ha,
+Peru,Latin America,9,2018,2018,Cotton,10000,108.95,46.28,29.06,IFA_<nutrient>_t / IFA_area_ha,
+Peru,Latin America,9,2018,2018,Fruits & Treenuts,180500,136.19,69.43,72.65,IFA_<nutrient>_t / IFA_area_ha,
+Peru,Latin America,9,2018,2018,Maize Grain,276595,136.19,55.54,34.87,IFA_<nutrient>_t / IFA_area_ha,
+Peru,Latin America,9,2018,2018,Oil Palm,73567,136.19,46.28,43.59,IFA_<nutrient>_t / IFA_area_ha,
+Peru,Latin America,9,2018,2018,Other Cereals,888415,27.24,9.26,8.72,IFA_<nutrient>_t / IFA_area_ha,
+Peru,Latin America,9,2018,2018,Rice,414100,136.19,69.43,29.06,IFA_<nutrient>_t / IFA_area_ha,
+Peru,Latin America,9,2018,2018,Roots & Tubers,479498,108.95,55.54,58.12,IFA_<nutrient>_t / IFA_area_ha,
+Peru,Latin America,9,2018,2018,Sugar Cane,90356,136.19,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Peru,Latin America,9,2018,2018,Vegetables,120000,163.43,69.43,87.18,IFA_<nutrient>_t / IFA_area_ha,
+Philippines,East Asia,9,2018,2018,Cocoa,27133,16.91,8.15,22.38,IFA_<nutrient>_t / IFA_area_ha,
+Philippines,East Asia,9,2018,2018,Coconut,3628134,2.14,0.0,0.21,IFA_<nutrient>_t / IFA_area_ha,
+Philippines,East Asia,9,2018,2018,Coffee,113352,10.45,3.83,8.5,IFA_<nutrient>_t / IFA_area_ha,
+Philippines,East Asia,9,2018,2018,Fruits & Treenuts,817235,37.76,38.34,29.32,IFA_<nutrient>_t / IFA_area_ha,
+Philippines,East Asia,9,2018,2018,Maize Grain,2511436,42.41,11.21,9.14,IFA_<nutrient>_t / IFA_area_ha,
+Philippines,East Asia,9,2018,2018,Oil Palm,62671,59.28,14.13,54.17,IFA_<nutrient>_t / IFA_area_ha,
+Philippines,East Asia,9,2018,2018,Rice,4800406,80.0,20.0,15.0,IFA_<nutrient>_t / IFA_area_ha,IFA estimates for rice
+Philippines,East Asia,9,2018,2018,Roots & Tubers,299396,8.35,3.34,2.35,IFA_<nutrient>_t / IFA_area_ha,
+Philippines,East Asia,9,2018,2018,Sugar Cane,437506,166.13,52.17,51.1,IFA_<nutrient>_t / IFA_area_ha,
+Philippines,East Asia,9,2018,2018,Vegetables,250138,49.38,17.23,22.6,IFA_<nutrient>_t / IFA_area_ha,
+Poland,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,352567,90.0,18.0,43.0,IFA_<nutrient>_t / IFA_area_ha,"Nuts, herbs, bushes, vineyards"
+Poland,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",645400,148.0,42.0,88.0,IFA_<nutrient>_t / IFA_area_ha,
+Poland,Western and Central Europe,9,2017/18,2018,Green maize,613583,126.47,50.0,69.86,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Poland,Western and Central Europe,9,2017/18,2018,Oilseed rape,845109,145.0,43.0,57.0,IFA_<nutrient>_t / IFA_area_ha,
+Poland,Western and Central Europe,9,2017/18,2018,Other cereals,4743675,49.29,15.11,25.93,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Poland,Western and Central Europe,9,2017/18,2018,Other crops,610727,58.34,35.79,49.26,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Poland,Western and Central Europe,9,2017/18,2018,Other oil crops,45000,30.0,20.0,35.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Poland,Western and Central Europe,9,2017/18,2018,Potato,290973,61.0,20.0,37.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Poland,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",250780,17.0,25.0,43.0,IFA_<nutrient>_t / IFA_area_ha,
+Poland,Western and Central Europe,9,2017/18,2018,Sugar beet,235848,170.0,50.0,70.0,IFA_<nutrient>_t / IFA_area_ha,
+Poland,Western and Central Europe,9,2017/18,2018,Total Grassland,3149874,89.69,14.2,30.65,IFA_<nutrient>_t / IFA_area_ha,
+Poland,Western and Central Europe,9,2017/18,2018,Vegetables,158866,99.0,32.0,51.0,IFA_<nutrient>_t / IFA_area_ha,
+Poland,Western and Central Europe,9,2017/18,2018,Wheat,2417230,91.0,29.0,41.0,IFA_<nutrient>_t / IFA_area_ha,
+Portugal,Western and Central Europe,9,2017/18,2018,Fertilized forests,80000,15.0,10.0,5.0,IFA_<nutrient>_t / IFA_area_ha,
+Portugal,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,377000,40.0,24.0,22.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Portugal,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",90000,208.0,55.0,60.0,IFA_<nutrient>_t / IFA_area_ha,
+Portugal,Western and Central Europe,9,2017/18,2018,Green maize,70000,65.0,28.0,28.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Portugal)
+Portugal,Western and Central Europe,9,2017/18,2018,Oilseed rape,5000,50.0,10.0,15.0,IFA_<nutrient>_t / IFA_area_ha,
+Portugal,Western and Central Europe,9,2017/18,2018,Other cereals,117000,70.0,28.21,3.44,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Portugal,Western and Central Europe,9,2017/18,2018,Other crops,150000,24.32,15.4,15.6,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Portugal,Western and Central Europe,9,2017/18,2018,Other oil crops,11000,0.0,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Portugal,Western and Central Europe,9,2017/18,2018,Potato,21000,128.0,70.0,50.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Portugal,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",500,5.0,25.0,15.0,IFA_<nutrient>_t / IFA_area_ha,
+Portugal,Western and Central Europe,9,2017/18,2018,Total Grassland,1720000,2.09,0.93,1.4,IFA_<nutrient>_t / IFA_area_ha,
+Portugal,Western and Central Europe,9,2017/18,2018,Vegetables,105000,90.0,45.0,45.0,IFA_<nutrient>_t / IFA_area_ha,
+Portugal,Western and Central Europe,9,2017/18,2018,Wheat,26000,70.0,25.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+Romania,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,344000,1.93,0.97,0.97,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Romania,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",2450000,82.0,31.0,6.0,IFA_<nutrient>_t / IFA_area_ha,
+Romania,Western and Central Europe,9,2017/18,2018,Green maize,355000,53.73,21.83,5.24,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Romania,Western and Central Europe,9,2017/18,2018,Oilseed rape,490000,88.0,31.0,8.0,IFA_<nutrient>_t / IFA_area_ha,
+Romania,Western and Central Europe,9,2017/18,2018,Other cereals,825000,59.76,26.68,7.72,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Romania,Western and Central Europe,9,2017/18,2018,Other crops,140000,9.6,3.32,2.9,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Romania,Western and Central Europe,9,2017/18,2018,Other oil crops,1170000,68.0,28.0,8.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Romania,Western and Central Europe,9,2017/18,2018,Potato,190000,150.0,132.0,120.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Romania,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",40000,128.0,23.0,4.0,IFA_<nutrient>_t / IFA_area_ha,
+Romania,Western and Central Europe,9,2017/18,2018,Sugar beet,25000,145.0,83.0,100.0,IFA_<nutrient>_t / IFA_area_ha,
+Romania,Western and Central Europe,9,2017/18,2018,Total Grassland,4512000,0.27,0.07,0.07,IFA_<nutrient>_t / IFA_area_ha,
+Romania,Western and Central Europe,9,2017/18,2018,Vegetables,245000,65.0,12.0,9.0,IFA_<nutrient>_t / IFA_area_ha,
+Romania,Western and Central Europe,9,2017/18,2018,Wheat,2150000,76.0,38.0,9.0,IFA_<nutrient>_t / IFA_area_ha,
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,Fruit Primary,660974,4.5,2.65,2.02,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,Maize,2375641,89.37,23.9,13.37,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,Other Oil Crops,10581645,17.48,8.08,2.62,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Includes Rapeseed.
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,Other cereals,12943492,19.76,5.21,2.96,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,Residual,2642116,129.07,38.05,19.35,IFA_<nutrient>_t / FAO_area_ha,"Based on 2014 fertilizer application rates and 2018 FAO harvested area. The residual area includes Citrus Fruit, Pulses, Tea and Treenuts."
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,"Rice, paddy",180177,108.0,31.78,8.08,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,"Roots and Tubers, Total",1313495,10.05,7.98,9.77,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,Soybeans,2740850,22.05,8.76,4.62,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,Sugar beet,1105339,128.3,78.92,75.03,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,Vegetables Primary,559920,10.45,7.68,7.81,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Russian Federation,Eastern Europe and Central Asia,9,2018,2018,Wheat,26472051,36.22,9.1,2.78,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Senegal,Africa,9,2018/19,2018,Cotton,22000,36.91,45.5,27.68,IFA_<nutrient>_t / IFA_area_ha,
+Senegal,Africa,9,2018/19,2018,Fonio,5000,16.4,0.8,0.8,IFA_<nutrient>_t / IFA_area_ha,
+Senegal,Africa,9,2018/19,2018,Horticulture,60000,77.22,12.18,31.32,IFA_<nutrient>_t / IFA_area_ha,FAO area for fruits
+Senegal,Africa,9,2018/19,2018,Maize,251000,26.05,10.26,10.26,IFA_<nutrient>_t / IFA_area_ha,
+Senegal,Africa,9,2018/19,2018,Millet,930000,17.04,0.85,0.85,IFA_<nutrient>_t / IFA_area_ha,
+Senegal,Africa,9,2018/19,2018,Niebe,257000,1.45,4.82,2.41,IFA_<nutrient>_t / IFA_area_ha,FAO area for total pulses
+Senegal,Africa,9,2018/19,2018,Peanut,1502000,1.45,4.82,2.41,IFA_<nutrient>_t / IFA_area_ha,FAO area for groundnuts with shell
+Senegal,Africa,9,2018/19,2018,Rice (total),324000,57.42,18.57,7.83,IFA_<nutrient>_t / IFA_area_ha,Nutrient quantities applied to irrigated ricewere estimated based on average application rates provided by CGIAR (Africa Rice).
+Senegal,Africa,9,2018/19,2018,Sesame,34000,1.44,4.79,2.38,IFA_<nutrient>_t / IFA_area_ha,
+Senegal,Africa,9,2018/19,2018,Sorghum,248000,17.02,0.84,0.84,IFA_<nutrient>_t / IFA_area_ha,
+Senegal,Africa,9,2018/19,2018,Tomato - Industrial,3000,90.0,230.0,300.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovakia,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,20000,16.15,7.6,6.65,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Slovakia,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",183540,112.0,30.0,13.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovakia,Western and Central Europe,9,2017/18,2018,Green maize,88050,100.0,25.0,8.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Slovakia,Western and Central Europe,9,2017/18,2018,Oilseed rape,124490,142.0,28.0,14.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovakia,Western and Central Europe,9,2017/18,2018,Other cereals,156000,71.3,22.28,11.59,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Slovakia,Western and Central Europe,9,2017/18,2018,Other crops,160000,23.58,3.49,2.36,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Slovakia,Western and Central Europe,9,2017/18,2018,Other oil crops,118660,76.0,28.0,14.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Slovakia,Western and Central Europe,9,2017/18,2018,Potato,8260,96.0,45.0,86.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Slovakia,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",12000,35.0,21.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovakia,Western and Central Europe,9,2017/18,2018,Sugar beet,21480,112.0,38.0,47.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovakia,Western and Central Europe,9,2017/18,2018,Total Grassland,522000,1.56,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovakia,Western and Central Europe,9,2017/18,2018,Vegetables,10000,75.0,45.0,48.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovakia,Western and Central Europe,9,2017/18,2018,Wheat,417710,123.0,20.0,13.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovenia,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,27783,21.7,16.0,24.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Slovenia,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",37079,115.0,44.0,50.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovenia,Western and Central Europe,9,2017/18,2018,Green maize,29820,120.0,40.0,38.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Slovenia)
+Slovenia,Western and Central Europe,9,2017/18,2018,Oilseed rape,3397,115.0,38.0,68.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovenia,Western and Central Europe,9,2017/18,2018,Other cereals,33344,69.54,26.7,30.95,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Slovenia,Western and Central Europe,9,2017/18,2018,Other crops,41638,73.76,18.19,18.65,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Slovenia,Western and Central Europe,9,2017/18,2018,Other oil crops,2056,50.0,25.6,27.3,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Slovenia,Western and Central Europe,9,2017/18,2018,Potato,2812,90.0,55.0,101.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Slovenia,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",1100,29.0,25.6,27.3,IFA_<nutrient>_t / IFA_area_ha,
+Slovenia,Western and Central Europe,9,2017/18,2018,Total Grassland,277237,25.16,7.18,6.04,IFA_<nutrient>_t / IFA_area_ha,
+Slovenia,Western and Central Europe,9,2017/18,2018,Vegetables,5200,83.0,42.0,100.0,IFA_<nutrient>_t / IFA_area_ha,
+Slovenia,Western and Central Europe,9,2017/18,2018,Wheat,27822,120.0,35.4,49.0,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Cotton,15000,36.0,22.0,3.0,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Fruits & Treenuts,167000,119.82,82.16,121.47,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Grassland,420000,50.0,38.1,7.0,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Lucerne,130000,15.0,76.92,24.0,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Maize Grain,2318850,100.0,45.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Other Cereals,147800,34.87,35.18,5.97,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Other Oil Crops,657800,14.57,19.96,4.57,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Pulses,53360,14.99,16.87,2.01,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Rapeseed / Canola,77000,15.0,20.78,2.0,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Residual,4600,37.83,152.17,97.61,IFA_<nutrient>_t / IFA_area_ha,Fertasa: The residuals include mostly pineapples which are poor P feeders and need high levels of K
+South Africa,Africa,9,2018,2018,Roots & Tubers,51000,170.0,160.0,120.0,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Soybeans,787200,10.0,16.51,8.0,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Sugar Cane,361000,92.0,60.39,133.0,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Vegetables,95000,170.0,158.95,120.0,IFA_<nutrient>_t / IFA_area_ha,
+South Africa,Africa,9,2018,2018,Vineyards,160000,50.0,35.62,24.0,IFA_<nutrient>_t / IFA_area_ha,FAO area is for grapes
+South Africa,Africa,9,2018,2018,Wheat,508350,30.0,37.97,5.0,IFA_<nutrient>_t / IFA_area_ha,
+Spain,Western and Central Europe,9,2017/18,2018,Fertilized forests,40000,10.0,2.0,2.0,IFA_<nutrient>_t / IFA_area_ha,
+Spain,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,4777000,60.0,25.0,22.0,IFA_<nutrient>_t / IFA_area_ha,"Nuts, herbs, bushes, vineyards"
+Spain,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",329000,195.0,75.0,73.0,IFA_<nutrient>_t / IFA_area_ha,
+Spain,Western and Central Europe,9,2017/18,2018,Green maize,107000,55.0,30.0,15.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize (no maize for biogas in Spain)
+Spain,Western and Central Europe,9,2017/18,2018,Oilseed rape,87000,110.0,50.0,49.0,IFA_<nutrient>_t / IFA_area_ha,
+Spain,Western and Central Europe,9,2017/18,2018,Other cereals,3571000,95.11,30.76,29.33,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Spain,Western and Central Europe,9,2017/18,2018,Other crops,890000,25.94,32.71,24.08,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Spain,Western and Central Europe,9,2017/18,2018,Other oil crops,690000,10.0,2.0,1.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Spain,Western and Central Europe,9,2017/18,2018,Potato,67000,120.0,45.0,60.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Spain,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",510000,5.0,5.0,5.0,IFA_<nutrient>_t / IFA_area_ha,
+Spain,Western and Central Europe,9,2017/18,2018,Sugar beet,35000,160.0,65.0,70.0,IFA_<nutrient>_t / IFA_area_ha,
+Spain,Western and Central Europe,9,2017/18,2018,Total Grassland,6761000,1.2,0.85,0.43,IFA_<nutrient>_t / IFA_area_ha,
+Spain,Western and Central Europe,9,2017/18,2018,Vegetables,385000,195.0,80.0,85.0,IFA_<nutrient>_t / IFA_area_ha,
+Spain,Western and Central Europe,9,2017/18,2018,Wheat,2063000,115.0,42.0,43.0,IFA_<nutrient>_t / IFA_area_ha,
+Sri Lanka,South Asia,5,1998,1998,Coconut,441900,9.73,5.66,18.33,Aver_<nutrient>_rate_kg_ha,
+Sri Lanka,South Asia,5,1998,1998,Food crops (other),234700,33.23,31.1,19.17,Aver_<nutrient>_rate_kg_ha,
+Sri Lanka,South Asia,5,1998,1998,Other export agricultural crops,234700,7.67,4.26,6.82,Aver_<nutrient>_rate_kg_ha,
+Sri Lanka,South Asia,5,1998,1998,Rice,820100,103.89,13.9,25.36,Aver_<nutrient>_rate_kg_ha,
+Sri Lanka,South Asia,5,1998,1998,Rubber,158700,12.6,11.97,12.6,Aver_<nutrient>_rate_kg_ha,
+Sri Lanka,South Asia,5,1998,1998,Tea,189000,210.58,36.51,122.75,Aver_<nutrient>_rate_kg_ha,
+Sri Lanka,South Asia,5,1998,1998,Tobacco,6700,44.78,74.63,74.63,Aver_<nutrient>_rate_kg_ha,
+Sweden,Western and Central Europe,9,2017/18,2018,Fertilized forests,25000,150.0,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Sweden,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,4000,25.0,1.0,2.5,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+Sweden,Western and Central Europe,9,2017/18,2018,"Grain maize, including corn cob maize",1000,125.0,45.0,15.0,IFA_<nutrient>_t / IFA_area_ha,
+Sweden,Western and Central Europe,9,2017/18,2018,Green maize,17400,65.0,44.71,15.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+Sweden,Western and Central Europe,9,2017/18,2018,Oilseed rape,99389,142.0,38.0,21.0,IFA_<nutrient>_t / IFA_area_ha,
+Sweden,Western and Central Europe,9,2017/18,2018,Other cereals,610640,75.3,20.0,15.0,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+Sweden,Western and Central Europe,9,2017/18,2018,Other crops,81888,33.2,13.54,14.82,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+Sweden,Western and Central Europe,9,2017/18,2018,Other oil crops,3620,60.0,15.0,15.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+Sweden,Western and Central Europe,9,2017/18,2018,Potato,23917,92.0,75.0,175.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+Sweden,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",56630,0.0,20.0,20.0,IFA_<nutrient>_t / IFA_area_ha,
+Sweden,Western and Central Europe,9,2017/18,2018,Sugar beet,30737,95.0,35.0,33.0,IFA_<nutrient>_t / IFA_area_ha,
+Sweden,Western and Central Europe,9,2017/18,2018,Total Grassland,1519000,31.4,2.51,2.51,IFA_<nutrient>_t / IFA_area_ha,
+Sweden,Western and Central Europe,9,2017/18,2018,Vegetables,14671,75.0,45.0,110.0,IFA_<nutrient>_t / IFA_area_ha,
+Sweden,Western and Central Europe,9,2017/18,2018,Wheat,381100,125.0,20.0,12.0,IFA_<nutrient>_t / IFA_area_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,Barley,47000,123.0,39.0,52.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,Fodder (legumes),2000,,45.0,33.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,Fodder (other),4000,62.0,43.0,55.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,"Grain maize, including CCM",29000,160.0,80.0,119.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,Grassland (fertilized),360000,45.0,18.0,20.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,"Maize, silage",43000,72.0,47.0,62.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,Oilseed rape,16000,172.0,72.0,113.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,Other (including tobacco),3000,53.0,43.0,131.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,"Permanent Crops (fruit, vineyard)",21000,71.0,51.0,78.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,Potato,16000,161.0,77.0,218.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,"Pulses (pea, bean)",3000,23.0,61.0,48.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,"Rye, oat rice",14000,111.0,38.0,50.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,"Set-aside, industrial crops",16000,70.0,20.0,20.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,Sugar beet,18000,143.0,75.0,204.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,"Sunflower, soya, linseed",4000,41.0,47.0,58.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,Vegetables,9000,164.0,145.0,169.0,Aver_<nutrient>_rate_kg_ha,
+Switzerland,Western and Central Europe,5,1999/2000,1999 2000,Wheat (soft + durum),91000,155.0,41.0,59.0,Aver_<nutrient>_rate_kg_ha,
+Thailand,East Asia,9,2018,2018,Cassava,1332320,65.0,20.69,54.0,IFA_<nutrient>_t / IFA_area_ha,IFA survey area (provided by correspondent) is similar to FAO harvested area
+Thailand,East Asia,9,2018,2018,Coffee,41280,123.75,37.5,41.0,IFA_<nutrient>_t / IFA_area_ha,IFA survey area (provided by correspondent) is similar to FAO harvested area
+Thailand,East Asia,9,2018,2018,Fruits (Pineapple+Mangoe+Longan+Rambutan+Durian+Mangosteen+Lychee+Tangerine+Longkong+Lime) & Treenuts,566880,31.05,36.16,52.66,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area (provided by correspondent) is similar to FAO harvested area. N, P2O5 and K2O quantities are based on 2014 application rates and 2018 area provided by correspondent."
+Thailand,East Asia,9,2018,2018,Maize Grain,1082720,37.35,28.9,25.0,IFA_<nutrient>_t / IFA_area_ha,IFA survey area (provided by correspondent) is similar to FAO harvested area. N quantity is based on 2014 N application rate and 2018 area given by correspondent.
+Thailand,East Asia,9,2018,2018,Oil Palm,814240,54.71,50.61,130.28,IFA_<nutrient>_t / IFA_area_ha,IFA survey area (provided by correspondent) is similar to FAO harvested area. N and K2O quantities are based on 2014 application rates and 2018 area provided by correspondent.
+Thailand,East Asia,9,2018,2018,Other Oil Crops (Coconut),121280,65.0,59.0,105.0,IFA_<nutrient>_t / IFA_area_ha,IFA survey area (provided by correspondent) is similar to FAO harvested area
+Thailand,East Asia,9,2018,2018,Residual (rubber),3195680,37.0,4.0,10.0,IFA_<nutrient>_t / IFA_area_ha,FAO area for rubber
+Thailand,East Asia,9,2018,2018,Rice,10397920,92.47,20.0,17.0,IFA_<nutrient>_t / IFA_area_ha,IFA survey area (provided by correspondent) is similar to FAO harvested area. N quantity is based on 2014 N application rate and 2018 area given by correspondent.
+Thailand,East Asia,9,2018,2018,Soybeans,23931,0.0,42.58,0.0,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area (provided by correspondent) is similar to FAO harvested area. N, P2O5 and K2O quantities are based on 2014 application rates and 2018 area provided by correspondent."
+Thailand,East Asia,9,2018,2018,Sugar Cane,1790240,62.48,30.63,53.0,IFA_<nutrient>_t / IFA_area_ha,IFA survey area (provided by correspondent) is similar to FAO harvested area. N quantity is based on 2014 N application rate and 2018 area given by correspondent.
+Thailand,East Asia,9,2018,2018,Sweet corn,39064,158.13,46.88,46.88,IFA_<nutrient>_t / IFA_area_ha,IFA survey area (provided by correspondent) is similar to FAO harvested area
+Thailand,East Asia,9,2018,2018,Vegetables (Garlic+Shallot+Onion+Potato+Tomato+Baby corn+Pepper),715859,196.19,97.03,107.82,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area (provided by correspondent) is similar to FAO harvested area. N, P2O5 and K2O quantities are based on 2014 application rates and 2018 area provided by correspondent."
+Turkey,West Asia,9,2018,2018,Cotton,1037268,150.0,60.0,20.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Fruits & Treenuts,3470886,120.0,50.0,20.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Grassland,1437513,50.0,50.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Maize Grain,591900,170.0,70.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,"Maize, Green (silage, bioenergy)",472642,170.0,70.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Other Cereals,2881026,60.0,30.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Other Oil Crops,673627,50.0,30.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Pulses,795939,50.0,50.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Rapeseed / Canola,37845,50.0,30.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Rice,120142,120.0,60.0,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Roots & Tubers,1037268,120.0,40.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Soybeans,32848,30.0,30.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Sugar Beet,292914,100.0,60.0,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Sugar Cane,3,0.0,0.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Tea,78133,150.0,20.0,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Vegetables,716002,120.0,50.0,20.0,IFA_<nutrient>_t / IFA_area_ha,
+Turkey,West Asia,9,2018,2018,Wheat,7299270,80.0,30.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Cultivated pastures,1300,48.72,2.56,2.56,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area is ""Area treated with inorganic fertilizers"" (""Share to planted area"" is not available)"
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Edible roots and tubers with high starch and inulin content,13844,159.15,65.97,143.98,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"". FAO area for roots and tubers"
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,"Fodder crops, including for seed",536111,39.87,6.35,6.91,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"""
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,"Food melons, including for seed",3382,29.57,11.83,14.79,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"""
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Hayfields,4100,30.08,0.81,0.81,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area is ""Area treated with inorganic fertilizers"" (""Share to planted area"" is not available)"
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Maize for grain,3278775,106.79,19.33,21.04,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"""
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Other cereal and leguminous crops,1914605,61.41,16.67,16.72,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"". FAO area includes rice"
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Other industrial crops,97968,33.28,9.8,9.49,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"""
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Perennial crops,67894,24.79,8.3,12.13,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to total area of plantations"""
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Rapeseed,987325,126.26,25.3,26.12,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"""
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Soya beans,1367389,36.68,15.17,15.88,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"""
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Sugar beet,247172,169.88,55.87,73.59,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"""
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Sunflower seeds,4591222,50.32,21.14,21.32,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"""
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Vegetables grown in greenhouses,219,1677.5,945.5,2135.0,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"""
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,"Vegetables grown in open-field, including for seed",31116,127.48,40.71,62.88,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"". FAO area for all vegetables including melons"
+Ukraine,Eastern Europe and Central Asia,9,2018,2018,Wheat,4699477,103.77,19.31,19.11,IFA_<nutrient>_t / IFA_area_ha,"IFA survey area calculated based on ""Area treated with inorganic fertilizers"" divided by ""Share to planted area"""
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Fertilized forests,5000,15.0,15.0,10.0,IFA_<nutrient>_t / IFA_area_ha,
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Fruits & Treenuts,35000,87.0,14.0,75.0,IFA_<nutrient>_t / IFA_area_ha,"nuts, herbs, bushes, vineyards"
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Green maize,224000,61.0,34.0,16.0,IFA_<nutrient>_t / IFA_area_ha,Silage maize + Maize for biogas
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Oilseed rape,601000,190.0,27.0,32.0,IFA_<nutrient>_t / IFA_area_ha,
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Other cereals,1381000,113.78,29.03,38.84,IFA_<nutrient>_t / IFA_area_ha,"Barley, rye, triticale, oats, rice"
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Other crops,132000,42.06,13.36,24.83,IFA_<nutrient>_t / IFA_area_ha,"Tobacco, poppy, fodder (legumes), fodder (other), short rotation coppice, perenial herbaceous crops"
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Other oil crops,25000,78.0,16.0,15.0,IFA_<nutrient>_t / IFA_area_ha,"Sunflower, soya, linseed"
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Potato,142000,142.0,105.0,207.0,IFA_<nutrient>_t / IFA_area_ha,Data for potatoes can be used as proxy for Roots and tubers
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,"Pulses (peas, beans)",199000,1.0,15.0,22.0,IFA_<nutrient>_t / IFA_area_ha,
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Sugar beet,116000,92.0,18.0,50.0,IFA_<nutrient>_t / IFA_area_ha,
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Total Grassland,11274000,31.4,4.26,6.39,IFA_<nutrient>_t / IFA_area_ha,
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Vegetables,117000,59.0,46.0,80.0,IFA_<nutrient>_t / IFA_area_ha,
+United Kingdom of Great Britain and Northern Ireland,Western and Central Europe,9,2017/18,2018,Wheat,1797000,191.0,27.0,33.0,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Beans,1120000,3.92,0.5,0.0,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Coffee,231000,14.83,0.06,1.11,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Cow pea,148000,9.89,1.26,0.0,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Horticulture,441000,0.24,1.36,1.62,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Irish potatos,164000,16.85,7.06,1.86,IFA_<nutrient>_t / IFA_area_ha,FAO area for all potatoes
+United Republic of Tanzania,Africa,9,2016,2016,Maize grain,3818000,16.55,2.62,0.0,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Other cereals & oil seeds,5280000,0.03,0.19,0.0,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Rice,1097000,11.59,3.71,0.0,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Sugar cane,44000,21.05,37.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Tea,23000,51.85,0.5,0.54,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Tobacco - fire-cured,10000,23.64,1.53,8.6,IFA_<nutrient>_t / IFA_area_ha,
+United Republic of Tanzania,Africa,9,2016,2016,Tobacco - flue-cured,38000,6.22,1.45,21.69,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Coffee,2792,112.09,42.03,168.13,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Cotton,5558645,81.93,28.72,39.27,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Fruits & Treenuts,1976847,83.7,16.14,51.57,IFA_<nutrient>_t / IFA_area_ha,FAO area includes citrus fruits
+United States of America,North America,9,2018/19,2019,"Maize, Total",36318545,157.65,54.01,58.28,IFA_<nutrient>_t / IFA_area_ha,no breakdown for maize grain and maize green; we should be able to use total maize as a proxy for maize grain
+United States of America,North America,9,2018/19,2019,Other Cereals,5349140,64.91,20.6,6.37,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Other Oil Crops,1389044,41.91,12.75,7.12,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Pulses,1490671,59.14,35.37,61.78,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Rapeseed / Canola,830132,68.28,36.87,17.92,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Rice,1027902,189.18,45.39,41.76,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Roots & Tubers,449525,255.94,159.83,173.51,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Soybeans,30796605,5.53,25.89,41.93,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Sugar Beet,458105,119.73,72.18,42.03,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Sugar Cane,369559,119.73,72.18,42.03,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Vegetables,796786,200.57,100.94,69.83,IFA_<nutrient>_t / IFA_area_ha,
+United States of America,North America,9,2018/19,2019,Wheat,18407143,78.49,23.9,5.99,IFA_<nutrient>_t / IFA_area_ha,
+Uruguay,Latin America,9,2018,2018,Fruits & Treenuts,20800,76.0,57.0,35.0,IFA_<nutrient>_t / IFA_area_ha,
+Uruguay,Latin America,9,2018,2018,Grassland,1757900,7.12,17.77,0.0,IFA_<nutrient>_t / IFA_area_ha,Nutrient amounts provided by INIA and area provided by Martin Torres Duggan & Fernando Garcia. FAO grassland area seems reasonable (https://www.nzfsu.com.uy/2a.html); grassland area given by correspondent may be only fertilized grassland.
+Uruguay,Latin America,9,2018,2018,Maize Grain,107000,142.5,66.5,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Uruguay,Latin America,9,2018,2018,Other Cereals,199300,142.5,66.5,30.0,IFA_<nutrient>_t / IFA_area_ha,
+Uruguay,Latin America,9,2018,2018,Rapeseed / Canola,55000,93.0,48.0,35.0,IFA_<nutrient>_t / IFA_area_ha,Nutrient amounts calculated based on application rate provided by INIA and area provided by Martin Torres Duggan and Fernando Garcia
+Uruguay,Latin America,9,2018,2018,Residual,795600,5.0,40.0,0.0,IFA_<nutrient>_t / IFA_area_ha,
+Uruguay,Latin America,9,2018,2018,Rice,145000,82.0,45.0,30.0,IFA_<nutrient>_t / IFA_area_ha,Nutrient amounts calculated based on application rate provided by INIA and area provided by Martin Torres Duggan and Fernando Garcia
+Uruguay,Latin America,9,2018,2018,Roots & Tubers,4167,114.0,57.0,70.0,IFA_<nutrient>_t / IFA_area_ha,
+Uruguay,Latin America,9,2018,2018,Soybeans,966000,2.0,43.0,28.0,IFA_<nutrient>_t / IFA_area_ha,Nutrient amounts for P2O5 and K2O calculated based on application rate provided by INIA and area provided by Martin Torres Duggan and Fernando Garcia. Nutrient amounts for N provided by Martin Torres Duggan and Fernando Garcia.
+Uruguay,Latin America,9,2018,2018,Sugar Cane,6200,142.5,57.0,50.0,IFA_<nutrient>_t / IFA_area_ha,
+Uruguay,Latin America,9,2018,2018,Vegetables,9000,95.0,57.0,35.0,IFA_<nutrient>_t / IFA_area_ha,
+Uruguay,Latin America,9,2018,2018,Wheat,198400,118.0,43.0,21.0,IFA_<nutrient>_t / IFA_area_ha,Nutrient amounts calculated based on application rate provided by INIA and area provided by Martin Torres Duggan and Fernando Garcia
+Viet Nam,East Asia,9,2018,2018,Fruit Primary,724203,120.43,64.62,44.77,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Viet Nam,East Asia,9,2018,2018,Maize,1032598,169.26,53.92,26.57,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Viet Nam,East Asia,9,2018,2018,Other Oil Crops,377642,62.59,63.81,39.3,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area.
+Viet Nam,East Asia,9,2018,2018,Residual,2141512,67.45,40.36,28.78,IFA_<nutrient>_t / FAO_area_ha,"Based on 2014 fertilizer application rates and 2018 FAO harvested area. The residual area includes Citrus Fruit, Coffee, Other cereals, Pulses, Tea, Treenuts and Grassland."
+Viet Nam,East Asia,9,2018,2018,"Rice, paddy",7570741,127.62,69.39,38.72,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Viet Nam,East Asia,9,2018,2018,"Roots and Tubers, Total",655627,47.09,12.0,11.09,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Viet Nam,East Asia,9,2018,2018,Seed cotton,606,152.44,38.85,23.93,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area. Area refers to cotton; nutrient quantities refers to fiber crops.
+Viet Nam,East Asia,9,2018,2018,Soybeans,53364,53.21,58.12,35.79,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Viet Nam,East Asia,9,2018,2018,Sugar cane,269434,218.06,76.42,102.67,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area
+Viet Nam,East Asia,9,2018,2018,Vegetables Primary,1009363,111.78,50.64,38.99,IFA_<nutrient>_t / FAO_area_ha,Based on 2014 fertilizer application rates and 2018 FAO harvested area

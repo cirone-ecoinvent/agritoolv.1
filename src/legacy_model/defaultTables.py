@@ -112,6 +112,80 @@ def _pk_per_kg_main_product():
 # kg P2O5 and kg K2O / kg FM of the main product, {crop: {"p2o5": ..., "k2o": ...}}
 PK_PER_KG_MAIN_PRODUCT_PER_CROP = _pk_per_kg_main_product()
 
+_IFA_LEVELS = ("exact", "subgroup", "group")
+_IFA_NUTRIENTS = ("n", "p2o5", "k2o")
+
+
+def _ifa_best_match(rows, crop, mapping):
+    """(level, rows) of the best match level of a crop among the FUBC rows of one country, (None, []) if none."""
+    found = {}
+    for row in rows:
+        level = mapping.get((row["fubc_crop"], crop))
+        if level:
+            found.setdefault(level, []).append(row)
+    for level in _IFA_LEVELS:
+        if level in found:
+            return level, found[level]
+    return None, []
+
+
+def _ifa_area_mean(rows):
+    """Area-weighted mean rate per nutrient, None for a nutrient without a value."""
+    rates = {}
+    for nutrient in _IFA_NUTRIENTS:
+        pairs = [(float(row[nutrient + "_kg_per_ha"]), float(row["area_ha"] or 1.0))
+                 for row in rows if row[nutrient + "_kg_per_ha"]]
+        rates[nutrient] = sum(v * a for v, a in pairs) / sum(a for _, a in pairs) if pairs else None
+    return rates
+
+
+def _ifa_mineral_fertiliser():
+    """kg N, P2O5 and K2O/ha of mineral fertilisers per crop and country, IFA Fertilizer Use by Crop (Ludemann et al.
+    2022; decision L33): mean rate over the total crop area, {crop: {country: {"n": .., "p2o5": .., "k2o": ..}}},
+    None for a nutrient without a value.
+
+    FUBC crop names are matched to the crops with ifa_fubc_crop_mapping.csv; per FUBC country the best match level
+    is used (exact, then subgroup, then group) and the rows of that level are combined by area. Countries without
+    FUBC data (ifa_fubc_country_mapping.csv): the FUBC 9 countries of their IFA region, the best level over the
+    countries. Rates of FUBC 9 and of the regions are brought to 2021-2023 with the ratio of the FAOSTAT use per area
+    of cropland (faostat_fertiliser_use_country.csv); the earlier reports of the countries without FUBC 9 data have
+    no row there and are used as they are."""
+    mapping = {(row["fubc_crop"], crop): row["match"]
+               for row in dataloader.rows("ifa_fubc_crop_mapping.csv") for crop in row["crops"].split()}
+    by_country = {}
+    for row in dataloader.rows("ifa_fubc_rates.csv"):
+        by_country.setdefault(row["fubc_country"], []).append(row)
+    latest = max(int(row["fubc_report"]) for rows in by_country.values() for row in rows)
+    scale = {(row["country"], row["nutrient"].lower()):
+             float(row["target_kg_per_ha_cropland"]) / float(row["base_kg_per_ha_cropland"])
+             for row in dataloader.rows("faostat_fertiliser_use_country.csv")}
+    table = {}
+    for country_row in dataloader.rows("ifa_fubc_country_mapping.csv"):
+        country = country_row["country"]
+        if country_row["fubc_country"]:
+            pools = [by_country[country_row["fubc_country"]]]
+        else:
+            pools = [rows for rows in by_country.values()
+                     if rows[0]["region_ifa"] == country_row["region_ifa"] and int(rows[0]["fubc_report"]) == latest]
+        for crop in {crop for _, crop in mapping}:
+            per_level = {}
+            for rows in pools:
+                level, matched = _ifa_best_match(rows, crop, mapping)
+                if level:
+                    per_level.setdefault(level, []).extend(matched)
+            level = next((level for level in _IFA_LEVELS if level in per_level), None)
+            if level is None:
+                continue
+            rates = _ifa_area_mean(per_level[level])
+            table.setdefault(crop, {})[country] = {
+                nutrient: None if rate is None else rate * scale.get((country, nutrient), 1.0)
+                for nutrient, rate in rates.items()}
+    return table
+
+
+# kg N, P2O5 and K2O/ha of mineral fertilisers in 2021-2023 (IFA, decision L33), {crop: {country: {nutrient: kg}}}
+IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY = _ifa_mineral_fertiliser()
+
 #Generated from GD_crop GrossEnergy_C_L1 column D, kgC/kgDM
 # Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
 # Castor bean: http://www.modernscientificpress.com/Journals/ViewArticle.aspx?gkN1Z6Pb60HNQPymfPQlZIiDnrBBtQSfoCsKufNADqZ4TrWuS7h5KvbfIK0SLlFq

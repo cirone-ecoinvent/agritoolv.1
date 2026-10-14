@@ -4,7 +4,7 @@ the default mineral N (L28), manure (L29) and mineral P and K (L31) follow from 
 import pytest
 
 import dataloader
-from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS
+from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, MineralNitrogenDefaultGenerator
 from defaultMatrixNUptake import NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY as LEGACY_N_UPTAKE
 from defaultMatrixTotalManure import TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY, TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY
 from defaultTables import N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP as N_PER_KG, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP as TREE_N
@@ -38,7 +38,8 @@ def test_tree_crops_and_residue_n():
 def test_n_uptake_mineral_n_and_manure_follow_the_yield():
     defaults = _defaults(crop="apple", country="IT", yield_main_product_per_crop_cycle=40000.0)
     assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(40000.0 * 0.5 / 1000.0 + 18.6)
-    assert defaults["nitrogen_from_mineral_fert"] == pytest.approx(0.8 * defaults["nitrogen_uptake_by_crop"])
+    # level 1; the default is level 2 where IFA gives a rate (decision L33)
+    assert MineralNitrogenDefaultGenerator.level1(defaults) == pytest.approx(0.8 * defaults["nitrogen_uptake_by_crop"])
     assert _available_n(defaults) == pytest.approx(0.2 * defaults["nitrogen_uptake_by_crop"])
 
 
@@ -56,7 +57,7 @@ def test_legacy_matrix_is_the_same_rule(crop, country, wfldb_yield):
 def test_wfldb_l1_datasets_are_reproduced(crop, country, wfldb_yield, wfldb_n_mineral):
     # WFLDB 3.1 Documentation 2017, Excel annex sheet 2c: datasets with yield and N mineral at L1
     defaults = _defaults(crop=crop, country=country, yield_main_product_per_crop_cycle=float(wfldb_yield))
-    assert defaults["nitrogen_from_mineral_fert"] == pytest.approx(wfldb_n_mineral, abs=1.0)
+    assert MineralNitrogenDefaultGenerator.level1(defaults) == pytest.approx(wfldb_n_mineral, abs=1.0)
 
 
 def test_berries_and_crops_without_fertiliser_defaults_keep_the_legacy_matrices():

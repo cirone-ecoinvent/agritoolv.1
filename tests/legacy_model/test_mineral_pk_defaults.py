@@ -1,14 +1,16 @@
 """Decision L31: default mineral P2O5 and K2O = P2O5 (K2O) taken off the field with the main product (yield x content
 of the WFLDB Background Parameters 2017 sheet 4) minus the P2O5 (K2O) of the manure in use, 0 when the manure brings
-more (WFLDB Guidelines v3.0 sections 3.6.1-3.6.2)."""
+more (WFLDB Guidelines v3.0 sections 3.6.1-3.6.2). This is level 1; the default is level 2 where IFA gives a rate
+(decision L33, test_ifa_level2_defaults.py)."""
 import pytest
 
 import dataloader
-from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS
+from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, \
+    MineralPhosphorusPotassiumDefaultGenerator as PK
 from defaultTables import PK_PER_KG_MAIN_PRODUCT_PER_CROP as PK_PER_KG
 from models.manuremodel import ManureModel, LiquidManureType
 
-FIELDS = (("p2O5_from_mineral_fert", "p2o5"), ("k2O_from_mineral_fert", "k2o"))
+NUTRIENTS = ("p2o5", "k2o")
 
 
 def _defaults(**inputs):
@@ -37,16 +39,16 @@ def test_crops_and_contents():
     ("apple", "IT", 40000.0), ("tea", "KE", 2500.0)])
 def test_default_mineral_pk_is_the_offtake_minus_the_manure(crop, country, yield_per_cycle):
     defaults = _defaults(crop=crop, country=country, yield_main_product_per_crop_cycle=yield_per_cycle)
-    for field, nutrient in FIELDS:
+    for nutrient in NUTRIENTS:
         expected = max(0.0, yield_per_cycle * PK_PER_KG[crop][nutrient] - _manure(defaults, nutrient))
-        assert defaults[field] == pytest.approx(expected)
+        assert PK.level1(defaults, nutrient) == pytest.approx(expected)
 
 
 def test_cereal_k2o_is_zero_when_the_manure_brings_more():
     defaults = _defaults(crop="wheat", country="FR", yield_main_product_per_crop_cycle=7000.0)
     assert _manure(defaults, "k2o") > 7000.0 * PK_PER_KG["wheat"]["k2o"]
-    assert defaults["k2O_from_mineral_fert"] == 0.0
-    assert defaults["p2O5_from_mineral_fert"] > 0.0
+    assert PK.level1(defaults, "k2o") == 0.0
+    assert PK.level1(defaults, "p2o5") > 0.0
 
 
 def test_the_manure_of_the_template_is_subtracted():
@@ -55,8 +57,8 @@ def test_the_manure_of_the_template_is_subtracted():
     pig[LiquidManureType.pig] = 1.0
     defaults = _defaults(crop="potato", country="DE", yield_main_product_per_crop_cycle=40000.0,
                          total_manureliquid=20.0, liquid_manure_proportions=pig, total_manuresolid=0.0)
-    assert defaults["p2O5_from_mineral_fert"] == pytest.approx(40000.0 * 0.0013 - 35.0)
-    assert defaults["k2O_from_mineral_fert"] == pytest.approx(40000.0 * 0.0054 - 38.0)
+    assert PK.level1(defaults, "p2o5") == pytest.approx(40000.0 * 0.0013 - 35.0)
+    assert PK.level1(defaults, "k2o") == pytest.approx(40000.0 * 0.0054 - 38.0)
 
 
 @pytest.mark.parametrize("crop, country, yield_per_cycle, wfldb_p2o5, wfldb_k2o", [
@@ -68,8 +70,8 @@ def test_wfldb_l1_datasets_are_reproduced(crop, country, yield_per_cycle, wfldb_
     # fertilisers (N mineral / 0.8 / N per kg for the crops of L28, else the dataset yield). The manure shares
     # are FAOSTAT 2021-2023 (L29), not WFLDB 2009-2012, hence the tolerance.
     defaults = _defaults(crop=crop, country=country, yield_main_product_per_crop_cycle=yield_per_cycle)
-    assert defaults["p2O5_from_mineral_fert"] == pytest.approx(wfldb_p2o5, abs=4.0)
-    assert defaults["k2O_from_mineral_fert"] == pytest.approx(wfldb_k2o, abs=4.0)
+    assert PK.level1(defaults, "p2o5") == pytest.approx(wfldb_p2o5, abs=4.0)
+    assert PK.level1(defaults, "k2o") == pytest.approx(wfldb_k2o, abs=4.0)
 
 
 def test_other_crops_have_no_default():

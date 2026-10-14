@@ -1300,3 +1300,69 @@ Regression: apple_FR gives mineral N, P, K and manure in the template, so only i
 changes: 34.9 (legacy GLO) -> 36.1 kg N/ha (35000 kg/ha x 0.5 g/kg + 18.6); nitrate to
 groundwater 131.44 -> 131.10 kg/ha and to surface water 14.60 -> 14.57 (x 0.9974), N2O 2.3762 ->
 2.3752 (x 0.9996, indirect N2O of the leached N). wheat_IT and rice_IN unchanged.
+
+## 23. Mineral N, P and K at WFLDB level 2 with the IFA fertiliser use by crop (decision L33, 2026-10-14)
+
+L28-L32 compute the default mineral fertilisers at WFLDB level 1, a nutrient balance: mineral N =
+0.8 x N uptake, mineral P2O5 and K2O = offtake minus manure. The WFLDB Guidelines v3.0 (section
+3.6.1) define level 2 as correction factors on these values from national fertiliser statistics,
+naming IFA, but WFLDB never computed them (Documentation 2017 section 2.4: L2 = an L1 value
+adapted by hand). L1 is far below the practice for P and K (L31: the default manure often covers
+the offtake) and differs in both directions for N.
+
+Data (supplied by FC, `data/external_data/`, read from the zip files by
+`scripts/build_ifa_fertiliser_use.py`):
+
+- IFA Fertilizer Use by Crop, Ludemann, Gruere, Heffer, Dobermann (2022), Dryad
+  doi:10.5061/dryad.2rbnzs7qh, version of February 2025 (CC0): mean rate of mineral N, P2O5 and
+  K2O over the total crop area per country and crop (`ifa_fubc_rates.csv`). 30 countries of the
+  tool are in the 9th survey (FUBC 9, 2017-18); CH, CO, CR, EC, KE, LK have FUBC 5 (1995-2000), CI
+  FUBC 4 (1994); GH and CS are not in FUBC and take the FUBC 9 countries of their IFA region.
+- FAOSTAT Fertilizers by Nutrient, use per area of cropland (`faostat_fertiliser_use_country.csv`):
+  the FUBC 9 and region rates are multiplied by the ratio 2021-2023 / FUBC year of the country
+  (median 0.95; from 0.38 for P2O5 ID to 3.34 for P2O5 PH, a single base year). The earlier
+  reports are used without it: over 20-30 years the national trend gave factors up to 6 (banana EC
+  1686 kg K2O/ha).
+- FUBC crop names -> crops of the tool (`ifa_fubc_crop_mapping.csv`, 96 names): exact crop,
+  subgroup (e.g. citrus for oranges, lemons and mandarins) or group (fruits and tree nuts,
+  vegetables, other cereals, other oil crops, roots and tubers); per country the best level, the
+  rows of that level combined by area (e.g. irrigated and rainfed rice KE).
+
+Method (`defaultGeneration.py` _level2), for N, P2O5 and K2O of the 40 crops with L1 coefficients:
+
+- k = (IFA rate + L1 manure) / L1 need, at the default yield of the crop and country with the
+  default manure; need = N uptake (N) or offtake (P2O5, K2O), manure = organic N share of the N
+  uptake (N) or P2O5 and K2O of the default manure;
+- mineral fertiliser = max(0, k x need - manure), with the yield of the dataset and the manure in
+  use (P, K); for N this is the IFA rate x N uptake / N uptake at the default yield;
+- at the default yield the default equals the IFA rate; without an IFA rate the default stays L1.
+
+| Crop | Country | Yield (kg/ha) | IFA data | Mineral N | P2O5 | K2O | WFLDB L3 N / P2O5 / K2O |
+|---|---|---|---|---|---|---|---|
+| wheat | FR | 6775 | FUBC 9, Wheat | 129.1 -> **149.5** | 17.7 -> **15.0** | 0.0 -> **13.0** | |
+| wheat | IN | 3534 | FUBC 9, Wheat | 67.3 -> **128.1** | 11.5 -> **38.5** | 0.0 -> **4.2** | |
+| maizegrain | US | 11091 | FUBC 9, Maize, Total (group) | 186.9 -> **157.5** | 3.9 -> **51.8** | 0.0 -> **57.5** | |
+| rice | IN | 4267 | FUBC 9, Rice | 64.0 -> **154.3** | 11.0 -> **59.6** | 0.0 -> **16.2** | 120 / 60 / 60 |
+| potato | IN | 24930 | FUBC 9, Roots & Tubers (group) | 72.2 -> **99.0** | 13.7 -> **59.9** | 67.6 -> **31.4** | 250 / 230 / 150 |
+| sugarbeet | FR | 80555 | FUBC 9, Sugar beet | 219.1 -> **90.6** | 0.0 -> **39.5** | 0.0 -> **60.7** | 103 / 68 / 146 |
+| soybean | BR | 3243 | FUBC 9, Soybeans | 98.6 -> **22.6** | 5.6 -> **101.4** | 1.7 -> **107.7** | |
+| soybean | AR | 2565 | FUBC 9, Soybeans | 78.0 -> **0.0** | 4.6 -> **9.7** | 0.4 -> **0.0** | 4 / 12 / 0 |
+| sugarcane | BR | 74672 | FUBC 9, Sugar Cane | 106.3 -> **109.8** | 7.7 -> **22.3** | 349.1 -> **79.2** | 52 / 48 / 110 |
+| palmtree | ID | 17354 | FUBC 9, Oil palm fruit | 83.3 -> **96.8** | 10.0 -> **18.6** | 123.1 -> **125.3** | - / - / 345 |
+| tomato_fresh | IT | 61832 | FUBC 9, Vegetables (group) | 105.0 -> **88.9** | 2.2 -> **38.5** | 89.7 -> **80.6** | |
+| apple | IT | 42366 | FUBC 9, Fruits & Treenuts (group) | 31.8 -> **52.8** | 1.9 -> **7.3** | 34.8 -> **16.7** | 50 / 35 / 58 |
+| lemon | ES | 19181 | FUBC 9, Fruits & Treenuts (group) | 40.1 -> **49.6** | 1.5 -> **17.3** | 11.5 -> **18.1** | 230 / 90 / 300 |
+| coffee_arabica | BR | 1708 | FUBC 9, Coffee | 35.7 -> **232.5** | 0.0 -> **45.9** | 2.5 -> **136.8** | |
+| tea | KE | 2494 | FUBC 5 1997, Tea | 96.1 -> **50.0** | 0.0 -> **10.0** | 0.0 -> **10.0** | |
+| banana | EC | 38961 | FUBC 5 1995, Banana | 62.9 -> **210.0** | 0.0 -> **14.0** | 168.7 -> **280.0** | 265 / 3 / 131 |
+
+kg per ha and crop cycle, L1 -> L2 at the default yield and default manure. Full table (40 crops,
+39 countries, with the FUBC rows, the time factors and k), confirmed by FC:
+`Literature/review_ifa_l2_defaults.csv`. Of the 1018 crop-country pairs, 238 have an exact FUBC
+crop, 36 a subgroup, 581 a group and 163 no rate (L1 kept). Mean over the pairs with a rate:
+mineral N 68 -> 99, P2O5 3 -> 51, K2O 42 -> 58 kg/ha. Against the 57 WFLDB 3.1 datasets with L3 or
+L4 data, L2 is closer than L1 for P2O5 in 42 (median deviation 50 -> 33 kg), for N in 35 and for
+K2O in 28. A group rate averages different crops: in Europe "Fruits & Treenuts" includes vineyards
+and nuts, so intensive crops get less than the WFLDB L3 data (lemon ES 50 against 230 kg N).
+
+Regression: the three cases give the mineral fertilisers in the template, snapshots unchanged.

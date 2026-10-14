@@ -14,6 +14,8 @@ Review tables (all in data/):
   faostat_country_mapping.csv             idem
   n_uptake_crop_parameters.csv            usable when status is confirmed (default N uptake, L28, L32)
   pk_crop_parameters.csv                  usable when status is confirmed (default mineral P and K, L31)
+  ifa_fubc_country_mapping.csv            usable when status is confirmed (IFA fertiliser use by crop, L33)
+  ifa_fubc_crop_mapping.csv               idem
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -54,6 +56,8 @@ TABLES = [
     ("faostat_country_mapping.csv", ("confirmed",), ("country", "faostat_area_code", "faostat_area", "status")),
     ("n_uptake_crop_parameters.csv", ("confirmed",), ("crop", "wfldb_crop", "grudaf_crop", "residue_ratio", "tree_residues", "status")),
     ("pk_crop_parameters.csv", ("confirmed",), ("crop", "wfldb_crop", "status", "note")),
+    ("ifa_fubc_country_mapping.csv", ("confirmed",), ("country", "fubc_country", "region_ifa", "status", "note")),
+    ("ifa_fubc_crop_mapping.csv", ("confirmed",), ("fubc_crop", "crops", "match", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]
