@@ -3,6 +3,7 @@
 the default yield the default mineral fertiliser equals the rate of IFA Fertilizer Use by Crop (Ludemann et al. 2022),
 FUBC 9 rates brought to 2021-2023 with the FAOSTAT use per area of cropland."""
 import importlib.util
+import statistics
 from pathlib import Path
 
 import pytest
@@ -42,10 +43,21 @@ def test_fubc9_rate_brought_to_2021_2023():
         assert IFA["wheat"]["FR"][nutrient.lower()] == pytest.approx(expected)
 
 
+def test_time_factor_base_is_three_years_around_the_fubc_year():
+    # decision L35: base = FUBC 9 reference year with the year before and after, target = 2021-2023
+    use = dataloader.rows("faostat_fertiliser_use_country.csv")
+    for row in use:
+        years = [int(y) for y in row["base_years"].split()]
+        assert years == list(range(years[0], years[0] + 3)) and row["target_years"] == "2021-2023", row
+    assert {r["reference_years"] for r in dataloader.rows("ifa_fubc_rates.csv") if r["fubc_country"] == "France"} \
+        == {"2018"}
+    assert {r["base_years"] for r in use if r["country"] in ("FR", "GH", "CS")} == {"2017 2018 2019"}
+
+
 def test_earlier_report_without_time_scaling():
     # FUBC 5 Ecuador 1995, banana: 300 / 20 / 400 kg N / P2O5 / K2O per fertilised ha on 70 % of the area
     assert IFA["banana"]["EC"] == pytest.approx({"n": 210.0, "p2o5": 14.0, "k2o": 280.0})
-    assert "EC" not in {r["country"] for r in dataloader.rows("faostat_fertiliser_use_country.csv")}
+    assert _scale("EC", "N") != pytest.approx(1.0)  # used for the region rates only (decision L37)
 
 
 def test_best_level_and_area_weighting():
@@ -59,13 +71,17 @@ def test_best_level_and_area_weighting():
 
 
 def test_countries_without_fubc_take_their_ifa_region():
+    # decision L37: median over the FUBC 9 countries of the region, the rows of each country combined by area
     mapping = {r["fubc_crop"] for r in dataloader.rows("ifa_fubc_crop_mapping.csv")
                if r["match"] == "exact" and "wheat" in r["crops"].split()}
-    rows = [r for r in dataloader.rows("ifa_fubc_rates.csv")
-            if r["region_ifa"] == "Africa" and r["fubc_report"] == "9" and r["fubc_crop"] in mapping]
-    assert len({r["fubc_country"] for r in rows}) > 3
-    mean = sum(float(r["n_kg_per_ha"]) * float(r["area_ha"]) for r in rows) / sum(float(r["area_ha"]) for r in rows)
-    assert IFA["wheat"]["GH"]["n"] == pytest.approx(mean * _scale("GH", "N"))
+    per_country = {}
+    for r in dataloader.rows("ifa_fubc_rates.csv"):
+        if r["region_ifa"] == "Africa" and r["fubc_report"] == "9" and r["fubc_crop"] in mapping:
+            per_country.setdefault(r["fubc_country"], []).append(r)
+    assert len(per_country) > 3
+    rates = [sum(float(r["n_kg_per_ha"]) * float(r["area_ha"]) for r in rows) / sum(float(r["area_ha"]) for r in rows)
+             for rows in per_country.values()]
+    assert IFA["wheat"]["GH"]["n"] == pytest.approx(statistics.median(rates) * _scale("GH", "N"))
 
 
 @pytest.mark.parametrize("crop, country", [

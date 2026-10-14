@@ -91,7 +91,7 @@ def test_berries_keep_the_legacy_manure():
 
 
 @pytest.mark.parametrize("crop, country", [
-    ("coriander", "IN"), ("turmeric", "IN"), ("flax", "FR"), ("hemp", "FR"), ("blueberry", "CN"), ("mint", "MX"),
+    ("coriander", "IN"), ("turmeric", "IN"), ("flax", "FR"), ("hemp", "FR"), ("cassava", "CI"), ("mint", "MX"),
     ("lentil", "NZ")])
 def test_without_ifa_rate_unchanged(crop, country):
     assert IFA.get(crop, {}).get(country) is None
@@ -118,5 +118,5 @@ def test_pulses_only_from_the_pulse_rows():
     names = {r["fubc_crop"] for r in dataloader.rows("ifa_fubc_crop_mapping.csv")
              if {"chick_pea", "lentil", "guar"} & set(r["crops"].split())}
     assert names == {"Pulses", "Pulses (pea, bean)", "Pulses (peas, beans)"}
-    assert IFA["lentil"].get("UA") is None and IFA["lentil"].get("NZ") is None
+    assert IFA["lentil"].get("NZ") is None  # UA: pulses of its IFA region (decision L37)
     assert not {"flax", "hemp", "turmeric"} & set(IFA)

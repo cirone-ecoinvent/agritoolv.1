@@ -1437,3 +1437,92 @@ pulses rate). Open: default manure of the 25 crops.
 
 Regression: the three cases are other crops, snapshots unchanged; the defaults of the 40 crops of
 L33 are unchanged.
+
+## 25. Three-year base of the FAOSTAT time factor; soybean mineral N (decisions L35, L36, 2026-10-14)
+
+L33 brings the FUBC 9 and region rates to 2021-2023 with the ratio of the FAOSTAT use per area of
+cropland, 2021-2023 mean over the FUBC 9 reference year of the country. One base year is sensitive
+to the year-to-year variation of the FAOSTAT series (CS N: 77.5, 41.7, 46.8 kg/ha in 2017, 2018,
+2019).
+
+New (L35): the base is the mean over the reference year with the year before and after (e.g.
+2017-2019), as the target is a 3-year mean (`scripts/build_ifa_fertiliser_use.py` BASE_WINDOW,
+`faostat_fertiliser_use_country.csv` rebuilt; `ifa_fubc_rates.csv` unchanged).
+
+| Country | Nutrient | Base years | Factor, one year | Factor, three years |
+|---|---|---|---|---|
+| CS | N | 2017-2019 | 1.71 | **1.29** |
+| CS | P2O5 | 2017-2019 | 2.80 | **1.74** |
+| PH | P2O5 | 2017-2019 | 3.34 | **2.57** |
+| PH | K2O | 2017-2019 | 1.67 | **1.38** |
+| TH | P2O5 | 2017-2019 | 2.16 | **1.87** |
+| TH | K2O | 2017-2019 | 1.53 | **1.73** |
+| GH | P2O5 | 2017-2019 | 1.41 | **0.97** |
+| PE | N | 2017-2019 | 1.04 | **0.83** |
+| CA | K2O | 2018-2020 | 1.93 | **1.57** |
+| TR | P2O5 | 2017-2019 | 1.23 | **0.99** |
+| ZA | K2O | 2017-2019 | 0.95 | **1.15** |
+
+The 11 largest of the 17 changes above 10 % (of 96 factors). Range of the factors 0.38-3.34 ->
+0.44-2.57, median 0.95 -> 0.93. The defaults of the 1033 crop-country pairs with a FUBC 9 or region
+rate change, 518 by more than 10 %, all in CA, CL, CS, GH, ID, PE, PH, TH, TR, VN, ZA (e.g. wheat CS
+N 225 -> 170 kg/ha, vegetables CS P2O5 145 -> 90). Against the WFLDB 3.1 datasets with L3/L4 data
+the change is neutral (median deviation N 42.0 -> 41.9, P2O5 33.0 -> 35.2, K2O 61.2 -> 67.0 kg/ha):
+these datasets are older than 2021-2023.
+
+L36: point 5 of the queue (soybean mineral N, about 100 kg N/ha at level 1 after L30) is closed by
+L33 without code change: the soybean default is the IFA rate in 27 of 32 countries, median 72 -> 23
+kg N/ha (AR 0 against 4 in the WFLDB L3 dataset). Still at level 1: soybean CI, KE, PE, PH, LK and
+peanut AR, BR, CN, which have no IFA rate for the crop (region rates since L37, section 26).
+
+Regression: snapshots unchanged.
+
+## 26. IFA region rate for the crops missing in the FUBC data of a country (decision L37, 2026-10-14)
+
+L33 and L34 take the IFA rate from the FUBC data of the country only (GH and CS: their IFA region).
+A crop missing there stayed at level 1 (crops with L1 coefficients) or without default (other
+crops): e.g. soybean in PE and PH (not in FUBC 9 of these countries) and in CI, KE, LK (earlier
+reports without soybean), peanut in AR, BR, CN, the fruits other than apples and citrus in CN.
+
+New (`defaultTables.py` _ifa_region_median):
+
+- the FUBC data of the country first, at any match level and from any report, as before;
+- otherwise the FUBC 9 countries of the IFA region of the country: per country the rate at the best
+  match level (rows of that level combined by area), then the median over the countries at the best
+  level found in the region, with at least 2 countries;
+- brought to 2021-2023 with the FAOSTAT factor of the country (L35). The countries with an earlier
+  report only (CH, CI, CO, CR, EC, KE, LK) get a factor (base 2017-2019, 21 new rows of
+  `faostat_fertiliser_use_country.csv`), used only for these region rates;
+- GH and CS follow the same rule (before: area-weighted mean of all the region rows).
+
+| Crop | Country | Region rate from | Current | New | WFLDB L3 |
+|---|---|---|---|---|---|
+| soybean | PE | Latin America, Soybeans (6 countries) | 66.9 / 2.6 / 5.7 | **1.7 / 21.2 / 15.9** | |
+| soybean | CI | Africa, Soybeans (3 countries) | 44.5 / 1.6 / 4.9 | **16.6 / 15.2 / 2.5** | |
+| soybean | LK | South Asia, Soybeans (2 countries) | 59.7 / 4.7 / 0.0 | **46.4 / 16.3 / 6.4** | |
+| peanut | AR | Latin America, Other Oil Crops (3 countries) | 75.0 / 0.0 / 0.0 | **5.5 / 4.6 / 1.0** | 0 / 0 / 0 |
+| peanut | CN | East Asia, Other Oil Crops (3 countries) | 94.7 / 0.0 / 0.0 | **6.1 / 3.5 / 1.8** | 80 / 27 / 28 |
+| peach | CN | East Asia, fruit groups (6 countries) | 33.8 / 0.0 / 25.5 | **116.2 / 48.0 / 51.8** | 160 / 40 / 40 |
+| cotton | AR | Latin America, Cotton (5 countries) | 0.0 / 0.0 / 0.0 | **63.7 / 35.6 / 43.9** | |
+| maizegrain | LK | South Asia, Maize (3 countries) | 56.8 / 2.5 / 0.0 | **113.3 / 22.4 / 23.4** | |
+| cassava | CO | Latin America, Roots & Tubers (7 countries) | 0.0 / 0.0 / 0.0 | **97.5 / 49.2 / 68.2** | |
+| wheat | CS | Western and Central Europe, Wheat (23 countries) | 169.6 / 42.4 / 16.6 | **158.5 / 40.1 / 12.7** | |
+| maizegrain | GH | Africa, Maize (8 countries) | 43.0 / 12.0 / 4.3 | **40.0 / 15.0 / 8.4** | |
+
+kg N / P2O5 / K2O per ha and crop cycle at the default yield, current (after L35) -> new. Full
+table (233 changed pairs), confirmed by FC: `Literature/review_ifa_region_fallback.csv`.
+
+- 179 pairs get a rate (exact 35, subgroup 9, group 135): mean N 29.4 -> 72.8, P2O5 1.0 -> 31.8,
+  K2O 14.5 -> 32.0 kg/ha.
+- 49 pairs of GH and CS change with the median (mean N 105 -> 88 kg/ha); 5 pairs of GH lose a rate
+  that came from Nigeria alone (cassava, coffee arabica and robusta, ginger, processing tomato).
+- 1351 of the 1504 pairs with a default yield now have an IFA rate.
+
+Rejected: the area-weighted mean over the region rows, dominated by China in East Asia (cotton PH
+282 / 477 / 65, vegetables TH 360 / 339 / 242); region rates from one country (tea of Latin America
+0, coriander TR 313 / 149 / 354 from the fresh herbs of IL, citrus TH 445 / 505 / 418 from CN).
+
+Limits: the factor of the country multiplies the region rate, so marginal crops in countries with
+a high factor get high values (TH P2O5 1.87: wheat TH 202 / 234 / 127, tea TH 533 / 215 / 206).
+
+Regression: snapshots unchanged.

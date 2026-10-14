@@ -2,6 +2,8 @@
 # and soil erodibility of this module (generated from the Quantis workbook GD_crop); the country soil,
 # precipitation and irrigation water source tables are read from data/wfldb2017_*.csv (decision L22), the
 # manure shares are computed from FAOSTAT (decision L29)
+import statistics
+
 import dataloader
 from models.fertilisermodel import NFertiliserType, KFertiliserType, \
     PFertiliserType
@@ -114,6 +116,7 @@ PK_PER_KG_MAIN_PRODUCT_PER_CROP = _pk_per_kg_main_product()
 
 _IFA_LEVELS = ("exact", "subgroup", "group")
 _IFA_NUTRIENTS = ("n", "p2o5", "k2o")
+_IFA_REGION_MIN_COUNTRIES = 2  # a region rate needs at least two FUBC countries (decision L37)
 
 
 def _ifa_best_match(rows, crop, mapping):
@@ -139,17 +142,37 @@ def _ifa_area_mean(rows):
     return rates
 
 
+def _ifa_region_median(pools, crop, mapping):
+    """Median rate per nutrient over the FUBC countries of a region that report the crop at the best match level found
+    in the region, each country's rate combined by area (decision L37); None if fewer countries than
+    _IFA_REGION_MIN_COUNTRIES report it."""
+    per_level = {}
+    for rows in pools:
+        level, matched = _ifa_best_match(rows, crop, mapping)
+        if level:
+            per_level.setdefault(level, []).append(_ifa_area_mean(matched))
+    level = next((level for level in _IFA_LEVELS if level in per_level), None)
+    if level is None or len(per_level[level]) < _IFA_REGION_MIN_COUNTRIES:
+        return None
+    rates = {}
+    for nutrient in _IFA_NUTRIENTS:
+        values = [country_rates[nutrient] for country_rates in per_level[level] if country_rates[nutrient] is not None]
+        rates[nutrient] = statistics.median(values) if values else None
+    return rates
+
+
 def _ifa_mineral_fertiliser():
     """kg N, P2O5 and K2O/ha of mineral fertilisers per crop and country, IFA Fertilizer Use by Crop (Ludemann et al.
-    2022; decisions L33, L34): mean rate over the total crop area, {crop: {country: {"n": .., "p2o5": .., "k2o": ..}}},
-    None for a nutrient without a value.
+    2022; decisions L33, L34, L37): mean rate over the total crop area, {crop: {country: {"n": .., "p2o5": ..,
+    "k2o": ..}}}, None for a nutrient without a value.
 
-    FUBC crop names are matched to the crops with ifa_fubc_crop_mapping.csv; per FUBC country the best match level
-    is used (exact, then subgroup, then group) and the rows of that level are combined by area. Countries without
-    FUBC data (ifa_fubc_country_mapping.csv): the FUBC 9 countries of their IFA region, the best level over the
-    countries. Rates of FUBC 9 and of the regions are brought to 2021-2023 with the ratio of the FAOSTAT use per area
-    of cropland (faostat_fertiliser_use_country.csv); the earlier reports of the countries without FUBC 9 data have
-    no row there and are used as they are."""
+    FUBC crop names are matched to the crops with ifa_fubc_crop_mapping.csv. The FUBC data of the country first
+    (ifa_fubc_country_mapping.csv): the best match level (exact, then subgroup, then group), the rows of that level
+    combined by area. A crop missing there, and every crop of the countries without FUBC data: the FUBC 9 countries of
+    the IFA region of the country, median over the countries at the best level found in the region, at least
+    _IFA_REGION_MIN_COUNTRIES countries (decision L37). Rates of FUBC 9 and of the regions are brought to 2021-2023
+    with the ratio of the FAOSTAT use per area of cropland of the country (faostat_fertiliser_use_country.csv); the
+    earlier reports of the countries without FUBC 9 data are used as they are."""
     mapping = {(row["fubc_crop"], crop): row["match"]
                for row in dataloader.rows("ifa_fubc_crop_mapping.csv") for crop in row["crops"].split()}
     by_country = {}
@@ -162,28 +185,26 @@ def _ifa_mineral_fertiliser():
     table = {}
     for country_row in dataloader.rows("ifa_fubc_country_mapping.csv"):
         country = country_row["country"]
-        if country_row["fubc_country"]:
-            pools = [by_country[country_row["fubc_country"]]]
-        else:
-            pools = [rows for rows in by_country.values()
-                     if rows[0]["region_ifa"] == country_row["region_ifa"] and int(rows[0]["fubc_report"]) == latest]
+        own = by_country.get(country_row["fubc_country"], [])
+        region = [rows for rows in by_country.values()
+                  if rows[0]["region_ifa"] == country_row["region_ifa"] and int(rows[0]["fubc_report"]) == latest]
         for crop in {crop for _, crop in mapping}:
-            per_level = {}
-            for rows in pools:
-                level, matched = _ifa_best_match(rows, crop, mapping)
-                if level:
-                    per_level.setdefault(level, []).extend(matched)
-            level = next((level for level in _IFA_LEVELS if level in per_level), None)
-            if level is None:
+            level, matched = _ifa_best_match(own, crop, mapping)
+            if level:
+                rates = _ifa_area_mean(matched)
+                scaled = int(matched[0]["fubc_report"]) == latest
+            else:
+                rates = _ifa_region_median(region, crop, mapping)
+                scaled = True
+            if rates is None:
                 continue
-            rates = _ifa_area_mean(per_level[level])
             table.setdefault(crop, {})[country] = {
-                nutrient: None if rate is None else rate * scale.get((country, nutrient), 1.0)
+                nutrient: None if rate is None else rate * (scale[(country, nutrient)] if scaled else 1.0)
                 for nutrient, rate in rates.items()}
     return table
 
 
-# kg N, P2O5 and K2O/ha of mineral fertilisers in 2021-2023 (IFA, decisions L33, L34), {crop: {country: {nutrient: kg}}}
+# kg N, P2O5 and K2O/ha of mineral fertilisers in 2021-2023 (IFA, decisions L33, L34, L37), {crop: {country: {..}}}
 IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY = _ifa_mineral_fertiliser()
 
 #Generated from GD_crop GrossEnergy_C_L1 column D, kgC/kgDM

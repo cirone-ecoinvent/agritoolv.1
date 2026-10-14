@@ -13,10 +13,11 @@ Outputs:
   Aver_<nutrient>_rate_kg_ha, else <nutrient>_rate_kg_ha x <nutrient>_pc_fert / 100 (rate on the fertilised area
   times the fertilised share).
 - data/faostat_fertiliser_use_country.csv: use per area of cropland per country of the tool and nutrient, mean
-  over the reference year of the FUBC 9 data of the country (Year_for_FAO_area) and over the target years
-  2021-2023; the model brings the FUBC 9 rates to 2021-2023 with the ratio. Countries without FUBC data (rates of
-  their IFA region): the most frequent Year_for_FAO_area of FUBC 9. Countries with an earlier report only are left
-  out: their rates are used without time scaling (decision L33).
+  over the reference year of the FUBC 9 data of the country (Year_for_FAO_area) with the year before and after
+  (decision L35) and over the target years 2021-2023; the model brings the FUBC 9 rates to 2021-2023 with the
+  ratio. Countries without FUBC data (rates of their IFA region) and countries with an earlier report only: the
+  most frequent Year_for_FAO_area of FUBC 9; for the latter the ratio is used for the region rates of the crops
+  missing in their report (decision L37), their own rates are used without time scaling (decision L33).
 
 Usage (repository root):
     python scripts/build_ifa_fertiliser_use.py
@@ -47,6 +48,7 @@ RFN_ELEMENT = "5159"
 RFN_UNIT = "kg/ha"
 RFN_ITEMS = {"3102": "N", "3103": "P2O5", "3104": "K2O"}
 TARGET_YEARS = (2021, 2022, 2023)
+BASE_WINDOW = (-1, 0, 1)  # years around the reference year of the FUBC data (decision L35)
 NUTRIENTS = ("N", "P2O5", "K2O")
 RATES_COLUMNS = ["fubc_country", "region_ifa", "fubc_report", "year", "reference_years", "fubc_crop", "area_ha",
                  "n_kg_per_ha", "p2o5_kg_per_ha", "k2o_kg_per_ha", "rate_basis", "note"]
@@ -156,13 +158,16 @@ def build_rates(fubc_zip, country_mapping):
 
 def build_use(rfn_zip, country_mapping, rate_rows, fallback_year):
     m49 = {r["country"]: int(r["m49_code"]) for r in dataloader.rows("faostat_country_mapping.csv")}
-    base_years = {}
+    base_years, region_only = {}, set()
     for m in country_mapping:
         own = [r for r in rate_rows if r["fubc_country"] == m["fubc_country"]]
-        if not m["fubc_country"]:
-            base_years[m["country"]] = [fallback_year]
-        elif all(r["fubc_report"] == LATEST_REPORT for r in own):
-            base_years[m["country"]] = sorted({int(r["reference_years"]) for r in own})
+        if own and all(r["fubc_report"] == LATEST_REPORT for r in own):
+            reference = {int(r["reference_years"]) for r in own}
+        else:
+            reference = {fallback_year}
+            if own:
+                region_only.add(m["country"])
+        base_years[m["country"]] = sorted({year + d for year in reference for d in BASE_WINDOW})
     wanted = {m49[c]: c for c in base_years}
     values = defaultdict(dict)
     for r in read_zip_csv(rfn_zip, RFN_CSV):
@@ -192,7 +197,9 @@ def build_use(rfn_zip, country_mapping, rate_rows, fallback_year):
                          "target_years": "%d-%d" % (TARGET_YEARS[0], TARGET_YEARS[-1]),
                          "target_kg_per_ha_cropland": round(means["target"], 3),
                          "flags": " ".join("%s:%d" % kv for kv in sorted(flags.items()) if kv[0]),
-                         "note": "no value for " + ", ".join(missing) if missing else ""})
+                         "note": "; ".join(
+                             (["for the region rates only (decision L37)"] if country in region_only else [])
+                             + (["no value for " + ", ".join(missing)] if missing else []))})
     return rows
 
 
