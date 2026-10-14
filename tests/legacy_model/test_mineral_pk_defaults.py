@@ -74,6 +74,7 @@ def test_wfldb_l1_datasets_are_reproduced(crop, country, yield_per_cycle, wfldb_
     assert PK.level1(defaults, "k2o") == pytest.approx(wfldb_k2o, abs=4.0)
 
 
-def test_other_crops_have_no_default():
-    defaults = _defaults(crop="cassava", country="IN", yield_main_product_per_crop_cycle=20000.0)
+def test_other_crops_without_ifa_rate_have_no_default():
+    # other crops with an IFA rate: decision L34, test_ifa_other_crops.py
+    defaults = _defaults(crop="turmeric", country="IN", yield_main_product_per_crop_cycle=20000.0)
     assert defaults["p2O5_from_mineral_fert"] == defaults["k2O_from_mineral_fert"] == 0.0

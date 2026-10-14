@@ -106,20 +106,15 @@ def test_level1_without_ifa_rate(crop, country, nutrient):
     assert defaults[FIELDS[nutrient]] == pytest.approx(level1)
 
 
-def test_crops_without_level1_coefficients_unchanged():
-    assert _defaults(crop="blueberry", country="US")["nitrogen_from_mineral_fert"] == pytest.approx(87.0)  # legacy
-    cassava = _defaults(crop="cassava", country="IN")
-    assert cassava["p2O5_from_mineral_fert"] == cassava["k2O_from_mineral_fert"] == 0.0
-
-
 def test_mappings_are_signed_and_consistent():
     rates = dataloader.rows("ifa_fubc_rates.csv")
     names = {r["fubc_crop"] for r in rates}
     regions = {r["fubc_country"]: r["region_ifa"] for r in rates}
+    crops = {r["crop"] for r in dataloader.rows("crop_types.csv")}
     for row in dataloader.rows("ifa_fubc_crop_mapping.csv"):
         assert row["status"] == "confirmed" and row["reviewed_by"], row
         assert row["fubc_crop"] in names and row["match"] in ("exact", "subgroup", "group"), row
-        assert set(row["crops"].split()) <= set(PK_PER_KG), row
+        assert set(row["crops"].split()) <= crops, row
     countries = {r["country"] for r in dataloader.rows("faostat_country_mapping.csv")} - {"GLO"}
     mapping = dataloader.rows("ifa_fubc_country_mapping.csv")
     assert {r["country"] for r in mapping} == countries

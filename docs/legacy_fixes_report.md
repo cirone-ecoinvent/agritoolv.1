@@ -1366,3 +1366,74 @@ K2O in 28. A group rate averages different crops: in Europe "Fruits & Treenuts" 
 and nuts, so intensive crops get less than the WFLDB L3 data (lemon ES 50 against 230 kg N).
 
 Regression: the three cases give the mineral fertilisers in the template, snapshots unchanged.
+
+## 24. Mineral N, P and K of the crops without level 1 coefficients from the IFA rates (decision L34, 2026-10-14)
+
+L28-L33 cover the 40 crops with a nutrient content in the WFLDB Background Parameters 2017 (sheet
+4). The other 28 crops had no default mineral fertilisers (25 crops: 0 kg N, P2O5 and K2O, 0
+manure) or flat legacy values (blueberry, cranberry, raspberry: mineral N of the Quantis 2017
+matrix, e.g. 87 kg N/ha, no P and K). Mint has P and K contents (L31, L33) but no N default.
+
+New: the IFA Fertilizer Use by Crop rates of L33 (`ifa_fubc_rates.csv`, same time scaling and
+region fallback) give these crops a default where FUBC has a matching category.
+
+- `ifa_fubc_crop_mapping.csv` (96 -> 110 rows, confirmed by FC):
+  - exact: Cotton and Seed cotton -> cotton, Cassava, Pineapple (CR), Vineyards (ZA) and
+    Vineyards + Raisins (AR) -> grape, Ginger and Sesame (NG and SN, for GH);
+  - subgroup: Millet -> pearl millet (for GH), the three Pulses names -> chick pea, lentil, guar,
+    fresh herbs (IL) -> coriander, mint, and the TH fruit and vegetable subgroups (pineapple,
+    mango, cashew; bell pepper, chilli);
+  - group: the fruit groups of L33 -> berries, grape, mango, cashew, pineapple, pomegranate (in
+    Europe 'Fruits & Treenuts' is 'nuts, herbs, bushes, vineyards'); the vegetable groups -> bell
+    pepper, chilli, eggplant, red and white cabbage; Roots & Tubers -> cassava; other oil crops ->
+    sesame, castor beans; other cereals and Mil - Sorghum (ML) -> pearl millet;
+  - not used: rows mixing cereals and pulses (NZ 'Grain and other crops', UA 'Other cereal and
+    leguminous crops') for the pulses, UA 'Other industrial crops' for flax and hemp, and the
+    residual categories 'Other crops' and 'Residual'.
+- Method (`defaultGeneration.py` MineralNitrogenDefaultGenerator.need,
+  MineralPhosphorusPotassiumDefaultGenerator.balance): the L33 correction with the nutrient need
+  taken proportional to the yield, the content being unknown and cancelling in k:
+  - N = IFA rate x yield / default yield (the template manure is not used, as in L28 and L33);
+  - P2O5 and K2O = max(0, k x yield - manure in use), k = (IFA rate + P2O5 (K2O) of the default
+    manure) / default yield;
+  - at the default yield and default manure the default equals the IFA rate; without an IFA rate
+    the defaults are unchanged.
+- Unchanged: the manure (0 for the 25 crops, legacy matrices for the berries) and the legacy N
+  uptake used by the nitrate model.
+
+| Crop | Country | Yield (kg/ha) | IFA data | Mineral N | P2O5 | K2O |
+|---|---|---|---|---|---|---|
+| cotton | IN | 1265 | FUBC 9, Cotton | 0.0 -> **139.2** | 0.0 -> **56.7** | 0.0 -> **12.1** |
+| cotton | US | 2818 | FUBC 9, Cotton | 0.0 -> **81.9** | 0.0 -> **27.6** | 0.0 -> **38.7** |
+| cassava | TH | 20837 | FUBC 9, Cassava | 0.0 -> **93.0** | 0.0 -> **44.6** | 0.0 -> **82.7** |
+| cassava | VN | 20250 | FUBC 9, Roots and Tubers, Total (group) | 0.0 -> **50.2** | 0.0 -> **10.7** | 0.0 -> **10.3** |
+| cassava | BR | 15233 | FUBC 9, Roots & Tubers (group, potato only) | 0.0 -> **212.3** | 0.0 -> **452.8** | 0.0 -> **364.0** |
+| chick_pea | IN | 1194 | FUBC 9, Pulses | 0.0 -> **32.4** | 0.0 -> **16.6** | 0.0 -> **1.7** |
+| lentil | TR | 1331 | FUBC 9, Pulses | 0.0 -> **56.5** | 0.0 -> **61.5** | 0.0 -> **0.0** |
+| pearl_millet | IN | 1416 | FUBC 9, Other Cereals (group) | 0.0 -> **74.7** | 0.0 -> **19.8** | 0.0 -> **2.5** |
+| sesame_seed | IN | 490 | FUBC 9, Other Oil Crops (group) | 0.0 -> **56.6** | 0.0 -> **27.0** | 0.0 -> **6.3** |
+| grape | ZA | 17795 | FUBC 9, Vineyards | 0.0 -> **58.4** | 0.0 -> **48.5** | 0.0 -> **22.8** |
+| grape | FR | 7380 | FUBC 9, Fruits & Treenuts (group) | 0.0 -> **31.9** | 0.0 -> **15.8** | 0.0 -> **16.3** |
+| mango | IN | 9758 | FUBC 9, Fruits & Treenuts (group) | 0.0 -> **90.1** | 0.0 -> **33.3** | 0.0 -> **31.4** |
+| pineapple | CR | 66568 | FUBC 5 1997, Pineapple | 0.0 -> **160.0** | 0.0 -> **80.0** | 0.0 -> **280.0** |
+| bellpepper | ES | 66401 | FUBC 9, Vegetables (group) | 0.0 -> **161.3** | 0.0 -> **55.3** | 0.0 -> **69.9** |
+| blueberry | US | 7046 | FUBC 9, Fruits & Treenuts (group) | 87.0 -> **83.6** | 0.0 -> **15.5** | 0.0 -> **50.8** |
+| raspberry | DE | 7529 | FUBC 9, Fruits & Treenuts (group) | 99.7 -> **30.8** | 0.0 -> **5.0** | 0.0 -> **35.4** |
+
+kg per ha and crop cycle, current -> new at the default yield (FAOSTAT 2021-2024, L23) and default
+manure. Full table (28 crops, 39 countries, with the FUBC rows and the match level), confirmed by
+FC: `Literature/review_ifa_other_crops.csv`. Of the 489 crop-country pairs, 23 have an exact FUBC
+crop, 18 a subgroup, 281 a group and 167 no rate (all of coriander, turmeric, flax, hemp and mint;
+most of ginger, lentil, sesame and chick pea). Mean over the 322 pairs with a rate: mineral N
+11.8 -> 101.9, P2O5 0 -> 56.4, K2O 0 -> 59.8 kg/ha; berries N median 87 -> 70 (6-168). No WFLDB 3.1
+dataset of these crops to compare with.
+
+Limits: the Roots & Tubers row of BR covers potato only (IFA area 125.5 kha against FAOSTAT 2018
+potato 119.6 kha and cassava 1216 kha), so cassava BR gets a potato rate; the vegetable groups
+are open-field rates, also for greenhouse yields (bell pepper NL 265 t/ha); a need proportional to
+the yield overstates the yield response of tree crops (affine in L32); guar, mulberry and
+pomegranate have no default yield, hence no reference, and keep their defaults (guar has the
+pulses rate). Open: default manure of the 25 crops.
+
+Regression: the three cases are other crops, snapshots unchanged; the defaults of the 40 crops of
+L33 are unchanged.

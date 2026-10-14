@@ -408,19 +408,18 @@ class NitrogenUptakeGenerator(object):
 @lru_cache(maxsize=None)
 def _level2_reference(crop, country):
     """Nutrient need and manure of the crop and country at the default yield with the default manure, the reference
-    of the level 2 factors (decision L33): {"n": (N uptake, organic N), "p2o5": (P2O5 taken off, P2O5 of the
-    manure), "k2o": (K2O taken off, K2O of the manure)}, kg/(ha and crop cycle)."""
+    of the level 2 factors (decisions L33, L34): {"n": (N need, organic N), "p2o5": (P2O5 need, P2O5 of the
+    manure), "k2o": (K2O need, K2O of the manure)}, kg/(ha and crop cycle); see MineralNitrogenDefaultGenerator.need
+    and MineralPhosphorusPotassiumDefaultGenerator.balance."""
     reference = DefaultValuesWrapper({"crop": crop, "country": country}, DEFAULTS_VALUES_GENERATORS)
-    uptake = reference["nitrogen_uptake_by_crop"]
-    balance = {"n": (uptake, (1.0 - dataloader.param("mineral_n_share_of_n_uptake")) * uptake)}
-    if crop in PK_PER_KG_MAIN_PRODUCT_PER_CROP:
-        for nutrient in ("p2o5", "k2o"):
-            balance[nutrient] = MineralPhosphorusPotassiumDefaultGenerator.balance(reference, nutrient)
+    balance = {"n": MineralNitrogenDefaultGenerator.need(reference)}
+    for nutrient in ("p2o5", "k2o"):
+        balance[nutrient] = MineralPhosphorusPotassiumDefaultGenerator.balance(reference, nutrient)
     return balance
 
 
 def _level2(crop, country, nutrient, need, manure):
-    """Level 2 mineral fertiliser (WFLDB Guidelines v3.0 section 3.6.1, decision L33), None without an IFA rate:
+    """Level 2 mineral fertiliser (WFLDB Guidelines v3.0 section 3.6.1, decisions L33, L34), None without an IFA rate:
     the level 1 nutrient input is corrected with k = (IFA rate + manure) / need at the reference (default yield and
     default manure), mineral fertiliser = max(0, k x need - manure). At the reference it equals the IFA rate."""
     ifa = IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY.get(crop, {}).get(country, {}).get(nutrient)
@@ -437,15 +436,27 @@ class MineralNitrogenDefaultGenerator(object):
     """kg N/(ha and crop cycle). Crops with a computed N uptake, level 1: mineral share of the N input (WFLDB
     Guidelines v3.0 section 3.6.2, total N input = N uptake) x N uptake (decision L28); level 2 where IFA gives a
     rate for the crop and country (decision L33): k x N uptake - organic N, which is the IFA rate x N uptake / N
-    uptake at the default yield. Other crops: legacy matrix."""
+    uptake at the default yield. Other crops: the IFA rate x yield / default yield where IFA gives a rate (decision
+    L34), else the legacy matrix."""
     def generateDefault(self, field, generators):
-        if generators["crop"] not in N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP:
-            return CropCountryMatrixLookupDefaultGenerator(
-                NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY).generateDefault(field, generators)
-        uptake = generators["nitrogen_uptake_by_crop"]
-        level2 = _level2(generators["crop"], generators["country"], "n", uptake,
-                         (1.0 - dataloader.param("mineral_n_share_of_n_uptake")) * uptake)
-        return self.level1(generators) if level2 is None else level2
+        need, organic_n = self.need(generators)
+        level2 = _level2(generators["crop"], generators["country"], "n", need, organic_n)
+        if level2 is not None:
+            return level2
+        if generators["crop"] in N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP:
+            return self.level1(generators)
+        return CropCountryMatrixLookupDefaultGenerator(
+            NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY).generateDefault(field, generators)
+
+    @staticmethod
+    def need(generators):
+        """(N need, organic N), kg/(ha and crop cycle): (N uptake, organic share of the N uptake) for the crops with a
+        computed N uptake; for the other crops (yield, 0), the need being taken proportional to the yield with an
+        unknown N content, which cancels in the level 2 factor (decision L34)."""
+        if generators["crop"] in N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP:
+            uptake = generators["nitrogen_uptake_by_crop"]
+            return uptake, (1.0 - dataloader.param("mineral_n_share_of_n_uptake")) * uptake
+        return generators["yield_main_product_per_crop_cycle"], 0.0
 
     @staticmethod
     def level1(generators):
@@ -481,30 +492,37 @@ class MineralPhosphorusPotassiumDefaultGenerator(object):
     P2O5 (K2O) taken off the field with the main product, yield per crop cycle x content (WFLDB Guidelines v3.0
     section 3.6.1), minus the P2O5 (K2O) of the manure in use (template or default; GRUDAF 2009 Table 39), 0 when the
     manure brings more (Guidelines section 3.6.2); level 2 where IFA gives a rate for the crop and country (decision
-    L33): max(0, k x P2O5 (K2O) taken off - manure in use). Other crops: 0, no default."""
+    L33): max(0, k x P2O5 (K2O) taken off - manure in use). Other crops: max(0, k x yield - manure in use) where IFA
+    gives a rate (decision L34), which is the IFA rate at the default yield and default manure, else 0."""
     def __init__(self, nutrient):
         self._nutrient = nutrient
 
     def generateDefault(self, field, generators):
-        if generators["crop"] not in PK_PER_KG_MAIN_PRODUCT_PER_CROP:
-            return 0.0
-        taken_off, manure = self.balance(generators, self._nutrient)
-        level2 = _level2(generators["crop"], generators["country"], self._nutrient, taken_off, manure)
-        return max(0.0, taken_off - manure) if level2 is None else level2
+        need, manure = self.balance(generators, self._nutrient)
+        level2 = _level2(generators["crop"], generators["country"], self._nutrient, need, manure)
+        if level2 is not None:
+            return level2
+        if generators["crop"] in PK_PER_KG_MAIN_PRODUCT_PER_CROP:
+            return max(0.0, need - manure)
+        return 0.0
 
     @staticmethod
     def balance(generators, nutrient):
-        """(P2O5 or K2O taken off with the main product, P2O5 or K2O of the manure in use), kg/(ha and crop cycle)."""
-        taken_off = (generators["yield_main_product_per_crop_cycle"]
-                     * PK_PER_KG_MAIN_PRODUCT_PER_CROP[generators["crop"]][nutrient])
+        """(P2O5 or K2O need, P2O5 or K2O of the manure in use), kg/(ha and crop cycle). Need: taken off with the main
+        product for the crops of PK_PER_KG_MAIN_PRODUCT_PER_CROP; for the other crops the yield, the need being taken
+        proportional to it with an unknown content, which cancels in the level 2 factor (decision L34)."""
+        need = generators["yield_main_product_per_crop_cycle"]
+        if generators["crop"] in PK_PER_KG_MAIN_PRODUCT_PER_CROP:
+            need *= PK_PER_KG_MAIN_PRODUCT_PER_CROP[generators["crop"]][nutrient]
         # mix_content of the quantities: kg per m3 of undiluted liquid manure x m3, kg per t x kg of solid manure
         manure = (generators["liquid_manure_part_before_dilution"]
                   * ManureModel.mix_content(generators["liquid_manure_quantities"], nutrient)
                   + ManureModel.mix_content(generators["solid_manure_quantities"], nutrient) / 1000.0)
-        return taken_off, manure
+        return need, manure
 
     @classmethod
     def level1(cls, generators, nutrient):
+        """Level 1 of the crops of PK_PER_KG_MAIN_PRODUCT_PER_CROP: P2O5 (K2O) taken off minus manure in use."""
         taken_off, manure = cls.balance(generators, nutrient)
         return max(0.0, taken_off - manure)
 

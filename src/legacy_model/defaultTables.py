@@ -141,7 +141,7 @@ def _ifa_area_mean(rows):
 
 def _ifa_mineral_fertiliser():
     """kg N, P2O5 and K2O/ha of mineral fertilisers per crop and country, IFA Fertilizer Use by Crop (Ludemann et al.
-    2022; decision L33): mean rate over the total crop area, {crop: {country: {"n": .., "p2o5": .., "k2o": ..}}},
+    2022; decisions L33, L34): mean rate over the total crop area, {crop: {country: {"n": .., "p2o5": .., "k2o": ..}}},
     None for a nutrient without a value.
 
     FUBC crop names are matched to the crops with ifa_fubc_crop_mapping.csv; per FUBC country the best match level
@@ -183,7 +183,7 @@ def _ifa_mineral_fertiliser():
     return table
 
 
-# kg N, P2O5 and K2O/ha of mineral fertilisers in 2021-2023 (IFA, decision L33), {crop: {country: {nutrient: kg}}}
+# kg N, P2O5 and K2O/ha of mineral fertilisers in 2021-2023 (IFA, decisions L33, L34), {crop: {country: {nutrient: kg}}}
 IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY = _ifa_mineral_fertiliser()
 
 #Generated from GD_crop GrossEnergy_C_L1 column D, kgC/kgDM

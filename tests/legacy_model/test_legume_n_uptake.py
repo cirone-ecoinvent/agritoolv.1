@@ -35,7 +35,10 @@ def test_legume_inputs_follow_the_share_of_the_uptake(crop, country, yield_per_c
 def test_legumes_of_the_legacy_matrix(crop):
     defaults = _defaults(crop=crop, country="IN")
     assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(0.4 * NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY[crop]["IN"])
-    assert defaults["nitrogen_from_mineral_fert"] == NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY[crop]["GLO"] == 0.0
+    # the mineral N does not follow this uptake: IFA pulses rate where there is one (decision L34), else the legacy
+    # matrix (MA has no pulses rate in FUBC)
+    morocco = _defaults(crop=crop, country="MA")
+    assert morocco["nitrogen_from_mineral_fert"] == NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY[crop]["GLO"] == 0.0
 
 
 def test_other_crops_count_the_whole_uptake():

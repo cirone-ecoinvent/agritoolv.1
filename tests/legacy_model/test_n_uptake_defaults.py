@@ -47,4 +47,5 @@ def test_other_crops_keep_the_legacy_matrices():
     defaults = _defaults(crop="blueberry", country="US", yield_main_product_per_crop_cycle=9000.0)
     assert "blueberry" not in N_PER_KG
     assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(11.3787048)  # legacy US
-    assert defaults["nitrogen_from_mineral_fert"] == pytest.approx(87.0)
+    # mineral N: IFA rate (decision L34, test_ifa_other_crops.py), legacy matrix where IFA has none (CN)
+    assert _defaults(crop="blueberry", country="CN")["nitrogen_from_mineral_fert"] == pytest.approx(87.0)
