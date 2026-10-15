@@ -7,7 +7,6 @@ import pytest
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, \
     MineralPhosphorusPotassiumDefaultGenerator as PK
-from defaultMatrixTotalManure import TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY
 from defaultMatrixTotalMineralFert import NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY
 from defaultTables import IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY as IFA, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, PK_PER_KG_MAIN_PRODUCT_PER_CROP
@@ -65,7 +64,8 @@ def test_exact_crop_before_group():
 def test_level2_follows_the_yield_and_the_manure_in_use():
     reference = _defaults(crop="cotton", country="IN")
     yield_ref = reference["yield_main_product_per_crop_cycle"]
-    assert _manure(reference, "p2o5") == _manure(reference, "k2o") == 0.0  # no default manure
+    manure_ref = {nutrient: _manure(reference, nutrient) for nutrient in ("p2o5", "k2o")}
+    assert manure_ref["p2o5"] > 0.0  # default manure (decision L40)
     pig = dict.fromkeys(LiquidManureType, 0.0)
     pig[LiquidManureType.pig] = 1.0
     defaults = _defaults(crop="cotton", country="IN", yield_main_product_per_crop_cycle=1.5 * yield_ref,
@@ -74,20 +74,9 @@ def test_level2_follows_the_yield_and_the_manure_in_use():
     assert defaults["nitrogen_from_mineral_fert"] == pytest.approx(1.5 * IFA["cotton"]["IN"]["n"])
     assert _manure(defaults, "p2o5") == pytest.approx(35.0)  # 10 m3 undiluted pig slurry (GRUDAF Table 39)
     for nutrient in ("p2o5", "k2o"):
-        expected = max(0.0, 1.5 * IFA["cotton"]["IN"][nutrient] - _manure(defaults, nutrient))
+        # k x 1.5 x default yield - manure in use, with k = (IFA rate + default manure) / default yield
+        expected = max(0.0, 1.5 * (IFA["cotton"]["IN"][nutrient] + manure_ref[nutrient]) - _manure(defaults, nutrient))
         assert defaults[FIELDS[nutrient]] == pytest.approx(expected)
-
-
-def test_berries_keep_the_legacy_manure():
-    reference = _defaults(crop="blueberry", country="US")
-    legacy = TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY["blueberry"]
-    assert reference["total_manureliquid"] == legacy.get("US", legacy["GLO"])
-    manure = _manure(reference, "p2o5")
-    assert manure > 0.0
-    defaults = _defaults(crop="blueberry", country="US",
-                         yield_main_product_per_crop_cycle=2.0 * reference["yield_main_product_per_crop_cycle"])
-    # k x 2 x default yield - manure, with k = (IFA rate + manure) / default yield
-    assert defaults["p2O5_from_mineral_fert"] == pytest.approx(2.0 * IFA["blueberry"]["US"]["p2o5"] + manure)
 
 
 @pytest.mark.parametrize("crop, country", [

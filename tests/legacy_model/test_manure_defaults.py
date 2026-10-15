@@ -65,10 +65,11 @@ def test_reviewed_country_factors():
     assert MANURE_LIQUID_N_FRACTION_PER_COUNTRY["FR"] == pytest.approx(0.427, abs=5e-4)
 
 
-def test_other_crops_keep_the_legacy_matrices():
-    defaults = _defaults(crop="blueberry", country="US", yield_main_product_per_crop_cycle=9000.0)
-    assert defaults["total_manureliquid"] == TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY["blueberry"]["US"]
-    assert defaults["total_manuresolid"] == TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY["blueberry"]["US"]
+def test_other_crops_without_ifa_n_rate_keep_the_legacy_matrices():
+    # crops without level 1 coefficients but with an IFA N rate: decision L40, test_manure_other_crops.py
+    defaults = _defaults(crop="coriander", country="IN", yield_main_product_per_crop_cycle=9000.0)
+    assert defaults["total_manureliquid"] == TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY["coriander"]["GLO"]
+    assert defaults["total_manuresolid"] == TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY["coriander"]["GLO"]
 
 
 def test_country_shares_cover_the_tool_countries_and_sum_to_one():
