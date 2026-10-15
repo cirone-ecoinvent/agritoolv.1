@@ -23,7 +23,8 @@ from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUN
     SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY, CARBON_CONTENT_PER_CROP, IRR_WATERUSE_RATIO_PER_COUNTRY, \
     ANNUAL_PRECIPITATION_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP, LEGUME_CROPS, \
-    PK_PER_KG_MAIN_PRODUCT_PER_CROP, IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY
+    N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS, PK_PER_KG_MAIN_PRODUCT_PER_CROP, \
+    IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY
 from directMappingEnums import PlasticDisposal, Plantprotection, Soilcultivation, \
     Sowingplanting, Fertilisation, Harvesting, OtherWorkProcesses, Biowaste
 from models.atomicmass import MA_CO2, MA_C
@@ -381,8 +382,10 @@ class CropCountryMatrixLookupDefaultGenerator(object):
 class NitrogenUptakeGenerator(object):
     """kg N/(ha and crop cycle). Crops of n_uptake_crop_parameters.csv: yield per crop cycle x N per kg of main
     product incl. residues (WFLDB 2017 / GRUDAF 2009, decision L28); tree crops: yield per crop cycle x N per kg of
-    main product + N of a fixed amount of residues per ha (decision L32). Other crops: legacy matrix (legacy,
-    undocumented, provisional; pineapple 2 % of the dry yield). Legumes (column legume of data/crop_types.csv):
+    main product + N of a fixed amount of residues per ha (decision L32). Crops of
+    n_uptake_other_crop_parameters.csv: yield per crop cycle x N per kg of main product (Ludemann et al. 2023 or
+    GRUDAF 2009, residues of the field crops from IPCC 2019; decision L41). Other crops (mulberry): legacy matrix
+    (legacy, undocumented, provisional). Legumes (column legume of data/crop_types.csv):
     only legume_uptake_share of this uptake, the rest is fixed from the air (WFLDB Guidelines v3.0 section 3.9.7.2,
     decision L30); the default mineral N and manure follow from it."""
     def generateDefault(self, field, generators):
@@ -396,8 +399,9 @@ class NitrogenUptakeGenerator(object):
         if generators["crop"] in N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP:
             return (generators["yield_main_product_per_crop_cycle"] * N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP[generators["crop"]]
                     + N_UPTAKE_OF_TREE_RESIDUES_PER_CROP.get(generators["crop"], 0.0))
-        if (generators["crop"] == "pineapple"):
-            return generators["yield_main_product_dry_per_crop_cycle"] * 0.02
+        if generators["crop"] in N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS:
+            return (generators["yield_main_product_per_crop_cycle"]
+                    * N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS[generators["crop"]])
         currentCropTable = NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY[generators["crop"]]
         if (generators["country"] in currentCropTable):
             return currentCropTable[generators["country"]]

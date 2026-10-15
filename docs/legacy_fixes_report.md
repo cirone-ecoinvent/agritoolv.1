@@ -1646,3 +1646,67 @@ give manure to mint and coriander without mineral N and none to lentil); keeping
 
 Regression: the three cases are other crops, snapshots unchanged; the defaults of the 40 crops of
 L28-L33 are unchanged.
+
+## 29. N uptake of the crops without level 1 coefficients (decision L41, 2026-10-15)
+
+The SQCB nitrate model uses the N uptake of the crop (U, kg N/ha): more uptake, less leaching. For the 40 crops with
+WFLDB level 1 coefficients U follows the yield (L28, L32). The other 28 crops kept the legacy GD_crop matrix: flat
+values per crop, mostly the IN value copied to GLO, independent of the yield, without source; pineapple had a rule
+in the code (2 % of the dry yield). At the GLO default yield some legacy values give implausible contents (cashew 155,
+sesame 65, pearl millet 60, coriander 52 g N/kg); lentil had 0. Only the nitrate model uses this uptake: the mineral
+N (L34) and the manure (L40) of these crops follow the IFA rates.
+
+New (`defaultTables.py` N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS, `n_uptake_other_crop_parameters.csv`, signed by
+FC): U = yield per crop cycle x N per kg of main product, legumes x 0.4 (L30).
+
+- N of the crop product: Ludemann et al. 2023, Global data on crop nutrient concentration and harvest indices
+  (Dryad doi:10.5061/dryad.n2z34tn0x, CC0, zip supplied by FC), Tier 1 world coefficients of the 2023 FAO Cropland
+  Nutrient Budget (`ludemann2023_world_crop_coefficients.csv`, all 158 items, built by
+  `scripts/build_ludemann_crop_coefficients.py`); FAO item as for the default yield (L23); turmeric -> Ginger, guar ->
+  Pulses nes, pomegranate -> Fruit, fresh nes. Tier 2 (countries) is almost empty for these crops.
+- Fibre flax and fibre hemp: GRUDAF 2009 Tab. 1, main and by-product (Faserlein: 45 dt fibres 45 kg N, 15 dt seeds
+  82 kg N; Faserhanf: 100 dt stems 30 kg N, 40 dt seeds and leaves 110 kg N); the Ludemann items are fibre and tow
+  and 'Hemp tow waste' with generic fibre contents.
+- Field crops: plus the above-ground residues of IPCC 2019 Refinement Vol. 4 Table 11.1a, DRY x R_AG x N_AG
+  (`ipcc2019_table11_1a.csv`, 21 rows transcribed): Beans and Pulses 15.3 g N/kg (chick pea, lentil, guar), Millet
+  8.8 (pearl millet), Potatoes and Tubers 1.7 (cassava), generic row 6.8 (cotton, sesame, castor beans, coriander).
+  Vegetables, fruit, berries and spices: product only (no source for their residues).
+- Mulberry keeps the legacy matrix (no source).
+
+| Crop | Country | Yield (kg/ha) | Source | U (kg N/ha) |
+|---|---|---|---|---|
+| cotton | IN | 1265 | Seed cotton + IPCC generic | 41.0 -> **82.6** |
+| cassava | TH | 20837 | Cassava + IPCC Potatoes and Tubers | 100.0 -> **86.3** |
+| chick_pea | IN | 1194 | Chick peas + IPCC Beans and Pulses, x 0.4 | 14.8 -> **20.4** |
+| lentil | TR | 1331 | Lentils + IPCC Beans and Pulses, x 0.4 | 0.0 -> **27.2** |
+| pearl_millet | IN | 1416 | Millet + IPCC Millet | 84.3 -> **44.9** |
+| grape | FR | 7380 | Grapes | 30.0 -> **23.4** |
+| mango | IN | 9758 | Mangoes, mangosteens, guavas | 120.0 -> **39.4** |
+| pineapple | CR | 66568 | Pineapples | 173.1 -> **68.6** |
+| chilli | CN | 22458 | Chillies and peppers, green | 150.0 -> **48.6** |
+| cabbage_white | IN | 23306 | Cabbages and other brassicas | 247.0 -> **89.6** |
+| ginger | IN | 11577 | Ginger | 92.3 -> **145.8** |
+| turmeric | IN | 11577 | Ginger | 42.5 -> **145.8** |
+| flax | FR | 5438 | GRUDAF Faserlein | 20.0 -> **153.5** |
+| hemp | CN | 5653 | GRUDAF Faserhanf | 100.0 -> **79.1** |
+| blueberry | US | 7046 | Blueberries | 11.4 -> **7.3** |
+| mint | IN | 21510 | Peppermint | 160.0 -> **245.8** |
+
+At the default yield (FAOSTAT 2021-2024, L23), legacy -> new. Full table (28 crops, 39 countries):
+`Literature/review_n_uptake_other_crops.csv`, confirmed by FC. Over the 489 crop-country pairs of
+`default_yield.csv`, mean U 102.8 -> 80.5 kg N/ha, lower in 334 pairs (vegetables, tropical fruit), higher in 155
+(cotton, ginger, turmeric, flax, mint, lentil). Guar and pomegranate have no default yield: U is 0 at the default and
+follows the yield of the template.
+
+Cross-check of Ludemann Tier 1 against WFLDB sheet 4 for the crops of L28: wheat 1.02, maize 0.95, rice 1.00, potato
+0.91, soybean 0.93, tomato 0.88, banana 0.94; carrot and onion 1.3; tree fruit and strawberry 2-5 x (apple 4.8, pear
+2.9, peach 2.2, strawberry 5.4). For grape Tier 1 gives 3.2 kg N/t, Tier 2 Europe 0.42. Other local sources checked:
+PRIC 2024 chapter 14 (berries: N fertilisation norms, which include the soil mineralisation, not an uptake),
+Agribalyse 3.1 Table 114 (U of grape only, per t DM), IPCC 2019 Table 11.1a (residues only).
+
+Open: seed cotton 58.5 kg N/t (mean of 4.75 % and 6.4 % N in fresh seed cotton; Zhang et al. 2021 give 3.34 % in the
+dry matter) and castor beans 14.4 kg N/t (the mean includes the row 'Oil of Castor Beans' with 0 N; the seed row of the
+same source is 28.8), both kept as published; no residues for vegetables, fruit, berries and spices, so their U is
+underestimated (vegetables especially); fruit contents above WFLDB sheet 4.
+
+Regression: the three cases are other crops, snapshots unchanged.

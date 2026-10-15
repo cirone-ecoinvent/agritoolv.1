@@ -59,12 +59,11 @@ def test_wfldb_l1_datasets_are_reproduced(crop, country, wfldb_yield, wfldb_n_mi
     assert MineralNitrogenDefaultGenerator.level1(defaults) == pytest.approx(wfldb_n_mineral, abs=1.0)
 
 
-def test_berries_and_crops_without_fertiliser_defaults_keep_the_legacy_n_uptake():
-    blueberry = _defaults(crop="blueberry", country="US", yield_main_product_per_crop_cycle=9000.0)
-    assert "blueberry" not in N_PER_KG and blueberry["nitrogen_uptake_by_crop"] == pytest.approx(11.3787048)
-    grape = _defaults(crop="grape", country="FR", yield_main_product_per_crop_cycle=9000.0)
-    assert grape["nitrogen_uptake_by_crop"] == pytest.approx(30.0)
-    # their mineral N: IFA rate where there is one (decision L34); manure from it (decision L40)
+def test_berries_and_crops_without_fertiliser_defaults_are_not_tree_crops():
+    for crop in ("blueberry", "raspberry", "grape", "mango", "cashew"):
+        assert crop not in N_PER_KG and crop not in TREE_N
+    # their N uptake: decision L41 (test_n_uptake_other_crops.py); mineral N: IFA rate where there is one (decision
+    # L34); manure from it (decision L40)
 
 
 def test_tree_rows_are_signed():

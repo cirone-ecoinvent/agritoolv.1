@@ -91,8 +91,34 @@ def _n_uptake_of_tree_residues():
             for row in dataloader.rows("n_uptake_crop_parameters.csv") if row["tree_residues"] == "yes"}
 
 
+def _n_uptake_per_kg_main_product_other_crops():
+    """kg N per kg fresh main product of the crops without WFLDB level 1 coefficients (decision L41), for the N uptake
+    of the nitrate model only (n_uptake_other_crop_parameters.csv): N of the crop product of Ludemann et al. 2023
+    (World coefficients of the FAO Cropland Nutrient Budget) or, for fibre flax and hemp, N of main and by-product of
+    GRUDAF 2009 Tab. 1 per kg of main product; plus, for the field crops, the above-ground residues of IPCC 2019
+    Table 11.1a: DRY x R_AG x N_AG."""
+    ludemann = dataloader.table("ludemann2023_world_crop_coefficients.csv")
+    grudaf = dataloader.table("grudaf2009_table1_reference_yields.csv")
+    ipcc = dataloader.table("ipcc2019_table11_1a.csv")
+    n_uptake = {}
+    for row in dataloader.rows("n_uptake_other_crop_parameters.csv"):
+        if row["grudaf_crop"]:
+            reference = grudaf[row["grudaf_crop"]]
+            n = ((reference["n_uptake_main_kg_per_ha"] + reference["n_uptake_by_product_kg_per_ha"])
+                 / (reference["main_reference_yield_dt_per_ha"] * 100.0))  # dt -> kg
+        else:
+            n = ludemann[row["ludemann_item_code"]]["n_kg_per_t_fm"] / 1000.0
+        if row["ipcc_residue_crop"]:
+            residues = ipcc[row["ipcc_residue_crop"]]
+            n += residues["dry"] * residues["r_ag"] * residues["n_ag_kg_per_kg_dm"]
+        n_uptake[row["crop"]] = n
+    return n_uptake
+
+
 # kg N / kg FM of the main product
 N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP = _n_uptake_per_kg_main_product()
+# kg N / kg FM of the main product, crops without level 1 coefficients (nitrate model only)
+N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS = _n_uptake_per_kg_main_product_other_crops()
 # kg N / ha of the tree residues
 N_UPTAKE_OF_TREE_RESIDUES_PER_CROP = _n_uptake_of_tree_residues()
 # Legumes: their default N uptake counts only legume_uptake_share of the uptake (decision L30)

@@ -17,6 +17,7 @@ Review tables (all in data/):
   ifa_fubc_country_mapping.csv            usable when status is confirmed (IFA fertiliser use by crop, L33)
   ifa_fubc_crop_mapping.csv               idem
   emep2023_fertiliser_type_mapping.csv    usable when status is confirmed (NH3 of mineral N fertilisers, L38)
+  n_uptake_other_crop_parameters.csv      usable when status is confirmed (N uptake of the other crops, L41)
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -60,6 +61,7 @@ TABLES = [
     ("ifa_fubc_country_mapping.csv", ("confirmed",), ("country", "fubc_country", "region_ifa", "status", "note")),
     ("ifa_fubc_crop_mapping.csv", ("confirmed",), ("fubc_crop", "crops", "match", "status")),
     ("emep2023_fertiliser_type_mapping.csv", ("confirmed",), ("legacy_fertiliser_type", "emep_fertiliser_type", "status", "note")),
+    ("n_uptake_other_crop_parameters.csv", ("confirmed",), ("crop", "ludemann_item_code", "grudaf_crop", "ipcc_residue_crop", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]
