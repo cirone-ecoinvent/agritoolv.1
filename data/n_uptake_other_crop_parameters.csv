@@ -1,0 +1,28 @@
+crop,ludemann_item_code,ludemann_item,grudaf_crop,ipcc_residue_crop,note,status,reviewed_by
+bellpepper,401,"Chillies and peppers, green",,,,confirmed,FC
+blueberry,552,Blueberries,,,,confirmed,FC
+cabbage_red,358,Cabbages and other brassicas,,,,confirmed,FC
+cabbage_white,358,Cabbages and other brassicas,,,,confirmed,FC
+cashew,217,"Cashew nuts, with shell",,,,confirmed,FC
+cassava,125,Cassava,,Potatoes and Tubers,,confirmed,FC
+castor_beans,265,Castor oil seed,,Generic value for crops not indicated below,open: the Tier 1 mean includes the row 'Oil of Castor Beans' with 0 kg N/t (Lassaletta et al. 2014); the seed row of that source is 28.8 kg N/t,confirmed,FC
+chick_pea,191,Chick peas,,Beans and Pulses,,confirmed,FC
+chilli,401,"Chillies and peppers, green",,,,confirmed,FC
+coriander,711,"Anise, badian, fennel, coriander",,Generic value for crops not indicated below,,confirmed,FC
+cotton,328,Seed cotton,,Generic value for crops not indicated below,open: the Tier 1 value is the mean of 4.75 % (IFA 2020) and 6.4 % (FAO 2020) N in fresh seed cotton; Zhang et al. 2021 give 3.34 % N in the dry matter,confirmed,FC
+cranberry,554,Cranberries,,,,confirmed,FC
+eggplant,399,Eggplants (aubergines),,,,confirmed,FC
+flax,,,Faserlein,,fibre flax: fibres and seeds per kg of fibre; the Ludemann items are fibre and tow (773) only,confirmed,FC
+ginger,720,Ginger,,,,confirmed,FC
+grape,560,Grapes,,,,confirmed,FC
+guar,211,Pulses nes,,Beans and Pulses,no FAOSTAT item of its own (default_yield.csv): Pulses nes,confirmed,FC
+hemp,,,Faserhanf,,"fibre hemp: stems, seeds and leaves per kg of stems; the Ludemann item 'Hemp tow waste' (777) has generic fibre contents",confirmed,FC
+lentil,201,Lentils,,Beans and Pulses,,confirmed,FC
+mango,571,"Mangoes, mangosteens, guavas",,,,confirmed,FC
+mint,748,Peppermint,,,,confirmed,FC
+pearl_millet,79,Millet,,Millet,,confirmed,FC
+pineapple,574,Pineapples,,,"replaces the legacy rule N uptake = 2 % of the dry yield (legacy, undocumented)",confirmed,FC
+pomegranate,619,"Fruit, fresh nes",,,"no FAOSTAT item of its own (default_yield.csv): Fruit, fresh nes",confirmed,FC
+raspberry,547,Raspberries,,,,confirmed,FC
+sesame_seed,289,Sesame seed,,Generic value for crops not indicated below,,confirmed,FC
+turmeric,720,Ginger,,,"FAOSTAT item Ginger, as for the default yield (L23)",confirmed,FC

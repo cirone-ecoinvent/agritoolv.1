@@ -1,0 +1,22 @@
+crop,n_ag_kg_per_kg_dm,n_bg_kg_per_kg_dm,r_ag,rs,dry,note
+Generic value for crops not indicated below,0.008,0.009,1.0,0.22,0.85,"N AG and N BG +-75 % (footnote d); R AG: expert opinion of the authors (footnote b)"
+Generic Grains,0.006,0.009,1.3,0.22,0.88,RS +-16 %
+Winter Wheat,0.006,0.009,1.3,0.23,0.89,RS +-41 %
+Spring Wheat,0.006,0.009,1.3,0.28,0.89,RS +-26 %
+Barley,0.007,0.014,1.2,0.22,0.89,RS +-33 %
+Oats,0.007,0.008,1.3,0.25,0.89,RS +-120 %
+Maize,0.006,0.007,1.0,0.22,0.87,RS +-26 %
+Rye,0.005,0.011,1.6,,0.88,RS: no estimate (footnote e)
+Rice,0.007,,1.4,0.16,0.89,N BG: no estimate (footnote e); RS +-35 %
+Millet,0.007,,1.4,,0.90,N BG and RS: no estimate (footnote e)
+Sorghum,0.007,0.006,1.4,,0.89,RS: no estimate (footnote e)
+Beans and Pulses,0.008,0.008,2.1,0.19,0.91,RS +-45 %
+Soybeans,0.008,0.008,2.1,0.19,0.91,RS +-45 %
+Potatoes and Tubers,0.019,0.014,0.4,0.20,0.22,"RS +-50 %, estimate of non-tuber roots (footnote f)"
+Peanuts,0.016,,1.0,,0.94,N BG and RS: no estimate (footnote e)
+Alfalfa,0.027,0.019,,0.40,0.90,"R AG: no estimate (footnote e); RS +-50 %, root turnover in perennial systems (footnote g)"
+Non-legume hay,0.015,0.012,,0.54,0.90,"R AG: no estimate (footnote e); RS +-50 %, root turnover in perennial systems (footnote g)"
+N-fixing forages,0.027,0.022,0.3,0.40,0.90,RS +-50 %
+Non-N-fixing forages,0.015,0.012,0.3,0.54,0.90,RS +-50 %
+Perennial Grasses,0.015,0.012,0.3,0.80,0.90,"RS +-50 %, root turnover to above-ground production (footnote h)"
+Grass-Clover Mixtures,0.025,0.016,0.3,0.80,0.90,"grass dominates 2 to 1 over legumes (footnote c); RS +-50 % (footnote h)"
