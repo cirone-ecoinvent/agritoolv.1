@@ -1585,3 +1585,64 @@ NO (decision L39): the NO emission factor of fix F1 (L3) cited EMEP/EEA 2016 3.D
 2023 Table 3-1 (p. 14) keeps 0.04 kg NO2 per kg fertiliser and manure N applied (note a: NO reported
 as NO2; Skiba et al. 2021, 95 % CI 0.005-0.104), so `ef_nox_n` stays 0.012174 kg NOx-N/kg N; only
 the citations change. No numerical change.
+
+## 28. Default manure of the crops without level 1 coefficients (decision L40, 2026-10-15)
+
+L29 and L32 compute the default manure of the 40 crops with WFLDB level 1 coefficients from the N
+uptake: available N of the manure = 0.2 x N uptake. The other 28 crops (L34) had no default manure
+(25 crops: 0) or flat legacy values (blueberry, cranberry, raspberry: Quantis 2017, without source;
+available N 1.5-2.4 x the legacy N uptake, so not the WFLDB rule). L34 gave them a mineral N from the
+IFA rates where FUBC has a matching category.
+
+New (`defaultGeneration.py` ManureDefaultGenerator.organic_n):
+
+- available N of the manure (GRUDAF 2009 Table 39 Nverf) = (1 - s) / s x level 2 mineral N, with s =
+  `mineral_n_share_of_n_uptake` = 0.8: the WFLDB L1 split of the N input (Guidelines v3.0 section
+  3.6.2, 20 % organic and 80 % mineral) applied to the IFA-based mineral N, i.e. 0.25 x IFA rate x
+  yield / default yield;
+- split into liquid and solid manure and converted to m3 and kg as in L29 (FAOSTAT 2021-2023 share of
+  manure N applied as liquid manure, manure mix in use, dilution of the liquid manure);
+- the default manure follows the default mineral N, not the mineral N of the template;
+- the mineral N, P2O5 and K2O at the default yield stay the IFA rates: the L33 factor k includes the
+  default manure, which comes on top of the IFA rate (IFA counts mineral fertilisers only); the
+  reference of the factor is now computed per nutrient, since the default manure of these crops
+  depends on the N factor;
+- no IFA N rate or no default yield: the legacy matrix stays (0 for these pairs).
+
+| Crop | Country | Yield (kg/ha) | Mineral N | Manure (m3 + t) | Available N | Total N | P2O5 | K2O |
+|---|---|---|---|---|---|---|---|---|
+| cotton | IN | 1265 | 137.8 | 0.00 + 0.00 -> **9.00 + 8.26** | 0.0 -> **34.4** | 0.0 -> **72.8** | 0.0 -> **35.7** | 0.0 -> **127.7** |
+| cotton | BR | 4170 | 337.4 | 0.00 + 0.00 -> **21.04 + 13.23** | 0.0 -> **84.3** | 0.0 -> **166.0** | 0.0 -> **110.6** | 0.0 -> **208.5** |
+| cassava | TH | 20837 | 90.1 | 0.00 + 0.00 -> **4.59 + 3.14** | 0.0 -> **22.5** | 0.0 -> **44.9** | 0.0 -> **29.8** | 0.0 -> **55.5** |
+| chick_pea | IN | 1194 | 32.1 | 0.00 + 0.00 -> **2.09 + 1.92** | 0.0 -> **8.0** | 0.0 -> **17.0** | 0.0 -> **8.3** | 0.0 -> **29.7** |
+| pearl_millet | IN | 1416 | 73.9 | 0.00 + 0.00 -> **4.83 + 4.43** | 0.0 -> **18.5** | 0.0 -> **39.1** | 0.0 -> **19.2** | 0.0 -> **68.5** |
+| grape | FR | 7380 | 31.8 | 0.00 + 0.00 -> **2.08 + 1.62** | 0.0 -> **8.0** | 0.0 -> **16.4** | 0.0 -> **9.3** | 0.0 -> **25.2** |
+| grape | ZA | 17795 | 58.8 | 0.00 + 0.00 -> **2.98 + 2.24** | 0.0 -> **14.7** | 0.0 -> **28.7** | 0.0 -> **19.1** | 0.0 -> **36.3** |
+| mango | IN | 9758 | 89.1 | 0.00 + 0.00 -> **5.82 + 5.35** | 0.0 -> **22.3** | 0.0 -> **47.1** | 0.0 -> **23.1** | 0.0 -> **82.6** |
+| pineapple | CR | 66568 | 160.0 | 0.00 + 0.00 -> **10.90 + 8.24** | 0.0 -> **40.0** | 0.0 -> **82.6** | 0.0 -> **47.4** | 0.0 -> **126.1** |
+| chilli | CN | 22458 | 248.5 | 0.00 + 0.00 -> **12.80 + 8.93** | 0.0 -> **62.1** | 0.0 -> **121.9** | 0.0 -> **80.8** | 0.0 -> **151.2** |
+| bellpepper | ES | 66401 | 160.7 | 0.00 + 0.00 -> **11.83 + 7.41** | 0.0 -> **40.2** | 0.0 -> **78.2** | 0.0 -> **49.7** | 0.0 -> **106.6** |
+| blueberry | US | 7046 | 82.9 | 2.81 + 2.36 -> **4.36 + 3.19** | 14.6 -> **20.7** | 29.9 -> **41.9** | 19.7 -> **27.3** | 38.5 -> **54.4** |
+| raspberry | DE | 7529 | 29.5 | 1.87 + 8.70 -> **2.06 + 1.44** | 27.3 -> **7.4** | 64.0 -> **14.9** | 42.2 -> **8.9** | 89.1 -> **21.8** |
+| raspberry | CS | 5361 | 55.7 | 0.00 + 20.00 -> **3.78 + 2.61** | 58.4 -> **13.9** | 137.7 -> **27.8** | 92.1 -> **16.8** | 194.6 -> **40.0** |
+
+kg per ha and crop cycle at the default yield (FAOSTAT 2021-2024, L23), current -> new; mineral N
+unchanged (IFA rate); the nutrients are those of the default manure (GRUDAF 2009 Table 39, liquid
+manure x undiluted part). Full table (28 crops, 39 countries): `Literature/review_manure_other_crops.csv`.
+Of the 489 crop-country pairs of `default_yield.csv`, 389 get the new manure; 279 more pairs with the
+GLO default yield follow the same rule; 424 pairs keep the legacy manure, which is 0 (all of flax,
+ginger, hemp and turmeric; guar, mulberry and pomegranate without default yield; the pairs of other
+crops without IFA N rate). Mean over the 389 pairs: available N 2.5 -> 23.3 kg/ha, total N 5.4 ->
+46.6, P2O5 3.6 -> 30.2, K2O 7.1 -> 60.8.
+
+WFLDB check (Documentation 2017 Excel annex, sheets 2a-2c, WFLDB 3.0 datasets): the 20 datasets with
+manure at L1 all have about 20 % organic N (median 0.19 of available plus mineral N); of the 71
+datasets with manure at L3, 42 have none and the mean organic share is 6 % (strawberry and mint 0).
+The L1 rule is the WFLDB default but likely overstates the manure of horticultural and perennial
+crops. Mint (IN, US) is the only one of the 28 crops in WFLDB 3.0, without manure.
+
+Rejected: 0.2 x the legacy N uptake of these crops (undocumented, already rejected in L32; it would
+give manure to mint and coriander without mineral N and none to lentil); keeping 0.
+
+Regression: the three cases are other crops, snapshots unchanged; the defaults of the 40 crops of
+L28-L33 are unchanged.

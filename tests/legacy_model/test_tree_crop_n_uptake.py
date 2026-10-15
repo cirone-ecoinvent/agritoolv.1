@@ -6,7 +6,6 @@ import pytest
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, MineralNitrogenDefaultGenerator
 from defaultMatrixNUptake import NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY as LEGACY_N_UPTAKE
-from defaultMatrixTotalManure import TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY, TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY
 from defaultTables import N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP as N_PER_KG, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP as TREE_N
 from models.manuremodel import ManureModel
 
@@ -60,14 +59,12 @@ def test_wfldb_l1_datasets_are_reproduced(crop, country, wfldb_yield, wfldb_n_mi
     assert MineralNitrogenDefaultGenerator.level1(defaults) == pytest.approx(wfldb_n_mineral, abs=1.0)
 
 
-def test_berries_and_crops_without_fertiliser_defaults_keep_the_legacy_matrices():
+def test_berries_and_crops_without_fertiliser_defaults_keep_the_legacy_n_uptake():
     blueberry = _defaults(crop="blueberry", country="US", yield_main_product_per_crop_cycle=9000.0)
-    assert blueberry["total_manureliquid"] == TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY["blueberry"]["US"]
-    assert blueberry["total_manuresolid"] == TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY["blueberry"]["US"]
+    assert "blueberry" not in N_PER_KG and blueberry["nitrogen_uptake_by_crop"] == pytest.approx(11.3787048)
     grape = _defaults(crop="grape", country="FR", yield_main_product_per_crop_cycle=9000.0)
     assert grape["nitrogen_uptake_by_crop"] == pytest.approx(30.0)
-    assert grape["total_manureliquid"] == grape["total_manuresolid"] == 0.0
-    # the mineral N of the berries and of these crops: IFA rate where there is one (decision L34)
+    # their mineral N: IFA rate where there is one (decision L34); manure from it (decision L40)
 
 
 def test_tree_rows_are_signed():
