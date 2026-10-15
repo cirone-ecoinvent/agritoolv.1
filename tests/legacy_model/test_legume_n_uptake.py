@@ -5,9 +5,9 @@ import pytest
 
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, MineralNitrogenDefaultGenerator
-from defaultMatrixNUptake import NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY
 from defaultMatrixTotalMineralFert import NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY
-from defaultTables import N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP as N_PER_KG, LEGUME_CROPS
+from defaultTables import N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP as N_PER_KG, LEGUME_CROPS, \
+    N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS as N_PER_KG_OTHER
 
 
 def _defaults(**inputs):
@@ -32,9 +32,9 @@ def test_legume_inputs_follow_the_share_of_the_uptake(crop, country, yield_per_c
 
 
 @pytest.mark.parametrize("crop", ["chick_pea", "guar", "lentil"])
-def test_legumes_of_the_legacy_matrix(crop):
-    defaults = _defaults(crop=crop, country="IN")
-    assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(0.4 * NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY[crop]["IN"])
+def test_legumes_without_level1_coefficients(crop):
+    defaults = _defaults(crop=crop, country="IN", yield_main_product_per_crop_cycle=1000.0)
+    assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(0.4 * 1000.0 * N_PER_KG_OTHER[crop])  # decision L41
     # the mineral N does not follow this uptake: IFA pulses rate where there is one (decisions L34, L37), else the
     # legacy matrix (AR: no pulses rate in FUBC, neither in AR nor in the other FUBC 9 countries of Latin America)
     argentina = _defaults(crop=crop, country="AR")
@@ -42,5 +42,5 @@ def test_legumes_of_the_legacy_matrix(crop):
 
 
 def test_other_crops_count_the_whole_uptake():
-    defaults = _defaults(crop="castor_beans", country="IN")
-    assert defaults["nitrogen_uptake_by_crop"] == NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY["castor_beans"]["GLO"]
+    defaults = _defaults(crop="castor_beans", country="IN", yield_main_product_per_crop_cycle=1000.0)
+    assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(1000.0 * N_PER_KG_OTHER["castor_beans"])

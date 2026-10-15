@@ -43,8 +43,9 @@ def test_parameters_cover_known_crops_and_are_signed():
         assert row["status"] == "confirmed" and row["reviewed_by"], row
 
 
-def test_other_crops_keep_the_legacy_matrices():
+def test_other_crops_are_not_level1_crops():
     defaults = _defaults(crop="blueberry", country="US", yield_main_product_per_crop_cycle=9000.0)
     assert "blueberry" not in N_PER_KG
-    assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(11.3787048)  # legacy US
+    # N uptake: Ludemann et al. 2023 (decision L41, test_n_uptake_other_crops.py), no longer the legacy matrix
+    assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(9000.0 * 1.04 / 1000.0)
     # mineral N: IFA rate in all 39 countries (decisions L34, L37; test_ifa_other_crops.py), no longer the legacy matrix
