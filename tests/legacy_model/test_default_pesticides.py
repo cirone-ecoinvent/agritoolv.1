@@ -1,5 +1,6 @@
-"""Decision L25: default total pesticides per crop and country (g a.i./ha) from
-data/default_pesticides.csv; potato from the WFLDB 3.1 Documentation 2017."""
+"""Decisions L25 and L43: default total pesticides per crop and country (g a.i./ha). Potato and the
+other crops of data/wfldb2017_pesticides_crop_mapping.csv from the WFLDB 3.1 Documentation 2017
+(test_wfldb2017_pesticides.py), the rest from data/default_pesticides.csv (legacy)."""
 import pytest
 
 import dataloader
@@ -24,9 +25,3 @@ def test_potato_uses_the_wfldb_documentation():
 
 def test_potato_in_a_country_without_wfldb_value_uses_glo():
     assert _default(crop="potato", country="US") == pytest.approx(1635.0)
-
-
-def test_other_crops_keep_the_legacy_values():
-    assert PESTICIDES["rice"]["IN"] == 1498.05714219752  # used by the rice_IN snapshot
-    rows = [r for r in dataloader.rows("default_pesticides.csv") if r["crop"] != "potato"]
-    assert all(r["note"].endswith("legacy, undocumented, provisional") for r in rows)

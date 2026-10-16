@@ -21,6 +21,7 @@ Review tables (all in data/):
   ipcc2019_awms_forms.csv                 usable when status is confirmed (IPCC manure split, L42)
   ipcc2019_faostat_item_awms_mapping.csv  idem
   ipcc2019_m49_region_mapping.csv         idem
+  wfldb2017_pesticides_crop_mapping.csv   usable when status is confirmed (default total pesticides, L43)
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -68,6 +69,7 @@ TABLES = [
     ("ipcc2019_awms_forms.csv", ("confirmed",), ("system", "emep_system", "form", "status")),
     ("ipcc2019_faostat_item_awms_mapping.csv", ("confirmed",), ("faostat_item", "animal_category", "low_productivity_category", "status")),
     ("ipcc2019_m49_region_mapping.csv", ("confirmed",), ("level", "m49_code", "m49_name", "ipcc_region", "status")),
+    ("wfldb2017_pesticides_crop_mapping.csv", ("confirmed",), ("wfldb_dataset_code", "crop", "use", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]

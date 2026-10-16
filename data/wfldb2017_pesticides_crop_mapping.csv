@@ -1,0 +1,123 @@
+wfldb_dataset_code,crop,use,note,status,reviewed_by
+LinseedCA,linseed,direct,,confirmed,FC
+LinseedRU,linseed,direct,,confirmed,FC
+MaizeGrainAR,maizegrain,direct,,confirmed,FC
+OatCA,oat,direct,,confirmed,FC
+OatFI,oat,direct,,confirmed,FC
+PeanutAR,peanut,direct,,confirmed,FC
+PeanutCN,peanut,direct,,confirmed,FC
+PeanutIN,peanut,direct,,confirmed,FC
+PotatoCN,potato,direct,,confirmed,FC
+PotatoIN,potato,direct,,confirmed,FC
+PotatoRU,potato,direct,,confirmed,FC
+PotatoUA,potato,direct,,confirmed,FC
+RapeseedCA,rapeseed,direct,,confirmed,FC
+RiceCN,rice,direct,,confirmed,FC
+RiceIN,rice,direct,,confirmed,FC
+SoybeanAR,soybean,direct,,confirmed,FC
+SugarBeetFR,sugarbeet,direct,,confirmed,FC
+SugarBeetDE,sugarbeet,direct,,confirmed,FC
+SugarBeetUS,sugarbeet,direct,,confirmed,FC
+SugarBeetRU,sugarbeet,direct,,confirmed,FC
+SunflowerFR,sunflower,direct,,confirmed,FC
+SunflowerRU,sunflower,direct,,confirmed,FC
+SunflowerHU,sunflower,direct,,confirmed,FC
+SunflowerUA,sunflower,direct,,confirmed,FC
+SweetCornHU,sweetcorn,direct,,confirmed,FC
+SweetCornTH,sweetcorn,direct,,confirmed,FC
+SweetCornUS,sweetcorn,direct,,confirmed,FC
+WheatWinterCA,wheat,direct,"spring wheat (dataset name), code says winter",confirmed,FC
+WheatWinterAU,wheat,direct,,confirmed,FC
+AsparagusCN,asparagus_green,direct,,confirmed,FC
+AsparagusCN,asparagus_white,direct,,confirmed,FC
+AsparagusFR,asparagus_green,direct,,confirmed,FC
+AsparagusFR,asparagus_white,direct,,confirmed,FC
+AsparagusPE,asparagus_green,direct,,confirmed,FC
+AsparagusPE,asparagus_white,direct,,confirmed,FC
+CarrotCN,carrot,direct,,confirmed,FC
+CarrotIL,carrot,direct,,confirmed,FC
+CarrotNL,carrot,direct,,confirmed,FC
+MintIN,mint,direct,,confirmed,FC
+MintUS,mint,direct,,confirmed,FC
+OnionNL,onion,direct,,confirmed,FC
+OnionNZ,onion,direct,,confirmed,FC
+OnionIN,onion,direct,,confirmed,FC
+OnionCN,onion,direct,,confirmed,FC
+StrawberryCH_GH_heated,strawberry_fresh,direct,"heated greenhouse used for CH, as the legacy table (FC, decision L43)",confirmed,FC
+StrawberryCH_GH_heated,strawberry_processing,direct,"heated greenhouse used for CH, as the legacy table (FC, decision L43)",confirmed,FC
+StrawberryCH_GH,,not_used,"non-heated greenhouse not used: CH takes the heated greenhouse (FC, decision L43)",confirmed,FC
+StrawberryES,strawberry_fresh,direct,,confirmed,FC
+StrawberryES,strawberry_processing,direct,,confirmed,FC
+StrawberryUS,strawberry_fresh,direct,,confirmed,FC
+StrawberryUS,strawberry_processing,direct,,confirmed,FC
+TomatoNL,tomato_fresh,direct,"fresh grade, greenhouse, heated, hydroponic",confirmed,FC
+TomatoNL,tomato_processing,other_grade,no processing-grade dataset for NL: fresh grade used for processing tomato,confirmed,FC
+TomatoES,tomato_fresh,direct,"fresh grade, greenhouse, non-heated, hydroponic",confirmed,FC
+TomatoMX,tomato_fresh,direct,"fresh grade, open field",confirmed,FC
+TomatoMX,tomato_processing,other_grade,no processing-grade dataset for MX: fresh grade used for processing tomato,confirmed,FC
+TomatoESpross,tomato_processing,direct,"processing grade, open field",confirmed,FC
+TomatoIT,tomato_processing,direct,"processing grade, open field, soil grown",confirmed,FC
+TomatoIT,tomato_fresh,other_grade,no fresh-grade dataset for IT: processing grade used for fresh tomato,confirmed,FC
+AlmondCN,almond,direct,,confirmed,FC
+AlmondUS,almond,direct,,confirmed,FC
+AppleCL,apple,direct,,confirmed,FC
+AppleCN,apple,direct,,confirmed,FC
+AppleIT,apple,direct,,confirmed,FC
+AppleUS,apple,direct,,confirmed,FC
+ApricotES,apricot,direct,,confirmed,FC
+ApricotFR,apricot,direct,,confirmed,FC
+ApricotIT,apricot,direct,,confirmed,FC
+ApricotTR,apricot,direct,,confirmed,FC
+BananaCO,banana,direct,,confirmed,FC
+BananaCR,banana,direct,,confirmed,FC
+BananaEC,banana,direct,,confirmed,FC
+BananaIN,banana,direct,,confirmed,FC
+CocoaCI,cocoa,direct,,confirmed,FC
+CocoaGH,cocoa,direct,,confirmed,FC
+CocoaID,cocoa,direct,,confirmed,FC
+CoconutID,coconut,direct,,confirmed,FC
+CoconutIN,coconut,direct,,confirmed,FC
+CoconutPH,coconut,direct,,confirmed,FC
+CoffeeBR_Arab,coffee_arabica,direct,,confirmed,FC
+CoffeeBR_Rob,coffee_robusta,direct,,confirmed,FC
+CoffeeHN_Arab,coffee_arabica,direct,HN is not a tool country: GLO only,confirmed,FC
+CoffeeCO_Arab,coffee_arabica,direct,,confirmed,FC
+CoffeeCO_Arab,coffee_robusta,other_grade,no Robusta dataset for CO: Arabica used for Robusta,confirmed,FC
+CoffeeIN_Arab,coffee_arabica,direct,,confirmed,FC
+CoffeeIN_Rob,coffee_robusta,direct,,confirmed,FC
+CoffeeID_Rob,coffee_robusta,direct,,confirmed,FC
+CoffeeID_Rob,coffee_arabica,other_grade,no Arabica dataset for ID: Robusta used for Arabica,confirmed,FC
+CoffeeVN_Rob,coffee_robusta,direct,,confirmed,FC
+CoffeeVN_Rob,coffee_arabica,other_grade,no Arabica dataset for VN: Robusta used for Arabica,confirmed,FC
+LemonES,lemon,direct,,confirmed,FC
+LemonES,citruslime,direct,,confirmed,FC
+LemonMX,lemon,direct,,confirmed,FC
+LemonMX,citruslime,direct,,confirmed,FC
+LemonTR,lemon,direct,,confirmed,FC
+LemonTR,citruslime,direct,,confirmed,FC
+MandarinCN,mandarin,direct,,confirmed,FC
+MandarinES,mandarin,direct,,confirmed,FC
+OliveES,olive,direct,,confirmed,FC
+OliveIT,olive,direct,,confirmed,FC
+OrangeES,orange_fresh,direct,,confirmed,FC
+OrangeES,orange_processing,other_grade,no processing-grade dataset for ES: fresh grade used for processing orange,confirmed,FC
+OrangeUS,orange_fresh,direct,,confirmed,FC
+OrangeZA,orange_fresh,direct,,confirmed,FC
+OrangeZA,orange_processing,other_grade,no processing-grade dataset for ZA: fresh grade used for processing orange,confirmed,FC
+OrangeBRpross,orange_processing,direct,,confirmed,FC
+OrangeBRpross,orange_fresh,other_grade,no fresh-grade dataset for BR: processing grade used for fresh orange,confirmed,FC
+OrangeUSpross,orange_processing,direct,,confirmed,FC
+PalmFruitBunchMY,palmtree,direct,MY is not a tool country: GLO only,confirmed,FC
+PalmFruitBunchID,palmtree,direct,,confirmed,FC
+PeachCN,peach,direct,,confirmed,FC
+PeachES,peach,direct,,confirmed,FC
+PeachIT,peach,direct,,confirmed,FC
+PearAR,pear,direct,,confirmed,FC
+PearBE,pear,direct,,confirmed,FC
+PearCN,pear,direct,,confirmed,FC
+SugarCaneBR,sugarcane,direct,,confirmed,FC
+SugarCaneIN,sugarcane,direct,,confirmed,FC
+TeaCN,tea,direct,,confirmed,FC
+TeaKE,tea,direct,,confirmed,FC
+TeaLK,tea,direct,,confirmed,FC
+VanillaMG,,not_used,no vanilla crop in the tool,confirmed,FC
