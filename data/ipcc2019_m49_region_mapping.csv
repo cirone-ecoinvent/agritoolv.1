@@ -1,0 +1,35 @@
+level,m49_code,m49_name,ipcc_region,note,status,reviewed_by
+subregion,015,Northern Africa,Near East and North Africa,,confirmed,FC
+subregion,021,Northern America,North America,,confirmed,FC
+subregion,030,Eastern Asia,East Asia and South-East Asia,,confirmed,FC
+subregion,034,Southern Asia,South Asia,Indian subcontinent,confirmed,FC
+subregion,035,South-eastern Asia,East Asia and South-East Asia,,confirmed,FC
+subregion,039,Southern Europe,Western Europe,"Balkan countries: Eastern Europe, see the country rows",confirmed,FC
+subregion,053,Australia and New Zealand,Oceania,,confirmed,FC
+subregion,054,Melanesia,Oceania,,confirmed,FC
+subregion,057,Micronesia,Oceania,,confirmed,FC
+subregion,061,Polynesia,Oceania,,confirmed,FC
+subregion,143,Central Asia,Eastern Europe,"No Central Asia region in Tables 10A.6-10A.9; former USSR, grouped with Eastern Europe (judgment)",confirmed,FC
+subregion,145,Western Asia,Near East and North Africa,"Caucasus countries: Eastern Europe, see the country rows",confirmed,FC
+subregion,151,Eastern Europe,Eastern Europe,Russian Federation: own region,confirmed,FC
+subregion,154,Northern Europe,Western Europe,"Baltic countries: Eastern Europe, see the country rows",confirmed,FC
+subregion,155,Western Europe,Western Europe,,confirmed,FC
+subregion,202,Sub-Saharan Africa,Sub-Saharan Africa,,confirmed,FC
+subregion,419,Latin America and the Caribbean,Latin America and the Caribbean,,confirmed,FC
+country,643,Russian Federation,Russian Federation,Own rows in Tables 10A.7-10A.9,confirmed,FC
+country,364,Iran (Islamic Republic of),Near East and North Africa,Annex 10B: Middle East cattle data mainly from Turkey and Iran,confirmed,FC
+country,233,Estonia,Eastern Europe,"Baltic country, former USSR (judgment)",confirmed,FC
+country,428,Latvia,Eastern Europe,"Baltic country, former USSR (judgment)",confirmed,FC
+country,440,Lithuania,Eastern Europe,"Baltic country, former USSR (judgment)",confirmed,FC
+country,008,Albania,Eastern Europe,Balkan country (judgment),confirmed,FC
+country,070,Bosnia and Herzegovina,Eastern Europe,Balkan country (judgment),confirmed,FC
+country,191,Croatia,Eastern Europe,Balkan country (judgment),confirmed,FC
+country,499,Montenegro,Eastern Europe,Balkan country (judgment),confirmed,FC
+country,807,North Macedonia,Eastern Europe,Balkan country (judgment),confirmed,FC
+country,688,Serbia,Eastern Europe,Balkan country (judgment),confirmed,FC
+country,705,Slovenia,Eastern Europe,Balkan country (judgment),confirmed,FC
+country,051,Armenia,Eastern Europe,"Caucasus, former USSR (judgment)",confirmed,FC
+country,031,Azerbaijan,Eastern Europe,"Caucasus, former USSR (judgment)",confirmed,FC
+country,268,Georgia,Eastern Europe,"Caucasus, former USSR (judgment)",confirmed,FC
+country,158,"China, Taiwan Province of",East Asia and South-East Asia,FAOSTAT area not in the UNSD M49 list (part of China there),confirmed,FC
+country,159,China,,"FAOSTAT aggregate of China, mainland (156), Taiwan (158), Hong Kong (344) and Macao (446): excluded, its parts are in the download",confirmed,FC

@@ -1,0 +1,13 @@
+system,ipcc_system,emep_system,form,note,status,reviewed_by
+lagoon,Uncovered anaerobic lagoon,Lagoons,liquid,IPCC 2019 Table 10A.10,confirmed,FC
+liquid_slurry,Liquid/Slurry,Tanks,liquid,IPCC 2019 Table 10A.10,confirmed,FC
+pit_below_1_month,Pit storage below animal confinements (< 1 month),In-house slurry pit,liquid,IPCC 2019 Table 10A.10; column Pit < 1 of Table 10A.7,confirmed,FC
+pit_above_1_month,Pit storage below animal confinements (> 1 month); laying hens: poultry manure without litter,In-house slurry pit; Laying hens - slurry,liquid,IPCC 2019 Table 10A.10; column Pit > 1 of Table 10A.7 and Pit >1 month of Table 10A.9,confirmed,FC
+digester,Anaerobic digester,Biogas treatment,liquid,"IPCC 2019 Table 10A.10 (slurry and/or solid); digestate counted as liquid: Table 10.22 note 3 advises to use the liquid slurry without cover for uncovered digestate; approved in chat 2026-10-15",confirmed,FC
+solid_storage,Solid storage,Heaps,solid,IPCC 2019 Table 10A.10,confirmed,FC
+poultry_manure_with_litter,Poultry manure with litter,Laying hens - solid; Broilers - litter; Other poultry - litter,solid,IPCC 2019 Table 10A.10; column Other (Poultry manure with litter) of Table 10A.9,confirmed,FC
+drylot,Dry lot,No definition given,solid,"No EMEP equivalent in Table 10A.10; counted as solid (open confinement without bedding, manure removed periodically and spread); FC choice, approved in chat 2026-10-15",confirmed,FC
+daily_spread,Daily spread,No definition given,solid,"No EMEP equivalent in Table 10A.10; counted as solid (manure removed from the confinement and spread within 24 hours); FC choice, approved in chat 2026-10-15",confirmed,FC
+pasture_range_paddock,Pasture/Range/Paddock (PRP),Grazing,not_applied,"IPCC 2019 Table 10A.10: deposited, not managed; not in the FAOSTAT manure applied to soils",confirmed,FC
+burned_for_fuel,Burned for fuel,No definition given,not_applied,IPCC 2019 Table 10A.10: dung cakes burned for fuel,confirmed,FC
+other,Other,-,not_applied,Column Other of Tables 10A.6 and 10A.8: no data in any row,confirmed,FC
