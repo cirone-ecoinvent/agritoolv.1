@@ -1,0 +1,8 @@
+faostat_item,animal_category,low_productivity_category,fallback_faostat_item,note,status,reviewed_by
+"Cattle, dairy",Dairy cattle,Dairy cattle,,Table 10A.6 (no productivity class),confirmed,FC
+"Cattle, non-dairy",Non-dairy cattle,Non-dairy cattle,,Table 10A.6 (no productivity class),confirmed,FC
+Buffalo,Buffalo dairy,Buffalo dairy,"Cattle, non-dairy","Table 10A.6; FAOSTAT has one buffalo item: mean of the dairy and non-dairy rows of the region; region without buffalo rows: non-dairy cattle (Table 10.14 note 6: buffalo equivalent to low productivity non-dairy cattle); approved in chat 2026-10-15",confirmed,FC
+Buffalo,Buffalo non-dairy,Buffalo non-dairy,"Cattle, non-dairy",idem,confirmed,FC
+"Swine, market",Growing swine,Growing swine,,Table 10A.7 (High or Low productivity rows),confirmed,FC
+"Swine, breeding",Breeding swine,Breeding swine,,Table 10A.7 (High or Low productivity rows),confirmed,FC
+"Chickens, layers",Chicken layer,Chicken,,"Table 10A.9: Chicken-Layer rows (high productivity), low productivity rows of the poultry table",confirmed,FC

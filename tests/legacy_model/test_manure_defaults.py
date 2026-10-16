@@ -1,5 +1,6 @@
 """Decision L29: default manure of the crops with a computed N uptake (L28) from the N uptake, WFLDB L1 method
-(Guidelines v3.0 section 3.6.2) with FAOSTAT manure N 2021-2023 per country; manure shares per country."""
+(Guidelines v3.0 section 3.6.2) with FAOSTAT manure N 2021-2023 per country; manure shares per country. Since
+decision L42 the N of cattle, buffalo, pigs and laying hens is split with the IPCC 2019 manure management systems."""
 import importlib.util
 from pathlib import Path
 
@@ -57,12 +58,13 @@ def test_dilution_and_manure_mix_of_the_template_keep_the_available_n():
 
 
 def test_reviewed_country_factors():
-    # review table confirmed by FC on 2026-10-13: IN 0.0522 m3 and 48.0 kg solid manure per kg N uptake
+    # review table of decision L42 (Literature/review_manure_ipcc_mms.csv): IN 0.0009 m3 and 91.7 kg solid manure
+    # per kg N uptake (L29 with the WFLDB split: 0.0522 m3 and 48.0 kg); share of liquid N FR 0.427 -> 0.450
     defaults = _defaults(crop="rice", country="IN", yield_main_product_per_crop_cycle=4300.0)
     n_uptake = defaults["nitrogen_uptake_by_crop"]
-    assert defaults["total_manureliquid"] / n_uptake == pytest.approx(0.0522, abs=5e-5)
-    assert defaults["total_manuresolid"] / n_uptake == pytest.approx(48.0, abs=0.05)
-    assert MANURE_LIQUID_N_FRACTION_PER_COUNTRY["FR"] == pytest.approx(0.427, abs=5e-4)
+    assert defaults["total_manureliquid"] / n_uptake == pytest.approx(0.00091, abs=5e-6)
+    assert defaults["total_manuresolid"] / n_uptake == pytest.approx(91.69, abs=0.005)
+    assert MANURE_LIQUID_N_FRACTION_PER_COUNTRY["FR"] == pytest.approx(0.4497, abs=5e-5)
 
 
 def test_other_crops_without_ifa_n_rate_keep_the_legacy_matrices():
@@ -82,18 +84,23 @@ def test_country_shares_cover_the_tool_countries_and_sum_to_one():
             assert shares[enum.other] == 0.0, country
 
 
-def test_liquid_n_fraction_is_the_wfldb_split_of_the_faostat_n():
+def test_liquid_n_fraction_is_the_ipcc_split_of_the_faostat_n():
+    # decision L42, Western Europe rows of IPCC 2019 Tables 10A.6, 10A.7 (high productivity) and 10A.9: liquid =
+    # lagoon, liquid/slurry, pits; solid = solid storage, dry lot, daily spread, poultry litter; buffalo: dairy row
+    # only (no non-dairy buffalo row for Western Europe)
+    liquid_share = {"Cattle, dairy": 43 / 74, "Cattle, non-dairy": 22 / 52, "Buffalo": 34 / 97,
+                    "Swine, market": 85 / 100, "Swine, breeding": 84 / 100, "Chickens, layers": 44 / 100}
     n = {r["item"]: float(r["n_applied_mean_kg"])
          for r in dataloader.rows("faostat_manure_n_applied_country.csv") if r["country"] == "FR"}
-    both_forms = ["Cattle, dairy", "Cattle, non-dairy", "Buffalo", "Swine, breeding", "Swine, market", "Chickens, layers"]
     solid_only = ["Chickens, broilers", "Turkeys", "Ducks", "Horses", "Asses", "Mules and hinnies", "Sheep", "Goats"]
-    liquid = 0.5 * sum(n.get(item, 0.0) for item in both_forms)
-    solid = liquid + sum(n.get(item, 0.0) for item in solid_only)
-    assert MANURE_LIQUID_N_FRACTION_PER_COUNTRY["FR"] == pytest.approx(liquid / (liquid + solid))
+    liquid = {item: n.get(item, 0.0) * share for item, share in liquid_share.items()}
+    total_liquid = sum(liquid.values())
+    solid = sum(n.get(item, 0.0) for item in list(liquid_share) + solid_only) - total_liquid
+    assert MANURE_LIQUID_N_FRACTION_PER_COUNTRY["FR"] == pytest.approx(total_liquid / (total_liquid + solid))
     # liquid volume shares = N / total N per m3 of undiluted manure, normalised
-    units = {LiquidManureType.cattle: 0.5 * (n["Cattle, dairy"] + n["Cattle, non-dairy"] + n.get("Buffalo", 0.0)),
-             LiquidManureType.pig: 0.5 * (n["Swine, breeding"] + n["Swine, market"]),
-             LiquidManureType.laying_hens: 0.5 * n["Chickens, layers"]}
+    units = {LiquidManureType.cattle: liquid["Cattle, dairy"] + liquid["Cattle, non-dairy"] + liquid["Buffalo"],
+             LiquidManureType.pig: liquid["Swine, breeding"] + liquid["Swine, market"],
+             LiquidManureType.laying_hens: liquid["Chickens, layers"]}
     units = {k: v / ManureModel._content(k, "n_total") for k, v in units.items()}
     for k, v in units.items():
         assert MANURE_LIQUID_RATIO_PER_COUNTRY["FR"][k] == pytest.approx(v / sum(units.values()))

@@ -68,10 +68,11 @@ def test_the_manure_of_the_template_is_subtracted():
 def test_wfldb_l1_datasets_are_reproduced(crop, country, yield_per_cycle, wfldb_p2o5, wfldb_k2o):
     # WFLDB 3.1 Documentation 2017, Excel annex sheets 2a-2c: datasets with P and K at L1; yield of the L1
     # fertilisers (N mineral / 0.8 / N per kg for the crops of L28, else the dataset yield). The manure shares
-    # are FAOSTAT 2021-2023 (L29), not WFLDB 2009-2012, hence the tolerance.
+    # are FAOSTAT 2021-2023 (L29), not WFLDB 2009-2012, and the IPCC 2019 split of the manure forms (L42), not
+    # 50/50, hence the tolerance (K2O: carrot IL 161 and banana CR 180 kg, all-solid cattle manure).
     defaults = _defaults(crop=crop, country=country, yield_main_product_per_crop_cycle=yield_per_cycle)
     assert PK.level1(defaults, "p2o5") == pytest.approx(wfldb_p2o5, abs=4.0)
-    assert PK.level1(defaults, "k2o") == pytest.approx(wfldb_k2o, abs=4.0)
+    assert PK.level1(defaults, "k2o") == pytest.approx(wfldb_k2o, abs=10.0)
 
 
 def test_other_crops_without_ifa_rate_have_no_default():

@@ -77,13 +77,14 @@ def test_dilution_and_manure_mix_of_the_template_keep_the_available_n():
 
 @pytest.mark.parametrize("crop", ["blueberry", "cranberry", "raspberry"])
 def test_berries_no_longer_use_the_legacy_manure(crop):
-    # legacy GD_crop values of Quantis 2017 without source, e.g. raspberry CS 0 m3 and 20 t
+    # legacy GD_crop values of Quantis 2017 without source, e.g. raspberry CS 0 m3 and 20 t (now 3.2 t with the
+    # IPCC split of decision L42)
     for country in ("US", "CS", "IN"):
         defaults = _defaults(crop=crop, country=country)
         liquid, solid = _available_n(defaults)
         assert liquid + solid == pytest.approx(0.25 * IFA[crop][country]["n"])
     legacy = TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY["raspberry"]["CS"]
-    assert legacy == 20000.0 and _defaults(crop="raspberry", country="CS")["total_manuresolid"] < 3000.0
+    assert legacy == 20000.0 and _defaults(crop="raspberry", country="CS")["total_manuresolid"] < 3500.0
 
 
 @pytest.mark.parametrize("crop, country", [

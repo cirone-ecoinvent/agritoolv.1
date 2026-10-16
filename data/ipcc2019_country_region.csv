@@ -1,0 +1,199 @@
+m49_code,faostat_area,m49_subregion,ipcc_region,rule
+004,Afghanistan,Southern Asia,South Asia,subregion
+008,Albania,Southern Europe,Eastern Europe,country
+012,Algeria,Northern Africa,Near East and North Africa,subregion
+024,Angola,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+028,Antigua and Barbuda,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+031,Azerbaijan,Western Asia,Eastern Europe,country
+032,Argentina,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+036,Australia,Australia and New Zealand,Oceania,subregion
+040,Austria,Western Europe,Western Europe,subregion
+044,Bahamas,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+048,Bahrain,Western Asia,Near East and North Africa,subregion
+050,Bangladesh,Southern Asia,South Asia,subregion
+051,Armenia,Western Asia,Eastern Europe,country
+052,Barbados,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+056,Belgium,Western Europe,Western Europe,subregion
+064,Bhutan,Southern Asia,South Asia,subregion
+068,Bolivia (Plurinational State of),Latin America and the Caribbean,Latin America and the Caribbean,subregion
+070,Bosnia and Herzegovina,Southern Europe,Eastern Europe,country
+072,Botswana,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+076,Brazil,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+084,Belize,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+090,Solomon Islands,Melanesia,Oceania,subregion
+096,Brunei Darussalam,South-eastern Asia,East Asia and South-East Asia,subregion
+100,Bulgaria,Eastern Europe,Eastern Europe,subregion
+104,Myanmar,South-eastern Asia,East Asia and South-East Asia,subregion
+108,Burundi,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+112,Belarus,Eastern Europe,Eastern Europe,subregion
+116,Cambodia,South-eastern Asia,East Asia and South-East Asia,subregion
+120,Cameroon,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+124,Canada,Northern America,North America,subregion
+132,Cabo Verde,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+140,Central African Republic,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+144,Sri Lanka,Southern Asia,South Asia,subregion
+148,Chad,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+152,Chile,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+156,"China, mainland",Eastern Asia,East Asia and South-East Asia,subregion
+158,"China, Taiwan Province of",,East Asia and South-East Asia,country
+159,China,,,excluded
+170,Colombia,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+174,Comoros,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+178,Congo,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+180,Democratic Republic of the Congo,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+184,Cook Islands,Polynesia,Oceania,subregion
+188,Costa Rica,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+191,Croatia,Southern Europe,Eastern Europe,country
+192,Cuba,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+196,Cyprus,Western Asia,Near East and North Africa,subregion
+203,Czechia,Eastern Europe,Eastern Europe,subregion
+204,Benin,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+208,Denmark,Northern Europe,Western Europe,subregion
+212,Dominica,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+214,Dominican Republic,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+218,Ecuador,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+222,El Salvador,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+226,Equatorial Guinea,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+231,Ethiopia,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+232,Eritrea,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+233,Estonia,Northern Europe,Eastern Europe,country
+234,Faroe Islands,Northern Europe,Western Europe,subregion
+242,Fiji,Melanesia,Oceania,subregion
+246,Finland,Northern Europe,Western Europe,subregion
+250,France,Western Europe,Western Europe,subregion
+258,French Polynesia,Polynesia,Oceania,subregion
+262,Djibouti,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+266,Gabon,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+268,Georgia,Western Asia,Eastern Europe,country
+270,Gambia,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+275,Palestine,Western Asia,Near East and North Africa,subregion
+276,Germany,Western Europe,Western Europe,subregion
+288,Ghana,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+296,Kiribati,Micronesia,Oceania,subregion
+300,Greece,Southern Europe,Western Europe,subregion
+308,Grenada,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+320,Guatemala,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+324,Guinea,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+328,Guyana,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+332,Haiti,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+340,Honduras,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+344,"China, Hong Kong SAR",Eastern Asia,East Asia and South-East Asia,subregion
+348,Hungary,Eastern Europe,Eastern Europe,subregion
+352,Iceland,Northern Europe,Western Europe,subregion
+356,India,Southern Asia,South Asia,subregion
+360,Indonesia,South-eastern Asia,East Asia and South-East Asia,subregion
+364,Iran (Islamic Republic of),Southern Asia,Near East and North Africa,country
+368,Iraq,Western Asia,Near East and North Africa,subregion
+372,Ireland,Northern Europe,Western Europe,subregion
+376,Israel,Western Asia,Near East and North Africa,subregion
+380,Italy,Southern Europe,Western Europe,subregion
+384,Côte d'Ivoire,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+388,Jamaica,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+392,Japan,Eastern Asia,East Asia and South-East Asia,subregion
+398,Kazakhstan,Central Asia,Eastern Europe,subregion
+400,Jordan,Western Asia,Near East and North Africa,subregion
+404,Kenya,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+408,Democratic People's Republic of Korea,Eastern Asia,East Asia and South-East Asia,subregion
+410,Republic of Korea,Eastern Asia,East Asia and South-East Asia,subregion
+414,Kuwait,Western Asia,Near East and North Africa,subregion
+417,Kyrgyzstan,Central Asia,Eastern Europe,subregion
+418,Lao People's Democratic Republic,South-eastern Asia,East Asia and South-East Asia,subregion
+422,Lebanon,Western Asia,Near East and North Africa,subregion
+426,Lesotho,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+428,Latvia,Northern Europe,Eastern Europe,country
+430,Liberia,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+434,Libya,Northern Africa,Near East and North Africa,subregion
+440,Lithuania,Northern Europe,Eastern Europe,country
+442,Luxembourg,Western Europe,Western Europe,subregion
+446,"China, Macao SAR",Eastern Asia,East Asia and South-East Asia,subregion
+450,Madagascar,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+454,Malawi,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+458,Malaysia,South-eastern Asia,East Asia and South-East Asia,subregion
+466,Mali,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+470,Malta,Southern Europe,Western Europe,subregion
+478,Mauritania,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+480,Mauritius,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+484,Mexico,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+496,Mongolia,Eastern Asia,East Asia and South-East Asia,subregion
+498,Republic of Moldova,Eastern Europe,Eastern Europe,subregion
+499,Montenegro,Southern Europe,Eastern Europe,country
+504,Morocco,Northern Africa,Near East and North Africa,subregion
+508,Mozambique,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+512,Oman,Western Asia,Near East and North Africa,subregion
+516,Namibia,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+520,Naoero,Micronesia,Oceania,subregion
+524,Nepal,Southern Asia,South Asia,subregion
+528,Netherlands (Kingdom of the),Western Europe,Western Europe,subregion
+540,New Caledonia,Melanesia,Oceania,subregion
+548,Vanuatu,Melanesia,Oceania,subregion
+554,New Zealand,Australia and New Zealand,Oceania,subregion
+558,Nicaragua,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+562,Niger,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+566,Nigeria,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+570,Niue,Polynesia,Oceania,subregion
+578,Norway,Northern Europe,Western Europe,subregion
+583,Micronesia (Federated States of),Micronesia,Oceania,subregion
+586,Pakistan,Southern Asia,South Asia,subregion
+591,Panama,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+598,Papua New Guinea,Melanesia,Oceania,subregion
+600,Paraguay,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+604,Peru,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+608,Philippines,South-eastern Asia,East Asia and South-East Asia,subregion
+616,Poland,Eastern Europe,Eastern Europe,subregion
+620,Portugal,Southern Europe,Western Europe,subregion
+624,Guinea-Bissau,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+626,Timor-Leste,South-eastern Asia,East Asia and South-East Asia,subregion
+630,Puerto Rico,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+634,Qatar,Western Asia,Near East and North Africa,subregion
+642,Romania,Eastern Europe,Eastern Europe,subregion
+643,Russian Federation,Eastern Europe,Russian Federation,country
+646,Rwanda,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+659,Saint Kitts and Nevis,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+662,Saint Lucia,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+670,Saint Vincent and the Grenadines,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+678,Sao Tome and Principe,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+682,Saudi Arabia,Western Asia,Near East and North Africa,subregion
+686,Senegal,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+688,Serbia,Southern Europe,Eastern Europe,country
+690,Seychelles,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+694,Sierra Leone,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+702,Singapore,South-eastern Asia,East Asia and South-East Asia,subregion
+703,Slovakia,Eastern Europe,Eastern Europe,subregion
+704,Viet Nam,South-eastern Asia,East Asia and South-East Asia,subregion
+705,Slovenia,Southern Europe,Eastern Europe,country
+706,Somalia,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+710,South Africa,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+716,Zimbabwe,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+724,Spain,Southern Europe,Western Europe,subregion
+728,South Sudan,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+729,Sudan,Northern Africa,Near East and North Africa,subregion
+740,Suriname,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+748,Eswatini,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+752,Sweden,Northern Europe,Western Europe,subregion
+756,Switzerland,Western Europe,Western Europe,subregion
+760,Syrian Arab Republic,Western Asia,Near East and North Africa,subregion
+762,Tajikistan,Central Asia,Eastern Europe,subregion
+764,Thailand,South-eastern Asia,East Asia and South-East Asia,subregion
+768,Togo,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+772,Tokelau,Polynesia,Oceania,subregion
+776,Tonga,Polynesia,Oceania,subregion
+780,Trinidad and Tobago,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+784,United Arab Emirates,Western Asia,Near East and North Africa,subregion
+788,Tunisia,Northern Africa,Near East and North Africa,subregion
+792,Türkiye,Western Asia,Near East and North Africa,subregion
+795,Turkmenistan,Central Asia,Eastern Europe,subregion
+798,Tuvalu,Polynesia,Oceania,subregion
+800,Uganda,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+804,Ukraine,Eastern Europe,Eastern Europe,subregion
+807,North Macedonia,Southern Europe,Eastern Europe,country
+818,Egypt,Northern Africa,Near East and North Africa,subregion
+826,United Kingdom of Great Britain and Northern Ireland,Northern Europe,Western Europe,subregion
+834,United Republic of Tanzania,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+840,United States of America,Northern America,North America,subregion
+854,Burkina Faso,Sub-Saharan Africa,Sub-Saharan Africa,subregion
+858,Uruguay,Latin America and the Caribbean,Latin America and the Caribbean,subregion
+860,Uzbekistan,Central Asia,Eastern Europe,subregion
+862,Venezuela (Bolivarian Republic of),Latin America and the Caribbean,Latin America and the Caribbean,subregion
+882,Samoa,Polynesia,Oceania,subregion
+887,Yemen,Western Asia,Near East and North Africa,subregion
+894,Zambia,Sub-Saharan Africa,Sub-Saharan Africa,subregion

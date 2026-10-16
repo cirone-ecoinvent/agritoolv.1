@@ -50,8 +50,9 @@ IRR_WATERUSE_RATIO_PER_COUNTRY = {
               WaterUseType.surfacewater: row["surfacewater"],
               WaterUseType.nonconventional: row["nonconventional"]}
     for country, row in dataloader.table(_WFLDB_WATER_SOURCES).items()}
-# Manure types per country (decision L29): FAOSTAT manure N applied to soils 2021-2023, WFLDB rule for
-# the liquid/solid split, liquid volume shares and solid mass shares; share of the N applied as liquid manure
+# Manure types per country (decision L29): FAOSTAT manure N applied to soils 2021-2023, liquid/solid split
+# with the IPCC 2019 manure management systems of the country's region (decision L42), liquid volume shares
+# and solid mass shares; share of the N applied as liquid manure
 _COUNTRIES = [row["country"] for row in dataloader.rows("faostat_country_mapping.csv") if row["country"] != "GLO"]
 _MANURE_SHARES = {country: ManureModel.country_shares(country) for country in _COUNTRIES}
 MANURE_LIQUID_RATIO_PER_COUNTRY = {country: shares[0] for country, shares in _MANURE_SHARES.items()}

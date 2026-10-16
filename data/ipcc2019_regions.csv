@@ -1,0 +1,11 @@
+ipcc_region,tier1_productivity_class,fallback_region,note
+North America,High,,
+Western Europe,High,,
+Eastern Europe,High,,
+Russian Federation,High,Eastern Europe,"Own rows in Tables 10A.7-10A.9 (swine, goats, poultry); cattle, buffalo and sheep: Eastern Europe rows (Table 10A.6 buffalo row 'Eastern Europe (including Russia)'; Annex 10B: Eastern Europe cattle data mainly from the Russian Federation, Ukraine and Belarus)"
+Oceania,High,,
+East Asia and South-East Asia,Low,,
+South Asia,Low,,
+Latin America and the Caribbean,Low,,
+Near East and North Africa,Low,,
+Sub-Saharan Africa,Low,,
