@@ -1058,7 +1058,7 @@ countries. They are replaced:
 | GLO | 50.43 | 1.635 (mean of the four) | - |
 
 The other crops keep the legacy values, marked legacy, undocumented, provisional. Regression:
-unchanged (no potato case).
+unchanged (no potato case). The other crops covered by WFLDB 2017 followed with decision L43 (section 31).
 
 ## 17. Soil erodibility from the WFLDB 2017 soil types (decision L27, 2026-10-13)
 
@@ -1784,3 +1784,55 @@ Regression (`scripts/compare_regression.py`): wheat_IT and apple_FR unchanged (m
 | Nox_as_n2o_air | 5.261 | 5.718 |
 | nitrate_to_groundwater | 137.9 | 134.3 |
 | heavymetal_to_soil_zn / cu | 0.180 / 0.0327 | 0.245 / 0.0472 |
+
+## 31. Default total pesticides from the WFLDB 3.1 Documentation 2017 (decision L43, 2026-10-16)
+
+The default total of pesticide active ingredients (`pest_total`) came from the legacy GD_crop sheet Pesticides_L1. The
+WFLDB 3.1 Documentation 2017 (Excel annex, sheets 2a-2c, row 19 "Total amount of active ingredient (a.i.), any kind of
+pesticides") gives the same quantity for 104 datasets. Of the 102 crop-country pairs both tables have, 52 agreed within
+1 %, 50 differed, 30 of them by a factor of 2 or more. Within a crop the ratio is the same for every country (almond CN
+and US x2.29, apple CL, CN and US x1.54, mandarin CN and ES x2.43): the L1 values are MEXALCA extrapolations from an
+origin country (Guidelines v3.0 section 3.7, X_t = X_o x sqrt(ind_t / ind_o)), whose country ratios stayed while the
+value of the origin country changed. GD_crop was probably built from an earlier WFLDB version.
+
+New (`defaultMatrixTotalPesticides.py`):
+
+- Transcription: `wfldb2017_pesticides_total_ai.csv`, all 104 datasets with their data level (L0-L4), checked by the
+  tests against the workbook.
+- Mapping: `wfldb2017_pesticides_crop_mapping.csv` (signed by FC). Each tool crop takes the datasets of its crop; tomato, orange and
+  coffee take the dataset of their grade or species and, where WFLDB has only one grade or species in a country, that
+  one for both (tomato IT, NL, MX; orange ES, ZA, BR; coffee CO, ID, VN). Strawberry CH takes the heated greenhouse, as
+  the legacy table. Not used: strawberry CH non-heated greenhouse, vanilla MG.
+- GLO = simple mean of the direct datasets of the crop, also of countries outside the tool (palm MY, coffee HN).
+- Strawberry MX and MA, which repeated the legacy GLO, take the new GLO. Tomato CH, raspberry, blueberry, cranberry and
+  the 24 crops with GLO 0 keep the legacy rows of `default_pesticides.csv` (legacy, undocumented, provisional).
+- 18 new rows: maize AR, rapeseed CA, soybean AR, sugar beet DE and RU, onion IN, coconut ID, IN and PH, coffee CO and
+  IN, palm ID and MY, sugarcane BR and IN, coffee Arabica HN.
+
+| Crop, country | Legacy (kg a.i./ha) | WFLDB 2017 (kg a.i./ha) | Data level |
+|---|---|---|---|
+| pear AR | 0.87 | 13.78 | L0 |
+| coffee ID / VN | 8.07 / 9.63 | 0.23 / 0.50 | L3 |
+| strawberry ES | 217.8 | 26.3 | L3 |
+| sugar beet FR / US | 4.08 / 2.55 | 0.67 / 6.53 | L3 / L1 |
+| peanut AR / IN | 12.29 / 4.07 | 2.56 / 0.81 | L3 |
+| wheat CA | 2.15 | 0.50 | L3 |
+| cocoa CI / GH / ID | 2.16 / 2.16 / 16.59 | 9.59 / 7.14 / 7.71 | L3 |
+| banana CO / CR | 29.1 / 21.9 | 9.67 / 64.8 | L3 |
+| almond CN / US | 4.84 / 4.76 | 11.10 / 10.92 | L1 / L3 |
+| sunflower HU / RU | 1.72 / 0.80 | 4.50 / 2.05 | L1 |
+| tomato fresh ES / tomato IT | 19.3 / 37.9 | 32.3 / 21.8 | L3 |
+| sugarcane GLO / maize GLO | 2.48 / 0.05 | 8.91 / 0.13 | - |
+
+Full table (200 rows, legacy and new value with the source cell), confirmed by FC: `Literature/review_wfldb_pesticides.csv`.
+
+The default only sets the pesticide packaging (`models/packmodel.py`); the pesticide emissions come from the active
+ingredients of the template. Regression (`scripts/compare_regression.py`): apple_FR and wheat_IT unchanged (total from
+the template); rice_IN 1498.06 -> 1500 g/ha, `wfldb_packaging_liquid` 2.996 -> 3.000 and
+`ecoinvent_packaging_liquid` 4.494 -> 4.500 kg/ha.
+
+Open: the values are to be replaced by the Global atlas of pesticide use (Zhang et al., Research Square preprint 2026,
+doi 10.21203/rs.3.rs-10665000/v1; 2016-2020, 131 crops, 167 countries, annual load in kg/ha/year; data on Zenodo,
+doi 10.5281/zenodo.15282367, files restricted) once its data are accessible, with Eurostat aei_pestuse and USDA NASS
+Chemical Use as checks for the EU and the US (FC, 2026-10-16). The 24 crops with GLO 0 (e.g. grape, cotton, mango,
+pineapple) have no default pesticides; blueberry and cranberry (97.4 kg/ha) and raspberry (33.9 kg/ha) stay legacy.
