@@ -1710,3 +1710,77 @@ same source is 28.8), both kept as published; no residues for vegetables, fruit,
 underestimated (vegetables especially); fruit contents above WFLDB sheet 4.
 
 Regression: the three cases are other crops, snapshots unchanged.
+
+## 30. Liquid and solid manure split from the IPCC 2019 manure management systems (decision L42, 2026-10-15)
+
+The FAOSTAT manure N applied to soils (L13, L29) is given per livestock item, not per manure form. Until now the N
+of the items that exist in both forms (cattle, buffalo, pigs, laying hens) was split 50/50 for the country defaults
+(WFLDB Guidelines v3.0 section 3.6.2, no regional source) and counted in full in both world 'other' mixes (L13).
+
+New: the share of each item's N managed in liquid systems comes from the animal waste management systems (AWMS) of
+IPCC 2019 Refinement Vol. 4 Annex 10A.2, Tables 10A.6-10A.9 (file `Literature/19R_V4_Ch10_Livestock.pdf`), in the IPCC
+region of the country (`models/manuremodel.py` ManureModel._ipcc_liquid_share):
+
+- Transcription: `ipcc2019_table10a_awms.csv`, all 116 rows (cattle and buffalo, swine, sheep and goats, poultry);
+  checked cell by cell against the PyMuPDF table extraction of the PDF (0 differences); every row sums to 100 %.
+- Forms (`ipcc2019_awms_forms.csv`, Table 10A.10, IPCC vs EMEP/EEA systems): liquid = lagoon, liquid/slurry, pits
+  (laying hens: poultry manure without litter, EMEP 'laying hens - slurry'), digester (digestate as uncovered slurry,
+  Table 10.22 note 3); solid = solid storage, poultry manure with litter, dry lot, daily spread (the last two have no
+  EMEP equivalent: FC choice); not applied = pasture/range/paddock, burned for fuel. Share = liquid / (liquid + solid).
+- Productivity class: IPCC Tier 1 rule (Table 10.14 note 1, Table 10.16A note 1), high productivity rows in North
+  America, Europe and Oceania, low productivity rows elsewhere (swine, laying hens; `ipcc2019_regions.csv`).
+- FAOSTAT items -> IPCC categories (`ipcc2019_faostat_item_awms_mapping.csv`): buffalo = mean of the dairy and non-dairy
+  buffalo rows, non-dairy cattle where the region has none (Table 10.14 note 6); Russian Federation: own rows for
+  swine and laying hens, Eastern Europe rows for cattle and buffalo. No managed system in the tables (non-dairy
+  cattle and buffalo of Oceania): WFLDB 50/50.
+- Regions: UNSD M49 sub-regions with country exceptions (`ipcc2019_m49_region_mapping.csv`, signed by FC) for the 198 FAOSTAT
+  areas (`ipcc2019_country_region.csv`), built with the N per region (`faostat_manure_n_applied_ipcc_region.csv`) by
+  `scripts/build_faostat_manure_ipcc_region.py` from the FAOSTAT download and the M49 table supplied by FC.
+- Sheep, goats (also the proxy of horses, asses and mules, Table 10A.9 note 1) and broilers have no liquid system in
+  the tables and stay solid only, as before.
+
+| Region | Dairy cattle | Non-dairy cattle | Buffalo | Pigs (market) | Pigs (breeding) | Laying hens |
+|---|---|---|---|---|---|---|
+| North America | 0.59 | 0.02 | 0.52 | 0.93 | 0.93 | 0.30 |
+| Western Europe | 0.58 | 0.42 | 0.35 | 0.85 | 0.84 | 0.44 |
+| Eastern Europe | 0.06 | 0.93 | 0.17 | 0.44 | 0.44 | 0.34 |
+| Russian Federation | 0.06 | 0.93 | 0.17 | 0.24 | 0.24 | 1.00 |
+| Oceania | 0.83 | 50/50 | 50/50 | 0.91 | 0.91 | 1.00 |
+| East Asia and South-East Asia | 0.02 | 0 | 0 | 0.60 | 0.56 | 0 |
+| South Asia, Latin America, Near East and North Africa, Sub-Saharan Africa | 0 | 0 | 0 | 0.63 | 0.63 | 0 |
+
+Liquid share of the manure N per item and IPCC region (low productivity outside North America, Europe and Oceania).
+
+| Country | Liquid N share before | after | Default manure per kg N uptake, before | after |
+|---|---|---|---|---|
+| IN | 0.43 | **0.01** | 0.0522 m3 + 48.0 kg | **0.0009 m3 + 91.7 kg** |
+| CN | 0.38 | **0.17** | 0.0412 m3 + 28.8 kg | **0.0214 m3 + 42.3 kg** |
+| BR | 0.41 | **0.24** | 0.0499 m3 + 31.4 kg | **0.0293 m3 + 49.8 kg** |
+| US | 0.36 | **0.33** | 0.0421 m3 + 30.7 kg | **0.0400 m3 + 35.1 kg** |
+| FR | 0.43 | **0.45** | 0.0523 m3 + 40.6 kg | **0.0553 m3 + 40.5 kg** |
+| ES | 0.47 | **0.65** | 0.0589 m3 + 36.9 kg | **0.0807 m3 + 29.6 kg** |
+| NZ | 0.44 | **0.66** | 0.0552 m3 + 46.2 kg | **0.0821 m3 + 24.0 kg** |
+
+Full table (39 countries and the two 'other' mixes), confirmed by FC: `Literature/review_manure_ipcc_mms.csv`. The available N of the
+default manure stays 0.2 x N uptake (L29); only its split between liquid and solid manure and the mix of each form
+change. The world 'other' mixes: liquid N 5.41 -> 5.18 kg/m3 (pig share 0.30 -> 0.55), solid N 7.58 -> 7.70 kg/t
+(pig share 0.22 -> 0.09).
+
+Data fix: `faostat_manure_n_applied_world.csv` summed the FAOSTAT aggregate 'China' (M49 159) together with its parts
+(China, mainland; Taiwan; Hong Kong; Macao); rebuilt by the script without it (pigs, market 6.54 -> 5.13 Tg N,
+laying hens 3.48 -> 2.51, buffalo 2.31 -> 1.92).
+
+Open: FAOSTAT applied N is not always consistent with the IPCC regional systems (AU non-dairy cattle, 81 Gg N applied
+with 100 % pasture in IPCC: WFLDB 50/50 kept); dry lot and daily spread solid and the M49 exceptions are judgment.
+
+Regression (`scripts/compare_regression.py`): wheat_IT and apple_FR unchanged (manure from the template); rice_IN:
+
+| Key | Before | After |
+|---|---|---|
+| liquid manure, cattle / laying hens / pig (kg) | 4824 / 105 / 62 | 0 / 0 / 87 |
+| solid manure, cattle / laying hens / sheep-goat (kg) | 3676 / 98 / 684 | 7679 / 166 / 714 |
+| ammonia_total | 34.10 | 33.33 |
+| N2o_air | 1.803 | 1.836 |
+| Nox_as_n2o_air | 5.261 | 5.718 |
+| nitrate_to_groundwater | 137.9 | 134.3 |
+| heavymetal_to_soil_zn / cu | 0.180 / 0.0327 | 0.245 / 0.0472 |

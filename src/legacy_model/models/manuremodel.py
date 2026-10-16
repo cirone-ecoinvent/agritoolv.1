@@ -1,4 +1,5 @@
 from enum import Enum
+from functools import lru_cache
 
 import dataloader
 from models.atomicmass import N_TO_NH3_FACTOR
@@ -60,13 +61,20 @@ class ManureModel(object):
     # of the same form (decision L13): FAOSTAT manure N applied to soils per livestock item,
     # grouped by data/manure_other_faostat_mapping.csv and converted to volume (mass) shares.
     # The default shares per country use the same mapping with the FAOSTAT N of the country
-    # (decision L29).
+    # (decision L29). The N of an item mapped to both forms is split with the manure management
+    # systems of IPCC 2019 Tables 10A.6-10A.9 in the IPCC region (decision L42).
     _COMPOSITION_TABLE = "manure_type_composition.csv"
     _CONTENT_TABLE = "grudaf2009_table39.csv"
     _EF_TABLE = "emep2023_3b_table3_9.csv"
     _FAOSTAT_MAPPING = "manure_other_faostat_mapping.csv"
-    _FAOSTAT_TABLE = "faostat_manure_n_applied_world.csv"
+    _FAOSTAT_REGION_TABLE = "faostat_manure_n_applied_ipcc_region.csv"
     _FAOSTAT_COUNTRY_TABLE = "faostat_manure_n_applied_country.csv"
+    _COUNTRY_MAPPING = "faostat_country_mapping.csv"
+    _COUNTRY_REGIONS = "ipcc2019_country_region.csv"
+    _IPCC_REGIONS = "ipcc2019_regions.csv"
+    _AWMS_TABLE = "ipcc2019_table10a_awms.csv"
+    _AWMS_FORMS = "ipcc2019_awms_forms.csv"
+    _AWMS_ITEMS = "ipcc2019_faostat_item_awms_mapping.csv"
     _OTHER_TYPES = {LiquidManureType.other: LiquidManureType, SolidManureType.other: SolidManureType}
 
     @classmethod
@@ -107,22 +115,19 @@ class ManureModel(object):
         return total
 
     @classmethod
+    @lru_cache(maxsize=None)
     def _other_shares(cls, other_type):
         """Volume (liquid) or mass (solid) shares of the specific types in an "other" mix.
 
-        FAOSTAT gives the world manure N per livestock item; the N share of each type is
-        divided by its N content per unit and normalised, so that the shares refer to m3 or t.
+        FAOSTAT gives the manure N per livestock item and IPCC region (sum of the countries, the
+        world in total); the N of each type is divided by its N content per unit and normalised,
+        so that the shares refer to m3 or t.
         """
         enum = cls._OTHER_TYPES[other_type]
-        form = "liquid" if enum is LiquidManureType else "solid"
-        faostat = dataloader.table(cls._FAOSTAT_TABLE)
-        n_applied = {}
-        for row in dataloader.rows(cls._FAOSTAT_MAPPING):
-            if row["form"] == form:
-                component = enum(row["manure_type"])
-                n_applied[component] = (n_applied.get(component, 0.0)
-                                        + faostat[row["faostat_item"]]["n_applied_mean_2021_2023_kg"])
-        return cls._unit_shares(n_applied)
+        n_applied = {(row["ipcc_region"], row["item"]): float(row["n_applied_mean_2021_2023_kg"])
+                     for row in dataloader.rows(cls._FAOSTAT_REGION_TABLE)}
+        n_per_type = cls._n_per_type(n_applied)[enum]
+        return cls._unit_shares({k: v for k, v in n_per_type.items() if k is not other_type})
 
     @classmethod
     def _unit_shares(cls, n_per_type):
@@ -133,28 +138,89 @@ class ManureModel(object):
         return {k: v / total_units for k, v in units.items()}
 
     @classmethod
-    def _country_n(cls, country):
-        """FAOSTAT manure N applied to soils of a country per manure type, {enum: {type: kg N}}.
+    def _awms_row(cls, category, productivity, region):
+        """Row of IPCC 2019 Tables 10A.6-10A.9 for an animal category in a region (or in its
+        fallback region, e.g. Eastern Europe for the cattle of the Russian Federation); rows
+        without productivity class apply to both classes. None when the tables have no row."""
+        regions = dataloader.table(cls._IPCC_REGIONS, numeric=False)
+        while region:
+            for row in dataloader.rows(cls._AWMS_TABLE):
+                if (row["animal_category"] == category and row["region"] == region
+                        and row["productivity_class"] in ("", productivity)):
+                    return row
+            region = regions[region]["fallback_region"]
+        return None
 
-        Items are grouped by data/manure_other_faostat_mapping.csv. WFLDB rule (Guidelines v3.0
-        section 3.6.2): an item mapped to both forms (cattle, buffalo, pigs, laying hens) is half
-        liquid and half solid, the other items are solid only; items not in the mapping (camels,
-        llamas) are left out.
+    @classmethod
+    @lru_cache(maxsize=None)
+    def _ipcc_liquid_share(cls, item, region):
+        """Share of the manure N of a FAOSTAT item managed in liquid systems in an IPCC region
+        (decision L42): liquid / (liquid + solid) percentages of IPCC 2019 Tables 10A.6-10A.9,
+        forms of data/ipcc2019_awms_forms.csv (pasture and burned for fuel are not applied),
+        productivity class of IPCC Tier 1 for the region, mean over the IPCC categories of the
+        item (buffalo: dairy and non-dairy). An item without rows in the region takes its
+        fallback item (buffalo: non-dairy cattle). None when no managed system is given."""
+        forms = {row["system"]: row["form"] for row in dataloader.rows(cls._AWMS_FORMS)}
+        productivity = dataloader.table(cls._IPCC_REGIONS, numeric=False)[region]["tier1_productivity_class"]
+        shares, fallback = [], ""
+        for mapping in dataloader.rows(cls._AWMS_ITEMS):
+            if mapping["faostat_item"] != item:
+                continue
+            fallback = mapping["fallback_faostat_item"]
+            category = mapping["animal_category" if productivity == "High" else "low_productivity_category"]
+            row = cls._awms_row(category, productivity, region)
+            if row is None:
+                continue
+            percent = {form: sum(float(row[system]) for system, f in forms.items() if f == form and row[system])
+                       for form in ("liquid", "solid")}
+            if percent["liquid"] + percent["solid"]:
+                shares.append(percent["liquid"] / (percent["liquid"] + percent["solid"]))
+        if shares:
+            return sum(shares) / len(shares)
+        return cls._ipcc_liquid_share(fallback, region) if fallback else None
+
+    @classmethod
+    def _n_per_type(cls, n_per_region_and_item):
+        """Manure N per manure type, {enum: {type: kg N}}, from {(IPCC region, FAOSTAT item): kg N}.
+
+        Items are grouped by data/manure_other_faostat_mapping.csv; items not in the mapping
+        (camels, llamas) are left out. An item mapped to both forms (cattle, buffalo, pigs,
+        laying hens) is split with the IPCC liquid share of the region (decision L42); where the
+        IPCC tables give no managed system the WFLDB rule applies (Guidelines v3.0 section 3.6.2:
+        half liquid, half solid). The other items are solid only.
         """
-        n_item = {row["item"]: float(row["n_applied_mean_kg"])
-                  for row in dataloader.rows(cls._FAOSTAT_COUNTRY_TABLE) if row["country"] == country}
-        if not n_item:
-            raise KeyError("Country %s not in %s" % (country, cls._FAOSTAT_COUNTRY_TABLE))
         mapping = {}
         for row in dataloader.rows(cls._FAOSTAT_MAPPING):
             mapping.setdefault(row["faostat_item"], []).append(row)
         n_per_type = {LiquidManureType: dict.fromkeys(LiquidManureType, 0.0),
                       SolidManureType: dict.fromkeys(SolidManureType, 0.0)}
-        for item, rows in mapping.items():
+        for (region, item), n in n_per_region_and_item.items():
+            rows = mapping.get(item, [])
+            liquid = cls._ipcc_liquid_share(item, region) if len(rows) > 1 else None
             for row in rows:
+                if liquid is None:
+                    share = 1.0 / len(rows)
+                else:
+                    share = liquid if row["form"] == "liquid" else 1.0 - liquid
                 enum = LiquidManureType if row["form"] == "liquid" else SolidManureType
-                n_per_type[enum][enum(row["manure_type"])] += n_item.get(item, 0.0) / len(rows)
+                n_per_type[enum][enum(row["manure_type"])] += n * share
         return n_per_type
+
+    @classmethod
+    def ipcc_region(cls, country):
+        """IPCC 2019 region of a tool country (data/ipcc2019_country_region.csv, by M49 code)."""
+        m49 = {row["country"]: row["m49_code"] for row in dataloader.rows(cls._COUNTRY_MAPPING)}[country]
+        return dataloader.table(cls._COUNTRY_REGIONS, numeric=False)[m49]["ipcc_region"]
+
+    @classmethod
+    def _country_n(cls, country):
+        """FAOSTAT manure N applied to soils of a country per manure type, {enum: {type: kg N}}."""
+        region = cls.ipcc_region(country)
+        n_item = {(region, row["item"]): float(row["n_applied_mean_kg"])
+                  for row in dataloader.rows(cls._FAOSTAT_COUNTRY_TABLE) if row["country"] == country}
+        if not n_item:
+            raise KeyError("Country %s not in %s" % (country, cls._FAOSTAT_COUNTRY_TABLE))
+        return cls._n_per_type(n_item)
 
     @classmethod
     def country_shares(cls, country):
