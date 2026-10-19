@@ -1836,3 +1836,56 @@ doi 10.21203/rs.3.rs-10665000/v1; 2016-2020, 131 crops, 167 countries, annual lo
 doi 10.5281/zenodo.15282367, files restricted) once its data are accessible, with Eurostat aei_pestuse and USDA NASS
 Chemical Use as checks for the EU and the US (FC, 2026-10-16). The 24 crops with GLO 0 (e.g. grape, cotton, mango,
 pineapple) have no default pesticides; blueberry and cranberry (97.4 kg/ha) and raspberry (33.9 kg/ha) stay legacy.
+
+## 32. Default irrigation water from Pfister & Bayer (2014) and AQUASTAT irrigation techniques (decision L44, 2026-10-19)
+
+The default irrigation water (`water_use_total`, used when the template gives no water) is the withdrawal
+
+    withdrawal [m3/ha and crop cycle] = ETirr [m3/t] x yield [kg/ha and crop cycle] / 1000 / EFirr
+
+(WFLDB Guidelines v3.0 section 3.5.2). The irrigation model puts ETirr x yield / 1000 to air and splits the rest
+between river and groundwater. Units: ETirr is m3 of irrigation water consumed per t of harvested crop (FAOSTAT item
+of the year 2000); the yield is per crop cycle (L24); tea is made tea in both (Pfister production 2000: 2.86 Mt,
+1/4.4 of the green leaf of the current FAOSTAT item), so no conversion.
+
+ETirr (`defaultMatrixEvapoTranspiration.py`):
+
+- Source: Pfister & Bayer (2014), Appendix B, sheet 'Blue water consumption (m3_ton)': expected value = geometric
+  mean of deficit irrigation (CROPWAT x reported irrigated proportion) and full irrigation, production-weighted per
+  country (`pfister2014_blue_water_country.csv`). GLO = world value of the sheet 'Global Averages'. A country with
+  'No production' takes GLO.
+- The legacy matrix GD_crop ETirr_m3t_L1 is this table for 859 of its 955 country values. Sweet corn took the maize
+  grain values; mandarin, 19 values of India and 4 others differed; 32 pairs have no production in Pfister.
+- Range: minimum (deficit) and maximum (full irrigation), production-weighted from the watershed file of the same
+  study, in the same table. Partitions per watershed (WaterGAP basin) and month in
+  `pfister2014_blue_water_watershed.csv`. Neither is used by the model yet.
+- Flax, hemp, mint and mulberry keep the legacy values (Pfister has fibre or no crop).
+
+EFirr: technique shares x 0.45 surface, 0.75 sprinkler, 0.90 localized (Guidelines v3.0 Tab. 3,
+`model_parameters.csv`). The shares per country are the AQUASTAT 2020 area equipped for full control irrigation per
+technique (`aquastat_irrigation_technique_area.csv`, `irrigation_technique_source.csv`) instead of the legacy ICID 2012
+or level 0 shares; NL keeps the legacy shares.
+
+| Crop, country | ETirr legacy -> new (m3/t) | Pfister min-max (m3/t) | EFirr legacy -> new | Withdrawal legacy -> new (m3/t) |
+|---|---|---|---|---|
+| wheat FR | 111.2 -> 111.2 | 36.1-454.5 | 0.61 -> 0.75 | 183 -> 148 |
+| wheat AR | 361.7 -> 361.7 | 22.0-1541.2 | 0.46 -> 0.59 | 780 -> 608 |
+| rice IN | 446.6 -> 446.6 | 262.8-806.2 | 0.48 -> 0.46 | 932 -> 969 |
+| maize US | 170.1 -> 170.1 | 41.1-413.7 | 0.63 -> 0.62 | 270 -> 272 |
+| cotton IN | 1526.5 -> 2990.9 | 1518.4-6318.9 | 0.48 -> 0.46 | 3187 -> 6490 |
+| potato US | 85.4 -> 85.4 | 55.1-127.1 | 0.63 -> 0.62 | 136 -> 137 |
+| almond US | 3221.3 -> 3221.3 | 2843.4-3676.5 | 0.63 -> 0.62 | 5114 -> 5156 |
+| sweet corn FR | 127.2 -> 53.2 | 18.9-191.8 | 0.61 -> 0.75 | 209 -> 71 |
+| mandarin CN | 195.1 -> 151.2 | 62.9-356.7 | 0.48 -> 0.47 | 409 -> 322 |
+| cranberry US | 13.0 -> 22.8 (GLO) | - | 0.63 -> 0.62 | 21 -> 36 |
+
+Cross-check with Mialyk et al. (2024, national blue water footprint from irrigation 2010-2019,
+`mialyk2024_*.csv`, `scripts/compare_mialyk_pfister.py`): of 1151 crop-country pairs, 383 inside the Pfister range
+(24 % of the production), 731 below the minimum (74 %), 37 above the maximum (2 %, mostly rice ID, VN, PH). The gap
+stays with the Mialyk values of 1999-2001 including capillary rise (58 % below), so it is a model difference; Mialyk
+also has zero for crops whose irrigated area its input does not resolve (potato US, olive IT, citrus CN).
+
+Regression (`scripts/compare_regression.py`): no change (the three cases give water and irrigation techniques).
+
+Open: uncertainty and regionalised water flows in the ecoSpold writer (range and partitions are ready); input data of
+the year 2000; legacy electricity / diesel split, NL techniques, river / groundwater split 20/80 and EI_IRR ratios.

@@ -1,7 +1,8 @@
-# legacy, undocumented, provisional: the crop tables, fertiliser mixes, irrigation techniques, EI_IRR ratios
-# and soil erodibility of this module (generated from the Quantis workbook GD_crop); the country soil,
-# precipitation and irrigation water source tables are read from data/wfldb2017_*.csv (decision L22), the
-# manure shares are computed from FAOSTAT (decision L29)
+# legacy, undocumented, provisional: the crop tables, fertiliser mixes, irrigation electricity / diesel split,
+# EI_IRR ratios and soil erodibility of this module (generated from the Quantis workbook GD_crop); the country
+# soil, precipitation and irrigation water source tables are read from data/wfldb2017_*.csv (decision L22), the
+# manure shares are computed from FAOSTAT (decision L29), the irrigation technique shares from FAO AQUASTAT
+# (decision L44)
 import statistics
 
 import dataloader
@@ -1513,7 +1514,10 @@ FERT_P_RATIO_PER_COUNTRY = {
 
 # Generated in GD_crop (combinaison of IrrTechn_L0 and IrrTechn_L1)
 # using =""""&B$3&""":{IrrigationType.surface_irrigation_no_energy:0.0"&",  IrrigationType.surface_irrigation_electricity:"&B5&",  IrrigationType.surface_irrigation_diesel:"&B6&",  IrrigationType.sprinkler_irrigation_electricity:"&B7&",  IrrigationType.sprinkler_irrigation_diesel:"&B8&",  IrrigationType.drip_irrigation_electricity:"&B9&", IrrigationType.drip_irrigation_diesel:"&B10&"},"
-IRR_TECH_RATIO_PER_COUNTRY = {
+# Technique shares of ICID 2012 (WFLDB Guidelines v3.0 Tab. 32) or level 0 defaults. Since decision L44 only
+# used for the countries marked legacy in data/irrigation_technique_source.csv (NL) and for the
+# electricity / diesel split of each country.
+_LEGACY_IRR_TECH_RATIO_PER_COUNTRY = {
    "AR":{
       IrrigationType.surface_irrigation_no_energy:0.0,
       IrrigationType.surface_irrigation_electricity:0.24105504587156,
@@ -1866,6 +1870,51 @@ IRR_TECH_RATIO_PER_COUNTRY = {
       IrrigationType.drip_irrigation_diesel:0.109383832335329
    }
 }
+
+# Irrigation technique shares per country (decision L44): area equipped for full control irrigation per
+# technique, FAO AQUASTAT (data/aquastat_irrigation_technique_area.csv: 2020 export; BE, CH, RU from the
+# ecoinvent irrigation workbook), a technique not reported counts 0; the countries marked legacy in
+# data/irrigation_technique_source.csv keep the shares above. Each technique share is split between
+# electricity and diesel pumps with the legacy electricity share of the country (legacy, undocumented,
+# provisional; the same share for all techniques in GD_crop).
+_IRRIGATION_TECHNIQUE_TYPES = {
+    "surface": (IrrigationType.surface_irrigation_electricity, IrrigationType.surface_irrigation_diesel),
+    "sprinkler": (IrrigationType.sprinkler_irrigation_electricity, IrrigationType.sprinkler_irrigation_diesel),
+    "localized": (IrrigationType.drip_irrigation_electricity, IrrigationType.drip_irrigation_diesel),
+}
+
+
+def _legacy_electricity_share(country):
+    legacy = _LEGACY_IRR_TECH_RATIO_PER_COUNTRY[country]
+    electricity = sum(legacy[electric] for electric, _ in _IRRIGATION_TECHNIQUE_TYPES.values())
+    diesel = sum(legacy[diesel] for _, diesel in _IRRIGATION_TECHNIQUE_TYPES.values())
+    return electricity / (electricity + diesel)
+
+
+def _irrigation_technique_shares():
+    areas = {}
+    for row in dataloader.rows("aquastat_irrigation_technique_area.csv"):
+        areas.setdefault(row["country"], {})[row["technique"]] = float(row["area_kha"])
+    shares = {}
+    for row in dataloader.rows("irrigation_technique_source.csv"):
+        country = row["country"]
+        if row["source"] == "legacy":
+            shares[country] = dict(_LEGACY_IRR_TECH_RATIO_PER_COUNTRY[country])
+            continue
+        if row["source"] != "aquastat":
+            raise ValueError("irrigation_technique_source.csv: unknown source %r for %s" % (row["source"], country))
+        total = sum(areas[country].values())
+        electricity = _legacy_electricity_share(country)
+        table = {irrigation_type: 0.0 for irrigation_type in IrrigationType}
+        for technique, (electric, diesel) in _IRRIGATION_TECHNIQUE_TYPES.items():
+            share = areas[country].get(technique, 0.0) / total
+            table[electric] = share * electricity
+            table[diesel] = share * (1.0 - electricity)
+        shares[country] = table
+    return shares
+
+
+IRR_TECH_RATIO_PER_COUNTRY = _irrigation_technique_shares()
 
 EI_IRR_RATIO_TO_AIR = {
     "BR": 0.62,
