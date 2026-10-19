@@ -1889,3 +1889,66 @@ Regression (`scripts/compare_regression.py`): no change (the three cases give wa
 
 Open: uncertainty and regionalised water flows in the ecoSpold writer (range and partitions are ready); input data of
 the year 2000; legacy electricity / diesel split, NL techniques, river / groundwater split 20/80 and EI_IRR ratios.
+
+## 33. Mineral fertiliser mixes from IFASTAT (decision L45, 2026-10-19)
+
+The default mixes of mineral fertiliser types per country (`n_fertiliser_proportions`, `p_fertiliser_proportions`,
+`k_fertiliser_proportions`, used when the template gives no mix) are the shares of the N, P2O5 and K2O consumed in
+2021-2023 according to IFA, IFASTAT, indicator 'Fertilizer consumption' by product and nutrient (export of 2026-10-19
+downloaded by FC). The IFASTAT values are IFA member data: the repository holds only the derived shares
+(`ifastat_fertiliser_mix.csv`), `scripts/build_ifastat_fertiliser_mix.py` rebuilds them from the export in
+`data/external_data/`.
+
+Products -> tool types (`ifastat_product_type_mapping.csv`, signed by FC):
+
+| IFASTAT product | N | P2O5 | K2O |
+|---|---|---|---|
+| ammonia, AN, AS, CAN, urea, UAN, MAP, DAP, KNO3, TSP, SSP, KCl, K2SO4 | same type | same type | same type |
+| phosphate rock | - | raw phosphate | - |
+| NK | potassium nitrate | - | potassium nitrate |
+| NP | ammonium nitrate phosphate | ammonium nitrate phosphate | - |
+| NPK | 1/3 each MAP, DAP, ammonium nitrate phosphate (FC, option B) | 1/3 each MAP, DAP, ammonium nitrate phosphate | left out (FC, option B) |
+| PK | - | 1/3 each MAP, DAP, ammonium nitrate phosphate | left out (FC, option B) |
+| Other | left out | 1/2 raw phosphate, 1/2 basic slag | patent potassium |
+
+Left out = the shares of the other products are scaled to 1; FI, whose K2O is only in NPK, takes the world mix of the
+export. All other rules are those of the legacy mixes.
+
+The legacy mixes (GD_crop; WFLDB 3.1 Documentation 2017 Appendix 2, IFA 2009-2012) are reproduced from IFASTAT
+2009-2012 with these rules plus five more: IFA urea split 50/50 between urea and urea AN, urea AN (N solutions) as liquid
+ammonia, MAP + DAP split 50/50, NPK N as 1/2 potassium nitrate + 1/6 each MAP, DAP, ammonium nitrate phosphate, and NPK
+and PK K2O as potassium nitrate (FI, mean 2009-2012: CAN 46.0, NPK 99.25, urea 0.75 kt N give CAN 0.31507, MAP = DAP =
+ammonium nitrate phosphate 0.11330, potassium nitrate 0.33990, urea = urea AN 0.0025685, the legacy values). The new
+mixes drop these rules:
+
+- Urea and urea AN, MAP and DAP are separate products in IFASTAT.
+- NPK N with the legacy rule had the NH3 factors 54 and 120 g NH3/kg N (pH <= 7 and > 7) instead of 84 and 187 of
+  EMEP/EEA 2023 Table 3-2 'NPK mixtures'; 1/3 each MAP, DAP, ammonium nitrate phosphate gives exactly 84 and 187.
+- NPK and PK K2O as potassium nitrate made potassium nitrate the main K2O type in many countries (CN 80 %, GH 64 % with
+  the 2021-2023 data), while potassium nitrate is 0-17 % of the K2O as a product.
+
+| Country | urea | urea AN | liquid ammonia | NH3 factor pH <= 7 (g NH3/kg N) | KCl (% K2O) | potassium nitrate (% K2O) |
+|---|---|---|---|---|---|---|
+| FR | 8 -> 27 | 8 -> 29 | 29 -> 0 | 46 -> 93 | 42 -> 74 | 51 -> 1 |
+| DE | 14 -> 21 | 14 -> 14 | 15 -> 0 | 62 -> 78 | 63 -> 90 | 29 -> 0 |
+| US | 12 -> 26 | 12 -> 29 | 56 -> 25 | 57 -> 96 | 71 -> 91 | 24 -> 4 |
+| IN | 40 -> 81 | 40 -> 0 | 0 -> 0 | 128 -> 174 | 70 -> 100 | 29 -> 0 |
+| CN | 38 -> 40 | 38 -> 0 | 5 -> 0 | 120 -> 128 | 72 -> 60 | 22 -> 6 |
+| BR | 26 -> 56 | 26 -> 0 | 0 -> 0 | 101 -> 141 | 97 -> 99 | 2 -> 0 |
+| TH | 36 -> 77 | 36 -> 0 | 0 -> 0 | 122 -> 170 | 0 -> 98 | 100 -> 1 |
+| FI | 0 -> 0 | 0 -> 0 | 0 -> 0 | 45 -> 60 | 0 -> 90 | 100 -> 3 |
+
+(% of kg N unless stated.) P2O5: MAP and DAP are no longer equal (IN 37/37 -> 5/63, AR 38/38 -> 64/20); other P2O5 goes
+half to raw phosphate and half to basic slag (CA 12 + 12 %, BE 10 + 10 %); raw phosphate LK 20 -> 71 %. MA and CS get
+mixes with a source.
+
+Not adopted: Menegat et al. (2022) Sci Rep 12:14490, supplementary table 2 (IFASTAT N shares of 2018, CC BY 4.0; consistent
+with IFASTAT, N only); FAOSTAT Fertilizers by Product (t of product): no data 2021-2023 for 13 of the 39 countries, the
+straight products explain 0.9-1.1 of the FAOSTAT nutrient total in only 5-8 countries per nutrient, no nutrient contents
+for compounds.
+
+Regression (`scripts/compare_regression.py`): no change (the three cases give the N, P and K mixes).
+
+Open: a real NPK (NP, NK, PK) type in the tool (Master Data "NPK (15-15-15) fertiliser", EMEP "NPK mixtures"; input
+template, product, NH3 and heavy-metal mappings; P and K contents of the Master Data product); the shares need a new
+IFASTAT export to be updated.
