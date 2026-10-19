@@ -32,7 +32,7 @@ from models.erosionmodel import TillageMethod, AntiErosionPractice
 from models.fertilisermodel import CaFertiliserType, ZnFertiliserType
 import dataloader
 from models.hmmodel import PesticideType, METAL_COLUMNS
-from models.irrigationmodel import IrrigationType
+from models.irrigationmodel import irrigation_efficiency
 from models.manuremodel import ManureModel
 from models.modelEnums import SoilTexture
 from models.otherorganicfertilisermodel import CompostType, SludgeType
@@ -183,36 +183,9 @@ class WaterUseDefaultGenerator(object):
     def generateDefault(self, field, generators):
         default_evapo_transpiration = CropCountryMatrixLookupDefaultGenerator(
             EVAPO_TRANSPI_PER_CROP_PER_COUNTRY).generateDefault("", generators);
-        irrigation_efficiency_ratio = self._compute_irrigation_efficiency_ratio(
-            generators["irrigation_types_proportions"])
+        irrigation_efficiency_ratio = irrigation_efficiency(generators["irrigation_types_proportions"])
         return default_evapo_transpiration / irrigation_efficiency_ratio * generators[
             "yield_main_product_per_crop_cycle"] / 1000.0;
-
-    # legacy, undocumented, provisional: irrigation efficiencies (duplicate of irrigationmodel)
-    _IRRIGATION_EFFICIENCY_FACTOR_SURFACE = 0.45
-    _IRRIGATION_EFFICIENCY_FACTOR_SPRINKLER = 0.75
-    _IRRIGATION_EFFICIENCY_FACTOR_DRIP = 0.9
-
-    def _compute_irrigation_efficiency_ratio(self, irrigation_types_proportions):
-        return self._compute_surface_irrigation_ratio(irrigation_types_proportions) \
-               + self._compute_sprinkler_irrigation_ratio(irrigation_types_proportions) \
-               + self._compute_drip_irrigation_ratio(irrigation_types_proportions);
-
-    def _compute_surface_irrigation_ratio(self, irrigation_types_proportions):
-        return (irrigation_types_proportions[IrrigationType.surface_irrigation_diesel]
-                + irrigation_types_proportions[IrrigationType.surface_irrigation_electricity]
-                + irrigation_types_proportions[IrrigationType.surface_irrigation_no_energy]) \
-               * self._IRRIGATION_EFFICIENCY_FACTOR_SURFACE
-
-    def _compute_sprinkler_irrigation_ratio(self, irrigation_types_proportions):
-        return (irrigation_types_proportions[IrrigationType.sprinkler_irrigation_electricity]
-                + irrigation_types_proportions[IrrigationType.sprinkler_irrigation_diesel]) \
-               * self._IRRIGATION_EFFICIENCY_FACTOR_SPRINKLER
-
-    def _compute_drip_irrigation_ratio(self, irrigation_types_proportions):
-        return (irrigation_types_proportions[IrrigationType.drip_irrigation_electricity]
-                + irrigation_types_proportions[IrrigationType.drip_irrigation_diesel]) \
-               * self._IRRIGATION_EFFICIENCY_FACTOR_DRIP
 
 
 class HeavyMetalExportWithHarvestGenerator(object):
