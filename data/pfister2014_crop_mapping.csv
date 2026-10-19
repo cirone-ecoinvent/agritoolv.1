@@ -1,0 +1,68 @@
+crop,pfister_crop,pfister_crop_watershed,use,note,status,reviewed_by
+almond,almond,Almondswithshell,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+apple,apple,Apples,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+apricot,apricot,Apricots,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+asparagus_green,asparagus,Asparagus,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+asparagus_white,asparagus,Asparagus,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+banana,banana,Bananas,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+bellpepper,chillieetc,Chilliesandpeppersgreen,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+blueberry,blueberry,Blueberries,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+cabbage_red,cabbage,Cabbagesandotherbrassicas,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+cabbage_white,cabbage,Cabbagesandotherbrassicas,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+carrot,carrot,Carrotsandturnips,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+cashew,cashew,Cashewnutswithshell,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+cassava,cassava,Cassava,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+castor_beans,castor,Castoroilseed,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+chick_pea,chickpea,Chickpeas,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+chilli,chillieetc,Chilliesandpeppersgreen,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+cocoa,cocoa,Cocoabeans,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+coconut,coconut,Coconuts,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+coffee_arabica,coffee,Coffeegreen,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+coffee_robusta,coffee,Coffeegreen,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+coriander,aniseetc,Anisebadianfennelcorian,direct,"Anise, badian, fennel, coriander (FAOSTAT item 711, as L23)",confirmed,FC
+cotton,cotton,Seedcotton,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+cranberry,cranberry,Cranberries,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+eggplant,eggplant,Eggplants_aubergines,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+flax,,,legacy,"Pfister has only 'Flax fibre and tow' (m3 per t of fibre), the tool yield is flax raw or retted (L23): legacy ET kept (legacy, undocumented, provisional)",confirmed,FC
+ginger,ginger,Ginger,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+grape,grape ,Grapes,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+guar,pulsenes,Pulsesnes,proxy,"no FAOSTAT item of its own: Pulses nes, the N uptake proxy (n_uptake_other_crop_parameters.csv, L41)",confirmed,FC
+hemp,,,legacy,"Pfister has only 'Hemp tow waste' (m3 per t of fibre), the tool yield is true hemp raw or retted (L23): legacy ET kept (legacy, undocumented, provisional)",confirmed,FC
+lemon,lemonlime,Lemonsandlimes,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+citruslime,lemonlime,Lemonsandlimes,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+lentil,lentil,Lentils,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+linseed,linseed,Linseed,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+maizegrain,maize,Maize,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+mandarin,tangetc,Tangerinesmandarinsclem,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+mango,mango,Mangoesmangosteensguavas,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+mint,,,legacy,"no peppermint in Pfister & Bayer 2014: legacy GLO 0 kept (legacy, undocumented, provisional)",confirmed,FC
+mulberry,,,legacy,"no FAOSTAT item and no Pfister crop: legacy ET kept (legacy, undocumented, provisional)",confirmed,FC
+oat,oats,Oats,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+olive,olive,Olives,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+onion,onion,Onionsdry,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+orange_fresh,orange,Oranges,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+orange_processing,orange,Oranges,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+palmtree,oilpalm,Oilpalmfruit,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+peach,peachetc,peachetc,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+peanut,groundnut,Groundnutswithshell,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+pear,pear,Pears,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+pearl_millet,millet,Millet,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+pineapple,pineapple,Pineapples,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+pomegranate,fruitnes,FruitFreshNes,proxy,"no FAOSTAT item of its own: Fruit, fresh nes, the N uptake proxy (n_uptake_other_crop_parameters.csv, L41)",confirmed,FC
+potato,potato,Potatoes,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+rapeseed,rapeseed,Rapeseed,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+raspberry,raspberry,Raspberries,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+rice,rice,Ricepaddy,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+sesame_seed,sesame,Sesameseed,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+soybean,soybean,Soybeans,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+strawberry_fresh,strawberry,Strawberries,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+strawberry_processing,strawberry,Strawberries,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+sugarbeet,sugarbeet,Sugarbeet,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+sugarcane,sugarcane,Sugarcane,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+sunflower,sunflower,Sunflowerseed,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+sweetcorn,greencorn,Maizegreen,direct,Green corn (maize); the legacy matrix used the maize grain values,confirmed,FC
+tea,tea,Tea,direct,"Pfister production 2000 = made tea (world 2.86 Mt vs 12.7 Mt green leaf in the current FAOSTAT item, ratio 4.4): no conversion, unlike the yield (L23)",confirmed,FC
+tomato_fresh,tomato,Tomatoes,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+tomato_processing,tomato,Tomatoes,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
+turmeric,ginger,Ginger,proxy,"Ginger, as the default yield (L23)",confirmed,FC
+wheat,wheat,Wheat,direct,same FAOSTAT item as the default yield (L23),confirmed,FC

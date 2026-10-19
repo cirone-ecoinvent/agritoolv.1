@@ -1,0 +1,68 @@
+crop,mialyk_crop_code,mialyk_crop_name,use,kg_item_per_kg_product,note,status,reviewed_by
+almond,221,"Almonds, in shell",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+apple,515,Apples,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+apricot,526,Apricots,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+asparagus_green,367,Asparagus,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+asparagus_white,367,Asparagus,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+banana,486,Bananas,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+bellpepper,401,"Chillies and peppers, green (Capsicum spp. and Pimenta spp.)",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+blueberry,552,Blueberries,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+cabbage_red,358,Cabbages,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+cabbage_white,358,Cabbages,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+carrot,426,Carrots and turnips,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+cashew,217,"Cashew nuts, in shell",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+cassava,125,"Cassava, fresh",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+castor_beans,265,Castor oil seeds,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+chick_pea,191,"Chick peas, dry",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+chilli,401,"Chillies and peppers, green (Capsicum spp. and Pimenta spp.)",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+cocoa,661,Cocoa beans,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+coconut,249,"Coconuts, in shell",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+coffee_arabica,656,"Coffee, green",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+coffee_robusta,656,"Coffee, green",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+coriander,711,"Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+cotton,328,"Seed cotton, unginned",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+cranberry,554,Cranberries,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+eggplant,399,Eggplants (aubergines),direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+flax,,,legacy,,"Mialyk has only 773 'Flax, processed but not spun', not the item of the tool yield (771 'Flax; raw or retted', L23): legacy ET kept",confirmed,FC
+ginger,720,"Ginger, raw",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+grape,560,Grapes,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+guar,211,Other pulses n.e.c.,proxy,,"no FAOSTAT item of its own; Mialyk item of the N uptake proxy (n_uptake_other_crop_parameters.csv, L41)",confirmed,FC
+hemp,777,"True hemp, raw or retted",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+lemon,497,Lemons and limes,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+citruslime,497,Lemons and limes,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+lentil,201,"Lentils, dry",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+linseed,333,Linseed,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+maizegrain,56,Maize (corn),direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+mandarin,495,"Tangerines, mandarins, clementines",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+mango,571,"Mangoes, guavas and mangosteens",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+mint,748,"Peppermint, spearmint",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+mulberry,,,legacy,,no FAOSTAT item: legacy ET kept,confirmed,FC
+oat,75,Oats,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+olive,260,Olives,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+onion,403,"Onions and shallots, dry (excluding dehydrated)",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+orange_fresh,490,Oranges,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+orange_processing,490,Oranges,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+palmtree,254,Oil palm fruit,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+peach,534,Peaches and nectarines,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+peanut,242,"Groundnuts, excluding shelled",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+pear,521,Pears,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+pearl_millet,79,Millet,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+pineapple,574,Pineapples,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+pomegranate,619,"Other fruits, n.e.c.",proxy,,"no FAOSTAT item of its own; Mialyk item of the N uptake proxy (n_uptake_other_crop_parameters.csv, L41)",confirmed,FC
+potato,116,Potatoes,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+rapeseed,270,Rape or colza seed,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+raspberry,547,Raspberries,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+rice,27,Rice,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+sesame_seed,289,Sesame seed,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+soybean,236,Soya beans,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+strawberry_fresh,544,Strawberries,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+strawberry_processing,544,Strawberries,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+sugarbeet,157,Sugar beet,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+sugarcane,156,Sugar cane,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+sunflower,267,Sunflower seed,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+sweetcorn,446,Green corn (maize),direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+tea,667,Tea leaves,direct,4.5,FAOSTAT item of the default yield (L23); x 4.5 kg item per kg product as L23,confirmed,FC
+tomato_fresh,388,Tomatoes,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+tomato_processing,388,Tomatoes,direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+turmeric,720,"Ginger, raw",direct,,FAOSTAT item of the default yield (L23),confirmed,FC
+wheat,15,Wheat,direct,,FAOSTAT item of the default yield (L23),confirmed,FC

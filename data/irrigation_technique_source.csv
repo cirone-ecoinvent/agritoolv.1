@@ -1,0 +1,40 @@
+country,source,note,status,reviewed_by
+AR,aquastat,,confirmed,FC
+AU,aquastat,,confirmed,FC
+BE,aquastat,not in the 2020 export: sheet CH_BE_RU_CA-QC_VN (2005),confirmed,FC
+BR,aquastat,,confirmed,FC
+CA,aquastat,surface not reported: 0,confirmed,FC
+CH,aquastat,not in the 2020 export: sheet CH_BE_RU_CA-QC_VN (2006),confirmed,FC
+CI,aquastat,localized not reported: 0,confirmed,FC
+CL,aquastat,,confirmed,FC
+CN,aquastat,,confirmed,FC
+CO,aquastat,"surface irrigation from the row added manually to sheet Data (856.7 kha, no M49 code); without it the export gives no surface irrigation",confirmed,FC
+CR,aquastat,,confirmed,FC
+CS,aquastat,,confirmed,FC
+DE,aquastat,,confirmed,FC
+EC,aquastat,,confirmed,FC
+ES,aquastat,,confirmed,FC
+FI,aquastat,surface not reported: 0,confirmed,FC
+FR,aquastat,,confirmed,FC
+GH,aquastat,localized not reported: 0,confirmed,FC
+HU,aquastat,,confirmed,FC
+ID,aquastat,sprinkler and localized not reported: 0,confirmed,FC
+IL,aquastat,surface not reported: 0,confirmed,FC
+IN,aquastat,,confirmed,FC
+IT,aquastat,,confirmed,FC
+KE,aquastat,,confirmed,FC
+LK,aquastat,sprinkler and localized not reported: 0,confirmed,FC
+MA,aquastat,,confirmed,FC
+MX,aquastat,,confirmed,FC
+NL,legacy,"AQUASTAT export reports only localized irrigation (3 kha): legacy GD_crop shares kept (legacy, undocumented, provisional)",confirmed,FC
+NZ,aquastat,,confirmed,FC
+PE,aquastat,,confirmed,FC
+PH,aquastat,,confirmed,FC
+PL,aquastat,,confirmed,FC
+RU,aquastat,not in the 2020 export: sheet CH_BE_RU_CA-QC_VN (2006; round shares 60/30/10),confirmed,FC
+TH,aquastat,sprinkler and localized not reported: 0,confirmed,FC
+TR,aquastat,,confirmed,FC
+UA,aquastat,localized not reported: 0,confirmed,FC
+US,aquastat,,confirmed,FC
+VN,aquastat,2020 export; the 2006 shares of sheet CH_BE_RU_CA-QC_VN (90/5/5) are not used; localized not reported: 0,confirmed,FC
+ZA,aquastat,,confirmed,FC

@@ -1,0 +1,40 @@
+country,supplementary_iso3,supplementary_name,watershed_names,note,status,reviewed_by
+AR,ARG,Argentina,Argentina,,confirmed,FC
+AU,AUS,Australia,Australia,,confirmed,FC
+BE,BEL,Belgium,Belgium,,confirmed,FC
+BR,BRA,Brazil,Brazil,,confirmed,FC
+CA,CAN,Canada,Canada,,confirmed,FC
+CH,CHE,Switzerland,Switzerland,,confirmed,FC
+CI,CIV,Cote d'Ivoire,Cote d'Ivory,watershed file spells Cote d'Ivory,confirmed,FC
+CL,CHL,Chile,Chile,,confirmed,FC
+CN,CHN,China,China,,confirmed,FC
+CO,COL,Colombia,Colombia,,confirmed,FC
+CR,CRI,Costa Rica,Costa Rica,,confirmed,FC
+CS,SCG,Serbia and Montenegro,Serbia;Montenegro,"Pfister data of the year 2000: Serbia and Montenegro (supplementary); the watershed file has Serbia and Montenegro separately, both used",confirmed,FC
+DE,DEU,Germany,Germany,,confirmed,FC
+EC,ECU,Ecuador,Ecuador,,confirmed,FC
+ES,ESP,Spain,Spain,,confirmed,FC
+FI,FIN,Finland,Finland,,confirmed,FC
+FR,FRA,France,France,,confirmed,FC
+GH,GHA,Ghana,Ghana,,confirmed,FC
+HU,HUN,Hungary,Hungary,,confirmed,FC
+ID,IDN,Indonesia,Indonesia,,confirmed,FC
+IL,ISR,Israel,Israel,,confirmed,FC
+IN,IND,India,India,,confirmed,FC
+IT,ITA,Italy,Italy,,confirmed,FC
+KE,KEN,Kenya,Kenya,,confirmed,FC
+LK,LKA,Sri Lanka,Sri Lanka,,confirmed,FC
+MA,MAR,Morocco,Morocco,,confirmed,FC
+MX,MEX,Mexico,Mexico,,confirmed,FC
+NL,NLD,Netherlands,Netherlands,,confirmed,FC
+NZ,NZL,New Zealand,New Zealand,,confirmed,FC
+PE,PER,Peru,Peru,,confirmed,FC
+PH,PHL,Philippines,Philippines,,confirmed,FC
+PL,POL,Poland,Poland,,confirmed,FC
+RU,RUS,Russia,Russia,,confirmed,FC
+TH,THA,Thailand,Thailand,,confirmed,FC
+TR,TUR,Turkey,Turkey,,confirmed,FC
+UA,UKR,Ukraine,Ukraine,,confirmed,FC
+US,USA,United States,United States,,confirmed,FC
+VN,VNM,Vietnam,Vietnam,,confirmed,FC
+ZA,ZAF,South Africa,South Africa,,confirmed,FC
