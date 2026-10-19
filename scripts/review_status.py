@@ -26,6 +26,8 @@ Review tables (all in data/):
   mialyk2024_crop_mapping.csv             usable when status is confirmed (cross-check of the irrigation water, L44)
   pfister2014_crop_mapping.csv            usable when status is confirmed (default irrigation water, L44)
   pfister2014_country_mapping.csv         idem
+  ifastat_product_type_mapping.csv        usable when status is confirmed (mineral fertiliser mixes, L45)
+  ifastat_country_mapping.csv             idem
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -78,6 +80,8 @@ TABLES = [
     ("mialyk2024_crop_mapping.csv", ("confirmed",), ("crop", "mialyk_crop_code", "use", "status")),
     ("pfister2014_crop_mapping.csv", ("confirmed",), ("crop", "pfister_crop", "use", "status")),
     ("pfister2014_country_mapping.csv", ("confirmed",), ("country", "supplementary_name", "watershed_names", "status")),
+    ("ifastat_product_type_mapping.csv", ("confirmed",), ("ifastat_nutrient", "ifastat_product", "fertiliser_type", "fraction", "status")),
+    ("ifastat_country_mapping.csv", ("confirmed",), ("country", "ifastat_alpha3", "ifastat_country", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]
