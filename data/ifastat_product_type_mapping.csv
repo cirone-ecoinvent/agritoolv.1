@@ -1,0 +1,37 @@
+ifastat_nutrient,ifastat_product,fertiliser_type,fraction,note,status,reviewed_by
+Nitrogen,Ammonia,fert_n_ammonia_liquid,1,anhydrous ammonia applied directly; approved in chat 2026-10-19,confirmed,FC
+Nitrogen,Ammonium Nitrate,fert_n_ammonium_nitrate,1,same fertiliser; approved in chat 2026-10-19,confirmed,FC
+Nitrogen,Ammonium Sulphate,fert_n_ammonium_sulphate,1,same fertiliser; approved in chat 2026-10-19,confirmed,FC
+Nitrogen,Calcium Ammonium Nitrate,fert_n_lime_ammonium_nitrate,1,same fertiliser; approved in chat 2026-10-19,confirmed,FC
+Nitrogen,Urea,fert_n_urea,1,same fertiliser (the legacy mixes split IFA urea 50/50 between urea and urea AN); approved in chat 2026-10-19,confirmed,FC
+Nitrogen,Urea Ammonium Nitrate,fert_n_ureaAN,1,same fertiliser (the legacy mixes counted it as liquid ammonia); approved in chat 2026-10-19,confirmed,FC
+Nitrogen,Monoammonium Phosphate,fert_n_mono_ammonium_phosphate,1,same fertiliser (the legacy mixes split MAP + DAP 50/50); approved in chat 2026-10-19,confirmed,FC
+Nitrogen,Diammonium Phosphate,fert_n_di_ammonium_phosphate,1,same fertiliser (the legacy mixes split MAP + DAP 50/50); approved in chat 2026-10-19,confirmed,FC
+Nitrogen,Potassium Nitrate,fert_n_potassium_nitrate,1,same fertiliser; approved in chat 2026-10-19,confirmed,FC
+Nitrogen,NK,fert_n_potassium_nitrate,1,no NK type: rule of the legacy mixes; approved in chat 2026-10-19,confirmed,FC
+Nitrogen,NP,fert_n_an_phosphate,1,no NP type: rule of the legacy mixes; approved in chat 2026-10-19,confirmed,FC
+Nitrogen,NPK,fert_n_mono_ammonium_phosphate,1/3,"no NPK type: 1/3 each MAP, DAP and ammonium nitrate phosphate, so that the NPK nitrogen has the NH3 factors of the EMEP/EEA 2023 Table 3-2 row NPK mixtures (84 and 187 g NH3/kg N = ammonium phosphate = NP mixtures); the legacy rule (1/2 potassium nitrate + 1/6 each) gave 54 and 120; approved in chat 2026-10-19",confirmed,FC
+Nitrogen,NPK,fert_n_di_ammonium_phosphate,1/3,"no NPK type: 1/3 each MAP, DAP and ammonium nitrate phosphate, so that the NPK nitrogen has the NH3 factors of the EMEP/EEA 2023 Table 3-2 row NPK mixtures (84 and 187 g NH3/kg N = ammonium phosphate = NP mixtures); the legacy rule (1/2 potassium nitrate + 1/6 each) gave 54 and 120; approved in chat 2026-10-19",confirmed,FC
+Nitrogen,NPK,fert_n_an_phosphate,1/3,"no NPK type: 1/3 each MAP, DAP and ammonium nitrate phosphate, so that the NPK nitrogen has the NH3 factors of the EMEP/EEA 2023 Table 3-2 row NPK mixtures (84 and 187 g NH3/kg N = ammonium phosphate = NP mixtures); the legacy rule (1/2 potassium nitrate + 1/6 each) gave 54 and 120; approved in chat 2026-10-19",confirmed,FC
+Nitrogen,Other,,,"no type: left out, the shares of the other products are scaled to 1 (rule of the legacy mixes); approved in chat 2026-10-19",confirmed,FC
+Phosphorus,Triple Superphosphate,fert_p_triple_superphosphate,1,same fertiliser; approved in chat 2026-10-19,confirmed,FC
+Phosphorus,Single Superphosphate,fert_p_superphosphate,1,same fertiliser; approved in chat 2026-10-19,confirmed,FC
+Phosphorus,Monoammonium Phosphate,fert_p_mono_ammonium_phosphate,1,same fertiliser (the legacy mixes split MAP + DAP 50/50); approved in chat 2026-10-19,confirmed,FC
+Phosphorus,Diammonium Phosphate,fert_p_di_ammonium_phosphate,1,same fertiliser (the legacy mixes split MAP + DAP 50/50); approved in chat 2026-10-19,confirmed,FC
+Phosphorus,Phosphate Rock,fert_p_hypophosphate_raw_phosphate,1,phosphate rock applied directly (raw phosphate); approved in chat 2026-10-19,confirmed,FC
+Phosphorus,NP,fert_p_an_phosphate,1,no NP type: rule of the legacy mixes; approved in chat 2026-10-19,confirmed,FC
+Phosphorus,NPK,fert_p_mono_ammonium_phosphate,1/3,"no NPK type: rule of the legacy mixes, 1/3 each MAP, DAP and ammonium nitrate phosphate; approved in chat 2026-10-19",confirmed,FC
+Phosphorus,NPK,fert_p_di_ammonium_phosphate,1/3,"no NPK type: rule of the legacy mixes, see the MAP row; approved in chat 2026-10-19",confirmed,FC
+Phosphorus,NPK,fert_p_an_phosphate,1/3,"no NPK type: rule of the legacy mixes, see the MAP row; approved in chat 2026-10-19",confirmed,FC
+Phosphorus,PK,fert_p_mono_ammonium_phosphate,1/3,"no PK type: rule of the legacy mixes, 1/3 each MAP, DAP and ammonium nitrate phosphate; approved in chat 2026-10-19",confirmed,FC
+Phosphorus,PK,fert_p_di_ammonium_phosphate,1/3,"no PK type: rule of the legacy mixes, see the MAP row; approved in chat 2026-10-19",confirmed,FC
+Phosphorus,PK,fert_p_an_phosphate,1/3,"no PK type: rule of the legacy mixes, see the MAP row; approved in chat 2026-10-19",confirmed,FC
+Phosphorus,Other,fert_p_hypophosphate_raw_phosphate,1/2,"no type: rule of the legacy mixes, 1/2 raw phosphate and 1/2 basic slag; approved in chat 2026-10-19",confirmed,FC
+Phosphorus,Other,fert_p_ground_basic_slag,1/2,"no type: rule of the legacy mixes, see the raw phosphate row; approved in chat 2026-10-19",confirmed,FC
+Potassium,Potassium Chloride,fert_k_potassium_salt,1,same fertiliser; approved in chat 2026-10-19,confirmed,FC
+Potassium,Potassium Sulphate,fert_k_potassium_sulphate,1,same fertiliser; approved in chat 2026-10-19,confirmed,FC
+Potassium,Potassium Nitrate,fert_k_potassium_nitrate,1,same fertiliser; approved in chat 2026-10-19,confirmed,FC
+Potassium,NK,fert_k_potassium_nitrate,1,no NK type: rule of the legacy mixes; approved in chat 2026-10-19,confirmed,FC
+Potassium,NPK,,,"no NPK type: left out, the K2O of the compounds takes the mix of the other potassium products of the country (the legacy rule counted it as potassium nitrate, which is 0-17 % of the K2O as a product); approved in chat 2026-10-19",confirmed,FC
+Potassium,PK,,,"no PK type: left out, the K2O of the compounds takes the mix of the other potassium products of the country (the legacy rule counted it as potassium nitrate, which is 0-17 % of the K2O as a product); approved in chat 2026-10-19",confirmed,FC
+Potassium,Other,fert_k_patent_potassium,1,no type: rule of the legacy mixes; approved in chat 2026-10-19,confirmed,FC

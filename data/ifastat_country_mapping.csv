@@ -1,0 +1,40 @@
+country,ifastat_alpha3,ifastat_country,note,status,reviewed_by
+AR,ARG,Argentina,approved in chat 2026-10-19,confirmed,FC
+AU,AUS,Australia,approved in chat 2026-10-19,confirmed,FC
+BE,BEL,Belgium,approved in chat 2026-10-19,confirmed,FC
+BR,BRA,Brazil,approved in chat 2026-10-19,confirmed,FC
+CA,CAN,Canada,approved in chat 2026-10-19,confirmed,FC
+CH,CHE,Switzerland,approved in chat 2026-10-19,confirmed,FC
+CI,CIV,Côte d'Ivoire,approved in chat 2026-10-19,confirmed,FC
+CL,CHL,Chile,approved in chat 2026-10-19,confirmed,FC
+CN,CHN,China,"without Taiwan (TWN, a separate row of IFASTAT); mainland China as in faostat_country_mapping.csv; approved in chat 2026-10-19",confirmed,FC
+CO,COL,Colombia,approved in chat 2026-10-19,confirmed,FC
+CR,CRI,Costa Rica,approved in chat 2026-10-19,confirmed,FC
+CS,SRB,Serbia,tool code CS (Serbia and Montenegro); IFASTAT has Serbia; approved in chat 2026-10-19,confirmed,FC
+DE,DEU,Germany,approved in chat 2026-10-19,confirmed,FC
+EC,ECU,Ecuador,approved in chat 2026-10-19,confirmed,FC
+ES,ESP,Spain,approved in chat 2026-10-19,confirmed,FC
+FI,FIN,Finland,approved in chat 2026-10-19,confirmed,FC
+FR,FRA,France,approved in chat 2026-10-19,confirmed,FC
+GH,GHA,Ghana,approved in chat 2026-10-19,confirmed,FC
+HU,HUN,Hungary,approved in chat 2026-10-19,confirmed,FC
+ID,IDN,Indonesia,approved in chat 2026-10-19,confirmed,FC
+IL,ISR,Israel,approved in chat 2026-10-19,confirmed,FC
+IN,IND,India,approved in chat 2026-10-19,confirmed,FC
+IT,ITA,Italy,approved in chat 2026-10-19,confirmed,FC
+KE,KEN,Kenya,approved in chat 2026-10-19,confirmed,FC
+LK,LKA,Sri Lanka,approved in chat 2026-10-19,confirmed,FC
+MA,MAR,Morocco,approved in chat 2026-10-19,confirmed,FC
+MX,MEX,Mexico,approved in chat 2026-10-19,confirmed,FC
+NL,NLD,Netherlands,approved in chat 2026-10-19,confirmed,FC
+NZ,NZL,New Zealand,approved in chat 2026-10-19,confirmed,FC
+PE,PER,Peru,approved in chat 2026-10-19,confirmed,FC
+PH,PHL,Philippines,approved in chat 2026-10-19,confirmed,FC
+PL,POL,Poland,approved in chat 2026-10-19,confirmed,FC
+RU,RUS,Russia,approved in chat 2026-10-19,confirmed,FC
+TH,THA,Thailand,approved in chat 2026-10-19,confirmed,FC
+TR,TUR,Türkiye,approved in chat 2026-10-19,confirmed,FC
+UA,UKR,Ukraine,approved in chat 2026-10-19,confirmed,FC
+US,USA,USA,approved in chat 2026-10-19,confirmed,FC
+VN,VNM,Vietnam,approved in chat 2026-10-19,confirmed,FC
+ZA,ZAF,South Africa,approved in chat 2026-10-19,confirmed,FC
