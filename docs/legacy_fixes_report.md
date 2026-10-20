@@ -1952,3 +1952,77 @@ Regression (`scripts/compare_regression.py`): no change (the three cases give th
 Open: a real NPK (NP, NK, PK) type in the tool (Master Data "NPK (15-15-15) fertiliser", EMEP "NPK mixtures"; input
 template, product, NH3 and heavy-metal mappings; P and K contents of the Master Data product); the shares need a new
 IFASTAT export to be updated.
+
+## 34. Default seed of the sown crops from FAOSTAT SUA and the FAO Technical Conversion Factors (decision L46, 2026-10-19)
+
+The default seed (`seeds`, `seed_quantities`, kg per ha and crop cycle, used when the template gives no seed) of the 16
+crops with use `sua_tcf` in `seed_rate_crop_mapping.csv` (signed by FC 2026-10-20) comes from `default_seed.csv`, built
+by `scripts/build_default_seed.py` from two FAO sources:
+
+- FAOSTAT Supply Utilization Accounts, element 5525 Seed (t), bulk download supplied by FC, divided by the FAOSTAT QCL
+  area harvested of the next year (the seed of year t is the seeding rate x the area sown in year t + 1, FAOSTAT New
+  Food Balances, section V Seed); mean of the seed years 2021-2023; GLO = FAOSTAT World;
+- FAO Technical Conversion Factors for Agricultural Commodities, column 'Seeding rates' (kg/ha, national averages
+  1992-1996), extracted from the PDF for the 39 countries (`fao_tcf_seed_rates.csv`, 354 rates, confirmed by FC).
+
+Rule (FC, option 1): a country takes its SUA rate when it lies within a factor 2 (`seed_rate_max_ratio`) of its TCF
+rate, otherwise the TCF rate; without a TCF rate, the SUA rate when within a factor 2 of GLO, otherwise GLO. The
+column `source` of `default_seed.csv` gives the origin of each value.
+
+| Crop | Legacy GLO | New GLO (SUA World) | Countries SUA / TCF / GLO |
+|---|---|---|---|
+| wheat | none (0) | 156.4 | 29 / 3 / 7 |
+| maize grain | 25 | 37.8 | 28 / 10 / 1 |
+| oat | 190 | 264.7 | 22 / 6 / 11 |
+| rice | 141 | 111.1 | 22 / 7 / 10 |
+| potato | 2500 | 1706.5 | 32 / 5 / 2 |
+| soybean | 110 | 62.6 | 21 / 3 / 15 |
+| sunflower | 3.75 | 28.9 | 15 / 8 / 16 |
+| rapeseed | 5.6 | 14.7 | 9 / 9 / 21 |
+| linseed | 40 | 52.0 | 11 / 9 / 19 |
+| lentil | 0 | 48.4 | 12 / 7 / 20 |
+| chick pea | 0 | 41.0 | 9 / 3 / 27 |
+| peanut | 100 | 81.5 | 17 / 8 / 14 |
+| pearl millet | 100 | 19.2 | 6 / 10 / 23 |
+| castor beans | 0 | 9.0 | 5 / 6 / 28 |
+| cotton (seed 329 / area 328) | 0 | 35.5 | 20 / 3 / 16 |
+| sesame | 100 | 15.4 | 9 / 4 / 26 |
+
+(kg/ha.) The legacy values (GD_crop Seeds_L0) were one GLO value per crop without source, the same for all countries.
+
+| Crop, country | SUA | TCF | Default (source) |
+|---|---|---|---|
+| wheat FR | 149.3 | 162 | 149.3 (SUA) |
+| wheat IN | 95.9 | 185 | 95.9 (SUA) |
+| wheat IT | 314.0 | 284 | 314.0 (SUA) |
+| rice IN | 69.4 | 163 | 163 (TCF) |
+| rice CN | 226.1 | 140 | 226.1 (SUA) |
+| maize grain NL | 908.3 | 25 | 25 (TCF; seed of silage maize) |
+| sunflower DE | 805.0 | 11 | 11 (TCF) |
+| potato PH | 25.3 | 2250 | 2250 (TCF) |
+| soybean ZA | 9.7 | 75 | 75 (TCF) |
+| chick pea CO | 3576 | - | 41.0 (GLO) |
+| castor beans MX | 2248 | - | 9.0 (GLO) |
+
+Of the 1110 SUA seed values of the 39 countries in 2021-2023, 841 (76 %) are FAO estimates or imputations; 243 of the
+328 SUA-TCF pairs of the same country agree within a factor 2. The SUA rate divides by the area harvested (QCL has no
+sown area) and includes the seed of crops harvested green or for fodder.
+
+Flagged for review (FC: rule kept as is):
+
+- the TCF rates of UA oat (450, SUA 144.6), UA sunflower (65, SUA 11.2) and PL rapeseed (100, SUA 7.7) win over plausible
+  SUA rates; the three values are printed so in the PDF;
+- CH sunflower and rapeseed (SUA 4.5 and 5.0, no TCF rate) take the GLO 28.9 and 14.7;
+- the TCF linseed rate of BE (150) is probably fibre flax.
+
+The 9 sown crops without usable data keep the legacy GLO values (`_LEGACY_SEEDS` in `defaultMatrixSeed.py`, legacy,
+undocumented, provisional): carrot 4.2, sugar beet 2.1, sweet corn 25, turmeric 100, cassava, coriander, flax, guar and
+hemp 0; the reason per crop is in the note column of the mapping.
+
+Effect: wheat gets a default seed for the first time (seed exchange and heavy metals of the seed); castor beans, chick
+pea, cotton and lentil from 0 to 9-48 kg/ha.
+
+Regression (`scripts/compare_regression.py`): no change (the three cases give the seed).
+
+Open: the factor 2 and the flagged cases above; the 9 legacy crops; seedlings and trees (part B, ecoinvent 3.12), where
+the legacy onion (3.30) and tomato (3.125) are seedlings per kg of product, not per ha.

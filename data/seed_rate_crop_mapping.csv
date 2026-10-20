@@ -1,0 +1,26 @@
+crop,use,faostat_seed_item_code,faostat_seed_item,faostat_area_item_code,tcf_items,note,status,reviewed_by
+wheat,sua_tcf,15,Wheat,15,Wheat|Blé|Trigo,,confirmed,FC
+maizegrain,sua_tcf,56,Maize (corn),56,Maize|Maïs|Maíz,"SUA seed of maize also covers maize harvested green (silage), which is not in the area harvested of item 56; such countries fall outside the x2 check and take the TCF rate",confirmed,FC
+oat,sua_tcf,75,Oats,75,Oats|Avoine|Avena,,confirmed,FC
+rice,sua_tcf,27,Rice,27,"Rice, Paddy|Riz, Paddy|Arroz en Cáscara",paddy rice,confirmed,FC
+potato,sua_tcf,116,Potatoes,116,Potatoes|Pommes de Terre|Patatas,seed potatoes,confirmed,FC
+soybean,sua_tcf,236,Soya beans,236,Soybeans|Graines de Soja|Soja,,confirmed,FC
+sunflower,sua_tcf,267,Sunflower seed,267,Sunflower Seed|Graines de Tournesol|Semilla de Girasol,,confirmed,FC
+rapeseed,sua_tcf,270,Rape or colza seed,270,Rapeseed|Graines de Colza|Semillas de Colza,,confirmed,FC
+linseed,sua_tcf,333,Linseed,333,Linseed|Graines de Lin|Linaza,oil linseed; the TCF rate of BE (150 kg/ha) is probably fibre flax,confirmed,FC
+lentil,sua_tcf,201,Lentils; dry,201,Lentils|Lentilles|Lentejas,,confirmed,FC
+chick_pea,sua_tcf,191,Chick peas; dry,191,Chick-Peas|Pois Chiches|Garbanzos,,confirmed,FC
+peanut,sua_tcf,242,Groundnuts; excluding shelled,242,Groundnuts in Shell|Arachides Non décortiq|Maní Con Cáscara,groundnuts in shell,confirmed,FC
+pearl_millet,sua_tcf,79,Millet,79,Millet|Mijo,FAOSTAT and TCF item group all millets,confirmed,FC
+castor_beans,sua_tcf,265,Castor oil seeds,265,Castor Beans|Graines de Ricin|Ricino,,confirmed,FC
+cotton,sua_tcf,329,Cotton seed,328,Cottonseed|Graines de Coton|Semilla de Algodón,"seed is recorded on item 329 Cotton seed; the area is that of item 328 Seed cotton, unginned",confirmed,FC
+sesame_seed,sua_tcf,289,Sesame seed,289,Sesame Seed|Graines de Sésame|Semilla de Sésamo,,confirmed,FC
+carrot,legacy,,,,,no SUA seed for item 426; TCF has only MA (3 kg/ha); legacy value kept,confirmed,FC
+cassava,legacy,,,,,planted from stem cuttings; SUA seed of item 125 only for CO and EC; no TCF rate; legacy value kept,confirmed,FC
+coriander,legacy,,,,,no SUA seed for item 711 (group of seed spices); no TCF rate; legacy value kept,confirmed,FC
+flax,legacy,,,,,fibre flax: no SUA seed for item 771; the linseed rates are for oil linseed; legacy value kept,confirmed,FC
+guar,legacy,,,,,no FAOSTAT item (faostat_crop_item_mapping.csv); legacy value kept,confirmed,FC
+hemp,legacy,,,,,"SUA seed of item 336 Hempseed only for CL, RU and TR (World 5.5 kg per ha of item 777); no TCF rate; legacy value kept",confirmed,FC
+sugarbeet,legacy,,,,,no SUA seed for item 157; no TCF rate; legacy value kept,confirmed,FC
+sweetcorn,legacy,,,,,no SUA seed for item 446 Green corn; no TCF rate; legacy value kept,confirmed,FC
+turmeric,legacy,,,,,planted from rhizomes; no SUA seed for item 720 Ginger (proxy item of turmeric); no TCF rate; legacy value kept,confirmed,FC

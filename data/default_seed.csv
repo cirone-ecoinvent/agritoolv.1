@@ -1,0 +1,641 @@
+crop,country,seed_kg_per_ha,source,sua_kg_per_ha,sua_n_years,sua_flags,tcf_kg_per_ha,note
+wheat,AR,81.605,faostat_sua,81.605,3,I:3,120.0,
+wheat,AU,59.105,faostat_sua,59.105,3,E:1 I:2,40.0,
+wheat,BE,188.292,faostat_sua,188.292,3,I:3,159.0,
+wheat,BR,102.072,faostat_sua,102.072,3,E:3,85.0,
+wheat,CA,96.009,faostat_sua,96.009,3,A:3,95.0,
+wheat,CL,97.644,faostat_sua,97.644,3,I:3,160.0,
+wheat,CN,171.308,faostat_sua,171.308,3,I:3,160.0,
+wheat,CO,99.0,fao_tcf,219.175,3,A:2 I:1,99.0,SUA rate not within x2 of the TCF rate
+wheat,CR,156.441,glo,,0,,,no SUA value and no TCF rate
+wheat,CI,156.441,glo,,0,,,no SUA value and no TCF rate
+wheat,EC,86.567,faostat_sua,86.567,3,A:3,131.0,
+wheat,FI,325.465,faostat_sua,325.465,3,A:3,266.0,
+wheat,FR,149.269,faostat_sua,149.269,3,I:3,162.0,
+wheat,DE,168.461,faostat_sua,168.461,3,A:3,180.0,
+wheat,GH,156.441,glo,,0,,,no SUA value and no TCF rate
+wheat,HU,252.462,faostat_sua,252.462,3,A:3,240.0,
+wheat,IN,95.926,faostat_sua,95.926,3,I:3,185.0,
+wheat,ID,156.441,glo,,0,,,no SUA value and no TCF rate
+wheat,IL,295.486,faostat_sua,295.486,3,E:1 I:2,289.0,
+wheat,IT,314.046,faostat_sua,314.046,3,A:3,284.0,
+wheat,KE,88.907,faostat_sua,88.907,3,A:3,79.0,
+wheat,MX,193.032,faostat_sua,193.032,3,A:3,105.0,
+wheat,MA,129.936,faostat_sua,129.936,3,E:3,100.0,
+wheat,NL,173.0,fao_tcf,560.997,3,E:2 I:1,173.0,SUA rate not within x2 of the TCF rate
+wheat,NZ,162.13,faostat_sua,162.13,3,I:3,120.0,
+wheat,PE,128.1,faostat_sua,128.1,3,I:3,104.0,
+wheat,PH,156.441,glo,,0,,,no SUA value and no TCF rate
+wheat,PL,195.929,faostat_sua,195.929,3,A:3,255.0,
+wheat,RU,268.738,faostat_sua,268.738,3,I:3,295.0,
+wheat,CS,292.208,faostat_sua,292.208,3,A:2 I:1,250.0,
+wheat,ZA,120.0,fao_tcf,35.481,3,A:3,120.0,SUA rate not within x2 of the TCF rate
+wheat,ES,218.693,faostat_sua,218.693,3,A:3,180.0,
+wheat,LK,156.441,glo,,0,,,no SUA value and no TCF rate
+wheat,CH,200.527,faostat_sua,200.527,3,A:2 I:1,208.0,
+wheat,TH,131.643,faostat_sua,131.643,3,I:3,150.0,
+wheat,TR,174.368,faostat_sua,174.368,3,A:1 I:2,184.0,
+wheat,UA,255.788,faostat_sua,255.788,3,A:1 I:2,380.0,
+wheat,US,117.15,faostat_sua,117.15,3,A:3,92.0,
+wheat,VN,156.441,glo,,0,,,no SUA value and no TCF rate
+wheat,GLO,156.441,faostat_sua,156.441,3,E:3,,FAOSTAT World
+maizegrain,AR,35.67,faostat_sua,35.67,3,I:3,23.0,
+maizegrain,AU,14.057,faostat_sua,14.057,3,I:3,18.0,
+maizegrain,BE,20.0,fao_tcf,323.479,3,I:3,20.0,SUA rate not within x2 of the TCF rate
+maizegrain,BR,15.901,faostat_sua,15.901,3,I:3,24.0,
+maizegrain,CA,23.0,fao_tcf,10.912,3,A:3,23.0,SUA rate not within x2 of the TCF rate
+maizegrain,CL,20.0,fao_tcf,97.73,3,I:3,20.0,SUA rate not within x2 of the TCF rate
+maizegrain,CN,55.473,faostat_sua,55.473,3,I:3,50.0,
+maizegrain,CO,22.777,faostat_sua,22.777,3,A:2 I:1,30.0,
+maizegrain,CR,16.0,fao_tcf,5.363,3,A:2 I:1,16.0,SUA rate not within x2 of the TCF rate
+maizegrain,CI,30.0,fao_tcf,85.456,3,I:3,30.0,SUA rate not within x2 of the TCF rate
+maizegrain,EC,17.0,fao_tcf,4.586,3,A:3,17.0,SUA rate not within x2 of the TCF rate
+maizegrain,FI,37.817,glo,,0,,,no SUA value and no TCF rate
+maizegrain,FR,56.167,faostat_sua,56.167,3,I:3,31.0,
+maizegrain,DE,31.0,fao_tcf,135.363,3,A:3,31.0,SUA rate not within x2 of the TCF rate
+maizegrain,GH,25.492,faostat_sua,25.492,3,I:3,30.0,
+maizegrain,HU,34.36,faostat_sua,34.36,3,A:3,52.0,
+maizegrain,IN,96.112,faostat_sua,96.112,3,I:3,109.0,
+maizegrain,ID,24.728,faostat_sua,24.728,3,A:3,25.0,
+maizegrain,IL,16.675,faostat_sua,16.675,3,I:3,15.0,
+maizegrain,IT,52.268,faostat_sua,52.268,3,A:3,30.0,
+maizegrain,KE,28.233,faostat_sua,28.233,3,A:3,30.0,
+maizegrain,MX,27.374,faostat_sua,27.374,3,A:3,50.0,
+maizegrain,MA,30.494,faostat_sua,30.494,3,E:2 I:1,40.0,
+maizegrain,NL,25.0,fao_tcf,908.26,3,I:3,25.0,SUA rate not within x2 of the TCF rate
+maizegrain,NZ,15.256,faostat_sua,15.256,3,I:3,18.0,
+maizegrain,PE,68.077,faostat_sua,68.077,3,I:3,80.0,
+maizegrain,PH,20.293,faostat_sua,20.293,3,A:3,20.0,
+maizegrain,PL,38.591,faostat_sua,38.591,3,A:3,66.0,
+maizegrain,RU,32.963,faostat_sua,32.963,3,I:3,30.0,
+maizegrain,CS,26.464,faostat_sua,26.464,3,A:2 I:1,44.0,
+maizegrain,ZA,13.127,faostat_sua,13.127,3,A:3,14.0,
+maizegrain,ES,29.0,fao_tcf,60.608,3,A:3,29.0,SUA rate not within x2 of the TCF rate
+maizegrain,LK,21.596,faostat_sua,21.596,3,A:2 I:1,19.0,
+maizegrain,CH,31.0,fao_tcf,135.315,3,A:2 I:1,31.0,SUA rate not within x2 of the TCF rate
+maizegrain,TH,20.64,faostat_sua,20.64,3,I:3,19.0,
+maizegrain,TR,49.791,faostat_sua,49.791,3,A:1 I:2,35.0,
+maizegrain,UA,37.757,faostat_sua,37.757,3,A:1 I:2,29.0,
+maizegrain,US,23.504,faostat_sua,23.504,3,A:3,18.0,
+maizegrain,VN,31.301,faostat_sua,31.301,3,I:3,25.0,
+maizegrain,GLO,37.817,faostat_sua,37.817,3,E:3,,FAOSTAT World
+oat,AR,71.0,fao_tcf,511.405,3,E:2 I:1,71.0,SUA rate not within x2 of the TCF rate
+oat,AU,75.312,faostat_sua,75.312,3,E:1 I:2,90.0,
+oat,BE,215.77,faostat_sua,215.77,3,I:3,150.0,
+oat,BR,101.935,faostat_sua,101.935,3,E:3,100.0,
+oat,CA,110.123,faostat_sua,110.123,3,A:3,83.0,
+oat,CL,90.085,faostat_sua,90.085,3,I:3,149.0,
+oat,CN,78.687,faostat_sua,78.687,3,I:3,85.0,
+oat,CO,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,CR,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,CI,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,EC,62.877,faostat_sua,62.877,3,I:3,62.0,
+oat,FI,224.378,faostat_sua,224.378,3,I:3,205.0,
+oat,FR,142.934,faostat_sua,142.934,3,I:3,170.0,
+oat,DE,158.533,faostat_sua,158.533,3,A:3,150.0,
+oat,GH,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,HU,257.553,faostat_sua,257.553,3,E:1 I:2,144.0,
+oat,IN,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,ID,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,IL,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,IT,214.26,faostat_sua,214.26,3,I:3,239.0,
+oat,KE,92.959,faostat_sua,92.959,3,I:3,50.0,
+oat,MX,85.498,faostat_sua,85.498,3,I:3,50.0,
+oat,MA,40.928,faostat_sua,40.928,3,E:2 I:1,80.0,
+oat,NL,258.243,faostat_sua,258.243,3,I:3,180.0,
+oat,NZ,136.378,faostat_sua,136.378,3,I:3,110.0,
+oat,PE,36.0,fao_tcf,73.032,3,I:3,36.0,SUA rate not within x2 of the TCF rate
+oat,PH,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,PL,313.0,fao_tcf,646.644,3,E:3,313.0,SUA rate not within x2 of the TCF rate
+oat,RU,515.76,faostat_sua,515.76,3,E:1 I:2,325.0,
+oat,CS,111.08,faostat_sua,111.08,3,I:3,140.0,
+oat,ZA,25.0,fao_tcf,181.174,3,A:3,25.0,SUA rate not within x2 of the TCF rate
+oat,ES,136.913,faostat_sua,136.913,3,A:3,233.0,
+oat,LK,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,CH,452.348,faostat_sua,452.348,3,A:2 I:1,255.0,
+oat,TH,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,TR,141.436,faostat_sua,141.436,3,A:1 I:2,165.0,
+oat,UA,450.0,fao_tcf,144.605,3,A:1 I:2,450.0,SUA rate not within x2 of the TCF rate
+oat,US,93.0,fao_tcf,276.565,3,A:3,93.0,SUA rate not within x2 of the TCF rate
+oat,VN,264.727,glo,,0,,,no SUA value and no TCF rate
+oat,GLO,264.727,faostat_sua,264.727,3,E:3,,FAOSTAT World
+rice,AR,196.786,faostat_sua,196.786,3,I:3,199.0,
+rice,AU,105.413,faostat_sua,105.413,3,E:1 I:2,101.0,
+rice,BE,111.073,glo,,0,,,no SUA value and no TCF rate
+rice,BR,103.668,faostat_sua,103.668,3,E:3,76.0,
+rice,CA,111.073,glo,,0,,,no SUA value and no TCF rate
+rice,CL,118.664,faostat_sua,118.664,3,I:3,160.0,
+rice,CN,226.137,faostat_sua,226.137,3,I:3,140.0,
+rice,CO,177.408,faostat_sua,177.408,3,A:2 I:1,149.0,
+rice,CR,155.002,faostat_sua,155.002,3,A:2 I:1,138.0,
+rice,CI,109.0,fao_tcf,26.404,3,I:3,109.0,SUA rate not within x2 of the TCF rate
+rice,EC,98.0,fao_tcf,17.325,3,A:3,98.0,SUA rate not within x2 of the TCF rate
+rice,FI,111.073,glo,,0,,,no SUA value and no TCF rate
+rice,FR,197.678,faostat_sua,197.678,3,I:3,123.0,
+rice,DE,111.073,glo,,0,,,no SUA value and no TCF rate
+rice,GH,28.463,faostat_sua,28.463,3,I:3,55.0,
+rice,HU,175.449,faostat_sua,175.449,3,A:1 I:2,216.0,
+rice,IN,163.0,fao_tcf,69.374,3,I:3,163.0,SUA rate not within x2 of the TCF rate
+rice,ID,26.245,faostat_sua,26.245,3,A:3,36.0,
+rice,IL,111.073,glo,,0,,,no SUA value and no TCF rate
+rice,IT,185.045,faostat_sua,185.045,3,I:3,192.0,
+rice,KE,40.661,faostat_sua,40.661,3,A:3,69.0,
+rice,MX,59.0,fao_tcf,144.123,3,A:3,59.0,SUA rate not within x2 of the TCF rate
+rice,MA,319.307,faostat_sua,319.307,3,I:3,175.0,
+rice,NL,111.073,glo,,0,,,no SUA value and no TCF rate
+rice,NZ,111.073,glo,,0,,,no SUA value and no TCF rate
+rice,PE,73.803,faostat_sua,73.803,3,I:3,75.0,
+rice,PH,52.073,faostat_sua,52.073,3,A:2 I:1,75.0,
+rice,PL,111.073,glo,,0,,,no SUA value and no TCF rate
+rice,RU,244.216,faostat_sua,244.216,3,I:3,261.0,
+rice,CS,111.073,glo,,0,,,no SUA value and no TCF rate
+rice,ZA,70.0,fao_tcf,144.628,3,I:3,70.0,SUA rate not within x2 of the TCF rate
+rice,ES,192.598,faostat_sua,192.598,3,I:3,190.0,
+rice,LK,67.927,faostat_sua,67.927,3,A:3,102.0,
+rice,CH,111.073,glo,,0,,,no SUA value and no TCF rate
+rice,TH,60.0,fao_tcf,121.997,3,A:3,60.0,SUA rate not within x2 of the TCF rate
+rice,TR,140.293,faostat_sua,140.293,3,A:1 I:2,166.0,
+rice,UA,240.0,fao_tcf,561.098,3,A:1 E:2,240.0,SUA rate not within x2 of the TCF rate
+rice,US,98.576,faostat_sua,98.576,3,A:3,138.0,
+rice,VN,209.015,faostat_sua,209.015,3,I:3,105.0,
+rice,GLO,111.073,faostat_sua,111.073,3,E:3,,FAOSTAT World
+potato,AR,1264.064,faostat_sua,1264.064,3,I:3,899.0,
+potato,AU,2480.039,faostat_sua,2480.039,3,E:1 I:2,2974.0,
+potato,BE,895.833,faostat_sua,895.833,3,I:3,1238.0,
+potato,BR,2071.537,faostat_sua,2071.537,3,E:3,1800.0,
+potato,CA,1609.331,faostat_sua,1609.331,3,I:3,2240.0,
+potato,CL,1046.122,faostat_sua,1046.122,3,I:3,1499.0,
+potato,CN,672.68,faostat_sua,672.68,3,I:3,820.0,
+potato,CO,1361.281,faostat_sua,1361.281,3,A:2 I:1,999.0,
+potato,CR,2500.0,fao_tcf,923.375,3,E:2 I:1,2500.0,SUA rate not within x2 of the TCF rate
+potato,CI,1706.483,glo,,0,,,no SUA value and no TCF rate
+potato,EC,1404.0,fao_tcf,376.914,3,A:3,1404.0,SUA rate not within x2 of the TCF rate
+potato,FI,2745.744,faostat_sua,2745.744,3,I:3,2923.0,
+potato,FR,2079.065,faostat_sua,2079.065,3,I:3,2138.0,
+potato,DE,2147.536,faostat_sua,2147.536,3,A:3,2250.0,
+potato,GH,1706.483,glo,,0,,,no SUA value and no TCF rate
+potato,HU,1408.0,fao_tcf,3437.886,3,I:3,1408.0,SUA rate not within x2 of the TCF rate
+potato,IN,1820.109,faostat_sua,1820.109,3,E:3,1513.0,
+potato,ID,707.0,fao_tcf,252.158,3,A:3,707.0,SUA rate not within x2 of the TCF rate
+potato,IL,517.439,faostat_sua,517.439,3,I:3,556.0,
+potato,IT,1806.36,faostat_sua,1806.36,3,I:3,1681.0,
+potato,KE,752.002,faostat_sua,752.002,3,A:3,800.0,
+potato,MX,695.973,faostat_sua,695.973,3,I:3,799.0,
+potato,MA,1663.996,faostat_sua,1663.996,3,E:3,1700.0,
+potato,NL,1919.0,faostat_sua,1919.0,3,I:3,2194.0,
+potato,NZ,2846.379,faostat_sua,2846.379,3,I:3,3500.0,
+potato,PE,1876.216,faostat_sua,1876.216,3,I:3,1600.0,
+potato,PH,2250.0,fao_tcf,25.285,3,A:3,2250.0,SUA rate not within x2 of the TCF rate
+potato,PL,2692.23,faostat_sua,2692.23,3,I:3,2339.0,
+potato,RU,3472.872,faostat_sua,3472.872,3,A:1 I:2,2522.0,
+potato,CS,1739.411,faostat_sua,1739.411,3,I:3,2000.0,
+potato,ZA,2123.631,faostat_sua,2123.631,3,A:3,1200.0,
+potato,ES,1377.109,faostat_sua,1377.109,3,I:3,1435.0,
+potato,LK,2611.596,faostat_sua,2611.596,3,A:2 I:1,2346.0,
+potato,CH,2055.767,faostat_sua,2055.767,3,I:3,2580.0,
+potato,TH,879.946,faostat_sua,879.946,3,I:3,990.0,
+potato,TR,1846.988,faostat_sua,1846.988,3,A:1 I:2,1795.0,
+potato,UA,4649.125,faostat_sua,4649.125,3,A:1 E:2,3775.0,
+potato,US,2393.684,faostat_sua,2393.684,3,I:3,2375.0,
+potato,VN,878.519,faostat_sua,878.519,3,I:3,1000.0,
+potato,GLO,1706.483,faostat_sua,1706.483,3,E:3,,FAOSTAT World
+soybean,AR,58.764,faostat_sua,58.764,3,E:3,54.0,
+soybean,AU,29.562,faostat_sua,29.562,3,I:3,40.0,
+soybean,BE,62.583,glo,,0,,,no SUA value and no TCF rate
+soybean,BR,46.839,faostat_sua,46.839,3,E:3,40.0,
+soybean,CA,101.07,faostat_sua,101.07,3,A:3,71.0,
+soybean,CL,62.583,glo,,0,,,no SUA value and no TCF rate
+soybean,CN,99.057,faostat_sua,99.057,3,E:3,105.0,
+soybean,CO,99.325,faostat_sua,99.325,3,A:2 I:1,87.0,
+soybean,CR,62.583,glo,,0,,,no SUA value and no TCF rate
+soybean,CI,159.559,faostat_sua,159.559,3,E:3,110.0,
+soybean,EC,62.583,glo,13.723,3,A:2 I:1,,no TCF rate; SUA rate not within x2 of GLO
+soybean,FI,62.583,glo,,0,,,no SUA value and no TCF rate
+soybean,FR,55.051,faostat_sua,55.051,3,I:3,51.0,
+soybean,DE,62.583,glo,,0,,,no SUA value and no TCF rate
+soybean,GH,62.583,glo,,0,,,no SUA value and no TCF rate
+soybean,HU,80.783,faostat_sua,80.783,3,A:3,80.0,
+soybean,IN,55.775,faostat_sua,55.775,3,E:3,60.0,
+soybean,ID,54.508,faostat_sua,54.508,3,A:3,45.0,
+soybean,IL,62.583,glo,,0,,,no SUA value and no TCF rate
+soybean,IT,76.786,faostat_sua,76.786,3,A:3,87.0,
+soybean,KE,62.583,glo,28.319,3,A:3,,no TCF rate; SUA rate not within x2 of GLO
+soybean,MX,21.169,faostat_sua,21.169,3,I:3,39.0,
+soybean,MA,62.583,glo,,0,,,no SUA value and no TCF rate
+soybean,NL,62.583,glo,,0,,,no SUA value and no TCF rate
+soybean,NZ,62.583,glo,,0,,,no SUA value and no TCF rate
+soybean,PE,77.733,faostat_sua,77.733,3,I:3,60.0,
+soybean,PH,62.583,glo,4.297,3,A:2 I:1,,no TCF rate; SUA rate not within x2 of GLO
+soybean,PL,62.583,glo,207.453,3,A:3,,no TCF rate; SUA rate not within x2 of GLO
+soybean,RU,88.02,faostat_sua,88.02,3,I:3,89.0,
+soybean,CS,40.0,fao_tcf,19.642,3,I:3,40.0,SUA rate not within x2 of the TCF rate
+soybean,ZA,75.0,fao_tcf,9.682,3,A:3,75.0,SUA rate not within x2 of the TCF rate
+soybean,ES,78.594,faostat_sua,78.594,3,I:3,125.0,
+soybean,LK,109.754,faostat_sua,109.754,3,A:2 E:1,59.0,
+soybean,CH,62.583,glo,126.592,3,A:2 E:1,,no TCF rate; SUA rate not within x2 of GLO
+soybean,TH,24.0,fao_tcf,190.227,3,I:3,24.0,SUA rate not within x2 of the TCF rate
+soybean,TR,74.722,faostat_sua,74.722,3,A:1 I:2,100.0,
+soybean,UA,79.367,faostat_sua,79.367,3,A:1 I:2,86.0,
+soybean,US,77.133,faostat_sua,77.133,3,I:3,77.0,
+soybean,VN,24.049,faostat_sua,24.049,3,I:3,35.0,
+soybean,GLO,62.583,faostat_sua,62.583,3,E:3,,FAOSTAT World
+sunflower,AR,9.547,faostat_sua,9.547,3,I:3,7.0,
+sunflower,AU,10.649,faostat_sua,10.649,3,I:3,7.0,
+sunflower,BE,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,BR,17.94,faostat_sua,17.94,3,I:3,12.0,
+sunflower,CA,6.254,faostat_sua,6.254,3,A:3,12.0,
+sunflower,CL,10.0,fao_tcf,85.737,3,I:3,10.0,SUA rate not within x2 of the TCF rate
+sunflower,CN,18.31,faostat_sua,18.31,3,I:3,12.0,
+sunflower,CO,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,CR,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,CI,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,EC,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,FI,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,FR,7.212,faostat_sua,7.212,3,I:3,10.0,
+sunflower,DE,11.0,fao_tcf,805.005,3,E:3,11.0,SUA rate not within x2 of the TCF rate
+sunflower,GH,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,HU,9.999,faostat_sua,9.999,3,A:3,15.0,
+sunflower,IN,16.595,faostat_sua,16.595,3,I:3,12.0,
+sunflower,ID,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,IL,5.2,fao_tcf,1.983,3,I:3,5.2,SUA rate not within x2 of the TCF rate
+sunflower,IT,6.2,fao_tcf,17.498,3,A:3,6.2,SUA rate not within x2 of the TCF rate
+sunflower,KE,15.0,fao_tcf,33.631,3,I:3,15.0,SUA rate not within x2 of the TCF rate
+sunflower,MX,55.433,faostat_sua,55.433,3,I:3,,no TCF rate; SUA rate within x2 of GLO
+sunflower,MA,10.0,fao_tcf,27.017,3,I:3,10.0,SUA rate not within x2 of the TCF rate
+sunflower,NL,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,NZ,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,PE,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,PH,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,PL,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,RU,15.0,fao_tcf,56.185,3,I:3,15.0,SUA rate not within x2 of the TCF rate
+sunflower,CS,10.083,faostat_sua,10.083,3,I:3,11.0,
+sunflower,ZA,4.375,faostat_sua,4.375,3,A:3,6.0,
+sunflower,ES,4.571,faostat_sua,4.571,3,I:3,4.7,
+sunflower,LK,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,CH,28.913,glo,4.513,3,A:2 I:1,,no TCF rate; SUA rate not within x2 of GLO
+sunflower,TH,25.929,faostat_sua,25.929,3,I:3,,no TCF rate; SUA rate within x2 of GLO
+sunflower,TR,20.935,faostat_sua,20.935,3,A:1 E:1 I:1,15.0,
+sunflower,UA,65.0,fao_tcf,11.229,3,A:1 I:2,65.0,SUA rate not within x2 of the TCF rate
+sunflower,US,14.989,faostat_sua,14.989,3,I:3,9.0,
+sunflower,VN,28.913,glo,,0,,,no SUA value and no TCF rate
+sunflower,GLO,28.913,faostat_sua,28.913,3,E:3,,FAOSTAT World
+rapeseed,AR,5.0,fao_tcf,29.076,3,I:3,5.0,SUA rate not within x2 of the TCF rate
+rapeseed,AU,5.846,faostat_sua,5.846,3,I:3,4.0,
+rapeseed,BE,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,BR,5.0,fao_tcf,10.677,3,I:3,5.0,SUA rate not within x2 of the TCF rate
+rapeseed,CA,7.265,faostat_sua,7.265,3,A:3,7.0,
+rapeseed,CL,7.0,fao_tcf,38.893,3,I:3,7.0,SUA rate not within x2 of the TCF rate
+rapeseed,CN,10.0,fao_tcf,38.096,3,E:3,10.0,SUA rate not within x2 of the TCF rate
+rapeseed,CO,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,CR,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,CI,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,EC,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,FI,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,FR,4.667,faostat_sua,4.667,3,I:3,5.0,
+rapeseed,DE,3.865,faostat_sua,3.865,3,A:3,4.5,
+rapeseed,GH,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,HU,10.533,faostat_sua,10.533,3,A:1 I:2,10.0,
+rapeseed,IN,5.679,faostat_sua,5.679,3,I:3,6.8,
+rapeseed,ID,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,IL,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,IT,10.0,fao_tcf,131.654,3,A:3,10.0,SUA rate not within x2 of the TCF rate
+rapeseed,KE,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,MX,10.0,fao_tcf,66.952,3,E:1 I:2,10.0,SUA rate not within x2 of the TCF rate
+rapeseed,MA,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,NL,14.716,glo,79.797,3,I:3,,no TCF rate; SUA rate not within x2 of GLO
+rapeseed,NZ,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,PE,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,PH,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,PL,100.0,fao_tcf,7.65,3,A:2 I:1,100.0,SUA rate not within x2 of the TCF rate
+rapeseed,RU,15.0,fao_tcf,34.328,3,I:3,15.0,SUA rate not within x2 of the TCF rate
+rapeseed,CS,8.661,faostat_sua,8.661,3,I:3,10.0,
+rapeseed,ZA,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,ES,10.0,fao_tcf,79.849,3,A:1 I:2,10.0,SUA rate not within x2 of the TCF rate
+rapeseed,LK,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,CH,14.716,glo,5.012,3,A:2 E:1,,no TCF rate; SUA rate not within x2 of GLO
+rapeseed,TH,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,TR,14.716,glo,29.88,3,A:1 I:2,,no TCF rate; SUA rate not within x2 of GLO
+rapeseed,UA,17.426,faostat_sua,17.426,3,A:1 I:2,29.0,
+rapeseed,US,5.393,faostat_sua,5.393,3,I:3,7.0,
+rapeseed,VN,14.716,glo,,0,,,no SUA value and no TCF rate
+rapeseed,GLO,14.716,faostat_sua,14.716,3,E:3,,FAOSTAT World
+linseed,AR,60.0,fao_tcf,29.378,3,I:3,60.0,SUA rate not within x2 of the TCF rate
+linseed,AU,36.892,faostat_sua,36.892,3,I:3,66.0,
+linseed,BE,150.0,fao_tcf,435.032,3,E:2 I:1,150.0,SUA rate not within x2 of the TCF rate
+linseed,BR,52.045,glo,22.083,3,I:3,,no TCF rate; SUA rate not within x2 of GLO
+linseed,CA,53.911,faostat_sua,53.911,3,A:3,43.0,
+linseed,CL,60.0,fao_tcf,10.303,3,E:3,60.0,SUA rate not within x2 of the TCF rate
+linseed,CN,75.895,faostat_sua,75.895,3,E:3,,no TCF rate; SUA rate within x2 of GLO
+linseed,CO,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,CR,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,CI,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,EC,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,FI,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,FR,43.83,faostat_sua,43.83,3,I:3,70.0,
+linseed,DE,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,GH,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,HU,46.161,faostat_sua,46.161,3,I:3,80.0,
+linseed,IN,50.0,fao_tcf,16.419,3,I:3,50.0,SUA rate not within x2 of the TCF rate
+linseed,ID,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,IL,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,IT,80.0,fao_tcf,,0,,80.0,no SUA value
+linseed,KE,58.425,faostat_sua,58.425,3,I:3,30.0,
+linseed,MX,71.715,faostat_sua,71.715,3,E:3,50.0,
+linseed,MA,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,NL,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,NZ,75.829,faostat_sua,75.829,3,I:3,70.0,
+linseed,PE,75.426,faostat_sua,75.426,3,I:3,,no TCF rate; SUA rate within x2 of GLO
+linseed,PH,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,PL,40.0,fao_tcf,100.652,3,I:3,40.0,SUA rate not within x2 of the TCF rate
+linseed,RU,30.094,faostat_sua,30.094,3,I:3,,no TCF rate; SUA rate within x2 of GLO
+linseed,CS,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,ZA,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,ES,60.0,fao_tcf,144.954,3,E:3,60.0,SUA rate not within x2 of the TCF rate
+linseed,LK,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,CH,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,TH,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,TR,50.0,fao_tcf,,0,,50.0,no SUA value
+linseed,UA,72.0,fao_tcf,30.162,3,I:3,72.0,SUA rate not within x2 of the TCF rate
+linseed,US,90.866,faostat_sua,90.866,3,A:3,,no TCF rate; SUA rate within x2 of GLO
+linseed,VN,52.045,glo,,0,,,no SUA value and no TCF rate
+linseed,GLO,52.045,faostat_sua,52.045,3,E:3,,FAOSTAT World
+lentil,AR,98.404,faostat_sua,98.404,3,E:2 I:1,60.0,
+lentil,AU,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,BE,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,BR,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,CA,85.841,faostat_sua,85.841,3,A:3,60.0,
+lentil,CL,74.863,faostat_sua,74.863,3,E:3,80.0,
+lentil,CN,178.634,faostat_sua,178.634,3,I:3,147.0,
+lentil,CO,49.483,faostat_sua,49.483,3,E:3,50.0,
+lentil,CR,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,CI,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,EC,75.556,faostat_sua,75.556,3,E:1 I:2,49.0,
+lentil,FI,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,FR,69.0,fao_tcf,,0,,69.0,no SUA value
+lentil,DE,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,GH,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,HU,100.0,fao_tcf,,0,,100.0,no SUA value
+lentil,IN,41.393,faostat_sua,41.393,3,E:3,30.0,
+lentil,ID,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,IL,113.296,faostat_sua,113.296,3,E:3,120.0,
+lentil,IT,92.0,fao_tcf,,0,,92.0,no SUA value
+lentil,KE,77.878,faostat_sua,77.878,3,I:3,,no TCF rate; SUA rate within x2 of GLO
+lentil,MX,29.0,fao_tcf,83.474,3,I:3,29.0,SUA rate not within x2 of the TCF rate
+lentil,MA,29.364,faostat_sua,29.364,3,E:2 I:1,50.0,
+lentil,NL,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,NZ,75.721,faostat_sua,75.721,3,E:2 I:1,,no TCF rate; SUA rate within x2 of GLO
+lentil,PE,40.998,faostat_sua,40.998,3,I:3,44.0,
+lentil,PH,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,PL,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,RU,107.0,fao_tcf,15.288,3,I:3,107.0,SUA rate not within x2 of the TCF rate
+lentil,CS,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,ZA,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,ES,92.0,fao_tcf,,0,,92.0,no SUA value
+lentil,LK,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,CH,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,TH,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,TR,80.0,fao_tcf,39.088,3,I:3,80.0,SUA rate not within x2 of the TCF rate
+lentil,UA,48.439,glo,116.181,3,A:1 E:2,,no TCF rate; SUA rate not within x2 of GLO
+lentil,US,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,VN,48.439,glo,,0,,,no SUA value and no TCF rate
+lentil,GLO,48.439,faostat_sua,48.439,3,E:3,,FAOSTAT World
+chick_pea,AR,46.448,faostat_sua,46.448,3,I:3,,no TCF rate; SUA rate within x2 of GLO
+chick_pea,AU,33.728,faostat_sua,33.728,3,I:3,30.0,
+chick_pea,BE,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,BR,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,CA,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,CL,103.614,faostat_sua,103.614,3,E:3,69.0,
+chick_pea,CN,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,CO,40.998,glo,3575.952,3,A:1 I:2,,no TCF rate; SUA rate not within x2 of GLO
+chick_pea,CR,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,CI,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,EC,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,FI,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,FR,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,DE,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,GH,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,HU,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,IN,39.855,faostat_sua,39.855,3,I:3,42.0,
+chick_pea,ID,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,IL,104.22,faostat_sua,104.22,3,I:3,164.0,
+chick_pea,IT,97.0,fao_tcf,,0,,97.0,no SUA value
+chick_pea,KE,28.639,faostat_sua,28.639,3,E:3,,no TCF rate; SUA rate within x2 of GLO
+chick_pea,MX,36.154,faostat_sua,36.154,3,I:3,35.0,
+chick_pea,MA,48.541,faostat_sua,48.541,3,I:3,70.0,
+chick_pea,NL,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,NZ,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,PE,50.0,fao_tcf,106.978,3,I:3,50.0,SUA rate not within x2 of the TCF rate
+chick_pea,PH,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,PL,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,RU,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,CS,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,ZA,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,ES,85.0,fao_tcf,,0,,85.0,no SUA value
+chick_pea,LK,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,CH,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,TH,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,TR,126.2,faostat_sua,126.2,3,A:1 E:1 I:1,120.0,
+chick_pea,UA,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,US,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,VN,40.998,glo,,0,,,no SUA value and no TCF rate
+chick_pea,GLO,40.998,faostat_sua,40.998,3,E:3,,FAOSTAT World
+peanut,AR,114.067,faostat_sua,114.067,3,E:3,80.0,
+peanut,AU,42.358,faostat_sua,42.358,3,I:3,29.0,
+peanut,BE,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,BR,39.0,fao_tcf,11.407,3,I:3,39.0,SUA rate not within x2 of the TCF rate
+peanut,CA,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,CL,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,CN,98.388,faostat_sua,98.388,3,E:3,89.0,
+peanut,CO,212.024,faostat_sua,212.024,3,A:2 I:1,112.0,
+peanut,CR,88.57,faostat_sua,88.57,3,I:3,,no TCF rate; SUA rate within x2 of GLO
+peanut,CI,101.837,faostat_sua,101.837,3,E:3,80.0,
+peanut,EC,120.0,faostat_sua,120.0,3,E:1 I:2,75.0,
+peanut,FI,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,FR,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,DE,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,GH,91.764,faostat_sua,91.764,3,E:3,80.0,
+peanut,HU,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,IN,109.481,faostat_sua,109.481,3,E:3,70.0,
+peanut,ID,41.283,faostat_sua,41.283,3,I:3,49.0,
+peanut,IL,220.005,faostat_sua,220.005,3,I:3,130.0,
+peanut,IT,147.0,fao_tcf,,0,,147.0,no SUA value
+peanut,KE,43.926,faostat_sua,43.926,3,A:2 I:1,60.0,
+peanut,MX,25.179,faostat_sua,25.179,3,I:3,39.0,
+peanut,MA,120.0,fao_tcf,42.707,3,I:3,120.0,SUA rate not within x2 of the TCF rate
+peanut,NL,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,NZ,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,PE,50.0,fao_tcf,130.136,3,I:3,50.0,SUA rate not within x2 of the TCF rate
+peanut,PH,49.0,fao_tcf,3.812,3,A:3,49.0,SUA rate not within x2 of the TCF rate
+peanut,PL,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,RU,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,CS,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,ZA,65.2,faostat_sua,65.2,3,A:3,65.0,
+peanut,ES,160.0,fao_tcf,,0,,160.0,no SUA value
+peanut,LK,42.186,faostat_sua,42.186,3,A:2 I:1,50.0,
+peanut,CH,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,TH,175.931,faostat_sua,175.931,3,I:3,100.0,
+peanut,TR,100.0,fao_tcf,29.332,3,I:3,100.0,SUA rate not within x2 of the TCF rate
+peanut,UA,81.461,glo,,0,,,no SUA value and no TCF rate
+peanut,US,159.47,faostat_sua,159.47,3,I:3,216.0,
+peanut,VN,60.0,fao_tcf,14.741,3,I:3,60.0,SUA rate not within x2 of the TCF rate
+peanut,GLO,81.461,faostat_sua,81.461,3,E:3,,FAOSTAT World
+pearl_millet,AR,15.0,fao_tcf,70.117,3,E:3,15.0,SUA rate not within x2 of the TCF rate
+pearl_millet,AU,5.742,faostat_sua,5.742,3,E:3,6.5,
+pearl_millet,BE,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,BR,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,CA,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,CL,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,CN,53.852,faostat_sua,53.852,3,I:3,35.0,
+pearl_millet,CO,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,CR,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,CI,20.379,faostat_sua,20.379,3,I:3,12.0,
+pearl_millet,EC,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,FI,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,FR,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,DE,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,GH,10.0,fao_tcf,40.325,3,I:3,10.0,SUA rate not within x2 of the TCF rate
+pearl_millet,HU,25.0,fao_tcf,,0,,25.0,no SUA value
+pearl_millet,IN,28.109,faostat_sua,28.109,3,I:3,26.0,
+pearl_millet,ID,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,IL,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,IT,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,KE,19.811,faostat_sua,19.811,3,A:3,20.0,
+pearl_millet,MX,19.216,glo,584.286,2,I:2,,no TCF rate; SUA rate not within x2 of GLO
+pearl_millet,MA,40.0,fao_tcf,90.906,3,E:1 I:2,40.0,SUA rate not within x2 of the TCF rate
+pearl_millet,NL,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,NZ,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,PE,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,PH,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,PL,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,RU,29.0,fao_tcf,67.072,3,I:3,29.0,SUA rate not within x2 of the TCF rate
+pearl_millet,CS,20.0,fao_tcf,,0,,20.0,no SUA value
+pearl_millet,ZA,6.0,fao_tcf,20.133,3,E:3,6.0,SUA rate not within x2 of the TCF rate
+pearl_millet,ES,25.0,fao_tcf,,0,,25.0,no SUA value
+pearl_millet,LK,8.95,faostat_sua,8.95,3,A:2 I:1,10.0,
+pearl_millet,CH,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,TH,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,TR,30.0,fao_tcf,193.794,3,I:3,30.0,SUA rate not within x2 of the TCF rate
+pearl_millet,UA,33.0,fao_tcf,89.184,3,A:1 I:2,33.0,SUA rate not within x2 of the TCF rate
+pearl_millet,US,19.216,glo,,0,,,no SUA value and no TCF rate
+pearl_millet,VN,19.216,glo,224.608,3,I:3,,no TCF rate; SUA rate not within x2 of GLO
+pearl_millet,GLO,19.216,faostat_sua,19.216,3,E:3,,FAOSTAT World
+castor_beans,AR,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,AU,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,BE,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,BR,21.054,faostat_sua,21.054,3,I:3,15.0,
+castor_beans,CA,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,CL,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,CN,10.0,fao_tcf,66.584,3,I:3,10.0,SUA rate not within x2 of the TCF rate
+castor_beans,CO,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,CR,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,CI,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,EC,16.0,fao_tcf,52.774,3,I:3,16.0,SUA rate not within x2 of the TCF rate
+castor_beans,FI,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,FR,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,DE,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,GH,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,HU,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,IN,8.474,faostat_sua,8.474,3,I:3,11.0,
+castor_beans,ID,7.851,faostat_sua,7.851,3,E:3,,no TCF rate; SUA rate within x2 of GLO
+castor_beans,IL,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,IT,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,KE,20.339,faostat_sua,20.339,3,I:3,15.0,
+castor_beans,MX,9.0,glo,2248.18,3,I:3,,no TCF rate; SUA rate not within x2 of GLO
+castor_beans,MA,14.652,faostat_sua,14.652,3,E:3,14.0,
+castor_beans,NL,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,NZ,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,PE,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,PH,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,PL,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,RU,20.0,fao_tcf,57.416,3,E:3,20.0,SUA rate not within x2 of the TCF rate
+castor_beans,CS,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,ZA,15.0,fao_tcf,,0,,15.0,no SUA value
+castor_beans,ES,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,LK,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,CH,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,TH,12.0,fao_tcf,26.1,3,I:3,12.0,SUA rate not within x2 of the TCF rate
+castor_beans,TR,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,UA,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,US,9.0,glo,,0,,,no SUA value and no TCF rate
+castor_beans,VN,15.0,fao_tcf,32.67,3,I:3,15.0,SUA rate not within x2 of the TCF rate
+castor_beans,GLO,9.0,faostat_sua,9.0,3,E:3,,FAOSTAT World
+cotton,AR,72.106,faostat_sua,72.106,3,E:3,55.0,
+cotton,AU,17.08,faostat_sua,17.08,3,E:3,29.0,
+cotton,BE,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,BR,46.975,faostat_sua,46.975,3,E:3,49.0,
+cotton,CA,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,CL,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,CN,68.517,faostat_sua,68.517,3,E:3,60.0,
+cotton,CO,21.122,faostat_sua,21.122,3,E:3,30.0,
+cotton,CR,33.575,faostat_sua,33.575,3,E:3,25.0,
+cotton,CI,18.496,faostat_sua,18.496,3,E:3,25.0,
+cotton,EC,44.254,faostat_sua,44.254,3,E:3,50.0,
+cotton,FI,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,FR,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,DE,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,GH,24.242,faostat_sua,24.242,3,E:2 I:1,40.0,
+cotton,HU,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,IN,13.712,faostat_sua,13.712,3,E:3,20.0,
+cotton,ID,27.123,faostat_sua,27.123,3,E:3,,no TCF rate; SUA rate within x2 of GLO
+cotton,IL,105.008,faostat_sua,105.008,3,E:3,88.0,
+cotton,IT,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,KE,21.065,faostat_sua,21.065,3,E:3,29.0,
+cotton,MX,26.912,faostat_sua,26.912,3,E:3,35.0,
+cotton,MA,141.713,faostat_sua,141.713,3,E:3,120.0,
+cotton,NL,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,NZ,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,PE,45.53,faostat_sua,45.53,3,E:3,50.0,
+cotton,PH,30.0,fao_tcf,173.19,3,E:3,30.0,SUA rate not within x2 of the TCF rate
+cotton,PL,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,RU,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,CS,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,ZA,12.0,fao_tcf,33.206,3,E:3,12.0,SUA rate not within x2 of the TCF rate
+cotton,ES,42.386,faostat_sua,42.386,1,E:1,38.0,
+cotton,LK,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,CH,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,TH,19.029,faostat_sua,19.029,3,I:3,35.0,
+cotton,TR,57.404,faostat_sua,57.404,3,E:3,60.0,
+cotton,UA,35.542,glo,,0,,,no SUA value and no TCF rate
+cotton,US,45.748,faostat_sua,45.748,3,E:3,28.0,
+cotton,VN,40.0,fao_tcf,7.804,3,E:3,40.0,SUA rate not within x2 of the TCF rate
+cotton,GLO,35.542,faostat_sua,35.542,3,E:3,,FAOSTAT World
+sesame_seed,AR,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,AU,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,BE,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,BR,7.551,faostat_sua,7.551,3,I:3,10.0,
+sesame_seed,CA,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,CL,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,CN,8.0,fao_tcf,21.388,3,I:3,8.0,SUA rate not within x2 of the TCF rate
+sesame_seed,CO,10.924,faostat_sua,10.924,3,A:2 I:1,8.0,
+sesame_seed,CR,15.359,glo,7.62,3,E:3,,no TCF rate; SUA rate not within x2 of GLO
+sesame_seed,CI,9.042,faostat_sua,9.042,3,E:3,10.0,
+sesame_seed,EC,31.364,faostat_sua,31.364,3,E:3,20.0,
+sesame_seed,FI,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,FR,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,DE,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,GH,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,HU,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,IN,4.835,faostat_sua,4.835,3,I:3,4.0,
+sesame_seed,ID,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,IL,12.609,faostat_sua,12.609,3,E:3,10.0,
+sesame_seed,IT,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,KE,10.0,fao_tcf,57.955,3,I:3,10.0,SUA rate not within x2 of the TCF rate
+sesame_seed,MX,10.0,fao_tcf,23.715,3,I:3,10.0,SUA rate not within x2 of the TCF rate
+sesame_seed,MA,15.359,glo,389.717,3,E:3,,no TCF rate; SUA rate not within x2 of GLO
+sesame_seed,NL,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,NZ,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,PE,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,PH,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,PL,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,RU,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,CS,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,ZA,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,ES,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,LK,20.816,faostat_sua,20.816,3,A:2 I:1,19.0,
+sesame_seed,CH,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,TH,14.021,faostat_sua,14.021,3,I:3,8.0,
+sesame_seed,TR,8.0,fao_tcf,38.141,3,I:3,8.0,SUA rate not within x2 of the TCF rate
+sesame_seed,UA,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,US,15.359,glo,,0,,,no SUA value and no TCF rate
+sesame_seed,VN,25.0,faostat_sua,25.0,3,I:3,,no TCF rate; SUA rate within x2 of GLO
+sesame_seed,GLO,15.359,faostat_sua,15.359,3,E:3,,FAOSTAT World
