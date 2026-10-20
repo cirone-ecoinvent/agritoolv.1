@@ -28,6 +28,7 @@ Review tables (all in data/):
   pfister2014_country_mapping.csv         idem
   ifastat_product_type_mapping.csv        usable when status is confirmed (mineral fertiliser mixes, L45)
   ifastat_country_mapping.csv             idem
+  seed_rate_crop_mapping.csv              usable when status is confirmed (default seed of the sown crops, L46)
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -82,6 +83,7 @@ TABLES = [
     ("pfister2014_country_mapping.csv", ("confirmed",), ("country", "supplementary_name", "watershed_names", "status")),
     ("ifastat_product_type_mapping.csv", ("confirmed",), ("ifastat_nutrient", "ifastat_product", "fertiliser_type", "fraction", "status")),
     ("ifastat_country_mapping.csv", ("confirmed",), ("country", "ifastat_alpha3", "ifastat_country", "status")),
+    ("seed_rate_crop_mapping.csv", ("confirmed",), ("crop", "use", "faostat_seed_item_code", "tcf_items", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]
