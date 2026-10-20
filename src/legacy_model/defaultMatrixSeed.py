@@ -1,83 +1,36 @@
-# legacy, undocumented, provisional: all matrices of this module (generated from the Quantis workbook GD_crop)
+# Seeds per ha of the sown crops, kg/(ha and crop cycle) (decision L46): the crops of data/seed_rate_crop_mapping.csv
+# with use 'sua_tcf' come from data/default_seed.csv (FAOSTAT SUA seed / area harvested of the next year, 2021-2023,
+# checked against the FAO Technical Conversion Factors; built by scripts/build_default_seed.py); the crops with use
+# 'legacy' keep the GLO values of _LEGACY_SEEDS.
+# legacy, undocumented, provisional: _LEGACY_SEEDS and the seedling and tree matrices below (generated from the Quantis
+# workbook GD_crop)
+import dataloader
+
+_DEFAULT_SEED_TABLE = "default_seed.csv"
 
 #from GD_crop Seeds_L0
 #only glo as all values per country are the same
-NB_SEEDS_PER_PARTIAL_CROP_PER_COUNTRY = {
-   "carrot":{
-      "GLO":4.2
-   },
-   "cassava": {
-      "GLO": 0.0
-   },
-    "castor_beans": {
-        "GLO": 0.0
-    },
-    "chick_pea": {
-        "GLO": 0.0
-    },
-    "coriander": {
-        "GLO": 0.0
-    },
-   "cotton": {
-      "GLO": 0.0
-   },
-   "flax": {
-      "GLO": 0.0
-   },
-   "guar": {
-      "GLO": 0.0
-   },
-   "hemp": {
-      "GLO": 0.0
-   },
-   "lentil": {
-      "GLO": 0.0
-   },
-   "linseed": {
-      "GLO": 40.0
-   },
-   "maizegrain":{
-      "GLO":25.0
-   },
-   "oat":{
-      "GLO":190.0
-   },
-   "peanut":{
-      "GLO":100.0
-   },
-    "pearl_millet": {
-        "GLO": 100.0
-    },
-   "potato":{
-      "GLO":2500.0
-   },
-   "rapeseed":{
-      "GLO":5.6
-   },
-   "rice":{
-      "GLO":141.0
-   },
-    "sesame_seed": {
-        "GLO": 100.0
-    },
-    "soybean": {
-      "GLO":110.0
-   },
-   "sugarbeet":{
-      "GLO":2.1
-   },
-   "sunflower":{
-      "GLO":3.75
-   },
-   "sweetcorn":{
-      "GLO":25.0
-   },
-    "turmeric": {
-        "GLO": 100.0
-    },
-   "wheat":{
-   }
+_LEGACY_SEEDS = {
+    "carrot": {"GLO": 4.2},
+    "cassava": {"GLO": 0.0},
+    "coriander": {"GLO": 0.0},
+    "flax": {"GLO": 0.0},
+    "guar": {"GLO": 0.0},
+    "hemp": {"GLO": 0.0},
+    "sugarbeet": {"GLO": 2.1},
+    "sweetcorn": {"GLO": 25.0},
+    "turmeric": {"GLO": 100.0},
 }
+
+
+def _load_default_seeds():
+    seeds = {crop: dict(values) for crop, values in _LEGACY_SEEDS.items()}
+    for row in dataloader.rows(_DEFAULT_SEED_TABLE):
+        seeds.setdefault(row["crop"], {})[row["country"]] = float(row["seed_kg_per_ha"])
+    return seeds
+
+
+NB_SEEDS_PER_PARTIAL_CROP_PER_COUNTRY = _load_default_seeds()
 
 #GD_crop Seedlings_L0
 NB_SEEDLINGS_PER_PARTIAL_CROP_PER_COUNTRY = {
