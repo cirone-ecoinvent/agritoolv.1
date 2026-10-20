@@ -1,0 +1,43 @@
+crop,template_field,use,ecoinvent_activities,excluded_geographies,quantity,note,status,reviewed_by
+almond,nb_planted_trees,ecoinvent,almond production,,per_ha_and_year,,confirmed,FC
+apple,nb_planted_trees,ecoinvent,"apple production|apple production, conventional, hill region|apple production, conventional, mountain region|apple production, conventional, plain region|apple production, organic, hill region|apple production, organic, plain region",,per_ha_and_year,,confirmed,FC
+apricot,nb_planted_trees,ecoinvent,apricot production,,per_ha_and_year,,confirmed,FC
+banana,nb_planted_trees,ecoinvent,banana production,,per_ha_and_year,"to be reviewed: 6.6 plants per ha and year in all datasets (131 per ha with 20 years), low for banana",confirmed,FC
+blueberry,nb_planted_trees,legacy,,,,no ecoinvent 3.12 dataset; legacy value kept,confirmed,FC
+cashew,nb_planted_trees,ecoinvent,cashew production,,per_ha_and_year,,confirmed,FC
+citruslime,nb_planted_trees,proxy,lemon production,,per_ha_and_year,proxy: lemon (no lime dataset); as for the N uptake (L32),confirmed,FC
+cocoa,nb_planted_trees,ecoinvent,"cocoa bean production, sun-dried",,per_ha_and_year,to be reviewed: 7.0 trees per ha and year (350 per ha with the 50 years of the dataset),confirmed,FC
+coconut,nb_planted_trees,ecoinvent,"coconut production, dehusked",,per_ha_and_year,,confirmed,FC
+coffee_arabica,nb_planted_trees,ecoinvent,"coffee green bean production, arabica|coffee green bean production, arabica, irrigated|coffee green bean production, arabica, manual|coffee green bean production, arabica, mechanized|coffee green bean production, arabica, not irrigated|coffee green bean production, arabica, semi-mechanized",,per_ha_and_year,,confirmed,FC
+coffee_robusta,nb_planted_trees,ecoinvent,"coffee green bean production, robusta",,per_ha_and_year,,confirmed,FC
+cranberry,nb_planted_trees,legacy,,,,no ecoinvent 3.12 dataset; legacy value kept,confirmed,FC
+grape,nb_planted_trees,ecoinvent,"grape production|grape production, conventional, hill region|grape production, conventional, mountain region|grape production, conventional, plain region|grape production, organic, hill region|grape production, organic, mountain region|grape production, organic, plain region",,per_ha_and_year,,confirmed,FC
+lemon,nb_planted_trees,ecoinvent,lemon production,,per_ha_and_year,,confirmed,FC
+mandarin,nb_planted_trees,ecoinvent,mandarin production,,per_ha_and_year,to be reviewed: ZA 1604 trees per ha and year (40110 per ha with the 25 years of the dataset),confirmed,FC
+mango,nb_planted_trees,ecoinvent,mango production,,per_ha_and_year,,confirmed,FC
+mulberry,nb_planted_trees,ecoinvent,mulberry production,,per_ha_and_year,,confirmed,FC
+olive,nb_planted_trees,ecoinvent,olive production,,per_ha_and_year,,confirmed,FC
+orange_fresh,nb_planted_trees,ecoinvent,"orange production, fresh grade",,per_ha_and_year,,confirmed,FC
+orange_processing,nb_planted_trees,ecoinvent,"orange production, processing grade",,per_ha_and_year,,confirmed,FC
+palmtree,nb_planted_trees,ecoinvent,palm fruit bunch production,,per_ha_and_year,,confirmed,FC
+peach,nb_planted_trees,ecoinvent,peach production,,per_ha_and_year,,confirmed,FC
+pear,nb_planted_trees,ecoinvent,"pear production|pear production, conventional, hill region|pear production, conventional, mountain region|pear production, conventional, plain region|pear production, organic, hill region|pear production, organic, plain region",,per_ha_and_year,,confirmed,FC
+pineapple,nb_planted_trees,legacy,,,,no ecoinvent 3.12 dataset; legacy value kept,confirmed,FC
+pomegranate,nb_planted_trees,ecoinvent,pomegranate production,,per_ha_and_year,,confirmed,FC
+sugarcane,nb_planted_trees,legacy,,,,no planting input in the ecoinvent 3.12 sugarcane datasets; legacy value kept,confirmed,FC
+tea,nb_planted_trees,ecoinvent,"tea production, dried",,per_ha_and_year,"to be reviewed: CN, KE, LK and RoW 6.6 plants per ha and year (131 per ha with 20 years), IN-HP 375 (7500 per ha)",confirmed,FC
+asparagus_green,nb_seedlings,proxy,white asparagus production,,per_ha_and_year,proxy: white asparagus (no green asparagus dataset),confirmed,FC
+asparagus_white,nb_seedlings,ecoinvent,white asparagus production,,per_ha_and_year,,confirmed,FC
+bellpepper,nb_seedlings,ecoinvent,"bell pepper production, open field",,per_ha_and_crop_cycle,"input 'onion seedling, for planting' (proxy of ecoinvent); to be reviewed: RoW 326 seedlings per ha and crop cycle, IN-MH 25000; no seedling exchange in the tool (seed_exchange_mapping.csv: no_exchange)",confirmed,FC
+cabbage_red,nb_seedlings,proxy,"white cabbage production, conventional, plain region|white cabbage production, organic, plain region",,per_ha_and_crop_cycle,proxy: white cabbage (no red cabbage dataset); no seedling exchange in the tool (no_exchange),confirmed,FC
+cabbage_white,nb_seedlings,ecoinvent,"white cabbage production, conventional, plain region|white cabbage production, organic, plain region",,per_ha_and_crop_cycle,"input 'tomato seedling, for planting' (proxy of ecoinvent); CH only; no seedling exchange in the tool (no_exchange)",confirmed,FC
+chilli,nb_seedlings,legacy,,,,no ecoinvent 3.12 dataset; legacy value kept,confirmed,FC
+eggplant,nb_seedlings,legacy,,,,no ecoinvent 3.12 dataset; legacy value kept,confirmed,FC
+ginger,nb_seedlings,legacy,,,,no ecoinvent 3.12 dataset; legacy value kept,confirmed,FC
+mint,nb_seedlings,ecoinvent,mint production,,per_ha_and_year,"perennial in ecoinvent (planted once in 20 years), annual in the tool (crop_types.csv): seedlings per ha and year, i.e. per crop cycle of one year",confirmed,FC
+onion,nb_seedlings,ecoinvent,"onion production|onion production, conventional, plain region|onion production, organic, plain region",IN,per_ha_and_crop_cycle,"IN excluded (FC 2026-10-20): 3.30 seedlings per ha, the legacy default of this tool (the land use of the dataset is calculated with the ecoinvent LCI calculation tool for crop production); IN takes GLO",confirmed,FC
+raspberry,nb_seedlings,legacy,,,,no ecoinvent 3.12 dataset; legacy value kept,confirmed,FC
+strawberry_fresh,nb_seedlings,ecoinvent,"strawberry production, in heated greenhouse|strawberry production, in unheated greenhouse|strawberry production, open field, macro tunnel",,per_ha_and_crop_cycle,mean of the three production systems,confirmed,FC
+strawberry_processing,nb_seedlings,ecoinvent,"strawberry production, in heated greenhouse|strawberry production, in unheated greenhouse|strawberry production, open field, macro tunnel",,per_ha_and_crop_cycle,mean of the three production systems (ecoinvent has no processing grade),confirmed,FC
+tomato_fresh,nb_seedlings,ecoinvent,"tomato production, fresh grade, in heated greenhouse|tomato production, fresh grade, in unheated greenhouse|tomato production, fresh grade, open field",,per_ha_and_crop_cycle,mean of the three production systems,confirmed,FC
+tomato_processing,nb_seedlings,ecoinvent,"tomato production, processing grade, open field",,per_ha_and_crop_cycle,,confirmed,FC

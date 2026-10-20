@@ -1,0 +1,134 @@
+activity_name,geography,reference_product,planting_exchange,per_ha_and_year,per_ha_and_crop_cycle,lifetime_years
+almond production,CN,almond,"fruit tree seedling, for planting",8.55789,171.62,20.05
+almond production,RoW,almond,"fruit tree seedling, for planting",12.1115,242.883,20.05
+almond production,US,almond,"fruit tree seedling, for planting",12.207,244.8,20.05
+apple production,CL,apple,"fruit tree seedling, for planting",69.263,1389.0,20.05
+apple production,CN,apple,"fruit tree seedling, for planting",132.971,2666.6,20.05
+apple production,IT,apple,"fruit tree seedling, for planting",132.971,2666.6,20.05
+apple production,RoW,apple,"fruit tree seedling, for planting",129.053,2588.02,20.05
+apple production,US,apple,"fruit tree seedling, for planting",69.263,1389.0,20.05
+apple production,ZA,apple,"fruit tree seedling, for planting",64.05,1281.0,20.0
+"apple production, conventional, hill region",CH,apple,"fruit tree seedling, for planting",133.332,1999.98,15.0
+"apple production, conventional, mountain region",CH,apple,"fruit tree seedling, for planting",133.33,1999.95,15.0
+"apple production, conventional, plain region",CH,apple,"fruit tree seedling, for planting",133.333,2000.0,15.0
+"apple production, organic, hill region",CH,"apple, organic","fruit tree seedling, for planting",133.328,1999.91,15.0
+"apple production, organic, plain region",CH,"apple, organic","fruit tree seedling, for planting",133.329,1999.94,15.0
+apricot production,ES,apricot,"fruit tree seedling, for planting",7.779,156.0,20.05
+apricot production,FR,apricot,"fruit tree seedling, for planting",24.9327,500.0,20.05
+apricot production,IT,apricot,"fruit tree seedling, for planting",23.6202,473.68,20.05
+apricot production,RoW,apricot,"fruit tree seedling, for planting",17.492,350.784,20.05
+apricot production,TR,apricot,"fruit tree seedling, for planting",14.9596,300.0,20.05
+banana production,CO,banana,"fruit tree seedling, for planting",6.5554,131.462,20.05
+banana production,CR,banana,"fruit tree seedling, for planting",6.5554,131.462,20.05
+banana production,EC,banana,"fruit tree seedling, for planting",6.5554,131.462,20.05
+banana production,IN,banana,"fruit tree seedling, for planting",6.5554,131.462,20.05
+banana production,RoW,banana,"fruit tree seedling, for planting",6.5554,131.462,20.05
+"bell pepper production, open field",IN-MH,bell pepper,"onion seedling, for planting",27272.7,25000.0,0.9167
+"bell pepper production, open field",RoW,bell pepper,"onion seedling, for planting",518.915,326.297,0.6288
+cashew production,IN,cashew,"fruit tree seedling, for planting",6.375,85.0,13.33
+cashew production,RoW,cashew,"fruit tree seedling, for planting",6.375,85.0,13.33
+"cocoa bean production, sun-dried",CI,cocoa bean,"fruit tree seedling, for planting",6.98115,349.949,50.13
+"cocoa bean production, sun-dried",GH,cocoa bean,"fruit tree seedling, for planting",6.98115,350.376,50.19
+"cocoa bean production, sun-dried",ID,cocoa bean,"fruit tree seedling, for planting",6.98115,349.844,50.11
+"cocoa bean production, sun-dried",RoW,cocoa bean,"fruit tree seedling, for planting",6.98115,350.044,50.14
+"coconut production, dehusked",ID,"coconut, dehusked","fruit tree seedling, for planting",36.9333,2221.94,60.16
+"coconut production, dehusked",IN,"coconut, dehusked","fruit tree seedling, for planting",8.72644,525.0,60.16
+"coconut production, dehusked",PH,"coconut, dehusked","fruit tree seedling, for planting",36.9333,2221.78,60.16
+"coconut production, dehusked",RoW,"coconut, dehusked","fruit tree seedling, for planting",33.2887,2002.62,60.16
+"coffee green bean production, arabica",BR-SP,"coffee, green bean","fruit tree seedling, for planting",250.86,5022.22,20.02
+"coffee green bean production, arabica",CO,"coffee, green bean","fruit tree seedling, for planting",233.37,4680.0,20.05
+"coffee green bean production, arabica",HN,"coffee, green bean","fruit tree seedling, for planting",249.327,5000.0,20.05
+"coffee green bean production, arabica",IN,"coffee, green bean","fruit tree seedling, for planting",147.601,2960.0,20.05
+"coffee green bean production, arabica",RoW,"coffee, green bean","fruit tree seedling, for planting",288.605,5787.68,20.05
+"coffee green bean production, arabica, irrigated",BR-MG,"coffee, green bean","fruit tree seedling, for planting",190.452,3815.6,20.03
+"coffee green bean production, arabica, manual",BR-MG,"coffee, green bean","fruit tree seedling, for planting",210.34,4210.26,20.02
+"coffee green bean production, arabica, mechanized",BR-MG,"coffee, green bean","fruit tree seedling, for planting",234.0,4672.9,19.97
+"coffee green bean production, arabica, not irrigated",BR-MG,"coffee, green bean","fruit tree seedling, for planting",248.454,4961.54,19.97
+"coffee green bean production, arabica, semi-mechanized",BR-MG,"coffee, green bean","fruit tree seedling, for planting",205.2,4109.59,20.03
+"coffee green bean production, robusta",BR,"coffee, green bean","fruit tree seedling, for planting",125.661,2520.0,20.05
+"coffee green bean production, robusta",ID,"coffee, green bean","fruit tree seedling, for planting",22.9381,460.0,20.05
+"coffee green bean production, robusta",IN,"coffee, green bean","fruit tree seedling, for planting",54.8519,1100.0,20.05
+"coffee green bean production, robusta",RoW,"coffee, green bean","fruit tree seedling, for planting",45.4018,910.487,20.05
+"coffee green bean production, robusta",VN,"coffee, green bean","fruit tree seedling, for planting",49.8654,1000.0,20.05
+grape production,IN,grape,"fruit tree seedling, for planting",169.0,3380.0,20.0
+"grape production, conventional, hill region",CH,grape,"fruit tree seedling, for planting",279.976,6999.4,25.0
+"grape production, conventional, mountain region",CH,grape,"fruit tree seedling, for planting",279.987,6999.68,25.0
+"grape production, conventional, plain region",CH,grape,"fruit tree seedling, for planting",279.983,6999.57,25.0
+"grape production, organic, hill region",CH,"grape, organic","fruit tree seedling, for planting",279.952,6998.8,25.0
+"grape production, organic, mountain region",CH,"grape, organic","fruit tree seedling, for planting",279.988,6999.69,25.0
+"grape production, organic, plain region",CH,"grape, organic","fruit tree seedling, for planting",279.976,6999.4,25.0
+lemon production,ES,lemon,"fruit tree seedling, for planting",8.53047,171.07,20.05
+lemon production,MX,lemon,"fruit tree seedling, for planting",8.53047,171.07,20.05
+lemon production,RoW,lemon,"fruit tree seedling, for planting",8.60321,172.529,20.05
+lemon production,TR,lemon,"fruit tree seedling, for planting",9.14202,183.334,20.05
+mandarin production,CN,mandarin,"fruit tree seedling, for planting",8.53047,171.07,20.05
+mandarin production,ES,mandarin,"fruit tree seedling, for planting",8.53047,171.07,20.05
+mandarin production,RoW,mandarin,"fruit tree seedling, for planting",8.53047,171.07,20.05
+mandarin production,ZA,mandarin,"fruit tree seedling, for planting",1604.4,40110.0,25.0
+mango production,BR,mango,"mango seedling, for planting",12.5493,250.987,20.0
+mango production,RoW,mango,"mango seedling, for planting",12.5493,250.987,20.0
+mint production,IN,mint,"mint seedling, for planting",36900.4,740000.0,20.05
+mint production,RoW,mint,"mint seedling, for planting",36161.9,725191.0,20.05
+mint production,US,mint,"mint seedling, for planting",27703.2,555560.0,20.05
+mulberry production,IN,mulberry leaves,"fruit tree seedling, for planting",691.9,13838.0,20.0
+mulberry production,RoW,mulberry leaves,"fruit tree seedling, for planting",691.9,13838.0,20.0
+olive production,ES,olive,"fruit tree seedling, for planting",6.23317,125.0,20.05
+olive production,IT,olive,"fruit tree seedling, for planting",6.23317,125.0,20.05
+olive production,RoW,olive,"fruit tree seedling, for planting",6.23317,125.0,20.05
+onion production,CN,onion,"onion seedling, for planting",443560.0,443560.0,1.0
+onion production,IN,onion,"onion seedling, for planting",7.20412,3.30189,0.4583
+onion production,NL,onion,"onion seedling, for planting",1130000.0,1130000.0,1.0
+onion production,NZ,onion,"onion seedling, for planting",1130000.0,1130000.0,1.0
+onion production,RoW,onion,"onion seedling, for planting",915442.0,608619.0,0.6648
+"onion production, conventional, plain region",CH,onion,"onion seedling, for planting",969066.0,1027480.0,1.06
+"onion production, organic, plain region",CH,"onion, organic","onion seedling, for planting",969070.0,1027480.0,1.06
+"orange production, fresh grade",ES,"orange, fresh grade","fruit tree seedling, for planting",16.6221,333.34,20.05
+"orange production, fresh grade",RoW,"orange, fresh grade","fruit tree seedling, for planting",13.1054,262.816,20.05
+"orange production, fresh grade",US,"orange, fresh grade","fruit tree seedling, for planting",10.9375,219.34,20.05
+"orange production, fresh grade",ZA,"orange, fresh grade","fruit tree seedling, for planting",14.4158,475.367,32.98
+"orange production, processing grade",BR,"orange, processing grade","fruit tree seedling, for planting",10.8038,216.66,20.05
+"orange production, processing grade",RoW,"orange, processing grade","fruit tree seedling, for planting",12.2864,246.392,20.05
+"orange production, processing grade",US,"orange, processing grade","fruit tree seedling, for planting",15.936,319.58,20.05
+palm fruit bunch production,ID,palm fruit bunch,"fruit tree seedling, for planting",5.66471,113.6,20.05
+peach production,CN,peach,"fruit tree seedling, for planting",78.7344,1578.94,20.05
+peach production,ES,peach,"fruit tree seedling, for planting",78.7344,1578.94,20.05
+peach production,IT,peach,"fruit tree seedling, for planting",78.7344,1578.94,20.05
+peach production,RoW,peach,"fruit tree seedling, for planting",78.7344,1578.94,20.05
+pear production,AR,pear,"fruit tree seedling, for planting",59.3637,1190.48,20.05
+pear production,BE,pear,"fruit tree seedling, for planting",111.938,2244.8,20.05
+pear production,CN,pear,"fruit tree seedling, for planting",59.3637,1190.48,20.05
+pear production,RoW,pear,"fruit tree seedling, for planting",59.6248,1195.72,20.05
+pear production,ZA,pear,"fruit tree seedling, for planting",64.9,1298.0,20.0
+"pear production, conventional, hill region",CH,pear,"fruit tree seedling, for planting",133.333,2000.0,15.0
+"pear production, conventional, mountain region",CH,pear,"fruit tree seedling, for planting",133.33,1999.95,15.0
+"pear production, conventional, plain region",CH,pear,"fruit tree seedling, for planting",133.33,1999.95,15.0
+"pear production, organic, hill region",CH,"pear, organic","fruit tree seedling, for planting",133.328,1999.93,15.0
+"pear production, organic, plain region",CH,"pear, organic","fruit tree seedling, for planting",133.33,1999.96,15.0
+pomegranate production,IN,pomegranate,"fruit tree seedling, for planting",43.75,875.0,20.0
+pomegranate production,RoW,pomegranate,"fruit tree seedling, for planting",43.75,875.0,20.0
+"strawberry production, in heated greenhouse",CH,strawberry,"strawberry seedling, for planting",42884.2,43000.0,1.003
+"strawberry production, in heated greenhouse",RoW,strawberry,"strawberry seedling, for planting",42884.2,43000.0,1.003
+"strawberry production, in unheated greenhouse",CH,strawberry,"strawberry seedling, for planting",42884.2,43000.0,1.003
+"strawberry production, in unheated greenhouse",RoW,strawberry,"strawberry seedling, for planting",42884.2,43000.0,1.003
+"strawberry production, open field, macro tunnel",ES,strawberry,"strawberry seedling, for planting",69811.5,70000.0,1.003
+"strawberry production, open field, macro tunnel",RoW,strawberry,"strawberry seedling, for planting",59142.6,59302.3,1.003
+"strawberry production, open field, macro tunnel",US,strawberry,"strawberry seedling, for planting",56358.8,56511.0,1.003
+"tea production, dried",CN,"tea, dried","fruit tree seedling, for planting",6.5554,131.462,20.05
+"tea production, dried",IN-HP,"tea, dried","fruit tree seedling, for planting",375.0,7500.0,20.0
+"tea production, dried",KE,"tea, dried","fruit tree seedling, for planting",6.5554,131.462,20.05
+"tea production, dried",LK,"tea, dried","fruit tree seedling, for planting",6.5554,131.462,20.05
+"tea production, dried",RoW,"tea, dried","fruit tree seedling, for planting",6.5554,131.462,20.05
+"tomato production, fresh grade, in heated greenhouse",NL,"tomato, fresh grade","tomato seedling, for planting",27924.6,28000.0,1.003
+"tomato production, fresh grade, in heated greenhouse",RoW,"tomato, fresh grade","tomato seedling, for planting",27924.6,28000.0,1.003
+"tomato production, fresh grade, in unheated greenhouse",ES,"tomato, fresh grade","tomato seedling, for planting",27924.6,28000.0,1.003
+"tomato production, fresh grade, in unheated greenhouse",RoW,"tomato, fresh grade","tomato seedling, for planting",27924.6,28000.0,1.003
+"tomato production, fresh grade, open field",MX,"tomato, fresh grade","tomato seedling, for planting",22938.1,23000.0,1.003
+"tomato production, fresh grade, open field",RoW,"tomato, fresh grade","tomato seedling, for planting",19312.2,17818.5,0.9227
+"tomato production, processing grade, open field",IT,"tomato, processing grade","tomato seedling, for planting",33908.4,34000.0,1.003
+"tomato production, processing grade, open field",RoW,"tomato, processing grade","tomato seedling, for planting",32697.5,32785.8,1.003
+white asparagus production,CN,white asparagus,"asparagus seedling, for planting",3561.78,32142.6,9.024
+white asparagus production,FR,white asparagus,"asparagus seedling, for planting",3561.78,32142.6,9.024
+white asparagus production,PE,white asparagus,"asparagus seedling, for planting",3561.78,32142.6,9.024
+white asparagus production,RoW,white asparagus,"asparagus seedling, for planting",3561.78,32142.6,9.024
+"white cabbage production, conventional, plain region",CH,white cabbage,"tomato seedling, for planting",4646.37,5830.24,1.255
+"white cabbage production, organic, plain region",CH,"white cabbage, organic","tomato seedling, for planting",6690.74,8395.5,1.255
