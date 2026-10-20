@@ -352,6 +352,20 @@ class CropCountryMatrixLookupDefaultGenerator(object):
             return currentCropTable["GLO"]
 
 
+class PlantingDefaultGenerator(CropCountryMatrixLookupDefaultGenerator):
+    """Seedlings or trees per ha (decision L47). For the plantings amortised over the plantation lifetime
+    (planting_amortised_over_lifetime of crop_types.csv: trees, asparagus) the table holds the ecoinvent 3.12 plantings
+    per ha and year, multiplied here by the orchard lifetime in use, so that the yearly planting of outputMapping.py
+    (number / orchard_lifetime) equals the ecoinvent input; for the other crops the table holds the number per ha and
+    crop cycle."""
+    def generateDefault(self, field, generators):
+        value = super().generateDefault(field, generators)
+        if dataloader.table("crop_types.csv", numeric=False)[generators["crop"]]["planting_amortised_over_lifetime"] \
+                == "yes":
+            value *= generators["orchard_lifetime"]
+        return value
+
+
 class NitrogenUptakeGenerator(object):
     """kg N/(ha and crop cycle). Crops of n_uptake_crop_parameters.csv: yield per crop cycle x N per kg of main
     product incl. residues (WFLDB 2017 / GRUDAF 2009, decision L28); tree crops: yield per crop cycle x N per kg of
@@ -663,8 +677,8 @@ DEFAULTS_VALUES_GENERATORS = {
     # Seed defaults
     "unsafe_seeds": CropCountryMatrixLookupDefaultGenerator(NB_SEEDS_PER_PARTIAL_CROP_PER_COUNTRY),
     "seeds": SafeDefaultGenerator("unsafe_seeds", 0.0),
-    "nb_seedlings": CropCountryMatrixLookupDefaultGenerator(NB_SEEDLINGS_PER_PARTIAL_CROP_PER_COUNTRY),
-    "nb_planted_trees": CropCountryMatrixLookupDefaultGenerator(NB_PLANTED_TREES_PER_PARTIAL_CROP_PER_COUNTRY),
+    "nb_seedlings": PlantingDefaultGenerator(NB_SEEDLINGS_PER_PARTIAL_CROP_PER_COUNTRY),
+    "nb_planted_trees": PlantingDefaultGenerator(NB_PLANTED_TREES_PER_PARTIAL_CROP_PER_COUNTRY),
     "orchard_lifetime": OrchardLifetimeDefaultGenerator(),
     "seed_quantities": SeedQuantitiesDefaultGenerator(),
     # lu_defaults

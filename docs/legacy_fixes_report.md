@@ -2024,5 +2024,89 @@ pea, cotton and lentil from 0 to 9-48 kg/ha.
 
 Regression (`scripts/compare_regression.py`): no change (the three cases give the seed).
 
-Open: the factor 2 and the flagged cases above; the 9 legacy crops; seedlings and trees (part B, ecoinvent 3.12), where
-the legacy onion (3.30) and tomato (3.125) are seedlings per kg of product, not per ha.
+Open: the factor 2 and the flagged cases above; the 9 legacy crops; seedlings and trees (part B, ecoinvent 3.12: done in
+section 35, which also corrects the statement first written here that the legacy onion (3.30) and tomato (3.125) values
+are seedlings per kg of product).
+
+## 35. Default seedlings and trees from ecoinvent 3.12 (decision L47, 2026-10-20)
+
+The default number of seedlings (`nb_seedlings`) and trees (`nb_planted_trees`) per ha, used when the template gives no
+planting, comes from the ecoinvent 3.12 cut-off datasets of the crops. `scripts/build_ecoinvent_planting_rates.py`
+reads the release file 'exchanges (3.12, cut-off).xlsx' (copied to `data/external_data/`) and stores only values per ha
+(`ecoinvent312_planting_rates.csv`, 133 datasets):
+
+- per ha and year = inputs '..., for planting' (unit per kg) x 10000 / occupation (m2a per kg);
+- per ha and crop cycle = the same / transformation from (m2 per kg; the land is transformed once per planting);
+- lifetime = occupation / transformation.
+
+Crops -> activities, excluded geographies, quantity and proxies are in `ecoinvent312_planting_crop_mapping.csv` (signed
+by FC; review table `Literature/review_planting_defaults.csv` confirmed by FC):
+
+| Crops | Quantity | Default in the tool |
+|---|---|---|
+| trees, asparagus (planting amortised over the lifetime, `crop_types.csv`) | per ha and year | x orchard lifetime in use (default 20 years): the yearly planting of the tool (number / lifetime) equals ecoinvent |
+| onion, tomato, strawberry, cabbages, bell pepper | per ha and crop cycle | as is |
+| mint (perennial in ecoinvent, 20 years; annual in the tool) | per ha and year | as is (one crop cycle per year) |
+
+Country value = mean of the datasets of the country and its regions (BR-SP, BR-MG -> BR; IN-HP, IN-MH -> IN; Swiss
+regional and organic variants; the production systems of strawberry and fresh tomato). GLO = mean of the RoW datasets,
+or the mean of the country values when there is no RoW dataset with a planting input (grape: IN and CH; palm: ID;
+white cabbage: CH). Not used, because they have no planting input: grape RoW, palm CO, MY, RoW, fresh tomato open field
+IN-MH, IN-UP, bell pepper IN-UP. Excluded by FC: onion IN (the legacy default, see below), IN takes GLO. Proxies:
+lime -> lemon, green asparagus -> white asparagus, red cabbage -> white cabbage. No ecoinvent dataset with a planting
+input, legacy values kept (0): blueberry, cranberry, pineapple, sugarcane, chilli, eggplant, ginger, raspberry.
+
+| Crop | Legacy | New GLO | Countries (new) |
+|---|---|---|---|
+| apple | 0 | 2581 | CH 2667, CL 1385, CN 2659, IT 2659, US 1385, ZA 1281 |
+| pear | 0 | 1193 | AR 1187, BE 2239, CH 2667, CN 1187, ZA 1298 |
+| peach | 0 | 1575 | CN, ES, IT 1575 |
+| apricot | 0 | 350 | ES 156, FR 499, IT 472, TR 299 |
+| almond | 0 | 242 | CN 171, US 244 |
+| lemon, lime | 0 | 172 | ES 171, MX 171, TR 183 |
+| mandarin | 0 | 171 | CN, ES 171, ZA 32,088 |
+| orange fresh / processing | 0 | 262 / 246 | ES 332, US 219, ZA 288 / BR 216, US 319 |
+| olive | 0 | 125 | ES, IT 125 |
+| grape | 0 | 4490 | CH 5600, IN 3380 |
+| coffee arabica | 0 | 5772 | BR 4464, CO 4667, IN 2952 |
+| coffee robusta | 0 | 908 | BR 2513, ID 459, IN 1097, VN 997 |
+| cocoa | 0 | 140 | CI, GH, ID 140 |
+| coconut | 0 | 666 | ID 739, IN 175, PH 739 |
+| tea | 0 | 131 | CN, KE, LK 131, IN 7500 |
+| banana | 0 | 131 | CO, CR, EC, IN 131 |
+| cashew, mango, palm | 0 | 128, 251, 113 | IN 128; BR 251; ID 113 |
+| mulberry, pomegranate | 0 | 13,838, 875 | IN |
+| asparagus (white, green) | 0 | 71,236 | CN, FR, PE 71,236 |
+| onion | 3.30 | 608,619 | CH 1,027,480, CN 443,560, NL and NZ 1,130,000 (IN: GLO) |
+| tomato fresh | 3.125 | 24,606 | ES 28,000, MX 23,000, NL 28,000 |
+| tomato processing | 3.125 | 32,786 | IT 34,000 |
+| strawberry (fresh, processing) | 0 | 48,434 | CH 43,000, ES 70,000, US 56,511 |
+| mint | 0 | 36,162 | IN 36,900, US 27,703 (per year) |
+| white and red cabbage | 0 | 7113 | CH 7113 |
+| bell pepper | 0 | 326 | IN 25,000 |
+
+(Trees and asparagus: number planted per ha at the default lifetime of 20 years; seedlings: per ha and crop cycle.
+Legacy 0 = empty table, default 0.)
+
+The legacy onion (3.30) and tomato (3.125) values have no source. As values per ha they are 4 to 5 orders of magnitude
+below the ecoinvent datasets. The ecoinvent onion IN dataset has exactly 3.30189 seedlings per ha, and its land use is
+'calculated by using the ecoinvent LCI calculation tool for crop production': it was produced with this tool and the
+legacy default; FC excluded it (IN takes GLO). Section 34 called these values seedlings per kg of product; that is not
+established.
+
+Effect: the default planting of the tree crops changes from 0 to the values above, with the yearly planting input,
+the rooting up of the trees (1 / lifetime) and, from 500 trees per ha (legacy rule of `outputMapping.py`), the trellis
+system: apple, pear, peach, coffee (not robusta ID), grape, mulberry, pomegranate, coconut ID, PH and GLO, tea IN,
+mandarin ZA. The ecoinvent datasets of these crops have the trellis input, and so do apricot FR and RoW (499 and 350
+trees here), coconut IN, coffee robusta ID and orange fresh (tiny amounts).
+
+Regression (`scripts/compare_regression.py`): no change (the three cases give the plantings).
+
+Flagged for review (FC: kept, not excluded): tea CN, KE, LK, RoW 131 trees per ha against IN-HP 7500; banana 131 plants
+per ha; cocoa 7 trees per ha and year (350 per ha in 50 years); mandarin ZA 32,088; bell pepper RoW 326. Densities
+from the land use differ from some dataset comments: white cabbage CH 5830 and 8395 against 25,000 and 30,000 seedlings
+per ha, tomato NL 28,000 against 25,000, broccoli CH 27,500 against 50,000.
+
+Open: the orchard lifetime of 20 years (legacy); bell pepper, chilli, eggplant, cabbages, ginger and sugarcane have no
+seedling exchange in the tool (no_exchange), so their values have no effect yet; the ecoinvent findings (onion IN,
+tea, datasets without a planting input) to be reported to the ecoinvent data team.
