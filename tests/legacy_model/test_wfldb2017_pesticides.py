@@ -1,24 +1,22 @@
 """Decision L43: default total pesticides (g a.i./ha) from the WFLDB 3.1 Documentation 2017, row 19
 'Total amount of active ingredient (a.i.), any kind of pesticides' of the sheets 2a-2c
 (data/wfldb2017_pesticides_total_ai.csv), mapped to the tool crops by
-data/wfldb2017_pesticides_crop_mapping.csv; GLO = mean of the direct datasets of the crop."""
+data/wfldb2017_pesticides_crop_mapping.csv; GLO = mean of the direct datasets of the crop. Since decision L48 the
+crops of the Global atlas of pesticide use use these values only as fallback (test_atlas_pesticides.py); the values
+below are those of the WFLDB loader."""
 import re
 from pathlib import Path
 
 import pytest
 
 import dataloader
-from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS
-from defaultMatrixTotalPesticides import TOTAL_PESTICIDES_PER_CROP_PER_COUNTRY as PESTICIDES
+from defaultMatrixTotalPesticides import _load_wfldb_pesticides
+
+PESTICIDES = _load_wfldb_pesticides()
 
 WORKBOOK = (Path(__file__).resolve().parents[2] / "Literature"
             / "ecoinvent 3 report_WFLDB_Documentation_2017.xlsx")
 SHEETS = ("2a) Main inputs_Arable", "2b) Main inputs_Horticulture", "2c) Main inputs_Perennials")
-LEGACY_TAG = "legacy, undocumented, provisional"
-
-
-def _default(**inputs):
-    return DefaultValuesWrapper(inputs, DEFAULTS_VALUES_GENERATORS)["pest_total"]
 
 
 def _datasets():
@@ -100,7 +98,7 @@ def test_values_and_glo_by_hand():
     assert PESTICIDES["pear"]["AR"] == pytest.approx(13780.0)  # 866.4
     assert PESTICIDES["strawberry_fresh"]["ES"] == pytest.approx(26300.0)  # 217792.35
     assert PESTICIDES["coffee_robusta"]["VN"] == pytest.approx(500.0)  # 9631.6
-    assert PESTICIDES["rice"]["IN"] == pytest.approx(1500.0)  # 1498.06, rice_IN snapshot
+    assert PESTICIDES["rice"]["IN"] == pytest.approx(1500.0)  # 1498.06
 
 
 def test_grades_and_species():
@@ -135,14 +133,6 @@ def test_new_countries():
 
 
 def test_countries_without_wfldb_dataset():
-    # strawberry MX and MA repeated the legacy GLO: removed, they take the new GLO
-    assert _default(crop="strawberry_fresh", country="MX") == pytest.approx((26300.0 + 45770.0 + 41800.0) / 3)
-    assert PESTICIDES["tomato_fresh"]["CH"] == 27206.5388274181  # legacy kept
-
-
-def test_legacy_table_keeps_only_the_rows_without_wfldb_dataset():
-    rows = dataloader.rows("default_pesticides.csv")
-    assert len(rows) == 36 and all(row["note"].endswith(LEGACY_TAG) for row in rows)
-    mapped = {row["crop"] for row in _mapping() if row["use"] != "not_used"}
-    assert {(row["crop"], row["country"]) for row in rows if row["crop"] in mapped} == {
-        ("tomato_fresh", "CH"), ("tomato_processing", "CH")}
+    # strawberry MX and MA repeated the legacy GLO: removed (L43)
+    assert not {"MX", "MA"} & set(PESTICIDES["strawberry_fresh"])
+    assert "CH" not in PESTICIDES["tomato_fresh"]  # legacy row until L48

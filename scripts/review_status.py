@@ -30,6 +30,8 @@ Review tables (all in data/):
   ifastat_country_mapping.csv             idem
   seed_rate_crop_mapping.csv              usable when status is confirmed (default seed of the sown crops, L46)
   ecoinvent312_planting_crop_mapping.csv  usable when status is confirmed (default seedlings and trees, L47)
+  atlas2026_pesticides_review.csv         usable when status is confirmed (default total pesticides, L48)
+  soil_fumigant_active_ingredients.csv    idem
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -86,6 +88,8 @@ TABLES = [
     ("ifastat_country_mapping.csv", ("confirmed",), ("country", "ifastat_alpha3", "ifastat_country", "status")),
     ("seed_rate_crop_mapping.csv", ("confirmed",), ("crop", "use", "faostat_seed_item_code", "tcf_items", "status")),
     ("ecoinvent312_planting_crop_mapping.csv", ("confirmed",), ("crop", "use", "quantity", "note", "status")),
+    ("atlas2026_pesticides_review.csv", ("confirmed",), ("atlas_crop", "country", "flag", "use", "status")),
+    ("soil_fumigant_active_ingredients.csv", ("confirmed",), ("cas_rn", "active_ingredient", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]

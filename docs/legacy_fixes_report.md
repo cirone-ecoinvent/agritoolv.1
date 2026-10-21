@@ -1835,7 +1835,7 @@ Open: the values are to be replaced by the Global atlas of pesticide use (Zhang 
 doi 10.21203/rs.3.rs-10665000/v1; 2016-2020, 131 crops, 167 countries, annual load in kg/ha/year; data on Zenodo,
 doi 10.5281/zenodo.15282367, files restricted) once its data are accessible, with Eurostat aei_pestuse and USDA NASS
 Chemical Use as checks for the EU and the US (FC, 2026-10-16). The 24 crops with GLO 0 (e.g. grape, cotton, mango,
-pineapple) have no default pesticides; blueberry and cranberry (97.4 kg/ha) and raspberry (33.9 kg/ha) stay legacy.
+pineapple) have no default pesticides; blueberry and cranberry (97.4 kg/ha) and raspberry (33.9 kg/ha) stay legacy. Done by decision L48 (section 36).
 
 ## 32. Default irrigation water from Pfister & Bayer (2014) and AQUASTAT irrigation techniques (decision L44, 2026-10-19)
 
@@ -2110,3 +2110,67 @@ per ha, tomato NL 28,000 against 25,000, broccoli CH 27,500 against 50,000.
 Open: the orchard lifetime of 20 years (legacy); bell pepper, chilli, eggplant, cabbages, ginger and sugarcane have no
 seedling exchange in the tool (no_exchange), so their values have no effect yet; the ecoinvent findings (onion IN,
 tea, datasets without a planting input) to be reported to the ecoinvent data team.
+
+## 36. Default total pesticides from the Global atlas of pesticide use (decision L48, 2026-10-21)
+
+The default total pesticides (`pest_total`, g a.i. per ha and crop cycle, used when the template gives no total) come
+from the Global atlas of pesticide use (Zhang, Gladbach, Kosnik, Settles, Norinder, Glas, Fantke 2026, Research Square
+preprint v1, doi 10.21203/rs.3.rs-10665000/v1, CC BY 4.0; reference years 2016-2020). The Zenodo data record is still
+restricted; the two public supplementary files (supplied by FC) give, in Table S1, the annual applied mass per country,
+crop and active ingredient. `scripts/build_atlas_pesticides.py` writes `atlas2026_pesticides_country.csv`:
+
+- tool crop -> atlas crop by the FAOSTAT item code of `faostat_crop_item_mapping.csv` and Table S6 (57 of 67 crops);
+  tool country -> atlas country by ISO alpha-3 (Table S4) and M49 (39 of 39 countries, all with reported data);
+- applied mass = all active ingredients, target classes and treatments, soil fumigants included (FC);
+- value = applied mass / FAOSTAT area harvested, mean 2016-2020: per ha and crop cycle, as the yield (L24). The atlas
+  annual load (per ha of mapSPAM 2020 physical area) is not in the public files; FC chose the FAOSTAT area;
+- GLO = applied mass of all countries and regions of the atlas / FAOSTAT World area.
+
+Flags (`pesticide_outlier_factor` 10, `pesticide_min_active_ingredients` 5 in `model_parameters.csv`): no FAOSTAT area,
+at most 5 a.i., or outside x10 / ÷10 of the median of the tool-country values of the crop. The 74 flagged values are
+decided in `atlas2026_pesticides_review.csv` (signed by FC):
+
+| Flag | Values | Use |
+|---|---|---|
+| above the range, soil fumigants > 50 % of the mass | 9: strawberry ES, US, IL, MA; raspberry ES; carrot IT, US; onion IL; groundnut IL | atlas value kept (real use) |
+| above the range, forage types in the atlas crop | 4: maize NL, NZ (silage maize); cabbage AU, NZ (forage brassicas) | fallback |
+| above the range, no evident cause | 5: almond IL, oats ZA, onion TH, tomato AU, EC | fallback |
+| below 1/10 of the median | 25, e.g. onion VN, banana PE, cocoa PE, potato RU, UA | fallback |
+| at most 5 a.i. | 17, e.g. onion CN (4), rice, cotton, tea KE (1) | fallback |
+| no FAOSTAT area | 14, e.g. onion NZ, olive CN, apple ID | fallback |
+
+Fallback, and countries without an atlas value: the WFLDB 2017 value of the country (L43; e.g. onion CN 10.6, potato
+RU 0.87, pear AR 13.8, strawberry CH 45.8 kg/ha), else the GLO of the atlas. The soil fumigants (12 CAS RN,
+`soil_fumigant_active_ingredients.csv`) are stored as an information column; the atlas class 'Others' is mostly sulfur,
+copper and mineral oils, not fumigants.
+
+| Crop | Old GLO (kg a.i./ha) | New GLO | Countries (old -> new) |
+|---|---|---|---|
+| wheat | 1.37 | 0.97 | FR 1.37 -> 2.19, IT 1.37 -> 0.76 |
+| maize grain | 0.13 | 1.81 | US 0.13 -> 3.68 |
+| rice | 2.53 | 1.25 | IN 1.50 -> 0.65 |
+| soybean | 0.92 | 3.38 | BR 0.92 -> 5.63 |
+| potato | 1.64 | 6.06 | US 1.64 -> 90.4 (soil fumigants 82 %) |
+| apple | 14.5 | 15.6 | FR 14.5 -> 33.2 |
+| grape | 0 | 22.6 | IT 0 -> 38.3 |
+| tomato fresh | 39.2 | 10.6 | ES 32.3 -> 66.2 |
+| strawberry | 38.0 | 19.2 | ES 26.3 -> 229 (soil fumigants 84 %) |
+| banana | 23.5 | 5.87 | CR 64.8 -> 71.3 |
+| coffee arabica | 4.49 | 1.70 | BR 7.82 -> 5.04 |
+| cocoa | 8.15 | 1.04 | CI 9.59 -> 1.61 |
+| cotton | 0 | 3.83 | US 0 -> 7.37 |
+| mango, pineapple | 0, 0 | 3.45, 4.70 | |
+| cabbage, bell pepper | 0, 0 | 12.7, 8.59 | |
+| blueberry, raspberry | 97.4, 33.9 (legacy) | 1.56, 8.17 | |
+
+Over the 547 tool-crop and country values with an old value above 0, the median ratio new/old is 1.0 (226 within x2, 171
+below half, 150 above double); 184 values change from 0. Full table: `Literature/atlas_6b_step1/review_atlas_values.csv`
+(770 values, confirmed by FC). `default_pesticides.csv` keeps 9 legacy rows (castor beans, flax, guar, hemp, mulberry,
+pomegranate GLO 0; cranberry 97.4 kg/ha); coconut, mint and sweet corn keep WFLDB 2017 (no atlas crop).
+
+The default only sets the pesticide packaging (`models/packmodel.py`). Regression (`scripts/compare_regression.py`):
+apple_FR and wheat_IT unchanged (total from the template); rice_IN 1500 -> 645 g/ha, `wfldb_packaging_liquid`
+3.000 -> 1.290 and `ecoinvent_packaging_liquid` 4.500 -> 1.935 kg/ha.
+
+Open: the preprint is under review (check the published version and the Zenodo data); the atlas maize and cabbage
+include forage types; flax, mint, mulberry and pomegranate are only in aggregated atlas crops.
