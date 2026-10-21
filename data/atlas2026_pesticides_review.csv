@@ -1,0 +1,75 @@
+atlas_crop,country,flag,use,note,status,reviewed_by
+almond,IL,above_median_range,fallback,"above 10 x the tool-country median, no evident cause; top a.i.: Phosphoric acid 14 %; Glyphosate 9 %; Chlorothalonil 8 %",confirmed,FC
+cabbage,AU,above_median_range,fallback,"atlas crop includes forage types not in the FAOSTAT item (Table S6: BRASSICAS: FODDER, BRASSICAS: FORAGE); top a.i.: S-Metolachlor 11 %; Cyazofamid 9 %; Chlorantraniliprole 8 %",confirmed,FC
+cabbage,NZ,above_median_range,fallback,"atlas crop includes forage types not in the FAOSTAT item (Table S6: BRASSICAS: FODDER, BRASSICAS: FORAGE); top a.i.: Glyphosate 64 %; Alachlor 6 %; Chlorpyrifos 6 %",confirmed,FC
+carrot,IT,above_median_range,atlas,"soil fumigants 93 % of the mass (real use, all a.i. included); top a.i.: 1,3-Dichloropropene 45 %; Metam-sodium 30 %; trans-1,3-Dichloropropene 12 %",confirmed,FC
+carrot,US,above_median_range,atlas,"soil fumigants 82 % of the mass (real use, all a.i. included); top a.i.: Potassium N-methyldithiocarbamate 39 %; Metam-sodium 27 %; 1,3-Dichloropropene 17 %",confirmed,FC
+groundnut,IL,above_median_range,atlas,"soil fumigants 97 % of the mass (real use, all a.i. included); top a.i.: Formaldehyde 90 %; Metam-sodium 7 %; Chlorothalonil 1 %",confirmed,FC
+maize,NL,above_median_range,fallback,atlas crop includes forage types not in the FAOSTAT item (Table S6: CORN: FODDER (DRY); silage maize); top a.i.: Dimethenamid 29 %; Tembotrione 20 %; Terbutylazine 20 %,confirmed,FC
+maize,NZ,above_median_range,fallback,atlas crop includes forage types not in the FAOSTAT item (Table S6: CORN: FODDER (DRY); silage maize); top a.i.: Acetochlor 43 %; Atrazine 41 %; Glyphosate 10 %,confirmed,FC
+oats,ZA,above_median_range,fallback,"above 10 x the tool-country median, no evident cause; top a.i.: Glyphosate 47 %; Metolachlor 13 %; Diuron 11 %",confirmed,FC
+onion,IL,above_median_range,atlas,"soil fumigants 71 % of the mass (real use, all a.i. included); top a.i.: Metam-sodium 71 %; Mancozeb 8 %; Fenamiphos 4 %",confirmed,FC
+onion,TH,above_median_range,fallback,"above 10 x the tool-country median, no evident cause; top a.i.: Mancozeb 39 %; Propineb 8 %; Carbaryl 8 %",confirmed,FC
+rasberry,ES,above_median_range,atlas,"soil fumigants 97 % of the mass (real use, all a.i. included); top a.i.: 1,3-Dichloropropene 58 %; Chloropicrin 39 %; Sulfur 2 %",confirmed,FC
+strawberry,ES,above_median_range,atlas,"soil fumigants 84 % of the mass (real use, all a.i. included); top a.i.: 1,3-Dichloropropene 51 %; Chloropicrin 30 %; Sulfur 9 %",confirmed,FC
+strawberry,IL,above_median_range,atlas,"soil fumigants 91 % of the mass (real use, all a.i. included); top a.i.: Metam-sodium 91 %; Sulfur 5 %; Dichlorvos 1 %",confirmed,FC
+strawberry,MA,above_median_range,atlas,"soil fumigants 98 % of the mass (real use, all a.i. included); top a.i.: Metam-sodium 49 %; Chloropicrin 21 %; 1,3-Dichloropropene 15 %",confirmed,FC
+strawberry,US,above_median_range,atlas,"soil fumigants 80 % of the mass (real use, all a.i. included); top a.i.: Chloropicrin 37 %; Potassium N-methyldithiocarbamate 16 %; 1,3-Dichloropropene 16 %",confirmed,FC
+tomato,AU,above_median_range,fallback,"above 10 x the tool-country median, no evident cause; top a.i.: Boscalid 13 %; Acephate 9 %; Indoxacarb 8 %",confirmed,FC
+tomato,EC,above_median_range,fallback,"above 10 x the tool-country median, no evident cause; top a.i.: Mancozeb 31 %; Chlorpyrifos 8 %; Sulfur 6 %",confirmed,FC
+almond,TR,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Glyphosate 31 %; Copper sulfate 20 %; Basic copper chloride 18 %,confirmed,FC
+apricot,RU,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Copper sulfate 28 %; Thiram 13 %; Captan 7 %,confirmed,FC
+asparagus,CN,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Mancozeb 53 %; Carbendazim 17 %; Thiophanate-methyl 14 %,confirmed,FC
+banana,BR,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: White mineral oil 44 %; Paraquat 9 %; Glyphosate 8 %,confirmed,FC
+banana,PE,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Glyphosate 57 %; Sulfur 11 %; Cyanamide 10 %,confirmed,FC
+cabbage,RU,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Pendimethalin 21 %; S-Metolachlor 16 %; Metazachlor 16 %,confirmed,FC
+cocoa,PE,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Cyanamide 28 %; Basic copper chloride 22 %; Paraquat 22 %,confirmed,FC
+coffee,KE,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Tetrachlorantraniliprole 93 %; Glyphosate 4 %; Tebuconazole 2 %,confirmed,FC
+maize,KE,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Tetrachlorantraniliprole 20 %; S-Metolachlor 11 %; Glyphosate 10 %,confirmed,FC
+maize,MA,below_median_range,fallback,"below 1/10 of the tool-country median (partial panel coverage); top a.i.: Chlorpyrifos 16 %; 2,4-Dichlorophenoxyacetic acid 15 %; MCPA 15 %",confirmed,FC
+mango,CI,below_median_range,fallback,"below 1/10 of the tool-country median (partial panel coverage); top a.i.: Mancozeb 32 %; Glyphosate 27 %; 2,4-Dichlorophenoxyacetic acid 13 %",confirmed,FC
+oilpalm,CR,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Monosodium methanearsonate 36 %; Paraquat 24 %; Sodium dodecylbenzenesulfonate 19 %,confirmed,FC
+oilpalm,PE,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Glyphosate 76 %; Cyanamide 8 %; Paraquat 6 %,confirmed,FC
+olive,MA,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Malathion 25 %; Basic copper chloride 23 %; Dimethoate 16 %,confirmed,FC
+onion,VN,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Zineb 58 %; Thiophanate-methyl 17 %; Pencycuron 10 %,confirmed,FC
+orange,MX,below_median_range,fallback,"below 1/10 of the tool-country median (partial panel coverage); top a.i.: Glyphosate 22 %; 2,4-Dichlorophenoxyacetic acid 14 %; Fosetyl-aluminium 12 %",confirmed,FC
+pear,CH,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Sulfur 35 %; Aluminum sulfate 16 %; Basic aluminum acetate 16 %,confirmed,FC
+pear,RU,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Sulfur 16 %; Glyphosate 12 %; Basic copper chloride 11 %,confirmed,FC
+pear,UA,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Light mineral oil 15 %; Copper sulfate 10 %; Copper dihydroxide 10 %,confirmed,FC
+pineapple,PE,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Cyanamide 28 %; Fosetyl-aluminium 17 %; Ametryn 12 %,confirmed,FC
+potato,RU,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Mancozeb 39 %; Propamocarb hydrochloride 17 %; Metribuzin 8 %,confirmed,FC
+potato,UA,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Mancozeb 46 %; Metribuzin 8 %; Propamocarb hydrochloride 5 %,confirmed,FC
+strawberry,CN,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Triadimefon 34 %; Procymidone 10 %; Iprodione 8 %,confirmed,FC
+tomato,RU,below_median_range,fallback,below 1/10 of the tool-country median (partial panel coverage); top a.i.: Mancozeb 27 %; Basic copper chloride 27 %; Metribuzin 5 %,confirmed,FC
+wheat,MA,below_median_range,fallback,"below 1/10 of the tool-country median (partial panel coverage); top a.i.: 2,4-Dichlorophenoxyacetic acid 46 %; MCPA 14 %; 2,4-D dimethylamine salt 7 %",confirmed,FC
+banana,GH,few_active_ingredients,fallback,only 1 a.i. reported (incomplete panel); top a.i.: Glyphosate 100 %,confirmed,FC
+cassava,GH,few_active_ingredients,fallback,only 3 a.i. reported (incomplete panel); top a.i.: Glyphosate 57 %; Atrazine 27 %; Paraquat 16 %,confirmed,FC
+chickpea,IL,few_active_ingredients,fallback,only 3 a.i. reported (incomplete panel); top a.i.: Thiamethoxam 41 %; Thiram 29 %; Carboxin 29 %,confirmed,FC
+cotton,KE,few_active_ingredients,fallback,only 1 a.i. reported (incomplete panel); top a.i.: Tetrachlorantraniliprole 100 %,confirmed,FC
+lentil,IT,few_active_ingredients,fallback,only 5 a.i. reported (incomplete panel); top a.i.: Ziram 44 %; Basic copper chloride 23 %; Aclonifen 21 %,confirmed,FC
+linseed,UA,few_active_ingredients,fallback,only 3 a.i. reported (incomplete panel); top a.i.: Glyphosate 65 %; Diquat 33 %; Glyphosate isopropylamine 2 %,confirmed,FC
+oilpalm,GH,few_active_ingredients,fallback,only 4 a.i. reported (incomplete panel); top a.i.: Glyphosate 91 %; Paraquat 6 %; Thiocyclam oxalate 3 %,confirmed,FC
+onion,CN,few_active_ingredients,fallback,only 4 a.i. reported (incomplete panel); top a.i.: Mancozeb 62 %; Cyantraniliprole 20 %; Chlorothalonil 12 %,confirmed,FC
+onion,MA,few_active_ingredients,fallback,only 5 a.i. reported (incomplete panel); top a.i.: Oxyfluorfen 56 %; Methiocarb 25 %; Mancozeb 9 %,confirmed,FC
+rice,KE,few_active_ingredients,fallback,only 1 a.i. reported (incomplete panel); top a.i.: Tetrachlorantraniliprole 100 %,confirmed,FC
+sesame,CR,few_active_ingredients,fallback,only 1 a.i. reported (incomplete panel); top a.i.: Metribuzin 100 %,confirmed,FC
+sugarcane,CI,few_active_ingredients,fallback,only 1 a.i. reported (incomplete panel); top a.i.: Tetrachlorantraniliprole 100 %,confirmed,FC
+sugarcane,KE,few_active_ingredients,fallback,only 5 a.i. reported (incomplete panel); top a.i.: Tetrachlorantraniliprole 61 %; Glyphosate 30 %; Metribuzin 7 %,confirmed,FC
+sugarcane,MA,few_active_ingredients,fallback,only 2 a.i. reported (incomplete panel); top a.i.: Dicamba 76 %; Topramezone 24 %,confirmed,FC
+sunflower,CN,few_active_ingredients,fallback,only 3 a.i. reported (incomplete panel); top a.i.: Haloxyfop-P-methyl 93 %; Haloxyfop 4 %; Fluroxypyr 3 %,confirmed,FC
+sunflower,DE,few_active_ingredients,fallback,only 1 a.i. reported (incomplete panel); top a.i.: Aclonifen 100 %,confirmed,FC
+tea,KE,few_active_ingredients,fallback,only 1 a.i. reported (incomplete panel); top a.i.: Glyphosate 100 %,confirmed,FC
+aniseetc,IT,no_area,fallback,no FAOSTAT harvested area; top a.i.: Clomazone 32 %; Pendimethalin 32 %; Linuron 23 %,confirmed,FC
+apple,ID,no_area,fallback,no FAOSTAT harvested area; top a.i.: Glyphosate isopropylamine 48 %; Glyphosate 14 %; Thiophanate-methyl 6 %,confirmed,FC
+cabbage,BR,no_area,fallback,no FAOSTAT harvested area; top a.i.: Mancozeb 44 %; Malathion 6 %; Acephate 4 %,confirmed,FC
+carrot,BR,no_area,fallback,no FAOSTAT harvested area; top a.i.: Mancozeb 23 %; Copper dihydroxide 15 %; Propineb 9 %,confirmed,FC
+chilleetc,BR,no_area,fallback,no FAOSTAT harvested area; top a.i.: Mancozeb 40 %; Basic copper chloride 11 %; Metiram 8 %,confirmed,FC
+chilleetc,VN,no_area,fallback,no FAOSTAT harvested area; top a.i.: Mancozeb 19 %; Zineb 17 %; Carbendazim 15 %,confirmed,FC
+eggplant,AU,no_area,fallback,no FAOSTAT harvested area; top a.i.: Propamocarb hydrochloride 63 %; Acephate 13 %; Mancozeb 7 %,confirmed,FC
+ginger,ZA,no_area,fallback,"no FAOSTAT harvested area; top a.i.: 1,2-Dibromoethane 81 %; Diuron 4 %; Fenamiphos 4 %",confirmed,FC
+mango,ES,no_area,fallback,no FAOSTAT harvested area; top a.i.: Basic copper chloride 38 %; Glyphosate 30 %; Sulfur 15 %,confirmed,FC
+olive,CN,no_area,fallback,no FAOSTAT harvested area; top a.i.: Methomyl 100 %,confirmed,FC
+onion,NZ,no_area,fallback,no FAOSTAT harvested area; top a.i.: Maleic hydrazide 14 %; Mancozeb 13 %; Glyphosate 12 %,confirmed,FC
+potato,CI,no_area,fallback,no FAOSTAT harvested area; top a.i.: Tetrachlorantraniliprole 100 %,confirmed,FC
+rapeseed,KE,no_area,fallback,no FAOSTAT harvested area; top a.i.: Tebuconazole 50 %; Prothioconazole 50 %,confirmed,FC
+tomato,VN,no_area,fallback,no FAOSTAT harvested area; top a.i.: Zineb 15 %; Thiophanate-methyl 14 %; Propineb 13 %,confirmed,FC
