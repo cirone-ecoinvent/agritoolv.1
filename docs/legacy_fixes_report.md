@@ -2285,3 +2285,20 @@ Known limits:
   cannot change. For now this keeps the tool equal to ecoinvent. Distinguishing e.g. a single-use film from a
   three-year film, or assigning the film only to the covered cycle of a mixed rotation, would need the film as a
   separate material input. Not planned.
+
+## 40. Soil constants from `model_parameters.csv`, unused code removed (decision L52, 2026-10-26)
+
+Code part of the clean-up of section 37. The defaults of four inputs of the SQCB nitrate model are now read from
+`model_parameters.csv` instead of being written in `defaultGeneration.py`:
+
+| Input | Parameter | Value |
+|---|---|---|
+| `considered_soil_volume` | `soil_volume_m3` | 5000 m3/ha |
+| `bulk_density_of_soil` | `bulk_density_kg_m3` | 1300 kg/m3 |
+| `c_per_n_ratio` | `soil_cn_ratio` | 11 |
+| `norg_per_ntotal_ratio` | `norg_ntot_ratio` | 0.85 |
+
+A value given in the template is still used. Removed: `NotFoundGenerator`, `ConvertRatioToValueDefaultGenerator` and
+`OneRatioToValueConvertor`, never called. The package `src/agritool/` is kept as a reference (FC).
+
+Regression cases: no change.

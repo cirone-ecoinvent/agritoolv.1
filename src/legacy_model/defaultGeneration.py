@@ -68,18 +68,21 @@ class DefaultValuesWrapper(object):
         return name in self.inputMapping or name in self._generatorMap
 
 
-# FIXME: Why is it not used?
-class NotFoundGenerator(object):
-    def generateDefault(self, field, generators):
-        raise "No generator found for field " + field
-
-
 class SimpleValueDefaultGenerator(object):
     def __init__(self, value):
         self._value = value
 
     def generateDefault(self, field, generators):
         return self._value
+
+
+class ParameterDefaultGenerator(object):
+    """Default = scalar parameter of data/model_parameters.csv."""
+    def __init__(self, name):
+        self._name = name
+
+    def generateDefault(self, field, generators):
+        return dataloader.param(self._name)
 
 
 class TableLookupDefaultGenerator(object):
@@ -110,17 +113,6 @@ class ZeroMapDefaultGenerator(object):
         return {k: 0.0 for k in self._enumClass}
 
 
-class ConvertRatioToValueDefaultGenerator(object):
-    def __init__(self, tableKeyField, ratioTable, totalField):
-        self._tableKeyField = tableKeyField
-        self._ratioTable = ratioTable
-        self._totalField = totalField
-
-    def generateDefault(self, field, generators):
-        total = generators[self._totalField]
-        return {k: v * total for k, v in self._ratioTable[generators[self._tableKeyField]].items()}
-
-
 class RatiosToValuesConvertor(object):
     def __init__(self, ratiosField, totalField):
         self._ratiosField = ratiosField
@@ -129,15 +121,6 @@ class RatiosToValuesConvertor(object):
     def generateDefault(self, field, generators):
         total = generators[self._totalField]
         return {k: v * total for k, v in generators[self._ratiosField].items()}
-
-
-class OneRatioToValueConvertor(object):
-    def __init__(self, ratioField, totalField):
-        self._ratioField = ratioField
-        self._totalField = totalField
-
-    def generateDefault(self, field, generators):
-        return generators[self._ratioField] * generators[self._totalField]
 
 
 class ClimateDefaultGenerator(object):
@@ -712,13 +695,13 @@ DEFAULTS_VALUES_GENERATORS = {
     "ecoinvent_water_ratio_to_water_river": CountryMapLookupDefaultGenerator(EI_IRR_RATIO_TO_RIVER),
     "ecoinvent_water_ratio_to_water_groundwater": CountryMapLookupDefaultGenerator(EI_IRR_RATIO_TO_GROUNDWATER),
     # N model defaults
-    "bulk_density_of_soil": SimpleValueDefaultGenerator(1300.0),
-    "c_per_n_ratio": SimpleValueDefaultGenerator(11.0),
-    "considered_soil_volume": SimpleValueDefaultGenerator(5000.0),
+    "bulk_density_of_soil": ParameterDefaultGenerator("bulk_density_kg_m3"),
+    "c_per_n_ratio": ParameterDefaultGenerator("soil_cn_ratio"),
+    "considered_soil_volume": ParameterDefaultGenerator("soil_volume_m3"),
     "drained_part": SimpleValueDefaultGenerator(0.0),
     "organic_carbon_content": TableLookupDefaultGenerator("country", SOIL_CARBON_CONTENT_PER_COUNTRY),
     "nitrogen_uptake_by_crop": NitrogenUptakeGenerator(),
-    "norg_per_ntotal_ratio": SimpleValueDefaultGenerator(0.85),
+    "norg_per_ntotal_ratio": ParameterDefaultGenerator("norg_ntot_ratio"),
     "rooting_depth": TableLookupDefaultGenerator("crop", ROOTING_DEPTH_PER_CROP),
     "nitrogen_from_crop_residues": NitrogenFromCropResiduesDefaultGenerator(),
     # Fix F2: SOC change of the land-use / land-management block (kg C/ha per cycle,
