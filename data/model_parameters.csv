@@ -15,11 +15,6 @@ bulk_density_kg_m3,1300,kg/m3,SQCB report,2.4
 soil_cn_ratio,11,-,Scheffer 2002; IPCC 2006b; Batjes 2008,2.4
 norg_ntot_ratio,0.85,-,Scheffer 2002,2.4
 legume_uptake_share,0.4,-,"Schmid et al. 2000, cited in WFLDB Guidelines v3.0 (2016) section 3.9.7.2: legumes count 40 % of the N uptake, the rest is fixed from the air. Since decision L30 applied to the default N uptake of the crops with legume = yes in crop_types.csv, hence also to their default mineral N and manure",2.4
-p_gw_arable,0.07,kg P/(ha*yr),Prasuhn 2006,2.5.1
-p_gw_grassland,0.06,kg P/(ha*yr),Prasuhn 2006,2.5.1
-p_ro_arable,0.175,kg P/(ha*yr),Prasuhn 2006,2.5.2
-p_ro_grassland_intensive,0.25,kg P/(ha*yr),Prasuhn 2006,2.5.2
-p_ro_grassland_extensive,0.15,kg P/(ha*yr),Prasuhn 2006,2.5.2
 p_topsoil_content,0.00095,kg P/kg soil,Prasuhn 2006,2.5.3
 p_enrichment_factor,1.86,-,Wilke & Schaub 1996,2.5.3
 erosion_delivery_ratio,0.2,-,Prasuhn 2006,2.5.3

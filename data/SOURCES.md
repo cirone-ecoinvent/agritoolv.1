@@ -13,7 +13,6 @@ for crop production* (Ecoinvent_Tool_Model_Description_20191015.pdf), unless sta
 | hm_mineral_fertiliser_mg_per_kg_nutrient.csv | Tab. 6 | Desaules & Studer 1993 via Freiermuth 2006 (no Hg data) |
 | hm_manure_mg_per_kg_dm.csv | Tab. 7 | Menzi & Kessler 1998; Desaules & Studer 1993; DM: Walther et al. 2001 |
 | seed_exchange_mapping.csv | Annex 2/3, Tab. 5 crop lists | crop key -> IntermediateExchange of ecoinvent Master Data v3.12 (names and units verified); status proposed / to_decide / no_exchange until reviewed |
-| ecoinvent_flows_md312.csv | - | elementary flows (name, compartment, UUID) from Master Data v3.12 for every flow the tool writes, incl. flooded-rice land use |
 
 ## Decisions backed by Nemecek et al. (2023), Int J LCA, Online Resources
 
