@@ -28,6 +28,7 @@ Review tables (all in data/):
   pfister2014_country_mapping.csv         idem
   ifastat_product_type_mapping.csv        usable when status is confirmed (mineral fertiliser mixes, L45)
   ifastat_country_mapping.csv             idem
+  ifastat_fubc_country_mapping.csv        usable when status is confirmed (time factor of the IFA rates, L53)
   seed_rate_crop_mapping.csv              usable when status is confirmed (default seed of the sown crops, L46)
   ecoinvent312_planting_crop_mapping.csv  usable when status is confirmed (default seedlings and trees, L47)
   atlas2026_pesticides_review.csv         usable when status is confirmed (default total pesticides, L48)
@@ -86,6 +87,7 @@ TABLES = [
     ("pfister2014_country_mapping.csv", ("confirmed",), ("country", "supplementary_name", "watershed_names", "status")),
     ("ifastat_product_type_mapping.csv", ("confirmed",), ("ifastat_nutrient", "ifastat_product", "fertiliser_type", "fraction", "status")),
     ("ifastat_country_mapping.csv", ("confirmed",), ("country", "ifastat_alpha3", "ifastat_country", "status")),
+    ("ifastat_fubc_country_mapping.csv", ("confirmed",), ("fubc_country", "ifastat_alpha3", "ifastat_country", "status")),
     ("seed_rate_crop_mapping.csv", ("confirmed",), ("crop", "use", "faostat_seed_item_code", "tcf_items", "status")),
     ("ecoinvent312_planting_crop_mapping.csv", ("confirmed",), ("crop", "use", "quantity", "note", "status")),
     ("atlas2026_pesticides_review.csv", ("confirmed",), ("atlas_crop", "country", "flag", "use", "status")),

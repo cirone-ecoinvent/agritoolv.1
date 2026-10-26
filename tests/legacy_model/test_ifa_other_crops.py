@@ -26,9 +26,9 @@ def _manure(defaults, nutrient):
 
 
 def _scale(country, nutrient):
-    row = next(r for r in dataloader.rows("faostat_fertiliser_use_country.csv")
+    row = next(r for r in dataloader.rows("ifastat_fertiliser_time_factor.csv")
                if r["country"] == country and r["nutrient"] == nutrient)
-    return float(row["target_kg_per_ha_cropland"]) / float(row["base_kg_per_ha_cropland"])
+    return float(row["factor"])
 
 
 def test_the_28_crops_without_level1_coefficients():

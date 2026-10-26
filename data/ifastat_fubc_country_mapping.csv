@@ -1,0 +1,72 @@
+fubc_country,ifastat_alpha3,ifastat_country,note,status,reviewed_by
+Argentina,ARG,Argentina,,confirmed,FC
+Australia,AUS,Australia,,confirmed,FC
+Austria,AUT,Austria,,confirmed,FC
+Bangladesh,BGD,Bangladesh,,confirmed,FC
+Belarus,BLR,Belarus,,confirmed,FC
+Belgium,BEL,Belgium,,confirmed,FC
+Bolivia (Plurinational State of),,,not a country of the IFASTAT export (in 'Others Latin America'),confirmed,FC
+Brazil,BRA,Brazil,,confirmed,FC
+Bulgaria,BGR,Bulgaria,,confirmed,FC
+Burkina Faso,BFA,Burkina Faso,,confirmed,FC
+Canada,CAN,Canada,,confirmed,FC
+Chile,CHL,Chile,,confirmed,FC
+China,CHN,China,,confirmed,FC
+Colombia,COL,Colombia,,confirmed,FC
+Costa Rica,CRI,Costa Rica,,confirmed,FC
+Cote d'Ivoire,CIV,Côte d'Ivoire,,confirmed,FC
+Croatia,HRV,Croatia,,confirmed,FC
+Cyprus,CYP,Cyprus,,confirmed,FC
+Czechia,CZE,Czechia,,confirmed,FC
+Denmark,DNK,Denmark,,confirmed,FC
+Ecuador,ECU,Ecuador,,confirmed,FC
+Egypt,EGY,Egypt,,confirmed,FC
+Estonia,EST,Estonia,,confirmed,FC
+Finland,FIN,Finland,,confirmed,FC
+France,FRA,France,,confirmed,FC
+Germany,DEU,Germany,,confirmed,FC
+Greece,GRC,Greece,,confirmed,FC
+Hungary,HUN,Hungary,,confirmed,FC
+India,IND,India,,confirmed,FC
+Indonesia,IDN,Indonesia,,confirmed,FC
+Iran (Islamic Republic of),IRN,Iran,,confirmed,FC
+Ireland,IRL,Ireland,,confirmed,FC
+Israel,ISR,Israel,,confirmed,FC
+Italy,ITA,Italy,,confirmed,FC
+Japan,JPN,Japan,,confirmed,FC
+Kenya,KEN,Kenya,,confirmed,FC
+Latvia,LVA,Latvia,,confirmed,FC
+Lithuania,LTU,Lithuania,,confirmed,FC
+Malaysia,MYS,Malaysia,,confirmed,FC
+Mali,MLI,Mali,,confirmed,FC
+Mexico,MEX,Mexico,,confirmed,FC
+Morocco,MAR,Morocco,,confirmed,FC
+Myanmar,MMR,Myanmar,,confirmed,FC
+Netherlands,NLD,Netherlands,,confirmed,FC
+New Zealand,NZL,New Zealand,,confirmed,FC
+Nigeria,NGA,Nigeria,,confirmed,FC
+Norway,NOR,Norway,,confirmed,FC
+Pakistan,PAK,Pakistan,,confirmed,FC
+Paraguay,PRY,Paraguay,,confirmed,FC
+Peru,PER,Peru,,confirmed,FC
+Philippines,PHL,Philippines,,confirmed,FC
+Poland,POL,Poland,,confirmed,FC
+Portugal,PRT,Portugal,,confirmed,FC
+Romania,ROU,Romania,,confirmed,FC
+Russian Federation,RUS,Russia,,confirmed,FC
+Senegal,SEN,Senegal,,confirmed,FC
+Slovakia,SVK,Slovakia,,confirmed,FC
+Slovenia,SVN,Slovenia,,confirmed,FC
+South Africa,ZAF,South Africa,,confirmed,FC
+Spain,ESP,Spain,,confirmed,FC
+Sri Lanka,LKA,Sri Lanka,,confirmed,FC
+Sweden,SWE,Sweden,,confirmed,FC
+Switzerland,CHE,Switzerland,,confirmed,FC
+Thailand,THA,Thailand,,confirmed,FC
+Turkey,TUR,Türkiye,,confirmed,FC
+Ukraine,UKR,Ukraine,,confirmed,FC
+United Kingdom of Great Britain and Northern Ireland,GBR,UK,,confirmed,FC
+United Republic of Tanzania,TZA,Tanzania,,confirmed,FC
+United States of America,USA,USA,,confirmed,FC
+Uruguay,URY,Uruguay,,confirmed,FC
+Viet Nam,VNM,Vietnam,,confirmed,FC

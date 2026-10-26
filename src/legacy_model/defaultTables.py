@@ -208,22 +208,29 @@ def _ifa_area_mean(rows):
     return rates
 
 
-def _ifa_region_median(pools, crop, mapping):
-    """Median rate per nutrient over the FUBC countries of a region that report the crop at the best match level found
-    in the region, each country's rate combined by area (decision L37); None if fewer countries than
-    _IFA_REGION_MIN_COUNTRIES report it."""
+def _ifa_region_rate(pools, crop, mapping, factor, fubc_factor):
+    """Rate per nutrient of a crop from the FUBC countries of a region that report it at the best match level found
+    in the region, each country's rate combined by area: median over the countries times the factor of the country
+    (decision L37), at most the highest rate of these countries, each brought to 2021-2023 with its own factor
+    (decision L53; a country without factor counts unscaled); None if fewer countries than _IFA_REGION_MIN_COUNTRIES
+    report the crop."""
     per_level = {}
     for rows in pools:
         level, matched = _ifa_best_match(rows, crop, mapping)
         if level:
-            per_level.setdefault(level, []).append(_ifa_area_mean(matched))
+            per_level.setdefault(level, []).append((rows[0]["fubc_country"], _ifa_area_mean(matched)))
     level = next((level for level in _IFA_LEVELS if level in per_level), None)
     if level is None or len(per_level[level]) < _IFA_REGION_MIN_COUNTRIES:
         return None
     rates = {}
     for nutrient in _IFA_NUTRIENTS:
-        values = [country_rates[nutrient] for country_rates in per_level[level] if country_rates[nutrient] is not None]
-        rates[nutrient] = statistics.median(values) if values else None
+        values = [(fubc_country, country_rates[nutrient]) for fubc_country, country_rates in per_level[level]
+                  if country_rates[nutrient] is not None]
+        if not values:
+            rates[nutrient] = None
+            continue
+        highest = max(rate * (fubc_factor.get((fubc_country, nutrient)) or 1.0) for fubc_country, rate in values)
+        rates[nutrient] = min(statistics.median(rate for _, rate in values) * factor[nutrient], highest)
     return rates
 
 
@@ -236,41 +243,45 @@ def _ifa_mineral_fertiliser():
     (ifa_fubc_country_mapping.csv): the best match level (exact, then subgroup, then group), the rows of that level
     combined by area. A crop missing there, and every crop of the countries without FUBC data: the FUBC 9 countries of
     the IFA region of the country, median over the countries at the best level found in the region, at least
-    _IFA_REGION_MIN_COUNTRIES countries (decision L37). Rates of FUBC 9 and of the regions are brought to 2021-2023
-    with the ratio of the FAOSTAT use per area of cropland of the country (faostat_fertiliser_use_country.csv); the
-    earlier reports of the countries without FUBC 9 data are used as they are."""
+    _IFA_REGION_MIN_COUNTRIES countries (decision L37), at most the highest rate of these countries (decision L53).
+    Rates of FUBC 9 and of the regions are brought to 2021-2023 with the ratio of the IFASTAT consumption of the
+    country (ifastat_fertiliser_time_factor.csv, decision L53); the earlier reports of the countries without FUBC 9
+    data are used as they are."""
     mapping = {(row["fubc_crop"], crop): row["match"]
                for row in dataloader.rows("ifa_fubc_crop_mapping.csv") for crop in row["crops"].split()}
     by_country = {}
     for row in dataloader.rows("ifa_fubc_rates.csv"):
         by_country.setdefault(row["fubc_country"], []).append(row)
     latest = max(int(row["fubc_report"]) for rows in by_country.values() for row in rows)
-    scale = {(row["country"], row["nutrient"].lower()):
-             float(row["target_kg_per_ha_cropland"]) / float(row["base_kg_per_ha_cropland"])
-             for row in dataloader.rows("faostat_fertiliser_use_country.csv")}
+    scale, fubc_scale = {}, {}
+    for row in dataloader.rows("ifastat_fertiliser_time_factor.csv"):
+        factor = float(row["factor"]) if row["factor"] else None
+        if row["country"]:
+            scale[(row["country"], row["nutrient"].lower())] = factor
+        if row["fubc_country"]:
+            fubc_scale[(row["fubc_country"], row["nutrient"].lower())] = factor
     table = {}
     for country_row in dataloader.rows("ifa_fubc_country_mapping.csv"):
         country = country_row["country"]
         own = by_country.get(country_row["fubc_country"], [])
         region = [rows for rows in by_country.values()
                   if rows[0]["region_ifa"] == country_row["region_ifa"] and int(rows[0]["fubc_report"]) == latest]
+        factor = {nutrient: scale[(country, nutrient)] for nutrient in _IFA_NUTRIENTS}
         for crop in {crop for _, crop in mapping}:
             level, matched = _ifa_best_match(own, crop, mapping)
             if level:
-                rates = _ifa_area_mean(matched)
-                scaled = int(matched[0]["fubc_report"]) == latest
+                own_factor = factor if int(matched[0]["fubc_report"]) == latest else dict.fromkeys(factor, 1.0)
+                rates = {nutrient: None if rate is None else rate * own_factor[nutrient]
+                         for nutrient, rate in _ifa_area_mean(matched).items()}
             else:
-                rates = _ifa_region_median(region, crop, mapping)
-                scaled = True
-            if rates is None:
-                continue
-            table.setdefault(crop, {})[country] = {
-                nutrient: None if rate is None else rate * (scale[(country, nutrient)] if scaled else 1.0)
-                for nutrient, rate in rates.items()}
+                rates = _ifa_region_rate(region, crop, mapping, factor, fubc_scale)
+            if rates is not None:
+                table.setdefault(crop, {})[country] = rates
     return table
 
 
-# kg N, P2O5 and K2O/ha of mineral fertilisers in 2021-2023 (IFA, decisions L33, L34, L37), {crop: {country: {..}}}
+# kg N, P2O5 and K2O/ha of mineral fertilisers in 2021-2023 (IFA, decisions L33, L34, L37, L53),
+# {crop: {country: {..}}}
 IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY = _ifa_mineral_fertiliser()
 
 #Generated from GD_crop GrossEnergy_C_L1 column D, kgC/kgDM

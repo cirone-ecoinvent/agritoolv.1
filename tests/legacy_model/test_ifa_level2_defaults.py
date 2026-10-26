@@ -1,7 +1,7 @@
 """Decision L33: WFLDB level 2 mineral N, P2O5 and K2O (Guidelines v3.0 section 3.6.1). The level 1 nutrient input
 (L28, L31, L32) is corrected with k = (IFA rate + manure) / need at the default yield and default manure, so that at
 the default yield the default mineral fertiliser equals the rate of IFA Fertilizer Use by Crop (Ludemann et al. 2022),
-FUBC 9 rates brought to 2021-2023 with the FAOSTAT use per area of cropland."""
+FUBC 9 rates brought to 2021-2023 with the IFASTAT consumption (decision L53)."""
 import importlib.util
 import statistics
 from pathlib import Path
@@ -31,9 +31,9 @@ def _fubc(fubc_country, fubc_crop):
 
 
 def _scale(country, nutrient):
-    row = next(r for r in dataloader.rows("faostat_fertiliser_use_country.csv")
+    row = next(r for r in dataloader.rows("ifastat_fertiliser_time_factor.csv")
                if r["country"] == country and r["nutrient"] == nutrient)
-    return float(row["target_kg_per_ha_cropland"]) / float(row["base_kg_per_ha_cropland"])
+    return float(row["factor"])
 
 
 def test_fubc9_rate_brought_to_2021_2023():
@@ -45,7 +45,7 @@ def test_fubc9_rate_brought_to_2021_2023():
 
 def test_time_factor_base_is_three_years_around_the_fubc_year():
     # decision L35: base = FUBC 9 reference year with the year before and after, target = 2021-2023
-    use = dataloader.rows("faostat_fertiliser_use_country.csv")
+    use = dataloader.rows("ifastat_fertiliser_time_factor.csv")
     for row in use:
         years = [int(y) for y in row["base_years"].split()]
         assert years == list(range(years[0], years[0] + 3)) and row["target_years"] == "2021-2023", row
@@ -142,19 +142,16 @@ def test_mappings_are_signed_and_consistent():
             assert row["region_ifa"] in regions.values(), row
 
 
-def test_tables_equal_the_ifa_and_faostat_downloads():
+def test_rates_equal_the_ifa_download():
     script = ROOT / "scripts" / "build_ifa_fertiliser_use.py"
     spec = importlib.util.spec_from_file_location("build_ifa_fertiliser_use", script)
     build = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(build)
-    fubc_zip, rfn_zip = dataloader.EXTERNAL_DATA_DIR / build.FUBC_ZIP, dataloader.EXTERNAL_DATA_DIR / build.RFN_ZIP
-    if not (fubc_zip.is_file() and rfn_zip.is_file()):
-        pytest.skip("IFA or FAOSTAT download not in data/external_data/")
-    mapping = dataloader.rows("ifa_fubc_country_mapping.csv")
-    rates, fallback_year = build.build_rates(fubc_zip, mapping)
-    use = build.build_use(rfn_zip, mapping, rates, fallback_year)
-    for built, table in ((rates, "ifa_fubc_rates.csv"), (use, "faostat_fertiliser_use_country.csv")):
-        assert [{k: str(v) for k, v in r.items()} for r in built] == [dict(r) for r in dataloader.rows(table)]
+    fubc_zip = dataloader.EXTERNAL_DATA_DIR / build.FUBC_ZIP
+    if not fubc_zip.is_file():
+        pytest.skip("IFA download not in data/external_data/")
+    rates = build.build_rates(fubc_zip, dataloader.rows("ifa_fubc_country_mapping.csv"))
+    assert [{k: str(v) for k, v in r.items()} for r in rates] == [dict(r) for r in dataloader.rows("ifa_fubc_rates.csv")]
     # the FUBC 9 rates of single-crop categories are the published mean rates over the total crop area
     published = {(r["Country"], r["Crop"]): r for r in build.read_zip_csv(fubc_zip, build.FUBC_ALL)
                  if r["FUBC_report_number"] == "9"}

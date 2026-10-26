@@ -2302,3 +2302,54 @@ A value given in the template is still used. Removed: `NotFoundGenerator`, `Conv
 `OneRatioToValueConvertor`, never called. The package `src/agritool/` is kept as a reference (FC).
 
 Regression cases: no change.
+
+## 41. IFASTAT time factor of the IFA rates, upper bound of the region rates (decision L53, 2026-10-26)
+
+Side item of L37 (section 26): the region rate of a crop missing in a country gave high values where the crop is
+marginal (wheat TH 202 / 234 / 127 kg N / P2O5 / K2O per ha). The cause was mostly the time factor, the FAOSTAT RFN use
+per area of cropland 2021-2023 / FUBC year, whose series have breaks:
+
+| Country, nutrient | FAOSTAT RFN | IFASTAT | Remark |
+|---|---|---|---|
+| TH P2O5 | 1.87 | 0.75 | FAOSTAT 13 kg/ha in 2021, 31 and 36 in 2022-2023, 15.5 in 2024 |
+| TH K2O | 1.73 | 0.86 | same peak |
+| PH P2O5 | 2.57 | 1.16 | 2023 almost twice 2022, 2024 = 2023 |
+| CS P2O5 | 1.74 | 1.08 | |
+| ID P2O5 | 0.44 | 0.90 | |
+| IT P2O5 | 0.58 | 0.95 | |
+| CH P2O5 | 0.54 | 1.10 | region rates only |
+
+New (FC decisions 2026-10-26):
+
+- Time factor = IFASTAT consumption of the country, summed over the products, mean 2021-2023 / mean over the base
+  years of L35 (`ifastat_fertiliser_time_factor.csv`, `scripts/build_ifastat_time_factor.py`, export of 2026-10-19).
+  Only the ratios are stored (IFASTAT values reserved for IFA members, as for L45). It replaces
+  `faostat_fertiliser_use_country.csv` for the FUBC 9 rates and the region rates; the own rates of the earlier
+  reports (CH, CI, CO, CR, EC, KE, LK) stay without time scaling.
+- A region rate (median of the region countries x factor of the country) is at most the highest rate of these
+  countries, each brought to 2021-2023 with its own factor. The FUBC 9 countries are mapped to IFASTAT by
+  `ifastat_fubc_country_mapping.csv` (71 rows, by name, signed by FC 2026-10-26). Bolivia (not a country of the export) and Burkina Faso (no
+  value before 2020) have no factor and count unscaled.
+
+Effect on the IFA table (6155 values of crop, country and nutrient): median ratio new / old 1.00, 5-95 % 0.63-1.29.
+22 of the 117 factors of the tool countries differ by more than 30 %. The bound applies to 77 values, mostly by a
+few percent (palm AR 166 -> 142 kg N/ha; sugar beet CI and ZA from Egypt and Morocco, up to 318 -> 237 kg N/ha).
+
+| Crop, country | Before (kg N / P2O5 / K2O per ha) | After |
+|---|---|---|
+| wheat TH (region) | 202 / 234 / 127 | 127 / 94 / 63 |
+| tea TH (region) | 533 / 215 / 206 | 336 / 86 / 103 |
+| soybean PH (region) | 21 / 118 / 37 | 20 / 53 / 26 |
+| rice TH (own) | 128 / 37 / 30 | 81 / 15 / 15 |
+| rice PH (own) | 82 / 51 / 21 | 75 / 23 / 14 |
+| palm ID (own) | 103 / 22 / 135 | 97 / 44 / 129 |
+| wheat FR (own) | 149 / 15 / 14 | 140 / 13 / 11 |
+| rice IN (own) | 153 / 59 / 17 | 152 / 58 / 17 |
+
+Rejected: the median of the region countries each with its own factor (1354 of 1359 region values change, and the
+FAOSTAT break of JP P2O5 74 -> 7 kg/ha in 2021 would enter).
+
+Limit still open: the region median of a marginal crop comes from the countries where the crop is intensive (tea TH
+336 kg N/ha from CN and JP).
+
+Regression cases: no change (the cases give the mineral fertilisers in the template).
