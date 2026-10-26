@@ -117,8 +117,13 @@ documented sources.
    - FC is the formal reviewer (`.github/CODEOWNERS`) and the only person who approves and
      merges into `main`.
    - Never approve or merge, never push to `main`, never force push.
-5. **After the merge.** Run `git switch main`, `git pull --ff-only`, `git branch -d <branch>` and
-   `git fetch --prune`.
+5. **After the merge: clean up automatically, without waiting for FC to ask.**
+   - While a PR is open, start every reply with `git fetch origin` and check whether the branch is
+     merged into `origin/main`. Clean up as soon as it is, or as soon as FC says it is.
+   - Run `git switch main`, `git pull --ff-only`, `git branch -d <branch>` and `git fetch --prune`.
+   - Then report the new `main` commit and that the branch is gone, locally and on the remote.
+   - Never use `git branch -D`. If the working tree holds uncommitted changes, ask FC before
+     switching.
 
 ## Checks (before every commit)
 
