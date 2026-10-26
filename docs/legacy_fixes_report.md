@@ -2247,3 +2247,41 @@ mandarin ZA 32,088 -> 40,110, orange fresh ZA 288 -> 476, cashew 128 -> 159, asp
 yearly planting is unchanged; it now matches the ecoinvent transformation per planting (cocoa CI 349 against 350).
 
 Regression cases: no change (apple_FR gives 25 years in the template; rice_IN and wheat_IT are annual).
+
+## 39. Greenhouse and plastic tunnel per m2 and year (decision L51, 2026-10-26)
+
+Template fields `greenhouse_glass_roof`, `greenhouse_plastic_roof`, `greenhouse_plastic_tunnel`: m2 of infrastructure
+measured on the soil, per ha. The ecoinvent 3.12 products 'greenhouse, glass walls and roof', 'greenhouse, plastic walls
+and roof' (m2*year) and 'plastic tunnel' (m2) stand for 1 m2 used over 1 year; the construction is amortised inside.
+
+| Field | Before (per ha and crop cycle) | Now |
+|---|---|---|
+| `greenhouse_glass_roof`, `greenhouse_plastic_roof` | m2 / orchard lifetime | m2 / crop cycles per year |
+| `greenhouse_plastic_tunnel` | m2 / 25 / orchard lifetime | m2 / crop cycles per year |
+
+Example, 1 ha fully covered, 1 crop cycle per year, former default lifetime 20 years: glass or plastic greenhouse 500 ->
+10,000 m2*year (x 20); plastic tunnel 20 -> 10,000 m2 (x 500). The new amount equals the land occupation, as in the
+ecoinvent tomato and strawberry greenhouse and tunnel datasets.
+
+`orchard_lifetime_other_crops` (20 years, legacy) removed from `model_parameters.csv`: the orchard lifetime is read only
+for the crops of `orchard_lifetime_crop_mapping.csv` (L50).
+
+Regression cases: no change (no greenhouse in apple_FR, rice_IN, wheat_IT).
+
+Reference for the check: the ecoinvent 3.12 greenhouse and tunnel crop datasets, where the greenhouse or tunnel amount
+equals the land occupation (tomato, fresh grade, in heated greenhouse NL and GLO and in unheated greenhouse ES and GLO;
+strawberry in heated and unheated greenhouse CH and GLO; strawberry, open field, macro tunnel ES, US and GLO).
+
+Known limits:
+
+- Unit of the tunnel. The ecoinvent product 'plastic tunnel' is declared in m2 but means m2*year (1 m2 used over 1
+  year). The model needs no conversion, but a reader who sees only "m2" could reintroduce a division by a lifetime;
+  the code comment in `outputMapping.py` says so.
+- Years of use. The ecoinvent datasets use the actual years of use of the crop cycle; 1 / `crop_cycle_per_year` is an
+  approximation that is exact when the cycles of the year have the same length, the usual case of the templates. A
+  cycle duration would be needed only for greenhouse rotations with very different cycles. The land occupation uses
+  the same rule, so greenhouse and occupation stay aligned.
+- Fixed lifetimes. The annualised ecoinvent datasets contain a lifetime of the structure and of the film that the model
+  cannot change. For now this keeps the tool equal to ecoinvent. Distinguishing e.g. a single-use film from a
+  three-year film, or assigning the film only to the covered cycle of a mixed rotation, would need the film as a
+  separate material input. Not planned.
