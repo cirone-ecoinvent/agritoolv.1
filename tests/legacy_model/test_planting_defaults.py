@@ -95,11 +95,12 @@ def test_trees_planted_are_the_yearly_rate_times_the_orchard_lifetime():
     assert defaults["seed_quantities"] == {"apple": pytest.approx(apple_row * 20)}
     # the yearly planting (number / orchard lifetime) is the ecoinvent rate also with another lifetime
     cocoa_ci = _rates("cocoa bean production, sun-dried", "CI", "per_ha_and_year")[0]
-    defaults = _defaults("cocoa", "CI", orchard_lifetime=50.0)
+    defaults = _defaults("cocoa", "CI", orchard_lifetime=30.0)
     assert defaults["nb_planted_trees"] / defaults["orchard_lifetime"] == pytest.approx(cocoa_ci)
+    # default lifetime of asparagus: 9 years (decision L50)
     asparagus = _rates("white asparagus production", "FR", "per_ha_and_year")[0]
-    assert _defaults("asparagus_white", "FR")["nb_seedlings"] == pytest.approx(asparagus * 20)
-    assert _defaults("asparagus_green", "FR")["nb_seedlings"] == pytest.approx(asparagus * 20)
+    assert _defaults("asparagus_white", "FR")["nb_seedlings"] == pytest.approx(asparagus * 9)
+    assert _defaults("asparagus_green", "FR")["nb_seedlings"] == pytest.approx(asparagus * 9)
 
 
 def test_onion_india_is_excluded_and_takes_glo():

@@ -1,0 +1,31 @@
+crop,use,ecoinvent_activities,excluded_geographies,glo_lifetime_years,note,status,reviewed_by
+almond,ecoinvent,almond production,,,,confirmed,FC
+apple,ecoinvent,"apple production|apple production, conventional, hill region|apple production, conventional, mountain region|apple production, conventional, plain region|apple production, organic, hill region|apple production, organic, plain region",,,CH 15 years (Frischknecht et al. 2007),confirmed,FC
+apricot,ecoinvent,apricot production,,,,confirmed,FC
+asparagus_green,proxy,white asparagus production,,,proxy: white asparagus (the green asparagus dataset is modelled as an annual crop); as for the plantings (L47),confirmed,FC
+asparagus_white,ecoinvent,white asparagus production,,,,confirmed,FC
+banana,ecoinvent,banana production,,,,confirmed,FC
+blueberry,fc,,,25,no ecoinvent 3.12 dataset; value set by FC,confirmed,FC
+cashew,fc,,,25,value set by FC; the ecoinvent 3.12 datasets (13.3 years) were made with this tool,confirmed,FC
+citruslime,proxy,lemon production,,,proxy: lemon (no lime dataset); as for the plantings (L47),confirmed,FC
+cocoa,ecoinvent,"cocoa bean production, sun-dried",,,,confirmed,FC
+coconut,ecoinvent,"coconut production, dehusked",,,,confirmed,FC
+coffee_arabica,ecoinvent,"coffee green bean production, arabica|coffee green bean production, arabica, irrigated|coffee green bean production, arabica, manual|coffee green bean production, arabica, mechanized|coffee green bean production, arabica, not irrigated|coffee green bean production, arabica, semi-mechanized",,,,confirmed,FC
+coffee_robusta,ecoinvent,"coffee green bean production, robusta",,,,confirmed,FC
+cranberry,fc,,,20,no ecoinvent 3.12 dataset; value set by FC,confirmed,FC
+grape,ecoinvent,"grape production|grape production, conventional, hill region|grape production, conventional, mountain region|grape production, conventional, plain region|grape production, organic, hill region|grape production, organic, mountain region|grape production, organic, plain region",GLO,25,GLO dataset excluded (land transformed every year: not modelled as a perennial crop); GLO = 25 years set by FC (value of the Swiss datasets),confirmed,FC
+lemon,ecoinvent,lemon production,,,,confirmed,FC
+mandarin,ecoinvent,mandarin production,,,,confirmed,FC
+mango,ecoinvent,mango production,,,,confirmed,FC
+mulberry,legacy,,,20,"the ecoinvent 3.12 datasets (IN, GLO: 20 years) were made with this tool; legacy, undocumented, provisional",confirmed,FC
+olive,ecoinvent,olive production,,,,confirmed,FC
+orange_fresh,ecoinvent,"orange production, fresh grade",,,,confirmed,FC
+orange_processing,ecoinvent,"orange production, processing grade",,,,confirmed,FC
+palmtree,ecoinvent,palm fruit bunch production,,,,confirmed,FC
+peach,ecoinvent,peach production,,,,confirmed,FC
+pear,ecoinvent,"pear production|pear production, conventional, hill region|pear production, conventional, mountain region|pear production, conventional, plain region|pear production, organic, hill region|pear production, organic, plain region",,,CH 15 years (Frischknecht et al. 2007),confirmed,FC
+pineapple,fc,,,2,value set by FC (the ecoinvent 3.12 GLO dataset gives 2 years),confirmed,FC
+pomegranate,legacy,,,20,"the ecoinvent 3.12 datasets (IN, GLO: 20 years) were made with this tool; legacy, undocumented, provisional",confirmed,FC
+raspberry,fc,,,8,no ecoinvent 3.12 dataset; value set by FC,confirmed,FC
+sugarcane,fc,,,5,"value set by FC: 5 years of plantation lifetime of the ecoinvent 3.12 GLO dataset comment (Macedo et al. 2004); the BR and CO datasets imply 20 years, IN (3 years) was made with this tool",confirmed,FC
+tea,ecoinvent,"tea production, dried",,,IN-HP made with this tool (not used),confirmed,FC

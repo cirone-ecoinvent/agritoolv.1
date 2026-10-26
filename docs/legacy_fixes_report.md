@@ -2215,3 +2215,35 @@ Files of `data/external_data/` not read by any script: `Inputs_FertilizersProduc
 treatment technologies adapted to local conditions, tap water transport losses and average transport distance per
 country) and `Mialyk_WaterFootprints.pdf` (description of the Mialyk et al. 2024 water footprint data).
 
+
+## 38. Default orchard lifetime from ecoinvent 3.12 (decision L50, 2026-10-26)
+
+Before: `orchard_lifetime` = 20 years for every crop, 3 for sugarcane (legacy, undocumented, provisional). It divides
+the plantings of the amortised crops (seedlings and trees per year, rooting up of the trees), the perennial land
+transformation (10000 m2 / lifetime) and the greenhouse.
+
+Now: per crop and country from the ecoinvent 3.12 undefined release (`ecoinvent312_orchard_lifetime.csv`, lifetime =
+occupation / transformation of each dataset; `orchard_lifetime_crop_mapping.csv`), or set by FC.
+
+| Crop | Before | Now |
+|---|---|---|
+| almond, apricot, banana, coffee arabica and robusta, lemon, lime, mango, olive, orange processing, palm, peach, tea | 20 | 20 (WFLDB datasets; mango, palm MY/CO from their formulas) |
+| apple, pear | 20 | 20; CH 15 |
+| grape | 20 | GLO 25 (FC), CH 25, IN 20 |
+| mandarin | 20 | 20; ZA 25 |
+| orange fresh | 20 | 20; ZA 33 |
+| cocoa | 20 | 50 |
+| coconut | 20 | 60 |
+| asparagus green and white | 20 | 9 |
+| cashew | 20 | 25 (FC) |
+| blueberry / cranberry / raspberry / pineapple | 20 | 25 / 20 / 8 / 2 (FC) |
+| sugarcane | 3 | 5 (FC; ecoinvent GLO comment, Macedo et al. 2004) |
+| mulberry, pomegranate | 20 | 20 (ecoinvent datasets made with this tool; legacy) |
+| all other crops | 20 | 20 (`orchard_lifetime_other_crops`, legacy; greenhouse only) |
+
+Default plantings per ha planted (L47 rate per ha and year x lifetime), before -> now: cocoa 140 -> 349, coconut GLO
+666 -> 1997 (ID, PH 739 -> 2216; IN 175 -> 524), grape GLO 4490 -> 5612, CH 5600 -> 6999, apple and pear CH 2667 -> 2000,
+mandarin ZA 32,088 -> 40,110, orange fresh ZA 288 -> 476, cashew 128 -> 159, asparagus 71,236 -> 32,056 seedlings. The
+yearly planting is unchanged; it now matches the ecoinvent transformation per planting (cocoa CI 349 against 350).
+
+Regression cases: no change (apple_FR gives 25 years in the template; rice_IN and wheat_IT are annual).

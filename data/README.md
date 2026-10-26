@@ -47,6 +47,8 @@ The **Use** column below means:
 | `fao_tcf_seed_rates.csv` | FAO Technical Conversion Factors for Agricultural Commodities (data 1992-1996), extracted from the PDF | build | Seeding rates per country, used by `build_default_seed.py` as reference for the SUA rates. |
 | `ecoinvent312_planting_rates.csv` | ecoinvent 3.12 cut-off, release file `exchanges (3.12, cut-off).xlsx`. Built by `build_ecoinvent_planting_rates.py`. | model | Planting material per ha and year or per ha and crop cycle, and plantation lifetime, of 133 ecoinvent datasets (L47). Only derived per-ha values are stored. |
 | `ecoinvent312_planting_crop_mapping.csv` | AgriToolV.1 | model, build | Seedling and tree crops -> ecoinvent activities and quantity used (`use` = ecoinvent, proxy or legacy). |
+| `ecoinvent312_orchard_lifetime.csv` | ecoinvent 3.12 undefined, release file `exchanges (3.12, undef).xlsx`. Built by `build_orchard_lifetime.py`. | model | Plantation lifetime (occupation / transformation) of 102 datasets of perennial crops, with a flag for the datasets made with this tool (L50). |
+| `orchard_lifetime_crop_mapping.csv` | AgriToolV.1, values of FC | model, build | Crops with amortised planting -> ecoinvent activities of the lifetime, or lifetime set by FC (`use` = ecoinvent, proxy, fc or legacy). Gives the default `orchard_lifetime` (L50). |
 | `seed_exchange_mapping.csv` | ecoinvent Master Data v3.12, IntermediateExchanges | model | Crop -> seed or seedling product written in the ecoSpold output. |
 
 ## Nitrogen uptake and mineral fertilisers
