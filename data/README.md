@@ -62,12 +62,13 @@ The **Use** column below means:
 | `ludemann2023_world_crop_coefficients.csv` | Ludemann et al. (2023), Dryad, Tier 1 world coefficients. Built by `build_ludemann_crop_coefficients.py`. | model | N concentration of the product of the crops of `n_uptake_other_crop_parameters.csv` (L41). |
 | `ipcc2019_table11_1a.csv` | IPCC 2019 Refinement Vol. 4 ch. 11, Table 11.1a | model | Residue N of the field crops without WFLDB coefficients (DRY x R_AG x N_AG, L41). |
 | `pk_crop_parameters.csv` | AgriToolV.1 | model | Mint -> WFLDB crop for the default mineral P and K (L31). |
-| `ifa_fubc_rates.csv` | Ludemann et al. (2022) IFA Fertilizer Use by Crop, Dryad (FUBC 9 and earlier reports). Built by `build_ifa_fertiliser_use.py`. | model | Mineral N, P2O5 and K2O per ha by crop and country: default mineral fertiliser of the crops without WFLDB coefficients (L33-L37). |
+| `ifa_fubc_rates.csv` | Ludemann et al. (2022) IFA Fertilizer Use by Crop, Dryad (FUBC 9 and earlier reports). Built by `build_ifa_fertiliser_use.py`. | model | Mineral N, P2O5 and K2O per ha by crop and country: default mineral fertiliser of the crops without WFLDB coefficients (L33-L37, L53). |
 | `ifa_fubc_country_mapping.csv` | AgriToolV.1 | model, build | Tool country -> FUBC country and IFA region; the region gives the rate of a crop missing in the country (L37). |
 | `ifa_fubc_crop_mapping.csv` | AgriToolV.1 | model, build | FUBC crop names -> tool crops (exact, subgroup, group). |
-| `faostat_fertiliser_use_country.csv` | FAOSTAT Fertilizers by Nutrient (RFN). Built by `build_ifa_fertiliser_use.py`. | model | Ratio of fertiliser use 2021-2023 to the FUBC year: brings the FUBC rates to 2021-2023 (L35). |
 | `ifastat_fertiliser_mix.csv` | IFA IFASTAT, consumption by product 2021-2023. Built by `build_ifastat_fertiliser_mix.py`. Only derived shares (IFASTAT values are not stored). | model | Default split of mineral N, P2O5 and K2O into fertiliser types per country (L45). |
+| `ifastat_fertiliser_time_factor.csv` | IFA IFASTAT, consumption 2015-2023. Built by `build_ifastat_time_factor.py`. Only derived ratios (IFASTAT values are not stored). | model | Ratio of fertiliser consumption 2021-2023 to the FUBC years: brings the FUBC rates to 2021-2023 and bounds the region rates (L35, L53). |
 | `ifastat_country_mapping.csv` | AgriToolV.1 | build | Tool country -> IFASTAT country. |
+| `ifastat_fubc_country_mapping.csv` | AgriToolV.1 | build | FUBC country -> IFASTAT country (L53). |
 | `ifastat_product_type_mapping.csv` | AgriToolV.1 | build | IFASTAT products -> tool fertiliser types. |
 | `emep2023_3d_table3_2.csv` | EMEP/EEA Guidebook 2023, 3.D Table 3-2 and Annex Table A1.1 | model | NH3 emission factors of the mineral fertilisers (L38). |
 | `emep2023_fertiliser_type_mapping.csv` | AgriToolV.1 | model | Tool fertiliser types -> rows of Table 3-2. |

@@ -1,6 +1,7 @@
 """Decision L37: a crop missing in the FUBC data of a country takes the rate of the FUBC 9 countries of its IFA
 region: per country the best match level, the rows of that level combined by area; median over the countries at the
-best level found in the region, at least two countries; brought to 2021-2023 with the FAOSTAT factor of the country.
+best level found in the region, at least two countries; brought to 2021-2023 with the factor of the country (IFASTAT
+since decision L53), at most the highest rate of these countries brought to 2021-2023 with their own factor (L53).
 The countries without FUBC data (GH, CS) follow the same rule."""
 import statistics
 
@@ -14,10 +15,14 @@ NUTRIENTS = ("n", "p2o5", "k2o")
 FIELDS = {"n": "nitrogen_from_mineral_fert", "p2o5": "p2O5_from_mineral_fert", "k2o": "k2O_from_mineral_fert"}
 
 
+def _factor(key, value, nutrient):
+    row = next(r for r in dataloader.rows("ifastat_fertiliser_time_factor.csv")
+               if r[key] == value and r["nutrient"] == nutrient.upper())
+    return float(row["factor"]) if row["factor"] else 1.0
+
+
 def _scale(country, nutrient):
-    row = next(r for r in dataloader.rows("faostat_fertiliser_use_country.csv")
-               if r["country"] == country and r["nutrient"] == nutrient.upper())
-    return float(row["target_kg_per_ha_cropland"]) / float(row["base_kg_per_ha_cropland"])
+    return _factor("country", country, nutrient)
 
 
 def _region_median(region, fubc_crops, country, nutrient):
@@ -26,10 +31,11 @@ def _region_median(region, fubc_crops, country, nutrient):
         if r["region_ifa"] == region and r["fubc_report"] == "9" and r["fubc_crop"] in fubc_crops \
                 and r[nutrient + "_kg_per_ha"]:
             per_country.setdefault(r["fubc_country"], []).append(r)
-    rates = [sum(float(r[nutrient + "_kg_per_ha"]) * float(r["area_ha"]) for r in rows)
-             / sum(float(r["area_ha"]) for r in rows) for rows in per_country.values()]
+    rates = {fubc_country: sum(float(r[nutrient + "_kg_per_ha"]) * float(r["area_ha"]) for r in rows)
+             / sum(float(r["area_ha"]) for r in rows) for fubc_country, rows in per_country.items()}
     assert len(rates) >= 2
-    return statistics.median(rates) * _scale(country, nutrient)
+    highest = max(rate * _factor("fubc_country", fubc_country, nutrient) for fubc_country, rate in rates.items())
+    return min(statistics.median(rates.values()) * _scale(country, nutrient), highest)
 
 
 def _own_names(fubc_country):
@@ -51,7 +57,7 @@ def test_missing_crop_takes_the_region_median(crop, country, region, fubc_countr
 
 
 def test_region_rates_of_the_earlier_report_countries_are_scaled():
-    row = next(r for r in dataloader.rows("faostat_fertiliser_use_country.csv")
+    row = next(r for r in dataloader.rows("ifastat_fertiliser_time_factor.csv")
                if r["country"] == "CI" and r["nutrient"] == "N")
     assert row["base_years"] == "2017 2018 2019" and "region rates only" in row["note"]
     assert _scale("CI", "n") != pytest.approx(1.0)
