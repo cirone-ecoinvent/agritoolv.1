@@ -32,6 +32,12 @@ def test_every_data_file_is_registered_in_sources():
     assert on_disk <= registered, "unregistered data files: %s" % sorted(on_disk - registered)
 
 
+def test_every_sources_row_has_the_header_fields():
+    rows = dl.rows("sources.csv")
+    bad = [row["file"] for row in rows if None in row or None in row.values()]
+    assert not bad, "rows with a wrong number of fields (unquoted comma?): %s" % bad
+
+
 def test_manure_composition_references_existing_rows_and_weights_sum_to_one():
     from collections import defaultdict
     contents = dl.table("grudaf2009_table39.csv")
