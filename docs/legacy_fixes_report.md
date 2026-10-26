@@ -2174,3 +2174,44 @@ apple_FR and wheat_IT unchanged (total from the template); rice_IN 1500 -> 645 g
 
 Open: the preprint is under review (check the published version and the Zenodo data); the atlas maize and cabbage
 include forage types; flax, mint, mulberry and pomegranate are only in aggregated atlas crops.
+
+## 37. Data never used by the model (decision L49, 2026-10-26)
+
+Analysis of 2026-10-21: every module-level table of `defaultTables.py` and of the `defaultMatrix*.py` modules wrapped in
+an access tracker, then every default of `DEFAULTS_VALUES_GENERATORS` computed for the 67 crops and 39 countries
+(scripts in the git-ignored `Literature/unused_data_check/`).
+
+Removed (no code change, results unchanged): the five P parameters of `model_parameters.csv` (`p_gw_arable` 0.07,
+`p_gw_grassland` 0.06, `p_ro_arable` 0.175, `p_ro_grassland_intensive` 0.25, `p_ro_grassland_extensive` 0.15 kg P/ha
+and year), duplicates of `p_landuse_classes.csv`, the only table read by `models/pmodel.py`.
+
+Files of `data/` read only outside the model: `elementary_flow_alignment.csv`, `intermediate_exchange_alignment.csv`
+and `fertiliser_product_basis.csv` (checks and tests, for the ecoSpold writer); `pfister2014_blue_water_watershed.csv`
+and the `mialyk2024_*.csv` tables (cross-check, L44); `faostat_manure_n_applied_world.csv` (built and tested, not read
+since L42); the inputs of the build scripts (`fao_tcf_seed_rates.csv`, `ifastat_country_mapping.csv`,
+`ifastat_product_type_mapping.csv`, `ipcc2019_m49_region_mapping.csv`, `pfister2014_country_mapping.csv`,
+`soil_fumigant_active_ingredients.csv`). `ecoinvent_flows_md312.csv`, read by nothing, removed (FC does not need it; the flooded-crop land flow UUIDs are in
+`docs/java_changes_pending.md`).
+
+Open, because they need code changes:
+
+| Item | Entries | Read by the model |
+|---|---|---|
+| soil constants in `model_parameters.csv` (`soil_volume_m3` 5000, `bulk_density_kg_m3` 1300, `soil_cn_ratio` 11, `norg_ntot_ratio` 0.85) | 4 | 0 (same values hardcoded in `defaultGeneration.py`) |
+| `defaultMatrixNUptake.py` | 215 | 3 (mulberry CN, IN, GLO = 400) |
+| `defaultMatrixTotalManure.py`, liquid and solid | 191 each | 25 each (all GLO = 0) |
+| `defaultMatrixTotalMineralFert.py` | 191 | 25 (all GLO = 0) |
+| `_LEGACY_EVAPO` (`defaultTables.py`) | 1024 | 9 (flax, hemp, mint, mulberry) |
+| WFLDB 2017 total pesticides (L43) | 158 | 28 reach the final table |
+
+Unused code: `NotFoundGenerator`, `ConvertRatioToValueDefaultGenerator` and `OneRatioToValueConvertor` in
+`defaultGeneration.py`; the package `src/agritool/` (only `tests/test_agritool.py`).
+
+Files of `data/external_data/` not read by any script: `Inputs_FertilizersProduct_E_All_Data_(Normalized).zip` and
+`SMMenegat2022.xlsx` (rejected in L45), `spam2020V0r1_global_physical_area.zip` (rejected in L48),
+`national_wf_175_crops_annual_1990_2019.csv` (L44 uses the 2010-2019 average), `ER_updated_scope_irrigation_activities_and_geos.xlsx`
+(consulted by hand in L44), the FAOSTAT QCL metadata files (`Production_Crops_Livestock_E_AreaCodes.csv`, `_Elements`,
+`_Flags`, `_ItemCodes`), `WSMix Implementation in betav2.xlsx` (regional water supply mixes: water withdrawal and tap water
+treatment technologies adapted to local conditions, tap water transport losses and average transport distance per
+country) and `Mialyk_WaterFootprints.pdf` (description of the Mialyk et al. 2024 water footprint data).
+

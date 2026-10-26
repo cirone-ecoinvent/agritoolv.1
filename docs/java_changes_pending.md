@@ -13,8 +13,9 @@ simply not read, and all pre-existing keys are still produced).
 ## F7 - flooded rice land flows
 
 File: `src/main/java/com/quantis_intl/lcigenerator/ecospold/EcospoldTemplateSubstanceUsages.java`,
-array `resources`. Add three entries (flows verified in Master Data v3.12,
-`data/ecoinvent_flows_md312.csv`):
+array `resources`. Add three entries (flows verified in Master Data v3.12, ElementaryExchanges: occupation
+7956039f-1181-42ab-b03b-ba9992733394, transformation from 398ed67b-081c-49c4-8b43-b666bdfd739f, transformation to
+69ec5008-2c7e-408f-ac10-a31e07ded999; the table `data/ecoinvent_flows_md312.csv` was removed in L49):
 
 | Flow name | Subcompartment constant | Unit | Python output key | Uncertainty class |
 |---|---|---|---|---|
