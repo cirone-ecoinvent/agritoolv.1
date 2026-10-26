@@ -2,8 +2,9 @@
 # erodibility of this module (generated from the Quantis workbook GD_crop); the country soil, precipitation and
 # irrigation water source tables are read from data/wfldb2017_*.csv (decision L22), the manure shares are computed
 # from FAOSTAT (decision L29), the irrigation technique shares from FAO AQUASTAT (decision L44), the mineral
-# fertiliser mixes from IFASTAT (decision L45)
+# fertiliser mixes from IFASTAT (decision L45), the orchard lifetime from the ecoinvent 3.12 datasets (decision L50)
 import statistics
+from collections import defaultdict
 
 import dataloader
 from models.fertilisermodel import NFertiliserType, KFertiliserType, \
@@ -61,6 +62,43 @@ MANURE_SOLID_RATIO_PER_COUNTRY = {country: shares[1] for country, shares in _MAN
 MANURE_LIQUID_N_FRACTION_PER_COUNTRY = {country: ManureModel.liquid_n_fraction(country) for country in _COUNTRIES}
 # t h/(MJ mm)
 SOIL_ERODIBILITY_FACTOR_PER_COUNTRY = _wfldb_erodibility_per_country()
+
+
+def _orchard_lifetime_per_crop():
+    """Plantation lifetime in years of the crops of orchard_lifetime_crop_mapping.csv (decision L50). Crops with use
+    'ecoinvent' or 'proxy': mean of the ecoinvent 3.12 datasets of ecoinvent312_orchard_lifetime.csv whose geography is
+    the country or one of its regions (BR-MG -> BR), without the datasets made with this tool and the excluded
+    geographies, rounded to the whole year; GLO = the GLO dataset, else glo_lifetime_years of the mapping, else the
+    mean of the country values. Crops with use 'fc' or 'legacy': glo_lifetime_years for all countries."""
+    datasets = dataloader.rows("ecoinvent312_orchard_lifetime.csv")
+    table = {}
+    for crop in dataloader.rows("orchard_lifetime_crop_mapping.csv"):
+        if crop["use"] in ("fc", "legacy"):
+            table[crop["crop"]] = {"GLO": float(crop["glo_lifetime_years"])}
+            continue
+        activities = set(crop["ecoinvent_activities"].split("|"))
+        excluded = set(crop["excluded_geographies"].split("|")) - {""}
+        values = defaultdict(list)
+        for row in datasets:
+            if row["activity_name"] in activities and row["geography"] not in excluded \
+                    and row["made_with_this_tool"] == "no":
+                values[row["geography"].split("-")[0]].append(float(row["lifetime_years"]))
+        if not values:
+            raise ValueError("orchard_lifetime_crop_mapping.csv: no dataset of %s in ecoinvent312_orchard_lifetime.csv"
+                             % crop["crop"])
+        means = {geography: float(round(statistics.mean(v))) for geography, v in values.items()}
+        table[crop["crop"]] = {country: mean for country, mean in means.items() if country in _COUNTRIES}
+        if "GLO" in means:
+            table[crop["crop"]]["GLO"] = means["GLO"]
+        elif crop["glo_lifetime_years"]:
+            table[crop["crop"]]["GLO"] = float(crop["glo_lifetime_years"])
+        else:
+            table[crop["crop"]]["GLO"] = float(round(statistics.mean(means.values())))
+    return table
+
+
+# years
+ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY = _orchard_lifetime_per_crop()
 
 
 def _n_uptake_per_kg_main_product():

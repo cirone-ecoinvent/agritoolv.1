@@ -24,7 +24,7 @@ from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUN
     ANNUAL_PRECIPITATION_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP, LEGUME_CROPS, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS, PK_PER_KG_MAIN_PRODUCT_PER_CROP, \
-    IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY
+    IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY, ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY
 from directMappingEnums import PlasticDisposal, Plantprotection, Soilcultivation, \
     Sowingplanting, Fertilisation, Harvesting, OtherWorkProcesses, Biowaste
 from models.atomicmass import MA_CO2, MA_C
@@ -316,13 +316,15 @@ class EolWaterWasteGenerator(object):
                + generators["utilities_wateruse_non_conventional_sources"];
 
 
-# legacy, undocumented, provisional: orchard lifetime 20 years (3 for sugarcane)
 class OrchardLifetimeDefaultGenerator(object):
+    """Years. Perennial crops: ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY (ecoinvent 3.12 datasets or FC values, decision
+    L50), the country value else GLO. Other crops: model parameter orchard_lifetime_other_crops (legacy, undocumented,
+    provisional), which only amortises the greenhouse (outputMapping.py)."""
     def generateDefault(self, field, generators):
-        crop = generators["crop"]
-        if crop in ["sugarcane"]:
-            return 3;
-        return 20;
+        table = ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY.get(generators["crop"])
+        if table is None:
+            return dataloader.param("orchard_lifetime_other_crops")
+        return table.get(generators["country"], table["GLO"])
 
 
 class SeedQuantitiesDefaultGenerator(object):

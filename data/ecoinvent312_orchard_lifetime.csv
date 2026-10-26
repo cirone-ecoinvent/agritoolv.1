@@ -1,0 +1,103 @@
+activity_name,geography,lifetime_years,made_with_this_tool
+almond production,CN,20.05,no
+almond production,GLO,20.05,no
+almond production,US,20.05,no
+apple production,CL,20.05,no
+apple production,CN,20.05,no
+apple production,GLO,20.05,no
+apple production,IT,20.05,no
+apple production,US,20.05,no
+apple production,ZA,20.0,no
+"apple production, conventional, hill region",CH,15.0,no
+"apple production, conventional, mountain region",CH,15.0,no
+"apple production, conventional, plain region",CH,15.0,no
+"apple production, organic, hill region",CH,15.0,no
+"apple production, organic, plain region",CH,15.0,no
+apricot production,ES,20.05,no
+apricot production,FR,20.05,no
+apricot production,GLO,20.05,no
+apricot production,IT,20.05,no
+apricot production,TR,20.05,no
+banana production,CO,20.05,no
+banana production,CR,20.05,no
+banana production,EC,20.05,no
+banana production,GLO,20.05,no
+banana production,IN,20.05,no
+"cocoa bean production, sun-dried",CI,50.13,no
+"cocoa bean production, sun-dried",GH,50.19,no
+"cocoa bean production, sun-dried",GLO,50.14,no
+"cocoa bean production, sun-dried",ID,50.11,no
+"coconut production, dehusked",GLO,60.16,no
+"coconut production, dehusked",ID,60.16,no
+"coconut production, dehusked",IN,60.16,no
+"coconut production, dehusked",PH,60.16,no
+"coffee green bean production, arabica",BR-SP,20.02,no
+"coffee green bean production, arabica",CO,20.05,no
+"coffee green bean production, arabica",GLO,20.05,no
+"coffee green bean production, arabica",HN,20.05,no
+"coffee green bean production, arabica",IN,20.05,no
+"coffee green bean production, arabica, irrigated",BR-MG,20.03,no
+"coffee green bean production, arabica, manual",BR-MG,20.02,no
+"coffee green bean production, arabica, mechanized",BR-MG,19.97,no
+"coffee green bean production, arabica, not irrigated",BR-MG,19.97,no
+"coffee green bean production, arabica, semi-mechanized",BR-MG,20.03,no
+"coffee green bean production, robusta",BR,20.05,no
+"coffee green bean production, robusta",GLO,20.05,no
+"coffee green bean production, robusta",ID,20.05,no
+"coffee green bean production, robusta",IN,20.05,no
+"coffee green bean production, robusta",VN,20.05,no
+grape production,GLO,1.0,no
+grape production,IN,20.0,no
+"grape production, conventional, hill region",CH,25.0,no
+"grape production, conventional, mountain region",CH,25.0,no
+"grape production, conventional, plain region",CH,25.0,no
+"grape production, organic, hill region",CH,25.0,no
+"grape production, organic, mountain region",CH,25.0,no
+"grape production, organic, plain region",CH,25.0,no
+lemon production,ES,20.05,no
+lemon production,GLO,20.05,no
+lemon production,MX,20.05,no
+lemon production,TR,20.05,no
+mandarin production,CN,20.05,no
+mandarin production,ES,20.05,no
+mandarin production,GLO,20.05,no
+mandarin production,ZA,25.0,no
+mango production,BR,20.0,no
+mango production,GLO,20.0,no
+olive production,ES,20.05,no
+olive production,GLO,20.05,no
+olive production,IT,20.05,no
+"orange production, fresh grade",ES,20.05,no
+"orange production, fresh grade",GLO,20.05,no
+"orange production, fresh grade",US,20.05,no
+"orange production, fresh grade",ZA,32.98,no
+"orange production, processing grade",BR,20.05,no
+"orange production, processing grade",GLO,20.05,no
+"orange production, processing grade",US,20.05,no
+palm fruit bunch production,CO,20.0,no
+palm fruit bunch production,GLO,20.0,no
+palm fruit bunch production,ID,20.05,no
+palm fruit bunch production,MY,20.0,no
+peach production,CN,20.05,no
+peach production,ES,20.05,no
+peach production,GLO,20.05,no
+peach production,IT,20.05,no
+pear production,AR,20.05,no
+pear production,BE,20.05,no
+pear production,CN,20.05,no
+pear production,GLO,20.05,no
+pear production,ZA,20.0,no
+"pear production, conventional, hill region",CH,15.0,no
+"pear production, conventional, mountain region",CH,15.0,no
+"pear production, conventional, plain region",CH,15.0,no
+"pear production, organic, hill region",CH,15.0,no
+"pear production, organic, plain region",CH,15.0,no
+"tea production, dried",CN,20.05,no
+"tea production, dried",GLO,20.05,no
+"tea production, dried",IN-HP,20.0,yes
+"tea production, dried",KE,20.05,no
+"tea production, dried",LK,20.05,no
+white asparagus production,CN,9.024,no
+white asparagus production,FR,9.024,no
+white asparagus production,GLO,9.024,no
+white asparagus production,PE,9.024,no
