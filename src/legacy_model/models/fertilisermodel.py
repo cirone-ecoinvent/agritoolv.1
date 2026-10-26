@@ -1,6 +1,7 @@
 from enum import Enum
 
 import dataloader
+from models.atomicmass import N_TO_NH3_FACTOR
 from models.modelEnums import HeavyMetalType
 
 
@@ -54,6 +55,7 @@ class FertModel(object):
       magnesium_from_fertilizer: kg Mg/ha
       soil_with_ph_under_or_7: ratio
       cultivation_type: text
+      crop: crop name of data/crop_types.csv
 
     Outputs:
       computeNH3:
@@ -69,7 +71,8 @@ class FertModel(object):
                         "zn_fertiliser_quantities",
                         "magnesium_from_fertilizer",
                         "soil_with_ph_under_or_7",
-                        "cultivation_type"
+                        "cultivation_type",
+                        "crop"
                         ]
 
     # NH3 after mineral N fertiliser application: EMEP/EEA 2023 3.D Tier 2, Table 3-2 (decision L38,
@@ -79,6 +82,9 @@ class FertModel(object):
     _NH3_EF_TABLE = "emep2023_3d_table3_2.csv"
     _NH3_EF_MAPPING = "emep2023_fertiliser_type_mapping.csv"
     _G_PER_KG = 1000.0
+    # Flooded crops (data/crop_types.csv, rice): urea and AS lose 22 % of the N as NH3-N, both pH classes
+    # (EMEP/EEA 2023 3.D Annex 1, Yan et al. 2003; decision L54, data/emep2023_flooded_rice_nh3.csv).
+    _NH3_FLOODED_TABLE = "emep2023_flooded_rice_nh3.csv"
 
     # Heavy-metal contents of mineral fertilisers: SALCAheavymetal 2023 Table 1 (decision L10,
     # data/hm_salca2023_table1.csv, mg per kg N, P2O5, K2O, Ca or Mg, Hg included), rows assigned
@@ -98,22 +104,28 @@ class FertModel(object):
         """NH3 after mineral N fertiliser application, kg NH3/ha (EMEP/EEA 2023 3.D Tier 2, Eq. (4)).
 
         Sum over the N fertiliser types of kg N x (p x EF normal pH + (1 - p) x EF high pH), with
-        p = soil_with_ph_under_or_7, the share of soils with pH <= 7.0.
+        p = soil_with_ph_under_or_7, the share of soils with pH <= 7.0. On flooded crops, urea and AS take the
+        rice paddy factor for both pH classes (decision L54).
         """
         share_normal_ph = self.soil_with_ph_under_or_7
         if self.cultivation_type.startswith("greenhouse_hydroponic"):
             # legacy, undocumented, provisional: hydroponic greenhouses count as normal pH
             share_normal_ph = 1.0
+        flooded = dataloader.table("crop_types.csv", numeric=False)[self.crop]["flooded"] == "yes"
         total = 0.0
         for fert_type, quantity in self.n_fertiliser_quantities.items():
-            ef_normal_ph, ef_high_ph = self.nh3_emission_factors(fert_type)
+            ef_normal_ph, ef_high_ph = self.nh3_emission_factors(fert_type, flooded)
             total += quantity * (share_normal_ph * ef_normal_ph + (1.0 - share_normal_ph) * ef_high_ph)
         return total
 
     @classmethod
-    def nh3_emission_factors(cls, fert_type):
+    def nh3_emission_factors(cls, fert_type, flooded=False):
         """kg NH3 per kg N applied of an NFertiliserType, (normal pH, high pH)."""
         emep_type = dataloader.table(cls._NH3_EF_MAPPING, numeric=False)[fert_type.value]["emep_fertiliser_type"]
+        paddy = dataloader.table(cls._NH3_FLOODED_TABLE).get(emep_type) if flooded else None
+        if paddy:
+            ef = paddy["nh3_n_pct"] / 100.0 * N_TO_NH3_FACTOR
+            return ef, ef
         row = dataloader.table(cls._NH3_EF_TABLE)[emep_type]
         return row["ef_normal_ph"] / cls._G_PER_KG, row["ef_high_ph"] / cls._G_PER_KG
 

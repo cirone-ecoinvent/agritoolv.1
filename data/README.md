@@ -72,6 +72,7 @@ The **Use** column below means:
 | `ifastat_product_type_mapping.csv` | AgriToolV.1 | build | IFASTAT products -> tool fertiliser types. |
 | `emep2023_3d_table3_2.csv` | EMEP/EEA Guidebook 2023, 3.D Table 3-2 and Annex Table A1.1 | model | NH3 emission factors of the mineral fertilisers (L38). |
 | `emep2023_fertiliser_type_mapping.csv` | AgriToolV.1 | model | Tool fertiliser types -> rows of Table 3-2. |
+| `emep2023_flooded_rice_nh3.csv` | EMEP/EEA Guidebook 2023 3.D Annex 1 (text of 2019; Yan et al. 2003) | model | NH3 of urea and AS on flooded rice, 22 % of the N as NH3-N (L54). |
 | `fertiliser_product_basis.csv` | AgriToolV.1 / Master Data 3.12 | check | Master Data product, amount basis and nutrient property of each mineral fertiliser exchange (R8). Read by `dataloader.py` for the ecoSpold writer and its tests; the contents themselves are read from the Master Data at run time. |
 
 ## Manure and other organic fertilisers

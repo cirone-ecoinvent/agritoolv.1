@@ -2353,3 +2353,36 @@ Limit still open: the region median of a marginal crop comes from the countries 
 336 kg N/ha from CN and JP).
 
 Regression cases: no change (the cases give the mineral fertilisers in the template).
+
+## 42. NH3 of urea and AS on flooded rice (decision L54, 2026-10-26)
+
+Open point of L38 (section 27). EMEP/EEA 2023 Table 3-2 does not cover rice paddies: Annex 1 (pp. 34-35) says that
+rice was not included in the 2023 analysis and keeps the text of the 2019 Guidebook, where an EF of 22 % for urea on
+rice paddies is proposed by Yan et al. (2003) and the same EF is used for AS.
+
+New: on the flooded crops of `crop_types.csv` (rice only), urea and AS take 22 % of the N applied as NH3-N, i.e.
+0.22 x 17/14 = 0.2675 kg NH3 per kg N, for both pH classes (`emep2023_flooded_rice_nh3.csv`). The other fertiliser
+types, and all types on the other crops, keep Table 3-2. FC choices (2026-10-26): apply the value; read it as NH3-N
+(Yan et al. 2003 was not accessible, so the unit is not checked); all countries; only urea and AS.
+
+| kg NH3 per kg N | Table 3-2 (normal / high pH) | Flooded rice |
+|---|---|---|
+| Urea | 0.195 / 0.206 | 0.2675 |
+| AS | 0.084 / 0.187 | 0.2675 |
+
+With the default N fertiliser mix and pH share of the countries, the mean NH3 factor of rice changes by x1.00 (FI,
+no urea or AS) to x1.54 (PH), median about x1.3.
+
+Regression, rice_IN (120 kg N urea):
+
+| Key | Before | After |
+|---|---|---|
+| `ammonia_total` | 33.331 | 41.371 |
+| `N2o_air` | 1.8362 | 1.8975 |
+| `Nox_as_n2o_air` | 5.7177 | 5.4533 |
+| `nitrate_to_groundwater` | 134.35 | 118.82 |
+
+NOx and nitrate decrease because they are computed on the N left after the NH3 loss. apple_FR and wheat_IT: no change.
+
+Limit: EMEP notes (Hayashi et al. 2006, 2008) that the high losses of paddy fields may reflect high temperatures and
+apply less to temperate regions; the tool has no climate classes since L38, so the value applies everywhere.
