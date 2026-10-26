@@ -318,12 +318,13 @@ class EolWaterWasteGenerator(object):
 
 class OrchardLifetimeDefaultGenerator(object):
     """Years. Perennial crops: ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY (ecoinvent 3.12 datasets or FC values, decision
-    L50), the country value else GLO. Other crops: model parameter orchard_lifetime_other_crops (legacy, undocumented,
-    provisional), which only amortises the greenhouse (outputMapping.py)."""
+    L50), the country value else GLO. Other crops have no orchard lifetime: since decision L51 the model reads it only
+    for the crops with planting amortised over the plantation lifetime."""
     def generateDefault(self, field, generators):
-        table = ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY.get(generators["crop"])
-        if table is None:
-            return dataloader.param("orchard_lifetime_other_crops")
+        crop = generators["crop"]
+        if crop not in ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY:
+            raise KeyError("orchard_lifetime: no default for %s (not in orchard_lifetime_crop_mapping.csv)" % crop)
+        table = ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY[crop]
         return table.get(generators["country"], table["GLO"])
 
 

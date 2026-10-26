@@ -38,9 +38,11 @@ def test_default_lifetime(crop, country, years):
     assert _lifetime(crop, country) == years
 
 
-def test_other_crops_keep_the_legacy_lifetime_for_the_greenhouse():
-    assert _lifetime("wheat", "FR") == dataloader.param("orchard_lifetime_other_crops") == 20
-    assert _lifetime("tomato_fresh", "NL") == 20
+def test_other_crops_have_no_orchard_lifetime():
+    # decision L51: the greenhouse no longer reads the orchard lifetime, so annual crops need none
+    for crop in ("wheat", "tomato_fresh"):
+        with pytest.raises(KeyError, match="orchard_lifetime_crop_mapping.csv"):
+            _lifetime(crop, "FR")
 
 
 def test_template_lifetime_is_kept():

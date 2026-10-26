@@ -23,10 +23,13 @@ class OutputMapping(object):
         self.output["yield_BP2_per_crop_cycle"] = allInputs["yield_BP2_per_crop_cycle"]
         self.output["yield_BP3_per_crop_cycle"] = allInputs["yield_BP3_per_crop_cycle"]
         self.output["hm_uptake_formula"] = str(allInputs["yield_main_product_dry_per_crop_cycle"]) + " * Heavy_metal_uptake"
-        self.output["greenhouse_plastic_tunnel"] = \
-            allInputs["greenhouse_plastic_tunnel"] / 25.0 / allInputs["orchard_lifetime"]
-        self.output["greenhouse_glass_roof"] = allInputs["greenhouse_glass_roof"] / allInputs["orchard_lifetime"]
-        self.output["greenhouse_plastic_roof"] = allInputs["greenhouse_plastic_roof"] / allInputs["orchard_lifetime"]
+        # Decision L51: the ecoinvent greenhouse and plastic tunnel products stand for 1 m2 used over 1 year (their
+        # construction is amortised inside): m2 of infrastructure per ha (template) / crop cycles per year, as the land
+        # occupation; no division by the orchard lifetime (legacy: tunnel / 25 / lifetime, greenhouses / lifetime).
+        # 'plastic tunnel' is declared in m2 but means m2*year ("plastic tunnel dataset stands for 1 m2 used over 1
+        # year" in the ecoinvent crop datasets): do not divide it by a lifetime.
+        for field in ("greenhouse_plastic_tunnel", "greenhouse_glass_roof", "greenhouse_plastic_roof"):
+            self.output[field] = allInputs[field] / allInputs["crop_cycle_per_year"]
 
         for k,f in self._DIRECT_OUTPUT_MAPPING.items():
             if k in allInputs:
