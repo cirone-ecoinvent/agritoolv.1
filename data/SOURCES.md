@@ -2,16 +2,16 @@
 
 Tables transcribed from Quantis (2019), *Models integrated in ecoinvent LCI calculation tool
 for crop production* (Ecoinvent_Tool_Model_Description_20191015.pdf), unless stated otherwise.
+The registry of all files is `sources.csv`; `README.md` gives the source and use of each file.
+
+The heavy-metal tables of Quantis (2019) Tab. 2-7 (`hm_leaching_mg_per_ha_yr.csv`, `hm_soil_content_mg_per_kg.csv`,
+`hm_deposition_mg_per_ha_yr.csv`, `hm_plant_content_mg_per_kg_dm.csv`, `hm_mineral_fertiliser_mg_per_kg_nutrient.csv`,
+`hm_manure_mg_per_kg_dm.csv`) were replaced on 2026-10-10 by `hm_salca2023_table1.csv` (SALCAheavymetal V1.0,
+Nemecek et al. 2023, Table 1; decision L10) and removed.
 
 | File | Doc table | Original source |
 |---|---|---|
 | model_parameters.csv | sections 2.2-2.7 | see `source` column |
-| hm_leaching_mg_per_ha_yr.csv | Tab. 2 | Wolfensberger & Dinkel 1997 (Ni n.a. -> 0, as in SALCAheavymetal 2023 Tab. 1) |
-| hm_soil_content_mg_per_kg.csv | Tab. 3 | Keller & Desaules 2001 |
-| hm_deposition_mg_per_ha_yr.csv | Tab. 4 | Freiermuth 2006 |
-| hm_plant_content_mg_per_kg_dm.csv | Tab. 5 | Freiermuth 2006 (empty = NA; the code uses 0, see below) |
-| hm_mineral_fertiliser_mg_per_kg_nutrient.csv | Tab. 6 | Desaules & Studer 1993 via Freiermuth 2006 (no Hg data) |
-| hm_manure_mg_per_kg_dm.csv | Tab. 7 | Menzi & Kessler 1998; Desaules & Studer 1993; DM: Walther et al. 2001 |
 | seed_exchange_mapping.csv | Annex 2/3, Tab. 5 crop lists | crop key -> IntermediateExchange of ecoinvent Master Data v3.12 (names and units verified); status proposed / to_decide / no_exchange until reviewed |
 
 ## Decisions backed by Nemecek et al. (2023), Int J LCA, Online Resources

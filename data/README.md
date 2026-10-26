@@ -25,7 +25,7 @@ The **Use** column below means:
 | File | Source | Use |
 |---|---|---|
 | `sources.csv` | AgriToolV.1 | Registry of all files: reference, edition, table or page, date added, notes. |
-| `SOURCES.md` | AgriToolV.1 | Notes on the transcription of the Quantis (2019) tables and on the heavy-metal decisions backed by Nemecek et al. (2023). Several files it lists (`hm_leaching_*`, `hm_soil_content_*`, ...) were replaced in L10; `sources.csv` is the current registry. |
+| `SOURCES.md` | AgriToolV.1 | Notes on the transcription of the Quantis (2019) tables and on the heavy-metal decisions backed by Nemecek et al. (2023). `sources.csv` is the registry. |
 
 ## General parameters and crop lists
 
@@ -130,7 +130,7 @@ The **Use** column below means:
 
 | File | Source | Use | How it is used |
 |---|---|---|---|
-| `hm_salca2023_table1.csv` | Nemecek et al. (2023) SALCAheavymetal V1.0, Table 1 | model | Metal contents of plant products, fertilisers, manure, organic fertilisers and pesticides for the heavy-metal balance (L10). The note in `sources.csv` ("not yet used") is out of date. |
+| `hm_salca2023_table1.csv` | Nemecek et al. (2023) SALCAheavymetal V1.0, Table 1 | model | Metal contents of plant products, fertilisers, manure, organic fertilisers and pesticides for the heavy-metal balance (L10). |
 | `hm_crop_product_mapping_salca2023.csv` | AgriToolV.1 | model | Tool crops -> SALCA plant products (harvest export and seed input). |
 | `hm_coproduct_mapping.csv` | AgriToolV.1 | model | By-products -> SALCA "co-product, mean". |
 | `hm_fertiliser_row_mapping.csv` | AgriToolV.1 | model | Mineral fertiliser types -> SALCA fertiliser rows. |
