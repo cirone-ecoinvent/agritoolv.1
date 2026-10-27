@@ -2456,3 +2456,40 @@ Snapshots unchanged.
 
 Limit: Mialyk is below the Pfister range for 74 % of the production (L44), so the hemp and mint values are probably on
 the low side compared with the other crops.
+
+## 45. Default mineral N without an IFA rate (decision L57, 2026-10-27)
+
+Since L55 the crops without WFLDB level 1 coefficients had 0 kg mineral N and no manure where IFA gives no N rate for
+the country: 428 crop-country pairs. New rule per crop (column `mineral_n_without_ifa_rate` of
+`n_uptake_other_crop_parameters.csv`):
+
+| Rule | Crops | Mineral N |
+|---|---|---|
+| `ifa_crop_median` | 19 crops with IFA rates in other countries | median of IFA rate / default yield over the countries with a rate, x yield |
+| `n_uptake` | flax, hemp, ginger, turmeric, coriander, mint, guar, pomegranate | 0.8 x N uptake (WFLDB L1, N uptake of L41) |
+| none | mulberry | 0 (legacy N uptake) |
+
+The default manure follows the mineral N (L40). Examples at the default yield, kg N/ha (before 0):
+
+| Crop | Country | Rule | Mineral N |
+|---|---|---|---|
+| cotton | ES | crop median | 105 |
+| chick pea | AU | crop median | 38 |
+| lentil | CN | crop median | 40 |
+| cassava | CI / KE | crop median | 55 / 134 |
+| bell pepper | AU | crop median | 122 |
+| flax | FR | N uptake | 123 |
+| hemp | FR | N uptake | 74 |
+| ginger | IN | N uptake | 117 |
+| mint | MX | N uptake | 114 |
+| coriander | IN | N uptake | 16 |
+
+Guar and pomegranate have no default yield: 0 at the default, 0.8 x N uptake with the yield of the template (guar IN at
+1 t/ha: 13 kg N). Still 0: mulberry; chick pea and lentil FR, IT (IFA pulses rate 0).
+
+Changed defaults (67 crops x 39 countries, default yield and 1000 kg): 4456 of 689 832 values (mineral N, manure,
+fertiliser mixes of 24 crops; P2O5 and K2O of mint, level 1 minus the new default manure). Snapshots unchanged.
+
+Limits: the L1 split is below the IFA rates for herbs (coriander IL x12), so coriander is probably low; the crop median
+scales with the yield, so high default yields give high N (cassava GH 233, coriander KE 217 and MX 237, ginger and
+turmeric US 327 kg N/ha; the coriander yields of FAOSTAT 711 in KE and MX, 13-15 t/ha, are to be checked).

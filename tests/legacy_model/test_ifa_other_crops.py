@@ -1,12 +1,12 @@
 """Decision L34: default mineral N, P2O5 and K2O of the crops without WFLDB level 1 coefficients from the IFA
 Fertilizer Use by Crop rates (L33), the nutrient need being taken proportional to the yield: N = IFA rate x yield /
 default yield, P2O5 and K2O = max(0, k x yield - manure in use) with k = (IFA rate + default manure) / default yield.
-Without an IFA rate the default mineral N is 0 (decision L55), P and K 0."""
+Without an IFA rate the default mineral N follows decision L57 (test_mineral_n_without_ifa_rate.py), P and K 0."""
 import pytest
 
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, \
-    MineralPhosphorusPotassiumDefaultGenerator as PK
+    MineralPhosphorusPotassiumDefaultGenerator as PK, MineralNitrogenDefaultGenerator
 from defaultTables import IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY as IFA, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, PK_PER_KG_MAIN_PRODUCT_PER_CROP
 from models.manuremodel import LiquidManureType
@@ -81,21 +81,25 @@ def test_level2_follows_the_yield_and_the_manure_in_use():
 @pytest.mark.parametrize("crop, country", [
     ("coriander", "IN"), ("turmeric", "IN"), ("flax", "FR"), ("hemp", "FR"), ("cassava", "CI"), ("mint", "MX"),
     ("lentil", "NZ")])
-def test_without_ifa_rate_unchanged(crop, country):
+def test_without_ifa_rate(crop, country):
     assert IFA.get(crop, {}).get(country) is None
     defaults = _defaults(crop=crop, country=country)
-    assert defaults["nitrogen_from_mineral_fert"] == 0.0
+    assert defaults["nitrogen_from_mineral_fert"] > 0.0  # decision L57
+    assert defaults["nitrogen_from_mineral_fert"] == pytest.approx(MineralNitrogenDefaultGenerator.without_ifa_rate(defaults))
     for nutrient in ("p2o5", "k2o"):
         expected = PK.level1(defaults, nutrient) if crop in PK_PER_KG_MAIN_PRODUCT_PER_CROP else 0.0
         assert defaults[FIELDS[nutrient]] == pytest.approx(expected)
 
 
 @pytest.mark.parametrize("crop", ["guar", "mulberry", "pomegranate"])
-def test_crops_without_default_yield_unchanged(crop):
+def test_crops_without_default_yield(crop):
     # no default yield (0, default_yield.csv), so no reference for the factor, even with an IFA rate (guar: pulses)
     assert _defaults(crop=crop, country="IN")["yield_main_product_per_crop_cycle"] == 0.0
+    assert _defaults(crop=crop, country="IN")["nitrogen_from_mineral_fert"] == 0.0
     defaults = _defaults(crop=crop, country="IN", yield_main_product_per_crop_cycle=1000.0)
-    assert defaults["nitrogen_from_mineral_fert"] == 0.0
+    # decision L57: guar and pomegranate the level 1 split of the N uptake, mulberry 0 (N uptake without source)
+    expected = 0.0 if crop == "mulberry" else MineralNitrogenDefaultGenerator.level1(defaults)
+    assert defaults["nitrogen_from_mineral_fert"] == pytest.approx(expected)
     assert defaults["p2O5_from_mineral_fert"] == defaults["k2O_from_mineral_fert"] == 0.0
     if crop == "guar":
         assert IFA["guar"]["IN"]["n"] is not None

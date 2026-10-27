@@ -1,7 +1,8 @@
 """Decision L40: default manure of the crops without WFLDB level 1 coefficients (L34) where IFA gives a mineral N rate:
 the available N of the manure is (1 - mineral share) / mineral share x the level 2 mineral N (IFA rate x yield /
 default yield), the WFLDB L1 split of the N input (Guidelines v3.0 section 3.6.2); split and converted as in L29.
-The mineral N, P2O5 and K2O at the default yield stay the IFA rates; without an IFA N rate the default manure is 0 (decision L55)."""
+The mineral N, P2O5 and K2O at the default yield stay the IFA rates; without an IFA N rate the same split of the mineral
+N of decision L57 (mulberry: 0)."""
 import pytest
 
 import dataloader
@@ -88,6 +89,14 @@ def test_berries_no_longer_use_the_legacy_manure(crop):
 @pytest.mark.parametrize("crop, country", [
     ("coriander", "IN"), ("mint", "MX"), ("lentil", "NZ"), ("cassava", "CI"),  # no IFA N rate
     ("guar", "IN")])  # IFA rate, but no default yield (no reference for the factor)
-def test_without_level2_mineral_n_no_default_manure(crop, country):
+def test_without_level2_mineral_n_manure_follows_l57(crop, country):
     defaults = _defaults(crop=crop, country=country, yield_main_product_per_crop_cycle=1000.0)
-    assert defaults["total_manureliquid"] == defaults["total_manuresolid"] == 0.0  # decision L55
+    liquid, solid = _available_n(defaults)
+    assert defaults["nitrogen_from_mineral_fert"] > 0.0
+    assert liquid + solid == pytest.approx(_organic_per_mineral_n() * defaults["nitrogen_from_mineral_fert"])
+    assert liquid / (liquid + solid) == pytest.approx(MANURE_LIQUID_N_FRACTION_PER_COUNTRY[country])
+
+
+def test_mulberry_no_default_manure():
+    defaults = _defaults(crop="mulberry", country="IN", yield_main_product_per_crop_cycle=1000.0)
+    assert defaults["total_manureliquid"] == defaults["total_manuresolid"] == 0.0  # decisions L55, L57

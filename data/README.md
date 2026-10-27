@@ -58,7 +58,7 @@ The **Use** column below means:
 | `wfldb2017_crop_nutrient_contents.csv` | WFLDB 3.1 Background Parameters 2017, sheet 4 | model | N, P2O5 and K2O per kg of product: default N uptake (L28) and default mineral P and K (L31); N of tree residues (L32). |
 | `grudaf2009_table1_reference_yields.csv` | GRUDAF 2009 (Flisch et al.) Table 1 | model | Residue / main product ratio of the arable crops (L28) and N uptake of fibre flax and hemp (L41). |
 | `n_uptake_crop_parameters.csv` | AgriToolV.1 | model | The 39 crops with WFLDB coefficients: WFLDB crop, GRUDAF row, residue ratio, tree residues. Their N uptake follows the yield; mineral N and manure are derived from it (L28, L29). |
-| `n_uptake_other_crop_parameters.csv` | AgriToolV.1 | model | The 27 crops without WFLDB coefficients -> Ludemann item, GRUDAF row, IPCC residue row (L41). |
+| `n_uptake_other_crop_parameters.csv` | AgriToolV.1 | model | The 27 crops without WFLDB coefficients -> Ludemann item, GRUDAF row, IPCC residue row (L41); rule of the default mineral N without an IFA rate (L57). |
 | `ludemann2023_world_crop_coefficients.csv` | Ludemann et al. (2023), Dryad, Tier 1 world coefficients. Built by `build_ludemann_crop_coefficients.py`. | model | N concentration of the product of the crops of `n_uptake_other_crop_parameters.csv` (L41). |
 | `ipcc2019_table11_1a.csv` | IPCC 2019 Refinement Vol. 4 ch. 11, Table 11.1a | model | Residue N of the field crops without WFLDB coefficients (DRY x R_AG x N_AG, L41). |
 | `legacy_n_uptake.csv` | Quantis GD_crop (legacy, undocumented, provisional) | model | Default N uptake of mulberry, the only crop without coefficients (L55); published range in the notes (L56). |
