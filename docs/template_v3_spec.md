@@ -92,8 +92,8 @@ or not used), **N** new field. "Legacy tag" is the column-A tag of template v2.
 |---|---|---|---|---|
 | `dataset_id` | text | R, N | - | Unique in the workbook |
 | `crop` | list | R | `crop` | `crop_types.csv` (67 crops) |
-| `country` | list | R | `country` | 39 tool countries with defaults; M49 code from `faostat_country_mapping.csv` (Q1) |
-| `region` | text | O, N | - | Sub-national region, documentation only for now (Q1) |
+| `country` | list | R | `country` | Any country or area of UN M49 (section 5.10, Q1 decided) |
+| `region` | text | O, N | - | Sub-national region, documentation only for now |
 | `period_start`, `period_end` | year | R, N | - | Time period of the dataset (ecoinvent v4 unit process) |
 | `production_system` | list | R | `cultivation_type` | open ground; greenhouse soil heated / unheated; greenhouse hydroponic heated / unheated |
 | `organic` | yes/no | R | `organic_certified` | |
@@ -178,6 +178,28 @@ of the data, representativeness (share of national production or area, if known)
 general comment. These fields feed the documentation of the v4 dataset; they are text and are not
 used in calculations.
 
+### 5.10 Geography and fallback of the defaults (Q1, decided by FC on 2026-10-27)
+
+- The `country` list is the UN M49 list of countries and areas (UNSD overview table supplied by
+  FC, `data/external_data/UNSD — Methodology.csv`, 248 countries and areas with their region,
+  sub-region and intermediate region). The provider picks the name; the tool stores the M49 code,
+  which also gives the geography of the ecoinvent v4 dataset. The list in the template is built
+  from a table of `data/` extracted from this file and confirmed by FC before use.
+- A default that has no value for the country falls back along the M49 hierarchy:
+  **country -> intermediate region (where it exists) -> sub-region -> region -> World**. M49 has
+  intermediate regions only in Africa and the Americas (Caribbean, Central America, South America,
+  Eastern, Middle, Southern and Western Africa), where the sub-regions are very large
+  (Sub-Saharan Africa, Latin America and the Caribbean); elsewhere the chain goes from the country
+  to the sub-region (e.g. Greece -> Southern Europe -> Europe -> World).
+- The reader records the level used (country, intermediate region, sub-region, region, World) in
+  the provenance of each value, so that the dataset comment states it.
+- How the value of an aggregate is computed (simple mean, weighted mean and weight, minimum number
+  of countries) and for which tables a fallback is acceptable is decided table by table with the
+  defaults, not in the template. Until a table has M49 aggregates, its existing fallback applies
+  (GLO row of the crop x country matrices, IFA region of L37, IPCC region of L42), and a country
+  outside the 39 tool countries with no fallback in a table stops the calculation with an error
+  that names the table.
+
 ## 6. Reader and validation (outline)
 
 A Python module reads the workbook into one input record per dataset, with provenance, and maps it
@@ -206,7 +228,7 @@ These fields are needed only if the corresponding model is adopted (decisions of
 
 | # | Question | Proposal |
 |---|---|---|
-| Q1 | Geography: only the 39 tool countries, or any M49 country with regional or world defaults? Sub-national regions now or later? | 39 countries now; `region` as text for documentation; extension when the defaults have regional fallbacks |
+| Q1 | Geography: only the 39 tool countries, or any M49 country with regional or world defaults? Sub-national regions now or later? | **Decided (FC, 2026-10-27):** any M49 country or area; defaults fall back to intermediate region, sub-region, region and World (section 5.10); `region` as text for documentation. Open: confirm the intermediate-region level |
 | Q2 | Should the yield stay required, or may the FAOSTAT default be used when missing? | Required: the yield defines the dataset; the default only for a plausibility warning |
 | Q3 | How does the provider state "not used" for a whole input group (no manure, no pesticides)? | Row with amount 0, or a `none` column per input group in `Datasets` |
 | Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | Yes; optional harvest month for documentation |
