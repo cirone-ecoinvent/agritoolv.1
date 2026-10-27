@@ -23,7 +23,7 @@ Review tables (all in data/):
   ipcc2019_m49_region_mapping.csv         idem
   wfldb2017_pesticides_crop_mapping.csv   usable when status is confirmed (default total pesticides, L43)
   irrigation_technique_source.csv         usable when status is confirmed (irrigation technique shares, L44)
-  mialyk2024_crop_mapping.csv             usable when status is confirmed (cross-check of the irrigation water, L44)
+  mialyk2024_crop_mapping.csv             usable when status is confirmed (irrigation water of hemp and mint, L56; cross-check, L44)
   pfister2014_crop_mapping.csv            usable when status is confirmed (default irrigation water, L44)
   pfister2014_country_mapping.csv         idem
   ifastat_product_type_mapping.csv        usable when status is confirmed (mineral fertiliser mixes, L45)

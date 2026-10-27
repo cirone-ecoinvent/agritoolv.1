@@ -148,9 +148,16 @@ def test_default_consumption_is_the_pfister_appendix_b_value():
     assert sorted(legacy) == sorted(crop for crop, row in mapping.items() if row["use"] == "legacy")
     assert sorted(mapping) == sorted(row["crop"] for row in dataloader.rows("faostat_crop_item_mapping.csv"))
     assert sorted(EVAPO_TRANSPI_PER_CROP_PER_COUNTRY) == sorted(mapping)
+    mialyk = defaultdict(dict)
+    for row in dataloader.rows("mialyk2024_national_blue_wf.csv"):
+        mialyk[row["mialyk_crop_code"]][row["country"]] = float(row["wfb_i_m3_t"])
+    mialyk_items = {row["crop"]: row["mialyk_crop_code"] for row in dataloader.rows("mialyk2024_crop_mapping.csv")}
+    assert sorted(crop for crop, row in mapping.items() if row["use"] == "mialyk") == ["hemp", "mint"]  # decision L56
     for crop, row in mapping.items():
         if row["use"] == "legacy":
             assert EVAPO_TRANSPI_PER_CROP_PER_COUNTRY[crop] == legacy[crop]
+        elif row["use"] == "mialyk":
+            assert EVAPO_TRANSPI_PER_CROP_PER_COUNTRY[crop] == mialyk[mialyk_items[crop]]
         else:
             assert EVAPO_TRANSPI_PER_CROP_PER_COUNTRY[crop] == expected[row["pfister_crop"]]
             assert "GLO" in EVAPO_TRANSPI_PER_CROP_PER_COUNTRY[crop]
@@ -158,7 +165,8 @@ def test_default_consumption_is_the_pfister_appendix_b_value():
 
 @pytest.mark.parametrize("crop, country, value", [
     ("wheat", "FR", 111.2098653379725), ("potato", "US", 85.36298210876255), ("tea", "KE", 1284.5369299344975),
-    ("wheat", "GLO", 414.5089098246473)])
+    ("wheat", "GLO", 414.5089098246473), ("mint", "MA", 154.838), ("mint", "GLO", 150.909), ("hemp", "FR", 0.0),
+    ("hemp", "GLO", 3.862), ("mulberry", "IN", 164.73), ("mulberry", "GLO", 164.73), ("flax", "FR", 7.8)])
 def test_reviewed_consumption_values(crop, country, value):
     assert EVAPO_TRANSPI_PER_CROP_PER_COUNTRY[crop][country] == pytest.approx(value)
 

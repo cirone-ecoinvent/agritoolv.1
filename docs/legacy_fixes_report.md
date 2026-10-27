@@ -2421,3 +2421,38 @@ Open:
 - 0 default mineral N and 0 default manure in 428 crop-country pairs: turmeric, ginger, flax, hemp, mulberry, guar and
   pomegranate in all 39 countries, mint and coriander in 38, cassava 16, cotton, chick pea and lentil 15, grape and
   sesame 4, ten crops in one country (mostly AU).
+
+## 44. Sources for the remaining legacy values (decision L56, 2026-10-27)
+
+Follow-up of section 43. The 12 legacy values moved to `data/` in L55, now with a source where one fits the basis of
+the default yield.
+
+Irrigation water consumption, m3 per t of main product:
+
+| Crop | Before (legacy) | Now | Source |
+|---|---|---|---|
+| mint | GLO 0 | AR 101.3, MX 185.2, MA 154.8, GLO 150.9 | Mialyk et al. (2024), item 748, 2010-2019 |
+| hemp | CN 51.73, GLO 51.73 | 17 countries, e.g. CN 0.5, FR 0, ES 357.8; GLO 3.86 | Mialyk et al. (2024), item 777, 2010-2019 |
+| mulberry | IN 164.74, CN 300, GLO 300 | IN 164.73, GLO 164.73 | ecoinvent 3.12 'mulberry production, IN', irrigation (interview data) x 0.5 |
+| flax | CN 229.87, FR 7.8, GLO 229.87 | unchanged (legacy) | no source on the basis of the default yield |
+
+Not used:
+
+- Pfister & Bayer (2014) 'flax' and 'hemp': their world production of 2000 (341 kt and 29 kt) is 1/2.4 and 1/3.9 of
+  FAOSTAT 771 and 777 (824 kt and 113 kt), so they are per t of another product.
+- Mialyk item 773 'Flax, processed but not spun': not the item of the default yield.
+- The WFLDB datasets 'mint production' (US, IN; Fuchs et al. 2000) as a source: one literature value for the US, the
+  IN dataset a proxy of it. They are the check: about 95 m3/t to air and 200-210 m3/t irrigation; the new default
+  withdrawal for mint US is 242 m3/t at 1 t/ha.
+
+N uptake of mulberry: kept at 400 kg N/ha (legacy). Published range: recommended doses for irrigated mulberry 168 kg
+N/ha and year (CSR&TI Berhampore, Central Silk Board) and 350 kg N/ha and year (Dandin et al. 2003, South India); N
+removed with the leaves 52-484 kg N/ha and year in Indian trials. Mulberry has no default yield and no leaf N content
+with a source, so the uptake cannot be computed as for the other crops.
+
+Changed defaults (67 crops x 39 countries): only the irrigation water of hemp, mint and mulberry (585 values), e.g.
+withdrawal at 1 t/ha mint IN 0 -> 327 m3, hemp FR 69 -> 0 m3, hemp ES 68 -> 472 m3, mulberry CN 640 -> 351 m3.
+Snapshots unchanged.
+
+Limit: Mialyk is below the Pfister range for 74 % of the production (L44), so the hemp and mint values are probably on
+the low side compared with the other crops.

@@ -1,4 +1,4 @@
 crop,country,n_uptake_kg_per_ha,note
-mulberry,CN,400.0,"legacy, undocumented, provisional (Quantis workbook GD_crop, Nuptake_L1)"
-mulberry,IN,400.0,"legacy, undocumented, provisional (Quantis workbook GD_crop, Nuptake_L1)"
-mulberry,GLO,400.0,"legacy, undocumented, provisional (Quantis workbook GD_crop, Nuptake_L1)"
+mulberry,CN,400.0,"legacy, undocumented, provisional (Quantis workbook GD_crop, Nuptake_L1). Within the published range (L56): recommended dose for irrigated mulberry 168 kg N/ha and year (CSR&TI Berhampore, Central Silk Board) and 350 kg N/ha and year (Dandin et al. 2003, South India); N removed with the leaves 52-484 kg N/ha and year in Indian trials"
+mulberry,IN,400.0,"legacy, undocumented, provisional (Quantis workbook GD_crop, Nuptake_L1). Within the published range (L56): recommended dose for irrigated mulberry 168 kg N/ha and year (CSR&TI Berhampore, Central Silk Board) and 350 kg N/ha and year (Dandin et al. 2003, South India); N removed with the leaves 52-484 kg N/ha and year in Indian trials"
+mulberry,GLO,400.0,"legacy, undocumented, provisional (Quantis workbook GD_crop, Nuptake_L1). Within the published range (L56): recommended dose for irrigated mulberry 168 kg N/ha and year (CSR&TI Berhampore, Central Silk Board) and 350 kg N/ha and year (Dandin et al. 2003, South India); N removed with the leaves 52-484 kg N/ha and year in Indian trials"
