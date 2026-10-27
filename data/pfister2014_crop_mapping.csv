@@ -23,11 +23,11 @@ coriander,aniseetc,Anisebadianfennelcorian,direct,"Anise, badian, fennel, corian
 cotton,cotton,Seedcotton,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
 cranberry,cranberry,Cranberries,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
 eggplant,eggplant,Eggplants_aubergines,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
-flax,,,legacy,"Pfister has only 'Flax fibre and tow' (m3 per t of fibre), the tool yield is flax raw or retted (L23): legacy ET kept (legacy, undocumented, provisional)",confirmed,FC
+flax,,,legacy,"Pfister has only 'Flax fibre and tow' (production 2000 = 1/2.4 of FAOSTAT 771 Flax, raw or retted, another basis) and Mialyk only 773 Flax, processed but not spun: legacy ET kept (legacy, undocumented, provisional; L56)",confirmed,FC
 ginger,ginger,Ginger,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
 grape,grape ,Grapes,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
 guar,pulsenes,Pulsesnes,proxy,"no FAOSTAT item of its own: Pulses nes, the N uptake proxy (n_uptake_other_crop_parameters.csv, L41)",confirmed,FC
-hemp,,,legacy,"Pfister has only 'Hemp tow waste' (m3 per t of fibre), the tool yield is true hemp raw or retted (L23): legacy ET kept (legacy, undocumented, provisional)",confirmed,FC
+hemp,,,mialyk,"Pfister has only 'Hemp tow waste' (production 2000 = 1/3.9 of FAOSTAT 777, another basis): blue water from irrigation of Mialyk et al. 2024, item 777 True hemp, raw or retted, 2010-2019, as the default yield (L56)",confirmed,FC
 lemon,lemonlime,Lemonsandlimes,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
 citruslime,lemonlime,Lemonsandlimes,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
 lentil,lentil,Lentils,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
@@ -35,8 +35,8 @@ linseed,linseed,Linseed,direct,same FAOSTAT item as the default yield (L23),conf
 maizegrain,maize,Maize,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
 mandarin,tangetc,Tangerinesmandarinsclem,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
 mango,mango,Mangoesmangosteensguavas,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
-mint,,,legacy,"no peppermint in Pfister & Bayer 2014: legacy GLO 0 kept (legacy, undocumented, provisional)",confirmed,FC
-mulberry,,,legacy,"no FAOSTAT item and no Pfister crop: legacy ET kept (legacy, undocumented, provisional)",confirmed,FC
+mint,,,mialyk,"no peppermint in Pfister & Bayer 2014: blue water from irrigation of Mialyk et al. 2024, item 748 Peppermint, spearmint, 2010-2019 (AR, MX, MA; GLO = the 3 countries) (L56); the legacy GLO 0 is replaced",confirmed,FC
+mulberry,,,legacy,"no FAOSTAT item and no Pfister crop: irrigation of the ecoinvent 3.12 dataset 'mulberry production, IN' (interview data) x 0.5, which reproduces the legacy IN value (L56)",confirmed,FC
 oat,oats,Oats,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
 olive,olive,Olives,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
 onion,onion,Onionsdry,direct,same FAOSTAT item as the default yield (L23),confirmed,FC
