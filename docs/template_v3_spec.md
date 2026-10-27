@@ -205,15 +205,22 @@ Data to bring into `data/` (CSV, registered in `sources.csv`, confirmed by FC):
 
 Open points:
 
-- litres -> kg needs the density of diesel from a document supplied by FC; Master Data 3.12 gives
-  `diesel` no density (only the net heating value, 42.8 MJ/kg);
+- litres -> kg: FC proposes 0.835 kg/l (average) or 0.832 kg/l (EN 590 specification) (FC,
+  2026-10-27). Master Data 3.12 gives `diesel` no density (only the net heating value,
+  42.8 MJ/kg). The value enters the unit table only with a document supplied by FC that states
+  it; candidates: the JEC Well-to-Tank report v5, Annexes, Appendix 2 section 4.1 "Standard
+  properties of fuels" (JRC 2020, open access), or the standard EN 590 itself, which specifies a
+  range (820-845 kg/m3 at 15 degrees C), not a single value;
 - the 67 products `diesel used in <operation>` of the pipeline are not in Master Data 3.12 (their
   UUIDs come from the pipeline's lookup): the Master Data version that holds them is to be
   confirmed for the alignment tables;
 - an operation not in the list: free text with its diesel, written as
   `diesel, burned in agricultural machinery` (MJ, with the 42.8 MJ/kg of the Master Data);
-- whether a provider who knows only the total diesel of the farm may give it, split over the
-  listed operations in proportion to intensity x passes (case 2 of the pipeline).
+- a provider who knows only the total diesel of the dataset gives it once (item `total diesel`,
+  FC 2026-10-27, case 2 of the pipeline): it is split over the listed operations without their own
+  diesel in proportion to intensity x passes, z x a / (a + b + ...), where a, b are the kg/ha of
+  each operation for the geography times its passes; operations with their own diesel keep it.
+  The passes of each operation are then required (otherwise the split has no basis).
 
 ### 5.6 Sheet `Energy_water`
 
@@ -236,10 +243,29 @@ fate shares; wastewater to treatment and to nature in m3; COD in mg/l.
 
 ### 5.9 Sheet `Sources`
 
-One row per dataset: data provider (organisation), data sources, collection method, reference years
-of the data, representativeness (share of national production or area, if known), extrapolations,
-general comment. These fields feed the documentation of the v4 dataset; they are text and are not
-used in calculations.
+One row per dataset. The columns are the `facts` of the meta model of the agri-lca-pipeline
+(`meta_model/meta_facts.py`, sheet `facts` of its `dataset_input_template.xlsx`), so that the meta
+model can read them directly and build the metadata of the dataset (FC, 2026-10-27):
+
+| Column | Content |
+|---|---|
+| `dataset_id` | As in `Datasets` |
+| `data_source` | field (measured or surveyed on farms), statistical (national statistics) or literature |
+| `data_source_reference` | The source as it should be cited, e.g. "ISTAT (2015-2020)" |
+| `farms_sampled` | Number of farms, for survey data |
+| `extrapolations` | What was extrapolated, and from what |
+| `region_detail` | The narrower area the data refer to, e.g. "the hills of Tuscany" |
+| `share_of_national_production` | % of the national production the data represent |
+| `pv_years` | Years of the production volume |
+| `product_description` | Common and scientific name of the crop, production system and destination of the product (for the general comment) |
+| `comment` | Anything else the reviewer should know |
+
+The fields are text and are not used in calculations. The meta model organises them, together with
+the inputs of the other sheets (operations, fertilisers, pesticides, defaults used and their
+provenance), into the metadata fields required by ecoSpold2 (sampling procedure, geography, time
+period and technology comments, extrapolations); the update to the ecoinvent v4 JSON format comes
+later. The name and e-mail of the person who collected the data are not asked in the workbook
+(P8): the provider sends them separately.
 
 ### 5.10 Geography and fallback of the defaults (Q1, decided by FC on 2026-10-27)
 
@@ -393,7 +419,18 @@ These fields are needed only if the corresponding model is adopted (decisions of
 | Q9 | Pesticides without active ingredients: keep the atlas total for packaging only, or also an emission of an unspecified pesticide? | Packaging only, warning to the provider |
 | Q10 | Keep a reader for template v2 files? | No; a one-off conversion script only if old filled templates must be reused |
 
-## 9. Next steps
+## 9. Reminders for later (FC, 2026-10-27)
+
+- The Fuel Project (diesel per field operation, the `diesel used in <operation>` products, the new
+  field operation datasets) and the OLCA-Pest pesticide emissions are in the agri-lca-pipeline,
+  not in AgriToolV.1, and are not to be merged now. Their products and flows will be in the
+  Master Data of ecoinvent v4, which is not ready yet; the alignment tables of AgriToolV.1 stay on
+  Master Data 3.12 until then.
+- The meta model of the agri-lca-pipeline is to be connected to template v3 (sheet `Sources` and
+  the inputs) and to organise the metadata to the current ecoSpold2 standard; its update to the v4
+  JSON format comes later.
+
+## 10. Next steps
 
 1. FC reviews this specification and answers Q1-Q10.
 2. Record the decisions in `docs/DECISIONS.md`.
