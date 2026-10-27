@@ -10,7 +10,7 @@ import pytest
 
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS
-from defaultMatrixEvapoTranspiration import EVAPO_TRANSPI_PER_CROP_PER_COUNTRY,     _LEGACY_EVAPO_TRANSPI_PER_CROP_PER_COUNTRY
+from defaultMatrixEvapoTranspiration import EVAPO_TRANSPI_PER_CROP_PER_COUNTRY
 from defaultTables import IRR_TECH_RATIO_PER_COUNTRY, _LEGACY_IRR_TECH_RATIO_PER_COUNTRY
 from models.irrigationmodel import IrrigationModel, IrrigationType, IRRIGATION_TECHNIQUE, irrigation_efficiency
 
@@ -144,11 +144,13 @@ def test_default_consumption_is_the_pfister_appendix_b_value():
         if row["bw_expected_m3_t"] != "":
             expected[row["pfister_crop"]][row["country"]] = float(row["bw_expected_m3_t"])
     mapping = {row["crop"]: row for row in dataloader.rows("pfister2014_crop_mapping.csv")}
+    legacy = dataloader.crop_country_table("legacy_irrigation_water_consumption.csv", "etirr_m3_per_t")
+    assert sorted(legacy) == sorted(crop for crop, row in mapping.items() if row["use"] == "legacy")
     assert sorted(mapping) == sorted(row["crop"] for row in dataloader.rows("faostat_crop_item_mapping.csv"))
     assert sorted(EVAPO_TRANSPI_PER_CROP_PER_COUNTRY) == sorted(mapping)
     for crop, row in mapping.items():
         if row["use"] == "legacy":
-            assert EVAPO_TRANSPI_PER_CROP_PER_COUNTRY[crop] == _LEGACY_EVAPO_TRANSPI_PER_CROP_PER_COUNTRY[crop]
+            assert EVAPO_TRANSPI_PER_CROP_PER_COUNTRY[crop] == legacy[crop]
         else:
             assert EVAPO_TRANSPI_PER_CROP_PER_COUNTRY[crop] == expected[row["pfister_crop"]]
             assert "GLO" in EVAPO_TRANSPI_PER_CROP_PER_COUNTRY[crop]

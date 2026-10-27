@@ -84,6 +84,14 @@ def table(filename, key_column=None, numeric=True):
     return out
 
 
+def crop_country_table(filename, column):
+    """{crop: {country: float}} of a table with one row per crop and country (columns crop, country)."""
+    out = {}
+    for row in rows(filename):
+        out.setdefault(row["crop"], {})[row["country"]] = float(row[column])
+    return out
+
+
 def metal_row(filename, key, metals):
     """Heavy-metal vector {metal: mg value} for one table row; NA (empty cell) -> 0.0."""
     row = table(filename)[key]

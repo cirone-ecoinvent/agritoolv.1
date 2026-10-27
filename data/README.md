@@ -61,6 +61,7 @@ The **Use** column below means:
 | `n_uptake_other_crop_parameters.csv` | AgriToolV.1 | model | The 27 crops without WFLDB coefficients -> Ludemann item, GRUDAF row, IPCC residue row (L41). |
 | `ludemann2023_world_crop_coefficients.csv` | Ludemann et al. (2023), Dryad, Tier 1 world coefficients. Built by `build_ludemann_crop_coefficients.py`. | model | N concentration of the product of the crops of `n_uptake_other_crop_parameters.csv` (L41). |
 | `ipcc2019_table11_1a.csv` | IPCC 2019 Refinement Vol. 4 ch. 11, Table 11.1a | model | Residue N of the field crops without WFLDB coefficients (DRY x R_AG x N_AG, L41). |
+| `legacy_n_uptake.csv` | Quantis GD_crop (legacy, undocumented, provisional) | model | Default N uptake of mulberry, the only crop without coefficients (L55). |
 | `pk_crop_parameters.csv` | AgriToolV.1 | model | Mint -> WFLDB crop for the default mineral P and K (L31). |
 | `ifa_fubc_rates.csv` | Ludemann et al. (2022) IFA Fertilizer Use by Crop, Dryad (FUBC 9 and earlier reports). Built by `build_ifa_fertiliser_use.py`. | model | Mineral N, P2O5 and K2O per ha by crop and country: default mineral fertiliser of the crops without WFLDB coefficients (L33-L37, L53). |
 | `ifa_fubc_country_mapping.csv` | AgriToolV.1 | model, build | Tool country -> FUBC country and IFA region; the region gives the rate of a crop missing in the country (L37). |
@@ -112,6 +113,7 @@ The **Use** column below means:
 | `wfldb2017_irrigation_water_sources.csv` | WFLDB 3.1 Background Parameters 2017, sheet 2 (Siebert et al. 2010) | model | Groundwater, surface water and tap water shares of irrigation water (L22). |
 | `pfister2014_blue_water_country.csv` | Pfister & Bayer (2014), Appendix B and watershed data. Built by `build_pfister_blue_water.py`. | model | Default irrigation water per t of crop and country (expected value, with min and max) (L44). |
 | `pfister2014_crop_mapping.csv` | AgriToolV.1 | model, build | Tool crops -> Pfister crops. |
+| `legacy_irrigation_water_consumption.csv` | Quantis GD_crop (legacy, undocumented, provisional) | model | Irrigation water per t of flax, hemp, mint and mulberry, the crops without a Pfister value (L44, L55). |
 | `pfister2014_country_mapping.csv` | AgriToolV.1 | model, build | Tool countries -> Pfister countries. |
 | `pfister2014_blue_water_watershed.csv` | Pfister & Bayer (2014), watershed and monthly data | check | Water use per watershed and month, kept for a future regionalisation of water scarcity; not read by the model. |
 | `mialyk2024_national_blue_wf.csv` | Mialyk et al. (2024), national water footprints 2010-2019. Built by `build_mialyk_blue_water.py`. | check | Cross-check of the Pfister default (`compare_mialyk_pfister.py`). |

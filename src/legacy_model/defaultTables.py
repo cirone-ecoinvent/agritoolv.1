@@ -162,6 +162,8 @@ N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS = _n_uptake_per_kg_main_product_other_c
 # kg N / ha of the tree residues
 N_UPTAKE_OF_TREE_RESIDUES_PER_CROP = _n_uptake_of_tree_residues()
 # Legumes: their default N uptake counts only legume_uptake_share of the uptake (decision L30)
+# kg N / ha of the crops without coefficients (mulberry): legacy, undocumented, provisional (decision L55)
+LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("legacy_n_uptake.csv", "n_uptake_kg_per_ha")
 LEGUME_CROPS = frozenset(crop for crop, row in dataloader.table("crop_types.csv", numeric=False).items()
                          if row["legume"] == "yes")
 

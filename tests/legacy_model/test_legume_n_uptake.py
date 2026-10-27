@@ -5,7 +5,6 @@ import pytest
 
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, MineralNitrogenDefaultGenerator
-from defaultMatrixTotalMineralFert import NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY
 from defaultTables import N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP as N_PER_KG, LEGUME_CROPS, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS as N_PER_KG_OTHER
 
@@ -36,9 +35,9 @@ def test_legumes_without_level1_coefficients(crop):
     defaults = _defaults(crop=crop, country="IN", yield_main_product_per_crop_cycle=1000.0)
     assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(0.4 * 1000.0 * N_PER_KG_OTHER[crop])  # decision L41
     # the mineral N does not follow this uptake: IFA pulses rate where there is one (decisions L34, L37), else the
-    # legacy matrix (AR: no pulses rate in FUBC, neither in AR nor in the other FUBC 9 countries of Latin America)
+    # 0 (decision L55; AR: no pulses rate in FUBC, neither in AR nor in the other FUBC 9 countries of Latin America)
     argentina = _defaults(crop=crop, country="AR")
-    assert argentina["nitrogen_from_mineral_fert"] == NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY[crop]["GLO"] == 0.0
+    assert argentina["nitrogen_from_mineral_fert"] == 0.0
 
 
 def test_other_crops_count_the_whole_uptake():

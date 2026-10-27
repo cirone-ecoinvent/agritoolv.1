@@ -9,7 +9,6 @@ import pytest
 
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS
-from defaultMatrixNUptake import NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY as LEGACY_N_UPTAKE
 from defaultTables import N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS as N_PER_KG
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -90,9 +89,9 @@ def test_crops_without_default_yield_follow_the_template_yield(crop):
     assert _defaults(crop=crop, country="IN", yield_main_product_per_crop_cycle=1000.0)["nitrogen_uptake_by_crop"] > 0.0
 
 
-def test_mulberry_keeps_the_legacy_matrix():
+def test_mulberry_keeps_the_legacy_value():
     defaults = _defaults(crop="mulberry", country="CN", yield_main_product_per_crop_cycle=9000.0)
-    assert defaults["nitrogen_uptake_by_crop"] == LEGACY_N_UPTAKE["mulberry"]["CN"]
+    assert defaults["nitrogen_uptake_by_crop"] == 400.0  # data/legacy_n_uptake.csv (decision L55)
 
 
 def test_table_equals_the_dryad_download():

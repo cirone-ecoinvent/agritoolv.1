@@ -1,12 +1,11 @@
 """Decision L40: default manure of the crops without WFLDB level 1 coefficients (L34) where IFA gives a mineral N rate:
 the available N of the manure is (1 - mineral share) / mineral share x the level 2 mineral N (IFA rate x yield /
 default yield), the WFLDB L1 split of the N input (Guidelines v3.0 section 3.6.2); split and converted as in L29.
-The mineral N, P2O5 and K2O at the default yield stay the IFA rates; without an IFA N rate the legacy matrix stays."""
+The mineral N, P2O5 and K2O at the default yield stay the IFA rates; without an IFA N rate the default manure is 0 (decision L55)."""
 import pytest
 
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS
-from defaultMatrixTotalManure import TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY, TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY
 from defaultTables import IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY as IFA, MANURE_LIQUID_N_FRACTION_PER_COUNTRY
 from models.manuremodel import ManureModel, LiquidManureType
 
@@ -83,15 +82,12 @@ def test_berries_no_longer_use_the_legacy_manure(crop):
         defaults = _defaults(crop=crop, country=country)
         liquid, solid = _available_n(defaults)
         assert liquid + solid == pytest.approx(0.25 * IFA[crop][country]["n"])
-    legacy = TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY["raspberry"]["CS"]
-    assert legacy == 20000.0 and _defaults(crop="raspberry", country="CS")["total_manuresolid"] < 3500.0
+    assert _defaults(crop="raspberry", country="CS")["total_manuresolid"] < 3500.0
 
 
 @pytest.mark.parametrize("crop, country", [
     ("coriander", "IN"), ("mint", "MX"), ("lentil", "NZ"), ("cassava", "CI"),  # no IFA N rate
     ("guar", "IN")])  # IFA rate, but no default yield (no reference for the factor)
-def test_without_level2_mineral_n_the_legacy_matrix_stays(crop, country):
+def test_without_level2_mineral_n_no_default_manure(crop, country):
     defaults = _defaults(crop=crop, country=country, yield_main_product_per_crop_cycle=1000.0)
-    for field, legacy in (("total_manureliquid", TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY[crop]),
-                          ("total_manuresolid", TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY[crop])):
-        assert defaults[field] == legacy.get(country, legacy["GLO"]) == 0.0
+    assert defaults["total_manureliquid"] == defaults["total_manuresolid"] == 0.0  # decision L55

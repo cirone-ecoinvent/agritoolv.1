@@ -2386,3 +2386,38 @@ NOx and nitrate decrease because they are computed on the N left after the NH3 l
 
 Limit: EMEP notes (Hayashi et al. 2006, 2008) that the high losses of paddy fields may reflect high temperatures and
 apply less to temperate regions; the tool has no climate classes since L38, so the value applies everywhere.
+
+## 43. Legacy crop x country matrices removed (decision L55, 2026-10-27)
+
+Open point of section 37. Of the legacy matrices of N uptake, liquid and solid manure, mineral N and irrigation water
+consumption, only 12 values were still read; they were hardcoded in the code. No value changes in this step.
+
+| Legacy table | Values | Read | Now |
+|---|---|---|---|
+| `defaultMatrixNUptake.py` | 215 | 3: mulberry CN, IN, GLO = 400 kg N/ha | `data/legacy_n_uptake.csv` |
+| `_LEGACY_EVAPO_TRANSPI_PER_CROP_PER_COUNTRY` | 1024 | 9: flax, hemp, mint, mulberry | `data/legacy_irrigation_water_consumption.csv` |
+| `defaultMatrixTotalManure.py`, liquid and solid | 191 each | GLO = 0 only | explicit 0 in `ManureDefaultGenerator` |
+| `defaultMatrixTotalMineralFert.py` | 191 | GLO = 0 only | explicit 0 in `MineralNitrogenDefaultGenerator` |
+
+Irrigation water consumption kept, m3 per t of main product (legacy, undocumented, provisional):
+
+| Crop | Values |
+|---|---|
+| flax | CN 229.87, FR 7.8, GLO 229.87 |
+| hemp | CN 51.73, GLO 51.73 |
+| mint | GLO 0 |
+| mulberry | CN 300, IN 164.74, GLO 300 |
+
+The default mineral N and the default manure are 0 for the crops without level 1 coefficients where IFA gives no rate,
+or where the crop has no default yield as reference for the level 2 factor (guar, mulberry, pomegranate). This is the
+result the legacy matrices gave (GLO cell 0), now written as a rule.
+
+Check: every default of `DEFAULTS_VALUES_GENERATORS` for the 67 crops x 39 countries, with the default yield and with a
+yield of 1000 kg, computed on `main` and on the branch: 689 832 values, no difference. Snapshots unchanged.
+
+Open:
+
+- sourced values for the 12 legacy values; mint GLO 0 is implausible (separate branch);
+- 0 default mineral N and 0 default manure in 428 crop-country pairs: turmeric, ginger, flax, hemp, mulberry, guar and
+  pomegranate in all 39 countries, mint and coriander in 38, cassava 16, cotton, chick pea and lentil 15, grape and
+  sesame 4, ten crops in one country (mostly AU).
