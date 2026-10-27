@@ -170,9 +170,50 @@ Horticultural oil in kg. Default when the dataset has no row: total active ingre
 
 ### 5.5 Sheet `Operations`
 
-Option A (legacy): diesel in kg per group of operations and its split. Option B: one row per
-operation (list of ecoinvent field operations), number of passes per crop cycle; diesel only
-optional for the total. To be decided (Q6).
+Decided by FC on 2026-10-27 (Q6, option B): one row per field operation, with its diesel and its
+number of passes. The diesel model follows the agri-lca-pipeline (repository
+`giakoumatos/agri-lca-pipeline`, `calculators/agri_diesel/`, the "Fuel Project" structure), where
+the diesel and its emissions are in the crop dataset and not in the field operation dataset.
+
+Columns: `dataset_id`, `operation` (list of the ecoinvent field operations), `passes` (number per
+crop cycle), `diesel`, `diesel_unit` (l/ha or kg/ha per crop cycle, both accepted for now),
+`comment`. The legacy groups of operations with a diesel total and a percentage split are dropped.
+
+| `passes` | `diesel` | Result |
+|---|---|---|
+| given | given | Both used as given |
+| given | N/A | Diesel = diesel intensity of the operation (kg/ha per pass) for the geography x passes |
+| N/A | given | Passes = diesel (kg/ha) / diesel intensity of the operation for the geography, rounded to 0.5 as in the pipeline (more than 8 passes: warning, value not rounded) |
+| N/A | N/A | Error: the dataset is not calculated |
+
+Written in the dataset, per kg of main product (as the pipeline does):
+
+- the field operation input = passes / yield (ha per kg);
+- the diesel input `diesel used in <operation>` = diesel (kg/ha) / yield (kg per kg).
+
+Data to bring into `data/` (CSV, registered in `sources.csv`, confirmed by FC):
+
+- the diesel intensity per field operation and geography (kg diesel per ha): the table
+  `FO_DIESEL_INTENSITIES` of the pipeline, built there from `exchanges (3.12, undef).xlsx` and the
+  field-operation list `FO UND.xlsx` of the Fuel Project (104 rows, 151 operation-geography
+  pairs). Either copied with its source or rebuilt in AgriToolV.1 by a script from the same two
+  files (`FO UND.xlsx` to be supplied by FC);
+- the geography of the intensity for each country (`config/models/fo_geography_map.csv` of the
+  pipeline, then GLO and RoW as fallback, as in the pipeline). How it combines with the M49
+  fallback of section 5.10 is to be agreed;
+- the list of operations of the template = the operations of the intensity table.
+
+Open points:
+
+- litres -> kg needs the density of diesel from a document supplied by FC; Master Data 3.12 gives
+  `diesel` no density (only the net heating value, 42.8 MJ/kg);
+- the 67 products `diesel used in <operation>` of the pipeline are not in Master Data 3.12 (their
+  UUIDs come from the pipeline's lookup): the Master Data version that holds them is to be
+  confirmed for the alignment tables;
+- an operation not in the list: free text with its diesel, written as
+  `diesel, burned in agricultural machinery` (MJ, with the 42.8 MJ/kg of the Master Data);
+- whether a provider who knows only the total diesel of the farm may give it, split over the
+  listed operations in proportion to intensity x passes (case 2 of the pipeline).
 
 ### 5.6 Sheet `Energy_water`
 
@@ -317,10 +358,12 @@ to the inputs of `src/legacy_model/`. Validation, reported per sheet and cell:
   negative amount, shares not summing to 100 % (tolerance to be set), N/A in a required field,
   input group set to 0 with rows in the long sheet, text other than `N/A` in a numeric cell,
   `irrigated` = yes without irrigation water or without technique shares summing to 100 %,
-  `irrigated` = no with irrigation water above 0;
+  `irrigated` = no with irrigation water above 0, field operation with neither passes nor diesel;
 - warnings (the dataset is calculated): default used (yield included), empty cell read as N/A,
   yield outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the crop in the same
-  country (section 5.11), irrigation water outside the Pfister range (section 5.12), free-text `other` rows, inputs given for a field the model does not use.
+  country (section 5.11), irrigation water outside the Pfister range (section 5.12), more than 8
+  passes derived for an operation (section 5.5), free-text `other` rows, inputs given for a field
+  the model does not use.
 
 The reader is built after the specification is agreed, with tests on example workbooks that hold
 no real farm data.
@@ -344,7 +387,7 @@ These fields are needed only if the corresponding model is adopted (decisions of
 | Q3 | How does the provider state "not used" for a whole input group (no manure, no pesticides)? | **Decided (FC, 2026-10-27):** every input cell starts as `N/A` (default); `0` is a real zero (P3). Input-group columns in `Datasets` (section 4) |
 | Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | Yes; optional harvest month for documentation |
 | Q5 | Irrigation: is the default water (Pfister, L44) applied only when `irrigated` = yes and the amount is N/A, and 0 when `irrigated` = no? What when `unknown`? | **Decided (FC, 2026-10-27):** yes -> water required, in m3/ha or mm, and the shares of surface, sprinkler and drip irrigation; no -> 0; no "unknown"; mixed systems as two datasets; Pfister min-max only as plausibility range (section 5.12) |
-| Q6 | Operations: diesel per group (A) or passes per operation (B)? | B, with optional total diesel as a check |
+| Q6 | Operations: diesel per group (A) or passes per operation (B)? | **Decided (FC, 2026-10-27):** B, one row per operation with diesel (l/ha or kg/ha) and passes; missing diesel from the intensity table of the agri-lca-pipeline, missing passes from diesel / intensity; both missing is an error (section 5.5) |
 | Q7 | Climate zone, wet days, elevation: which source for country defaults, or keep them as provider fields? | Look for a source among the documents of FC; until then keep them optional with the current default, tagged legacy, undocumented, provisional |
 | Q8 | Co-product fate: needed now? | Yes, it decides residue N and the functional flows of the v4 dataset |
 | Q9 | Pesticides without active ingredients: keep the atlas total for packaging only, or also an emission of an unspecified pesticide? | Packaging only, warning to the provider |
