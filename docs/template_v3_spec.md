@@ -121,6 +121,7 @@ of template v2.
 | `yield_main_product` | kg FM/(ha and crop cycle) | E | `yield_main_product_per_crop_cycle` | N/A -> default FAOSTAT 2021-2024 per crop cycle (L23, L24), with warning. A given value is checked for plausibility (section 5.11). Crops without a default yield (guar, mulberry, pomegranate) require the value |
 | `irrigated` | yes/no | R, N | - | No "unknown" (Q5, section 5.12). Sets the land use flows (irrigated or non-irrigated) |
 | `irrigation_water`, `irrigation_water_unit` | m3/ha or mm, per crop cycle | R if `irrigated` = yes | `total_wateruse` | No default (section 5.12); must be 0 or N/A when `irrigated` = no |
+| `irrigation_share_surface`, `irrigation_share_sprinkler`, `irrigation_share_drip` | % of the irrigation water | R if `irrigated` = yes, N | `ratio_irr_*` (not in v2) | Sum 100 %; one technique = 100 %. No default (section 5.12) |
 | `drained_share` | % of area | O | `drainage` | Default 0 (L5) |
 | `tillage` | list | O | `tillage_method` | Default "unknown" (factor 1) |
 | `anti_erosion_practice` | list | O | `anti_erosion_practice` | Default "unknown" (factor 1) |
@@ -178,9 +179,9 @@ optional for the total. To be decided (Q6).
 Electricity (grid, on-site photovoltaic, on-site wind) in kWh; diesel outside tractors, petrol,
 fuel oil light and heavy, natural gas, lignite and hard coal briquettes in kg or MJ or Nm3; wood
 pellets, chips, logs in kg; heat (district, solar collector) in MJ. For irrigated datasets, optional
-irrigation technique shares (surface, sprinkler, drip; default AQUASTAT, L44) and source shares
-(groundwater, surface water, other; default WFLDB 2017, L22); the amount of irrigation water is in
-`Datasets` (section 5.12). Other water (cleaning, processing on farm) in m3 by source.
+source shares of the irrigation water (groundwater, surface water, other; default WFLDB 2017, L22);
+the amount and the techniques of irrigation are in `Datasets` (section 5.12). Other water
+(cleaning, processing on farm) in m3 by source.
 
 ### 5.7 Sheet `Materials`
 
@@ -275,6 +276,23 @@ reference is built.
 - `irrigated` = yes: the provider gives the irrigation water of the crop cycle, in m3/ha or mm
   (1 mm = 10 m3/ha; the conversion factor sits in the unit table of the reader in `data/`, not in
   the code). N/A is an error: there is no default irrigation water any more.
+- `irrigated` = yes: the provider also gives the share of the water applied with each technique,
+  surface, sprinkler and drip (sum 100 %; a single technique is 100 %). N/A is an error: the
+  AQUASTAT technique shares of the country (L44) are no longer a default of the template input.
+  The techniques are used for:
+  - the irrigation efficiency of the plausibility range below (0.45 surface, 0.75 sprinkler,
+    0.90 drip, `model_parameters.csv`, L44);
+  - the irrigation input of the dataset: Master Data 3.12 has one product `irrigation` (m3),
+    produced by the activities `irrigation, surface`, `irrigation, sprinkler` and
+    `irrigation, drip` and supplied in a country by `market for irrigation`. With the techniques
+    known, the input can be split into one amount per technique, each linked to its activity (an
+    activity link in ecoSpold v3, a process link in ecoinvent v4) instead of the country market.
+    To be confirmed with the v4 writer design.
+- The legacy split of each technique into electricity, diesel and no energy (template v2 tags
+  `ratio_irr_*_electricity`, `_diesel`, `_no_energy`, never in the v2 sheet) is not asked: the
+  energy of pumping is part of the ecoinvent irrigation activities. To be checked against these
+  activities, together with whether they already carry the water source (in which case the source
+  shares of section 5.6 are not needed either).
 - `irrigated` = no: no irrigation, the land use flows are the non-irrigated ones.
 - There is no "unknown". A dataset that averages irrigated and non-irrigated land is entered as two
   datasets (two rows of `Datasets`), one irrigated and one not; rejected: a share of irrigated
@@ -284,7 +302,7 @@ reference is built.
   Bayer (2014) (`pfister2014_blue_water_country.csv`, columns `bw_min_m3_t` and `bw_max_m3_t`,
   L44), converted to the same basis as the default of L44: range (m3/ha) = [min, max] x yield
   (kg/ha and crop cycle) / 1000 / irrigation efficiency, with the efficiency of the technique
-  shares of the dataset or of AQUASTAT. The warning says that the reference is a national average
+  shares of the dataset. The warning says that the reference is a national average
   that includes non-irrigated production, so a fully irrigated dataset can lie above it.
 - The Pfister expected value (`bw_expected_m3_t`) is no longer a default of the template input;
   whether the model keeps it as a default for other uses is decided with the defaults.
@@ -298,7 +316,8 @@ to the inputs of `src/legacy_model/`. Validation, reported per sheet and cell:
   `dataset_id` not unique or unknown in a long sheet, value outside a list, unknown unit,
   negative amount, shares not summing to 100 % (tolerance to be set), N/A in a required field,
   input group set to 0 with rows in the long sheet, text other than `N/A` in a numeric cell,
-  `irrigated` = yes without irrigation water, `irrigated` = no with irrigation water above 0;
+  `irrigated` = yes without irrigation water or without technique shares summing to 100 %,
+  `irrigated` = no with irrigation water above 0;
 - warnings (the dataset is calculated): default used (yield included), empty cell read as N/A,
   yield outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the crop in the same
   country (section 5.11), irrigation water outside the Pfister range (section 5.12), free-text `other` rows, inputs given for a field the model does not use.
@@ -324,7 +343,7 @@ These fields are needed only if the corresponding model is adopted (decisions of
 | Q2 | Should the yield stay required, or may the FAOSTAT default be used when missing? | **Decided (FC, 2026-10-27):** the yield is expected from the provider (E); FAOSTAT default (L23, L24) only when it is N/A, with warning; a given yield gets a non-blocking warning outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the same crop in the same country (section 5.11). Open: the crop -> ecoinvent activity mapping and the reference table (section 5.11) |
 | Q3 | How does the provider state "not used" for a whole input group (no manure, no pesticides)? | **Decided (FC, 2026-10-27):** every input cell starts as `N/A` (default); `0` is a real zero (P3). Input-group columns in `Datasets` (section 4) |
 | Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | Yes; optional harvest month for documentation |
-| Q5 | Irrigation: is the default water (Pfister, L44) applied only when `irrigated` = yes and the amount is N/A, and 0 when `irrigated` = no? What when `unknown`? | **Decided (FC, 2026-10-27):** yes -> water required, in m3/ha or mm; no -> 0; no "unknown"; mixed systems as two datasets; Pfister min-max only as plausibility range (section 5.12) |
+| Q5 | Irrigation: is the default water (Pfister, L44) applied only when `irrigated` = yes and the amount is N/A, and 0 when `irrigated` = no? What when `unknown`? | **Decided (FC, 2026-10-27):** yes -> water required, in m3/ha or mm, and the shares of surface, sprinkler and drip irrigation; no -> 0; no "unknown"; mixed systems as two datasets; Pfister min-max only as plausibility range (section 5.12) |
 | Q6 | Operations: diesel per group (A) or passes per operation (B)? | B, with optional total diesel as a check |
 | Q7 | Climate zone, wet days, elevation: which source for country defaults, or keep them as provider fields? | Look for a source among the documents of FC; until then keep them optional with the current default, tagged legacy, undocumented, provisional |
 | Q8 | Co-product fate: needed now? | Yes, it decides residue N and the functional flows of the v4 dataset |
