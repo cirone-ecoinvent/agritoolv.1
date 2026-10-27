@@ -24,7 +24,7 @@ template `templates/LCI-Database_Data-collection_Crop_v2.xlsx` (Quantis, version
 | # | Legacy behaviour | Consequence | v3 rule |
 |---|---|---|---|
 | T1 | One crop, one country per workbook, values in one column | One file per dataset; no comparison across datasets | One row per dataset (P1) |
-| T2 | Pre-filled `0` for mineral N, P, K, manure and total pesticides, `-` elsewhere | The defaults of these inputs never apply unless the provider deletes the 0; blank water triggers the default irrigation | Blank and 0 differ; nothing pre-filled (P3) |
+| T2 | Pre-filled `0` for mineral N, P, K, manure and total pesticides, `-` elsewhere | The defaults of these inputs never apply unless the provider deletes the 0; blank water triggers the default irrigation | `N/A` and 0 differ; every input cell starts as `N/A` (P3) |
 | T3 | Units only in the label text; the Java reader never reads them (`"TODO"`) | Unit errors are silent | Unit per column or per row, checked by the reader (P4) |
 | T4 | Site parameters asked to the provider (climate zones, precipitation, wet days, elevation) | Burden on the provider; inconsistent values | Optional overrides of documented defaults (P2) |
 | T5 | Fertilisers as nutrient totals and percentage splits | Providers know products and amounts, not nutrient shares | Products and amounts, nutrient totals as alternative (section 5.3) |
@@ -41,8 +41,12 @@ template `templates/LCI-Database_Data-collection_Crop_v2.xlsx` (Quantis, version
 - **P2 Provider data first, documented defaults second.** Every field is either *required* (no
   default exists or the value defines the dataset) or *optional* (the tool has a default in `data/`,
   with its decision number). An optional value given by the provider always overrides the default.
-- **P3 Blank is not zero.** Blank = unknown: the tool uses the default and flags it. `0` = the input
-  is not used on this dataset. No cell is pre-filled.
+- **P3 N/A is not zero (Q3, decided by FC on 2026-10-27).** Every input cell of the template starts
+  with the text `N/A` (not available): the tool uses the default and flags it. The provider
+  overwrites it with the value, or with `0` when the input is really not used on the dataset; 0 is
+  always a real zero and never triggers a default. A cell left empty (N/A deleted) and the Excel
+  error value `#N/A` are read as N/A, with a warning for the empty cell. A required field (R) may
+  not be N/A.
 - **P4 Units are explicit.** Each numeric column has one unit, written in the header; where several
   units are allowed (fertilisers, energy) the row has a `unit` column with a drop-down list. The
   reader converts to the units of the model and rejects unknown units.
@@ -63,7 +67,7 @@ template `templates/LCI-Database_Data-collection_Crop_v2.xlsx` (Quantis, version
 
 | Sheet | Shape | Content |
 |---|---|---|
-| `Guidance` | text | How to fill in the template; blank vs 0; units; one example dataset |
+| `Guidance` | text | How to fill in the template; N/A vs 0; units; one example dataset |
 | `Datasets` | one row per dataset | Identity, system, yield, site overrides (section 5.1) |
 | `Coproducts` | one row per co-product | Co-products of each dataset (section 5.2) |
 | `Fertilisers` | one row per product | Mineral fertilisers, manure, compost, sewage sludge, lime and micronutrients (section 5.3) |
@@ -77,9 +81,21 @@ template `templates/LCI-Database_Data-collection_Crop_v2.xlsx` (Quantis, version
 | `_meta` (hidden) | key/value | Template version, build date, Master Data version of the lists |
 
 The long sheets (`Fertilisers` to `Wastes`) have the same first columns: `dataset_id`, `item`
-(drop-down), `amount`, `unit` (drop-down), `comment`. A dataset with no row in a sheet uses the
-defaults of that sheet; to state that an input is not used, the provider writes a row with
-amount 0 or ticks the `none` column of `Datasets` (Q3).
+(drop-down), `amount`, `unit` (drop-down), `comment`.
+
+`Datasets` has one **input-group column** per long-sheet group, pre-filled with `N/A` like every
+other input cell (Q3): mineral fertilisers, manure, compost and sewage sludge, lime and
+micronutrients, pesticides, irrigation water, field operations, other energy, materials, wastes.
+
+| Group column | Rows of the dataset in the long sheet | Result |
+|---|---|---|
+| `N/A` | none | Defaults of the group (or 0 where the group has no default), flagged |
+| `N/A` | one or more | The rows are used; inputs of the group not listed in the rows are 0 |
+| `0` | none | Group not used: no default, no input |
+| `0` | one or more | Error: contradiction |
+
+Within a row, `amount` = `N/A` is allowed only where the item has its own default (e.g. a manure
+type given without amount); otherwise it is an error.
 
 ## 5. Fields
 
@@ -98,7 +114,7 @@ or not used), **N** new field. "Legacy tag" is the column-A tag of template v2.
 | `production_system` | list | R | `cultivation_type` | open ground; greenhouse soil heated / unheated; greenhouse hydroponic heated / unheated |
 | `organic` | yes/no | R | `organic_certified` | |
 | `crop_cycles_per_year` | number | O, N | dates | Replaces the four dates (Q4); default 1 |
-| `yield_main_product` | kg FM/(ha and crop cycle) | R | `yield_main_product_per_crop_cycle` | Default FAOSTAT (L23, L24) only as plausibility check (Q2) |
+| `yield_main_product` | kg FM/(ha and crop cycle) | O | `yield_main_product_per_crop_cycle` | N/A -> default FAOSTAT 2021-2024 per crop cycle (L23, L24), flagged (Q2). A given value outside the plausibility range of the default gives a warning. Crops without a default yield (guar, mulberry, pomegranate) require the value |
 | `irrigated` | yes/no/unknown | R, N | - | Decides whether the default irrigation applies (Q5) |
 | `drained_share` | % of area | O | `drainage` | Default 0 (L5) |
 | `tillage` | list | O | `tillage_method` | Default "unknown" (factor 1) |
@@ -207,8 +223,10 @@ to the inputs of `src/legacy_model/`. Validation, reported per sheet and cell:
 
 - errors (the dataset is not calculated): unknown template version, missing required field,
   `dataset_id` not unique or unknown in a long sheet, value outside a list, unknown unit,
-  negative amount, shares not summing to 100 % (tolerance to be set);
-- warnings (the dataset is calculated): default used, yield outside a plausibility range of the
+  negative amount, shares not summing to 100 % (tolerance to be set), N/A in a required field,
+  input group set to 0 with rows in the long sheet, text other than `N/A` in a numeric cell;
+- warnings (the dataset is calculated): default used (yield included), empty cell read as N/A,
+  yield outside a plausibility range of the
   FAOSTAT default (Q2), free-text `other` rows, inputs given for a field the model does not use.
 
 The reader is built after the specification is agreed, with tests on example workbooks that hold
@@ -229,10 +247,10 @@ These fields are needed only if the corresponding model is adopted (decisions of
 | # | Question | Proposal |
 |---|---|---|
 | Q1 | Geography: only the 39 tool countries, or any M49 country with regional or world defaults? Sub-national regions now or later? | **Decided (FC, 2026-10-27):** any M49 country or area; defaults fall back to intermediate region, sub-region, region and World (section 5.10); `region` as text for documentation. Open: confirm the intermediate-region level |
-| Q2 | Should the yield stay required, or may the FAOSTAT default be used when missing? | Required: the yield defines the dataset; the default only for a plausibility warning |
-| Q3 | How does the provider state "not used" for a whole input group (no manure, no pesticides)? | Row with amount 0, or a `none` column per input group in `Datasets` |
+| Q2 | Should the yield stay required, or may the FAOSTAT default be used when missing? | **Decided (FC, 2026-10-27):** FAOSTAT default (L23, L24) when the yield is N/A, flagged; plausibility warning for a given yield (section 5.1). Open: the plausibility range |
+| Q3 | How does the provider state "not used" for a whole input group (no manure, no pesticides)? | **Decided (FC, 2026-10-27):** every input cell starts as `N/A` (default); `0` is a real zero (P3). Input-group columns in `Datasets` (section 4) |
 | Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | Yes; optional harvest month for documentation |
-| Q5 | Irrigation: is the default water (Pfister, L44) applied only when `irrigated` = yes and the amount is blank, and 0 when `irrigated` = no? What when `unknown`? | yes -> default; no -> 0; unknown -> default weighted by the irrigated share, if a source for it is available, else error |
+| Q5 | Irrigation: is the default water (Pfister, L44) applied only when `irrigated` = yes and the amount is N/A, and 0 when `irrigated` = no? What when `unknown`? | yes -> default; no -> 0; unknown -> default weighted by the irrigated share, if a source for it is available, else error |
 | Q6 | Operations: diesel per group (A) or passes per operation (B)? | B, with optional total diesel as a check |
 | Q7 | Climate zone, wet days, elevation: which source for country defaults, or keep them as provider fields? | Look for a source among the documents of FC; until then keep them optional with the current default, tagged legacy, undocumented, provisional |
 | Q8 | Co-product fate: needed now? | Yes, it decides residue N and the functional flows of the v4 dataset |
