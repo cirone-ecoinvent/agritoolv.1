@@ -5,7 +5,6 @@ import pytest
 
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, MineralNitrogenDefaultGenerator
-from defaultMatrixNUptake import NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY as LEGACY_N_UPTAKE
 from defaultTables import N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP as N_PER_KG, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP as TREE_N
 from models.manuremodel import ManureModel
 
@@ -42,13 +41,15 @@ def test_n_uptake_mineral_n_and_manure_follow_the_yield():
     assert _available_n(defaults) == pytest.approx(0.2 * defaults["nitrogen_uptake_by_crop"])
 
 
-@pytest.mark.parametrize("crop, country, wfldb_yield", [
-    ("apple", "CL", 43328), ("cocoa", "CI", 613), ("cocoa", "GH", 457), ("coconut", "ID", 6116), ("coconut", "PH", 4415),
-    ("lemon", "MX", 13783), ("tea", "KE", 2064), ("tea", "LK", 1440)])
-def test_legacy_matrix_is_the_same_rule(crop, country, wfldb_yield):
-    # GD_crop Nuptake_L1 at the yields marked L1 in the WFLDB 3.1 Documentation 2017, Excel annex sheet 2c (rounded)
+@pytest.mark.parametrize("crop, country, wfldb_yield, legacy_n_uptake", [
+    ("apple", "CL", 43328, 40.2640395), ("cocoa", "CI", 613, 29.549965219908), ("cocoa", "GH", 457, 26.753456482116),
+    ("coconut", "ID", 6116, 68.2422362331), ("coconut", "PH", 4415, 54.43853729502), ("lemon", "MX", 13783, 41.2479101056),
+    ("tea", "KE", 2064, 102.60123875), ("tea", "LK", 1440, 77.224432625)])
+def test_legacy_matrix_is_the_same_rule(crop, country, wfldb_yield, legacy_n_uptake):
+    # GD_crop Nuptake_L1 (legacy matrix removed in decision L55) at the yields marked L1 in the WFLDB 3.1
+    # Documentation 2017, Excel annex sheet 2c (rounded)
     defaults = _defaults(crop=crop, country=country, yield_main_product_per_crop_cycle=float(wfldb_yield))
-    assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(LEGACY_N_UPTAKE[crop][country], abs=0.03)
+    assert defaults["nitrogen_uptake_by_crop"] == pytest.approx(legacy_n_uptake, abs=0.03)
 
 
 @pytest.mark.parametrize("crop, country, wfldb_yield, wfldb_n_mineral", [

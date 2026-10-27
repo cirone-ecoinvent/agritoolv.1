@@ -1,13 +1,12 @@
 """Decision L34: default mineral N, P2O5 and K2O of the crops without WFLDB level 1 coefficients from the IFA
 Fertilizer Use by Crop rates (L33), the nutrient need being taken proportional to the yield: N = IFA rate x yield /
 default yield, P2O5 and K2O = max(0, k x yield - manure in use) with k = (IFA rate + default manure) / default yield.
-Without an IFA rate the defaults are unchanged (legacy matrix for N, 0 for P and K)."""
+Without an IFA rate the default mineral N is 0 (decision L55), P and K 0."""
 import pytest
 
 import dataloader
 from defaultGeneration import DefaultValuesWrapper, DEFAULTS_VALUES_GENERATORS, \
     MineralPhosphorusPotassiumDefaultGenerator as PK
-from defaultMatrixTotalMineralFert import NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY
 from defaultTables import IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY as IFA, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, PK_PER_KG_MAIN_PRODUCT_PER_CROP
 from models.manuremodel import LiquidManureType
@@ -85,8 +84,7 @@ def test_level2_follows_the_yield_and_the_manure_in_use():
 def test_without_ifa_rate_unchanged(crop, country):
     assert IFA.get(crop, {}).get(country) is None
     defaults = _defaults(crop=crop, country=country)
-    legacy = NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY[crop]
-    assert defaults["nitrogen_from_mineral_fert"] == legacy.get(country, legacy["GLO"])
+    assert defaults["nitrogen_from_mineral_fert"] == 0.0
     for nutrient in ("p2o5", "k2o"):
         expected = PK.level1(defaults, nutrient) if crop in PK_PER_KG_MAIN_PRODUCT_PER_CROP else 0.0
         assert defaults[FIELDS[nutrient]] == pytest.approx(expected)
@@ -97,7 +95,7 @@ def test_crops_without_default_yield_unchanged(crop):
     # no default yield (0, default_yield.csv), so no reference for the factor, even with an IFA rate (guar: pulses)
     assert _defaults(crop=crop, country="IN")["yield_main_product_per_crop_cycle"] == 0.0
     defaults = _defaults(crop=crop, country="IN", yield_main_product_per_crop_cycle=1000.0)
-    assert defaults["nitrogen_from_mineral_fert"] == NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY[crop]["GLO"]
+    assert defaults["nitrogen_from_mineral_fert"] == 0.0
     assert defaults["p2O5_from_mineral_fert"] == defaults["k2O_from_mineral_fert"] == 0.0
     if crop == "guar":
         assert IFA["guar"]["IN"]["n"] is not None
