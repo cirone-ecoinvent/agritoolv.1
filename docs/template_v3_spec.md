@@ -226,24 +226,41 @@ than the tolerance:
 
 1. the FAOSTAT default yield of the crop and country (`default_yield.csv`, L23, L24), with the
    fallback of section 5.10 when the country has no value;
-2. the yield of the same crop in the ecoinvent database: kg of main product per ha and crop cycle
-   of the ecoinvent 3.12 datasets of the crop, derived from the release file supplied by FC as in
-   L47 and L50 (occupation and transformation per kg of product).
+2. the yield of the same crop in the ecoinvent database of the **same country only** (FC,
+   2026-10-27, option B): kg of main product per ha and crop cycle of the ecoinvent 3.12 datasets
+   of the crop, derived from the release file supplied by FC as in L47 and L50 (annual crops:
+   10000 / land transformation per kg; perennial crops: 10000 / land occupation per kg).
 
 Tolerance: +/- 10 % for both references (FC), stored as a parameter in `model_parameters.csv`, not
 in the code. The warning states the given yield, the reference value, its source and the
 deviation in %.
 
-To be defined with FC before the ecoinvent reference is built:
+Rules of the ecoinvent reference:
 
-- which datasets count as "the same crop": the datasets of the country (and its sub-national
-  regions, as in L47) and, without one, the datasets of the crop in other geographies (range
-  min-max) or none;
-- datasets produced with the legacy tool are flagged and not used as reference (as in L50);
+- one dataset of the crop in the country: its yield +/- 10 %;
+- several datasets in the country or its sub-national regions (e.g. US-IA, US-IL; BR-SP): the
+  range from the lowest to the highest yield, +/- 10 %;
+- no dataset in the country: no ecoinvent comparison, only the FAOSTAT check. Rejected: the GLO or
+  RoW dataset (option A) and the datasets of the nearest M49 area (option C), which give warnings
+  against references that do not describe the country (e.g. wheat IT, 4000 kg/ha: +16 % against
+  ecoinvent GLO 3450, +31 % against ES 3049, while FAOSTAT IT is 3824);
+- not used as reference: datasets produced with the legacy tool (comment of the land use
+  exchanges, as in L50), datasets without land transformation (annual crops; e.g. several
+  Australian wheat and maize datasets) and values that FC excludes as implausible in the review
+  of the table.
+
+To be built and confirmed by FC before use:
+
 - the crop -> ecoinvent activity mapping for all 67 crops (today only for the planted crops in
   `ecoinvent312_planting_crop_mapping.csv` and `orchard_lifetime_crop_mapping.csv`), signed by FC;
-- the derived table (per dataset: activity, geography, yield per ha and crop cycle) is shown to FC
-  and confirmed before use.
+- the derived table (per dataset: activity, geography, yield per ha and crop cycle, flags), shown
+  to FC with the comparison to FAOSTAT.
+
+A first check on six crops (wheat, grain maize, rice non-basmati, potato, soybean, apple; scratch
+analysis, not stored) found: deviations of 20-30 % from FAOSTAT also in datasets not made with the
+legacy tool (wheat US -30 %, apple CN -31 %); the legacy-tool datasets of wheat, maize and rice IN
+at +59 %, +121 % and +82 %; soybean IN at 27 500 kg/ha against 1092 kg/ha in FAOSTAT (not flagged
+as made with the legacy tool; to be reported to the ecoinvent data team).
 
 Note: if the year-to-year variation of the FAOSTAT yields (2021-2024 series of `default_yield.csv`)
 is often larger than 10 %, the warning will be frequent; this is accepted, since it does not block
@@ -281,7 +298,7 @@ These fields are needed only if the corresponding model is adopted (decisions of
 | # | Question | Proposal |
 |---|---|---|
 | Q1 | Geography: only the 39 tool countries, or any M49 country with regional or world defaults? Sub-national regions now or later? | **Decided (FC, 2026-10-27):** any M49 country or area; defaults fall back to intermediate region, sub-region, region and World (section 5.10); `region` as text for documentation. Open: confirm the intermediate-region level |
-| Q2 | Should the yield stay required, or may the FAOSTAT default be used when missing? | **Decided (FC, 2026-10-27):** the yield is expected from the provider (E); FAOSTAT default (L23, L24) only when it is N/A, with warning; a given yield gets a non-blocking warning outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the same crop (section 5.11). Open: the ecoinvent reference set (section 5.11) |
+| Q2 | Should the yield stay required, or may the FAOSTAT default be used when missing? | **Decided (FC, 2026-10-27):** the yield is expected from the provider (E); FAOSTAT default (L23, L24) only when it is N/A, with warning; a given yield gets a non-blocking warning outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the same crop in the same country (section 5.11). Open: the crop -> ecoinvent activity mapping and the reference table (section 5.11) |
 | Q3 | How does the provider state "not used" for a whole input group (no manure, no pesticides)? | **Decided (FC, 2026-10-27):** every input cell starts as `N/A` (default); `0` is a real zero (P3). Input-group columns in `Datasets` (section 4) |
 | Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | Yes; optional harvest month for documentation |
 | Q5 | Irrigation: is the default water (Pfister, L44) applied only when `irrigated` = yes and the amount is N/A, and 0 when `irrigated` = no? What when `unknown`? | yes -> default; no -> 0; unknown -> default weighted by the irrigated share, if a source for it is available, else error |
