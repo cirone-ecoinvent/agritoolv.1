@@ -99,8 +99,10 @@ type given without amount); otherwise it is an error.
 
 ## 5. Fields
 
-Legend: **R** required, **O** optional with a default (decision in brackets), **D** dropped (derived
-or not used), **N** new field. "Legacy tag" is the column-A tag of template v2.
+Legend: **R** required (N/A is an error), **E** expected (the provider must give it if known; N/A
+takes the default with a prominent warning), **O** optional with a default (decision in
+brackets), **D** dropped (derived or not used), **N** new field. "Legacy tag" is the column-A tag
+of template v2.
 
 ### 5.1 Sheet `Datasets`
 
@@ -114,7 +116,7 @@ or not used), **N** new field. "Legacy tag" is the column-A tag of template v2.
 | `production_system` | list | R | `cultivation_type` | open ground; greenhouse soil heated / unheated; greenhouse hydroponic heated / unheated |
 | `organic` | yes/no | R | `organic_certified` | |
 | `crop_cycles_per_year` | number | O, N | dates | Replaces the four dates (Q4); default 1 |
-| `yield_main_product` | kg FM/(ha and crop cycle) | O | `yield_main_product_per_crop_cycle` | N/A -> default FAOSTAT 2021-2024 per crop cycle (L23, L24), flagged (Q2). A given value outside the plausibility range of the default gives a warning. Crops without a default yield (guar, mulberry, pomegranate) require the value |
+| `yield_main_product` | kg FM/(ha and crop cycle) | E | `yield_main_product_per_crop_cycle` | N/A -> default FAOSTAT 2021-2024 per crop cycle (L23, L24), with warning. A given value is checked for plausibility (section 5.11). Crops without a default yield (guar, mulberry, pomegranate) require the value |
 | `irrigated` | yes/no/unknown | R, N | - | Decides whether the default irrigation applies (Q5) |
 | `drained_share` | % of area | O | `drainage` | Default 0 (L5) |
 | `tillage` | list | O | `tillage_method` | Default "unknown" (factor 1) |
@@ -216,6 +218,38 @@ used in calculations.
   outside the 39 tool countries with no fallback in a table stops the calculation with an error
   that names the table.
 
+### 5.11 Plausibility of the yield (Q2, decided by FC on 2026-10-27)
+
+A yield given by the provider is never replaced. It is compared with two references, and each
+comparison gives a warning (never an error) when the yield lies outside the reference by more
+than the tolerance:
+
+1. the FAOSTAT default yield of the crop and country (`default_yield.csv`, L23, L24), with the
+   fallback of section 5.10 when the country has no value;
+2. the yield of the same crop in the ecoinvent database: kg of main product per ha and crop cycle
+   of the ecoinvent 3.12 datasets of the crop, derived from the release file supplied by FC as in
+   L47 and L50 (occupation and transformation per kg of product).
+
+Tolerance: +/- 10 % for both references (FC), stored as a parameter in `model_parameters.csv`, not
+in the code. The warning states the given yield, the reference value, its source and the
+deviation in %.
+
+To be defined with FC before the ecoinvent reference is built:
+
+- which datasets count as "the same crop": the datasets of the country (and its sub-national
+  regions, as in L47) and, without one, the datasets of the crop in other geographies (range
+  min-max) or none;
+- datasets produced with the legacy tool are flagged and not used as reference (as in L50);
+- the crop -> ecoinvent activity mapping for all 67 crops (today only for the planted crops in
+  `ecoinvent312_planting_crop_mapping.csv` and `orchard_lifetime_crop_mapping.csv`), signed by FC;
+- the derived table (per dataset: activity, geography, yield per ha and crop cycle) is shown to FC
+  and confirmed before use.
+
+Note: if the year-to-year variation of the FAOSTAT yields (2021-2024 series of `default_yield.csv`)
+is often larger than 10 %, the warning will be frequent; this is accepted, since it does not block
+the calculation. The share of the series outside +/- 10 % of their mean can be checked when the
+reference is built.
+
 ## 6. Reader and validation (outline)
 
 A Python module reads the workbook into one input record per dataset, with provenance, and maps it
@@ -226,8 +260,8 @@ to the inputs of `src/legacy_model/`. Validation, reported per sheet and cell:
   negative amount, shares not summing to 100 % (tolerance to be set), N/A in a required field,
   input group set to 0 with rows in the long sheet, text other than `N/A` in a numeric cell;
 - warnings (the dataset is calculated): default used (yield included), empty cell read as N/A,
-  yield outside a plausibility range of the
-  FAOSTAT default (Q2), free-text `other` rows, inputs given for a field the model does not use.
+  yield outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the crop (section
+  5.11), free-text `other` rows, inputs given for a field the model does not use.
 
 The reader is built after the specification is agreed, with tests on example workbooks that hold
 no real farm data.
@@ -247,7 +281,7 @@ These fields are needed only if the corresponding model is adopted (decisions of
 | # | Question | Proposal |
 |---|---|---|
 | Q1 | Geography: only the 39 tool countries, or any M49 country with regional or world defaults? Sub-national regions now or later? | **Decided (FC, 2026-10-27):** any M49 country or area; defaults fall back to intermediate region, sub-region, region and World (section 5.10); `region` as text for documentation. Open: confirm the intermediate-region level |
-| Q2 | Should the yield stay required, or may the FAOSTAT default be used when missing? | **Decided (FC, 2026-10-27):** FAOSTAT default (L23, L24) when the yield is N/A, flagged; plausibility warning for a given yield (section 5.1). Open: the plausibility range |
+| Q2 | Should the yield stay required, or may the FAOSTAT default be used when missing? | **Decided (FC, 2026-10-27):** the yield is expected from the provider (E); FAOSTAT default (L23, L24) only when it is N/A, with warning; a given yield gets a non-blocking warning outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the same crop (section 5.11). Open: the ecoinvent reference set (section 5.11) |
 | Q3 | How does the provider state "not used" for a whole input group (no manure, no pesticides)? | **Decided (FC, 2026-10-27):** every input cell starts as `N/A` (default); `0` is a real zero (P3). Input-group columns in `Datasets` (section 4) |
 | Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | Yes; optional harvest month for documentation |
 | Q5 | Irrigation: is the default water (Pfister, L44) applied only when `irrigated` = yes and the amount is N/A, and 0 when `irrigated` = no? What when `unknown`? | yes -> default; no -> 0; unknown -> default weighted by the irrigated share, if a source for it is available, else error |
