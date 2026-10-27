@@ -133,10 +133,10 @@ def _n_uptake_of_tree_residues():
 
 def _n_uptake_per_kg_main_product_other_crops():
     """kg N per kg fresh main product of the crops without WFLDB level 1 coefficients (decision L41), for the N uptake
-    of the nitrate model only (n_uptake_other_crop_parameters.csv): N of the crop product of Ludemann et al. 2023
-    (World coefficients of the FAO Cropland Nutrient Budget) or, for fibre flax and hemp, N of main and by-product of
-    GRUDAF 2009 Tab. 1 per kg of main product; plus, for the field crops, the above-ground residues of IPCC 2019
-    Table 11.1a: DRY x R_AG x N_AG."""
+    of the nitrate model and the default mineral N of decision L57 (n_uptake_other_crop_parameters.csv): N of the
+    crop product of Ludemann et al. 2023 (World coefficients of the FAO Cropland Nutrient Budget) or, for fibre flax
+    and hemp, N of main and by-product of GRUDAF 2009 Tab. 1 per kg of main product; plus, for the field crops, the
+    above-ground residues of IPCC 2019 Table 11.1a: DRY x R_AG x N_AG."""
     ludemann = dataloader.table("ludemann2023_world_crop_coefficients.csv")
     grudaf = dataloader.table("grudaf2009_table1_reference_yields.csv")
     ipcc = dataloader.table("ipcc2019_table11_1a.csv")
@@ -157,8 +157,12 @@ def _n_uptake_per_kg_main_product_other_crops():
 
 # kg N / kg FM of the main product
 N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP = _n_uptake_per_kg_main_product()
-# kg N / kg FM of the main product, crops without level 1 coefficients (nitrate model only)
+# kg N / kg FM of the main product, crops without level 1 coefficients (nitrate model, L57)
 N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS = _n_uptake_per_kg_main_product_other_crops()
+# Default mineral N of the crops without level 1 coefficients where IFA gives no rate for the country (decision L57):
+# ifa_crop_median or n_uptake; crops not listed (mulberry): 0
+MINERAL_N_RULE_WITHOUT_IFA_RATE = {row["crop"]: row["mineral_n_without_ifa_rate"]
+                                   for row in dataloader.rows("n_uptake_other_crop_parameters.csv")}
 # kg N / ha of the tree residues
 N_UPTAKE_OF_TREE_RESIDUES_PER_CROP = _n_uptake_of_tree_residues()
 # Legumes: their default N uptake counts only legume_uptake_share of the uptake (decision L30)
