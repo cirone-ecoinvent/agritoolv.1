@@ -277,8 +277,8 @@ to the inputs of `src/legacy_model/`. Validation, reported per sheet and cell:
   negative amount, shares not summing to 100 % (tolerance to be set), N/A in a required field,
   input group set to 0 with rows in the long sheet, text other than `N/A` in a numeric cell;
 - warnings (the dataset is calculated): default used (yield included), empty cell read as N/A,
-  yield outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the crop (section
-  5.11), free-text `other` rows, inputs given for a field the model does not use.
+  yield outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the crop in the same
+  country (section 5.11), free-text `other` rows, inputs given for a field the model does not use.
 
 The reader is built after the specification is agreed, with tests on example workbooks that hold
 no real farm data.
