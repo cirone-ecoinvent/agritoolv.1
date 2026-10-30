@@ -475,7 +475,7 @@ fallback (section 5.10) and the tables are decided and confirmed by FC there. Th
 
 Country boundaries for the aggregation (FC, 2026-10-30):
 
-- **Primary: FAO GAUL 2024**, country level (Global Administrative Unit Layers, FAO Hand-in-Hand
+- **Primary: FAO GAUL 2024**, countries built from level 1 (Global Administrative Unit Layers, FAO Hand-in-Hand
   Geospatial Platform, 2024 edition). Reason: boundaries processed against the UN-recognised
   borders (UN map 2018), the same UN/FAO frame as M49, FAOSTAT (default yields) and SPAM 2020
   (crop area), so a country has the same outline in all the default sources. Disputed areas are
@@ -488,7 +488,11 @@ Country boundaries for the aggregation (FC, 2026-10-30):
   - no statement that FAO approved or endorsed the use (terms, para. 8);
   - third-party data inside GAUL may carry other terms, listed in the dataset metadata
     (para. 6); the build script checks the metadata of the downloaded file.
-  To be downloaded by FC into `data/external_data/` (not yet supplied).
+  FAO distributes only the subnational levels (`GAUL_2024_L1`, `GAUL_2024_L2`), no country
+  layer: the build script dissolves level 1 by `gaul0_code` (attributes `gaul0_code`,
+  `gaul0_name`, `iso3_code`, `map_code`, `disp_en`), and maps `iso3_code` to M49 through the
+  UNSD table; units without a country (disputed areas) are listed for FC. Level 1, to be
+  downloaded by FC into `data/external_data/` (not yet supplied).
 - **Fallback: the ecoinvent geography geometries** (Natural Earth based, ecoinvent approach), used
   if the GAUL 2024 coverage or third-party terms are not acceptable. Source: internal page "v4 geographies:
   geometries" (DBD space, version 26 of 2026-10-30). v3 geometries: geography.ecoinvent.org,
