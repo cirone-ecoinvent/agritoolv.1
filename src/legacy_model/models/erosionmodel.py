@@ -2,6 +2,8 @@ from enum import Enum
 
 import math
 
+import dataloader
+
 
 class TillageMethod(Enum):
     fall_plaw="fall_plaw"
@@ -18,7 +20,30 @@ class AntiErosionPractice(Enum):
     contour_farming="contour_farming"
     strip_cropping_cross_slope="strip_cropping_cross_slope"
     strip_cropping_contour="strip_cropping_contour"
+    terraces="terraces"
     unknown="unknown"
+
+
+def _tillage_factors():
+    """C_tillage of Panagos et al. (2015a) Eq. 4a per tillage method (erosion_tillage_mapping.csv, decision L59)."""
+    factors = {row["tillage_class"]: float(row["c_tillage"]) for row in dataloader.rows("panagos2015a_tillage_factors.csv")}
+    return {TillageMethod(row["tillage_method"]): factors[row["panagos_tillage_class"]]
+            for row in dataloader.rows("erosion_tillage_mapping.csv")}
+
+
+def _practice_slope_classes():
+    """P factor of USDA Agriculture Handbook 537, Tables 13-15, per practice (erosion_practice_mapping.csv, decision
+    L59): list of (upper slope of the class in %, P) by increasing slope, None for the practices without a factor."""
+    classes = {}
+    for mapping in dataloader.rows("erosion_practice_mapping.csv"):
+        practice = AntiErosionPractice(mapping["anti_erosion_practice"])
+        if not mapping["ah537_table"]:
+            classes[practice] = None
+            continue
+        classes[practice] = sorted((float(row["slope_max_pct"]), float(row["p_value"]))
+                                   for row in dataloader.rows("ah537_p_factors.csv")
+                                   if row["table"] == mapping["ah537_table"] and row["system"] == mapping["ah537_system"])
+    return classes
 
 
 class ErosionModel(object):
@@ -50,26 +75,15 @@ class ErosionModel(object):
                         "climate_zone_specific"
                         ]
 
-    # legacy, undocumented, provisional: slope exponents, tillage and practice factors, R-factor formulas below
+    # legacy, undocumented, provisional: slope exponents and R-factor formulas below
     _POW_FOR_SLOPE_UNDER_1_PERCENT = 0.2
     _POW_FOR_SLOPE_1_TO_3_5_PERCENT = 0.3
     _POW_FOR_SLOPE_3_5_TO_5_PERCENT = 0.4
     _POW_FOR_SLOPE_OVER_5_PERCENT = 0.5
 
-    _TILLAGE_METHOD_FACTOR = {TillageMethod.unknown:1.0,
-                              TillageMethod.fall_plaw: 1.0,
-                              TillageMethod.spring_plow: 0.9,
-                              TillageMethod.mulch_tillage: 0.6,
-                              TillageMethod.ridge_tillage: 0.35,
-                              TillageMethod.zone_tillage: 0.25,
-                              TillageMethod.no_till: 0.25}
+    _TILLAGE_METHOD_FACTOR = _tillage_factors()
 
-    _ANTI_EROSION_PRACTICE_FACTOR = {AntiErosionPractice.unknown: 1,
-                                     AntiErosionPractice.no_practice: 1,
-                                     AntiErosionPractice.cross_slope: 0.75,
-                                     AntiErosionPractice.contour_farming: 0.5,
-                                     AntiErosionPractice.strip_cropping_cross_slope: 0.37,
-                                     AntiErosionPractice.strip_cropping_contour: 0.25}
+    _PRACTICE_SLOPE_CLASSES = _practice_slope_classes()
 
     _USUAL_EQUATION = lambda p, e, s: -3172.0 + 7.562 * p
 
@@ -153,4 +167,14 @@ class ErosionModel(object):
         return self._TILLAGE_METHOD_FACTOR[self.tillage_method]
 
     def _compute_practice_factor(self):
-        return self._ANTI_EROSION_PRACTICE_FACTOR[self.anti_erosion_practice]
+        """AH 537 P of the slope class of the field (decision L59). The printed classes have gaps (1-2, 3-5 %, ...):
+        a slope belongs to the first class whose upper limit it does not exceed, so 2.5 % is in 3-5 % and slopes under
+        1 % in 1-2 %. Above the last class (25 %) the tables give no factor: P = 1."""
+        classes = self._PRACTICE_SLOPE_CLASSES[self.anti_erosion_practice]
+        if classes is None:
+            return 1.0
+        slope_pct = self.slope * 100.0
+        for slope_max_pct, p_value in classes:
+            if slope_pct <= slope_max_pct:
+                return p_value
+        return 1.0

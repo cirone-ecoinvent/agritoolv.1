@@ -33,6 +33,9 @@ Review tables (all in data/):
   ecoinvent312_planting_crop_mapping.csv  usable when status is confirmed (default seedlings and trees, L47)
   atlas2026_pesticides_review.csv         usable when status is confirmed (default total pesticides, L48)
   soil_fumigant_active_ingredients.csv    idem
+  erosion_crop_c_factor_mapping.csv       usable when status is confirmed (C factor of the erosion model, L59)
+  erosion_tillage_mapping.csv             idem
+  erosion_practice_mapping.csv            idem
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -92,6 +95,9 @@ TABLES = [
     ("ecoinvent312_planting_crop_mapping.csv", ("confirmed",), ("crop", "use", "quantity", "note", "status")),
     ("atlas2026_pesticides_review.csv", ("confirmed",), ("atlas_crop", "country", "flag", "use", "status")),
     ("soil_fumigant_active_ingredients.csv", ("confirmed",), ("cas_rn", "active_ingredient", "status")),
+    ("erosion_crop_c_factor_mapping.csv", ("confirmed",), ("crop", "c_source", "panagos_crop_type", "borrelli_faostat_crop", "status")),
+    ("erosion_tillage_mapping.csv", ("confirmed",), ("tillage_method", "panagos_tillage_class", "status")),
+    ("erosion_practice_mapping.csv", ("confirmed",), ("anti_erosion_practice", "ah537_table", "ah537_system", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]

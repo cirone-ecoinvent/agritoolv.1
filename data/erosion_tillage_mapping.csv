@@ -1,0 +1,8 @@
+tillage_method,panagos_tillage_class,note,status,reviewed_by
+unknown,conventional tillage,No tillage method given: conventional,confirmed,FC
+fall_plaw,conventional tillage,,confirmed,FC
+spring_plow,conventional tillage,Legacy factor 0.9 without source,confirmed,FC
+mulch_tillage,conservation/ridge tillage,,confirmed,FC
+ridge_tillage,conservation/ridge tillage,,confirmed,FC
+zone_tillage,conservation/ridge tillage,Legacy factor 0.25 without source,confirmed,FC
+no_till,no till,,confirmed,FC
