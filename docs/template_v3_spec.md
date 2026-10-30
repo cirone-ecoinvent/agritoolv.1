@@ -123,13 +123,19 @@ of template v2.
 | `irrigation_water`, `irrigation_water_unit` | m3/ha or mm, per crop cycle | R if `irrigated` = yes | `total_wateruse` | No default (section 5.12); must be 0 or N/A when `irrigated` = no |
 | `irrigation_share_surface`, `irrigation_share_sprinkler`, `irrigation_share_drip` | % of the irrigation water | R if `irrigated` = yes, N | `ratio_irr_*` (not in v2) | Sum 100 %; one technique = 100 %. No default (section 5.12) |
 | `drained_share` | % of area | O | `drainage` | Default 0 (L5) |
-| `tillage` | list | O | `tillage_method` | Default "unknown" (factor 1) |
-| `anti_erosion_practice` | list | O | `anti_erosion_practice` | Default "unknown" (factor 1) |
+| `tillage` | list | O | `tillage_method` | Default "unknown" (factor 1); C factor, section 5.13 |
+| `anti_erosion_practice` | list | O | `anti_erosion_practice` | Default "unknown" (factor 1); P factor, section 5.13 |
+| `slope` | % | O, N | - | N/A -> 3 %, flooded rice 0 % (rule of L6); section 5.13 |
 | `plantation_lifetime` | years | O | `orchard_lifetime` | Perennials only; default ecoinvent 3.12 (L50) |
 | `planting_density` | seeds kg, seedlings or trees per ha | O | `seeds`, `nb_seedlings`, `nb_planted_trees` | Defaults L46, L47; the unit follows the crop type |
-| `annual_precipitation` | mm/yr | O | `average_annual_precipitation` | Default WFLDB 2017 (L22) |
-| `climate_zone`, `climate_zone_specific` | list | D | `climate_zone_1`, `climate_zone_specific` | To be derived from the country; the current default ("temperate") has no source (Q7) |
-| `wet_days`, `elevation` | days, m | D | `nb_wet_days_per_year`, `mean_elevation_m` | Same as above: the defaults 180 days and 700 m have no source (Q7) |
+| `annual_precipitation` | mm/yr | O | `average_annual_precipitation` | Default WFLDB 2017 (L22) until a new default is decided; section 5.13 |
+| `rainfall_erosivity` | MJ mm/(ha h yr) | O, N | - | Default from GloREDa; section 5.13 |
+| `ipcc_climate_zone` | list | O, N | - | Default from the IPCC climate zone map; only if the IPCC 2019 climate-specific N2O factors are adopted; section 5.13 |
+| `soil_clay`, `soil_silt`, `soil_sand` | % of fine earth | O, N | - | Default from HWSD v2.0; section 5.13 |
+| `soil_organic_carbon` | % | O, N | - | Default from HWSD v2.0; section 5.13 |
+| `soil_ph` | - | O, N | - | Default from HWSD v2.0; section 5.13 |
+| `climate_zone`, `climate_zone_specific` | list | D | `climate_zone_1`, `climate_zone_specific` | Dropped: used only for the rainfall erosivity R, now taken from GloREDa (Q7, section 5.13) |
+| `wet_days`, `elevation` | days, m | D | `nb_wet_days_per_year`, `mean_elevation_m` | Dropped for the same reason (Q7) |
 | `record_entry_by`, `collection_method` | text | moved | same | To sheet `Sources` |
 
 ### 5.2 Sheet `Coproducts`
@@ -374,6 +380,47 @@ reference is built.
 - The Pfister expected value (`bw_expected_m3_t`) is no longer a default of the template input;
   whether the model keeps it as a default for other uses is decided with the defaults.
 
+### 5.13 Soil, climate and topography (Q7, decided by FC on 2026-10-27/30)
+
+Sources proposed in Antón (2026), *Ideas to enhance a crop production LC inventory tool*, Table 1
+and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/external_data/`.
+
+- **Rainfall erosivity R.** In the legacy erosion model R is estimated with the LANCA equations
+  of the Köppen climate zone, from annual precipitation, wet days and elevation
+  (`erosionmodel.py`). In AgriToolV.1 climate zone 1, climate zone 2, wet days and elevation are
+  used only for this (the NH3 model no longer reads the climate since L38). R is taken instead
+  from the Global Rainfall Erosivity Database, GloREDa (ESDAC; `Public_GLOREDA_07082023.zip`),
+  so these four fields are removed from the template. Optional override: `rainfall_erosivity`.
+- **Slope.** Optional field `slope` (%). N/A keeps the rule of L6 (3 %, flooded rice 0 %), which
+  sets the LS factor and the 3 % threshold of the phosphate run-off. This revises L6 (no slope
+  field) for providers who know the slope.
+- **Soil.** Clay, silt, sand, soil organic carbon and pH from the Harmonized World Soil Database
+  v2.0 (FAO & IIASA 2023; `HWSD2_RASTER.zip`, documentation `HarmonizedWorldSoilDatabase.pdf`),
+  replacing the country table of WFLDB 2017 (L22, L26). Optional overrides: `soil_clay`,
+  `soil_silt`, `soil_sand`, `soil_organic_carbon`, `soil_ph`.
+- **Soil erodibility K** from the texture with the equation of Bos et al. (2016), LANCA v2.0
+  (`LANCA_CFLCIA.pdf`, `LANCA.xlsx`), replacing the WFLDB soil-type factors of L27; not a
+  template field.
+- **C and P factors** (cover management, support practices): defaults of Panagos et al. (2015a,
+  2015b) (`Panos_soilerosioncover-managmentfactorEU.pdf`, `Panagos Pfactor.pdf`), selected by the
+  `tillage` and `anti_erosion_practice` fields. Both cover the EU only: a fallback for the other
+  countries is to be decided with the defaults.
+- **IPCC climate zone** (`Climate_Zone.zip`): needed only if the climate-specific N2O factors of
+  IPCC 2019 (wet / dry climate) are adopted in the model. The classes of the map (IPCC 2006,
+  JRC) are to be checked against figure 3A.5.1 of the 2019 Refinement. Optional override:
+  `ipcc_climate_zone`.
+- **Annual precipitation** stays optional, with the WFLDB 2017 default (L22) until FC decides a
+  new default.
+
+All these columns start as N/A (P3): N/A takes the default and records its source in the
+provenance; a value of the provider (e.g. local soil analyses) replaces it for that dataset.
+
+The defaults themselves are built with the default tables, not in the template: the maps are
+aggregated to the country (and later the region) over the cropland, ideally weighted by the area
+of the crop (SPAM 2020, `spam2020V0r1_global_physical_area.zip`); the aggregation rule, the
+fallback (section 5.10) and the tables are decided and confirmed by FC there. The GloREDa archive
+(about 2.2 GB) has to be processed on FC's computer.
+
 ## 6. Reader and validation (outline)
 
 A Python module reads the workbook into one input record per dataset, with provenance, and maps it
@@ -414,7 +461,7 @@ These fields are needed only if the corresponding model is adopted (decisions of
 | Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | Yes; optional harvest month for documentation |
 | Q5 | Irrigation: is the default water (Pfister, L44) applied only when `irrigated` = yes and the amount is N/A, and 0 when `irrigated` = no? What when `unknown`? | **Decided (FC, 2026-10-27):** yes -> water required, in m3/ha or mm, and the shares of surface, sprinkler and drip irrigation; no -> 0; no "unknown"; mixed systems as two datasets; Pfister min-max only as plausibility range (section 5.12) |
 | Q6 | Operations: diesel per group (A) or passes per operation (B)? | **Decided (FC, 2026-10-27):** B, one row per operation with diesel (l/ha or kg/ha) and passes; missing diesel from the intensity table of the agri-lca-pipeline, missing passes from diesel / intensity; both missing is an error (section 5.5) |
-| Q7 | Climate zone, wet days, elevation: which source for country defaults, or keep them as provider fields? | Look for a source among the documents of FC; until then keep them optional with the current default, tagged legacy, undocumented, provisional |
+| Q7 | Climate zone, wet days, elevation: which source for country defaults, or keep them as provider fields? | **Decided (FC, 2026-10-30):** removed; R from GloREDa; optional slope (revises L6); soil from HWSD v2.0, K with LANCA (Bos et al. 2016), C and P from Panagos et al. (2015a, b), IPCC climate zone map; all as optional overrides of defaults (section 5.13) |
 | Q8 | Co-product fate: needed now? | Yes, it decides residue N and the functional flows of the v4 dataset |
 | Q9 | Pesticides without active ingredients: keep the atlas total for packaging only, or also an emission of an unspecified pesticide? | Packaging only, warning to the provider |
 | Q10 | Keep a reader for template v2 files? | No; a one-off conversion script only if old filled templates must be reused |
