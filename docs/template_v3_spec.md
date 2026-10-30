@@ -473,6 +473,32 @@ of the crop (SPAM 2020, `spam2020V0r1_global_physical_area.zip`); the aggregatio
 fallback (section 5.10) and the tables are decided and confirmed by FC there. The GloREDa archive
 (about 2.2 GB) has to be processed on FC's computer.
 
+Country boundaries for the aggregation (FC, 2026-10-30):
+
+- **Primary: FAO GAUL 2024**, country level (Global Administrative Unit Layers, FAO Hand-in-Hand
+  Geospatial Platform, 2024 edition). Reason: boundaries processed against the UN-recognised
+  borders (UN map 2018), the same UN/FAO frame as M49, FAOSTAT (default yields) and SPAM 2020
+  (crop area), so a country has the same outline in all the default sources. Disputed areas are
+  separate units and are not assigned to a country. The licence of the 2024 edition is not stated
+  on the FAO release page and must be checked on the catalogue record before use (the 2015
+  edition restricted use and redistribution). To be downloaded by FC into `data/external_data/`
+  (not yet supplied).
+- **Fallback: the ecoinvent geography geometries** (Natural Earth based, ecoinvent approach), used
+  if the GAUL 2024 licence or coverage is not acceptable. Source: internal page "v4 geographies:
+  geometries" (DBD space, version 26 of 2026-10-30). v3 geometries: geography.ecoinvent.org,
+  geopackage "All geographies" (`all.gpkg`). v4 geopackages: built from the v3 file with the v3 to
+  v4 geography mapping, one file for all geographies and one per geography type (country, region,
+  sub-region, global); every Master Data geography has a geometry and vice versa. Differences
+  from v3 relevant here: Crimea merged into RU, Northern Cyprus and the UK bases into CY, Siachen
+  Glacier into IN, Guantanamo Bay into CU, Somaliland into SO; new geometries for GLO and
+  UN-SSAFRICA; RU removed from Eastern Europe and IR from Western Asia; Aland Islands and
+  Svalbard / Jan Mayen are separate units. Advantage: the region and sub-region geometries match
+  the ecoinvent geographies of the M49 fallback (section 5.10) directly. Use the v4 country
+  geopackage, supplied by FC into `data/external_data/` (not yet supplied).
+- Whichever layer is used, the build script records its name and version in the provenance of
+  each default, and lists the countries whose value changes by more than a threshold to be agreed
+  with FC between the two layers if both are available.
+
 ## 6. Reader and validation (outline)
 
 A Python module reads the workbook into one input record per dataset, with provenance, and maps it
