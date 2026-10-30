@@ -479,12 +479,18 @@ Country boundaries for the aggregation (FC, 2026-10-30):
   Geospatial Platform, 2024 edition). Reason: boundaries processed against the UN-recognised
   borders (UN map 2018), the same UN/FAO frame as M49, FAOSTAT (default yields) and SPAM 2020
   (crop area), so a country has the same outline in all the default sources. Disputed areas are
-  separate units and are not assigned to a country. The licence of the 2024 edition is not stated
-  on the FAO release page and must be checked on the catalogue record before use (the 2015
-  edition restricted use and redistribution). To be downloaded by FC into `data/external_data/`
-  (not yet supplied).
+  separate units and are not assigned to a country. Licence (GAUL Terms of Use supplied by FC,
+  2026-10-30): CC BY 4.0, which allows use, adaptation and re-dissemination of the data and of
+  derived works, commercial use included, under three conditions:
+  - every default derived from GAUL cites "FAO. 2024. Global Administrative Unit Layers (GAUL).
+    [Accessed on DD Month YYYY]. https://data.apps.fao.org/?lang=en. Licence: CC-BY-4.0" (to go
+    in `data/sources.csv` and in the provenance of the defaults);
+  - no statement that FAO approved or endorsed the use (terms, para. 8);
+  - third-party data inside GAUL may carry other terms, listed in the dataset metadata
+    (para. 6); the build script checks the metadata of the downloaded file.
+  To be downloaded by FC into `data/external_data/` (not yet supplied).
 - **Fallback: the ecoinvent geography geometries** (Natural Earth based, ecoinvent approach), used
-  if the GAUL 2024 licence or coverage is not acceptable. Source: internal page "v4 geographies:
+  if the GAUL 2024 coverage or third-party terms are not acceptable. Source: internal page "v4 geographies:
   geometries" (DBD space, version 26 of 2026-10-30). v3 geometries: geography.ecoinvent.org,
   geopackage "All geographies" (`all.gpkg`). v4 geopackages: built from the v3 file with the v3 to
   v4 geography mapping, one file for all geographies and one per geography type (country, region,
