@@ -1,15 +1,12 @@
 import dateutil.relativedelta as relativedelta
 from datetime import date
 from functools import lru_cache
+import statistics
 
 from defaultMatrixEvapoTranspiration import EVAPO_TRANSPI_PER_CROP_PER_COUNTRY
-from defaultMatrixNUptake import NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY
 from defaultMatrixSeed import NB_SEEDS_PER_PARTIAL_CROP_PER_COUNTRY, \
     NB_PLANTED_TREES_PER_PARTIAL_CROP_PER_COUNTRY, \
     NB_SEEDLINGS_PER_PARTIAL_CROP_PER_COUNTRY
-from defaultMatrixTotalManure import TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY, \
-    TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY
-from defaultMatrixTotalMineralFert import NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY
 from defaultMatrixTotalPesticides import TOTAL_PESTICIDES_PER_CROP_PER_COUNTRY
 from defaultMatrixYieldPerCropCycle import YIELD_PER_CROP_CYCLE_PER_CROP_PER_COUNTRY
 from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUNTRY, \
@@ -24,7 +21,8 @@ from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUN
     ANNUAL_PRECIPITATION_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP, LEGUME_CROPS, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS, PK_PER_KG_MAIN_PRODUCT_PER_CROP, \
-    IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY, ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY
+    IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY, ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY, \
+    LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY, MINERAL_N_RULE_WITHOUT_IFA_RATE
 from directMappingEnums import PlasticDisposal, Plantprotection, Soilcultivation, \
     Sowingplanting, Fertilisation, Harvesting, OtherWorkProcesses, Biowaste
 from models.atomicmass import MA_CO2, MA_C
@@ -357,8 +355,8 @@ class NitrogenUptakeGenerator(object):
     product incl. residues (WFLDB 2017 / GRUDAF 2009, decision L28); tree crops: yield per crop cycle x N per kg of
     main product + N of a fixed amount of residues per ha (decision L32). Crops of
     n_uptake_other_crop_parameters.csv: yield per crop cycle x N per kg of main product (Ludemann et al. 2023 or
-    GRUDAF 2009, residues of the field crops from IPCC 2019; decision L41). Other crops (mulberry): legacy matrix
-    (legacy, undocumented, provisional). Legumes (column legume of data/crop_types.csv):
+    GRUDAF 2009, residues of the field crops from IPCC 2019; decision L41). Other crops (mulberry):
+    data/legacy_n_uptake.csv (legacy, undocumented, provisional; decision L55). Legumes (column legume of data/crop_types.csv):
     only legume_uptake_share of this uptake, the rest is fixed from the air (WFLDB Guidelines v3.0 section 3.9.7.2,
     decision L30); the default mineral N and manure follow from it."""
     def generateDefault(self, field, generators):
@@ -375,11 +373,8 @@ class NitrogenUptakeGenerator(object):
         if generators["crop"] in N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS:
             return (generators["yield_main_product_per_crop_cycle"]
                     * N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS[generators["crop"]])
-        currentCropTable = NITROGEN_UPTAKE_PER_CROP_PER_COUNTRY[generators["crop"]]
-        if (generators["country"] in currentCropTable):
-            return currentCropTable[generators["country"]]
-        else:
-            return currentCropTable["GLO"]
+        return CropCountryMatrixLookupDefaultGenerator(LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY).generateDefault(
+            "", generators)
 
 
 @lru_cache(maxsize=None)
@@ -409,12 +404,24 @@ def _level2(crop, country, nutrient, need, manure):
     return max(0.0, k * need - manure)
 
 
+@lru_cache(maxsize=None)
+def _ifa_n_per_kg_crop_median(crop):
+    """Median over the countries where IFA gives an N rate for the crop of the rate / default yield, kg N per kg of
+    main product (decision L57); None without such a country."""
+    ratios = []
+    for country, rates in IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY.get(crop, {}).items():
+        default_yield = _level2_reference(crop, country, "n")[0]
+        if rates.get("n") is not None and default_yield:
+            ratios.append(rates["n"] / default_yield)
+    return statistics.median(ratios) if ratios else None
+
+
 class MineralNitrogenDefaultGenerator(object):
     """kg N/(ha and crop cycle). Crops with a computed N uptake, level 1: mineral share of the N input (WFLDB
     Guidelines v3.0 section 3.6.2, total N input = N uptake) x N uptake (decision L28); level 2 where IFA gives a
     rate for the crop and country (decision L33): k x N uptake - organic N, which is the IFA rate x N uptake / N
     uptake at the default yield. Other crops: the IFA rate x yield / default yield where IFA gives a rate (decision
-    L34), else the legacy matrix."""
+    L34), else the rule of MINERAL_N_RULE_WITHOUT_IFA_RATE (decision L57, see without_ifa_rate)."""
     def generateDefault(self, field, generators):
         need, organic_n = self.need(generators)
         level2 = _level2(generators["crop"], generators["country"], "n", need, organic_n)
@@ -422,8 +429,22 @@ class MineralNitrogenDefaultGenerator(object):
             return level2
         if generators["crop"] in N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP:
             return self.level1(generators)
-        return CropCountryMatrixLookupDefaultGenerator(
-            NITROGEN_FROM_MINERAL_FERT_PER_CROP_PER_COUNTRY).generateDefault(field, generators)
+        return self.without_ifa_rate(generators)
+
+    @classmethod
+    def without_ifa_rate(cls, generators):
+        """Crops without level 1 coefficients where IFA gives no rate for the country (decision L57): ifa_crop_median,
+        the median IFA rate per kg of default yield of the crop over the countries with a rate x yield; n_uptake, the
+        WFLDB level 1 split of the N input (Guidelines v3.0 section 3.6.2) on the N uptake of decision L41; crops not
+        listed (mulberry, N uptake without source) and crops without an IFA rate in any country: 0 (decision L55)."""
+        rule = MINERAL_N_RULE_WITHOUT_IFA_RATE.get(generators["crop"])
+        if rule == "n_uptake":
+            return cls.level1(generators)
+        if rule == "ifa_crop_median":
+            n_per_kg = _ifa_n_per_kg_crop_median(generators["crop"])
+            if n_per_kg is not None:
+                return n_per_kg * generators["yield_main_product_per_crop_cycle"]
+        return 0.0
 
     @staticmethod
     def need(generators):
@@ -447,15 +468,12 @@ class ManureDefaultGenerator(object):
     of manure N applied as liquid manure and divided by the available N per m3 (diluted) or per kg of the manure mix
     in use. Crops with a computed N uptake: (1 - mineral share) x N uptake. Crops without level 1 coefficients:
     (1 - mineral share) / mineral share x the level 2 mineral N (IFA rate x yield / default yield, decisions L34,
-    L40). Other crops: legacy matrix."""
-    def __init__(self, liquid, legacy_table):
+    L40) or, without an IFA rate for the country, x the mineral N of decision L57."""
+    def __init__(self, liquid):
         self._liquid = liquid
-        self._legacy = CropCountryMatrixLookupDefaultGenerator(legacy_table)
 
     def generateDefault(self, field, generators):
         organic_n = self.organic_n(generators)
-        if organic_n is None:
-            return self._legacy.generateDefault(field, generators)
         liquid_fraction = MANURE_LIQUID_N_FRACTION_PER_COUNTRY[generators["country"]]
         if self._liquid:
             n_per_unit = generators["liquid_manure_part_before_dilution"] * ManureModel.mix_content(
@@ -468,15 +486,15 @@ class ManureDefaultGenerator(object):
 
     @staticmethod
     def organic_n(generators):
-        """Available N of the default manure, kg N/(ha and crop cycle); None where the legacy matrix applies. Not the
-        mineral N of the template: the default manure follows the default mineral N."""
+        """Available N of the default manure, kg N/(ha and crop cycle). Not the mineral N of the template: the default
+        manure follows the default mineral N."""
         mineral_share = dataloader.param("mineral_n_share_of_n_uptake")
         if generators["crop"] in N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP:
             return (1.0 - mineral_share) * generators["nitrogen_uptake_by_crop"]
         mineral_n = _level2(generators["crop"], generators["country"], "n",
                             *MineralNitrogenDefaultGenerator.need(generators))
         if mineral_n is None:
-            return None
+            mineral_n = MineralNitrogenDefaultGenerator.without_ifa_rate(generators)
         return (1.0 - mineral_share) / mineral_share * mineral_n
 
 
@@ -647,8 +665,8 @@ DEFAULTS_VALUES_GENERATORS = {
     "soil_with_ph_under_or_7": TableLookupDefaultGenerator("country", SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY),
     # Manure defaults
     "liquid_manure_part_before_dilution": SimpleValueDefaultGenerator(0.5),
-    "total_manureliquid": ManureDefaultGenerator(True, TOTAL_MANURE_LIQUID_PER_CROP_PER_COUNTRY),
-    "total_manuresolid": ManureDefaultGenerator(False, TOTAL_MANURE_SOLID_PER_CROP_PER_COUNTRY),
+    "total_manureliquid": ManureDefaultGenerator(True),
+    "total_manuresolid": ManureDefaultGenerator(False),
     "liquid_manure_proportions": TableLookupDefaultGenerator("country", MANURE_LIQUID_RATIO_PER_COUNTRY),
     "solid_manure_proportions": TableLookupDefaultGenerator("country", MANURE_SOLID_RATIO_PER_COUNTRY),
     "liquid_manure_quantities": RatiosToValuesConvertor("liquid_manure_proportions", "total_manureliquid"),

@@ -57,6 +57,10 @@ documented sources.
 
 - Put every external value (factor, parameter, table, mapping) in `data/*.csv`. Register the file
   in `data/sources.csv`, and load it only through `src/legacy_model/dataloader.py`.
+- Whenever a file is added to `data/sources.csv` (or removed, or its use changes), update
+  `data/README.md` in the same change: one row with the file, its source and its use.
+  `test_every_registered_file_is_described_in_the_readme` fails otherwise. When a new raw file in
+  `data/external_data/` is read by a script, add it to the local `data/external_data/README.md`.
 - Never hardcode a value. Never take one from the web or from memory: every value comes from a
   document supplied by FC, in `Literature/` or `data/external_data/`.
 - Show every extracted table to FC and wait for confirmation before using it.

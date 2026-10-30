@@ -1,4 +1,6 @@
 """Tests for the single data-loading module (src/legacy_model/dataloader.py)."""
+import re
+
 import dataloader as dl
 
 
@@ -30,6 +32,16 @@ def test_every_data_file_is_registered_in_sources():
     registered = {row["file"] for row in dl.rows("sources.csv")}
     on_disk = {p.name for p in dl.DATA_DIR.iterdir() if p.name != "sources.csv" and p != dl.EXTERNAL_DATA_DIR}
     assert on_disk <= registered, "unregistered data files: %s" % sorted(on_disk - registered)
+
+
+def test_every_registered_file_is_described_in_the_readme():
+    # data/README.md is updated together with sources.csv: one table row per file
+    readme = (dl.DATA_DIR / "README.md").read_text(encoding="utf-8")
+    described = set(re.findall(r"^\| `([^`]+)`", readme, re.MULTILINE))
+    registered = {row["file"] for row in dl.rows("sources.csv")} - {"README.md"}
+    assert registered <= described, "files missing in data/README.md: %s" % sorted(registered - described)
+    on_disk = {p.name for p in dl.DATA_DIR.iterdir()}
+    assert described <= on_disk, "data/README.md describes missing files: %s" % sorted(described - on_disk)
 
 
 def test_every_sources_row_has_the_header_fields():

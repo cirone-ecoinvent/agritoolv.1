@@ -2353,3 +2353,143 @@ Limit still open: the region median of a marginal crop comes from the countries 
 336 kg N/ha from CN and JP).
 
 Regression cases: no change (the cases give the mineral fertilisers in the template).
+
+## 42. NH3 of urea and AS on flooded rice (decision L54, 2026-10-26)
+
+Open point of L38 (section 27). EMEP/EEA 2023 Table 3-2 does not cover rice paddies: Annex 1 (pp. 34-35) says that
+rice was not included in the 2023 analysis and keeps the text of the 2019 Guidebook, where an EF of 22 % for urea on
+rice paddies is proposed by Yan et al. (2003) and the same EF is used for AS.
+
+New: on the flooded crops of `crop_types.csv` (rice only), urea and AS take 22 % of the N applied as NH3-N, i.e.
+0.22 x 17/14 = 0.2675 kg NH3 per kg N, for both pH classes (`emep2023_flooded_rice_nh3.csv`). The other fertiliser
+types, and all types on the other crops, keep Table 3-2. FC choices (2026-10-26): apply the value; read it as NH3-N
+(Yan et al. 2003 was not accessible, so the unit is not checked); all countries; only urea and AS.
+
+| kg NH3 per kg N | Table 3-2 (normal / high pH) | Flooded rice |
+|---|---|---|
+| Urea | 0.195 / 0.206 | 0.2675 |
+| AS | 0.084 / 0.187 | 0.2675 |
+
+With the default N fertiliser mix and pH share of the countries, the mean NH3 factor of rice changes by x1.00 (FI,
+no urea or AS) to x1.54 (PH), median about x1.3.
+
+Regression, rice_IN (120 kg N urea):
+
+| Key | Before | After |
+|---|---|---|
+| `ammonia_total` | 33.331 | 41.371 |
+| `N2o_air` | 1.8362 | 1.8975 |
+| `Nox_as_n2o_air` | 5.7177 | 5.4533 |
+| `nitrate_to_groundwater` | 134.35 | 118.82 |
+
+NOx and nitrate decrease because they are computed on the N left after the NH3 loss. apple_FR and wheat_IT: no change.
+
+Limit: EMEP notes (Hayashi et al. 2006, 2008) that the high losses of paddy fields may reflect high temperatures and
+apply less to temperate regions; the tool has no climate classes since L38, so the value applies everywhere.
+
+## 43. Legacy crop x country matrices removed (decision L55, 2026-10-27)
+
+Open point of section 37. Of the legacy matrices of N uptake, liquid and solid manure, mineral N and irrigation water
+consumption, only 12 values were still read; they were hardcoded in the code. No value changes in this step.
+
+| Legacy table | Values | Read | Now |
+|---|---|---|---|
+| `defaultMatrixNUptake.py` | 215 | 3: mulberry CN, IN, GLO = 400 kg N/ha | `data/legacy_n_uptake.csv` |
+| `_LEGACY_EVAPO_TRANSPI_PER_CROP_PER_COUNTRY` | 1024 | 9: flax, hemp, mint, mulberry | `data/legacy_irrigation_water_consumption.csv` |
+| `defaultMatrixTotalManure.py`, liquid and solid | 191 each | GLO = 0 only | explicit 0 in `ManureDefaultGenerator` |
+| `defaultMatrixTotalMineralFert.py` | 191 | GLO = 0 only | explicit 0 in `MineralNitrogenDefaultGenerator` |
+
+Irrigation water consumption kept, m3 per t of main product (legacy, undocumented, provisional):
+
+| Crop | Values |
+|---|---|
+| flax | CN 229.87, FR 7.8, GLO 229.87 |
+| hemp | CN 51.73, GLO 51.73 |
+| mint | GLO 0 |
+| mulberry | CN 300, IN 164.74, GLO 300 |
+
+The default mineral N and the default manure are 0 for the crops without level 1 coefficients where IFA gives no rate,
+or where the crop has no default yield as reference for the level 2 factor (guar, mulberry, pomegranate). This is the
+result the legacy matrices gave (GLO cell 0), now written as a rule.
+
+Check: every default of `DEFAULTS_VALUES_GENERATORS` for the 67 crops x 39 countries, with the default yield and with a
+yield of 1000 kg, computed on `main` and on the branch: 689 832 values, no difference. Snapshots unchanged.
+
+Open:
+
+- sourced values for the 12 legacy values; mint GLO 0 is implausible (separate branch);
+- 0 default mineral N and 0 default manure in 428 crop-country pairs: turmeric, ginger, flax, hemp, mulberry, guar and
+  pomegranate in all 39 countries, mint and coriander in 38, cassava 16, cotton, chick pea and lentil 15, grape and
+  sesame 4, ten crops in one country (mostly AU).
+
+## 44. Sources for the remaining legacy values (decision L56, 2026-10-27)
+
+Follow-up of section 43. The 12 legacy values moved to `data/` in L55, now with a source where one fits the basis of
+the default yield.
+
+Irrigation water consumption, m3 per t of main product:
+
+| Crop | Before (legacy) | Now | Source |
+|---|---|---|---|
+| mint | GLO 0 | AR 101.3, MX 185.2, MA 154.8, GLO 150.9 | Mialyk et al. (2024), item 748, 2010-2019 |
+| hemp | CN 51.73, GLO 51.73 | 17 countries, e.g. CN 0.5, FR 0, ES 357.8; GLO 3.86 | Mialyk et al. (2024), item 777, 2010-2019 |
+| mulberry | IN 164.74, CN 300, GLO 300 | IN 164.73, GLO 164.73 | ecoinvent 3.12 'mulberry production, IN', irrigation (interview data) x 0.5 |
+| flax | CN 229.87, FR 7.8, GLO 229.87 | unchanged (legacy) | no source on the basis of the default yield |
+
+Not used:
+
+- Pfister & Bayer (2014) 'flax' and 'hemp': their world production of 2000 (341 kt and 29 kt) is 1/2.4 and 1/3.9 of
+  FAOSTAT 771 and 777 (824 kt and 113 kt), so they are per t of another product.
+- Mialyk item 773 'Flax, processed but not spun': not the item of the default yield.
+- The WFLDB datasets 'mint production' (US, IN; Fuchs et al. 2000) as a source: one literature value for the US, the
+  IN dataset a proxy of it. They are the check: about 95 m3/t to air and 200-210 m3/t irrigation; the new default
+  withdrawal for mint US is 242 m3/t at 1 t/ha.
+
+N uptake of mulberry: kept at 400 kg N/ha (legacy). Published range: recommended doses for irrigated mulberry 168 kg
+N/ha and year (CSR&TI Berhampore, Central Silk Board) and 350 kg N/ha and year (Dandin et al. 2003, South India); N
+removed with the leaves 52-484 kg N/ha and year in Indian trials. Mulberry has no default yield and no leaf N content
+with a source, so the uptake cannot be computed as for the other crops.
+
+Changed defaults (67 crops x 39 countries): only the irrigation water of hemp, mint and mulberry (585 values), e.g.
+withdrawal at 1 t/ha mint IN 0 -> 327 m3, hemp FR 69 -> 0 m3, hemp ES 68 -> 472 m3, mulberry CN 640 -> 351 m3.
+Snapshots unchanged.
+
+Limit: Mialyk is below the Pfister range for 74 % of the production (L44), so the hemp and mint values are probably on
+the low side compared with the other crops.
+
+## 45. Default mineral N without an IFA rate (decision L57, 2026-10-27)
+
+Since L55 the crops without WFLDB level 1 coefficients had 0 kg mineral N and no manure where IFA gives no N rate for
+the country: 428 crop-country pairs. New rule per crop (column `mineral_n_without_ifa_rate` of
+`n_uptake_other_crop_parameters.csv`):
+
+| Rule | Crops | Mineral N |
+|---|---|---|
+| `ifa_crop_median` | 19 crops with IFA rates in other countries | median of IFA rate / default yield over the countries with a rate, x yield |
+| `n_uptake` | flax, hemp, ginger, turmeric, coriander, mint, guar, pomegranate | 0.8 x N uptake (WFLDB L1, N uptake of L41) |
+| none | mulberry | 0 (legacy N uptake) |
+
+The default manure follows the mineral N (L40). Examples at the default yield, kg N/ha (before 0):
+
+| Crop | Country | Rule | Mineral N |
+|---|---|---|---|
+| cotton | ES | crop median | 105 |
+| chick pea | AU | crop median | 38 |
+| lentil | CN | crop median | 40 |
+| cassava | CI / KE | crop median | 55 / 134 |
+| bell pepper | AU | crop median | 122 |
+| flax | FR | N uptake | 123 |
+| hemp | FR | N uptake | 74 |
+| ginger | IN | N uptake | 117 |
+| mint | MX | N uptake | 114 |
+| coriander | IN | N uptake | 16 |
+
+Guar and pomegranate have no default yield: 0 at the default, 0.8 x N uptake with the yield of the template (guar IN at
+1 t/ha: 13 kg N). Still 0: mulberry; chick pea and lentil FR, IT (IFA pulses rate 0).
+
+Changed defaults (67 crops x 39 countries, default yield and 1000 kg): 4456 of 689 832 values (mineral N, manure,
+fertiliser mixes of 24 crops; P2O5 and K2O of mint, level 1 minus the new default manure). Snapshots unchanged.
+
+Limits: the L1 split is below the IFA rates for herbs (coriander IL x12), so coriander is probably low; the crop median
+scales with the yield, so high default yields give high N (cassava GH 233, coriander KE 217 and MX 237, ginger and
+turmeric US 327 kg N/ha; the coriander yields of FAOSTAT 711 in KE and MX, 13-15 t/ha, are to be checked).

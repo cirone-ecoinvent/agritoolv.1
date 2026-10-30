@@ -11,7 +11,7 @@ TABLE = "emep2023_3d_table3_2.csv"
 MAPPING = "emep2023_fertiliser_type_mapping.csv"
 
 
-def _model(n, share_normal_ph, cultivation_type="open_ground"):
+def _model(n, share_normal_ph, cultivation_type="open_ground", crop="wheat"):
     quantities = {member: 0.0 for member in NFertiliserType}
     quantities.update(n)
     return FertModel({
@@ -23,6 +23,7 @@ def _model(n, share_normal_ph, cultivation_type="open_ground"):
         "magnesium_from_fertilizer": 0.0,
         "soil_with_ph_under_or_7": share_normal_ph,
         "cultivation_type": cultivation_type,
+        "crop": crop,
     })
 
 

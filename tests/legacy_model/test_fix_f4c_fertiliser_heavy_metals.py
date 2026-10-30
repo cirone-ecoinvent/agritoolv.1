@@ -23,6 +23,7 @@ def _model(n=None, p=None, k=None, ca=None, zn=None, mg=0.0):
         "magnesium_from_fertilizer": mg,
         "soil_with_ph_under_or_7": 1.0,
         "cultivation_type": "open_ground",
+        "crop": "wheat",
     })
 
 
