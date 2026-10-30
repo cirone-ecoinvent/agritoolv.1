@@ -407,9 +407,12 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
     et al. (2015a) Table 1 (16 arable crops and fallow, values from a literature review) for the
     crops it covers; for the other crops (vegetables, fruit, perennials, tropical crops) the crop
     classes of Borrelli et al. (2017), *Nature Communications* 8: 2013
-    (`Borrelli_assessmentonsoilerosion.pdf`), which assign C values to 170 FAOSTAT crops grouped
-    in 14 classes. These values are in the Supplementary Data 1 and Supplementary Table 2 of
-    Borrelli et al. (2017), not in the article: to be supplied by FC.
+    (`Borrelli_assessmentonsoilerosion.pdf`), which assign C values to FAOSTAT crops grouped in
+    14 classes: Supplementary Table 2 (`Borelli_SMs_info.pdf`, p. 35) and Supplementary Data 1
+    (`Borelli_SMs_data.xlsx`; 176 crops, while the article states 170), transcribed to
+    `data/borrelli2017_crop_group_c_factors.csv` and `data/borrelli2017_faostat_crop_groups.csv`
+    (branch `data/erosion-factors`). The tool crop -> crop group mapping is a judgement table to be
+    signed by FC.
   - C_management from the `tillage` field with the tillage factors of Panagos et al. (2015a)
     Eq. 4a (conventional 1, conservation or ridge tillage 0.35, no till 0.25); the template list of
     tillage methods is aligned with these classes. The factors of Panagos et al. (2015a) for cover
@@ -425,20 +428,31 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
     grass margins and contour farming from LUCAS), aggregated to the country, as default;
   - the legacy practice factors of `erosionmodel.py` (0.75, 0.5, 0.37, 0.25, no documented source)
     are replaced by the tables of AH 537.
-  - `RUSLE2 Handbook_0.pdf` (USDA, 2001) is the user handbook of the RUSLE2 program, not
-    Agriculture Handbook 703 (Renard et al. 1997); AH 537 is sufficient for the P tables.
+  - Agriculture Handbook 703 (Renard et al. 1997, RUSLE;
+    `Renard_1997_Predictingsoilerosionbywater_aguidetoconservationplaningwithRUSLE.pdf`,
+    chapter 6) is the revised method, but its contouring P is computed from ridge height,
+    cover-management condition and storm erosivity (Eq. 6-1 and 6-2, Table 6-3) and its terrace P
+    (Table 6-15) needs the terrace interval and the outlet type, which the template does not ask.
+    FC chose AH 537 (option a, 2026-10-30); AH 703 is the methodological reference.
+    (`RUSLE2 Handbook_0.pdf` is the user handbook of the RUSLE2 program, not AH 703.)
+  - Tables 13-15 of AH 537 are transcribed to `data/ah537_p_factors.csv`; the slope classes are
+    printed with gaps (1-2, 3-5 %, ...): the rule for intermediate slopes is set in the
+    implementation.
 - **IPCC climate zone** (`Climate_Zone.zip`): needed only if the climate-specific N2O factors of
   IPCC 2019 (wet / dry climate) are adopted in the model. The classes of the map (IPCC 2006,
   JRC) are to be checked against figure 3A.5.1 of the 2019 Refinement. Optional override:
   `ipcc_climate_zone`.
 - **Annual precipitation** (FC, 2026-10-30): default from TerraClimate (Abatzoglou et al. 2018,
   *Scientific Data* 5: 170191; `TerraClimate_highresglodatasetofclimaticwater.pdf`), monthly
-  gridded precipitation at about 4 km, summed to annual values and averaged over a recent period
-  (number of years to be decided), aggregated over the crop area like the other maps. TerraClimate
+  gridded precipitation at about 4 km, summed to annual values, aggregated over the crop area like
+  the other maps. TerraClimate
   also gives the reference evapotranspiration, so the same source provides the ratio of
   precipitation to potential evapotranspiration that IPCC 2019 uses to separate wet and dry
-  climates. The article describes 1958-2015; the gridded data (not yet in
-  `data/external_data/`) are to be downloaded by FC with their latest year. Cross-check: World Bank
+  climates. Data: the 30-year climatology 1991-2020 of the THREDDS catalog
+  `TERRACLIMATE_ALL/summaries` (`TerraClimate19912020_ppt.nc`, about 110 MB, and
+  `TerraClimate19912020_pet.nc`, about 116 MB), to be downloaded by FC (not yet in
+  `data/external_data/`); the period 1991-2020 replaces the "recent period" to be decided above.
+  Cross-check: World Bank
   `AG.LND.PRCP.MM` (FAO AQUASTAT long-term average precipitation per country,
   `API_AG.LND.PRCP.MM_DS2_en_csv_v2_1875.zip`). Replaces the WFLDB 2017 default (L22) once built.
 
