@@ -509,8 +509,11 @@ Country boundaries for the aggregation (FC, 2026-10-30):
   terms must be checked about 30 (e.g. France, India, Switzerland, United States, Germany,
   Spain, United Kingdom), CC BY 4.0 14, ODbL 1 (Reunion), non-commercial use only 1 (Ascension,
   Saint Helena and Tristan da Cunha). The geometries are used only internally to compute country
-  averages; only these averages are published. Whether that is acceptable for the restricted
-  sources, or the ecoinvent geometries are used for those countries, is to be decided by FC.
+  averages; only these averages are published. Decision (FC, 2026-10-30, option a): GAUL 2024
+  is used for all countries, including those with third-party terms; the provenance of each
+  default states that the boundaries were used only to compute country averages and are not
+  redistributed. Rejected: (b) GAUL only where the terms are open and the ecoinvent v4
+  geometries for the others, because it mixes two boundary layers with different outlines.
 - **Fallback: the ecoinvent geography geometries** (Natural Earth based, ecoinvent approach), used
   if the GAUL 2024 coverage or third-party terms are not acceptable. Source: internal page "v4 geographies:
   geometries" (DBD space, version 26 of 2026-10-30). v3 geometries: geography.ecoinvent.org,
