@@ -448,10 +448,18 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
   the other maps. TerraClimate
   also gives the reference evapotranspiration, so the same source provides the ratio of
   precipitation to potential evapotranspiration that IPCC 2019 uses to separate wet and dry
-  climates. Data: the 30-year climatology 1991-2020 of the THREDDS catalog
-  `TERRACLIMATE_ALL/summaries` (`TerraClimate19912020_ppt.nc`, about 110 MB, and
-  `TerraClimate19912020_pet.nc`, about 116 MB), to be downloaded by FC (not yet in
-  `data/external_data/`); the period 1991-2020 replaces the "recent period" to be decided above.
+  climates. Data: the 30-year monthly climatology 1991-2020 of TerraClimate v1.1 (THREDDS
+  catalog `TERRACLIMATE_ALL/summaries`), supplied by FC on 2026-10-30 in `data/external_data/`
+  as `TerraClimate_19912020_ppt.nc` (147,673,585 bytes) and `TerraClimate_19912020_pet.nc`
+  (119,571,852 bytes). Checked from the file headers: netCDF-4 (HDF5) files, complete (the end of
+  file address in the header equals the file size); dimensions `lon lat time`; WGS 84
+  latitude-longitude grid of 8640 x 4320 cells at 1/24 degree (cell centres -179.979 to
+  179.979 and 89.979 to -89.979); 12 monthly steps ("months since January"); variables `ppt`
+  ("Accumulated Precipitation") and `pet` ("Reference Evapotranspiration") in mm, stored with
+  `scale_factor` and `add_offset`; global note "computed from TerraClimate v1.1 using years
+  1991-2020". The data values themselves were not read (no netCDF reader available in that
+  check); the build script must report the annual range per country for FC to confirm. The
+  period 1991-2020 replaces the "recent period" to be decided above.
   Cross-check: World Bank
   `AG.LND.PRCP.MM` (FAO AQUASTAT long-term average precipitation per country,
   `API_AG.LND.PRCP.MM_DS2_en_csv_v2_1875.zip`). Replaces the WFLDB 2017 default (L22) once built.
