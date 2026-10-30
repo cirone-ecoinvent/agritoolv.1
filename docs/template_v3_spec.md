@@ -491,8 +491,26 @@ Country boundaries for the aggregation (FC, 2026-10-30):
   FAO distributes only the subnational levels (`GAUL_2024_L1`, `GAUL_2024_L2`), no country
   layer: the build script dissolves level 1 by `gaul0_code` (attributes `gaul0_code`,
   `gaul0_name`, `iso3_code`, `map_code`, `disp_en`), and maps `iso3_code` to M49 through the
-  UNSD table; units without a country (disputed areas) are listed for FC. Level 1, to be
-  downloaded by FC into `data/external_data/` (not yet supplied).
+  UNSD table; units without a country (disputed areas) are listed for FC.
+  Supplied by FC on 2026-10-30: `GAUL_2024_L1.zip` (shapefile, WGS 84, UTF-8; includes
+  `GAUL_2024_L1_Metadata.xlsx`, the change log and `GAUL2024TermsOfUse.pdf`) and
+  `gaul_l0_2024-2014.zip` (country codes 2024 and 2014). Checked from the attribute table:
+  3,110 level 1 units, 272 `gaul0_code` values, 265 `iso3_code` values. Every country of the
+  UNSD M49 table is present; the only GAUL ISO3 code not in the UNSD table is TWN (Taiwan
+  Province of China). 22 units have no country: 21 with codes starting with `x` (e.g. Abyei,
+  Aksai Chin, Jammu and Kashmir, Arunachal Pradesh, Hala'ib Triangle, Kuril, Paracel, Spratly
+  Islands, the UK bases on Cyprus) plus Greenland coded GRL with `map_code` DNK; a rule for them
+  is to be decided by FC.
+  Third-party terms (metadata sheet, 278 rows, one per country or area): CC BY-IGO (HDX) 108,
+  no level 1 data (country outline only) 69, UN SALB terms 35, GAUL 2015 licence 21 (Andorra,
+  Anguilla, Azerbaijan, Bahrain, Brunei Darussalam, Egypt, Guernsey, Isle of Man, Israel,
+  Jersey, Jordan, Maldives, Montenegro, Myanmar, Puerto Rico, Republic of Korea, Rwanda, Saint
+  Pierre and Miquelon, Singapore, Turkmenistan, United Arab Emirates), national providers whose
+  terms must be checked about 30 (e.g. France, India, Switzerland, United States, Germany,
+  Spain, United Kingdom), CC BY 4.0 14, ODbL 1 (Reunion), non-commercial use only 1 (Ascension,
+  Saint Helena and Tristan da Cunha). The geometries are used only internally to compute country
+  averages; only these averages are published. Whether that is acceptable for the restricted
+  sources, or the ecoinvent geometries are used for those countries, is to be decided by FC.
 - **Fallback: the ecoinvent geography geometries** (Natural Earth based, ecoinvent approach), used
   if the GAUL 2024 coverage or third-party terms are not acceptable. Source: internal page "v4 geographies:
   geometries" (DBD space, version 26 of 2026-10-30). v3 geometries: geography.ecoinvent.org,
@@ -504,7 +522,11 @@ Country boundaries for the aggregation (FC, 2026-10-30):
   UN-SSAFRICA; RU removed from Eastern Europe and IR from Western Asia; Aland Islands and
   Svalbard / Jan Mayen are separate units. Advantage: the region and sub-region geometries match
   the ecoinvent geographies of the M49 fallback (section 5.10) directly. Use the v4 country
-  geopackage, supplied by FC into `data/external_data/` (not yet supplied).
+  geopackage. Supplied by FC on 2026-10-30: `V4geography.zip` with `v4_allgeos.gpkg` (one
+  layer, EPSG:4326, 479 geographies: 250 countries, 166 subdivisions, 26 electricity grids,
+  17 sub-regions, 7 intermediate regions, 6 regions, 6 aluminium regions, 1 global; attributes
+  include `geo_type`, `short_name`, `v3_iso3`, `parents`, `children`) and
+  `v3_to_v4_geographies_mapping.xlsx`.
 - Whichever layer is used, the build script records its name and version in the provenance of
   each default, and lists the countries whose value changes by more than a threshold to be agreed
   with FC between the two layers if both are available.
