@@ -2523,3 +2523,21 @@ Regression cases (tillage and practice give 1 in all three; eroded soil x new C 
 
 The heavy metals to surface water change in the same ratio for the erosion part; the heavy metals to soil change by
 -4 % to +7 %, except rice_IN Ni and Pb (+12 % and +15 % to soil; +22 % and +61 % of the balance minus uptake, whose values are small).
+
+## 47. Rainfall erosivity R from GloREDa (decision L60, 2026-10-30)
+
+R (MJ mm/(ha h yr)) per crop and country from the GloREDa monthly maps, averaged over the SPAM 2020 V2r2 physical area
+of the crop (`gloreda2023_rainfall_erosivity.csv`), instead of the LANCA equation of the climate zone (default zone
+"warm summer dry warm" with the template precipitation). Country values over all crops against the median of the
+GloREDa stations: FR 795 / 547, IT 1322 / 1447, DE 606 / 452, ES 562 / 849, IN 4207 / 3780, US 1940 / 1716, CN 3094 /
+1859, BR 6183 / 6011; 12 tool countries have no station (CI, EC, GH, ID, LK, MA, PE, PH, TH, UA, VN, CS).
+
+| Case | R LANCA -> GloREDa | Eroded soil, t/(ha yr) | P to surface water by erosion, kg P/ha |
+|---|---|---|---|
+| wheat_IT | 307 -> 1211 | 2.79 | 0.198 -> 0.780 |
+| rice_IN | 5146 -> 5444 | 1.78 | 0.248 -> 0.262 |
+| apple_FR | 128 -> 807 | 1.35 | 0.075 -> 0.477 |
+
+The heavy metals to surface water rise by x2.6 to x6.3 (wheat_IT, apple_FR) and x1.06 (rice_IN); the heavy metals to
+soil fall. In wheat_IT the balances of Pb, Ni and Cr become negative (minus uptake: Pb -0.0024, Ni -0.0043, Cr -0.00008
+kg/ha): the metal removed with 2.8 t of eroded soil exceeds the inputs. They are kept negative (SALCA, FC option a).

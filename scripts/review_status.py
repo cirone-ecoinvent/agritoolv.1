@@ -36,6 +36,7 @@ Review tables (all in data/):
   erosion_crop_c_factor_mapping.csv       usable when status is confirmed (C factor of the erosion model, L59)
   erosion_tillage_mapping.csv             idem
   erosion_practice_mapping.csv            idem
+  spam2020_crop_mapping.csv               usable when status is confirmed (crop area weights of the maps, L60)
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -98,6 +99,7 @@ TABLES = [
     ("erosion_crop_c_factor_mapping.csv", ("confirmed",), ("crop", "c_source", "panagos_crop_type", "borrelli_faostat_crop", "status")),
     ("erosion_tillage_mapping.csv", ("confirmed",), ("tillage_method", "panagos_tillage_class", "status")),
     ("erosion_practice_mapping.csv", ("confirmed",), ("anti_erosion_practice", "ah537_table", "ah537_system", "status")),
+    ("spam2020_crop_mapping.csv", ("confirmed",), ("crop", "faostat_item_code", "spam2020_crop", "rule", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]

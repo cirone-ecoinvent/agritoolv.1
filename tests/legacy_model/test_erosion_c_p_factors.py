@@ -12,10 +12,9 @@ def _defaults(**inputs):
 
 
 def _erosion(**inputs):
-    values = {"average_annual_precipitation": 800.0, "slope": 0.03, "slope_length": 50.0,
+    values = {"rainfall_erosivity": 1000.0, "slope": 0.03, "slope_length": 50.0,
               "tillage_method": TillageMethod.unknown, "anti_erosion_practice": AntiErosionPractice.no_practice,
-              "soil_erodibility_factor": 0.03, "crop_factor": 0.2, "mean_elevation_m": 700,
-              "nb_wet_days_per_year": 180, "climate_zone_specific": "warm_summer_dry_warm"}
+              "soil_erodibility_factor": 0.03, "crop_factor": 0.2}
     values.update(inputs)
     return ErosionModel(values)
 

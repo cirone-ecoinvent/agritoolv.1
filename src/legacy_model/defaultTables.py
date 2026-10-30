@@ -389,6 +389,12 @@ def _crop_c_factor_per_crop():
 
 CROP_FACTOR_PER_CROP = _crop_c_factor_per_crop()
 
+# Rainfall erosivity R, MJ mm/(ha h yr), per crop and country, with the row "all_crops" per country (decision L60):
+# GloREDa monthly maps summed to the year, mean over the SPAM 2020 V2r2 physical area of the crop
+# (scripts/build_gloreda_erosivity.py)
+RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("gloreda2023_rainfall_erosivity.csv",
+                                                                        "r_factor_mj_mm_per_ha_h_yr")
+
 #src: ecoinvent report no. 15a
 # Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
 # Castor beans: Calculated from Crop Carbon Content value
