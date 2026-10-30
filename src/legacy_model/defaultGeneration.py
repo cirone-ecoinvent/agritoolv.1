@@ -22,7 +22,7 @@ from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUN
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP, LEGUME_CROPS, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS, PK_PER_KG_MAIN_PRODUCT_PER_CROP, \
     IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY, ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY, \
-    LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY, MINERAL_N_RULE_WITHOUT_IFA_RATE
+    LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY, MINERAL_N_RULE_WITHOUT_IFA_RATE, RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY
 from directMappingEnums import PlasticDisposal, Plantprotection, Soilcultivation, \
     Sowingplanting, Fertilisation, Harvesting, OtherWorkProcesses, Biowaste
 from models.atomicmass import MA_CO2, MA_C
@@ -121,14 +121,13 @@ class RatiosToValuesConvertor(object):
         return {k: v * total for k, v in generators[self._ratiosField].items()}
 
 
-class ClimateDefaultGenerator(object):
+class RainfallErosivityDefaultGenerator(object):
+    """R of the crop in the country (GloREDa over the SPAM 2020 area of the crop, decision L60); the row "all_crops" of
+    the country for a crop outside the table."""
     def generateDefault(self, field, generators):
-        if generators["climate_zone_1"] == "cool_climate":
-            return "snow_winter_continental"
-        elif generators["climate_zone_1"] == "temperate_climate":
-            return "warm_summer_dry_warm"
-        else:
-            return "equatorial_summer_dry"
+        table = RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY.get(generators["crop"],
+                                                            RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY["all_crops"])
+        return table[generators["country"]]
 
 
 class AnnualPrecipitationDefaultGenerator(TableLookupDefaultGenerator):
@@ -625,17 +624,14 @@ class NitrogenFromCropResiduesDefaultGenerator(object):
             return 0.0
 
 
-# legacy, undocumented, provisional: scalar default values of this table (e.g. 180 wet days, 700 m, slope length 50 m, 0.5 undiluted slurry, plastic EoL 50/50)
+# legacy, undocumented, provisional: scalar default values of this table (e.g. slope length 50 m, 0.5 undiluted slurry, plastic EoL 50/50)
 DEFAULTS_VALUES_GENERATORS = {
     "yield_BP1_per_crop_cycle": SimpleValueDefaultGenerator(""),
     "yield_BP2_per_crop_cycle": SimpleValueDefaultGenerator(""),
     "yield_BP3_per_crop_cycle": SimpleValueDefaultGenerator(""),
     # Cross-models defaults
     "average_annual_precipitation": AnnualPrecipitationDefaultGenerator(),
-    "climate_zone_1": SimpleValueDefaultGenerator("temperate_climate"),
-    "climate_zone_specific": ClimateDefaultGenerator(),
-    "nb_wet_days_per_year": SimpleValueDefaultGenerator(180),
-    "mean_elevation_m": SimpleValueDefaultGenerator(700),
+    "rainfall_erosivity": RainfallErosivityDefaultGenerator(),
     "clay_content": TableLookupDefaultGenerator("country", CLAY_CONTENT_PER_COUNTRY),
     "crop_cycle_per_year": CropCyclePerYearDefaultGenerator(),
     "precipitation_per_crop_cycle": PerCropCyclePrecipitationDefaultGenerator(),

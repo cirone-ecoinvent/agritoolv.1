@@ -1,0 +1,68 @@
+crop,faostat_item_code,faostat_item,spam_crop_mapspamc,spam2020_crop,spam2020_crop_name,rule,note,status,reviewed_by
+almond,221,Almonds; in shell,rest,rest,Rest Of Crops,mapspamc,,confirmed,FC
+apple,515,Apples,temf,temf,Temperate Fruit,mapspamc,,confirmed,FC
+apricot,526,Apricots,temf,temf,Temperate Fruit,mapspamc,,confirmed,FC
+asparagus_green,367,Asparagus,vege,vege,Other Vegetables,mapspamc,,confirmed,FC
+asparagus_white,367,Asparagus,vege,vege,Other Vegetables,mapspamc,,confirmed,FC
+banana,486,Bananas,bana,bana,Banana,mapspamc,,confirmed,FC
+bellpepper,401,Chillies and peppers; green (Capsicum spp. and Pimenta spp.),vege,vege,Other Vegetables,mapspamc,,confirmed,FC
+blueberry,552,Blueberries,temf,temf,Temperate Fruit,mapspamc,,confirmed,FC
+cabbage_red,358,Cabbages,vege,vege,Other Vegetables,mapspamc,,confirmed,FC
+cabbage_white,358,Cabbages,vege,vege,Other Vegetables,mapspamc,,confirmed,FC
+carrot,426,Carrots and turnips,vege,vege,Other Vegetables,mapspamc,,confirmed,FC
+cashew,217,Cashew nuts; in shell,rest,rest,Rest Of Crops,mapspamc,,confirmed,FC
+cassava,125,Cassava; fresh,cass,cass,Cassava,mapspamc,,confirmed,FC
+castor_beans,265,Castor oil seeds,ooil,ooil,Other Oil Crops,mapspamc,,confirmed,FC
+chick_pea,191,Chick peas; dry,chic,chic,Chickpea,mapspamc,,confirmed,FC
+chilli,401,Chillies and peppers; green (Capsicum spp. and Pimenta spp.),vege,vege,Other Vegetables,mapspamc,,confirmed,FC
+cocoa,661,Cocoa beans,coco,coco,Cocoa,mapspamc,,confirmed,FC
+coconut,249,Coconuts; in shell,cnut,cnut,Coconut,mapspamc,,confirmed,FC
+coffee_arabica,656,Coffee; green,coff,coff,Arabic Coffee,split or code change,FAOSTAT 656 covers both coffees; SPAM 2020 coff = Arabic Coffee,confirmed,FC
+coffee_robusta,656,Coffee; green,coff,rcof,Robust Coffee,split or code change,FAOSTAT 656 covers both coffees; SPAM 2020 rcof = Robust Coffee,confirmed,FC
+coriander,711,Anise; badian; coriander; cumin; caraway; fennel and juniper berries; raw,rest,rest,Rest Of Crops,mapspamc,,confirmed,FC
+cotton,328,Seed cotton; unginned,cott,cott,Cotton,mapspamc,,confirmed,FC
+cranberry,554,Cranberries,temf,temf,Temperate Fruit,mapspamc,,confirmed,FC
+eggplant,399,Eggplants (aubergines),vege,vege,Other Vegetables,mapspamc,,confirmed,FC
+flax,771,Flax; raw or retted,,ofib,Other Fibre Crops,split or code change,771 Flax; raw or retted is the current code of the flax item; mapspamc lists the former code 773 under ofib,confirmed,FC
+ginger,720,Ginger; raw,rest,rest,Rest Of Crops,mapspamc,,confirmed,FC
+grape,560,Grapes,temf,temf,Temperate Fruit,mapspamc,,confirmed,FC
+guar,,,,opul,Other Pulses,judgement,"no FAOSTAT item in the tool; guar is a legume, proposed under Other Pulses",confirmed,FC
+hemp,777,True hemp; raw or retted,ofib,ofib,Other Fibre Crops,mapspamc,,confirmed,FC
+lemon,497,Lemons and limes,trof,citr,Citrus,split,497 is under trof in mapspamc; SPAM 2020 has the separate crop citr (Citrus),confirmed,FC
+citruslime,497,Lemons and limes,trof,citr,Citrus,split,497 is under trof in mapspamc; SPAM 2020 has the separate crop citr (Citrus),confirmed,FC
+lentil,201,Lentils; dry,lent,lent,Lentil,mapspamc,,confirmed,FC
+linseed,333,Linseed,ooil,ooil,Other Oil Crops,mapspamc,,confirmed,FC
+maizegrain,56,Maize (corn),maiz,maiz,Maize,mapspamc,,confirmed,FC
+mandarin,495,Tangerines; mandarins; clementines,trof,citr,Citrus,split,495 is under trof in mapspamc; SPAM 2020 has the separate crop citr (Citrus),confirmed,FC
+mango,571,Mangoes; guavas and mangosteens,trof,trof,Other Tropical Fruit,mapspamc,,confirmed,FC
+mint,748,Peppermint; spearmint,rest,rest,Rest Of Crops,mapspamc,,confirmed,FC
+mulberry,,,,rest,Rest Of Crops,judgement,no FAOSTAT item in the tool (leaves for silkworms); proposed under Rest Of Crops,confirmed,FC
+oat,75,Oats,ocer,ocer,Other Cereals,mapspamc,,confirmed,FC
+olive,260,Olives,ooil,ooil,Other Oil Crops,mapspamc,,confirmed,FC
+onion,403,Onions and shallots; dry (excluding dehydrated),,onio,Onion,split or code change,"403 Onions and shallots; dry is not in mapspamc (only 402 green onions, under vege); SPAM 2020 has the separate crop onio (Onion)",confirmed,FC
+orange_fresh,490,Oranges,trof,citr,Citrus,split,490 is under trof in mapspamc; SPAM 2020 has the separate crop citr (Citrus),confirmed,FC
+orange_processing,490,Oranges,trof,citr,Citrus,split,490 is under trof in mapspamc; SPAM 2020 has the separate crop citr (Citrus),confirmed,FC
+palmtree,254,Oil palm fruit,oilp,oilp,Oilpalm,mapspamc,,confirmed,FC
+peach,534,Peaches and nectarines,temf,temf,Temperate Fruit,mapspamc,,confirmed,FC
+peanut,242,Groundnuts; excluding shelled,grou,grou,Groundnut,mapspamc,,confirmed,FC
+pear,521,Pears,temf,temf,Temperate Fruit,mapspamc,,confirmed,FC
+pearl_millet,79,Millet,mill,pmil,Pearl Millet,split or code change,FAOSTAT 79 Millet covers all millets; mapspamc has one crop mill; SPAM 2020 separates pmil (Pearl Millet) from mill (Small Millet),confirmed,FC
+pineapple,574,Pineapples,trof,trof,Other Tropical Fruit,mapspamc,,confirmed,FC
+pomegranate,,,,temf,Temperate Fruit,judgement,no FAOSTAT item in the tool; FAOSTAT 619 Other fruits n.e.c. is under temf in mapspamc,confirmed,FC
+potato,116,Potatoes,pota,pota,Potato,mapspamc,,confirmed,FC
+rapeseed,270,Rape or colza seed,rape,rape,Rapeseed,mapspamc,,confirmed,FC
+raspberry,547,Raspberries,temf,temf,Temperate Fruit,mapspamc,,confirmed,FC
+rice,27,Rice,rice,rice,Rice,mapspamc,,confirmed,FC
+sesame_seed,289,Sesame seed,sesa,sesa,Sesame Seed,mapspamc,,confirmed,FC
+soybean,236,Soya beans,soyb,soyb,Soybean,mapspamc,,confirmed,FC
+strawberry_fresh,544,Strawberries,temf,temf,Temperate Fruit,mapspamc,,confirmed,FC
+strawberry_processing,544,Strawberries,temf,temf,Temperate Fruit,mapspamc,,confirmed,FC
+sugarbeet,157,Sugar beet,sugb,sugb,Sugarbeet,mapspamc,,confirmed,FC
+sugarcane,156,Sugar cane,sugc,sugc,Sugarcane,mapspamc,,confirmed,FC
+sunflower,267,Sunflower seed,sunf,sunf,Sunflower,mapspamc,,confirmed,FC
+sweetcorn,446,Green corn (maize),vege,vege,Other Vegetables,mapspamc,,confirmed,FC
+tea,667,Tea leaves,teas,teas,Tea,mapspamc,,confirmed,FC
+tomato_fresh,388,Tomatoes,vege,toma,Tomato,split,388 is under vege in mapspamc; SPAM 2020 has the separate crop toma (Tomato),confirmed,FC
+tomato_processing,388,Tomatoes,vege,toma,Tomato,split,388 is under vege in mapspamc; SPAM 2020 has the separate crop toma (Tomato),confirmed,FC
+turmeric,720,Ginger; raw,rest,rest,Rest Of Crops,mapspamc,"turmeric uses the FAOSTAT item of ginger (720) in the tool (proxy, confirmed by FC 2026-10-13)",confirmed,FC
+wheat,15,Wheat,whea,whea,Wheat,mapspamc,,confirmed,FC

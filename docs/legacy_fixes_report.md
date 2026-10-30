@@ -2493,3 +2493,51 @@ fertiliser mixes of 24 crops; P2O5 and K2O of mint, level 1 minus the new defaul
 Limits: the L1 split is below the IFA rates for herbs (coriander IL x12), so coriander is probably low; the crop median
 scales with the yield, so high default yields give high N (cassava GH 233, coriander KE 217 and MX 237, ginger and
 turmeric US 327 kg N/ha; the coriander yields of FAOSTAT 711 in KE and MX, 13-15 t/ha, are to be checked).
+
+## 46. Erosion C and P factors from Panagos, Borrelli and AH 537 (decision L59, 2026-10-30)
+
+Eroded soil = R x K x LS x C_crop x C_tillage x P (`erosionmodel.py`). C_crop, C_tillage and P now come from `data/`:
+
+| Factor | Source | Mapping (signed by FC) |
+|---|---|---|
+| C_crop | Panagos et al. (2015a) Table 1; Borrelli et al. (2017) Supplementary Table 2 and Data 1 | `erosion_crop_c_factor_mapping.csv` |
+| C_tillage | Panagos et al. (2015a) Eq. 4a: conventional 1, conservation/ridge 0.35, no till 0.25 | `erosion_tillage_mapping.csv` |
+| P | USDA Agriculture Handbook 537, Tables 13-15, by slope class | `erosion_practice_mapping.csv` |
+
+Default C_crop of the 67 crops: 62 changed (22 up, 40 down), 5 unchanged (chick pea, ginger, soybean, sunflower,
+turmeric). Largest changes: grape 0.15 -> 0.35, tree crops and citrus 0.10 -> 0.15, flax 0.18 -> 0.28; hemp 0.45 -> 0.15,
+mint 0.47 -> 0.15, pineapple 0.48 -> 0.15, mulberry 0.50 -> 0.15, sugarcane 0.40 -> 0.15, tomato 0.47 -> 0.25,
+strawberry 0.47 -> 0.20.
+
+Tillage factors changed: spring plow 0.9 -> 1, mulch tillage 0.6 -> 0.35, zone tillage 0.25 -> 0.35. P, at the default
+slope of 3 %: contour farming 0.5 (unchanged), strip cropping on the contour 0.25 -> 0.38 (system B), cross slope 0.75
+-> 1, strip cropping cross slope 0.37 -> 1; new practice terraces 0.5.
+
+Regression cases (tillage and practice give 1 in all three; eroded soil x new C / old C):
+
+| Case | C_crop | P to surface water by erosion, kg P/ha |
+|---|---|---|
+| wheat_IT | 0.22 -> 0.20 | 0.2173 -> 0.1976 |
+| rice_IN | 0.17 -> 0.15 | 0.2812 -> 0.2481 |
+| apple_FR | 0.10 -> 0.15 | 0.0503 -> 0.0755 |
+
+The heavy metals to surface water change in the same ratio for the erosion part; the heavy metals to soil change by
+-4 % to +7 %, except rice_IN Ni and Pb (+12 % and +15 % to soil; +22 % and +61 % of the balance minus uptake, whose values are small).
+
+## 47. Rainfall erosivity R from GloREDa (decision L60, 2026-10-30)
+
+R (MJ mm/(ha h yr)) per crop and country from the GloREDa monthly maps, averaged over the SPAM 2020 V2r2 physical area
+of the crop (`gloreda2023_rainfall_erosivity.csv`), instead of the LANCA equation of the climate zone (default zone
+"warm summer dry warm" with the template precipitation). Country values over all crops against the median of the
+GloREDa stations: FR 795 / 547, IT 1322 / 1447, DE 606 / 452, ES 562 / 849, IN 4207 / 3780, US 1940 / 1716, CN 3094 /
+1859, BR 6183 / 6011; 12 tool countries have no station (CI, EC, GH, ID, LK, MA, PE, PH, TH, UA, VN, CS).
+
+| Case | R LANCA -> GloREDa | Eroded soil, t/(ha yr) | P to surface water by erosion, kg P/ha |
+|---|---|---|---|
+| wheat_IT | 307 -> 1211 | 2.79 | 0.198 -> 0.780 |
+| rice_IN | 5146 -> 5444 | 1.78 | 0.248 -> 0.262 |
+| apple_FR | 128 -> 807 | 1.35 | 0.075 -> 0.477 |
+
+The heavy metals to surface water rise by x2.6 to x6.3 (wheat_IT, apple_FR) and x1.06 (rice_IN); the heavy metals to
+soil fall. In wheat_IT the balances of Pb, Ni and Cr become negative (minus uptake: Pb -0.0024, Ni -0.0043, Cr -0.00008
+kg/ha): the metal removed with 2.8 t of eroded soil exceeds the inputs. They are kept negative (SALCA, FC option a).
