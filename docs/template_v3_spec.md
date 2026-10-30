@@ -473,6 +473,31 @@ of the crop (SPAM 2020, `spam2020V0r1_global_physical_area.zip`); the aggregatio
 fallback (section 5.10) and the tables are decided and confirmed by FC there. The GloREDa archive
 (about 2.2 GB) has to be processed on FC's computer.
 
+SPAM 2020 (FC, 2026-10-30):
+
+- Versions in `data/external_data/`: V0r1 (physical area GeoTIFF, used so far) and V2r2 of
+  2026-04-22 (`SPAM 2020 V2r2.zip`, and the CSV files of harvested area, physical area,
+  production and yield for all, irrigated and rainfed technologies). V2r2 has 46 crops; each
+  pixel row carries `ADM0_NAME`, `ADM1_NAME`, `ADM2_NAME` and the FIPS codes; yield is in kg/ha
+  (t/ha before V2r2). The README of V2r2 lists the 46 crops but not the FAOSTAT items of the
+  group crops (`ooil`, `trof`, `temf`, `vege`, `rest`): where nuts, grapes, berries, strawberry,
+  olive, sweet corn, ginger and turmeric fall is still to be documented from the SPAM 2020
+  code or technical documentation.
+- Licence (IFPRI Datasets Terms of Use, December 2019, supplied by FC): CC BY 4.0 unless a
+  non-CC licence is stated for the dataset (none is stated), commercial use included. Conditions:
+  - cite the dataset with authorship, year, title, publisher and URI. Citation of the V2r2
+    README: "International Food Policy Research Institute (IFPRI), 2025, Global
+    Spatially-Disaggregated Crop Production Statistics Data for 2020 Version 2.0.0,
+    https://doi.org/10.7910/DVN/SWPENT, Harvard Dataverse, V2" (the Dataverse terms page still
+    shows the 2024 Version 1.0.0 citation; the one of the version used applies);
+  - the country averages weighted with SPAM are adaptations: after the citation add "This data
+    was provided by the International Food Policy Research Institute (IFPRI). IFPRI bears no
+    responsibility for the analyses or interpretations of the data presented here." (terms,
+    section 5);
+  - no use of the IFPRI name or logo suggesting endorsement (sections 3 and 7);
+  - use only for aggregated information, no identification of persons or organisations
+    (section 3): met, the tool uses country averages only.
+
 Country boundaries for the aggregation (FC, 2026-10-30):
 
 - **Primary: FAO GAUL 2024**, countries built from level 1 (Global Administrative Unit Layers, FAO Hand-in-Hand
