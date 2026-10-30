@@ -128,7 +128,7 @@ of template v2.
 | `slope` | % | O, N | - | N/A -> 3 %, flooded rice 0 % (rule of L6); section 5.13 |
 | `plantation_lifetime` | years | O | `orchard_lifetime` | Perennials only; default ecoinvent 3.12 (L50) |
 | `planting_density` | seeds kg, seedlings or trees per ha | O | `seeds`, `nb_seedlings`, `nb_planted_trees` | Defaults L46, L47; the unit follows the crop type |
-| `annual_precipitation` | mm/yr | O | `average_annual_precipitation` | Default WFLDB 2017 (L22) until a new default is decided; section 5.13 |
+| `annual_precipitation` | mm/yr | O | `average_annual_precipitation` | Default TerraClimate (section 5.13); WFLDB 2017 (L22) until it is built |
 | `rainfall_erosivity` | MJ mm/(ha h yr) | O, N | - | Default from GloREDa; section 5.13 |
 | `ipcc_climate_zone` | list | O, N | - | Default from the IPCC climate zone map; only if the IPCC 2019 climate-specific N2O factors are adopted; section 5.13 |
 | `soil_clay`, `soil_silt`, `soil_sand` | % of fine earth | O, N | - | Default from HWSD v2.0; section 5.13 |
@@ -380,7 +380,7 @@ reference is built.
 - The Pfister expected value (`bw_expected_m3_t`) is no longer a default of the template input;
   whether the model keeps it as a default for other uses is decided with the defaults.
 
-### 5.13 Soil, climate and topography (Q7, decided by FC on 2026-10-27/30)
+### 5.13 Soil, climate and topography (Q7, decided by FC on 2026-10-30)
 
 Sources proposed in Antón (2026), *Ideas to enhance a crop production LC inventory tool*, Table 1
 and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/external_data/`.
@@ -401,16 +401,46 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
 - **Soil erodibility K** from the texture with the equation of Bos et al. (2016), LANCA v2.0
   (`LANCA_CFLCIA.pdf`, `LANCA.xlsx`), replacing the WFLDB soil-type factors of L27; not a
   template field.
-- **C and P factors** (cover management, support practices): defaults of Panagos et al. (2015a,
-  2015b) (`Panos_soilerosioncover-managmentfactorEU.pdf`, `Panagos Pfactor.pdf`), selected by the
-  `tillage` and `anti_erosion_practice` fields. Both cover the EU only: a fallback for the other
-  countries is to be decided with the defaults.
+- **C factor** (cover management), all countries (FC, 2026-10-30): C = C_crop x C_management, the
+  form of Panagos et al. (2015a), Eq. 1 (`Panos_soilerosioncover-managmentfactorEU.pdf`).
+  - C_crop is a property of the crop, not of the EU, so it is applied in every country: Panagos
+    et al. (2015a) Table 1 (16 arable crops and fallow, values from a literature review) for the
+    crops it covers; for the other crops (vegetables, fruit, perennials, tropical crops) the crop
+    classes of Borrelli et al. (2017), *Nature Communications* 8: 2013
+    (`Borrelli_assessmentonsoilerosion.pdf`), which assign C values to 170 FAOSTAT crops grouped
+    in 14 classes. These values are in the Supplementary Data 1 and Supplementary Table 2 of
+    Borrelli et al. (2017), not in the article: to be supplied by FC.
+  - C_management from the `tillage` field with the tillage factors of Panagos et al. (2015a)
+    Eq. 4a (conventional 1, conservation or ridge tillage 0.35, no till 0.25); the template list of
+    tillage methods is aligned with these classes. The factors of Panagos et al. (2015a) for cover
+    crops and plant residues apply if the template asks for them (optional fields, to be decided
+    with Q8).
+- **P factor** (support practices) (FC, 2026-10-30):
+  - practice given in `anti_erosion_practice`: P from Wischmeier & Smith (1978), USDA Agriculture
+    Handbook 537 (`AH_537 Predicting Rainfall Soil Losses.pdf`), Table 13 (contouring), Table 14
+    (contour strip cropping) and Table 15 (contour-farmed terraced fields), by slope class (slope
+    of the dataset or its default), in every country;
+  - practice N/A or "none": P = 1 outside the EU (no practice; standard assumption of global
+    studies); in the EU the P factor of Panagos et al. (2015b) (`Panagos Pfactor.pdf`; stone walls,
+    grass margins and contour farming from LUCAS), aggregated to the country, as default;
+  - the legacy practice factors of `erosionmodel.py` (0.75, 0.5, 0.37, 0.25, no documented source)
+    are replaced by the tables of AH 537.
+  - `RUSLE2 Handbook_0.pdf` (USDA, 2001) is the user handbook of the RUSLE2 program, not
+    Agriculture Handbook 703 (Renard et al. 1997); AH 537 is sufficient for the P tables.
 - **IPCC climate zone** (`Climate_Zone.zip`): needed only if the climate-specific N2O factors of
   IPCC 2019 (wet / dry climate) are adopted in the model. The classes of the map (IPCC 2006,
   JRC) are to be checked against figure 3A.5.1 of the 2019 Refinement. Optional override:
   `ipcc_climate_zone`.
-- **Annual precipitation** stays optional, with the WFLDB 2017 default (L22) until FC decides a
-  new default.
+- **Annual precipitation** (FC, 2026-10-30): default from TerraClimate (Abatzoglou et al. 2018,
+  *Scientific Data* 5: 170191; `TerraClimate_highresglodatasetofclimaticwater.pdf`), monthly
+  gridded precipitation at about 4 km, summed to annual values and averaged over a recent period
+  (number of years to be decided), aggregated over the crop area like the other maps. TerraClimate
+  also gives the reference evapotranspiration, so the same source provides the ratio of
+  precipitation to potential evapotranspiration that IPCC 2019 uses to separate wet and dry
+  climates. The article describes 1958-2015; the gridded data (not yet in
+  `data/external_data/`) are to be downloaded by FC with their latest year. Cross-check: World Bank
+  `AG.LND.PRCP.MM` (FAO AQUASTAT long-term average precipitation per country,
+  `API_AG.LND.PRCP.MM_DS2_en_csv_v2_1875.zip`). Replaces the WFLDB 2017 default (L22) once built.
 
 All these columns start as N/A (P3): N/A takes the default and records its source in the
 provenance; a value of the provider (e.g. local soil analyses) replaces it for that dataset.
