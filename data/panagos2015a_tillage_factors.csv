@@ -1,0 +1,4 @@
+tillage_class,c_tillage,source,page
+conventional tillage,1,"Panagos et al. (2015a) Land Use Policy 48:38-50, section 3.1.2.1, Eq. (4a)",41
+conservation/ridge tillage,0.35,"Panagos et al. (2015a) Land Use Policy 48:38-50, section 3.1.2.1, Eq. (4a)",41
+no till,0.25,"Panagos et al. (2015a) Land Use Policy 48:38-50, section 3.1.2.1, Eq. (4a)",41

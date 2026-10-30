@@ -104,6 +104,19 @@ The **Use** column below means:
 | `wfldb2017_agr_system_parameters.csv` | WFLDB 3.1 Background Parameters 2017, sheet 1 | model | Default site parameters per country (`defaultTables.py`): annual precipitation, clay and sand content, soil organic carbon, share of soils with pH <= 7, share of precipitation as snow; the soil-type shares give the soil erodibility (L22, L26, L27). MA and CS are legacy values. |
 | `wfldb2017_soil_type_k_factors.csv` | WFLDB 3.1 Documentation 2017, Tab. 6 (Panagos et al. 2014) | model | K factor per soil type: default soil erodibility per country (L27). |
 
+## Erosion factors (pending)
+
+Transcribed for the erosion defaults of the template v3 specification (`docs/template_v3_spec.md`
+section 5.13); awaiting confirmation by FC and not read by the model yet.
+
+| File | Source | Use | How it is used |
+|---|---|---|---|
+| `panagos2015a_crop_c_factors.csv` | Panagos et al. (2015a), Table 1 | pending | C factor per arable crop (C_crop of C = C_crop x C_management). |
+| `panagos2015a_tillage_factors.csv` | Panagos et al. (2015a), Eq. 4a | pending | Tillage factor of C_management: conventional 1, conservation or ridge 0.35, no till 0.25. |
+| `borrelli2017_crop_group_c_factors.csv` | Borrelli et al. (2017), Supplementary Table 2 | pending | C factor of the crops not in Panagos Table 1, by crop group. |
+| `borrelli2017_faostat_crop_groups.csv` | Borrelli et al. (2017), Supplementary Data 1 | pending | FAOSTAT crop -> crop group. |
+| `ah537_p_factors.csv` | USDA Agriculture Handbook 537, Tables 13-15 | pending | P factor by support practice and slope class. |
+
 ## Irrigation and water
 
 | File | Source | Use | How it is used |
