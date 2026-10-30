@@ -499,8 +499,10 @@ Country boundaries for the aggregation (FC, 2026-10-30):
   UNSD M49 table is present; the only GAUL ISO3 code not in the UNSD table is TWN (Taiwan
   Province of China). 22 units have no country: 21 with codes starting with `x` (e.g. Abyei,
   Aksai Chin, Jammu and Kashmir, Arunachal Pradesh, Hala'ib Triangle, Kuril, Paracel, Spratly
-  Islands, the UK bases on Cyprus) plus Greenland coded GRL with `map_code` DNK; a rule for them
-  is to be decided by FC.
+  Islands, the UK bases on Cyprus) plus Greenland coded GRL with `map_code` DNK. Rule (FC,
+  2026-10-30): these units are excluded from the country averages, except Jammu and Kashmir
+  (`xJK`) and Greenland, which are decided by FC once the build script shows their weight in
+  the averages (crop area of SPAM 2020 inside them).
   Third-party terms (metadata sheet, 278 rows, one per country or area): CC BY-IGO (HDX) 108,
   no level 1 data (country outline only) 69, UN SALB terms 35, GAUL 2015 licence 21 (Andorra,
   Anguilla, Azerbaijan, Bahrain, Brunei Darussalam, Egypt, Guernsey, Isle of Man, Israel,
