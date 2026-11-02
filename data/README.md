@@ -118,12 +118,13 @@ maps aggregated over the crop area (build environment `.venv-gis`: numpy, tifffi
 | `ah537_p_factors.csv` | USDA Agriculture Handbook 537, Tables 13-15 | model | P factor by support practice and slope class. |
 | `erosion_crop_c_factor_mapping.csv` | AgriToolV.1 (signed by FC) | model | Tool crop -> Panagos crop type or Borrelli FAOSTAT crop and sub-group: default `crop_factor`. |
 | `erosion_tillage_mapping.csv` | AgriToolV.1 (signed by FC) | model | Tillage method of the template -> Panagos tillage class. |
-| `erosion_practice_mapping.csv` | AgriToolV.1 (signed by FC) | model | Anti-erosion practice -> AH 537 table and system (P = 1 without a table). |
+| `erosion_practice_mapping.csv` | AgriToolV.1 (signed by FC) | model | Anti-erosion practice -> AH 537 table and system (without a table: `support_practice_factor`, L62). |
 | `gloreda2023_rainfall_erosivity.csv` | GloREDa (ESDAC 2023) over the SPAM 2020 V2r2 crop area. Built by `build_gloreda_erosivity.py`. | model | Default rainfall erosivity R per crop and country (L60). |
 | `spam2020_crop_mapping.csv` | AgriToolV.1 (signed by FC), from mapspamc | build | Tool crop -> SPAM 2020 crop: weights of the crop x country maps (L60). |
 | `mapspamc_faostat_spam_crops.csv` | mapspamc R package, faostat2crop | reference | FAOSTAT item -> SPAM crop, reference of `spam2020_crop_mapping.csv`. |
 | `spam2020_crops.csv` | SPAM 2020 V2r2 README | reference | The 46 SPAM crops. |
 | `terraclimate1991_2020_climate.csv` | TerraClimate 1991-2020 over the SPAM 2020 V2r2 crop area. Built by `build_terraclimate_climate.py`. | model | Default annual precipitation per crop and country (L61); PET and the precipitation/PET ratio not read yet. |
+| `panagos2015b_p_factor.csv` | Panagos et al. (2015b) P-factor map (ESDAC) over the SPAM 2020 V2r2 crop area. Built by `build_panagos_p_factor.py`. | model | Default `support_practice_factor` per crop and country in the EU (9 tool countries), for the practices without AH 537 factor; 1 elsewhere (L62). |
 
 ## Irrigation and water
 

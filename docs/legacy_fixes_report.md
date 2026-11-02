@@ -2566,3 +2566,32 @@ and surface water, kg NO3/ha):
 | rice_IN | CN | 575 -> 1010 | 211.0 -> 240.9 | 1.14 |
 | apple_FR | FR | 839 -> 784 | 153.2 -> 150.1 | 0.98 |
 | apple_FR | PE | 1513 -> 118 | 191.1 -> 112.5 | 0.59 |
+
+## 49. Support-practice factor P of the EU from Panagos et al. (2015b) (decision L62, 2026-11-02)
+
+New default input `support_practice_factor`: P of the support practices (contouring, stone walls, grass margins) of the
+crop in the country, from the ESDAC map of Panagos et al. (2015b) averaged over the SPAM 2020 V2r2 physical area of the
+crop (`panagos2015b_p_factor.csv`). The erosion model uses it for the practices without an AH 537 factor (`unknown`,
+`no_practice`, `cross_slope`, `strip_cropping_cross_slope`), which gave P = 1 before; outside the EU it is 1.
+
+Country values (all crops) against Table 6 of the paper (mean over the whole country):
+
+| Country | P, tool | P, Table 6 | Difference | Range over the 67 crops |
+|---|---|---|---|---|
+| BE | 0.9260 | 0.9465 | -2.2 % | 0.856 - 0.999 |
+| DE | 0.9737 | 0.9782 | -0.5 % | 0.962 - 0.985 |
+| ES | 0.9292 | 0.9293 | 0.0 % | 0.903 - 0.996 |
+| FI | 0.9840 | 0.9942 | -1.0 % | 0.940 - 0.987 |
+| FR | 0.9504 | 0.9627 | -1.3 % | 0.935 - 0.980 |
+| HU | 0.9801 | 0.9840 | -0.4 % | 0.962 - 0.983 |
+| IT | 0.9249 | 0.9519 | -2.8 % | 0.874 - 0.956 |
+| NL | 0.9508 | 0.9561 | -0.6 % | 0.880 - 0.999 |
+| PL | 0.9630 | 0.9781 | -1.5 % | 0.937 - 0.982 |
+
+CH, CS, RU, TR and UA reach the map only with SPAM cells across the EU border (coverage 0.09, 0.08 and under 0.01):
+no value, P = 1.
+
+Regression snapshots: eroded soil, P to surface water by erosion and heavy metals to surface water of wheat_IT x 0.930
+(`no_practice`, P of wheat in IT) and apple_FR x 0.951 (`unknown`, P of apple in FR); the heavy-metal balances to soil
+rise by the metal no longer removed with the soil (wheat_IT Cr soil minus uptake from -0.00008 to +0.00145 kg/ha,
+Ni and Pb still negative). rice_IN unchanged (IN outside the EU).

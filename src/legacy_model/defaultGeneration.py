@@ -22,7 +22,7 @@ from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUN
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP, LEGUME_CROPS, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS, PK_PER_KG_MAIN_PRODUCT_PER_CROP, \
     IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY, ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY, \
-    LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY, MINERAL_N_RULE_WITHOUT_IFA_RATE, RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY
+    LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY, MINERAL_N_RULE_WITHOUT_IFA_RATE, RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY,     SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY
 from directMappingEnums import PlasticDisposal, Plantprotection, Soilcultivation, \
     Sowingplanting, Fertilisation, Harvesting, OtherWorkProcesses, Biowaste
 from models.atomicmass import MA_CO2, MA_C
@@ -128,6 +128,16 @@ class RainfallErosivityDefaultGenerator(object):
         table = RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY.get(generators["crop"],
                                                             RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY["all_crops"])
         return table[generators["country"]]
+
+
+class SupportPracticeFactorDefaultGenerator(object):
+    """P of the support practices of the crop in the country (Panagos et al. 2015b over the SPAM 2020 area of the crop,
+    decision L62), used by the erosion model when the practice has no AH 537 factor; the row "all_crops" of the country
+    for a crop outside the table; 1 outside the EU."""
+    def generateDefault(self, field, generators):
+        table = SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY.get(generators["crop"],
+                                                                 SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY["all_crops"])
+        return table.get(generators["country"], 1.0)
 
 
 class AnnualPrecipitationDefaultGenerator(object):
@@ -692,6 +702,7 @@ DEFAULTS_VALUES_GENERATORS = {
     "slope_length": SimpleValueDefaultGenerator(50.0),
     "tillage_method": SimpleValueDefaultGenerator(TillageMethod.unknown),
     "anti_erosion_practice": SimpleValueDefaultGenerator(AntiErosionPractice.unknown),
+    "support_practice_factor": SupportPracticeFactorDefaultGenerator(),
     "sand_content": TableLookupDefaultGenerator("country", SAND_CONTENT_PER_COUNTRY),
     "soil_texture": SoilTextureDefaultGenerator(),
     "soil_erodibility_factor": ErodibilityDefaultGenerator(),

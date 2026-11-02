@@ -397,6 +397,10 @@ RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("gloreda
 # (scripts/build_terraclimate_climate.py)
 ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("terraclimate1991_2020_climate.csv",
                                                                           "annual_precipitation_mm")
+# Support-practice factor P of the EU, per crop and country, with the row "all_crops" per country (decision L62):
+# Panagos et al. (2015b) map (contouring, stone walls, grass margins), mean over the SPAM 2020 V2r2 physical area of the
+# crop (scripts/build_panagos_p_factor.py); EU countries only
+SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("panagos2015b_p_factor.csv", "p_factor")
 
 #src: ecoinvent report no. 15a
 # Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry

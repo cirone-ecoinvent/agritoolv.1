@@ -85,10 +85,12 @@ def table(filename, key_column=None, numeric=True):
 
 
 def crop_country_table(filename, column):
-    """{crop: {country: float}} of a table with one row per crop and country (columns crop, country)."""
+    """{crop: {country: float}} of a table with one row per crop and country (columns crop, country); rows with an
+    empty value are left out."""
     out = {}
     for row in rows(filename):
-        out.setdefault(row["crop"], {})[row["country"]] = float(row[column])
+        if row[column] != "":
+            out.setdefault(row["crop"], {})[row["country"]] = float(row[column])
     return out
 
 

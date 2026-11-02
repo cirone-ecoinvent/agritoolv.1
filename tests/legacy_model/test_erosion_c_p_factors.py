@@ -14,7 +14,8 @@ def _defaults(**inputs):
 def _erosion(**inputs):
     values = {"rainfall_erosivity": 1000.0, "slope": 0.03, "slope_length": 50.0,
               "tillage_method": TillageMethod.unknown, "anti_erosion_practice": AntiErosionPractice.no_practice,
-              "soil_erodibility_factor": 0.03, "crop_factor": 0.2}
+              "soil_erodibility_factor": 0.03, "crop_factor": 0.2,
+              "support_practice_factor": 1.0}
     values.update(inputs)
     return ErosionModel(values)
 
