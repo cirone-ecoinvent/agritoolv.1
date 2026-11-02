@@ -37,6 +37,8 @@ Review tables (all in data/):
   erosion_tillage_mapping.csv             idem
   erosion_practice_mapping.csv            idem
   spam2020_crop_mapping.csv               usable when status is confirmed (crop area weights of the maps, L60)
+  lanca2016_permeability_classes.csv      usable when status is confirmed (soil erodibility K from HWSD, L63)
+  hwsd_k_factor_parameters.csv            idem
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -100,6 +102,8 @@ TABLES = [
     ("erosion_tillage_mapping.csv", ("confirmed",), ("tillage_method", "panagos_tillage_class", "status")),
     ("erosion_practice_mapping.csv", ("confirmed",), ("anti_erosion_practice", "ah537_table", "ah537_system", "status")),
     ("spam2020_crop_mapping.csv", ("confirmed",), ("crop", "faostat_item_code", "spam2020_crop", "rule", "status")),
+    ("lanca2016_permeability_classes.csv", ("confirmed",), ("texture_usda_code", "hwsd_texture_usda", "permeability_class", "status")),
+    ("hwsd_k_factor_parameters.csv", ("confirmed",), ("parameter", "value", "unit", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]

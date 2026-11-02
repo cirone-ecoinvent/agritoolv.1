@@ -2595,3 +2595,25 @@ Regression snapshots: eroded soil, P to surface water by erosion and heavy metal
 (`no_practice`, P of wheat in IT) and apple_FR x 0.951 (`unknown`, P of apple in FR); the heavy-metal balances to soil
 rise by the metal no longer removed with the soil (wheat_IT Cr soil minus uptake from -0.00008 to +0.00145 kg/ha,
 Ni and Pb still negative). rice_IN unchanged (IN outside the EU).
+
+## 50. Soil properties and erodibility K from HWSD v2.0 (decision L63, 2026-11-02)
+
+Default `clay_content` (topsoil 0-20 cm), `organic_carbon_content` (0-50 cm, the soil volume of the nitrate model),
+`soil_with_ph_under_or_7` (share of the soil units with pH in water <= 7) and `soil_erodibility_factor` (K of LANCA,
+Bos et al. 2016, Eq. 7, very fine sand = 0) per crop and country from the Harmonized World Soil Database v2.0,
+averaged over the SPAM 2020 V2r2 physical area of the crop (`hwsd2_soil.csv`), instead of the WFLDB 2017 country
+values. Medians over the 39 countries (all crops, HWSD / WFLDB): clay 0.70, organic carbon 1.08, K 0.72 (K of Renard
+et al. 1997 Eq. 3-5, built as a cross-check: 1.10).
+
+Regression cases (crop row of the country):
+
+| Case | Clay WFLDB -> HWSD | OC WFLDB -> HWSD | pH <= 7 | K WFLDB -> HWSD | Eroded soil | NO3 |
+|---|---|---|---|---|---|---|
+| wheat_IT | 30.1 -> 25.6 % | 1.10 -> 1.27 % | 0.80 -> 0.77 | 0.0346 -> 0.0227 | x 0.656 | x 1.129 |
+| rice_IN | 34.7 -> 27.7 % | 0.88 -> 1.11 % | 0.50 -> 0.85 | 0.0285 -> 0.0192 | x 0.673 | x 1.366 |
+| apple_FR | 30.4 -> 20.7 % | 1.42 -> 1.56 % | 0.80 -> 0.77 | 0.0335 -> 0.0247 | x 0.737 | x 1.202 |
+
+P to surface water by erosion and heavy metals to surface water follow the eroded soil; the heavy-metal balances to
+soil rise by the metal no longer removed with the soil. N2O rises with the leached nitrate (indirect EF5: wheat_IT
+x 1.008, rice_IN x 1.061, apple_FR x 1.033); NH3 changes by less than 1 % with the pH share (rice_IN unchanged: urea on
+flooded rice takes the paddy factor for both pH classes, L54).

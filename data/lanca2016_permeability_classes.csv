@@ -1,0 +1,14 @@
+texture_usda_code,hwsd_texture_usda,lanca_texture,permeability_class,note,status,reviewed_by
+1,Clay (heavy),clay,6,,confirmed,FC
+2,Silty clay,silty clay,6,,confirmed,FC
+3,Clay (light),clay,6,,confirmed,FC
+4,Silty clay loam,silty clay loam,5,,confirmed,FC
+5,Clay loam,clay loam,4,,confirmed,FC
+6,Silt,,3,Not in LANCA Table 4: class of silt loam (moderate),confirmed,FC
+7,Silt loam,silty loam,3,,confirmed,FC
+8,Sandy clay,sand clay,5,,confirmed,FC
+9,Loam,loam,3,,confirmed,FC
+10,Sandy clay loam,sandy clay loam,4,,confirmed,FC
+11,Sandy loam,sandy loam,2,,confirmed,FC
+12,Loamy sand,loamy sand,2,,confirmed,FC
+13,Sand,sand,1,,confirmed,FC

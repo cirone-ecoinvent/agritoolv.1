@@ -101,8 +101,8 @@ The **Use** column below means:
 | File | Source | Use | How it is used |
 |---|---|---|---|
 | `p_landuse_classes.csv` | Prasuhn (2006) SALCA-Phosphor, Tab. 1 and 2 | model | Average P leaching and run-off per land use class (`pmodel.py`). |
-| `wfldb2017_agr_system_parameters.csv` | WFLDB 3.1 Background Parameters 2017, sheet 1 | model | Default site parameters per country (`defaultTables.py`): clay and sand content, soil organic carbon, share of soils with pH <= 7, share of precipitation as snow; the soil-type shares give the soil erodibility (L22, L26, L27). MA and CS are legacy values. The annual precipitation column is no longer read (L61). |
-| `wfldb2017_soil_type_k_factors.csv` | WFLDB 3.1 Documentation 2017, Tab. 6 (Panagos et al. 2014) | model | K factor per soil type: default soil erodibility per country (L27). |
+| `wfldb2017_agr_system_parameters.csv` | WFLDB 3.1 Background Parameters 2017, sheet 1 | model | Default share of precipitation as snow per country (`defaultTables.py`, L22). MA and CS are legacy values. The soil columns (clay, sandy soils, organic carbon, pH <= 7, soil-type shares; L26, L27) are no longer read (L63), nor is the annual precipitation column (L61). |
+| `wfldb2017_soil_type_k_factors.csv` | WFLDB 3.1 Documentation 2017, Tab. 6 (Panagos et al. 2014) | reference | K factor per soil type: default soil erodibility per country until L63 (L27); not read. |
 
 ## Erosion factors
 
@@ -124,6 +124,10 @@ maps aggregated over the crop area (build environment `.venv-gis`: numpy, tifffi
 | `mapspamc_faostat_spam_crops.csv` | mapspamc R package, faostat2crop | reference | FAOSTAT item -> SPAM crop, reference of `spam2020_crop_mapping.csv`. |
 | `spam2020_crops.csv` | SPAM 2020 V2r2 README | reference | The 46 SPAM crops. |
 | `terraclimate1991_2020_climate.csv` | TerraClimate 1991-2020 over the SPAM 2020 V2r2 crop area. Built by `build_terraclimate_climate.py`. | model | Default annual precipitation per crop and country (L61); PET and the precipitation/PET ratio not read yet. |
+| `hwsd2_soil.csv` | HWSD v2.0 (FAO & IIASA 2023) over the SPAM 2020 V2r2 crop area. Built by `build_hwsd_soil.py`. Licence CC BY-NC-SA 3.0 IGO. | model | Default clay, organic carbon 0-50 cm, share of soils with pH <= 7 and erodibility K (LANCA) per crop and country (L63); silt, sand, coarse fragments, pH and K of Renard not read. |
+| `lanca2016_permeability_classes.csv` | LANCA v2.0 (Bos et al. 2016), Table 4 (signed by FC) | build | USDA texture class of HWSD -> permeability class of the K equation (L63). |
+| `lanca2016_stoniness_factors.csv` | LANCA v2.0 (Bos et al. 2016), Table 5 | build | Stoniness factor per class of coarse fragments (L63). |
+| `hwsd_k_factor_parameters.csv` | Renard et al. (1997) Eq. 3-6, LANCA Eq. 7 (signed by FC) | build | Parameters and assumptions of the K equations (L63). |
 | `panagos2015b_p_factor.csv` | Panagos et al. (2015b) P-factor map (ESDAC) over the SPAM 2020 V2r2 crop area. Built by `build_panagos_p_factor.py`. | model | Default `support_practice_factor` per crop and country in the EU (9 tool countries), for the practices without AH 537 factor; 1 elsewhere (L62). |
 
 ## Irrigation and water

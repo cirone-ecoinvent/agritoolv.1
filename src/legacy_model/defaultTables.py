@@ -11,39 +11,18 @@ from models.fertilisermodel import NFertiliserType, KFertiliserType, \
     PFertiliserType
 from models.irrigationmodel import IrrigationType, WaterUseType
 from models.manuremodel import ManureModel
-from models.modelEnums import SoilTexture
 from models.pmodel import LandUseCategory
 
 # Country tables of the WFLDB 2017 background parameters (decision L22): ecoinvent 3 report
 # WFLDB_BackgroundParameters_2017.xlsx, sheets 1-2; MA and CS are not in WFLDB (legacy values).
 _WFLDB_PARAMETERS = "wfldb2017_agr_system_parameters.csv"
 _WFLDB_WATER_SOURCES = "wfldb2017_irrigation_water_sources.csv"
-_WFLDB_K_FACTORS = "wfldb2017_soil_type_k_factors.csv"
 
 
 def _wfldb_country_column(column):
     return {country: row[column] for country, row in dataloader.table(_WFLDB_PARAMETERS).items()}
 
 
-def _wfldb_erodibility_per_country():
-    """K = sum of the soil-type shares x K-factor ** (recalculated from Panagos et al. 2014) of the WFLDB
-    Documentation 2017, Tab. 6 (decision L27); countries without WFLDB soil types (MA, CS) are left out."""
-    k_factors = {soil_type: row["k_factor_panagos2014_t_h_per_mj_mm"]
-                 for soil_type, row in dataloader.table(_WFLDB_K_FACTORS).items()}
-    erodibility = {}
-    for country, row in dataloader.table(_WFLDB_PARAMETERS).items():
-        shares = {soil_type: row[soil_type + "_soils_ratio"] for soil_type in k_factors}
-        if None not in shares.values():
-            erodibility[country] = sum(shares[t] * k_factors[t] for t in k_factors)
-    return erodibility
-
-
-CLAY_CONTENT_PER_COUNTRY = _wfldb_country_column("clay_content_ratio")
-# WFLDB share of sandy soils (WRB soil type), used as sand content of the soil texture (L22)
-SAND_CONTENT_PER_COUNTRY = _wfldb_country_column("sandy_soils_ratio")
-# topsoil organic carbon, kg C/kg soil (WFLDB row "Humus content", calculated from the carbon content; L26)
-SOIL_CARBON_CONTENT_PER_COUNTRY = _wfldb_country_column("soil_organic_carbon_ratio")
-SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY = _wfldb_country_column("soil_ph_le7_ratio")
 YEARLY_PRECIPITATION_AS_SNOW_PER_COUNTRY = _wfldb_country_column("precipitation_as_snow_ratio")
 IRR_WATERUSE_RATIO_PER_COUNTRY = {
     country: {WaterUseType.groundwater: row["groundwater"],
@@ -58,8 +37,6 @@ _MANURE_SHARES = {country: ManureModel.country_shares(country) for country in _C
 MANURE_LIQUID_RATIO_PER_COUNTRY = {country: shares[0] for country, shares in _MANURE_SHARES.items()}
 MANURE_SOLID_RATIO_PER_COUNTRY = {country: shares[1] for country, shares in _MANURE_SHARES.items()}
 MANURE_LIQUID_N_FRACTION_PER_COUNTRY = {country: ManureModel.liquid_n_fraction(country) for country in _COUNTRIES}
-# t h/(MJ mm)
-SOIL_ERODIBILITY_FACTOR_PER_COUNTRY = _wfldb_erodibility_per_country()
 
 
 def _orchard_lifetime_per_crop():
@@ -401,6 +378,21 @@ ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("terra
 # Panagos et al. (2015b) map (contouring, stone walls, grass margins), mean over the SPAM 2020 V2r2 physical area of the
 # crop (scripts/build_panagos_p_factor.py); EU countries only
 SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("panagos2015b_p_factor.csv", "p_factor")
+
+
+def _hwsd_soil(column, scale=1.0):
+    return {crop: {country: value * scale for country, value in countries.items()}
+            for crop, countries in dataloader.crop_country_table("hwsd2_soil.csv", column).items()}
+
+
+# Soil per crop and country, with the row "all_crops" per country (decision L63): Harmonized World Soil Database v2.0,
+# mean over the SPAM 2020 V2r2 physical area of the crop (scripts/build_hwsd_soil.py). Clay of the topsoil (0-20 cm),
+# ratio; organic carbon 0-50 cm (soil volume of the nitrate model), kg C/kg soil; share of the soils with pH in water
+# <= 7 in the topsoil; erodibility K, t h/(MJ mm), LANCA (Bos et al. 2016) Eq. 7 with the topsoil
+CLAY_CONTENT_PER_CROP_PER_COUNTRY = _hwsd_soil("clay_pct", 0.01)
+SOIL_CARBON_CONTENT_PER_CROP_PER_COUNTRY = _hwsd_soil("org_carbon_0_50_pct", 0.01)
+SOIL_WITH_PH_UNDER_OR_7_PER_CROP_PER_COUNTRY = _hwsd_soil("ph_le7_share")
+SOIL_ERODIBILITY_FACTOR_PER_CROP_PER_COUNTRY = _hwsd_soil("k_lanca")
 
 #src: ecoinvent report no. 15a
 # Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
@@ -1085,16 +1077,6 @@ ROOTING_DEPTH_PER_CROP = {
     "turmeric": 0.45,
     "wheat": 0.7
 }
-
-#src except unknown: EUROPEAN COMMISSION DIRECTORATE GENERAL JRC JOINT RESEARCH CENTRE Space Applications Institute European Soil Bureau
-SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE = {
-                        SoilTexture.unknown:0.032,#Panagos et al. 2014
-                        SoilTexture.coarse:0.0115,
-                        SoilTexture.medium:0.0311,
-                        SoilTexture.medium_fine:0.0438,
-                        SoilTexture.fine:0.0339,
-                        SoilTexture.very_fine:0.017
-                        }
 
 #From GD_crop WaterNutrient_L1 column C
 #  Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
