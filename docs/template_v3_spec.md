@@ -123,17 +123,18 @@ of template v2.
 | `irrigation_water`, `irrigation_water_unit` | m3/ha or mm, per crop cycle | R if `irrigated` = yes | `total_wateruse` | No default (section 5.12); must be 0 or N/A when `irrigated` = no |
 | `irrigation_share_surface`, `irrigation_share_sprinkler`, `irrigation_share_drip` | % of the irrigation water | R if `irrigated` = yes, N | `ratio_irr_*` (not in v2) | Sum 100 %; one technique = 100 %. No default (section 5.12) |
 | `drained_share` | % of area | O | `drainage` | Default 0 (L5) |
-| `tillage` | list | O | `tillage_method` | Default "unknown" (factor 1); C factor, section 5.13 |
-| `anti_erosion_practice` | list | O | `anti_erosion_practice` | Default "unknown" (factor 1); P factor, section 5.13 |
+| `tillage` | list | O | `tillage_method` | fall plough, spring plough, mulch tillage, ridge tillage, zone tillage, no till, unknown (`erosion_tillage_mapping.csv`; the legacy key of fall plough is spelled `fall_plaw`). Default "unknown" = conventional tillage, C_tillage 1 (L59); section 5.13 |
+| `anti_erosion_practice` | list | O | `anti_erosion_practice` | no practice, contour farming, strip cropping on the contour, terraces, unknown (`erosion_practice_mapping.csv`; cross slope and strip cropping cross slope are not offered, L62). Default "unknown": P of Panagos et al. (2015b) in the EU, 1 elsewhere (L62); section 5.13 |
 | `slope` | % | O, N | - | N/A -> 3 %, flooded rice 0 % (rule of L6); section 5.13 |
 | `plantation_lifetime` | years | O | `orchard_lifetime` | Perennials only; default ecoinvent 3.12 (L50) |
 | `planting_density` | seeds kg, seedlings or trees per ha | O | `seeds`, `nb_seedlings`, `nb_planted_trees` | Defaults L46, L47; the unit follows the crop type |
-| `annual_precipitation` | mm/yr | O | `average_annual_precipitation` | Default TerraClimate (section 5.13); WFLDB 2017 (L22) until it is built |
-| `rainfall_erosivity` | MJ mm/(ha h yr) | O, N | - | Default from GloREDa; section 5.13 |
+| `annual_precipitation` | mm/yr | O | `average_annual_precipitation` | Default TerraClimate 1991-2020 over the crop area (L61); section 5.13 |
+| `rainfall_erosivity` | MJ mm/(ha h yr) | O, N | `rainfall_erosivity` | Default GloREDa over the crop area (L60); section 5.13 |
 | `ipcc_climate_zone` | list | O, N | - | Default from the IPCC climate zone map; only if the IPCC 2019 climate-specific N2O factors are adopted; section 5.13 |
-| `soil_clay`, `soil_silt`, `soil_sand` | % of fine earth | O, N | - | Default from HWSD v2.0; section 5.13 |
-| `soil_organic_carbon` | % | O, N | - | Default from HWSD v2.0; section 5.13 |
-| `soil_ph` | - | O, N | - | Default from HWSD v2.0; section 5.13 |
+| `soil_clay` | % of fine earth | O, N | `clay_content` (ratio) | Topsoil 0-20 cm. Default HWSD v2.0 over the crop area (L63); the reader divides by 100; section 5.13 |
+| `soil_organic_carbon` | % (kg C per 100 kg soil) | O, N | `organic_carbon_content` (kg C/kg soil) | Mean of 0-50 cm, the soil volume of the nitrate model. Default HWSD v2.0 (L63); the reader divides by 100; section 5.13 |
+| `soil_ph` | pH in water | O, N | `soil_with_ph_under_or_7` (share) | Topsoil. The reader sets the share to 1 for pH <= 7 and 0 above. Default: share of the soil units with pH <= 7 from HWSD v2.0 (L63); section 5.13 |
+| `soil_silt`, `soil_sand` | % | D | - | Dropped: no model reads them since L63 (sand and texture removed; K comes from the default table) |
 | `climate_zone`, `climate_zone_specific` | list | D | `climate_zone_1`, `climate_zone_specific` | Dropped: used only for the rainfall erosivity R, now taken from GloREDa (Q7, section 5.13) |
 | `wet_days`, `elevation` | days, m | D | `nb_wet_days_per_year`, `mean_elevation_m` | Dropped for the same reason (Q7) |
 | `record_entry_by`, `collection_method` | text | moved | same | To sheet `Sources` |
@@ -409,13 +410,17 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
   used only for this (the NH3 model no longer reads the climate since L38). R is taken instead
   from the Global Rainfall Erosivity Database, GloREDa (ESDAC; `Public_GLOREDA_07082023.zip`),
   so these four fields are removed from the template. Optional override: `rainfall_erosivity`.
+  Implemented in L60: the 12 monthly maps averaged to the SPAM grid and summed to the year, mean
+  over the SPAM 2020 V2r2 physical area of the crop in the country (`gloreda2023_rainfall_erosivity.csv`).
 - **Slope.** Optional field `slope` (%). N/A keeps the rule of L6 (3 %, flooded rice 0 %), which
   sets the LS factor and the 3 % threshold of the phosphate run-off. This revises L6 (no slope
   field) for providers who know the slope.
-- **Soil.** Clay, silt, sand, soil organic carbon and pH from the Harmonized World Soil Database
-  v2.0 (FAO & IIASA 2023; `HWSD2_RASTER.zip`, documentation `HarmonizedWorldSoilDatabase.pdf`),
-  replacing the country table of WFLDB 2017 (L22, L26). Optional overrides: `soil_clay`,
-  `soil_silt`, `soil_sand`, `soil_organic_carbon`, `soil_ph`. The attributes are in the database
+- **Soil.** Soil properties from the Harmonized World Soil Database v2.0 (FAO & IIASA 2023;
+  `HWSD2_RASTER.zip`, documentation `HarmonizedWorldSoilDatabase.pdf`), replacing the country
+  table of WFLDB 2017 (L22, L26). Implemented in L63 (`hwsd2_soil.csv`, crop-area weighted as R):
+  clay of the topsoil (0-20 cm), organic carbon of 0-50 cm, share of the soil units with pH in
+  water <= 7 in the topsoil, and K. Optional overrides: `soil_clay`, `soil_organic_carbon`,
+  `soil_ph` (section 5.1); silt and sand are no longer read. The attributes are in the database
   `HWSD2_DB.zip` (Microsoft Access), linked to the raster through the soil mapping unit; the
   technical report is FAO & IIASA (2023), `cc3823en.pdf`.
   Licence (FC, 2026-11-02): the technical report states CC BY-NC-SA 3.0 IGO (non-commercial use
@@ -428,7 +433,9 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
   SoilGrids 2.0); see section 9.
 - **Soil erodibility K** from the texture with the equation of Bos et al. (2016), LANCA v2.0
   (`LANCA_CFLCIA.pdf`, `LANCA.xlsx`), replacing the WFLDB soil-type factors of L27; not a
-  template field.
+  template field. Implemented in L63: LANCA Eq. 7-8 per HWSD soil unit, very fine sand 0, then
+  averaged like the other soil values. K is taken from the default table, so a provider value of
+  clay or organic carbon does not change K.
 - **C factor** (cover management), all countries (FC, 2026-10-30): C = C_crop x C_management, the
   form of Panagos et al. (2015a), Eq. 1 (`Panos_soilerosioncover-managmentfactorEU.pdf`).
   - C_crop is a property of the crop, not of the EU, so it is applied in every country: Panagos
@@ -438,22 +445,23 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
     (`Borrelli_assessmentonsoilerosion.pdf`), which assign C values to FAOSTAT crops grouped in
     14 classes: Supplementary Table 2 (`Borelli_SMs_info.pdf`, p. 35) and Supplementary Data 1
     (`Borelli_SMs_data.xlsx`; 176 crops, while the article states 170), transcribed to
-    `data/borrelli2017_crop_group_c_factors.csv` and `data/borrelli2017_faostat_crop_groups.csv`
-    (branch `data/erosion-factors`). The tool crop -> crop group mapping is a judgement table to be
-    signed by FC.
+    `data/borrelli2017_crop_group_c_factors.csv` and `data/borrelli2017_faostat_crop_groups.csv`.
+    The tool crop -> C mapping is `erosion_crop_c_factor_mapping.csv`, signed by FC (L59).
   - C_management from the `tillage` field with the tillage factors of Panagos et al. (2015a)
-    Eq. 4a (conventional 1, conservation or ridge tillage 0.35, no till 0.25); the template list of
-    tillage methods is aligned with these classes. The factors of Panagos et al. (2015a) for cover
-    crops and plant residues apply if the template asks for them (optional fields, to be decided
-    with Q8).
+    Eq. 4a (conventional 1, conservation or ridge tillage 0.35, no till 0.25), through
+    `erosion_tillage_mapping.csv` (L59): fall and spring plough and unknown are conventional;
+    mulch, ridge and zone tillage are conservation or ridge tillage. The factors of Panagos et al.
+    (2015a) for cover crops and plant residues are not used: template v3 does not ask for them
+    (Q8 asks only the fate of the co-products).
 - **P factor** (support practices) (FC, 2026-10-30):
   - practice given in `anti_erosion_practice`: P from Wischmeier & Smith (1978), USDA Agriculture
     Handbook 537 (`AH_537 Predicting Rainfall Soil Losses.pdf`), Table 13 (contouring), Table 14
     (contour strip cropping) and Table 15 (contour-farmed terraced fields), by slope class (slope
     of the dataset or its default), in every country;
-  - practice N/A or "none": P = 1 outside the EU (no practice; standard assumption of global
-    studies); in the EU the P factor of Panagos et al. (2015b) (`Panagos Pfactor.pdf`; stone walls,
-    grass margins and contour farming from LUCAS), aggregated to the country, as default;
+  - practice N/A, "unknown" or "no practice": P = 1 outside the EU (no practice; standard
+    assumption of global studies); in the EU the P factor of Panagos et al. (2015b) (`Panagos
+    Pfactor.pdf`; stone walls, grass margins and contour farming from LUCAS), averaged over the
+    crop area (L62, `panagos2015b_p_factor.csv`; values for BE, DE, ES, FI, FR, HU, IT, NL, PL);
   - the legacy practice factors of `erosionmodel.py` (0.75, 0.5, 0.37, 0.25, no documented source)
     are replaced by the tables of AH 537.
   - Agriculture Handbook 703 (Renard et al. 1997, RUSLE;
@@ -463,9 +471,11 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
     (Table 6-15) needs the terrace interval and the outlet type, which the template does not ask.
     FC chose AH 537 (option a, 2026-10-30); AH 703 is the methodological reference.
     (`RUSLE2 Handbook_0.pdf` is the user handbook of the RUSLE2 program, not AH 703.)
-  - Tables 13-15 of AH 537 are transcribed to `data/ah537_p_factors.csv`; the slope classes are
-    printed with gaps (1-2, 3-5 %, ...): the rule for intermediate slopes is set in the
-    implementation.
+  - Tables 13-15 of AH 537 are transcribed to `data/ah537_p_factors.csv` and applied through
+    `erosion_practice_mapping.csv` (L59): contour farming Table 13, strip cropping on the contour
+    Table 14 system B (the template does not ask the rotation), terraces Table 15 (farm planning,
+    contour factor). A slope belongs to the first printed class whose upper limit it does not
+    exceed; above 25 % P = 1.
 - **IPCC climate zone** (`Climate_Zone.zip`): needed only if the climate-specific N2O factors of
   IPCC 2019 (wet / dry climate) are adopted in the model. The classes of the map (IPCC 2006,
   JRC) are to be checked against figure 3A.5.1 of the 2019 Refinement. Optional override:
@@ -485,32 +495,37 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
   179.979 and 89.979 to -89.979); 12 monthly steps ("months since January"); variables `ppt`
   ("Accumulated Precipitation") and `pet` ("Reference Evapotranspiration") in mm, stored with
   `scale_factor` and `add_offset`; global note "computed from TerraClimate v1.1 using years
-  1991-2020". The data values themselves were not read (no netCDF reader available in that
-  check); the build script must report the annual range per country for FC to confirm. The
-  period 1991-2020 replaces the "recent period" to be decided above.
+  1991-2020". Implemented in L61 (`terraclimate1991_2020_climate.csv`): the 12 months summed,
+  mean over the SPAM 2020 V2r2 physical area of the crop in the country; PET and the ratio
+  precipitation / PET are in the table but not used.
   Cross-check: World Bank
   `AG.LND.PRCP.MM` (FAO AQUASTAT long-term average precipitation per country,
-  `API_AG.LND.PRCP.MM_DS2_en_csv_v2_1875.zip`). Replaces the WFLDB 2017 default (L22) once built.
+  `API_AG.LND.PRCP.MM_DS2_en_csv_v2_1875.zip`). Replaces the WFLDB 2017 default (L22).
 
 All these columns start as N/A (P3): N/A takes the default and records its source in the
 provenance; a value of the provider (e.g. local soil analyses) replaces it for that dataset.
 
-The defaults themselves are built with the default tables, not in the template: the maps are
-aggregated to the country (and later the region) over the cropland, ideally weighted by the area
-of the crop (SPAM 2020, `spam2020V0r1_global_physical_area.zip`); the aggregation rule, the
-fallback (section 5.10) and the tables are decided and confirmed by FC there. The GloREDa archive
-(about 2.2 GB) has to be processed on FC's computer.
+The defaults themselves are built with the default tables, not in the template (`scripts/spam_grid.py`
+and the build scripts of L60-L63): each map is averaged to the 1/12 degree cells of the SPAM 2020
+grid, then over the SPAM 2020 V2r2 physical area (all technologies) of the crop in the country,
+the country of a cell being the GAUL 2024 country that contains its centre. When the crop has no
+SPAM area in the country, the area of all SPAM crops is used (row `all_crops`). Tool crop -> SPAM
+crop: `spam2020_crop_mapping.csv`, signed by FC (L60). The tables cover the 39 tool countries; the
+extension to M49 is in section 5.10.
 
 SPAM 2020 (FC, 2026-10-30):
 
-- Versions in `data/external_data/`: V0r1 (physical area GeoTIFF, used so far) and V2r2 of
+- Versions in `data/external_data/`: V0r1 (physical area GeoTIFF, replaced by V2r2 in L60) and V2r2 of
   2026-04-22 (`SPAM 2020 V2r2.zip`, and the CSV files of harvested area, physical area,
   production and yield for all, irrigated and rainfed technologies). V2r2 has 46 crops; each
   pixel row carries `ADM0_NAME`, `ADM1_NAME`, `ADM2_NAME` and the FIPS codes; yield is in kg/ha
-  (t/ha before V2r2). The README of V2r2 lists the 46 crops but not the FAOSTAT items of the
-  group crops (`ooil`, `trof`, `temf`, `vege`, `rest`): where nuts, grapes, berries, strawberry,
-  olive, sweet corn, ginger and turmeric fall is still to be documented from the SPAM 2020
-  code or technical documentation.
+  (t/ha before V2r2). The README of V2r2 lists the 46 crops (`spam2020_crops.csv`) but not the
+  FAOSTAT items of the group crops (`ooil`, `trof`, `temf`, `vege`, `rest`). These come from the
+  table `faostat2crop.csv` of the SPAM R package mapspamc (github.com/michielvandijk/mapspamc,
+  MIT licence; `mapspamc_faostat_spam_crops.csv`): nuts, ginger and turmeric (FAOSTAT item of
+  ginger) in `rest`; grapes, berries and strawberry in `temf`; olive in `ooil`; sweet corn (green
+  maize) in `vege`. mapspamc has 40 crops; the separate SPAM 2020 crops (citrus, tomato, onion,
+  pearl millet, robusta coffee) are applied in `spam2020_crop_mapping.csv` (L60).
 - Licence (IFPRI Datasets Terms of Use, December 2019, supplied by FC): CC BY 4.0 unless a
   non-CC licence is stated for the dataset (none is stated), commercial use included. Conditions:
   - cite the dataset with authorship, year, title, publisher and URI. Citation of the V2r2
@@ -555,7 +570,10 @@ Country boundaries for the aggregation (FC, 2026-10-30):
   Islands, the UK bases on Cyprus) plus Greenland coded GRL with `map_code` DNK. Rule (FC,
   2026-10-30): these units are excluded from the country averages, except Jammu and Kashmir
   (`xJK`) and Greenland, which are decided by FC once the build script shows their weight in
-  the averages (crop area of SPAM 2020 inside them).
+  the averages (crop area of SPAM 2020 inside them). As implemented (`scripts/spam_grid.py`), a
+  cell belongs to a country through the GAUL `iso3_code`, so Jammu and Kashmir (`xJK`) and
+  Arunachal Pradesh (`xAP`) are outside the IN averages; Greenland (GRL) is its own M49 area. FC
+  to confirm, or to change after seeing their SPAM crop area.
   Third-party terms (metadata sheet, 278 rows, one per country or area): CC BY-IGO (HDX) 108,
   no level 1 data (country outline only) 69, UN SALB terms 35, GAUL 2015 licence 21 (Andorra,
   Anguilla, Azerbaijan, Bahrain, Brunei Darussalam, Egypt, Guernsey, Isle of Man, Israel,
@@ -567,7 +585,8 @@ Country boundaries for the aggregation (FC, 2026-10-30):
   averages; only these averages are published. Decision (FC, 2026-10-30, option a): GAUL 2024
   is used for all countries, including those with third-party terms; the provenance of each
   default states that the boundaries were used only to compute country averages and are not
-  redistributed. Rejected: (b) GAUL only where the terms are open and the ecoinvent v4
+  redistributed (open: the rows of `data/sources.csv` of L60-L63 do not yet carry this statement,
+  the GAUL citation with access date and licence, and the IFPRI adaptation statement). Rejected: (b) GAUL only where the terms are open and the ecoinvent v4
   geometries for the others, because it mixes two boundary layers with different outlines.
 - **Fallback: the ecoinvent geography geometries** (Natural Earth based, ecoinvent approach), used
   if the GAUL 2024 coverage or third-party terms are not acceptable. Source: internal page "v4 geographies:
@@ -617,9 +636,9 @@ These fields are needed only if the corresponding model is adopted (decisions of
 
 - flooded rice: water regime during and before the cultivation period, organic amendments
   (methane of flooded rice);
-- crop residue management (removed, left, burned, incorporated) and residue amount;
+- residue amount and incorporation (residue N; Q8 asks only the fate of the co-products, and
+  residue burning needs its own model);
 - previous land use or year of conversion (land use change, soil carbon);
-- soil pH or soil texture overrides (NH3, nitrate, erosion).
 
 ## 8. Open questions for FC
 
@@ -653,8 +672,8 @@ These fields are needed only if the corresponding model is adopted (decisions of
 
 ## 10. Next steps
 
-1. FC reviews this specification and answers Q1-Q10.
-2. Record the decisions in `docs/DECISIONS.md`.
+1. FC reviews this specification and answers Q1-Q10 (done 2026-11-02).
+2. Record the decisions in `docs/DECISIONS.md` (T1-T13, 2026-11-02).
 3. Build script for the `Lists` sheet from `data/`, and the empty template v3 in `templates/`.
 4. Reader with validation and provenance, with tests on example workbooks.
 5. Adapter from the reader output to the inputs of `src/legacy_model/` (one run per dataset).
