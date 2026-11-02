@@ -397,7 +397,17 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
 - **Soil.** Clay, silt, sand, soil organic carbon and pH from the Harmonized World Soil Database
   v2.0 (FAO & IIASA 2023; `HWSD2_RASTER.zip`, documentation `HarmonizedWorldSoilDatabase.pdf`),
   replacing the country table of WFLDB 2017 (L22, L26). Optional overrides: `soil_clay`,
-  `soil_silt`, `soil_sand`, `soil_organic_carbon`, `soil_ph`.
+  `soil_silt`, `soil_sand`, `soil_organic_carbon`, `soil_ph`. The attributes are in the database
+  `HWSD2_DB.zip` (Microsoft Access), linked to the raster through the soil mapping unit; the
+  technical report is FAO & IIASA (2023), `cc3823en.pdf`.
+  Licence (FC, 2026-11-02): the technical report states CC BY-NC-SA 3.0 IGO (non-commercial use
+  only; adaptations under the same licence), and the same licence is reported for the dataset
+  (Google Earth Engine community catalogue). This conflicts with the commercial licensing of the
+  ecoinvent datasets, in which the soil defaults and the K factor derived from HWSD would end up.
+  Decision: HWSD v2.0 is used for now, because the alternative SoilGrids 2.0 (ISRIC, CC BY 4.0;
+  sand, silt, clay, organic carbon and pH at 250 m) could not be reached on 2026-11-02. The
+  licence is to be checked again before release (written permission from FAO, or replacement by
+  SoilGrids 2.0); see section 9.
 - **Soil erodibility K** from the texture with the equation of Bos et al. (2016), LANCA v2.0
   (`LANCA_CFLCIA.pdf`, `LANCA.xlsx`), replacing the WFLDB soil-type factors of L27; not a
   template field.
@@ -616,6 +626,10 @@ These fields are needed only if the corresponding model is adopted (decisions of
 - The meta model of the agri-lca-pipeline is to be connected to template v3 (sheet `Sources` and
   the inputs) and to organise the metadata to the current ecoSpold2 standard; its update to the v4
   JSON format comes later.
+- (FC, 2026-11-02) Licence of HWSD v2.0 (CC BY-NC-SA 3.0 IGO, non-commercial, share-alike):
+  check before the soil defaults and the K factor go into ecoinvent datasets. Options: written
+  permission from FAO for commercial use, or SoilGrids 2.0 (ISRIC, CC BY 4.0) once its site is
+  reachable. Until then the soil tables built from HWSD carry the licence in `data/sources.csv`.
 
 ## 10. Next steps
 
