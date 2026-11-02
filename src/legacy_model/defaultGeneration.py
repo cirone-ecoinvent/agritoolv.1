@@ -18,7 +18,7 @@ from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUN
     SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE, SOIL_ERODIBILITY_FACTOR_PER_COUNTRY, \
     ENERGY_GROSS_CALORIFIC_VALUE_PER_CROP_PARTIAL, \
     SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY, CARBON_CONTENT_PER_CROP, IRR_WATERUSE_RATIO_PER_COUNTRY, \
-    ANNUAL_PRECIPITATION_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR, \
+    ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP, LEGUME_CROPS, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS, PK_PER_KG_MAIN_PRODUCT_PER_CROP, \
     IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY, ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY, \
@@ -130,15 +130,15 @@ class RainfallErosivityDefaultGenerator(object):
         return table[generators["country"]]
 
 
-class AnnualPrecipitationDefaultGenerator(TableLookupDefaultGenerator):
-    def __init__(self):
-        super().__init__("country", ANNUAL_PRECIPITATION_PER_COUNTRY)
-
+class AnnualPrecipitationDefaultGenerator(object):
+    """Precipitation of the crop in the country (TerraClimate 1991-2020 over the SPAM 2020 area of the crop, decision
+    L61); the row "all_crops" of the country for a crop outside the table; 0 if not open ground."""
     def generateDefault(self, field, generators):
         if generators["cultivation_type"] != "open_ground":
             return 0.0
-        else:
-            return TableLookupDefaultGenerator.generateDefault(self, field, generators)
+        table = ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY.get(generators["crop"],
+                                                              ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY["all_crops"])
+        return table[generators["country"]]
 
 
 class CropCyclePerYearDefaultGenerator(object):

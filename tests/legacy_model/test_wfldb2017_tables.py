@@ -1,6 +1,7 @@
 """Decision L22: country soil, precipitation and irrigation water source tables of defaultTables.py
 from the WFLDB 2017 background parameters (ecoinvent 3 report, 04 May 2017). The manure shares of
-sheet 3 were replaced by FAOSTAT 2021-2023 (decision L29, test_manure_defaults.py)."""
+sheet 3 were replaced by FAOSTAT 2021-2023 (decision L29, test_manure_defaults.py); the precipitation column is kept
+as transcribed but the model default comes from TerraClimate (decision L61, test_terraclimate_precipitation.py)."""
 from pathlib import Path
 
 import pytest
@@ -11,7 +12,7 @@ from models.irrigationmodel import WaterUseType
 
 WORKBOOK = (Path(__file__).resolve().parents[2] / "Literature"
             / "ecoinvent 3 report_WFLDB_BackgroundParameters_2017.xlsx")
-COUNTRY_TABLES = ["ANNUAL_PRECIPITATION_PER_COUNTRY", "CLAY_CONTENT_PER_COUNTRY", "SAND_CONTENT_PER_COUNTRY",
+COUNTRY_TABLES = ["CLAY_CONTENT_PER_COUNTRY", "SAND_CONTENT_PER_COUNTRY",
                   "SOIL_CARBON_CONTENT_PER_COUNTRY", "SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY",
                   "YEARLY_PRECIPITATION_AS_SNOW_PER_COUNTRY", "IRR_WATERUSE_RATIO_PER_COUNTRY"]
 NOT_IN_WFLDB = {"MA", "CS"}
@@ -30,7 +31,7 @@ def test_water_shares_keep_the_enum_keys_and_sum_to_one():
 def test_spot_values_from_the_workbook():
     # sheet '1) Agr. system parameters': P12 (FR clay), W17 (IT precipitation), D7 (AR sandy soils)
     assert t.CLAY_CONTENT_PER_COUNTRY["FR"] == 0.304420218037661
-    assert t.ANNUAL_PRECIPITATION_PER_COUNTRY["IT"] == 930.193617321
+    assert dataloader.table("wfldb2017_agr_system_parameters.csv")["IT"]["annual_precipitation_mm"] == 930.193617321
     assert t.SAND_CONTENT_PER_COUNTRY["AR"] == 0.04018014391385297
 
 
@@ -57,7 +58,7 @@ def _columns(ws, first_col):
 def test_agricultural_parameters_equal_the_workbook(workbook):
     ws = workbook["1) Agr. system parameters"]
     cols = _columns(ws, 4)
-    rows = {"ANNUAL_PRECIPITATION_PER_COUNTRY": 17, "CLAY_CONTENT_PER_COUNTRY": 12, "SAND_CONTENT_PER_COUNTRY": 7,
+    rows = {"CLAY_CONTENT_PER_COUNTRY": 12, "SAND_CONTENT_PER_COUNTRY": 7,
             "SOIL_CARBON_CONTENT_PER_COUNTRY": 13, "SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY": 14,
             "YEARLY_PRECIPITATION_AS_SNOW_PER_COUNTRY": 18}
     for name, row in rows.items():
@@ -65,6 +66,9 @@ def test_agricultural_parameters_equal_the_workbook(workbook):
             if country in NOT_IN_WFLDB or (name == "SOIL_CARBON_CONTENT_PER_COUNTRY" and country == "CN"):
                 continue
             assert value == ws.cell(row, cols[country]).value, (name, country)
+    for country, row in dataloader.table("wfldb2017_agr_system_parameters.csv").items():
+        if country not in NOT_IN_WFLDB:
+            assert row["annual_precipitation_mm"] == ws.cell(17, cols[country]).value, country
 
 
 def test_clay_is_the_soil_type_mix_of_documentation_tab6(workbook):

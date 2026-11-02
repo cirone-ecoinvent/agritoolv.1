@@ -2541,3 +2541,28 @@ GloREDa stations: FR 795 / 547, IT 1322 / 1447, DE 606 / 452, ES 562 / 849, IN 4
 The heavy metals to surface water rise by x2.6 to x6.3 (wheat_IT, apple_FR) and x1.06 (rice_IN); the heavy metals to
 soil fall. In wheat_IT the balances of Pb, Ni and Cr become negative (minus uptake: Pb -0.0024, Ni -0.0043, Cr -0.00008
 kg/ha): the metal removed with 2.8 t of eroded soil exceeds the inputs. They are kept negative (SALCA, FC option a).
+
+## 48. Annual precipitation from TerraClimate (decision L61, 2026-11-02)
+
+Default `average_annual_precipitation` (mm/yr) per crop and country from the TerraClimate monthly climatology
+1991-2020, averaged over the SPAM 2020 V2r2 physical area of the crop (`terraclimate1991_2020_climate.csv`), instead of
+the WFLDB 2017 value of the whole country. Only the SQCB nitrate leaching reads it. Median ratio TerraClimate (all
+crops) / WFLDB over the 39 countries 0.95; largest differences: NZ 0.48, PE 0.60, CH 0.65, CL 1.73, IL 1.61, KE 1.46,
+AR 1.47, CN 1.40.
+
+The three regression cases give the precipitation in the template, so the snapshots do not change. Effect on the
+default, with the inputs of a case and the country changed and the precipitation left to the default (NO3 to ground
+and surface water, kg NO3/ha):
+
+| Case inputs | Country | Precipitation WFLDB -> TerraClimate, mm | NO3 old -> new | Ratio |
+|---|---|---|---|---|
+| wheat_IT | IT | 930 -> 666 | 121.1 -> 108.0 | 0.89 |
+| wheat_IT | FR | 839 -> 787 | 129.5 -> 126.1 | 0.97 |
+| wheat_IT | CH | 1646 -> 1112 | 232.2 -> 181.1 | 0.78 |
+| wheat_IT | CL | 631 -> 1304 | 140.5 -> 210.5 | 1.50 |
+| wheat_IT | NZ | 1791 -> 811 | 218.7 -> 140.0 | 0.64 |
+| wheat_IT | PE | 1513 -> 756 | 177.7 -> 126.3 | 0.71 |
+| rice_IN | IN | 1072 -> 1375 | 118.1 -> 126.1 | 1.07 |
+| rice_IN | CN | 575 -> 1010 | 211.0 -> 240.9 | 1.14 |
+| apple_FR | FR | 839 -> 784 | 153.2 -> 150.1 | 0.98 |
+| apple_FR | PE | 1513 -> 118 | 191.1 -> 112.5 | 0.59 |

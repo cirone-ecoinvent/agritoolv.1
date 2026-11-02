@@ -38,8 +38,6 @@ def _wfldb_erodibility_per_country():
     return erodibility
 
 
-# mm/year
-ANNUAL_PRECIPITATION_PER_COUNTRY = _wfldb_country_column("annual_precipitation_mm")
 CLAY_CONTENT_PER_COUNTRY = _wfldb_country_column("clay_content_ratio")
 # WFLDB share of sandy soils (WRB soil type), used as sand content of the soil texture (L22)
 SAND_CONTENT_PER_COUNTRY = _wfldb_country_column("sandy_soils_ratio")
@@ -394,6 +392,11 @@ CROP_FACTOR_PER_CROP = _crop_c_factor_per_crop()
 # (scripts/build_gloreda_erosivity.py)
 RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("gloreda2023_rainfall_erosivity.csv",
                                                                         "r_factor_mj_mm_per_ha_h_yr")
+# Annual precipitation, mm/yr, per crop and country, with the row "all_crops" per country (decision L61): TerraClimate
+# monthly climatology 1991-2020 summed to the year, mean over the SPAM 2020 V2r2 physical area of the crop
+# (scripts/build_terraclimate_climate.py)
+ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("terraclimate1991_2020_climate.csv",
+                                                                          "annual_precipitation_mm")
 
 #src: ecoinvent report no. 15a
 # Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
