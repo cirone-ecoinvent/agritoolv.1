@@ -9,20 +9,19 @@ from defaultMatrixSeed import NB_SEEDS_PER_PARTIAL_CROP_PER_COUNTRY, \
     NB_SEEDLINGS_PER_PARTIAL_CROP_PER_COUNTRY
 from defaultMatrixTotalPesticides import TOTAL_PESTICIDES_PER_CROP_PER_COUNTRY
 from defaultMatrixYieldPerCropCycle import YIELD_PER_CROP_CYCLE_PER_CROP_PER_COUNTRY
-from defaultTables import CLAY_CONTENT_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_COUNTRY, \
+from defaultTables import CLAY_CONTENT_PER_CROP_PER_COUNTRY, SOIL_CARBON_CONTENT_PER_CROP_PER_COUNTRY, \
     ROOTING_DEPTH_PER_CROP, FERT_N_RATIO_PER_COUNTRY, FERT_P_RATIO_PER_COUNTRY, FERT_K_RATIO_PER_COUNTRY, \
     MANURE_LIQUID_RATIO_PER_COUNTRY, MANURE_SOLID_RATIO_PER_COUNTRY, MANURE_LIQUID_N_FRACTION_PER_COUNTRY, \
     YEARLY_PRECIPITATION_AS_SNOW_PER_COUNTRY, \
     WATER_CONTENT_FM_RATIO_PER_CROP, IRR_TECH_RATIO_PER_COUNTRY, \
-    LAND_USE_CATEGORY_PER_CROP, CROP_FACTOR_PER_CROP, SAND_CONTENT_PER_COUNTRY, \
-    SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE, SOIL_ERODIBILITY_FACTOR_PER_COUNTRY, \
+    LAND_USE_CATEGORY_PER_CROP, CROP_FACTOR_PER_CROP, SOIL_ERODIBILITY_FACTOR_PER_CROP_PER_COUNTRY, \
     ENERGY_GROSS_CALORIFIC_VALUE_PER_CROP_PARTIAL, \
-    SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY, CARBON_CONTENT_PER_CROP, IRR_WATERUSE_RATIO_PER_COUNTRY, \
-    ANNUAL_PRECIPITATION_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR, \
+    SOIL_WITH_PH_UNDER_OR_7_PER_CROP_PER_COUNTRY, CARBON_CONTENT_PER_CROP, IRR_WATERUSE_RATIO_PER_COUNTRY, \
+    ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY, EI_IRR_RATIO_TO_RIVER, EI_IRR_RATIO_TO_GROUNDWATER, EI_IRR_RATIO_TO_AIR, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP, LEGUME_CROPS, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS, PK_PER_KG_MAIN_PRODUCT_PER_CROP, \
     IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY, ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY, \
-    LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY, MINERAL_N_RULE_WITHOUT_IFA_RATE
+    LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY, MINERAL_N_RULE_WITHOUT_IFA_RATE, RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY,     SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY
 from directMappingEnums import PlasticDisposal, Plantprotection, Soilcultivation, \
     Sowingplanting, Fertilisation, Harvesting, OtherWorkProcesses, Biowaste
 from models.atomicmass import MA_CO2, MA_C
@@ -32,7 +31,6 @@ import dataloader
 from models.hmmodel import PesticideType, METAL_COLUMNS
 from models.irrigationmodel import irrigation_efficiency
 from models.manuremodel import ManureModel
-from models.modelEnums import SoilTexture
 from models.otherorganicfertilisermodel import CompostType, SludgeType
 from models.pmodel import LandUseCategory
 
@@ -121,25 +119,34 @@ class RatiosToValuesConvertor(object):
         return {k: v * total for k, v in generators[self._ratiosField].items()}
 
 
-class ClimateDefaultGenerator(object):
+class RainfallErosivityDefaultGenerator(object):
+    """R of the crop in the country (GloREDa over the SPAM 2020 area of the crop, decision L60); the row "all_crops" of
+    the country for a crop outside the table."""
     def generateDefault(self, field, generators):
-        if generators["climate_zone_1"] == "cool_climate":
-            return "snow_winter_continental"
-        elif generators["climate_zone_1"] == "temperate_climate":
-            return "warm_summer_dry_warm"
-        else:
-            return "equatorial_summer_dry"
+        table = RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY.get(generators["crop"],
+                                                            RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY["all_crops"])
+        return table[generators["country"]]
 
 
-class AnnualPrecipitationDefaultGenerator(TableLookupDefaultGenerator):
-    def __init__(self):
-        super().__init__("country", ANNUAL_PRECIPITATION_PER_COUNTRY)
+class SupportPracticeFactorDefaultGenerator(object):
+    """P of the support practices of the crop in the country (Panagos et al. 2015b over the SPAM 2020 area of the crop,
+    decision L62), used by the erosion model when the practice has no AH 537 factor; the row "all_crops" of the country
+    for a crop outside the table; 1 outside the EU."""
+    def generateDefault(self, field, generators):
+        table = SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY.get(generators["crop"],
+                                                                 SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY["all_crops"])
+        return table.get(generators["country"], 1.0)
 
+
+class AnnualPrecipitationDefaultGenerator(object):
+    """Precipitation of the crop in the country (TerraClimate 1991-2020 over the SPAM 2020 area of the crop, decision
+    L61); the row "all_crops" of the country for a crop outside the table; 0 if not open ground."""
     def generateDefault(self, field, generators):
         if generators["cultivation_type"] != "open_ground":
             return 0.0
-        else:
-            return TableLookupDefaultGenerator.generateDefault(self, field, generators)
+        table = ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY.get(generators["crop"],
+                                                              ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY["all_crops"])
+        return table[generators["country"]]
 
 
 class CropCyclePerYearDefaultGenerator(object):
@@ -197,33 +204,14 @@ class HeavyMetalExportWithHarvestGenerator(object):
 
 
 
-class SoilTextureDefaultGenerator(object):
-    def generateDefault(self, field, generators):
-        clay_content = generators["clay_content"]
-        sand_content = generators["sand_content"]
-        if (clay_content < 0.18 and sand_content > 0.65):
-            return SoilTexture.coarse
-        elif ((0.18 < clay_content and clay_content < 0.35 and sand_content > 0.15)
-              or (clay_content < 0.18 and 0.15 < sand_content and sand_content < 0.65)):
-            return SoilTexture.medium
-        elif (clay_content < 0.35 and sand_content < 0.15):
-            return SoilTexture.medium_fine
-        elif (0.35 < clay_content and clay_content < 0.60):
-            return SoilTexture.fine
-        elif (clay_content > 0.60):
-            return SoilTexture.very_fine
-        else:
-            return SoilTexture.unknown
+class CropCountryMapDefaultGenerator(object):
+    """Value of the crop in the country of a map averaged over the SPAM 2020 area of the crop (HWSD soil, decision
+    L63); the row "all_crops" of the country for a crop outside the table."""
+    def __init__(self, table):
+        self._table = table
 
-
-class ErodibilityDefaultGenerator(object):
-    """K factor of the country from the WFLDB 2017 soil types (decision L27). Countries without WFLDB soil
-    types (MA, CS) keep the legacy lookup by soil texture, whose sand content is the share of sandy soils
-    (legacy, undocumented, provisional)."""
     def generateDefault(self, field, generators):
-        if generators["country"] in SOIL_ERODIBILITY_FACTOR_PER_COUNTRY:
-            return SOIL_ERODIBILITY_FACTOR_PER_COUNTRY[generators["country"]]
-        return SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE[generators["soil_texture"]]
+        return self._table.get(generators["crop"], self._table["all_crops"])[generators["country"]]
 
 
 class PerCropCyclePrecipitationDefaultGenerator(object):
@@ -625,18 +613,15 @@ class NitrogenFromCropResiduesDefaultGenerator(object):
             return 0.0
 
 
-# legacy, undocumented, provisional: scalar default values of this table (e.g. 180 wet days, 700 m, slope length 50 m, 0.5 undiluted slurry, plastic EoL 50/50)
+# legacy, undocumented, provisional: scalar default values of this table (e.g. slope length 50 m, 0.5 undiluted slurry, plastic EoL 50/50)
 DEFAULTS_VALUES_GENERATORS = {
     "yield_BP1_per_crop_cycle": SimpleValueDefaultGenerator(""),
     "yield_BP2_per_crop_cycle": SimpleValueDefaultGenerator(""),
     "yield_BP3_per_crop_cycle": SimpleValueDefaultGenerator(""),
     # Cross-models defaults
     "average_annual_precipitation": AnnualPrecipitationDefaultGenerator(),
-    "climate_zone_1": SimpleValueDefaultGenerator("temperate_climate"),
-    "climate_zone_specific": ClimateDefaultGenerator(),
-    "nb_wet_days_per_year": SimpleValueDefaultGenerator(180),
-    "mean_elevation_m": SimpleValueDefaultGenerator(700),
-    "clay_content": TableLookupDefaultGenerator("country", CLAY_CONTENT_PER_COUNTRY),
+    "rainfall_erosivity": RainfallErosivityDefaultGenerator(),
+    "clay_content": CropCountryMapDefaultGenerator(CLAY_CONTENT_PER_CROP_PER_COUNTRY),
     "crop_cycle_per_year": CropCyclePerYearDefaultGenerator(),
     "precipitation_per_crop_cycle": PerCropCyclePrecipitationDefaultGenerator(),
     "water_use_total": WaterUseDefaultGenerator(),
@@ -662,7 +647,7 @@ DEFAULTS_VALUES_GENERATORS = {
     "zn_from_mineral_fert": SimpleValueDefaultGenerator(0.0),
     "zn_fertiliser_proportions": FlatRatioRepartitionGenerator(ZnFertiliserType),
     "zn_fertiliser_quantities": RatiosToValuesConvertor("zn_fertiliser_proportions", "zn_from_mineral_fert"),
-    "soil_with_ph_under_or_7": TableLookupDefaultGenerator("country", SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY),
+    "soil_with_ph_under_or_7": CropCountryMapDefaultGenerator(SOIL_WITH_PH_UNDER_OR_7_PER_CROP_PER_COUNTRY),
     # Manure defaults
     "liquid_manure_part_before_dilution": SimpleValueDefaultGenerator(0.5),
     "total_manureliquid": ManureDefaultGenerator(True),
@@ -696,9 +681,8 @@ DEFAULTS_VALUES_GENERATORS = {
     "slope_length": SimpleValueDefaultGenerator(50.0),
     "tillage_method": SimpleValueDefaultGenerator(TillageMethod.unknown),
     "anti_erosion_practice": SimpleValueDefaultGenerator(AntiErosionPractice.unknown),
-    "sand_content": TableLookupDefaultGenerator("country", SAND_CONTENT_PER_COUNTRY),
-    "soil_texture": SoilTextureDefaultGenerator(),
-    "soil_erodibility_factor": ErodibilityDefaultGenerator(),
+    "support_practice_factor": SupportPracticeFactorDefaultGenerator(),
+    "soil_erodibility_factor": CropCountryMapDefaultGenerator(SOIL_ERODIBILITY_FACTOR_PER_CROP_PER_COUNTRY),
     "crop_factor": TableLookupDefaultGenerator("crop", CROP_FACTOR_PER_CROP),
     # CO2 model defaults
     "part_of_urea_in_UAN": SimpleValueDefaultGenerator(0.5),
@@ -717,7 +701,7 @@ DEFAULTS_VALUES_GENERATORS = {
     "c_per_n_ratio": ParameterDefaultGenerator("soil_cn_ratio"),
     "considered_soil_volume": ParameterDefaultGenerator("soil_volume_m3"),
     "drained_part": SimpleValueDefaultGenerator(0.0),
-    "organic_carbon_content": TableLookupDefaultGenerator("country", SOIL_CARBON_CONTENT_PER_COUNTRY),
+    "organic_carbon_content": CropCountryMapDefaultGenerator(SOIL_CARBON_CONTENT_PER_CROP_PER_COUNTRY),
     "nitrogen_uptake_by_crop": NitrogenUptakeGenerator(),
     "norg_per_ntotal_ratio": ParameterDefaultGenerator("norg_ntot_ratio"),
     "rooting_depth": TableLookupDefaultGenerator("crop", ROOTING_DEPTH_PER_CROP),

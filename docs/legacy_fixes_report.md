@@ -2493,3 +2493,127 @@ fertiliser mixes of 24 crops; P2O5 and K2O of mint, level 1 minus the new defaul
 Limits: the L1 split is below the IFA rates for herbs (coriander IL x12), so coriander is probably low; the crop median
 scales with the yield, so high default yields give high N (cassava GH 233, coriander KE 217 and MX 237, ginger and
 turmeric US 327 kg N/ha; the coriander yields of FAOSTAT 711 in KE and MX, 13-15 t/ha, are to be checked).
+
+## 46. Erosion C and P factors from Panagos, Borrelli and AH 537 (decision L59, 2026-10-30)
+
+Eroded soil = R x K x LS x C_crop x C_tillage x P (`erosionmodel.py`). C_crop, C_tillage and P now come from `data/`:
+
+| Factor | Source | Mapping (signed by FC) |
+|---|---|---|
+| C_crop | Panagos et al. (2015a) Table 1; Borrelli et al. (2017) Supplementary Table 2 and Data 1 | `erosion_crop_c_factor_mapping.csv` |
+| C_tillage | Panagos et al. (2015a) Eq. 4a: conventional 1, conservation/ridge 0.35, no till 0.25 | `erosion_tillage_mapping.csv` |
+| P | USDA Agriculture Handbook 537, Tables 13-15, by slope class | `erosion_practice_mapping.csv` |
+
+Default C_crop of the 67 crops: 62 changed (22 up, 40 down), 5 unchanged (chick pea, ginger, soybean, sunflower,
+turmeric). Largest changes: grape 0.15 -> 0.35, tree crops and citrus 0.10 -> 0.15, flax 0.18 -> 0.28; hemp 0.45 -> 0.15,
+mint 0.47 -> 0.15, pineapple 0.48 -> 0.15, mulberry 0.50 -> 0.15, sugarcane 0.40 -> 0.15, tomato 0.47 -> 0.25,
+strawberry 0.47 -> 0.20.
+
+Tillage factors changed: spring plow 0.9 -> 1, mulch tillage 0.6 -> 0.35, zone tillage 0.25 -> 0.35. P, at the default
+slope of 3 %: contour farming 0.5 (unchanged), strip cropping on the contour 0.25 -> 0.38 (system B), cross slope 0.75
+-> 1, strip cropping cross slope 0.37 -> 1; new practice terraces 0.5.
+
+Regression cases (tillage and practice give 1 in all three; eroded soil x new C / old C):
+
+| Case | C_crop | P to surface water by erosion, kg P/ha |
+|---|---|---|
+| wheat_IT | 0.22 -> 0.20 | 0.2173 -> 0.1976 |
+| rice_IN | 0.17 -> 0.15 | 0.2812 -> 0.2481 |
+| apple_FR | 0.10 -> 0.15 | 0.0503 -> 0.0755 |
+
+The heavy metals to surface water change in the same ratio for the erosion part; the heavy metals to soil change by
+-4 % to +7 %, except rice_IN Ni and Pb (+12 % and +15 % to soil; +22 % and +61 % of the balance minus uptake, whose values are small).
+
+## 47. Rainfall erosivity R from GloREDa (decision L60, 2026-10-30)
+
+R (MJ mm/(ha h yr)) per crop and country from the GloREDa monthly maps, averaged over the SPAM 2020 V2r2 physical area
+of the crop (`gloreda2023_rainfall_erosivity.csv`), instead of the LANCA equation of the climate zone (default zone
+"warm summer dry warm" with the template precipitation). Country values over all crops against the median of the
+GloREDa stations: FR 795 / 547, IT 1322 / 1447, DE 606 / 452, ES 562 / 849, IN 4207 / 3780, US 1940 / 1716, CN 3094 /
+1859, BR 6183 / 6011; 12 tool countries have no station (CI, EC, GH, ID, LK, MA, PE, PH, TH, UA, VN, CS).
+
+| Case | R LANCA -> GloREDa | Eroded soil, t/(ha yr) | P to surface water by erosion, kg P/ha |
+|---|---|---|---|
+| wheat_IT | 307 -> 1211 | 2.79 | 0.198 -> 0.780 |
+| rice_IN | 5146 -> 5444 | 1.78 | 0.248 -> 0.262 |
+| apple_FR | 128 -> 807 | 1.35 | 0.075 -> 0.477 |
+
+The heavy metals to surface water rise by x2.6 to x6.3 (wheat_IT, apple_FR) and x1.06 (rice_IN); the heavy metals to
+soil fall. In wheat_IT the balances of Pb, Ni and Cr become negative (minus uptake: Pb -0.0024, Ni -0.0043, Cr -0.00008
+kg/ha): the metal removed with 2.8 t of eroded soil exceeds the inputs. They are kept negative (SALCA, FC option a).
+
+## 48. Annual precipitation from TerraClimate (decision L61, 2026-11-02)
+
+Default `average_annual_precipitation` (mm/yr) per crop and country from the TerraClimate monthly climatology
+1991-2020, averaged over the SPAM 2020 V2r2 physical area of the crop (`terraclimate1991_2020_climate.csv`), instead of
+the WFLDB 2017 value of the whole country. Only the SQCB nitrate leaching reads it. Median ratio TerraClimate (all
+crops) / WFLDB over the 39 countries 0.95; largest differences: NZ 0.48, PE 0.60, CH 0.65, CL 1.73, IL 1.61, KE 1.46,
+AR 1.47, CN 1.40.
+
+The three regression cases give the precipitation in the template, so the snapshots do not change. Effect on the
+default, with the inputs of a case and the country changed and the precipitation left to the default (NO3 to ground
+and surface water, kg NO3/ha):
+
+| Case inputs | Country | Precipitation WFLDB -> TerraClimate, mm | NO3 old -> new | Ratio |
+|---|---|---|---|---|
+| wheat_IT | IT | 930 -> 666 | 121.1 -> 108.0 | 0.89 |
+| wheat_IT | FR | 839 -> 787 | 129.5 -> 126.1 | 0.97 |
+| wheat_IT | CH | 1646 -> 1112 | 232.2 -> 181.1 | 0.78 |
+| wheat_IT | CL | 631 -> 1304 | 140.5 -> 210.5 | 1.50 |
+| wheat_IT | NZ | 1791 -> 811 | 218.7 -> 140.0 | 0.64 |
+| wheat_IT | PE | 1513 -> 756 | 177.7 -> 126.3 | 0.71 |
+| rice_IN | IN | 1072 -> 1375 | 118.1 -> 126.1 | 1.07 |
+| rice_IN | CN | 575 -> 1010 | 211.0 -> 240.9 | 1.14 |
+| apple_FR | FR | 839 -> 784 | 153.2 -> 150.1 | 0.98 |
+| apple_FR | PE | 1513 -> 118 | 191.1 -> 112.5 | 0.59 |
+
+## 49. Support-practice factor P of the EU from Panagos et al. (2015b) (decision L62, 2026-11-02)
+
+New default input `support_practice_factor`: P of the support practices (contouring, stone walls, grass margins) of the
+crop in the country, from the ESDAC map of Panagos et al. (2015b) averaged over the SPAM 2020 V2r2 physical area of the
+crop (`panagos2015b_p_factor.csv`). The erosion model uses it for the practices without an AH 537 factor (`unknown`,
+`no_practice`, `cross_slope`, `strip_cropping_cross_slope`), which gave P = 1 before; outside the EU it is 1.
+
+Country values (all crops) against Table 6 of the paper (mean over the whole country):
+
+| Country | P, tool | P, Table 6 | Difference | Range over the 67 crops |
+|---|---|---|---|---|
+| BE | 0.9260 | 0.9465 | -2.2 % | 0.856 - 0.999 |
+| DE | 0.9737 | 0.9782 | -0.5 % | 0.962 - 0.985 |
+| ES | 0.9292 | 0.9293 | 0.0 % | 0.903 - 0.996 |
+| FI | 0.9840 | 0.9942 | -1.0 % | 0.940 - 0.987 |
+| FR | 0.9504 | 0.9627 | -1.3 % | 0.935 - 0.980 |
+| HU | 0.9801 | 0.9840 | -0.4 % | 0.962 - 0.983 |
+| IT | 0.9249 | 0.9519 | -2.8 % | 0.874 - 0.956 |
+| NL | 0.9508 | 0.9561 | -0.6 % | 0.880 - 0.999 |
+| PL | 0.9630 | 0.9781 | -1.5 % | 0.937 - 0.982 |
+
+CH, CS, RU, TR and UA reach the map only with SPAM cells across the EU border (coverage 0.09, 0.08 and under 0.01):
+no value, P = 1.
+
+Regression snapshots: eroded soil, P to surface water by erosion and heavy metals to surface water of wheat_IT x 0.930
+(`no_practice`, P of wheat in IT) and apple_FR x 0.951 (`unknown`, P of apple in FR); the heavy-metal balances to soil
+rise by the metal no longer removed with the soil (wheat_IT Cr soil minus uptake from -0.00008 to +0.00145 kg/ha,
+Ni and Pb still negative). rice_IN unchanged (IN outside the EU).
+
+## 50. Soil properties and erodibility K from HWSD v2.0 (decision L63, 2026-11-02)
+
+Default `clay_content` (topsoil 0-20 cm), `organic_carbon_content` (0-50 cm, the soil volume of the nitrate model),
+`soil_with_ph_under_or_7` (share of the soil units with pH in water <= 7) and `soil_erodibility_factor` (K of LANCA,
+Bos et al. 2016, Eq. 7, very fine sand = 0) per crop and country from the Harmonized World Soil Database v2.0,
+averaged over the SPAM 2020 V2r2 physical area of the crop (`hwsd2_soil.csv`), instead of the WFLDB 2017 country
+values. Medians over the 39 countries (all crops, HWSD / WFLDB): clay 0.70, organic carbon 1.08, K 0.72 (K of Renard
+et al. 1997 Eq. 3-5, built as a cross-check: 1.10).
+
+Regression cases (crop row of the country):
+
+| Case | Clay WFLDB -> HWSD | OC WFLDB -> HWSD | pH <= 7 | K WFLDB -> HWSD | Eroded soil | NO3 |
+|---|---|---|---|---|---|---|
+| wheat_IT | 30.1 -> 25.6 % | 1.10 -> 1.27 % | 0.80 -> 0.77 | 0.0346 -> 0.0227 | x 0.656 | x 1.129 |
+| rice_IN | 34.7 -> 27.7 % | 0.88 -> 1.11 % | 0.50 -> 0.85 | 0.0285 -> 0.0192 | x 0.673 | x 1.366 |
+| apple_FR | 30.4 -> 20.7 % | 1.42 -> 1.56 % | 0.80 -> 0.77 | 0.0335 -> 0.0247 | x 0.737 | x 1.202 |
+
+P to surface water by erosion and heavy metals to surface water follow the eroded soil; the heavy-metal balances to
+soil rise by the metal no longer removed with the soil. N2O rises with the leached nitrate (indirect EF5: wheat_IT
+x 1.008, rice_IN x 1.061, apple_FR x 1.033); NH3 changes by less than 1 % with the pH share (rice_IN unchanged: urea on
+flooded rice takes the paddy factor for both pH classes, L54).

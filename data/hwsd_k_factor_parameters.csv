@@ -1,0 +1,8 @@
+parameter,value,unit,source,note,status,reviewed_by
+clay_mean_diameter_mm,0.001,mm,"Renard et al. (1997) AH 703 Eq. 3-6: arithmetic mean of the particle size limits (Shirazi and Boersma 1984); USDA clay 0-0.002 mm",Geometric mean diameter Dg of the K equation of Renard,confirmed,FC
+silt_mean_diameter_mm,0.026,mm,"Renard et al. (1997) Eq. 3-6; USDA silt 0.002-0.05 mm",idem,confirmed,FC
+sand_mean_diameter_mm,1.025,mm,"Renard et al. (1997) Eq. 3-6; USDA sand 0.05-2 mm",idem,confirmed,FC
+organic_matter_per_organic_carbon,1.724,kg OM/kg C,Van Bemmelen factor (conventional),OM of the LANCA equation (Bos et al. 2016 Eq. 7) from the HWSD organic carbon,confirmed,FC
+organic_matter_max_pct,4,%,Range of the nomograph of Wischmeier et al. (1971) (Renard et al. 1997 Fig. 3-1),OM above 4 % taken as 4 % in the LANCA equation,confirmed,FC
+very_fine_sand_share_of_sand,0,ratio,"Assumption: HWSD gives the sand fraction (0.05-2 mm) only, not the very fine sand (0.05-0.1 mm) of the LANCA M factor (Eq. 8); 0 = lower bound of M",LANCA equation only,confirmed,FC
+structure_class,2,class,"Assumption: HWSD has no soil structure; LANCA Table 3 class 2 (fine granular)",LANCA equation only,confirmed,FC

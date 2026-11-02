@@ -1,0 +1,68 @@
+crop,c_source,panagos_crop_type,borrelli_faostat_crop,borrelli_subgroup,note,status,reviewed_by
+almond,borrelli2017,,"Almonds, with shell",Various,,confirmed,FC
+apple,borrelli2017,,Apples,Various,,confirmed,FC
+apricot,borrelli2017,,Apricots,Various,,confirmed,FC
+asparagus_green,borrelli2017,,Asparagus,Various,,confirmed,FC
+asparagus_white,borrelli2017,,Asparagus,Various,,confirmed,FC
+banana,borrelli2017,,Bananas,Various,,confirmed,FC
+bellpepper,borrelli2017,,"Chillies and peppers, green",Various,,confirmed,FC
+blueberry,borrelli2017,,Blueberries,Various,,confirmed,FC
+cabbage_red,borrelli2017,,Cabbages and other brassicas,Various,,confirmed,FC
+cabbage_white,borrelli2017,,Cabbages and other brassicas,Various,,confirmed,FC
+carrot,borrelli2017,,Carrots and turnips,Various,,confirmed,FC
+cashew,borrelli2017,,"Cashew nuts, with shell",Various,,confirmed,FC
+cassava,borrelli2017,,Cassava,Various,,confirmed,FC
+castor_beans,borrelli2017,,Castor oil seed,Various,"Panagos 'Oilseeds' (0.28) is the residual class of the EU statistics, not castor",confirmed,FC
+chick_pea,panagos2015a,Dried pulses (legumes) and protein crop,,,,confirmed,FC
+chilli,borrelli2017,,"Chillies and peppers, green",Various,,confirmed,FC
+cocoa,borrelli2017,,"Cocoa, beans",Various,,confirmed,FC
+coconut,borrelli2017,,Coconuts,Various,,confirmed,FC
+coffee_arabica,borrelli2017,,"Coffee, green",Coffee,,confirmed,FC
+coffee_robusta,borrelli2017,,"Coffee, green",Coffee,,confirmed,FC
+coriander,borrelli2017,,"Anise, badian, fennel, coriander",Various,,confirmed,FC
+cotton,panagos2015a,Cotton seed,,,"Borrelli subgroup Cotton gives 0.40",confirmed,FC
+cranberry,borrelli2017,,Cranberries,Various,,confirmed,FC
+eggplant,borrelli2017,,Eggplants (aubergines),Various,,confirmed,FC
+flax,borrelli2017,,Flax fibre and tow,Fibre Crops,Fibre flax (FAOSTAT 771); linseed is a separate crop,confirmed,FC
+ginger,borrelli2017,,Ginger,Various,,confirmed,FC
+grape,borrelli2017,,Grapes,Grapes,,confirmed,FC
+guar,panagos2015a,Dried pulses (legumes) and protein crop,,,No FAOSTAT item; pulse,confirmed,FC
+hemp,borrelli2017,,Hemp tow waste,Shrubs Herbs and Spices,"FAOSTAT 777 is in group 13 in Borrelli Supplementary Data 1 (0.15); alternative: Bastfibres, other (group 11, 0.28) as for flax",confirmed,FC
+lemon,borrelli2017,,Lemons and limes,Various,,confirmed,FC
+citruslime,borrelli2017,,Lemons and limes,Various,,confirmed,FC
+lentil,panagos2015a,Dried pulses (legumes) and protein crop,,,,confirmed,FC
+linseed,panagos2015a,Linseed,,,,confirmed,FC
+maizegrain,panagos2015a,Grain maize - corn,,,,confirmed,FC
+mandarin,borrelli2017,,"Tangerines, mandarins, clementines, satsumas",Various,,confirmed,FC
+mango,borrelli2017,,"Mangoes, mangosteens, guavas",Various,,confirmed,FC
+mint,borrelli2017,,Peppermint,Shrubs Herbs and Spices,,confirmed,FC
+mulberry,borrelli2017,,"Fruit, fresh nes",Various,No FAOSTAT item; tree crop (legacy FAOSTAT proxy: Tea; group 13 would also give 0.15),confirmed,FC
+oat,borrelli2017,,Oats,Various,Oats not in Panagos Table 1,confirmed,FC
+olive,borrelli2017,,Olives,Various,,confirmed,FC
+onion,borrelli2017,,"Onions, dry",Various,,confirmed,FC
+orange_fresh,borrelli2017,,Oranges,Various,,confirmed,FC
+orange_processing,borrelli2017,,Oranges,Various,,confirmed,FC
+palmtree,borrelli2017,,"Oil, palm fruit",Various,,confirmed,FC
+peach,borrelli2017,,Peaches and nectarines,Various,,confirmed,FC
+peanut,borrelli2017,,"Groundnuts, with shell",Various,Groundnut is not in the EU class Dried pulses of Panagos,confirmed,FC
+pear,borrelli2017,,Pears,Various,,confirmed,FC
+pearl_millet,borrelli2017,,Millet,Various,,confirmed,FC
+pineapple,borrelli2017,,Pineapples,Various,,confirmed,FC
+pomegranate,borrelli2017,,"Fruit, tropical fresh nes",Various,No FAOSTAT item (legacy FAOSTAT proxy),confirmed,FC
+potato,panagos2015a,Potatoes,,,,confirmed,FC
+rapeseed,panagos2015a,Rape and turnip rape,,,,confirmed,FC
+raspberry,borrelli2017,,Raspberries,Various,,confirmed,FC
+rice,panagos2015a,Rice,,,,confirmed,FC
+sesame_seed,borrelli2017,,Sesame seed,Various,"Panagos 'Oilseeds' (0.28) is the residual class of the EU statistics, not sesame",confirmed,FC
+soybean,panagos2015a,Soya,,,,confirmed,FC
+strawberry_fresh,borrelli2017,,Strawberries,Strawberries,,confirmed,FC
+strawberry_processing,borrelli2017,,Strawberries,Strawberries,,confirmed,FC
+sugarbeet,panagos2015a,Sugar beet,,,,confirmed,FC
+sugarcane,borrelli2017,,Sugar cane,Shrubs Herbs and Spices,Borrelli puts sugar cane in group 13,confirmed,FC
+sunflower,panagos2015a,Sunflower seed,,,,confirmed,FC
+sweetcorn,borrelli2017,,"Maize, green",Maize,Green maize: subgroup Maize of the cereals,confirmed,FC
+tea,borrelli2017,,Tea,Shrubs Herbs and Spices,,confirmed,FC
+tomato_fresh,borrelli2017,,Tomatoes,Various,,confirmed,FC
+tomato_processing,borrelli2017,,Tomatoes,Various,,confirmed,FC
+turmeric,borrelli2017,,Ginger,Various,FAOSTAT 720 (ginger) as in faostat_crop_item_mapping.csv,confirmed,FC
+wheat,panagos2015a,Common wheat and spelt,,,,confirmed,FC

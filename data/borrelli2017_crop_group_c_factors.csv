@@ -1,0 +1,23 @@
+crop_group_id,crop_group,subgroup,c_factor,source,page
+1,Cereal Grains,Various,0.2,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+1,Cereal Grains,Maize,0.38,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+1,Cereal Grains,Rice,0.15,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+2,Legume Vegetables,Various,0.32,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+3,Root and Tuber Vegetables,Various,0.34,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+4,Fruiting Vegetables,Various,0.25,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+5,Cucurbit Vegetables,Various,0.25,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+6,Bulb Vegetable,Various,0.3,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+7,Leafy Vegetables,Various,0.25,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+7,Leafy Vegetables,Tobacco,0.5,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+8,"Forage, Fodder and Straw of Cereal Grains Group",Mixed-legumes,0.15,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+8,"Forage, Fodder and Straw of Cereal Grains Group",Mixed-grasses,0.1,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+9,Grapes and Hops,Grapes,0.35,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+9,Grapes and Hops,Hops,0.42,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+10,Oilseed Group,Various,0.25,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+10,Oilseed Group,Cotton,0.4,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+11,Fibre Crops,Fibre Crops,0.28,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+12,Berries Group,Various,0.15,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+12,Berries Group,Strawberries,0.2,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+13,Shrubs Herbs and Spices Group,Shrubs Herbs and Spices,0.15,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+13,Shrubs Herbs and Spices Group,Coffee,0.2,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35
+14,Trees/Fruit Tree,Various,0.15,"Borrelli et al. (2017) Nat Commun 8:2013, Supplementary Information, Supplementary Table 2",35

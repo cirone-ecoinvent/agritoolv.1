@@ -11,41 +11,18 @@ from models.fertilisermodel import NFertiliserType, KFertiliserType, \
     PFertiliserType
 from models.irrigationmodel import IrrigationType, WaterUseType
 from models.manuremodel import ManureModel
-from models.modelEnums import SoilTexture
 from models.pmodel import LandUseCategory
 
 # Country tables of the WFLDB 2017 background parameters (decision L22): ecoinvent 3 report
 # WFLDB_BackgroundParameters_2017.xlsx, sheets 1-2; MA and CS are not in WFLDB (legacy values).
 _WFLDB_PARAMETERS = "wfldb2017_agr_system_parameters.csv"
 _WFLDB_WATER_SOURCES = "wfldb2017_irrigation_water_sources.csv"
-_WFLDB_K_FACTORS = "wfldb2017_soil_type_k_factors.csv"
 
 
 def _wfldb_country_column(column):
     return {country: row[column] for country, row in dataloader.table(_WFLDB_PARAMETERS).items()}
 
 
-def _wfldb_erodibility_per_country():
-    """K = sum of the soil-type shares x K-factor ** (recalculated from Panagos et al. 2014) of the WFLDB
-    Documentation 2017, Tab. 6 (decision L27); countries without WFLDB soil types (MA, CS) are left out."""
-    k_factors = {soil_type: row["k_factor_panagos2014_t_h_per_mj_mm"]
-                 for soil_type, row in dataloader.table(_WFLDB_K_FACTORS).items()}
-    erodibility = {}
-    for country, row in dataloader.table(_WFLDB_PARAMETERS).items():
-        shares = {soil_type: row[soil_type + "_soils_ratio"] for soil_type in k_factors}
-        if None not in shares.values():
-            erodibility[country] = sum(shares[t] * k_factors[t] for t in k_factors)
-    return erodibility
-
-
-# mm/year
-ANNUAL_PRECIPITATION_PER_COUNTRY = _wfldb_country_column("annual_precipitation_mm")
-CLAY_CONTENT_PER_COUNTRY = _wfldb_country_column("clay_content_ratio")
-# WFLDB share of sandy soils (WRB soil type), used as sand content of the soil texture (L22)
-SAND_CONTENT_PER_COUNTRY = _wfldb_country_column("sandy_soils_ratio")
-# topsoil organic carbon, kg C/kg soil (WFLDB row "Humus content", calculated from the carbon content; L26)
-SOIL_CARBON_CONTENT_PER_COUNTRY = _wfldb_country_column("soil_organic_carbon_ratio")
-SOIL_WITH_PH_UNDER_OR_7_PER_COUNTRY = _wfldb_country_column("soil_ph_le7_ratio")
 YEARLY_PRECIPITATION_AS_SNOW_PER_COUNTRY = _wfldb_country_column("precipitation_as_snow_ratio")
 IRR_WATERUSE_RATIO_PER_COUNTRY = {
     country: {WaterUseType.groundwater: row["groundwater"],
@@ -60,8 +37,6 @@ _MANURE_SHARES = {country: ManureModel.country_shares(country) for country in _C
 MANURE_LIQUID_RATIO_PER_COUNTRY = {country: shares[0] for country, shares in _MANURE_SHARES.items()}
 MANURE_SOLID_RATIO_PER_COUNTRY = {country: shares[1] for country, shares in _MANURE_SHARES.items()}
 MANURE_LIQUID_N_FRACTION_PER_COUNTRY = {country: ManureModel.liquid_n_fraction(country) for country in _COUNTRIES}
-# t h/(MJ mm)
-SOIL_ERODIBILITY_FACTOR_PER_COUNTRY = _wfldb_erodibility_per_country()
 
 
 def _orchard_lifetime_per_crop():
@@ -371,85 +346,53 @@ CARBON_CONTENT_PER_CROP = {
     }
 
 
-#from GD_crop Cfactor_L1
-# Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
-# Castor bean: (oil seeds) https://www.sciencedirect.com/science/article/pii/S0264837715001611
-# Chickpea: (dried pulses) https://www.sciencedirect.com/science/article/pii/S0264837715001611
-# Coriander:(other fodder crops) https://www.sciencedirect.com/science/article/pii/S0264837715001611
-# Ginger:(potatoes) https://www.sciencedirect.com/science/article/pii/S0264837715001611
-# Pearl millet:(MIllet and other cereals) https://www.sciencedirect.com/science/article/pii/S0264837715001611
-# Sesame seed: (oil seeds) https://www.sciencedirect.com/science/article/pii/S0264837715001611
-# Turmenic:(potatoes) https://www.sciencedirect.com/science/article/pii/S0264837715001611
-# Pomegranate: (grove) https://www.researchgate.net/figure/235986141_TABLE-2--CORINE-land-use-code-and-corresponding-C-factor
-CROP_FACTOR_PER_CROP = {
-        "almond":0.1,
-        "apple":0.1,
-        "apricot":0.1,
-    "asparagus_green": 0.5,
-    "asparagus_white": 0.5,
-        "banana":0.33,
-    "bellpepper": 0.3,
-    "blueberry": 0.3,
-    "cabbage_red": 0.3,
-    "cabbage_white": 0.3,
-    "carrot": 0.5,
-    "cashew": 0.25,
-    "cassava": 0.5,
-    "castor_beans": 0.23,
-    "chick_pea": 0.32,
-    "chilli": 0.3,
-        "cocoa":0.21,
-        "coconut":0.3,
-    "coffee_arabica": 0.26,
-    "coffee_robusta": 0.26,
-    "coriander": 0.18,
-    "cotton": 0.6,
-    "cranberry": 0.3,
-    "eggplant": 0.48,
-    "flax": 0.18,
-    "ginger": 0.34,
-    "grape": 0.15,
-    "guar": 0.3,
-    "hemp": 0.45,
-    "lemon": 0.1,
-    "citruslime": 0.1,
-    "lentil": 0.3,
-        "linseed":0.18,
-        "maizegrain":0.35,
-        "mandarin":0.1,
-    "mango": 0.25,
-        "mint":0.47,
-    "mulberry": 0.5,
-        "oat":0.26,
-        "olive":0.1,
-        "onion":0.45,
-    "orange_fresh": 0.1,
-    "orange_processing": 0.1,
-        "palmtree":0.21,
-        "peach":0.1,
-        "peanut":0.51,
-        "pear":0.1,
-    "pearl_millet": 0.18,
-    "pineapple": 0.48,
-    "pomegranate": 0.1,
-        "potato":0.44,
-        "rapeseed":0.33,
-    "raspberry": 0.3,
-        "rice":0.17,
-    "sesame_seed": 0.28,
-        "soybean":0.28,
-    "strawberry_fresh": 0.47,
-    "strawberry_processing": 0.47,
-        "sugarbeet":0.35,
-        "sugarcane":0.4,
-        "sunflower":0.32,
-        "sweetcorn":0.37,
-        "tea":0.3,
-    "tomato_fresh": 0.47,
-    "tomato_processing": 0.47,
-    "turmeric": 0.34,
-    "wheat": 0.22
-        }
+# C_crop of the cover-management factor C = C_crop x C_tillage (decision L59): Panagos et al. (2015a) Table 1 or
+# Borrelli et al. (2017) Supplementary Table 2 via the FAOSTAT crop groups, per erosion_crop_c_factor_mapping.csv
+def _crop_c_factor_per_crop():
+    panagos = {row["crop_type"]: float(row["c_factor"]) for row in dataloader.rows("panagos2015a_crop_c_factors.csv")}
+    groups = {row["faostat_crop"]: row["crop_group_id"] for row in dataloader.rows("borrelli2017_faostat_crop_groups.csv")}
+    borrelli = {(row["crop_group_id"], row["subgroup"]): float(row["c_factor"])
+                for row in dataloader.rows("borrelli2017_crop_group_c_factors.csv")}
+    factors = {}
+    for row in dataloader.rows("erosion_crop_c_factor_mapping.csv"):
+        if row["c_source"] == "panagos2015a":
+            factors[row["crop"]] = panagos[row["panagos_crop_type"]]
+        else:
+            factors[row["crop"]] = borrelli[(groups[row["borrelli_faostat_crop"]], row["borrelli_subgroup"])]
+    return factors
+
+
+CROP_FACTOR_PER_CROP = _crop_c_factor_per_crop()
+
+# Rainfall erosivity R, MJ mm/(ha h yr), per crop and country, with the row "all_crops" per country (decision L60):
+# GloREDa monthly maps summed to the year, mean over the SPAM 2020 V2r2 physical area of the crop
+# (scripts/build_gloreda_erosivity.py)
+RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("gloreda2023_rainfall_erosivity.csv",
+                                                                        "r_factor_mj_mm_per_ha_h_yr")
+# Annual precipitation, mm/yr, per crop and country, with the row "all_crops" per country (decision L61): TerraClimate
+# monthly climatology 1991-2020 summed to the year, mean over the SPAM 2020 V2r2 physical area of the crop
+# (scripts/build_terraclimate_climate.py)
+ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("terraclimate1991_2020_climate.csv",
+                                                                          "annual_precipitation_mm")
+# Support-practice factor P of the EU, per crop and country, with the row "all_crops" per country (decision L62):
+# Panagos et al. (2015b) map (contouring, stone walls, grass margins), mean over the SPAM 2020 V2r2 physical area of the
+# crop (scripts/build_panagos_p_factor.py); EU countries only
+SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("panagos2015b_p_factor.csv", "p_factor")
+
+
+def _hwsd_soil(column, scale=1.0):
+    return {crop: {country: value * scale for country, value in countries.items()}
+            for crop, countries in dataloader.crop_country_table("hwsd2_soil.csv", column).items()}
+
+
+# Soil per crop and country, with the row "all_crops" per country (decision L63): Harmonized World Soil Database v2.0,
+# mean over the SPAM 2020 V2r2 physical area of the crop (scripts/build_hwsd_soil.py). Clay of the topsoil (0-20 cm),
+# ratio; organic carbon 0-50 cm (soil volume of the nitrate model), kg C/kg soil; share of the soils with pH in water
+# <= 7 in the topsoil; erodibility K, t h/(MJ mm), LANCA (Bos et al. 2016) Eq. 7 with the topsoil
+CLAY_CONTENT_PER_CROP_PER_COUNTRY = _hwsd_soil("clay_pct", 0.01)
+SOIL_CARBON_CONTENT_PER_CROP_PER_COUNTRY = _hwsd_soil("org_carbon_0_50_pct", 0.01)
+SOIL_WITH_PH_UNDER_OR_7_PER_CROP_PER_COUNTRY = _hwsd_soil("ph_le7_share")
+SOIL_ERODIBILITY_FACTOR_PER_CROP_PER_COUNTRY = _hwsd_soil("k_lanca")
 
 #src: ecoinvent report no. 15a
 # Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
@@ -1134,16 +1077,6 @@ ROOTING_DEPTH_PER_CROP = {
     "turmeric": 0.45,
     "wheat": 0.7
 }
-
-#src except unknown: EUROPEAN COMMISSION DIRECTORATE GENERAL JRC JOINT RESEARCH CENTRE Space Applications Institute European Soil Bureau
-SOIL_ERODIBILITY_FACTOR_PER_SOIL_TEXTURE = {
-                        SoilTexture.unknown:0.032,#Panagos et al. 2014
-                        SoilTexture.coarse:0.0115,
-                        SoilTexture.medium:0.0311,
-                        SoilTexture.medium_fine:0.0438,
-                        SoilTexture.fine:0.0339,
-                        SoilTexture.very_fine:0.017
-                        }
 
 #From GD_crop WaterNutrient_L1 column C
 #  Mireille&Raphaël for Bell pepper, cabbage, cashew, cassava, chilli, cotton, eggplant, flax, grape, guar, hemp, lentil, mango, mulberry
