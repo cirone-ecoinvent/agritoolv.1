@@ -101,7 +101,7 @@ The **Use** column below means:
 | File | Source | Use | How it is used |
 |---|---|---|---|
 | `p_landuse_classes.csv` | Prasuhn (2006) SALCA-Phosphor, Tab. 1 and 2 | model | Average P leaching and run-off per land use class (`pmodel.py`). |
-| `wfldb2017_agr_system_parameters.csv` | WFLDB 3.1 Background Parameters 2017, sheet 1 | model | Default site parameters per country (`defaultTables.py`): annual precipitation, clay and sand content, soil organic carbon, share of soils with pH <= 7, share of precipitation as snow; the soil-type shares give the soil erodibility (L22, L26, L27). MA and CS are legacy values. |
+| `wfldb2017_agr_system_parameters.csv` | WFLDB 3.1 Background Parameters 2017, sheet 1 | model | Default site parameters per country (`defaultTables.py`): clay and sand content, soil organic carbon, share of soils with pH <= 7, share of precipitation as snow; the soil-type shares give the soil erodibility (L22, L26, L27). MA and CS are legacy values. The annual precipitation column is no longer read (L61). |
 | `wfldb2017_soil_type_k_factors.csv` | WFLDB 3.1 Documentation 2017, Tab. 6 (Panagos et al. 2014) | model | K factor per soil type: default soil erodibility per country (L27). |
 
 ## Erosion factors
@@ -123,7 +123,7 @@ maps aggregated over the crop area (build environment `.venv-gis`: numpy, tifffi
 | `spam2020_crop_mapping.csv` | AgriToolV.1 (signed by FC), from mapspamc | build | Tool crop -> SPAM 2020 crop: weights of the crop x country maps (L60). |
 | `mapspamc_faostat_spam_crops.csv` | mapspamc R package, faostat2crop | reference | FAOSTAT item -> SPAM crop, reference of `spam2020_crop_mapping.csv`. |
 | `spam2020_crops.csv` | SPAM 2020 V2r2 README | reference | The 46 SPAM crops. |
-| `terraclimate1991_2020_climate.csv` | TerraClimate 1991-2020 over the SPAM 2020 V2r2 crop area. Built by `build_terraclimate_climate.py`. | pending | Annual precipitation, PET and their ratio per crop and country; not read by the model yet. |
+| `terraclimate1991_2020_climate.csv` | TerraClimate 1991-2020 over the SPAM 2020 V2r2 crop area. Built by `build_terraclimate_climate.py`. | model | Default annual precipitation per crop and country (L61); PET and the precipitation/PET ratio not read yet. |
 
 ## Irrigation and water
 
