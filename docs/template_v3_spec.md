@@ -117,7 +117,7 @@ of template v2.
 | `period_start`, `period_end` | year | R, N | - | Time period of the dataset (ecoinvent v4 unit process) |
 | `production_system` | list | R | `cultivation_type` | open ground; greenhouse soil heated / unheated; greenhouse hydroponic heated / unheated |
 | `organic` | yes/no | R | `organic_certified` | |
-| `crop_cycles_per_year` | number | O, N | dates | Replaces the four dates (Q4); default 1 |
+| `crop_cycle_duration` | months | O, N | `harvest_date_previous_crop`, `harvesting_date_main_crop` | Months from the harvest of the previous crop to the harvest of this crop (Q4, decided); N/A -> 12. The tool sets `crop_cycle_per_year` = 12 / duration; the occupation period 1 / `crop_cycle_per_year` years is read by the land occupation and the nitrate, phosphorus, heavy-metal and land use change models. Replaces the four dates of v2 |
 | `yield_main_product` | kg FM/(ha and crop cycle) | E | `yield_main_product_per_crop_cycle` | N/A -> default FAOSTAT 2021-2024 per crop cycle (L23, L24), with warning. A given value is checked for plausibility (section 5.11). Crops without a default yield (guar, mulberry, pomegranate) require the value |
 | `irrigated` | yes/no | R, N | - | No "unknown" (Q5, section 5.12). Sets the land use flows (irrigated or non-irrigated) |
 | `irrigation_water`, `irrigation_water_unit` | m3/ha or mm, per crop cycle | R if `irrigated` = yes | `total_wateruse` | No default (section 5.12); must be 0 or N/A when `irrigated` = no |
@@ -141,9 +141,20 @@ of template v2.
 ### 5.2 Sheet `Coproducts`
 
 `dataset_id`, `coproduct` (list of Master Data products, e.g. straw), `amount` (kg FM/(ha and crop
-cycle)), `fate` (sold, left on field, burned, composted; N). Replaces `yield_BP1..3_per_crop_cycle`,
-whose name was the free text of the label. The fate is needed for crop residues (N input, heavy-metal
-export) and for the functional flows of the v4 dataset (Q8).
+cycle)), `fate` (R, N). Replaces `yield_BP1..3_per_crop_cycle`, whose name was the free text of the
+label.
+
+Fate (Q8, decided by FC on 2026-11-02):
+
+- `removed` (sold or used off the field): the co-product is a product of the dataset (a functional
+  flow of the v4 dataset, with allocation) and its heavy metals leave the field (SALCA export, as
+  the legacy `yield_BP` fields today);
+- `left on field`: not a product of the dataset; no heavy-metal export;
+- `burned`: not supported yet, the reader stops with an error, because the model has no emissions
+  of residue burning; to be added with a burning model.
+
+Today the residue N input comes from fixed crop formulas (legacy, undocumented, provisional) that do
+not depend on the share removed; linking it to the removed amount is a later model change.
 
 ### 5.3 Sheet `Fertilisers`
 
@@ -172,7 +183,9 @@ the Master Data contents of `NPK (15-15-15) fertiliser` are clarified (L45 open 
 grouped by class), `amount` (g a.i./(ha and crop cycle)), `comment`. Unlisted ingredients: rows
 `other herbicide / fungicide / insecticide` with the name in `comment`, flagged by the reader.
 Horticultural oil in kg. Default when the dataset has no row: total active ingredient of the atlas
-(L48), used only for the packaging; no emission without active ingredients (Q9).
+(L48), used only for the packaging, with a warning to the provider; no emission without active
+ingredients (Q9, decided by FC on 2026-11-02). Pesticide emissions of unspecified ingredients wait
+for OLCA-Pest and the Master Data v4 (section 9).
 
 ### 5.5 Sheet `Operations`
 
@@ -294,6 +307,11 @@ later. The name and e-mail of the person who collected the data are not asked in
   (GLO row of the crop x country matrices, IFA region of L37, IPCC region of L42), and a country
   outside the 39 tool countries with no fallback in a table stops the calculation with an error
   that names the table.
+- Scope (FC, 2026-11-02): the defaults are extended from the 39 tool countries (L58) to the M49
+  countries and aggregates; this revises L58 and is done table by table in the model work. The
+  tables built from maps (R, precipitation, P, soil: L60-L63) can be computed for every country
+  and aggregate with the same grid; the tables from FAOSTAT and IFA statistics (yield, fertiliser,
+  manure) need their own aggregation rules.
 
 ### 5.11 Plausibility of the yield (Q2, decided by FC on 2026-10-27)
 
@@ -581,12 +599,14 @@ to the inputs of `src/legacy_model/`. Validation, reported per sheet and cell:
   negative amount, shares not summing to 100 % (tolerance to be set), N/A in a required field,
   input group set to 0 with rows in the long sheet, text other than `N/A` in a numeric cell,
   `irrigated` = yes without irrigation water or without technique shares summing to 100 %,
-  `irrigated` = no with irrigation water above 0, field operation with neither passes nor diesel;
+  `irrigated` = no with irrigation water above 0, field operation with neither passes nor diesel,
+  co-product with fate `burned` (Q8), `crop_cycle_duration` not above 0;
 - warnings (the dataset is calculated): default used (yield included), empty cell read as N/A,
   yield outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the crop in the same
   country (section 5.11), irrigation water outside the Pfister range (section 5.12), more than 8
   passes derived for an operation (section 5.5), free-text `other` rows, inputs given for a field
-  the model does not use.
+  the model does not use, no pesticide rows (atlas total used for the packaging only, Q9),
+  `crop_cycle_duration` above 12 months for an annual crop.
 
 The reader is built after the specification is agreed, with tests on example workbooks that hold
 no real farm data.
@@ -608,13 +628,13 @@ These fields are needed only if the corresponding model is adopted (decisions of
 | Q1 | Geography: only the 39 tool countries, or any M49 country with regional or world defaults? Sub-national regions now or later? | **Decided (FC, 2026-10-27):** any M49 country or area; defaults fall back to intermediate region, sub-region, region and World (section 5.10); `region` as text for documentation. Open: confirm the intermediate-region level |
 | Q2 | Should the yield stay required, or may the FAOSTAT default be used when missing? | **Decided (FC, 2026-10-27):** the yield is expected from the provider (E); FAOSTAT default (L23, L24) only when it is N/A, with warning; a given yield gets a non-blocking warning outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the same crop in the same country (section 5.11). Open: the crop -> ecoinvent activity mapping and the reference table (section 5.11) |
 | Q3 | How does the provider state "not used" for a whole input group (no manure, no pesticides)? | **Decided (FC, 2026-10-27):** every input cell starts as `N/A` (default); `0` is a real zero (P3). Input-group columns in `Datasets` (section 4) |
-| Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | Yes; optional harvest month for documentation |
+| Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | **Decided (FC, 2026-11-02):** one field `crop_cycle_duration` in months, from the harvest of the previous crop to the harvest of this crop, default 12; not a whole number of cycles, which would lose the occupation period the model reads (wheat_IT: 9.8 months, 1.26 cycles per year; rice_IN: 5 months) (section 5.1) |
 | Q5 | Irrigation: is the default water (Pfister, L44) applied only when `irrigated` = yes and the amount is N/A, and 0 when `irrigated` = no? What when `unknown`? | **Decided (FC, 2026-10-27):** yes -> water required, in m3/ha or mm, and the shares of surface, sprinkler and drip irrigation; no -> 0; no "unknown"; mixed systems as two datasets; Pfister min-max only as plausibility range (section 5.12) |
 | Q6 | Operations: diesel per group (A) or passes per operation (B)? | **Decided (FC, 2026-10-27):** B, one row per operation with diesel (l/ha or kg/ha) and passes; missing diesel from the intensity table of the agri-lca-pipeline, missing passes from diesel / intensity; both missing is an error (section 5.5) |
 | Q7 | Climate zone, wet days, elevation: which source for country defaults, or keep them as provider fields? | **Decided (FC, 2026-10-30):** removed; R from GloREDa; optional slope (revises L6); soil from HWSD v2.0, K with LANCA (Bos et al. 2016), C and P from Panagos et al. (2015a, b), IPCC climate zone map; all as optional overrides of defaults (section 5.13) |
-| Q8 | Co-product fate: needed now? | Yes, it decides residue N and the functional flows of the v4 dataset |
-| Q9 | Pesticides without active ingredients: keep the atlas total for packaging only, or also an emission of an unspecified pesticide? | Packaging only, warning to the provider |
-| Q10 | Keep a reader for template v2 files? | No; a one-off conversion script only if old filled templates must be reused |
+| Q8 | Co-product fate: needed now? | **Decided (FC, 2026-11-02):** yes, `removed` or `left on field`; `burned` is an error until a burning model exists (section 5.2) |
+| Q9 | Pesticides without active ingredients: keep the atlas total for packaging only, or also an emission of an unspecified pesticide? | **Decided (FC, 2026-11-02):** packaging only, warning to the provider (section 5.4) |
+| Q10 | Keep a reader for template v2 files? | **Decided (FC, 2026-11-02):** no; a one-off conversion script only if old filled templates must be reused (the regression cases are JSON inputs, not workbooks) |
 
 ## 9. Reminders for later (FC, 2026-10-27)
 
