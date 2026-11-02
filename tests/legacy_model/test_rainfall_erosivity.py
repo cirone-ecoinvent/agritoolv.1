@@ -59,7 +59,8 @@ def test_crop_without_spam_area_uses_all_crops():
 def test_eroded_soil_is_proportional_to_r():
     values = {"rainfall_erosivity": 1000.0, "slope": 0.03, "slope_length": 50.0,
               "tillage_method": TillageMethod.unknown, "anti_erosion_practice": AntiErosionPractice.no_practice,
-              "soil_erodibility_factor": 0.03, "crop_factor": 0.2}
+              "soil_erodibility_factor": 0.03, "crop_factor": 0.2,
+              "support_practice_factor": 1.0}
     reference = ErosionModel(values).compute()["m_Erosion_eroded_soil"]
     values["rainfall_erosivity"] = 2500.0
     assert ErosionModel(values).compute()["m_Erosion_eroded_soil"] == pytest.approx(2.5 * reference)

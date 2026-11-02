@@ -53,6 +53,7 @@ class ErosionModel(object):
       slope_length: m
       tillage_method: TillageMethod
       anti_erosion_practice: AntiErosionPractice
+      support_practice_factor: number, P when the practice has no AH 537 factor (Panagos et al. 2015b in the EU, else 1)
       soil_erodibility_factor: t h/(MJ*mm)
       crop_factor: number
 
@@ -65,6 +66,7 @@ class ErosionModel(object):
                         "slope_length",
                         "tillage_method",
                         "anti_erosion_practice",
+                        "support_practice_factor",
                         "soil_erodibility_factor",
                         "crop_factor"
                         ]
@@ -114,10 +116,11 @@ class ErosionModel(object):
     def _compute_practice_factor(self):
         """AH 537 P of the slope class of the field (decision L59). The printed classes have gaps (1-2, 3-5 %, ...):
         a slope belongs to the first class whose upper limit it does not exceed, so 2.5 % is in 3-5 % and slopes under
-        1 % in 1-2 %. Above the last class (25 %) the tables give no factor: P = 1."""
+        1 % in 1-2 %. Above the last class (25 %) the tables give no factor: P = 1. A practice without AH 537 factor
+        (unknown, none, cross slope) gets support_practice_factor (decision L62)."""
         classes = self._PRACTICE_SLOPE_CLASSES[self.anti_erosion_practice]
         if classes is None:
-            return 1.0
+            return self.support_practice_factor
         slope_pct = self.slope * 100.0
         for slope_max_pct, p_value in classes:
             if slope_pct <= slope_max_pct:
