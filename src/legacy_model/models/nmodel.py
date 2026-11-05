@@ -28,6 +28,7 @@ class NModel(object):
       crop_cycle_per_year: ratio (occupation period = 1 / crop_cycle_per_year years)
       rooting_depth: m
       water_use_total: m3/(ha*crop cycle)
+      wet_climate_share: ratio, share of the crop area in a wet climate of IPCC 2019 (N2O factors, decision L64)
 
     Outputs:
       m_N_ammonia_total: kg NH3 / (ha*crop cycle)
@@ -60,7 +61,8 @@ class NModel(object):
                         "average_annual_precipitation",
                         "crop_cycle_per_year",
                         "rooting_depth",
-                        "water_use_total"
+                        "water_use_total",
+                        "wet_climate_share"
                        ]
 
     def __init__(self, inputs):
@@ -72,14 +74,16 @@ class NModel(object):
     def compute(self):
         self._check_fractions()
         total_fert_nitrogen = self._compute_total_fert_nitrogen()
+        organic_nitrogen = self.nitrogen_from_all_manure + self.nitrogen_from_other_orga_fert
         ammonia_total = self._compute_total_due_ammonia()
         nox = self._compute_nox_as_no2(total_fert_nitrogen, ammonia_total)
         flooded_rice = self._is_flooded_rice()
-        n2o_direct_as_n = self._compute_direct_n2o_as_n(total_fert_nitrogen, 0.0, 0.0, flooded_rice)
+        n2o_direct_as_n = self._compute_direct_n2o_as_n(self.nitrogen_from_mineral_fert, organic_nitrogen,
+                                                        flooded_rice)
         no3asNleach = self.computeNO3leachAsN(ammonia_total, nox, n2o_direct_as_n)
-        n2o = self._compute_n2o_total(total_fert_nitrogen, self.nitrogen_from_crop_residues,
-                                      self._compute_n_som(), ammonia_total, nox, no3asNleach,
-                                      flooded_rice)
+        n2o = self._compute_n2o_total(self.nitrogen_from_mineral_fert,
+                                      organic_nitrogen + self.nitrogen_from_crop_residues + self._compute_n_som(),
+                                      ammonia_total, nox, no3asNleach, flooded_rice)
         no3gw, no3sw = self._split_n3oasNleach_between_ground_and_surface_waters(no3asNleach)
         return {"m_N_ammonia_total": ammonia_total,
                 "m_N_nitrate_to_groundwater": no3gw,
@@ -122,25 +126,42 @@ class NModel(object):
                                     else "cn_ratio_cropland")
         return max(-self.soc_change_kg_c, 0.0) / cn_ratio
 
-    def _compute_direct_n2o_as_n(self, n_applied, n_crop_residues, n_som, flooded_rice):
-        """Direct N2O-N [kg N], IPCC 2006 Eq. 11.1: EF1 (or EF1FR for flooded rice) x
-        (N applied + N in crop residues + N mineralised from SOC loss)."""
-        ef1 = dataloader.param("ef1_flooded_rice" if flooded_rice else "ef1_direct_n2o")
-        return ef1 * (n_applied + n_crop_residues + n_som)
+    @staticmethod
+    def _factor(name):
+        """N2O factor of the IPCC 2019 Refinement Tables 11.1 and 11.3 (ipcc2019_n2o_emission_factors.csv, L64)."""
+        return dataloader.table("ipcc2019_n2o_emission_factors.csv", "parameter")[name]["value"]
 
-    def _compute_n2o_total(self, n_applied, n_crop_residues, n_som, nh3_kg, nox_kg,
-                           no3_as_n, flooded_rice):
-        """N2O [kg N2O] = 44/28 x (direct + indirect) (Fix F2, reference_models.n2o).
+    def _climate_factor(self, wet, dry):
+        """Factor of the crop area: wet climate share x wet factor + the rest x dry factor (decision L64)."""
+        return self.wet_climate_share * wet + (1.0 - self.wet_climate_share) * dry
 
-        direct   = EF1 or EF1FR x (N applied + N residues + N_som)   (IPCC 2006 Eq. 11.1)
-        indirect = EF4 x (NH3-N + NOx-N) + EF5 x leached NO3-N       (Eq. 11.9 and 11.10)
-        The legacy code added the volatilised N to the direct term with EF1 (numerically
-        the same as EF4 = 0.01) and had no N_som and no rice factor.
+    def _compute_direct_n2o_as_n(self, n_synthetic, n_other, flooded_rice):
+        """Direct N2O-N [kg N], IPCC 2019 Refinement Eq. 11.1 with the factors of Table 11.1 (decision L64).
+
+        n_synthetic: mineral fertiliser N; n_other: N of manure, other organic fertilisers, crop residues and N
+        mineralised from SOC loss. Flooded rice: aggregated EF1FR x all N (the template does not ask the water regime
+        that selects continuous flooding or drainage). Other crops: EF1 of synthetic fertilisers or of
+        the other N inputs in the wet climate share of the crop area, EF1 of the dry climate on the rest.
         """
-        direct = self._compute_direct_n2o_as_n(n_applied, n_crop_residues, n_som, flooded_rice)
-        indirect = dataloader.param("ef4_volatilisation") \
-            * (NH3_TO_N_FACTOR * nh3_kg + NO2_TO_N_FACTOR * nox_kg) \
-            + dataloader.param("ef5_leaching") * no3_as_n
+        if flooded_rice:
+            return self._factor("ef1fr_aggregated") * (n_synthetic + n_other)
+        wet = self._factor("ef1_synthetic_wet") * n_synthetic + self._factor("ef1_other_wet") * n_other
+        dry = self._factor("ef1_dry") * (n_synthetic + n_other)
+        return self._climate_factor(wet, dry)
+
+    def _compute_n2o_total(self, n_synthetic, n_other, nh3_kg, nox_kg, no3_as_n, flooded_rice):
+        """N2O [kg N2O] = 44/28 x (direct + indirect) (Fix F2; factors of IPCC 2019, decision L64).
+
+        direct   = EF1 (Table 11.1, by climate and N input) or EF1FR x N inputs (Eq. 11.1)
+        indirect = EF4 (Table 11.3, by climate) x (NH3-N + NOx-N) + EF5 x leached NO3-N (Eq. 11.9 and 11.10)
+        The volatilised and leached N are those of the tool (EMEP/EEA NH3 and NOx, SQCB nitrate), not FracGASF,
+        FracGASM and FracLEACH. The legacy code added the volatilised N to the direct term with EF1 and had no
+        N_som and no rice factor.
+        """
+        direct = self._compute_direct_n2o_as_n(n_synthetic, n_other, flooded_rice)
+        ef4 = self._climate_factor(self._factor("ef4_wet"), self._factor("ef4_dry"))
+        indirect = ef4 * (NH3_TO_N_FACTOR * nh3_kg + NO2_TO_N_FACTOR * nox_kg) \
+            + self._factor("ef5_leaching") * no3_as_n
         return N_TO_N2O_FACTOR * (direct + indirect)
 
     def computeNO3leachAsN(self, ammonia_total, nox, n2o_direct_as_n):
@@ -171,6 +192,8 @@ class NModel(object):
         """Clay content must be a fraction (Annex 1 of Quantis 2019 gives ratios, e.g. 0.30)."""
         if not 0.0 < self.clay_content < 1.0:
             raise ValueError("clay_content must be a fraction in (0, 1), got %r" % self.clay_content)
+        if not 0.0 <= self.wet_climate_share <= 1.0:
+            raise ValueError("wet_climate_share must be a fraction in [0, 1], got %r" % self.wet_climate_share)
 
     def _compute_nitrogen_in_soil_orga_matter(self, carbon_in_soil):
         return carbon_in_soil / self.c_per_n_ratio * self.norg_per_ntotal_ratio

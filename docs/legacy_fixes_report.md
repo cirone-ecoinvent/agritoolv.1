@@ -2617,3 +2617,100 @@ P to surface water by erosion and heavy metals to surface water follow the erode
 soil rise by the metal no longer removed with the soil. N2O rises with the leached nitrate (indirect EF5: wheat_IT
 x 1.008, rice_IN x 1.061, apple_FR x 1.033); NH3 changes by less than 1 % with the pH share (rice_IN unchanged: urea on
 flooded rice takes the paddy factor for both pH classes, L54).
+
+## 51. N2O factors of the IPCC 2019 Refinement by wet and dry climate (decision L64, 2026-11-05)
+
+The N2O of the N model uses the factors of the IPCC 2019 Refinement Vol. 4 Tables 11.1 and 11.3 (Updated), transcribed
+with their uncertainty ranges and footnotes in `ipcc2019_n2o_emission_factors.csv` (checked against the PDF text: all 11
+values and ranges equal), instead of the aggregated IPCC 2006 factors of `model_parameters.csv`:
+
+| Factor | IPCC 2006 (before) | IPCC 2019 (now) | Uncertainty range | Table, page |
+|---|---|---|---|---|
+| EF1, mineral fertiliser N | 0.010 | wet 0.016, dry 0.005 | 0.013-0.019; 0.000-0.011 | 11.1, p. 11.13 |
+| EF1, manure, other organic fertilisers, crop residues, N_som | 0.010 | wet 0.006, dry 0.005 | 0.001-0.011; 0.000-0.011 | 11.1, p. 11.13 |
+| EF1FR, flooded rice | 0.003 | 0.004 (aggregated) | 0.000-0.029 | 11.1, p. 11.13 |
+| EF4, on NH3-N + NOx-N of the tool | 0.010 | wet 0.014, dry 0.005 | 0.011-0.017; 0.000-0.011 | 11.3, p. 11.26 |
+| EF5, on leached NO3-N | 0.0075 | 0.011 | 0.000-0.020 | 11.3, p. 11.26 |
+
+Recorded but not read: aggregated EF1 and EF4 0.010 (0.002-0.018); EF1FR continuous flooding 0.003 (0.000-0.010) and
+single and multiple drainage 0.005 (0.000-0.016), to be used once the template asks the water regime.
+
+### Wet and dry climate
+
+Rule of Vol. 4 Annex 3A.5 Figure 3A.5.2 (p. 3.48) and of the notes of Tables 11.1 and 11.3: a cell is tropical when the
+mean annual temperature is above 18 degC and it has at most 7 frost days per year; tropical cells are wet when the annual
+precipitation exceeds 1000 mm, the other cells when precipitation / PET exceeds 1. Data: CRU TS 4.10 (run 2604091129),
+1991-2020, 0.5 degree: annual sum of the monthly means of `pre`, of `pet` x days of the month and of `frs`; mean of the
+monthly means of `tmp`. Each 1/12 degree cell of the SPAM grid takes the CRU cell of its centre; `wet_climate_share` is
+the mean over the SPAM 2020 V2r2 physical area of the crop in the country (coverage at least 0.969, coconut PH).
+
+Wet share of all crops per tool country, chosen variant (CRU 1991-2020) and rejected variants (TerraClimate 1991-2020:
+TerraClimate tmax, tmin, ppt and pet with the CRU frost days; CRU 1985-2015, the period of Figure 3A.5.1; JRC 2010 map
+`Climate_Zone.zip`, IPCC 2006 scheme on WorldClim 1950-2000: moist and wet classes wet, dry classes dry, tropical montane
+by the 1000 mm rule on TerraClimate precipitation):
+
+| Country | CRU 1991-2020 | TerraClimate 1991-2020 | CRU 1985-2015 | JRC 2010 | Country | CRU 1991-2020 | TerraClimate 1991-2020 | CRU 1985-2015 | JRC 2010 |
+|---|---|---|---|---|---|---|---|---|---|
+| AR | 0.05 | 0.04 | 0.06 | 0.07 | IL | 0.00 | 0.00 | 0.00 | 0.00 |
+| AU | 0.01 | 0.02 | 0.01 | 0.02 | IN | 0.42 | 0.50 | 0.41 | 0.42 |
+| BE | 1.00 | 1.00 | 1.00 | 1.00 | IT | 0.27 | 0.15 | 0.30 | 0.30 |
+| BR | 0.93 | 0.92 | 0.94 | 0.94 | KE | 0.53 | 0.41 | 0.45 | 0.45 |
+| CA | 0.13 | 0.16 | 0.13 | 0.24 | LK | 1.00 | 1.00 | 1.00 | 1.00 |
+| CH | 1.00 | 1.00 | 1.00 | 1.00 | MA | 0.00 | 0.00 | 0.00 | 0.01 |
+| CI | 1.00 | 0.90 | 1.00 | 1.00 | MX | 0.35 | 0.32 | 0.35 | 0.35 |
+| CL | 0.44 | 0.55 | 0.44 | 0.68 | NL | 1.00 | 1.00 | 1.00 | 1.00 |
+| CN | 0.41 | 0.35 | 0.41 | 0.39 | NZ | 0.74 | 0.29 | 0.66 | 0.62 |
+| CO | 0.99 | 0.97 | 0.99 | 0.96 | PE | 0.30 | 0.32 | 0.29 | 0.44 |
+| CR | 1.00 | 1.00 | 1.00 | 1.00 | PH | 1.00 | 1.00 | 1.00 | 1.00 |
+| CS | 0.03 | 0.03 | 0.03 | 0.10 | PL | 0.10 | 0.10 | 0.12 | 0.40 |
+| DE | 0.53 | 0.62 | 0.60 | 0.77 | RU | 0.06 | 0.04 | 0.06 | 0.31 |
+| EC | 0.73 | 0.70 | 0.72 | 0.69 | TH | 1.00 | 0.92 | 1.00 | 0.99 |
+| ES | 0.05 | 0.05 | 0.05 | 0.09 | TR | 0.01 | 0.01 | 0.01 | 0.06 |
+| FI | 1.00 | 1.00 | 1.00 | 1.00 | UA | 0.01 | 0.03 | 0.01 | 0.30 |
+| FR | 0.41 | 0.36 | 0.49 | 0.78 | US | 0.35 | 0.41 | 0.27 | 0.56 |
+| GH | 0.88 | 0.68 | 0.87 | 0.86 | VN | 1.00 | 1.00 | 1.00 | 0.99 |
+| HU | 0.01 | 0.00 | 0.01 | 0.04 | ZA | 0.01 | 0.00 | 0.02 | 0.02 |
+| ID | 1.00 | 1.00 | 1.00 | 1.00 | | | | | |
+
+Check against the IPCC map in Europe (wet share of the cropland of all SPAM crops; United Kingdom, Ireland, Denmark,
+Greece, Romania and Northern Italy, the regions Piemonte, Valle d'Aosta, Lombardia, Trentino-Alto Adige, Veneto,
+Friuli-Venezia Giulia, Liguria and Emilia-Romagna, computed for this check only; expected class read by FC from Figure
+3A.5.1):
+
+| Area | Expected | CRU 1991-2020 | TerraClimate 1991-2020 | CRU 1985-2015 | JRC 2010 |
+|---|---|---|---|---|---|
+| United Kingdom | mostly wet | 0.86 | 0.73 | 0.86 | 0.85 |
+| Ireland | mostly wet | 1.00 | 1.00 | 1.00 | 1.00 |
+| Netherlands | mostly wet | 1.00 | 1.00 | 1.00 | 1.00 |
+| Belgium | mostly wet | 1.00 | 1.00 | 1.00 | 1.00 |
+| Denmark | mostly wet | 0.85 | 0.88 | 0.93 | 1.00 |
+| Germany | mostly wet | 0.53 | 0.62 | 0.60 | 0.77 |
+| France | mixed | 0.41 | 0.36 | 0.49 | 0.78 |
+| Poland | mixed | 0.10 | 0.10 | 0.12 | 0.40 |
+| Northern Italy | mixed | 0.67 | 0.35 | 0.71 | 0.60 |
+| Italy | mostly dry | 0.27 | 0.15 | 0.30 | 0.30 |
+| Spain | mostly dry | 0.05 | 0.05 | 0.05 | 0.09 |
+| Greece | mostly dry | 0.01 | 0.02 | 0.01 | 0.09 |
+| Hungary | mostly dry | 0.01 | 0.00 | 0.01 | 0.04 |
+| Romania | mostly dry | 0.05 | 0.01 | 0.05 | 0.07 |
+| Ukraine | mostly dry | 0.01 | 0.03 | 0.01 | 0.30 |
+
+With CRU 1991-2020 the mostly wet and mostly dry groups match; France (0.41) and Northern Italy (0.67) are mixed; Poland
+stays mostly dry (0.10) with all recent data (median P/PET of the cropland 0.80 with TerraClimate). The data set moves
+the share more than the period (CRU against TerraClimate: Northern Italy 0.67 against 0.35, United Kingdom 0.86 against
+0.73; CRU 1985-2015 against 1991-2020: 0 to +0.08). The gap to the JRC map (France 0.78, Poland 0.40, Ukraine 0.30)
+comes from the map (older climate data and scheme), not from the period or the data set.
+
+### Regression cases
+
+| Case | Wet share | Effective EF1 mineral / other | Effective EF4 | N2O before | N2O after | Ratio | NO3 to groundwater | NO3 to surface water |
+|---|---|---|---|---|---|---|---|---|
+| wheat_IT | 0.138 | 0.0065 / 0.0051 | 0.0062 | 4.918 kg | 3.236 kg | x 0.658 | 90.591 -> 90.973 | 38.825 -> 38.989 |
+| rice_IN | 0.722 | EF1FR 0.004 | 0.0115 | 2.013 kg | 2.637 kg | x 1.310 | 162.315 -> 161.808 | 0 |
+| apple_FR | 0.457 | 0.0100 / 0.0055 | 0.0091 | 2.467 kg | 2.395 kg | x 0.971 | 157.342 -> 157.418 | 17.482 -> 17.491 |
+
+N2O of the regression cases with the rejected variants (same factors): wheat_IT 3.111 kg (TerraClimate), 3.314 kg (CRU
+1985-2015), 3.491 kg (JRC 2010); rice_IN 2.676, 2.637, 2.640 kg; apple_FR 2.313, 2.515, 2.967 kg. wheat_IT is mostly in
+a dry climate (EF1 and EF4 about 0.006 instead of 0.01); rice_IN rises with EF1FR 0.004, EF4 0.0115 and EF5 0.011; in
+apple_FR the lower EF1 of the other N inputs and EF4 almost offset EF5 0.011. The nitrate changes slightly because the
+direct N2O-N is subtracted from the N supply of the SQCB model (Fix F3).

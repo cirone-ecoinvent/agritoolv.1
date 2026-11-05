@@ -378,6 +378,10 @@ ANNUAL_PRECIPITATION_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("terra
 # Panagos et al. (2015b) map (contouring, stone walls, grass margins), mean over the SPAM 2020 V2r2 physical area of the
 # crop (scripts/build_panagos_p_factor.py); EU countries only
 SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("panagos2015b_p_factor.csv", "p_factor")
+# Share of the crop area in a wet climate of IPCC 2019 Tables 11.1 and 11.3 (N2O factors), per crop and country, with
+# the row "all_crops" per country (decision L64): IPCC climate zone map, mean over the SPAM 2020 V2r2 physical area of
+# the crop (scripts/build_ipcc_climate_wet_share.py)
+WET_CLIMATE_SHARE_PER_CROP_PER_COUNTRY = dataloader.crop_country_table("ipcc_climate_wet_share.csv", "wet_share")
 
 
 def _hwsd_soil(column, scale=1.0):

@@ -21,7 +21,8 @@ from defaultTables import CLAY_CONTENT_PER_CROP_PER_COUNTRY, SOIL_CARBON_CONTENT
     N_UPTAKE_PER_KG_MAIN_PRODUCT_PER_CROP, N_UPTAKE_OF_TREE_RESIDUES_PER_CROP, LEGUME_CROPS, \
     N_UPTAKE_PER_KG_MAIN_PRODUCT_OTHER_CROPS, PK_PER_KG_MAIN_PRODUCT_PER_CROP, \
     IFA_MINERAL_FERTILISER_PER_CROP_PER_COUNTRY, ORCHARD_LIFETIME_PER_CROP_PER_COUNTRY, \
-    LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY, MINERAL_N_RULE_WITHOUT_IFA_RATE, RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY,     SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY
+    LEGACY_N_UPTAKE_PER_CROP_PER_COUNTRY, MINERAL_N_RULE_WITHOUT_IFA_RATE, RAINFALL_EROSIVITY_PER_CROP_PER_COUNTRY,     SUPPORT_PRACTICE_FACTOR_PER_CROP_PER_COUNTRY, \
+    WET_CLIMATE_SHARE_PER_CROP_PER_COUNTRY
 from directMappingEnums import PlasticDisposal, Plantprotection, Soilcultivation, \
     Sowingplanting, Fertilisation, Harvesting, OtherWorkProcesses, Biowaste
 from models.atomicmass import MA_CO2, MA_C
@@ -206,7 +207,7 @@ class HeavyMetalExportWithHarvestGenerator(object):
 
 class CropCountryMapDefaultGenerator(object):
     """Value of the crop in the country of a map averaged over the SPAM 2020 area of the crop (HWSD soil, decision
-    L63); the row "all_crops" of the country for a crop outside the table."""
+    L63; wet climate share of IPCC 2019, L64); the row "all_crops" of the country for a crop outside the table."""
     def __init__(self, table):
         self._table = table
 
@@ -702,6 +703,7 @@ DEFAULTS_VALUES_GENERATORS = {
     "considered_soil_volume": ParameterDefaultGenerator("soil_volume_m3"),
     "drained_part": SimpleValueDefaultGenerator(0.0),
     "organic_carbon_content": CropCountryMapDefaultGenerator(SOIL_CARBON_CONTENT_PER_CROP_PER_COUNTRY),
+    "wet_climate_share": CropCountryMapDefaultGenerator(WET_CLIMATE_SHARE_PER_CROP_PER_COUNTRY),
     "nitrogen_uptake_by_crop": NitrogenUptakeGenerator(),
     "norg_per_ntotal_ratio": ParameterDefaultGenerator("norg_ntot_ratio"),
     "rooting_depth": TableLookupDefaultGenerator("crop", ROOTING_DEPTH_PER_CROP),
