@@ -31,7 +31,7 @@ The **Use** column below means:
 
 | File | Source | Use | How it is used |
 |---|---|---|---|
-| `model_parameters.csv` | Quantis (2019) sections 2.2-2.7; EMEP/EEA 2023 3.D; IPCC 2006 Vol. 4 ch. 11; Faist Emmenegger et al. 2009; Prasuhn 2006; SALCA 2023; WFLDB Guidelines v3.0 (irrigation efficiencies); FC judgement (seed and pesticide thresholds). Source per row in column `source`. | model | Scalar parameters: emission factors (NH3, N2O, NOx), the nitrate and P model, heavy metals, irrigation efficiency, liquid manure density, the mineral N share of the N uptake, legume share, tree residues. Four soil constants are also hardcoded in `defaultGeneration.py` (open, L49). |
+| `model_parameters.csv` | Quantis (2019) sections 2.2-2.7; EMEP/EEA 2023 3.D; IPCC 2006 Vol. 4 ch. 11; Faist Emmenegger et al. 2009; Prasuhn 2006; SALCA 2023; WFLDB Guidelines v3.0 (irrigation efficiencies); FC judgement (seed and pesticide thresholds). Source per row in column `source`. | model | Scalar parameters: emission factors (NH3, NOx; the N2O factors are in `ipcc2019_n2o_emission_factors.csv` since L64), the nitrate and P model, heavy metals, irrigation efficiency, liquid manure density, the mineral N share of the N uptake, legume share, tree residues. Four soil constants are also hardcoded in `defaultGeneration.py` (open, L49). |
 | `crop_types.csv` | Legacy `lucmodel.py`; FC decisions (flooded rice F7, planting amortisation, legumes L30) | model | Annual / perennial / flooded type of the 67 crops: selects the land use and LUC flows, the N2O factor of flooded rice, the amortisation of planting material and the legume rule of the N uptake. |
 | `crop_key_aliases.csv` | Legacy `crops.properties` | model | Translates 16 legacy crop codes into the keys of `seed_exchange_mapping.csv`. |
 | `faostat_country_mapping.csv` | FAOSTAT area codes (QCL download 2026-10-13) | model, build | Tool country -> FAOSTAT area code and M49 code. Used by all FAOSTAT-based build scripts and by the manure model for the IPCC region of the country. |
@@ -107,7 +107,8 @@ The **Use** column below means:
 ## Erosion factors
 
 C, P and R factors of the erosion model (`erosionmodel.py`, decisions L59 and L60; template v3 specification section 5.13) and the
-maps aggregated over the crop area (build environment `.venv-gis`: numpy, tifffile, imagecodecs, h5py, pyshp, openpyxl).
+maps aggregated over the crop area (build environment `.venv-gis`: numpy, tifffile, imagecodecs, h5py, pyshp, openpyxl; the netCDF classic files of CRU TS are read
+by `scripts/netcdf_classic.py`).
 
 | File | Source | Use | How it is used |
 |---|---|---|---|
@@ -128,6 +129,8 @@ maps aggregated over the crop area (build environment `.venv-gis`: numpy, tifffi
 | `lanca2016_permeability_classes.csv` | LANCA v2.0 (Bos et al. 2016), Table 4 (signed by FC) | build | USDA texture class of HWSD -> permeability class of the K equation (L63). |
 | `lanca2016_stoniness_factors.csv` | LANCA v2.0 (Bos et al. 2016), Table 5 | build | Stoniness factor per class of coarse fragments (L63). |
 | `hwsd_k_factor_parameters.csv` | Renard et al. (1997) Eq. 3-6, LANCA Eq. 7 (signed by FC) | build | Parameters and assumptions of the K equations (L63). |
+| `ipcc2019_n2o_emission_factors.csv` | IPCC 2019 Refinement Vol. 4 Tables 11.1 and 11.3 (Updated), transcribed with uncertainty ranges and footnotes (confirmed by FC) | model | N2O factors of `nmodel.py` (L64): EF1 by wet/dry climate and synthetic/other N input, aggregated EF1FR for flooded rice, EF4 by climate, EF5; the aggregated EF1 and EF4 and the disaggregated EF1FR are recorded only. |
+| `ipcc_climate_wet_share.csv` | CRU TS 4.10 1991-2020 (pre, pet, tmp, frs) with the IPCC 2019 climate rule (Vol. 4 Annex 3A.5, Figure 3A.5.2) over the SPAM 2020 V2r2 crop area. Built by `build_ipcc_climate_wet_share.py`. | model | Default `wet_climate_share`, share of the crop area in a wet climate per crop and country, weighting the wet and dry N2O factors (L64); `tropical_share` not read. |
 | `panagos2015b_p_factor.csv` | Panagos et al. (2015b) P-factor map (ESDAC) over the SPAM 2020 V2r2 crop area. Built by `build_panagos_p_factor.py`. | model | Default `support_practice_factor` per crop and country in the EU (9 tool countries), for the practices without AH 537 factor; 1 elsewhere (L62). |
 
 ## Irrigation and water
