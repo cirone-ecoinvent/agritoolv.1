@@ -5,7 +5,7 @@ import dataloader as dl
 
 
 def test_params_are_read_from_csv():
-    assert dl.param("ef1_direct_n2o") == 0.01
+    assert dl.param("cn_ratio_cropland") == 11.0
     assert dl.param("hm_accumulation_factor") == 1.86
 
 
