@@ -20,7 +20,7 @@ BASE_INPUTS = {
     "soluble_nitrogen_from_organic_fert": 0.0,
     "nitrogen_uptake_by_crop": 150.0, "norg_per_ntotal_ratio": 0.85,
     "organic_carbon_content": 0.011, "average_annual_precipitation": 800.0, "crop_cycle_per_year": 1.0,
-    "rooting_depth": 0.7, "water_use_total": 0.0,
+    "rooting_depth": 0.7, "water_use_total": 0.0, "wet_climate_share": 1.0,
 }
 
 
@@ -53,11 +53,11 @@ def test_leaching_reference_case_annual():
 
 
 def test_compute_uses_direct_n2o_n_from_applied_n_in_the_supply():
-    # 100 kg mineral N, no NH3: NOx-N = 1.2174, N2O-N direct = 1.0 -> S = 97.7826
+    # 100 kg mineral N in a wet climate, no NH3: NOx-N = 1.2174, N2O-N direct = 0.016 x 100 (IPCC 2019, L64)
     model = _model(nitrogen_from_mineral_fert=100.0)
     out = model.compute()
     nox_as_n = out["m_N_Nox_as_n2o_air"] * NO2_TO_N_FACTOR
-    expected_s = 100.0 - nox_as_n - 0.01 * 100.0
+    expected_s = 100.0 - nox_as_n - 0.016 * 100.0
     assert model.last_nitrogen_supply == pytest.approx(expected_s, rel=1e-9)
     assert nox_as_n == pytest.approx(1.2173913, rel=1e-6)
 

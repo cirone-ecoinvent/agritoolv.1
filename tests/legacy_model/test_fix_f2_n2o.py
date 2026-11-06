@@ -1,5 +1,6 @@
-"""Fix F2: N2O = IPCC 2006 Eq. 11.1 + 11.9 + 11.10 with N_som, EF1FR for flooded rice on the
-direct term only, volatilised N only in the indirect term. Reference: reference_models.n2o."""
+"""Fix F2: N2O = IPCC Eq. 11.1 + 11.9 + 11.10 with N_som, EF1FR for flooded rice on the direct term only,
+volatilised N only in the indirect term. Factors of the IPCC 2019 Refinement by wet and dry climate since decision
+L64 (test_ipcc2019_n2o.py); the reference_models.n2o case of the fix used the IPCC 2006 factors."""
 import pytest
 
 from models.atomicmass import N_TO_N2O_FACTOR, N_TO_NH3_FACTOR, N_TO_NO2_FACTOR, N_TO_NO3_FACTOR
@@ -16,10 +17,11 @@ BASE_INPUTS = {
     "luc_from_forest_or_grassland": "no",
     "nitrogen_uptake_by_crop": 150.0, "norg_per_ntotal_ratio": 0.85,
     "organic_carbon_content": 0.011, "average_annual_precipitation": 800.0,
-    "crop_cycle_per_year": 1.0, "rooting_depth": 0.7, "water_use_total": 0.0,
+    "crop_cycle_per_year": 1.0, "rooting_depth": 0.7, "water_use_total": 0.0, "wet_climate_share": 1.0,
 }
 
-REF = dict(n_applied=100.0, n_residues=20.0, n_som=5.0, nh3_kg=10.0, nox_kg=5.0, no3_kg=50.0)
+# N inputs of the reference case: 100 kg mineral N, 20 kg N of crop residues + 5 kg N_som as other inputs
+REF = dict(n_synthetic=100.0, n_other=25.0, nh3_kg=10.0, nox_kg=5.0, no3_kg=50.0)
 
 
 def _model(**overrides):
@@ -28,35 +30,28 @@ def _model(**overrides):
     return NModel(inputs)
 
 
-def _n2o_n_reference(flooded):
-    ef1 = 0.003 if flooded else 0.01
-    direct = ef1 * (REF["n_applied"] + REF["n_residues"] + REF["n_som"])
-    indirect = 0.01 * (REF["nh3_kg"] / N_TO_NH3_FACTOR + REF["nox_kg"] / N_TO_NO2_FACTOR) \
-        + 0.0075 * REF["no3_kg"] / N_TO_NO3_FACTOR
-    return direct + indirect
+def _n2o(model, flooded):
+    return model._compute_n2o_total(REF["n_synthetic"], REF["n_other"], REF["nh3_kg"], REF["nox_kg"],
+                                    REF["no3_kg"] / N_TO_NO3_FACTOR, flooded_rice=flooded)
 
 
-def test_n2o_reference_case_with_nsom():
-    # reference_models test: 2.250675 kg N2O with 17/14, 46/14, 62/14, 44/28
-    model = _model()
-    n2o = model._compute_n2o_total(REF["n_applied"], REF["n_residues"], REF["n_som"],
-                                   REF["nh3_kg"], REF["nox_kg"], REF["no3_kg"] / N_TO_NO3_FACTOR,
-                                   flooded_rice=False)
-    assert n2o == pytest.approx(2.250675, rel=2e-3)
-    assert n2o == pytest.approx(_n2o_n_reference(False) * N_TO_N2O_FACTOR, rel=1e-9)
+def _indirect_n(ef4):
+    return ef4 * (REF["nh3_kg"] / N_TO_NH3_FACTOR + REF["nox_kg"] / N_TO_NO2_FACTOR) \
+        + 0.011 * REF["no3_kg"] / N_TO_NO3_FACTOR
+
+
+def test_n2o_reference_case_with_nsom_in_a_wet_climate():
+    direct = 0.016 * REF["n_synthetic"] + 0.006 * REF["n_other"]
+    assert _n2o(_model(), False) == pytest.approx((direct + _indirect_n(0.014)) * N_TO_N2O_FACTOR, rel=1e-9)
 
 
 def test_rice_factor_applies_to_direct_term_only():
-    model = _model()
-    rice = model._compute_n2o_total(REF["n_applied"], REF["n_residues"], REF["n_som"],
-                                    REF["nh3_kg"], REF["nox_kg"], REF["no3_kg"] / N_TO_NO3_FACTOR,
-                                    flooded_rice=True)
-    assert rice == pytest.approx(0.875675, rel=2e-3)
-    assert rice == pytest.approx(_n2o_n_reference(True) * N_TO_N2O_FACTOR, rel=1e-9)
+    direct = 0.004 * (REF["n_synthetic"] + REF["n_other"])
+    assert _n2o(_model(), True) == pytest.approx((direct + _indirect_n(0.014)) * N_TO_N2O_FACTOR, rel=1e-9)
 
 
 def test_volatilised_n_is_not_in_the_direct_term():
-    assert _model()._compute_direct_n2o_as_n(100.0, 0.0, 0.0, False) == pytest.approx(1.0)
+    assert _model()._compute_direct_n2o_as_n(100.0, 0.0, False) == pytest.approx(1.6)
 
 
 def test_nsom_only_from_soc_loss_with_cn_ratio():
