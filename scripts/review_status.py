@@ -10,6 +10,8 @@ Review tables (all in data/):
   manure_type_composition.csv             usable when status is confirmed (F3, L12)
   manure_other_faostat_mapping.csv        idem (L13)
   pesticide_crop_archetype_mapping.csv    usable when status is confirmed (pesticide primary distribution)
+  olca_pest_pesticide_class.csv           usable when status is confirmed (OLCA-Pest emissions, L65)
+  olca_pest_scenario_substitution.csv     idem
   faostat_crop_item_mapping.csv           usable when status is confirmed (default yield, L23)
   faostat_country_mapping.csv             idem
   n_uptake_crop_parameters.csv            usable when status is confirmed (default N uptake, L28, L32)
@@ -75,6 +77,8 @@ TABLES = [
     ("manure_type_composition.csv", ("confirmed",), ("manure_type", "grudaf_row_id", "emep_livestock", "emep_manure_type", "weight", "status")),
     ("manure_other_faostat_mapping.csv", ("confirmed",), ("form", "faostat_item", "manure_type", "status")),
     ("pesticide_crop_archetype_mapping.csv", ("confirmed",), ("crop", "olca_crop_archetype", "status", "note")),
+    ("olca_pest_pesticide_class.csv", ("confirmed",), ("model_variable", "md312_name", "olca_pest_class", "status")),
+    ("olca_pest_scenario_substitution.csv", ("confirmed",), ("crop_archetype", "pest_class", "substitute_pest_class", "status")),
     ("faostat_crop_item_mapping.csv", ("confirmed",), ("crop", "faostat_item_code", "faostat_item", "match", "status")),
     ("faostat_country_mapping.csv", ("confirmed",), ("country", "faostat_area_code", "faostat_area", "status")),
     ("n_uptake_crop_parameters.csv", ("confirmed",), ("crop", "wfldb_crop", "grudaf_crop", "residue_ratio", "tree_residues", "status")),

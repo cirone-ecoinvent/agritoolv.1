@@ -2714,3 +2714,105 @@ N2O of the regression cases with the rejected variants (same factors): wheat_IT 
 a dry climate (EF1 and EF4 about 0.006 instead of 0.01); rice_IN rises with EF1FR 0.004, EF4 0.0115 and EF5 0.011; in
 apple_FR the lower EF1 of the other N inputs and EF4 almost offset EF5 0.011. The nitrate changes slightly because the
 direct N2O-N is subtracted from the N supply of the SQCB model (Fix F3).
+
+## 52. Pesticide emissions with OLCA-Pest (decision L65, 2026-11-06)
+
+Before, the ecoSpold writer emitted 100 % of every active ingredient (`pestikg_*`) to soil, agricultural. Now the model
+splits each active ingredient with the OLCA-Pest default fractions (Nemecek et al. 2022, primary distribution without
+buffer zone) as in the OLCApest mapping tool (sheet 'calculation pathway' step 8, sheet OLCA CALC):
+
+| Output key (kg) | Master Data 3.12 flow | Amount |
+|---|---|---|
+| `pestiair_<category>_<name>` | air, non-urban air or from high stacks | f_air x m |
+| `pestisoil_<category>_<name>` | soil, agricultural | (f_soil + f_crop + f_off_field x agri) x m |
+| `pestiforestry_<category>_<name>` | soil, forestry | f_off_field x forest x m |
+| `pestiwater_<category>_<name>` | water, surface water | f_off_field x water x m |
+
+`pesti_*` (g) and `pestikg_*` (kg) stay the applied amounts (product inputs). The scenario is the OLCA-Pest crop archetype
+of the crop x the OLCA-Pest class of the active ingredient (`olca_pest_pesticide_class.csv`: Hrb-post 120, Fun 101,
+Ins 90, Ac/Mi 12, Hrb-Avg 9, Hrb-pre 8, PGR 2; all 342 CAS numbers equal to sheet contextualized_Pest). Tree archetypes
+have no Hrb-pre and Hrb-Avg scenarios: Hrb-post is used (17 active ingredients; for Oil-Bearing trees Hrb-post has
+f_crop 0.228, for the other tree archetypes 0).
+
+### Land shares
+
+FAOSTAT Land Use (RL), element Area, year 2024 (2025 has Forest land only): agri, forest and water = Agricultural land,
+Forest land and Inland waters / Country area (missing Inland waters 0); delta = agri + forest + water - 1 is removed
+from agri and forest in proportion to their size. The OLCApest mapping tool uses FAOSTAT 2020 downloaded 2026-07-08:
+the script run on 2020 reproduces Italy exactly (0.560164507 / 0.418813736 / 0.021021757). Against the 2020 values of the
+current download, the ratios of `Land area countries.xlsx` (sheet Full1) are identical for 130 agricultural land, 225
+forest land and 215 inland waters values of 235 countries, the redistributed shares of OLCA CALC for 116 / 116 / 198 of
+219 countries (exact comparison at the published precision); the rest differ through later FAOSTAT revisions.
+
+Tool countries, agri / forest / water:
+
+| Country | OLCA CALC (FAOSTAT 2020 of 2026-07-08) | FAOSTAT 2020 (2026-11-06) | FAOSTAT 2024 (used) | Flags 2024 (area/agri/forest/water) |
+|---|---|---|---|---|
+| AR | 0.701 / 0.283 / 0.016 | 0.705 / 0.279 / 0.016 | 0.717 / 0.267 / 0.016 | A/A/I/I |
+| AU | 0.723 / 0.271 / 0.006 | 0.723 / 0.271 / 0.006 | 0.727 / 0.267 / 0.006 | I/I/I/I |
+| BE | 0.667 / 0.328 / 0.005 | 0.667 / 0.328 / 0.005 | 0.665 / 0.330 / 0.005 | A/X/I/A |
+| BR | 0.314 / 0.667 / 0.019 | 0.314 / 0.667 / 0.019 | 0.320 / 0.661 / 0.019 | I/I/I/I |
+| CA | 0.126 / 0.815 / 0.058 | 0.126 / 0.815 / 0.058 | 0.124 / 0.806 / 0.069 | A/I/I/A |
+| CL | 0.371 / 0.610 / 0.019 | 0.371 / 0.610 / 0.019 | 0.363 / 0.617 / 0.019 | A/I/I/A |
+| CN | 0.691 / 0.290 / 0.018 | 0.629 / 0.353 / 0.018 | 0.623 / 0.359 / 0.018 | I/I/I/I |
+| CO | 0.412 / 0.561 / 0.027 | 0.412 / 0.561 / 0.027 | 0.394 / 0.579 / 0.027 | A/A/I/I |
+| CR | 0.365 / 0.634 / 0.001 | 0.372 / 0.627 / 0.001 | 0.347 / 0.652 / 0.001 | A/A/I/I |
+| CI | 0.851 / 0.135 / 0.014 | 0.849 / 0.137 / 0.014 | 0.862 / 0.125 / 0.014 | I/I/I/I |
+| EC | 0.294 / 0.675 / 0.031 | 0.294 / 0.675 / 0.031 | 0.281 / 0.688 / 0.031 | A/A/I/I |
+| FI | 0.082 / 0.816 / 0.102 | 0.082 / 0.816 / 0.102 | 0.082 / 0.816 / 0.102 | A/A/I/A |
+| FR | 0.610 / 0.373 / 0.017 | 0.610 / 0.373 / 0.017 | 0.606 / 0.377 / 0.017 | A/A/I/A |
+| DE | 0.579 / 0.399 / 0.022 | 0.579 / 0.399 / 0.022 | 0.578 / 0.400 / 0.022 | A/A/I/A |
+| GH | 0.617 / 0.337 / 0.046 | 0.617 / 0.337 / 0.046 | 0.613 / 0.341 / 0.046 | I/A/I/A |
+| HU | 0.692 / 0.289 / 0.019 | 0.692 / 0.289 / 0.019 | 0.695 / 0.286 / 0.019 | A/A/I/A |
+| IN | 0.644 / 0.261 / 0.096 | 0.644 / 0.261 / 0.096 | 0.643 / 0.262 / 0.096 | A/A/I/I |
+| ID | 0.355 / 0.624 / 0.021 | 0.355 / 0.624 / 0.021 | 0.356 / 0.623 / 0.021 | I/I/I/I |
+| IL | 0.779 / 0.201 / 0.019 | 0.779 / 0.201 / 0.019 | 0.762 / 0.219 / 0.019 | A/I/I/I |
+| IT | 0.560 / 0.419 / 0.021 | 0.560 / 0.419 / 0.021 | 0.566 / 0.413 / 0.021 | I/I/I/I |
+| KE | 0.872 / 0.109 / 0.019 | 0.873 / 0.110 / 0.017 | 0.868 / 0.115 / 0.017 | A/I/I/A |
+| MX | 0.594 / 0.397 / 0.009 | 0.594 / 0.397 / 0.009 | 0.593 / 0.400 / 0.007 | A/A/I/I |
+| MA | 0.840 / 0.160 / 0.001 | 0.839 / 0.161 / 0.001 | 0.840 / 0.159 / 0.001 | I/I/I/I |
+| NL | 0.757 / 0.153 / 0.090 | 0.757 / 0.153 / 0.090 | 0.756 / 0.155 / 0.090 | A/A/I/I |
+| NZ | 0.496 / 0.487 / 0.016 | 0.496 / 0.487 / 0.016 | 0.478 / 0.505 / 0.016 | A/A/I/I |
+| PE | 0.262 / 0.734 / 0.004 | 0.261 / 0.735 / 0.004 | 0.264 / 0.732 / 0.004 | A/I/I/I |
+| PH | 0.633 / 0.361 / 0.006 | 0.633 / 0.361 / 0.006 | 0.629 / 0.365 / 0.006 | I/I/I/I |
+| PL | 0.596 / 0.383 / 0.021 | 0.596 / 0.383 / 0.021 | 0.583 / 0.391 / 0.025 | A/I/I/A |
+| RU | 0.198 / 0.760 / 0.042 | 0.198 / 0.760 / 0.042 | 0.197 / 0.761 / 0.042 | I/I/I/I |
+| CS (Serbia) | 0.510 / 0.480 / 0.011 | 0.510 / 0.480 / 0.010 | 0.488 / 0.502 / 0.010 | A/A/I/I |
+| ZA | 0.807 / 0.188 / 0.005 | 0.807 / 0.188 / 0.005 | 0.805 / 0.190 / 0.005 | A/I/I/I |
+| ES | 0.572 / 0.415 / 0.013 | 0.572 / 0.415 / 0.013 | 0.556 / 0.431 / 0.012 | A/A/I/A |
+| LK | 0.535 / 0.408 / 0.057 | 0.535 / 0.408 / 0.057 | 0.553 / 0.390 / 0.057 | I/I/I/I |
+| CH | 0.521 / 0.436 / 0.043 | 0.521 / 0.436 / 0.043 | 0.517 / 0.439 / 0.043 | A/A/I/A |
+| TH | 0.531 / 0.464 / 0.004 | 0.531 / 0.464 / 0.004 | 0.525 / 0.470 / 0.004 | I/I/I/I |
+| TR | 0.617 / 0.363 / 0.020 | 0.617 / 0.363 / 0.020 | 0.617 / 0.363 / 0.020 | A/A/I/A |
+| UA | 0.774 / 0.186 / 0.040 | 0.774 / 0.186 / 0.040 | 0.772 / 0.188 / 0.040 | A/A/I/A |
+| US | 0.538 / 0.393 / 0.070 | 0.538 / 0.393 / 0.070 | 0.537 / 0.394 / 0.070 | I/I/I/I |
+| VN | 0.432 / 0.514 / 0.054 | 0.432 / 0.514 / 0.054 | 0.430 / 0.516 / 0.054 | A/I/I/I |
+| GLO (World) | - | 0.513 / 0.456 / 0.030 | 0.514 / 0.454 / 0.031 | E/E/E/E |
+
+Check values, glyphosate 1500 g on wheat with the Pooideae / Hrb-post fractions (SC83: 0.1 / 0.667104385 / 0.222368128 /
+0.010527486): with the OLCA CALC shares of Italy air 150.000 g, soil agricultural 1343.054 g, soil forestry 6.614 g,
+surface water 0.332 g; with FAOSTAT 2024 150.000 / 1343.148 / 6.520 / 0.332 g. The sum is 1500 g less 2e-6 g, because
+the fractions of SC83 sum to 0.999999999.
+
+### Regression cases
+
+Before: 100 % of the applied amount to soil, agricultural (writer). After (kg/ha):
+
+| Case | Active ingredient | Applied | Class, scenario | Air | Soil, agricultural | Soil, forestry | Surface water |
+|---|---|---|---|---|---|---|---|
+| wheat_IT | glyphosate | 1.5 | Hrb-pre, SC88 (Pooideae) | 0.150 | 1.342687 | 0.006959 | 0.000354 |
+| wheat_IT | mancozeb | 0.5 | Fun, SC85 (Pooideae) | 0.050 | 0.447716 | 0.002173 | 0.000111 |
+| apple_FR | copper | 3.0 | Fun, SC25 (Fruit trees temperate) | 0.240 | 2.720454 | 0.037852 | 0.001695 |
+| rice_IN | none | - | - | - | - | - | - |
+
+Glyphosate is Hrb-pre in sheet contextualized_Pest (and in the example sheet of the tool), so the wheat_IT case uses SC88,
+not the SC83 fractions of the check values. Only new keys are added to the snapshots; no other output changes (the heavy
+metals of pesticides keep the same field fraction f_soil + f_crop, L14).
+
+Open points: Master Data 3.12 has no crop compartment (the crop deposit goes to agricultural soil) and the country and
+region geographies (CS = Serbia, fallback to sub-region, region and World) are to be revised with Master Data v4.
+Copper is written twice on "Copper, soil, agricultural": as the pesticide flow `pestisoil_fungicides_copper_cu` and in
+the heavy-metal balance `heavymetal_to_soil_minus_uptake_cu` (both existed before L65, with 100 % of the copper as the
+pesticide flow). In the legacy product mapping two keys differ from the template keys (`pesti_herbicides_bromfenoxim`,
+`pesti_herbicides_fenoxaprop_ethyl` against `bromofenoxim` and `fenoxaprop_ethyl_ester` of the substance mapping and the
+template), so the writer finds no product input for these two active ingredients.

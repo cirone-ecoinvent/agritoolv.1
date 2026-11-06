@@ -1,0 +1,11 @@
+crop_archetype,pest_class,substitute_pest_class,status,reviewed_by,note
+Citrus fruit trees,Hrb-pre,Hrb-post,confirmed,FC,"no Hrb-pre scenario for the archetype in OLCA-Pest; Hrb-post, the only herbicide scenario of the tree archetypes, is used (FC decision 2026-11-06)"
+Citrus fruit trees,Hrb-Avg,Hrb-post,confirmed,FC,"no Hrb-Avg scenario for the archetype in OLCA-Pest; Hrb-post, the only herbicide scenario of the tree archetypes, is used (FC decision 2026-11-06)"
+Fruit trees temperate,Hrb-pre,Hrb-post,confirmed,FC,"no Hrb-pre scenario for the archetype in OLCA-Pest; Hrb-post, the only herbicide scenario of the tree archetypes, is used (FC decision 2026-11-06)"
+Fruit trees temperate,Hrb-Avg,Hrb-post,confirmed,FC,"no Hrb-Avg scenario for the archetype in OLCA-Pest; Hrb-post, the only herbicide scenario of the tree archetypes, is used (FC decision 2026-11-06)"
+Fruit trees tropical,Hrb-pre,Hrb-post,confirmed,FC,"no Hrb-pre scenario for the archetype in OLCA-Pest; Hrb-post, the only herbicide scenario of the tree archetypes, is used (FC decision 2026-11-06)"
+Fruit trees tropical,Hrb-Avg,Hrb-post,confirmed,FC,"no Hrb-Avg scenario for the archetype in OLCA-Pest; Hrb-post, the only herbicide scenario of the tree archetypes, is used (FC decision 2026-11-06)"
+Grapes/ Vines,Hrb-pre,Hrb-post,confirmed,FC,"no Hrb-pre scenario for the archetype in OLCA-Pest; Hrb-post, the only herbicide scenario of the tree archetypes, is used (FC decision 2026-11-06)"
+Grapes/ Vines,Hrb-Avg,Hrb-post,confirmed,FC,"no Hrb-Avg scenario for the archetype in OLCA-Pest; Hrb-post, the only herbicide scenario of the tree archetypes, is used (FC decision 2026-11-06)"
+Oil-Bearing trees,Hrb-pre,Hrb-post,confirmed,FC,"no Hrb-pre scenario for the archetype in OLCA-Pest; Hrb-post, the only herbicide scenario of the tree archetypes, is used (FC decision 2026-11-06)"
+Oil-Bearing trees,Hrb-Avg,Hrb-post,confirmed,FC,"no Hrb-Avg scenario for the archetype in OLCA-Pest; Hrb-post, the only herbicide scenario of the tree archetypes, is used (FC decision 2026-11-06)"

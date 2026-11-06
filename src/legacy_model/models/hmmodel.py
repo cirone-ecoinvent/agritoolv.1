@@ -1,6 +1,7 @@
 from enum import Enum
 
 import dataloader
+from models import olcapestmodel
 from models.modelEnums import HeavyMetalType
 
 
@@ -138,18 +139,10 @@ class HmModel(object):
                 hm_values[element] += grams / 1000.0 * content[column] * field_fraction
         return hm_values
 
-    _ARCHETYPE_MAPPING = "pesticide_crop_archetype_mapping.csv"
-    _FRACTIONS_TABLE = "olca_pest_default_fractions.csv"
-
     def _pesticide_field_fraction(self, pest_class):
         """Share of the applied pesticide staying on the field, 1 - f_air - f_OFS = f_soil + f_crop
         of the OLCA-Pest primary distribution without buffer zone (Nemecek et al. 2022); the
-        crop deposit is counted on the field, as in SALCAheavymetal 2023 Eq. 2."""
-        archetypes = dataloader.table(self._ARCHETYPE_MAPPING, numeric=False)
-        if self.crop not in archetypes:
-            raise KeyError("Crop '%s' is not in %s" % (self.crop, self._ARCHETYPE_MAPPING))
-        archetype = archetypes[self.crop]["olca_crop_archetype"]
-        for row in dataloader.rows(self._FRACTIONS_TABLE):
-            if row["crop_archetype"] == archetype and row["pest_class"] == pest_class:
-                return float(row["f_soil"]) + float(row["f_crop"])
-        raise KeyError("No %s / %s row in %s" % (archetype, pest_class, self._FRACTIONS_TABLE))
+        crop deposit is counted on the field, as in SALCAheavymetal 2023 Eq. 2. Same scenario as the
+        emissions of the active ingredients (models/olcapestmodel.py, decision L65)."""
+        fractions = olcapestmodel.scenario(self.crop, pest_class)
+        return fractions["f_soil"] + fractions["f_crop"]

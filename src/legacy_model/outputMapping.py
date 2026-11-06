@@ -7,6 +7,7 @@ from directMappingEnums import Plantprotection, Soilcultivation, Sowingplanting,
 from models.atomicmass import MA_NH3, MA_N, MG_TO_MGSULFATE_FACTOR, \
     MG_TO_DOLOMITE_FACTOR, Ca_TO_LIMESTONE_FACTOR, Ca_TO_LIMEALGAE_FACTOR, Zn_TO_ZINCOXIDE_FACTOR
 from models.manuremodel import LiquidManureType
+from models.olcapestmodel import COMPARTMENT_PREFIXES as OLCA_PEST_PREFIXES
 
 def identity(x): return x
 
@@ -221,6 +222,14 @@ class OutputMapping(object):
         if ("remains_insecticides" in allInputs):
             self.output["remains_insecticides"] = allInputs["remains_insecticides"]
             self.output["remains_insecticides_kg"] = allInputs["remains_insecticides"] / 1000.0
+
+    def mapPesticideEmissions(self, emissions):
+        """Decision L65: emissions of each active ingredient [kg/(ha*crop cycle)] with the OLCA-Pest default
+        fractions (models/olcapestmodel.py), keys pestiair_ / pestisoil_ / pestiforestry_ / pestiwater_<category>_<name>
+        (Master Data flows in data/elementary_flow_alignment.csv). pestikg_* stays the applied amount (product input)."""
+        for variable, parts in emissions.items():
+            for compartment, prefix in OLCA_PEST_PREFIXES.items():
+                self.output[variable.replace("pesti_", prefix, 1)] = parts[compartment]
 
     def mapMachineries(self, allInputs):
         if ("remains_machinery_diesel" in allInputs):
