@@ -34,7 +34,7 @@ The **Use** column below means:
 | `model_parameters.csv` | Quantis (2019) sections 2.2-2.7; EMEP/EEA 2023 3.D; IPCC 2006 Vol. 4 ch. 11; Faist Emmenegger et al. 2009; Prasuhn 2006; SALCA 2023; WFLDB Guidelines v3.0 (irrigation efficiencies); FC judgement (seed and pesticide thresholds). Source per row in column `source`. | model | Scalar parameters: emission factors (NH3, NOx; the N2O factors are in `ipcc2019_n2o_emission_factors.csv` since L64), the nitrate and P model, heavy metals, irrigation efficiency, liquid manure density, the mineral N share of the N uptake, legume share, tree residues. Four soil constants are also hardcoded in `defaultGeneration.py` (open, L49). |
 | `crop_types.csv` | Legacy `lucmodel.py`; FC decisions (flooded rice F7, planting amortisation, legumes L30) | model | Annual / perennial / flooded type of the 67 crops: selects the land use and LUC flows, the N2O factor of flooded rice, the amortisation of planting material and the legume rule of the N uptake. |
 | `crop_key_aliases.csv` | Legacy `crops.properties` | model | Translates 16 legacy crop codes into the keys of `seed_exchange_mapping.csv`. |
-| `faostat_country_mapping.csv` | FAOSTAT area codes (QCL download 2026-10-13) | model, build | Tool country -> FAOSTAT area code and M49 code. Used by all FAOSTAT-based build scripts and by the manure model for the IPCC region of the country. |
+| `faostat_country_mapping.csv` | FAOSTAT area codes (QCL download 2026-10-13) | model, build | Tool country -> FAOSTAT area code and M49 code. Used by all FAOSTAT-based build scripts, by the manure model for the IPCC region of the country and by the pesticide emissions for the land shares (L65). |
 | `faostat_crop_item_mapping.csv` | FAOSTAT QCL item list; ecoinvent "crop mapping EI FAO.xlsx" | model, build | Tool crop -> FAOSTAT item, with the type of match. Defines the item of the default yield (L23) and links the crops to the Global atlas of pesticide use (L48). |
 
 ## Yield, seed and planting material
@@ -159,7 +159,10 @@ by `scripts/netcdf_classic.py`).
 | `wfldb2017_pesticides_crop_mapping.csv` | AgriToolV.1 | model | WFLDB datasets -> tool crops. |
 | `default_pesticides.csv` | Legacy GD_crop sheet Pesticides_L1 | model | The 9 crops without atlas or WFLDB value; legacy, undocumented, provisional. |
 | `pesticide_crop_archetype_mapping.csv` | OLCApest mapping tool (AG updated) | model | Tool crops -> OLCA-Pest crop archetypes. |
-| `olca_pest_default_fractions.csv` | Nemecek et al. (2022) OLCA-Pest, Online Resource 2, via the OLCApest mapping tool | model | Share of each pesticide reaching soil, crop, air and off-field: soil input of the metals in pesticides (L14). |
+| `olca_pest_default_fractions.csv` | Nemecek et al. (2022) OLCA-Pest, Online Resource 2, via the OLCApest mapping tool | model | Share of each pesticide reaching soil, crop, air and off-field: emissions of the active ingredients (L65) and soil input of the metals in pesticides (L14). |
+| `olca_pest_pesticide_class.csv` | OLCApest mapping tool, sheet contextualized_Pest | model | OLCA-Pest class of each active ingredient of the tool (L65). |
+| `olca_pest_scenario_substitution.csv` | AgriToolV.1 (FC) | model | Pest class used when the crop archetype has no OLCA-Pest scenario for the class: tree herbicides Hrb-pre and Hrb-Avg -> Hrb-post (L65). |
+| `faostat_country_land_shares.csv` | FAOSTAT Land Use 2024, UNSD M49. Built by `build_faostat_country_land_shares.py`. | model | Shares of agricultural land, forest land and inland waters per country and M49 region: split of the off-field pesticide emissions (L65). |
 
 ## Heavy metals
 
