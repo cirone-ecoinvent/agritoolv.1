@@ -11,6 +11,7 @@ from models.irrigationmodel import IrrigationModel
 from models.lucmodel import LUCModel
 from models.manuremodel import ManureModel
 from models.nmodel import NModel
+from models.olcapestmodel import OlcaPestModel
 from models.otherorganicfertilisermodel import OtherOrganicFertModel
 from models.packmodel import PackModel
 from models.pmodel import PModel
@@ -51,6 +52,7 @@ class ModelsSequence(object):
         self.outputMapping.mapMachineries(self.allInputs)
         self.outputMapping.mapCODWasteWater(self.allInputs)
         self.outputMapping.mapPesticides(self.allInputs)
+        self.outputMapping.mapPesticideEmissions(OlcaPestModel(self.allInputs).compute())
         return self.outputMapping.output;
 
     def _computeFertiliser(self):
