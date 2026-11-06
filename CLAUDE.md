@@ -1,8 +1,8 @@
 # AgriToolV.1 - rules and working instructions
 
 This file is the only place where the rules and working instructions of the project are
-written. `docs/DECISIONS.md` only records when and why each decision was taken (IDs O*, L*, R*,
-M*). FC = Francesco Cirone (Sector Manager Agriculture, ecoinvent), owner of the project.
+written. `docs/DECISIONS.md` only records when and why each decision was taken (IDs O*, L*, T*,
+R*, M*). FC = Francesco Cirone (Sector Manager Agriculture, ecoinvent), owner of the project.
 
 ## Project
 
