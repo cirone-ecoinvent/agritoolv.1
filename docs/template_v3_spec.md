@@ -185,8 +185,18 @@ grouped by class), `amount` (g a.i./(ha and crop cycle)), `comment`. Unlisted in
 `other herbicide / fungicide / insecticide` with the name in `comment`, flagged by the reader.
 Horticultural oil in kg. Default when the dataset has no row: total active ingredient of the atlas
 (L48), used only for the packaging, with a warning to the provider; no emission without active
-ingredients (Q9, decided by FC on 2026-11-02). Pesticide emissions of unspecified ingredients wait
-for OLCA-Pest and the Master Data v4 (section 9).
+ingredients (Q9, decided by FC on 2026-11-02).
+
+Emissions (L65, realigned 2026-11-06, T16): each listed active ingredient is distributed with the
+OLCA-Pest default fractions (Nemecek et al. 2022) of the crop archetype of the dataset crop and the
+OLCA-Pest class of the ingredient (`olca_pest_pesticide_class.csv`, 342 ingredients), to air,
+agricultural soil, forestry soil and surface water; the off-field part is split with the land
+shares of the dataset country (`faostat_country_land_shares.csv`), which fall back along the M49
+hierarchy as in section 5.10. The drop-down list of `active_ingredient` is therefore the list of
+ingredients with an OLCA-Pest class. The template asks no further pesticide field: the crop gives
+the archetype, the ingredient gives the class, and buffer zones are not modelled (default of the
+article). Rows `other ...`, unspecified ingredients and no rows give no emission (Q9); horticultural
+oil keeps 100 % to agricultural soil.
 
 ### 5.5 Sheet `Operations`
 
@@ -667,10 +677,12 @@ These fields are needed only if the corresponding model is adopted (decisions of
 ## 9. Reminders for later (FC, 2026-10-27)
 
 - The Fuel Project (diesel per field operation, the `diesel used in <operation>` products, the new
-  field operation datasets) and the OLCA-Pest pesticide emissions are in the agri-lca-pipeline,
-  not in AgriToolV.1, and are not to be merged now. Their products and flows will be in the
-  Master Data of ecoinvent v4, which is not ready yet; the alignment tables of AgriToolV.1 stay on
-  Master Data 3.12 until then.
+  field operation datasets) is in the agri-lca-pipeline, not in AgriToolV.1, and is not to be
+  merged now. Its products will be in the Master Data of ecoinvent v4, which is not ready yet; the
+  alignment tables of AgriToolV.1 stay on Master Data 3.12 until then.
+- (2026-11-06) The OLCA-Pest emissions are in the model since L65, with the elementary flows of
+  Master Data 3.12. To be revised with Master Data v4: the crop compartment (the crop deposit is
+  written to agricultural soil today) and the geographies of the land shares (L65 open points).
 - The meta model of the agri-lca-pipeline is to be connected to template v3 (sheet `Sources` and
   the inputs) and to organise the metadata to the current ecoSpold2 standard; its update to the v4
   JSON format comes later.
