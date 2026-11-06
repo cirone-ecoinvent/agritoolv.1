@@ -1,8 +1,10 @@
-# Data-collection template v3: specification (draft)
+# Data-collection template v3: specification
 
-Status: **draft for FC review**. Nothing in this document is decided until FC confirms it; the
-decisions will then be recorded in `docs/DECISIONS.md`. The Excel file and its reader are built
-only after the specification is agreed.
+Status: **agreed by FC on 2026-11-06**; the decisions are recorded in `docs/DECISIONS.md` (T1-T16).
+The points still marked open in the text (e.g. the yield reference of section 5.11, the Master Data
+version of the `diesel used in <operation>` products, the citations of the map sources in
+`data/sources.csv`) are follow-ups of the build of the template and of the defaults, not open
+questions of the specification. The Excel file and its reader are built on this specification.
 
 ## 1. Purpose
 
@@ -587,8 +589,23 @@ Country boundaries for the aggregation (FC, 2026-10-30):
   (`xJK`) and Greenland, which are decided by FC once the build script shows their weight in
   the averages (crop area of SPAM 2020 inside them). As implemented (`scripts/spam_grid.py`), a
   cell belongs to a country through the GAUL `iso3_code`, so Jammu and Kashmir (`xJK`) and
-  Arunachal Pradesh (`xAP`) are outside the IN averages; Greenland (GRL) is its own M49 area. FC
-  to confirm, or to change after seeing their SPAM crop area.
+  Arunachal Pradesh (`xAP`) are outside the IN averages; Greenland (GRL) is its own M49 area.
+  Decision (FC, 2026-11-06, T9): no unit without a country is assigned to a country, `xJK` and
+  `xAP` included. Their weight (scratch analysis, nothing committed): SPAM 2020 V2r2 physical area
+  of all crops 1 577 219 ha in `xJK` and 164 166 ha in `xAP` against 164 238 997 ha in IN (share
+  outside IN 0.0105); above 5 % only temperate fruit (SPAM `temf`, 11 tool crops: apple, apricot,
+  blueberry, cranberry, grape, peach, pear, pomegranate, raspberry, strawberry fresh and for
+  processing), 0.253. With `xJK` and `xAP` assigned to IN, the IN defaults of these crops would
+  change by -10.5 % (R), -7.1 % (precipitation), -8.6 % (clay), +8.6 % (K of LANCA) and -18.9 %
+  (`wet_climate_share`); other crops by less than 4 %. The GAUL unit `xJK` covers the whole
+  disputed Kashmir, including the areas administered by Pakistan (Azad Kashmir and
+  Gilgit-Baltistan, not in the Pakistan level 1 units), and cannot be split with GAUL, so assigning
+  it to IN would count crops of the Pakistani side in the IN averages; splitting it with another
+  boundary layer mixes two layers (option b, rejected above). Known limit: the IN defaults of
+  temperate fruit leave out about a quarter of its crop area; R, precipitation and soil can be
+  overridden by the provider, the wet share cannot (T14). The other units with crop area next to a
+  tool country (Ilemi Triangle `xIT`, 22 063 ha, next to KE; Aksai Chin `xAC`, next to CN) are
+  excluded by the same rule.
   Third-party terms (metadata sheet, 278 rows, one per country or area): CC BY-IGO (HDX) 108,
   no level 1 data (country outline only) 69, UN SALB terms 35, GAUL 2015 licence 21 (Andorra,
   Anguilla, Azerbaijan, Bahrain, Brunei Darussalam, Egypt, Guernsey, Isle of Man, Israel,
@@ -663,7 +680,7 @@ These fields are needed only if the corresponding model is adopted (decisions of
 
 | # | Question | Proposal |
 |---|---|---|
-| Q1 | Geography: only the 39 tool countries, or any M49 country with regional or world defaults? Sub-national regions now or later? | **Decided (FC, 2026-10-27):** any M49 country or area; defaults fall back to intermediate region, sub-region, region and World (section 5.10); `region` as text for documentation. Open: confirm the intermediate-region level |
+| Q1 | Geography: only the 39 tool countries, or any M49 country with regional or world defaults? Sub-national regions now or later? | **Decided (FC, 2026-10-27):** any M49 country or area; defaults fall back to intermediate region, sub-region, region and World (section 5.10); `region` as text for documentation. Intermediate-region level confirmed by FC on 2026-11-06 |
 | Q2 | Should the yield stay required, or may the FAOSTAT default be used when missing? | **Decided (FC, 2026-10-27):** the yield is expected from the provider (E); FAOSTAT default (L23, L24) only when it is N/A, with warning; a given yield gets a non-blocking warning outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the same crop in the same country (section 5.11). Open: the crop -> ecoinvent activity mapping and the reference table (section 5.11) |
 | Q3 | How does the provider state "not used" for a whole input group (no manure, no pesticides)? | **Decided (FC, 2026-10-27):** every input cell starts as `N/A` (default); `0` is a real zero (P3). Input-group columns in `Datasets` (section 4) |
 | Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | **Decided (FC, 2026-11-02):** one field `crop_cycle_duration` in months, from the harvest of the previous crop to the harvest of this crop, default 12; not a whole number of cycles, which would lose the occupation period the model reads (wheat_IT: 15 September to 10 July, 9.5 months with the half-month rounding of the legacy rule, 1.26 cycles per year; rice_IN: 5 months) (section 5.1) |
@@ -694,7 +711,7 @@ These fields are needed only if the corresponding model is adopted (decisions of
 ## 10. Next steps
 
 1. FC reviews this specification and answers Q1-Q10 (done 2026-11-02).
-2. Record the decisions in `docs/DECISIONS.md` (T1-T13, 2026-11-02).
+2. Record the decisions in `docs/DECISIONS.md` (T1-T13, 2026-11-02; T14-T16 and the closing of T1, T6 and T9, 2026-11-06).
 3. Build script for the `Lists` sheet from `data/`, and the empty template v3 in `templates/`.
 4. Reader with validation and provenance, with tests on example workbooks.
 5. Adapter from the reader output to the inputs of `src/legacy_model/` (one run per dataset).
