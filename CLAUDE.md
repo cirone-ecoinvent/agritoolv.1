@@ -37,6 +37,33 @@ documented sources.
   path = C:/python/AgriToolV.1/data/external_data/MasterData (3.12, undef).xlsx
   ```
 
+## Working environments (O12)
+
+FC works with two Claude environments on this repository. GitHub is the only link between them:
+work moves by push, fetch and pull requests, never by copying files.
+
+| | Claude desktop (project AgriToolV.1) | VS Code with Claude Code |
+|---|---|---|
+| Role | Design and checks | Implementation and tests |
+| Typical work | Template specification, literature, sources and licences, checks of supplied files, status of GitHub, task briefs and pull request texts | Code, tables of `data/`, build scripts, pytest, regression, Master Data check |
+| Data | FC's files through the link to FC's computer (files up to 400 MB), no web downloads | All of `data/external_data/` |
+| Branches | `template/*`, `docs/*` | `model/*`, `data/*`, `defaults/*` |
+| Decision IDs | T (template v3) | L (model and data) |
+
+- **One branch, one environment at a time.** Commit and push before the other environment takes
+  over the branch, and say so. Never edit a branch the other environment has unpushed work on.
+- **Start of every session:** `git fetch origin`, then report the state of `main`, of the open pull
+  requests and of the branch in use.
+- **Task briefs:** the desktop session writes the brief for VS Code (goal, data, decisions taken,
+  tests with expected values). FC may paste it into a GitHub issue; the branch and the pull request
+  then refer to it ("Closes #n").
+- **Pull requests from Claude desktop:** that environment adds an attribution line to the pull
+  requests it opens. It therefore only pushes the branch and gives FC the title, the description
+  (as a file) and the link `https://github.com/cirone-ecoinvent/agritoolv.1/compare/main...<branch>?expand=1`;
+  FC opens the pull request.
+- **Rules live only in this file.** The Claude project instructions only point here; the memory of
+  Claude holds personal preferences, not project rules.
+
 ## Folders (O3, O4)
 
 - Make every change in `C:\python\AgriToolV.1`.
