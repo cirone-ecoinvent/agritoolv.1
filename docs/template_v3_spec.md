@@ -130,7 +130,7 @@ of template v2.
 | `planting_density` | seeds kg, seedlings or trees per ha | O | `seeds`, `nb_seedlings`, `nb_planted_trees` | Defaults L46, L47; the unit follows the crop type |
 | `annual_precipitation` | mm/yr | O | `average_annual_precipitation` | Default TerraClimate 1991-2020 over the crop area (L61); section 5.13 |
 | `rainfall_erosivity` | MJ mm/(ha h yr) | O, N | `rainfall_erosivity` | Default GloREDa over the crop area (L60); section 5.13 |
-| `ipcc_climate_zone` | list | O, N | - | Default from the IPCC climate zone map; only if the IPCC 2019 climate-specific N2O factors are adopted; section 5.13 |
+| `ipcc_climate_zone` | list | D | - | Dropped: the wet and dry climate of the IPCC 2019 N2O factors is a default per crop and country, the wet share of the crop area from CRU TS 4.10 1991-2020 (`ipcc_climate_wet_share.csv`, L64), not a class of a climate zone map; no provider override (section 5.13) |
 | `soil_clay` | % of fine earth | O, N | `clay_content` (ratio) | Topsoil 0-20 cm. Default HWSD v2.0 over the crop area (L63); the reader divides by 100; section 5.13 |
 | `soil_organic_carbon` | % (kg C per 100 kg soil) | O, N | `organic_carbon_content` (kg C/kg soil) | Mean of 0-50 cm, the soil volume of the nitrate model. Default HWSD v2.0 (L63); the reader divides by 100; section 5.13 |
 | `soil_ph` | pH in water | O, N | `soil_with_ph_under_or_7` (share) | Topsoil. The reader sets the share to 1 for pH <= 7 and 0 above. Default: share of the soil units with pH <= 7 from HWSD v2.0 (L63); section 5.13 |
@@ -225,12 +225,13 @@ Data to bring into `data/` (CSV, registered in `sources.csv`, confirmed by FC):
 
 Open points:
 
-- litres -> kg: FC proposes 0.835 kg/l (average) or 0.832 kg/l (EN 590 specification) (FC,
-  2026-10-27). Master Data 3.12 gives `diesel` no density (only the net heating value,
-  42.8 MJ/kg). The value enters the unit table only with a document supplied by FC that states
-  it; candidates: the JEC Well-to-Tank report v5, Annexes, Appendix 2 section 4.1 "Standard
-  properties of fuels" (JRC 2020, open access), or the standard EN 590 itself, which specifies a
-  range (820-845 kg/m3 at 15 degrees C), not a single value;
+- litres -> kg (FC, 2026-11-06): 0.84 kg/l, the diesel density of the WFLDB Guidelines v3.0
+  (2016), Tab. 4 "Energy use for water pumping", footnote "Diesel density = 840 g/l" (p. 29), a
+  document of the ecoinvent agricultural data already in `Literature/`. Master Data 3.12 gives
+  `diesel` no density (only the net heating value, 42.8 MJ/kg). The value enters the unit table of
+  the reader in `data/` with this source. Rejected: 0.835 kg/l (average) and 0.832 kg/l (EN 590),
+  for which no document was supplied; EN 590 specifies a range (820-845 kg/m3 at 15 degrees C),
+  not a single value;
 - the 67 products `diesel used in <operation>` of the pipeline are not in Master Data 3.12 (their
   UUIDs come from the pipeline's lookup): the Master Data version that holds them is to be
   confirmed for the alignment tables;
@@ -476,17 +477,21 @@ and section ACTIVITY DESCRIPTION, and supplied by FC in `Literature/` and `data/
     Table 14 system B (the template does not ask the rotation), terraces Table 15 (farm planning,
     contour factor). A slope belongs to the first printed class whose upper limit it does not
     exceed; above 25 % P = 1.
-- **IPCC climate zone** (`Climate_Zone.zip`): needed only if the climate-specific N2O factors of
-  IPCC 2019 (wet / dry climate) are adopted in the model. The classes of the map (IPCC 2006,
-  JRC) are to be checked against figure 3A.5.1 of the 2019 Refinement. Optional override:
-  `ipcc_climate_zone`.
+- **Wet and dry climate of the N2O factors** (L64): not a template field. The IPCC 2019 factors
+  EF1 and EF4 differ between wet and dry climate; the model applies them to the wet share of the
+  crop area in the country (`wet_climate_share`, `ipcc_climate_wet_share.csv`), from the climate
+  rule of the 2019 Refinement Vol. 4 Annex 3A.5 applied to CRU TS 4.10 1991-2020, averaged over the
+  SPAM 2020 V2r2 physical area of the crop like the other maps. A share is not something the
+  provider can state for a national average, and a zone given by the provider would replace a
+  share by a single class, so there is no override. The JRC 2010 climate zone map
+  (`Climate_Zone.zip`) is not used (rejected in L64).
 - **Annual precipitation** (FC, 2026-10-30): default from TerraClimate (Abatzoglou et al. 2018,
   *Scientific Data* 5: 170191; `TerraClimate_highresglodatasetofclimaticwater.pdf`), monthly
   gridded precipitation at about 4 km, summed to annual values, aggregated over the crop area like
   the other maps. TerraClimate
-  also gives the reference evapotranspiration, so the same source provides the ratio of
-  precipitation to potential evapotranspiration that IPCC 2019 uses to separate wet and dry
-  climates. Data: the 30-year monthly climatology 1991-2020 of TerraClimate v1.1 (THREDDS
+  also gives the reference evapotranspiration, but the wet and dry climate of the N2O factors is
+  computed from CRU TS 4.10, which gives precipitation, PET, temperature and frost days from one
+  dataset (L64); an overridden `annual_precipitation` therefore does not change the wet share. Data: the 30-year monthly climatology 1991-2020 of TerraClimate v1.1 (THREDDS
   catalog `TERRACLIMATE_ALL/summaries`), supplied by FC on 2026-10-30 in `data/external_data/`
   as `TerraClimate_19912020_ppt.nc` (147,673,585 bytes) and `TerraClimate_19912020_pet.nc`
   (119,571,852 bytes). Checked from the file headers: netCDF-4 (HDF5) files, complete (the end of
@@ -635,7 +640,11 @@ no real farm data.
 These fields are needed only if the corresponding model is adopted (decisions of the model work):
 
 - flooded rice: water regime during and before the cultivation period, organic amendments
-  (methane of flooded rice);
+  (methane of flooded rice). The water regime also selects the direct N2O factor of IPCC 2019
+  (L64): EF1FR 0.003 for continuous flooding, 0.005 for single and multiple drainage, while the
+  aggregated 0.004 applies as long as the template does not ask it. Upland rice takes EF1, not
+  EF1FR; rain-fed and deep-water rice keep the aggregated EF1FR, which IPCC 2019 does not
+  disaggregate (footnote 7 of Table 11.1);
 - residue amount and incorporation (residue N; Q8 asks only the fate of the co-products, and
   residue burning needs its own model);
 - previous land use or year of conversion (land use change, soil carbon);
@@ -649,8 +658,8 @@ These fields are needed only if the corresponding model is adopted (decisions of
 | Q3 | How does the provider state "not used" for a whole input group (no manure, no pesticides)? | **Decided (FC, 2026-10-27):** every input cell starts as `N/A` (default); `0` is a real zero (P3). Input-group columns in `Datasets` (section 4) |
 | Q4 | Replace the four dates of v2 by `crop_cycles_per_year`? | **Decided (FC, 2026-11-02):** one field `crop_cycle_duration` in months, from the harvest of the previous crop to the harvest of this crop, default 12; not a whole number of cycles, which would lose the occupation period the model reads (wheat_IT: 15 September to 10 July, 9.5 months with the half-month rounding of the legacy rule, 1.26 cycles per year; rice_IN: 5 months) (section 5.1) |
 | Q5 | Irrigation: is the default water (Pfister, L44) applied only when `irrigated` = yes and the amount is N/A, and 0 when `irrigated` = no? What when `unknown`? | **Decided (FC, 2026-10-27):** yes -> water required, in m3/ha or mm, and the shares of surface, sprinkler and drip irrigation; no -> 0; no "unknown"; mixed systems as two datasets; Pfister min-max only as plausibility range (section 5.12) |
-| Q6 | Operations: diesel per group (A) or passes per operation (B)? | **Decided (FC, 2026-10-27):** B, one row per operation with diesel (l/ha or kg/ha) and passes; missing diesel from the intensity table of the agri-lca-pipeline, missing passes from diesel / intensity; both missing is an error (section 5.5) |
-| Q7 | Climate zone, wet days, elevation: which source for country defaults, or keep them as provider fields? | **Decided (FC, 2026-10-30):** removed; R from GloREDa; optional slope (revises L6); soil from HWSD v2.0, K with LANCA (Bos et al. 2016), C and P from Panagos et al. (2015a, b), IPCC climate zone map; all as optional overrides of defaults (section 5.13) |
+| Q6 | Operations: diesel per group (A) or passes per operation (B)? | **Decided (FC, 2026-10-27):** B, one row per operation with diesel (l/ha or kg/ha) and passes; missing diesel from the intensity table of the agri-lca-pipeline, missing passes from diesel / intensity; both missing is an error; litres converted with 0.84 kg/l (WFLDB Guidelines v3.0, decided 2026-11-06) (section 5.5) |
+| Q7 | Climate zone, wet days, elevation: which source for country defaults, or keep them as provider fields? | **Decided (FC, 2026-10-30):** removed; R from GloREDa; optional slope (revises L6); soil from HWSD v2.0, K with LANCA (Bos et al. 2016), C and P from Panagos et al. (2015a, b); all as optional overrides of defaults (section 5.13). The IPCC climate zone field first proposed is dropped: the wet and dry climate of the N2O factors is a default without override (L64) |
 | Q8 | Co-product fate: needed now? | **Decided (FC, 2026-11-02):** yes, `removed` or `left on field`; `burned` is an error until a burning model exists (section 5.2) |
 | Q9 | Pesticides without active ingredients: keep the atlas total for packaging only, or also an emission of an unspecified pesticide? | **Decided (FC, 2026-11-02):** packaging only, warning to the provider (section 5.4) |
 | Q10 | Keep a reader for template v2 files? | **Decided (FC, 2026-11-02):** no; a one-off conversion script only if old filled templates must be reused (the regression cases are JSON inputs, not workbooks) |
