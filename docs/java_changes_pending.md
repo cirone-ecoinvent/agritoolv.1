@@ -92,9 +92,15 @@ Mineral oil to agricultural soil) is unchanged. Product mapping keys to fix: `pe
 `pesti_herbicides_fenoxaprop_ethyl` must be `pesti_herbicides_bromofenoxim` and `pesti_herbicides_fenoxaprop_ethyl_ester`
 (the template keys), otherwise these two active ingredients get no product input.
 
+## L66 - methane of flooded rice
+
+New output key `ch4_rice_air` (kg CH4 per ha and crop cycle), only for flooded crops (rice; other crops have no key).
+The writer emits it as the elementary flow of the row of `data/elementary_flow_alignment.csv` with this model variable:
+`Methane, non-fossil`, air, non-urban air or from high stacks.
+
 ## Other Python output changes that touch the writer
 
 - `heavymetal_to_soil_minus_uptake_*` (read by the writer) is now the full SALCA balance with the
   harvest export from Freiermuth Tab. 5; `heavymetal_to_soil_*` is the balance without export.
 - No output key was removed. New keys not yet consumed: `occupation_annual_flooded`,
-  `transformation_from/to_annual_flooded`, `seed_*`, `pestiair_*`, `pestisoil_*`, `pestiforestry_*`, `pestiwater_*` (L65).
+  `transformation_from/to_annual_flooded`, `seed_*`, `pestiair_*`, `pestisoil_*`, `pestiforestry_*`, `pestiwater_*` (L65), `ch4_rice_air` (L66).

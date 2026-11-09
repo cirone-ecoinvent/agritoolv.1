@@ -58,20 +58,20 @@ def test_ipcc2006_factors_are_gone_from_model_parameters():
                                                       (0.25, 0.25 * 0.016 + 0.75 * 0.005, 0.25 * 0.006 + 0.75 * 0.005)])
 def test_direct_factor_by_climate_and_n_input(share, synthetic, other):
     model = _model(wet_climate_share=share)
-    assert model._compute_direct_n2o_as_n(100.0, 0.0, False) == pytest.approx(synthetic * 100.0)
-    assert model._compute_direct_n2o_as_n(0.0, 100.0, False) == pytest.approx(other * 100.0)
+    assert model._compute_direct_n2o_as_n(100.0, 0.0, None) == pytest.approx(synthetic * 100.0)
+    assert model._compute_direct_n2o_as_n(0.0, 100.0, None) == pytest.approx(other * 100.0)
 
 
 @pytest.mark.parametrize("share, ef4", [(1.0, 0.014), (0.0, 0.005), (0.4, 0.4 * 0.014 + 0.6 * 0.005)])
 def test_volatilisation_factor_by_climate(share, ef4):
     # 17 kg NH3, no NOx, no leaching
-    n2o = _model(wet_climate_share=share)._compute_n2o_total(0.0, 0.0, 17.0, 0.0, 0.0, flooded_rice=False)
+    n2o = _model(wet_climate_share=share)._compute_n2o_total(0.0, 0.0, 17.0, 0.0, 0.0, ef1fr=None)
     assert n2o == pytest.approx(ef4 * 17.0 * NH3_TO_N_FACTOR * N_TO_N2O_FACTOR, rel=1e-9)
 
 
 def test_flooded_rice_takes_the_aggregated_ef1fr_in_any_climate():
     for share in (0.0, 1.0):
-        assert _model(crop="rice", wet_climate_share=share)._compute_direct_n2o_as_n(100.0, 50.0, True) \
+        assert _model(crop="rice", wet_climate_share=share)._compute_direct_n2o_as_n(100.0, 50.0, "ef1fr_aggregated") \
             == pytest.approx(0.004 * 150.0)
 
 
@@ -79,7 +79,7 @@ def test_manure_n_is_an_other_n_input():
     out = _model(nitrogen_from_all_manure=100.0).compute()
     out_other_orga = _model(nitrogen_from_other_orga_fert=100.0).compute()
     assert out["m_N_N2o_air"] == pytest.approx(out_other_orga["m_N_N2o_air"])
-    assert _model()._compute_direct_n2o_as_n(0.0, 100.0, False) == pytest.approx(0.6)
+    assert _model()._compute_direct_n2o_as_n(0.0, 100.0, None) == pytest.approx(0.6)
 
 
 def test_wet_climate_share_must_be_a_fraction():

@@ -65,6 +65,14 @@ class DefaultValuesWrapper(object):
         return name in self.inputMapping or name in self._generatorMap
 
 
+class IrrigatedDefaultGenerator(object):
+    """'yes' when the crop cycle has irrigation water (water_use_total > 0), else 'no': the rule of the irrigated and
+    non-irrigated land use flows in outputMapping.mapLucModel. Selects the aggregated SF_w of the rice methane when
+    rice_water_regime is not given (decision L66)."""
+    def generateDefault(self, field, generators):
+        return "yes" if generators["water_use_total"] > 0 else "no"
+
+
 class SimpleValueDefaultGenerator(object):
     def __init__(self, value):
         self._value = value
@@ -713,6 +721,13 @@ DEFAULTS_VALUES_GENERATORS = {
     # The legacy template and LUC module do not provide them: 0 and "no" unless supplied.
     "soc_change_kg_c": SimpleValueDefaultGenerator(0.0),
     "luc_from_forest_or_grassland": SimpleValueDefaultGenerator("no"),
+    # Methane of flooded rice (decision L66, IPCC 2019 Vol. 4 ch. 5.5): optional inputs, None = N/A (aggregated
+    # SF_w by irrigated, aggregated SF_p 1.22, cultivation period of the IPCC rice region); the water regime also
+    # selects EF1FR of the N model.
+    "irrigated": IrrigatedDefaultGenerator(),
+    "rice_water_regime": SimpleValueDefaultGenerator(None),
+    "rice_preseason_water_regime": SimpleValueDefaultGenerator(None),
+    "rice_cultivation_period_days": SimpleValueDefaultGenerator(None),
     # P defaults (topsoil P content, enrichment factor and delivery ratio are read by the
     # P model from data/model_parameters.csv since Fix F8)
     "land_use_category": TableLookupDefaultGenerator("crop", LAND_USE_CATEGORY_PER_CROP),

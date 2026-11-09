@@ -1,4 +1,5 @@
 import dataloader
+from models import ricech4model
 from models.atomicmass import NH3_TO_N_FACTOR, NO2_TO_N_FACTOR, N_TO_NO3_FACTOR,\
     N_TO_N2O_FACTOR, N_TO_NO2_FACTOR
 
@@ -6,6 +7,8 @@ from models.atomicmass import NH3_TO_N_FACTOR, NO2_TO_N_FACTOR, N_TO_NO3_FACTOR,
 class NModel(object):
     """Inputs:
       crop: crop code ("rice" = flooded rice, EF1FR)
+      rice_water_regime: water regime of flooded rice during cultivation (IPCC 2019 Table 5.12) or None (N/A);
+        selects the direct N2O factor of flooded rice (decision L66)
       soc_change_kg_c: kg C / (ha*crop cycle), change of soil organic carbon (negative = loss)
       luc_from_forest_or_grassland: "yes" / "no" (C:N ratio 15 / 11 for the mineralised N)
       ammonia_due_to_manure: kg NH3 / (ha*crop cycle)
@@ -62,8 +65,23 @@ class NModel(object):
                         "crop_cycle_per_year",
                         "rooting_depth",
                         "water_use_total",
-                        "wet_climate_share"
+                        "wet_climate_share",
+                        "rice_water_regime"
                        ]
+
+    # Direct N2O factor of flooded rice per water regime (IPCC 2019 Table 11.1, footnote 7; decision L66): EF1FR
+    # disaggregated for irrigated rice, aggregated EF1FR for rain-fed and deep-water rice (not disaggregated) and
+    # when the regime is not given, EF1 (None) for upland rice. Factor names of ipcc2019_n2o_emission_factors.csv.
+    _EF1FR_BY_WATER_REGIME = {
+        None: "ef1fr_aggregated",
+        "continuously_flooded": "ef1fr_continuous_flooding",
+        "single_drainage": "ef1fr_drainage",
+        "multiple_drainage": "ef1fr_drainage",
+        "regular_rainfed": "ef1fr_aggregated",
+        "drought_prone": "ef1fr_aggregated",
+        "deep_water": "ef1fr_aggregated",
+        "upland": None,
+    }
 
     def __init__(self, inputs):
         #TODO: Should we log usage of default value?
@@ -77,13 +95,12 @@ class NModel(object):
         organic_nitrogen = self.nitrogen_from_all_manure + self.nitrogen_from_other_orga_fert
         ammonia_total = self._compute_total_due_ammonia()
         nox = self._compute_nox_as_no2(total_fert_nitrogen, ammonia_total)
-        flooded_rice = self._is_flooded_rice()
-        n2o_direct_as_n = self._compute_direct_n2o_as_n(self.nitrogen_from_mineral_fert, organic_nitrogen,
-                                                        flooded_rice)
+        ef1fr = self._ef1fr()
+        n2o_direct_as_n = self._compute_direct_n2o_as_n(self.nitrogen_from_mineral_fert, organic_nitrogen, ef1fr)
         no3asNleach = self.computeNO3leachAsN(ammonia_total, nox, n2o_direct_as_n)
         n2o = self._compute_n2o_total(self.nitrogen_from_mineral_fert,
                                       organic_nitrogen + self.nitrogen_from_crop_residues + self._compute_n_som(),
-                                      ammonia_total, nox, no3asNleach, flooded_rice)
+                                      ammonia_total, nox, no3asNleach, ef1fr)
         no3gw, no3sw = self._split_n3oasNleach_between_ground_and_surface_waters(no3asNleach)
         return {"m_N_ammonia_total": ammonia_total,
                 "m_N_nitrate_to_groundwater": no3gw,
@@ -109,10 +126,15 @@ class NModel(object):
         n_base = max(total_fert_nitrogen - NH3_TO_N_FACTOR * ammonia_total, 0.0)
         return dataloader.param("ef_nox_n") * n_base * N_TO_NO2_FACTOR
 
-    def _is_flooded_rice(self):
-        """Flooded crops get EF1FR (IPCC 2006 Tab. 11.1): column "flooded" of data/crop_types.csv
-        (only rice; the template has no flooding input)."""
-        return dataloader.table("crop_types.csv", numeric=False)[self.crop]["flooded"] == "yes"
+    def _ef1fr(self):
+        """Name of the EF1FR factor of the direct N2O, or None when EF1 applies (decision L66).
+
+        Flooded crops (column "flooded" of data/crop_types.csv: rice) take the factor of their rice_water_regime
+        (_EF1FR_BY_WATER_REGIME); upland rice and the other crops take EF1.
+        """
+        if not ricech4model.is_flooded(self.crop):
+            return None
+        return self._EF1FR_BY_WATER_REGIME[ricech4model.water_regime(self.rice_water_regime)]
 
     def _compute_n_som(self):
         """N mineralised from soil organic carbon loss [kg N] (IPCC F_SOM; Fix F2).
@@ -135,21 +157,21 @@ class NModel(object):
         """Factor of the crop area: wet climate share x wet factor + the rest x dry factor (decision L64)."""
         return self.wet_climate_share * wet + (1.0 - self.wet_climate_share) * dry
 
-    def _compute_direct_n2o_as_n(self, n_synthetic, n_other, flooded_rice):
-        """Direct N2O-N [kg N], IPCC 2019 Refinement Eq. 11.1 with the factors of Table 11.1 (decision L64).
+    def _compute_direct_n2o_as_n(self, n_synthetic, n_other, ef1fr):
+        """Direct N2O-N [kg N], IPCC 2019 Refinement Eq. 11.1 with the factors of Table 11.1 (decisions L64, L66).
 
         n_synthetic: mineral fertiliser N; n_other: N of manure, other organic fertilisers, crop residues and N
-        mineralised from SOC loss. Flooded rice: aggregated EF1FR x all N (the template does not ask the water regime
-        that selects continuous flooding or drainage). Other crops: EF1 of synthetic fertilisers or of
-        the other N inputs in the wet climate share of the crop area, EF1 of the dry climate on the rest.
+        mineralised from SOC loss. ef1fr: name of the EF1FR factor of flooded rice (_ef1fr()) x all N. None: EF1 of
+        synthetic fertilisers or of the other N inputs in the wet climate share of the crop area, EF1 of the dry
+        climate on the rest (other crops and upland rice).
         """
-        if flooded_rice:
-            return self._factor("ef1fr_aggregated") * (n_synthetic + n_other)
+        if ef1fr is not None:
+            return self._factor(ef1fr) * (n_synthetic + n_other)
         wet = self._factor("ef1_synthetic_wet") * n_synthetic + self._factor("ef1_other_wet") * n_other
         dry = self._factor("ef1_dry") * (n_synthetic + n_other)
         return self._climate_factor(wet, dry)
 
-    def _compute_n2o_total(self, n_synthetic, n_other, nh3_kg, nox_kg, no3_as_n, flooded_rice):
+    def _compute_n2o_total(self, n_synthetic, n_other, nh3_kg, nox_kg, no3_as_n, ef1fr):
         """N2O [kg N2O] = 44/28 x (direct + indirect) (Fix F2; factors of IPCC 2019, decision L64).
 
         direct   = EF1 (Table 11.1, by climate and N input) or EF1FR x N inputs (Eq. 11.1)
@@ -158,7 +180,7 @@ class NModel(object):
         FracGASM and FracLEACH. The legacy code added the volatilised N to the direct term with EF1 and had no
         N_som and no rice factor.
         """
-        direct = self._compute_direct_n2o_as_n(n_synthetic, n_other, flooded_rice)
+        direct = self._compute_direct_n2o_as_n(n_synthetic, n_other, ef1fr)
         ef4 = self._climate_factor(self._factor("ef4_wet"), self._factor("ef4_dry"))
         indirect = ef4 * (NH3_TO_N_FACTOR * nh3_kg + NO2_TO_N_FACTOR * nox_kg) \
             + self._factor("ef5_leaching") * no3_as_n

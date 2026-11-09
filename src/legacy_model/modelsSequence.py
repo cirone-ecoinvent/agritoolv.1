@@ -15,6 +15,7 @@ from models.olcapestmodel import OlcaPestModel
 from models.otherorganicfertilisermodel import OtherOrganicFertModel
 from models.packmodel import PackModel
 from models.pmodel import PModel
+from models.ricech4model import RiceCh4Model
 from models.seedmodel import SeedModel
 from outputMapping import OutputMapping
 
@@ -44,6 +45,8 @@ class ModelsSequence(object):
         self.outputMapping.mapOtherOrganicFertilizers(self.allInputs)
         self.outputMapping.mapCo2Model(Co2Model(self.allInputs).compute())
         self.outputMapping.mapNModel(NModel(self.allInputs).compute(), self.allInputs)
+        # Decision L66: after the manure and other organic fertiliser defaults, whose amounts enter SF_o
+        self.outputMapping.mapRiceCh4Model(RiceCh4Model(self.allInputs).compute())
         self.outputMapping.mapPModel(PModel(self.allInputs).compute(), self.allInputs)
         self.outputMapping.mapHMModel(HmModel(self.allInputs).compute(), self.allInputs)
         self.outputMapping.mapPackModel(PackModel(self.allInputs).compute())

@@ -17,7 +17,7 @@ BASE_INPUTS = {
     "luc_from_forest_or_grassland": "no",
     "nitrogen_uptake_by_crop": 150.0, "norg_per_ntotal_ratio": 0.85,
     "organic_carbon_content": 0.011, "average_annual_precipitation": 800.0,
-    "crop_cycle_per_year": 1.0, "rooting_depth": 0.7, "water_use_total": 0.0, "wet_climate_share": 1.0,
+    "crop_cycle_per_year": 1.0, "rooting_depth": 0.7, "water_use_total": 0.0, "wet_climate_share": 1.0, "rice_water_regime": None,
 }
 
 # N inputs of the reference case: 100 kg mineral N, 20 kg N of crop residues + 5 kg N_som as other inputs
@@ -30,9 +30,9 @@ def _model(**overrides):
     return NModel(inputs)
 
 
-def _n2o(model, flooded):
+def _n2o(model, ef1fr):
     return model._compute_n2o_total(REF["n_synthetic"], REF["n_other"], REF["nh3_kg"], REF["nox_kg"],
-                                    REF["no3_kg"] / N_TO_NO3_FACTOR, flooded_rice=flooded)
+                                    REF["no3_kg"] / N_TO_NO3_FACTOR, ef1fr=ef1fr)
 
 
 def _indirect_n(ef4):
@@ -42,16 +42,16 @@ def _indirect_n(ef4):
 
 def test_n2o_reference_case_with_nsom_in_a_wet_climate():
     direct = 0.016 * REF["n_synthetic"] + 0.006 * REF["n_other"]
-    assert _n2o(_model(), False) == pytest.approx((direct + _indirect_n(0.014)) * N_TO_N2O_FACTOR, rel=1e-9)
+    assert _n2o(_model(), None) == pytest.approx((direct + _indirect_n(0.014)) * N_TO_N2O_FACTOR, rel=1e-9)
 
 
 def test_rice_factor_applies_to_direct_term_only():
     direct = 0.004 * (REF["n_synthetic"] + REF["n_other"])
-    assert _n2o(_model(), True) == pytest.approx((direct + _indirect_n(0.014)) * N_TO_N2O_FACTOR, rel=1e-9)
+    assert _n2o(_model(), "ef1fr_aggregated") == pytest.approx((direct + _indirect_n(0.014)) * N_TO_N2O_FACTOR, rel=1e-9)
 
 
 def test_volatilised_n_is_not_in_the_direct_term():
-    assert _model()._compute_direct_n2o_as_n(100.0, 0.0, False) == pytest.approx(1.6)
+    assert _model()._compute_direct_n2o_as_n(100.0, 0.0, None) == pytest.approx(1.6)
 
 
 def test_nsom_only_from_soc_loss_with_cn_ratio():
@@ -62,5 +62,5 @@ def test_nsom_only_from_soc_loss_with_cn_ratio():
 
 
 def test_crop_rice_is_treated_as_flooded():
-    assert _model(crop="rice")._is_flooded_rice() is True
-    assert _model(crop="wheat")._is_flooded_rice() is False
+    assert _model(crop="rice")._ef1fr() == "ef1fr_aggregated"
+    assert _model(crop="wheat")._ef1fr() is None

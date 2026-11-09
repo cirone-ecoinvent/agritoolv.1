@@ -1,0 +1,14 @@
+level,m49_code,m49_name,rice_region,note,status,reviewed_by
+subregion,030,Eastern Asia,East Asia,,confirmed,FC
+subregion,035,South-eastern Asia,Southeast Asia,,confirmed,FC
+subregion,034,Southern Asia,South Asia,,confirmed,FC
+subregion,021,Northern America,North America,,confirmed,FC
+subregion,419,Latin America and the Caribbean,South America,"Annex 5A.2 (p. 5.63) groups the non-Asian sites as 'Latin America, Europe and United States'",confirmed,FC
+intermediate_region,005,South America,South America,intermediate region of 419; faostat_country_land_shares.csv gives the Latin American countries this level,confirmed,FC
+intermediate_region,013,Central America,South America,intermediate region of 419; faostat_country_land_shares.csv gives the Latin American countries this level,confirmed,FC
+intermediate_region,029,Caribbean,South America,intermediate region of 419; faostat_country_land_shares.csv gives the Latin American countries this level,confirmed,FC
+subregion,145,Western Asia,World,no region of its own in Tables 5.11 and 5.11A: World values (decision 5),confirmed,FC
+subregion,143,Central Asia,World,no region of its own in Tables 5.11 and 5.11A: World values (decision 5),confirmed,FC
+region,150,Europe,Europe,"all European sub-regions, including Eastern Europe (RU, UA) and Serbia (CS)",confirmed,FC
+region,002,Africa,Africa,"Africa takes the World values (Tables 5.11 and 5.11A, footnote 1)",confirmed,FC
+region,009,Oceania,World,no region of its own in Tables 5.11 and 5.11A: World values (decision 5),confirmed,FC
