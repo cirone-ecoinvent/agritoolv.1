@@ -1,0 +1,23 @@
+tool_variable,cfoa_class,mass_basis,note,status,reviewed_by
+solid_manure_cattle,farm_yard_manure,t fresh matter/ha = kg/ha / 1000,solid manure (decision 4),confirmed,FC
+solid_manure_horses,farm_yard_manure,t fresh matter/ha = kg/ha / 1000,solid manure (decision 4),confirmed,FC
+solid_manure_laying_hen,farm_yard_manure,t fresh matter/ha = kg/ha / 1000,solid manure (decision 4),confirmed,FC
+solid_manure_pig,farm_yard_manure,t fresh matter/ha = kg/ha / 1000,solid manure (decision 4),confirmed,FC
+solid_manure_sheep_goat,farm_yard_manure,t fresh matter/ha = kg/ha / 1000,solid manure (decision 4),confirmed,FC
+solid_manure_other,farm_yard_manure,t fresh matter/ha = kg/ha / 1000,solid manure (decision 4),confirmed,FC
+composttype_dried_poultry_manure,farm_yard_manure,t fresh matter/ha = kg/ha / 1000,dried poultry manure counted as farm yard manure (decision 4),confirmed,FC
+composttype_compost,compost,t fresh matter/ha = kg/ha / 1000,decision 4,confirmed,FC
+liquid_manure_cattle,none,-,"no factor in Table 5.14 (decision 4); rejected as farm yard manure: low dry matter, overestimate",confirmed,FC
+liquid_manure_pig,none,-,"no factor in Table 5.14 (decision 4); rejected as farm yard manure: low dry matter, overestimate",confirmed,FC
+liquid_manure_laying_hen,none,-,"no factor in Table 5.14 (decision 4); rejected as farm yard manure: low dry matter, overestimate",confirmed,FC
+liquid_manure_other,none,-,"no factor in Table 5.14 (decision 4); rejected as farm yard manure: low dry matter, overestimate",confirmed,FC
+sewagesludge_liquid,none,-,no factor in Table 5.14 (decision 4),confirmed,FC
+sewagesludge_dehydrated,none,-,no factor in Table 5.14 (decision 4),confirmed,FC
+sewagesludge_dried,none,-,no factor in Table 5.14 (decision 4),confirmed,FC
+composttype_castor_oil_shell_coarse,none,-,no factor in Table 5.14 (decision 4),confirmed,FC
+composttype_feather_meal,none,-,no factor in Table 5.14 (decision 4),confirmed,FC
+composttype_horn_meal,none,-,no factor in Table 5.14 (decision 4),confirmed,FC
+composttype_horn_shavings_fine,none,-,no factor in Table 5.14 (decision 4),confirmed,FC
+composttype_meat_and_bone_meal,none,-,no factor in Table 5.14 (decision 4),confirmed,FC
+composttype_stone_meal,none,-,no factor in Table 5.14 (decision 4),confirmed,FC
+composttype_vinasse,none,-,no factor in Table 5.14 (decision 4),confirmed,FC

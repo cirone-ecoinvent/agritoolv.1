@@ -41,6 +41,8 @@ Review tables (all in data/):
   spam2020_crop_mapping.csv               usable when status is confirmed (crop area weights of the maps, L60)
   lanca2016_permeability_classes.csv      usable when status is confirmed (soil erodibility K from HWSD, L63)
   hwsd_k_factor_parameters.csv            idem
+  ipcc2019_rice_region_mapping.csv        usable when status is confirmed (methane of flooded rice, L66)
+  ipcc2019_rice_organic_amendment_mapping.csv  idem
   elementary_flow_alignment.csv           done when status is ok, renamed, confirmed or not_needed (F9)
   intermediate_exchange_alignment.csv     idem
 
@@ -108,6 +110,8 @@ TABLES = [
     ("spam2020_crop_mapping.csv", ("confirmed",), ("crop", "faostat_item_code", "spam2020_crop", "rule", "status")),
     ("lanca2016_permeability_classes.csv", ("confirmed",), ("texture_usda_code", "hwsd_texture_usda", "permeability_class", "status")),
     ("hwsd_k_factor_parameters.csv", ("confirmed",), ("parameter", "value", "unit", "status")),
+    ("ipcc2019_rice_region_mapping.csv", ("confirmed",), ("level", "m49_code", "m49_name", "rice_region", "status")),
+    ("ipcc2019_rice_organic_amendment_mapping.csv", ("confirmed",), ("tool_variable", "cfoa_class", "mass_basis", "status")),
     ("elementary_flow_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "subcompartment", "status", "md312_name", "candidates")),
     ("intermediate_exchange_alignment.csv", ("renamed", "confirmed", "not_needed"), ("legacy_name", "status", "md312_name", "candidates")),
 ]

@@ -1428,3 +1428,4 @@ olcapestmodel.py (L65),pestiwater_insecticides_lambda_cyhalothrin,Lambda-cyhalot
 olcapestmodel.py (L65),pestiwater_insecticides_pirimicarb,Pirimicarb,kg,water,surface water,ok,Pirimicarb,15274dcf-e831-521a-b26b-c6592186d613,kg,,,
 olcapestmodel.py (L65),pestiwater_insecticides_teflubenzuron,Teflubenzuron,kg,water,surface water,ok,Teflubenzuron,61938fd7-5114-55a0-b68c-7d777dcdb1ff,kg,,,
 olcapestmodel.py (L65),pestiwater_insecticides_terbufos,Terbufos,kg,water,surface water,ok,Terbufos,75ede8d8-d7aa-5bd8-8caf-05a886b49da9,kg,,,
+ricech4model.py (L66),ch4_rice_air,"Methane, non-fossil",kg,air,non-urban air or from high stacks,confirmed,"Methane, non-fossil",57bdb443-d4a6-423d-8024-959b8261d02e,kg,,"CH4 of flooded rice, IPCC 2019 Tier 1 (L66); sub-compartment as N2O and NH3 of the tool and as the ecoinvent 3.12 cut-off rice datasets non-basmati CN, RoW and US; non-basmati IN and basmati IN and RoW use urban air close to ground; signed by FC 2026-11-09",FC
