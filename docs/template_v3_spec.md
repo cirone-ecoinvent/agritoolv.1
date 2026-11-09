@@ -1,6 +1,7 @@
 # Data-collection template v3: specification
 
-Status: **agreed by FC on 2026-11-06**; the decisions are recorded in `docs/DECISIONS.md` (T1-T16).
+Status: **agreed by FC on 2026-11-06**; the decisions are recorded in `docs/DECISIONS.md` (T1-T16; T17, rice fields of section 5.1, added
+on 2026-11-09).
 The points still marked open in the text (e.g. the yield reference of section 5.11, the Master Data
 version of the `diesel used in <operation>` products, the citations of the map sources in
 `data/sources.csv`) are follow-ups of the build of the template and of the defaults, not open
@@ -124,6 +125,9 @@ of template v2.
 | `irrigated` | yes/no | R, N | - | No "unknown" (Q5, section 5.12). Sets the land use flows (irrigated or non-irrigated) |
 | `irrigation_water`, `irrigation_water_unit` | m3/ha or mm, per crop cycle | R if `irrigated` = yes | `total_wateruse` | No default (section 5.12); must be 0 or N/A when `irrigated` = no |
 | `irrigation_share_surface`, `irrigation_share_sprinkler`, `irrigation_share_drip` | % of the irrigation water | R if `irrigated` = yes, N | `ratio_irr_*` (not in v2) | Sum 100 %; one technique = 100 %. No default (section 5.12) |
+| `rice_water_regime` | list | O, N | - | Flooded crops only (`flooded` = yes in `crop_types.csv`, rice). Water regime during the cultivation period, IPCC 2019 Vol. 4 Table 5.12: continuously flooded, single drainage, multiple drainage (including alternate wetting and drying), regular rainfed, drought prone, deep water, upland. Sets SF_w of the rice CH4 (L66) and the direct N2O factor (L64): EF1FR 0.003 continuously flooded, 0.005 single or multiple drainage, aggregated 0.004 for rainfed, drought prone and deep water (no disaggregated factor, footnote 7 of Table 11.1); upland: no CH4 and EF1 as for the other crops. N/A -> aggregated SF_w by `irrigated` (yes 0.60, no 0.45) and aggregated EF1FR 0.004 (T17) |
+| `rice_preseason_water_regime` | list | O, N | - | Flooded crops only. Water regime before the cultivation period, Table 5.13: not flooded for less than 180 days, not flooded for more than 180 days, flooded for more than 30 days, not flooded for more than 365 days (upland crop - paddy rotation or fallow without flooding). Sets SF_p of the rice CH4 (L66). N/A -> aggregated SF_p 1.22 (T17) |
+| `rice_cultivation_period_days` | days | O, N | - | Flooded crops only. Days of the rice cultivation period (transplanting or sowing to harvest), not the crop cycle of `crop_cycle_duration`, which runs from harvest to harvest. N/A -> default of Table 5.11A for the IPCC rice region of the country (L66, e.g. South Asia 112, Europe 123, World 113) (T17) |
 | `drained_share` | % of area | O | `drainage` | Default 0 (L5) |
 | `tillage` | list | O | `tillage_method` | fall plough, spring plough, mulch tillage, ridge tillage, zone tillage, no till, unknown (`erosion_tillage_mapping.csv`; the legacy key of fall plough is spelled `fall_plaw`). Default "unknown" = conventional tillage, C_tillage 1 (L59); section 5.13 |
 | `anti_erosion_practice` | list | O | `anti_erosion_practice` | no practice, contour farming, strip cropping on the contour, terraces, unknown (`erosion_practice_mapping.csv`; cross slope and strip cropping cross slope are not offered, L62). Default "unknown": P of Panagos et al. (2015b) in the EU, 1 elsewhere (L62); section 5.13 |
@@ -651,13 +655,17 @@ to the inputs of `src/legacy_model/`. Validation, reported per sheet and cell:
   input group set to 0 with rows in the long sheet, text other than `N/A` in a numeric cell,
   `irrigated` = yes without irrigation water or without technique shares summing to 100 %,
   `irrigated` = no with irrigation water above 0, field operation with neither passes nor diesel,
-  co-product with fate `burned` (Q8), `crop_cycle_duration` not above 0;
+  co-product with fate `burned` (Q8), `crop_cycle_duration` not above 0,
+  `rice_cultivation_period_days` not above 0;
 - warnings (the dataset is calculated): default used (yield included), empty cell read as N/A,
   yield outside +/- 10 % of the FAOSTAT default or of the ecoinvent yield of the crop in the same
   country (section 5.11), irrigation water outside the Pfister range (section 5.12), more than 8
   passes derived for an operation (section 5.5), free-text `other` rows, inputs given for a field
   the model does not use, no pesticide rows (atlas total used for the packaging only, Q9),
-  `crop_cycle_duration` above 12 months for an annual crop.
+  `crop_cycle_duration` above 12 months for an annual crop, rice fields given for a crop that is
+  not flooded, `rice_water_regime` inconsistent with `irrigated` (an irrigated regime with
+  `irrigated` = no, or regular rainfed, drought prone or deep water with `irrigated` = yes),
+  `rice_cultivation_period_days` longer than `crop_cycle_duration`.
 
 The reader is built after the specification is agreed, with tests on example workbooks that hold
 no real farm data.
@@ -666,14 +674,14 @@ no real farm data.
 
 These fields are needed only if the corresponding model is adopted (decisions of the model work):
 
-- flooded rice: water regime during and before the cultivation period, organic amendments
-  (methane of flooded rice). The water regime also selects the direct N2O factor of IPCC 2019
-  (L64): EF1FR 0.003 for continuous flooding, 0.005 for single and multiple drainage, while the
-  aggregated 0.004 applies as long as the template does not ask it. Upland rice takes EF1, not
-  EF1FR; rain-fed and deep-water rice keep the aggregated EF1FR, which IPCC 2019 does not
-  disaggregate (footnote 7 of Table 11.1);
+- flooded rice: the water regime during and before the cultivation period and the cultivation
+  period are in section 5.1 since T17 (rice CH4, L66). The organic amendments of the rice CH4 are
+  the solid manure and compost rows of the sheet `Fertilisers` (L66); rice straw and green manure
+  wait for the residue fields below;
 - residue amount and incorporation (residue N; Q8 asks only the fate of the co-products, and
-  residue burning needs its own model);
+  residue burning needs its own model); for rice also the timing of the straw incorporation,
+  shortly (< 30 days) or long (> 30 days) before cultivation, which selects the conversion factor
+  1.00 or 0.19 of IPCC 2019 Table 5.14 (SF_o of the rice CH4, L66);
 - previous land use or year of conversion (land use change, soil carbon);
 
 ## 8. Open questions for FC
@@ -711,7 +719,7 @@ These fields are needed only if the corresponding model is adopted (decisions of
 ## 10. Next steps
 
 1. FC reviews this specification and answers Q1-Q10 (done 2026-11-02).
-2. Record the decisions in `docs/DECISIONS.md` (T1-T13, 2026-11-02; T14-T16 and the closing of T1, T6 and T9, 2026-11-06).
+2. Record the decisions in `docs/DECISIONS.md` (T1-T13, 2026-11-02; T14-T16 and the closing of T1, T6 and T9, 2026-11-06; T17, 2026-11-09).
 3. Build script for the `Lists` sheet from `data/`, and the empty template v3 in `templates/`.
 4. Reader with validation and provenance, with tests on example workbooks.
 5. Adapter from the reader output to the inputs of `src/legacy_model/` (one run per dataset).
