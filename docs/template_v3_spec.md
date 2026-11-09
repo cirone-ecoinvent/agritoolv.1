@@ -1,7 +1,7 @@
 # Data-collection template v3: specification
 
-Status: **agreed by FC on 2026-11-06**; the decisions are recorded in `docs/DECISIONS.md` (T1-T16; T17, rice fields of section 5.1, added
-on 2026-11-09).
+Status: **agreed by FC on 2026-11-06**; the decisions are recorded in `docs/DECISIONS.md` (T1-T16; T17, rice fields of section 5.1, and T18,
+nitrate of the irrigation water, added on 2026-11-09).
 The points still marked open in the text (e.g. the yield reference of section 5.11, the Master Data
 version of the `diesel used in <operation>` products, the citations of the map sources in
 `data/sources.csv`) are follow-ups of the build of the template and of the defaults, not open
@@ -128,6 +128,7 @@ of template v2.
 | `rice_water_regime` | list | O, N | - | Flooded crops only (`flooded` = yes in `crop_types.csv`, rice). Water regime during the cultivation period, IPCC 2019 Vol. 4 Table 5.12: continuously flooded, single drainage, multiple drainage (including alternate wetting and drying), regular rainfed, drought prone, deep water, upland. Sets SF_w of the rice CH4 (L66) and the direct N2O factor (L64): EF1FR 0.003 continuously flooded, 0.005 single or multiple drainage, aggregated 0.004 for rainfed, drought prone and deep water (no disaggregated factor, footnote 7 of Table 11.1); upland: no CH4 and EF1 as for the other crops. N/A -> aggregated SF_w by `irrigated` (yes 0.60, no 0.45) and aggregated EF1FR 0.004 (T17) |
 | `rice_preseason_water_regime` | list | O, N | - | Flooded crops only. Water regime before the cultivation period, Table 5.13: not flooded for less than 180 days, not flooded for more than 180 days, flooded for more than 30 days, not flooded for more than 365 days (upland crop - paddy rotation or fallow without flooding). Sets SF_p of the rice CH4 (L66). N/A -> aggregated SF_p 1.22 (T17) |
 | `rice_cultivation_period_days` | days | O, N | - | Flooded crops only. Days of the rice cultivation period (transplanting or sowing to harvest), not the crop cycle of `crop_cycle_duration`, which runs from harvest to harvest. N/A -> default of Table 5.11A for the IPCC rice region of the country (L66, e.g. South Asia 112, Europe 123, World 113) (T17) |
+| `irrigation_water_nitrate`, `irrigation_water_nitrate_unit` | mg NO3/l or mg NO3-N/l | O, N | - | Only when `irrigated` = yes. Nitrate concentration of the irrigation water, an N input of the nitrogen balance of the nitrate leaching (model decision to come, section 5.12): N (kg/ha and crop cycle) = concentration x irrigation water (m3/ha) / 1000, with mg NO3/l x 14/62 (conversion factors in the unit table of the reader). N/A -> 0 (T18) |
 | `drained_share` | % of area | O | `drainage` | Default 0 (L5) |
 | `tillage` | list | O | `tillage_method` | fall plough, spring plough, mulch tillage, ridge tillage, zone tillage, no till, unknown (`erosion_tillage_mapping.csv`; the legacy key of fall plough is spelled `fall_plaw`). Default "unknown" = conventional tillage, C_tillage 1 (L59); section 5.13 |
 | `anti_erosion_practice` | list | O | `anti_erosion_practice` | no practice, contour farming, strip cropping on the contour, terraces, unknown (`erosion_practice_mapping.csv`; cross slope and strip cropping cross slope are not offered, L62). Default "unknown": P of Panagos et al. (2015b) in the EU, 1 elsewhere (L62); section 5.13 |
@@ -402,6 +403,11 @@ reference is built.
   energy of pumping is part of the ecoinvent irrigation activities. To be checked against these
   activities, together with whether they already carry the water source (in which case the source
   shares of section 5.6 are not needed either).
+- `irrigated` = yes: optional nitrate concentration of the irrigation water
+  (`irrigation_water_nitrate`, mg NO3/l or mg NO3-N/l, N/A -> 0, T18), an N input of the nitrogen
+  balance of the nitrate leaching. There is no country default: no documented source of the
+  nitrate in irrigation water by country was found, and 0 keeps the balance on the side of the
+  inputs the provider declares.
 - `irrigated` = no: no irrigation, the land use flows are the non-irrigated ones.
 - There is no "unknown". A dataset that averages irrigated and non-irrigated land is entered as two
   datasets (two rows of `Datasets`), one irrigated and one not; rejected: a share of irrigated
@@ -654,7 +660,8 @@ to the inputs of `src/legacy_model/`. Validation, reported per sheet and cell:
   negative amount, shares not summing to 100 % (tolerance to be set), N/A in a required field,
   input group set to 0 with rows in the long sheet, text other than `N/A` in a numeric cell,
   `irrigated` = yes without irrigation water or without technique shares summing to 100 %,
-  `irrigated` = no with irrigation water above 0, field operation with neither passes nor diesel,
+  `irrigated` = no with irrigation water above 0 or with a nitrate concentration of the
+  irrigation water above 0, field operation with neither passes nor diesel,
   co-product with fate `burned` (Q8), `crop_cycle_duration` not above 0,
   `rice_cultivation_period_days` not above 0;
 - warnings (the dataset is calculated): default used (yield included), empty cell read as N/A,
@@ -719,7 +726,7 @@ These fields are needed only if the corresponding model is adopted (decisions of
 ## 10. Next steps
 
 1. FC reviews this specification and answers Q1-Q10 (done 2026-11-02).
-2. Record the decisions in `docs/DECISIONS.md` (T1-T13, 2026-11-02; T14-T16 and the closing of T1, T6 and T9, 2026-11-06; T17, 2026-11-09).
+2. Record the decisions in `docs/DECISIONS.md` (T1-T13, 2026-11-02; T14-T16 and the closing of T1, T6 and T9, 2026-11-06; T17 and T18, 2026-11-09).
 3. Build script for the `Lists` sheet from `data/`, and the empty template v3 in `templates/`.
 4. Reader with validation and provenance, with tests on example workbooks.
 5. Adapter from the reader output to the inputs of `src/legacy_model/` (one run per dataset).
