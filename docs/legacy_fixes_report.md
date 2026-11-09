@@ -2816,3 +2816,124 @@ the heavy-metal balance `heavymetal_to_soil_minus_uptake_cu` (both existed befor
 pesticide flow). In the legacy product mapping two keys differ from the template keys (`pesti_herbicides_bromfenoxim`,
 `pesti_herbicides_fenoxaprop_ethyl` against `bromofenoxim` and `fenoxaprop_ethyl_ester` of the substance mapping and the
 template), so the writer finds no product input for these two active ingredients.
+
+## 53. Methane of flooded rice, IPCC 2019 Tier 1 (decision L66, 2026-11-09)
+
+New output `ch4_rice_air` (kg CH4 per ha and crop cycle; Master Data 3.12 `Methane, non-fossil`, air, non-urban air or
+from high stacks, UUID 57bdb443-d4a6-423d-8024-959b8261d02e) of the new model `models/ricech4model.py`, for flooded
+crops only (column `flooded` of `crop_types.csv`: rice). Source: IPCC 2019 Refinement Vol. 4 ch. 5.5
+(`docs/methodology/19R_V4_Ch05_Cropland.pdf`), issue #47.
+
+    CH4 = EF_c x SF_w x SF_p x SF_o x t                    (Eq. 5.1 per ha, p. 5.49; Eq. 5.2 (Updated), p. 5.51)
+    SF_o = (1 + sum_i ROA_i x CFOA_i)^0.59                  (Eq. 5.3, p. 5.55; exponent range 0.54-0.64)
+
+### Factors (`ipcc2019_rice_ch4_factors.csv`)
+
+Transcribed from the PDF text and checked against the rendered pages 5.53-5.56. The text extraction of Table 5.14
+mixes the order of the error ranges; they were read from the rendered page.
+
+| Region | EF_c (kg CH4/ha/d) | Range | t (days) | Range |
+|---|---|---|---|---|
+| World | 1.19 | 0.80-1.76 | 113 | 74-152 |
+| Africa (World values, footnote 1) | 1.19 | 0.80-1.76 | 113 | 74-152 |
+| East Asia | 1.32 | 0.89-1.96 | 112 | 73-147 |
+| Southeast Asia | 1.22 | 0.83-1.81 | 102 | 78-150 |
+| South Asia | 0.85 | 0.58-1.26 | 112 | 90-140 |
+| Europe | 1.56 | 1.06-2.31 | 123 | 111-153 |
+| North America | 0.65 | 0.44-0.96 | 139 | 110-165 |
+| South America | 1.27 | 0.86-1.88 | 124 | 110-146 |
+
+| Water regime during cultivation (`rice_water_regime`) | SF_w aggregated | SF_w disaggregated |
+|---|---|---|
+| `upland` | 0 | 0 |
+| `continuously_flooded` | 0.60 (0.44-0.78) | 1.00 (0.73-1.27) |
+| `single_drainage` | 0.60 | 0.71 (0.53-0.94) |
+| `multiple_drainage` (incl. AWD) | 0.60 | 0.55 (0.41-0.72) |
+| `regular_rainfed` | 0.45 (0.32-0.62) | 0.54 (0.39-0.74) |
+| `drought_prone` | 0.45 | 0.16 (0.11-0.24) |
+| `deep_water` | 0.06 (0.03-0.12) | 0.06 (0.03-0.12) |
+
+The disaggregated value applies when the regime is given; otherwise the aggregated value of `irrigated` (yes 0.60,
+no 0.45). `irrigated` is a new optional input; its default is 'yes' when the crop cycle has irrigation water
+(`water_use_total` > 0), the rule of the irrigated and non-irrigated land use flows (`outputMapping.mapLucModel`).
+
+| Water regime before cultivation (`rice_preseason_water_regime`) | SF_p |
+|---|---|
+| not given (aggregated, one value for the four regimes) | 1.22 (1.08-1.37) |
+| `non_flooded_lt180` | 1.00 (0.88-1.12) |
+| `non_flooded_gt180` | 0.89 (0.80-0.99) |
+| `flooded_gt30` | 2.41 (2.13-2.73) |
+| `non_flooded_gt365` | 0.59 (0.41-0.84) |
+
+| Organic amendment (Table 5.14) | CFOA | Range | Tool inputs (`ipcc2019_rice_organic_amendment_mapping.csv`) |
+|---|---|---|---|
+| Straw incorporated < 30 days before cultivation | 1.00 | 0.85-1.17 | none (not a tool input) |
+| Straw incorporated > 30 days before cultivation | 0.19 | 0.11-0.28 | none (not a tool input) |
+| Compost | 0.17 | 0.09-0.29 | `composttype_compost` |
+| Farm yard manure | 0.21 | 0.15-0.28 | `solid_manure_*` (6 types), `composttype_dried_poultry_manure` |
+| Green manure | 0.45 | 0.36-0.57 | none (not a tool input) |
+
+ROA in t fresh matter/ha = kg / 1000. Not counted (no factor in Table 5.14): liquid manure (4 types), sewage sludge
+(3 types), castor oil shell, feather meal, horn meal, horn shavings, meat and bone meal, stone meal, vinasse. Rice
+straw and green manure wait for the residue fields of the template (template v3 specification section 7).
+
+The cultivation period is the default of the region unless `rice_cultivation_period_days` is given; it is never taken
+from `crop_cycle_duration`, which runs from harvest to harvest (rice_IN: 5 months against 112 days).
+
+### IPCC rice region (`ipcc2019_rice_region_mapping.csv`)
+
+First row on the M49 chain country, sub-region, region (`olcapestmodel.m49_chain`, the hierarchy of
+`faostat_country_land_shares.csv`), else World. Latin America and the Caribbean (419) goes to South America because
+Annex 5A.2 (p. 5.63) groups the non-Asian sites as 'Latin America, Europe and United States'; the FAOSTAT hierarchy
+lists these countries under the intermediate regions South America (005), Central America (013) and Caribbean (029),
+which have their own rows. Tool countries:
+
+| IPCC rice region | Countries |
+|---|---|
+| South Asia | IN, LK |
+| Southeast Asia | ID, PH, TH, VN |
+| East Asia | CN |
+| Europe | BE, CH, CS, DE, ES, FI, FR, HU, IT, NL, PL, RU, UA |
+| North America | CA, US |
+| South America | AR, BR, CL, CO, CR, EC, MX, PE |
+| Africa (World values) | CI, GH, KE, MA, ZA |
+| World | AU, IL, NZ, TR, GLO |
+
+### Direct N2O of flooded rice
+
+`rice_water_regime` also selects the direct N2O factor in `nmodel.py` (replaces the boolean `_is_flooded_rice`):
+
+| `rice_water_regime` | Direct N2O factor (Table 11.1) |
+|---|---|
+| `continuously_flooded` | EF1FR 0.003 |
+| `single_drainage`, `multiple_drainage` | EF1FR 0.005 |
+| `regular_rainfed`, `drought_prone`, `deep_water`, not given | EF1FR 0.004 (aggregated; no disaggregation, footnote 7) |
+| `upland` | EF1 by wet and dry climate, as for the other crops (footnote 7) |
+
+The direct N2O-N subtracted from the N supply of the nitrate model (Fix F3) follows the selected factor.
+
+### Regression
+
+| Case | Key | Before | After |
+|---|---|---|---|
+| rice_IN | `ch4_rice_air` | - | 128.03063 |
+| rice_IN | `N2o_air` | 2.637089 | 2.637089 (regime not given, EF1FR 0.004) |
+| wheat_IT, apple_FR | all | | unchanged (no `ch4_rice_air` key) |
+
+rice_IN: South Asia, irrigated (8000 m3/ha), regimes not given: 0.85 x 0.60 x 1.22 x SF_o x 112 days. Default solid
+manure 7678.7027 (cattle) + 2.3219 (horses) + 166.2237 (laying hens) + 27.7822 (pigs) + 714.2383 (sheep and goats) kg =
+8.589269 t; SF_o = (1 + 8.589269 x 0.21)^0.59 = 1.8372398; liquid pig manure (87.1 m3) not counted.
+
+### Note on the worked example (Tables 5.14a-c, pp. 5.58-5.59)
+
+The example's SF_o of 1.21 does not match its text (2 t/ha straw incorporated shortly before cultivation, CFOA 1.0:
+(1 + 2)^0.59 = 1.912); 1.21 is (1 + 2 x 0.19)^0.59, the factor of straw incorporated long before cultivation. The IPCC
+corrigenda of Vol. 4 change "long" to "shortly" on p. 5.58 but leave column H of Table 5.14b and the totals of
+Table 5.14c. Eq. 5.3 and Table 5.14 are not affected. The tests use the example only for the products of Eq. 5.2 with
+its own SF values (1.4762, 0.586332 and 0.176412; printed 1.48, 0.59, 0.18).
+
+### Ecoinvent finding
+
+The ecoinvent 3.12 cut-off rice datasets write `Methane, non-fossil` to two sub-compartments: non-basmati CN, RoW and
+US to non-urban air or from high stacks (the choice of the tool, as its N2O and NH3); non-basmati IN and basmati IN and
+RoW (IPCC 2006 comment) to urban air close to ground. To report to the ecoinvent data team.

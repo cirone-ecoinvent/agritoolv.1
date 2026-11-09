@@ -358,7 +358,7 @@ Seven metals: Cd, Cu, Zn, Pb, Ni, Cr, Hg.
 
 | # | Issue | Status |
 |---|---|---|
-| B1 | No CH4 from flooded rice | Open |
+| B1 | No CH4 from flooded rice | L66 (IPCC 2019 Tier 1, `ch4_rice_air`) |
 | B2 | No N_som / N2O from soil carbon losses; no land-management soil-carbon changes | N_som hook in F2 (input defaults to 0) |
 | B3 | Rice had no land occupation or transformation | F7 |
 | B4 | Unspecified pesticides: product input but no emission | Open |

@@ -61,16 +61,23 @@ def scenario(crop, pest_class):
     raise KeyError("No %s / %s row in %s" % (archetype, pest_class, FRACTIONS_TABLE))
 
 
-def land_shares(country):
-    """{agri, forest, water, m49_code, area} for a tool country: the FAOSTAT area of its M49 code, else the first of
-    its sub-region, region and the World that has shares."""
+def m49_chain(country):
+    """M49 codes of a tool country, its sub-region and its region, as in faostat_country_land_shares.csv (FAOSTAT
+    groups the Latin American and African countries by intermediate region there); only the country code when the
+    country has no row. Also used for the IPCC rice region (ricech4model, L66)."""
     mapping = dataloader.table(COUNTRY_MAPPING, numeric=False)
     if country not in mapping:
         raise KeyError("Country '%s' is not in %s" % (country, COUNTRY_MAPPING))
+    code = mapping[country]["m49_code"]
+    row = {r["m49_code"]: r for r in dataloader.rows(LAND_SHARES_TABLE)}.get(code)
+    return [code, row["subregion_m49"], row["region_m49"]] if row else [code]
+
+
+def land_shares(country):
+    """{agri, forest, water, m49_code, area} for a tool country: the FAOSTAT area of its M49 code, else the first of
+    its sub-region, region and the World that has shares."""
     areas = {row["m49_code"]: row for row in dataloader.rows(LAND_SHARES_TABLE)}
-    row = areas.get(mapping[country]["m49_code"])
-    chain = [row, areas.get(row["subregion_m49"]), areas.get(row["region_m49"])] if row else []
-    for area in chain + [areas[WORLD_M49]]:
+    for area in [areas.get(code) for code in m49_chain(country)] + [areas[WORLD_M49]]:
         if area and area["agri_share"]:
             return {"agri": float(area["agri_share"]), "forest": float(area["forest_share"]),
                     "water": float(area["water_share"]), "m49_code": area["m49_code"], "area": area["area"]}

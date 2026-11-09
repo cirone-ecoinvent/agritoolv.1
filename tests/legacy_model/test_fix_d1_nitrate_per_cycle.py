@@ -17,7 +17,7 @@ BASE_INPUTS = {
     "soluble_nitrogen_from_organic_fert": 0.0,
     "nitrogen_uptake_by_crop": 150.0, "norg_per_ntotal_ratio": 0.85,
     "organic_carbon_content": 0.011, "average_annual_precipitation": 800.0,
-    "crop_cycle_per_year": 1.0, "rooting_depth": 0.7, "water_use_total": 0.0, "wet_climate_share": 1.0,
+    "crop_cycle_per_year": 1.0, "rooting_depth": 0.7, "water_use_total": 0.0, "wet_climate_share": 1.0, "rice_water_regime": None,
 }
 
 

@@ -223,6 +223,12 @@ class OutputMapping(object):
             self.output["remains_insecticides"] = allInputs["remains_insecticides"]
             self.output["remains_insecticides_kg"] = allInputs["remains_insecticides"] / 1000.0
 
+    def mapRiceCh4Model(self, ch4Output):
+        """Decision L66: ch4_rice_air [kg CH4/(ha*crop cycle)], Methane, non-fossil to air (IPCC 2019 Tier 1,
+        models/ricech4model.py); only flooded crops have the key."""
+        for key, value in ch4Output.items():
+            self.output[key] = value
+
     def mapPesticideEmissions(self, emissions):
         """Decision L65: emissions of each active ingredient [kg/(ha*crop cycle)] with the OLCA-Pest default
         fractions (models/olcapestmodel.py), keys pestiair_ / pestisoil_ / pestiforestry_ / pestiwater_<category>_<name>
