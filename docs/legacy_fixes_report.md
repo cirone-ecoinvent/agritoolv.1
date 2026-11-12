@@ -2937,3 +2937,95 @@ its own SF values (1.4762, 0.586332 and 0.176412; printed 1.48, 0.59, 0.18).
 The ecoinvent 3.12 cut-off rice datasets write `Methane, non-fossil` to two sub-compartments: non-basmati CN, RoW and
 US to non-urban air or from high stacks (the choice of the tool, as its N2O and NH3); non-basmati IN and basmati IN and
 RoW (IPCC 2006 comment) to urban air close to ground. To report to the ecoinvent data team.
+
+## 54. CO2 of lime and urea, IPCC 2006 Eq. 11.12-11.13 (decision L67, 2026-11-12)
+
+Issue #52. `models/co2model.py` follows IPCC 2006 Vol. 4 ch. 11 (`Literature/IPCC_V4_11_Ch11_N2O&CO2.pdf`), checked
+against the PDF text: Eq. 11.12 (p. 11.27; Step 1: M includes the lime applied in mixture with fertilisers; oxides and
+hydroxides contain no inorganic carbon) and Eq. 11.13 (p. 11.32; Step 3: urea share of a solution not known -> the
+entire solution is urea). The 2019 Refinement has no refinement for sections 11.3 and 11.4 (p. 11.27).
+
+### Factors
+
+Stoichiometric, as before (atomic masses of `models/atomicmass.py`); the IPCC defaults differ only by rounding:
+
+| Material | Model | IPCC default (0.12 / 0.13 / 0.20 x 44/12) |
+|---|---|---|
+| Urea, kg CO2 / kg N | 44.0095 / (2 x 14.00674) = 1.5710 | 1.5721 |
+| Limestone, kg CO2 / kg Ca | 44.0095 / 40.078 = 1.0981 | 1.0988 |
+| Dolomite, kg CO2 / kg product | 2 x 44.0095 / 184.4008 = 0.47732 | 0.47667 |
+| Dolomite, kg CO2 / kg Mg (before L67) | 2 x 44.0095 / 24.305 = 3.6214 | 3.6164 |
+| Calcium ammonium nitrate, kg CO2 / kg N | 0.229 x 0.47732 / 0.2699 = 0.40499 | - |
+
+### Inputs
+
+| Input | Before | L67 |
+|---|---|---|
+| `part_of_urea_in_UAN` | default 0.5 (legacy, no source) | default 1.0 (`model_parameters.csv` `part_of_urea_in_UAN_default`); a given value overrides it |
+| `magnesium_as_dolomite` (v2 field `fert_other_dolomite_in_mg`) | share of the Mg fertiliser given as dolomite, default 1.0 | removed |
+| `dolomite_applied` | - | kg dolomite (CaMg(CO3)2) per ha, default 0; no v2 field (template v3) |
+| `magnesium_from_fertilizer` (`fert_other_total_mg`) | kg Mg/ha, CO2 via the dolomite share | kg Mg/ha of all Mg fertilisers, including the dolomite; no longer read by `co2model.py` |
+
+### Calcium ammonium nitrate (`can_composition.csv`)
+
+Composition per kg of CAN from the ecoinvent technical correction CPSTC-520 (epic CPSTC-519, Fertilizers Europe
+composition, accessed 2026-11-12): 0.771 kg ammonium nitrate (0.164 kg NH3 + 0.607 kg HNO3), 0.229 kg dolomite,
+0.2699 kg N (ticket: C 0.0298, Ca 0.0498, Mg 0.0302 kg/kg).
+
+    CO2 (kg/ha) = kg N of CAN x 0.229 x 2 M(CO2) / M(CaMg(CO3)2) / 0.2699 = kg N x 0.40499       fossil
+
+Check against the ecoinvent 3.12 undefined release (`exchanges (3.12, undef).xlsx`): 'calcium ammonium nitrate
+production' CN, GLO, RER and RNA take 0.164 kg ammonia, anhydrous, liquid, 0.607 kg nitric acid (without water) and
+0.229 kg dolomite per kg (Fertilizer Europe 2014); carbon of the dolomite 0.229 x 2 x 12.0107 / 184.4008 = 0.029831
+kg C/kg (with the Master Data carbon content of dolomite, 0.13043: 0.029870). The market 'inorganic nitrogen
+fertiliser, as N' takes 0.27 kg N per kg CAN. No value of the release contradicts the ticket.
+
+Master Data 3.12, 'calcium ammonium nitrate' (not used for the CO2):
+
+| Property | Master Data 3.12 | Formula of the comments, CH4CaN2O6 | H4CaN2O3 |
+|---|---|---|---|
+| carbon content, fossil | 0 | 0.0667 | 0 |
+| nitrogen content | 0.2332 | 0.1555 | 0.2332 |
+| calcium content | 0.3336 | 0.2225 | 0.3336 |
+| hydrogen content | 0.0336 | 0.0224 | 0.0336 |
+| oxygen content | 0.3996 | 0.5329 | 0.3996 |
+
+The properties are those of H4CaN2O3 (M 120.12): the carbonate is missing. To report to the Master Data team with
+reference to CPSTC-520. The CO2 factor is per kg N and does not depend on the nitrogen content; R8 still uses 0.2332
+to convert kg N of CAN to kg of product (open point of L67, until the Master Data v4 gives N 0.2699 and carbon content
+0.0298; `can_composition.csv` is then removed and the contents read from the Master Data).
+
+### Mg fertiliser exchanges
+
+`outputMapping.magnesium_fertiliser_split`: dolomite exchange = `dolomite_applied`; Mg of the dolomite = kg dolomite x
+24.305 / 184.4008 (stoichiometry; the Master Data 3.12 'dolomite' has carbon content, fossil 0.13043 but no magnesium
+content); MgSO4 = (total Mg - Mg of the dolomite) x 120.3686 / 24.305, not below 0, with a warning when the dolomite Mg
+exceeds the total. Example: 30 kg Mg with 100 kg dolomite (13.1805 kg Mg) -> 83.2971 kg MgSO4 and 100 kg dolomite,
++47.7324 kg fossil CO2. Without dolomite the whole Mg goes to MgSO4 (before L67 the default share 1.0 sent it to
+dolomite: 30 kg Mg -> 227.6 kg dolomite).
+
+### Regression
+
+| Case | Key | Before | After |
+|---|---|---|---|
+| wheat_IT | `CO2_from_fertilisers` | 117.825865 | 117.825865 (75 kg N urea, 75 kg N ammonium nitrate) |
+| rice_IN | `CO2_from_fertilisers` | 188.521383 | 188.521383 (120 kg N urea) |
+| apple_FR | `CO2_from_fertilisers` | 0 | 0 (80 kg N ammonium nitrate) |
+| all three | `magnesium_from_fertilizer_as_mgso4`, `magnesium_from_fertilizer_as_dolomite` | 0, 0 | 0, 0 (no Mg) |
+
+Snapshots unchanged. Effect with the default N mixes of IFASTAT (L45, `ifastat_fertiliser_mix.csv`, shares of the
+mineral N), kg CO2 per 100 kg mineral N:
+
+| Country | Urea | UAN | CAN | Before | After |
+|---|---|---|---|---|---|
+| NL | 0.037 | 0.138 | 0.667 | 16.64 | 54.52 |
+| BE | 0.068 | 0.340 | 0.536 | 37.45 | 85.86 |
+| DE | 0.214 | 0.136 | 0.497 | 44.32 | 75.14 |
+| FR | 0.266 | 0.290 | 0.164 | 64.64 | 94.10 |
+| US | 0.264 | 0.288 | 0 | 64.04 | 86.68 |
+| IT | 0.589 | 0.010 | 0.114 | 93.28 | 98.69 |
+| IN | 0.809 | 0 | 0 | 127.15 | 127.15 |
+
+The difference comes from two terms: the carbonate of CAN, CAN share x 100 x 0.40499 (new), and the second half of the
+UAN, UAN share x 100 x 0.5 x 1.5710 (urea share 1.0 instead of 0.5). Before = 157.10 x (urea + 0.5 x UAN); after =
+157.10 x (urea + UAN) + 40.50 x CAN. IN uses neither UAN nor CAN.

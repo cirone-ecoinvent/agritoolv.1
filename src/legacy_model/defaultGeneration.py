@@ -694,9 +694,10 @@ DEFAULTS_VALUES_GENERATORS = {
     "soil_erodibility_factor": CropCountryMapDefaultGenerator(SOIL_ERODIBILITY_FACTOR_PER_CROP_PER_COUNTRY),
     "crop_factor": TableLookupDefaultGenerator("crop", CROP_FACTOR_PER_CROP),
     # CO2 model defaults
-    "part_of_urea_in_UAN": SimpleValueDefaultGenerator(0.5),
+    # L67: urea share of UAN 1.0 (IPCC 2006 p. 11.32) instead of the legacy 0.5; dolomite in kg of product
+    "part_of_urea_in_UAN": ParameterDefaultGenerator("part_of_urea_in_UAN_default"),
     "magnesium_from_fertilizer": SimpleValueDefaultGenerator(0.0),
-    "magnesium_as_dolomite": SimpleValueDefaultGenerator(1.0),
+    "dolomite_applied": SimpleValueDefaultGenerator(0.0),
     # Irrigation defaults
     "irrigation_types_proportions": TableLookupDefaultGenerator("country", IRR_TECH_RATIO_PER_COUNTRY),
     "irrigation_types_quantities": RatiosToValuesConvertor("irrigation_types_proportions", "water_use_total"),

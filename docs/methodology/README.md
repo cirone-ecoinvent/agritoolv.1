@@ -24,7 +24,7 @@ docs/methodology/
 | P | P fertilizers | Run-off | water | Nemecek et al. 2015* |
 | PO4 | P fertilizers | Erosion | water | Nemecek et al. 2015* |
 | PO4 | P fertilizers | Leaching | water | Nemecek et al. 2015* |
-| CO2 | Lime and Urea | Volatilization | air | IPCC 2019 |
+| CO2 | Lime and Urea | Volatilization | air | IPCC 2006 (no refinement in 2019) |
 | CH4 | Rice | Volatilization | air | IPCC 2019 |
 | PM | Field operations | Volatilization | air | EEA/EMEP 2023 |
 | Heavy metals | Fertilizers & PPP | Leaching | ground-water | Nemecek et al. 2015* |
