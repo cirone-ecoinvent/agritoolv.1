@@ -13,8 +13,8 @@ def _co2(**ca_quantities):
     ca = {k: 0.0 for k in CaFertiliserType}
     ca.update({CaFertiliserType[k]: v for k, v in ca_quantities.items()})
     return Co2Model({"n_fertiliser_quantities": {k: 0.0 for k in NFertiliserType},
-                     "part_of_urea_in_UAN": 0.5, "ca_fertiliser_quantities": ca,
-                     "magnesium_from_fertilizer": 0.0, "magnesium_as_dolomite": 0.0}).compute()
+                     "part_of_urea_in_UAN": 1.0, "ca_fertiliser_quantities": ca,
+                     "dolomite_applied": 0.0}).compute()
 
 
 def test_seaweed_lime_is_non_fossil():

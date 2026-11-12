@@ -213,7 +213,8 @@ EXCEL_INPUT_MAPPING_RULES = {
                     "anti_erosion_practice": InputAsEnumMappingRule("anti_erosion_practice", AntiErosionPractice),
                     #CO2 model rules
                     "magnesium_from_fertilizer": SimpleInputMappingRule("fert_other_total_mg"),
-                    "magnesium_as_dolomite": SimpleInputMappingRule("fert_other_dolomite_in_mg"),
+                    # L67: the v2 share fert_other_dolomite_in_mg is no longer read; dolomite_applied
+                    # (kg dolomite/ha) has no v2 field and comes from template v3
                     #Irrigation rules
                     "irrigation_types_proportions": MapMappingRule(_IRR_ENUM_TO_FIELD),
                     "irrigation_water_use_proportions": MapMappingRule(_WATER_USED_ENUM_TO_FIELD),

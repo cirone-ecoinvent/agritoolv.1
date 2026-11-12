@@ -235,6 +235,9 @@ Seven metals: Cd, Cu, Zn, Pb, Ni, Cr, Hg.
 - Lime (limestone, carbonation lime and seaweed lime alike): 44/40.08 = 1.098 kg CO2/kg Ca.
 - Dolomite: 2 × 44/24.3 = 3.62 kg CO2/kg Mg × dolomite share.
 - All the carbon is assumed to be released (IPCC worst case).
+- Changed by L67 (IPCC 2006 Eq. 11.12-11.13): UAN counts as 100 % urea unless a share is given; the dolomite of
+  calcium ammonium nitrate gives 0.405 kg CO2/kg N; dolomite is an input in kg of product (0.477 kg CO2/kg), and
+  the dolomite share of the Mg fertiliser is gone.
 
 ### 5.9 Biogenic CO2 uptake and energy
 
