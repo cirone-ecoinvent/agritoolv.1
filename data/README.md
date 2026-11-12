@@ -31,7 +31,7 @@ The **Use** column below means:
 
 | File | Source | Use | How it is used |
 |---|---|---|---|
-| `model_parameters.csv` | Quantis (2019) sections 2.2-2.7; EMEP/EEA 2023 3.D; IPCC 2006 Vol. 4 ch. 11; Faist Emmenegger et al. 2009; Prasuhn 2006; SALCA 2023; WFLDB Guidelines v3.0 (irrigation efficiencies); FC judgement (seed and pesticide thresholds). Source per row in column `source`. | model | Scalar parameters: emission factors (NH3, NOx; the N2O factors are in `ipcc2019_n2o_emission_factors.csv` since L64), the nitrate and P model, heavy metals, irrigation efficiency, liquid manure density, the mineral N share of the N uptake, legume share, tree residues. Four soil constants are also hardcoded in `defaultGeneration.py` (open, L49). |
+| `model_parameters.csv` | Quantis (2019) sections 2.2-2.7; EMEP/EEA 2023 3.D; IPCC 2006 Vol. 4 ch. 11; Faist Emmenegger et al. 2009; Prasuhn 2006; SALCA 2023; WFLDB Guidelines v3.0 (irrigation efficiencies); FC judgement (seed and pesticide thresholds). Source per row in column `source`. | model | Scalar parameters: emission factors (NH3, NOx; the N2O factors are in `ipcc2019_n2o_emission_factors.csv` since L64), the nitrate and P model, heavy metals, irrigation efficiency, liquid manure density, the mineral N share of the N uptake, legume share, tree residues, the default urea share of UAN (L67). Four soil constants are also hardcoded in `defaultGeneration.py` (open, L49). |
 | `crop_types.csv` | Legacy `lucmodel.py`; FC decisions (flooded rice F7, planting amortisation, legumes L30) | model | Annual / perennial / flooded type of the 67 crops: selects the land use and LUC flows, the N2O factor of flooded rice, the amortisation of planting material and the legume rule of the N uptake. |
 | `crop_key_aliases.csv` | Legacy `crops.properties` | model | Translates 16 legacy crop codes into the keys of `seed_exchange_mapping.csv`. |
 | `faostat_country_mapping.csv` | FAOSTAT area codes (QCL download 2026-10-13) | model, build | Tool country -> FAOSTAT area code and M49 code. Used by all FAOSTAT-based build scripts, by the manure model for the IPCC region of the country and by the pesticide emissions for the land shares (L65). |
@@ -74,6 +74,7 @@ The **Use** column below means:
 | `emep2023_3d_table3_2.csv` | EMEP/EEA Guidebook 2023, 3.D Table 3-2 and Annex Table A1.1 | model | NH3 emission factors of the mineral fertilisers (L38). |
 | `emep2023_fertiliser_type_mapping.csv` | AgriToolV.1 | model | Tool fertiliser types -> rows of Table 3-2. |
 | `emep2023_flooded_rice_nh3.csv` | EMEP/EEA Guidebook 2023 3.D Annex 1 (text of 2019; Yan et al. 2003) | model | NH3 of urea and AS on flooded rice, 22 % of the N as NH3-N (L54). |
+| `can_composition.csv` | ecoinvent technical correction CPSTC-520 (Fertilizers Europe composition) | model | Ammonium nitrate, dolomite and N per kg of calcium ammonium nitrate: fossil CO2 of the dolomite of CAN per kg N (L67). Replaces the Master Data 3.12 contents of CAN until the Master Data v4 is corrected. |
 | `fertiliser_product_basis.csv` | AgriToolV.1 / Master Data 3.12 | check | Master Data product, amount basis and nutrient property of each mineral fertiliser exchange (R8). Read by `dataloader.py` for the ecoSpold writer and its tests; the contents themselves are read from the Master Data at run time. |
 
 ## Manure and other organic fertilisers
