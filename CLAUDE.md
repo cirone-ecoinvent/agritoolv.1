@@ -59,7 +59,7 @@ work moves by push, fetch and pull requests, never by copying files.
   then refer to it ("Closes #n").
 - **Pull requests from Claude desktop:** that environment adds an attribution line to the pull
   requests it opens. It therefore only pushes the branch and gives FC the title, the description
-  (as a file) and the link `https://github.com/cirone-ecoinvent/agritoolv.1/compare/main...<branch>?expand=1`;
+  (as a file) and the link `https://github.com/ecoinvent/agritoolv.1/compare/main...<branch>?expand=1`;
   FC opens the pull request.
 - **Rules live only in this file.** The Claude project instructions only point here; the memory of
   Claude holds personal preferences, not project rules.
@@ -143,7 +143,7 @@ work moves by push, fetch and pull requests, never by copying files.
 
    The description is the long-term record of the change, so it must be readable without the
    chat. If `gh` is not available, push the branch and give FC the description and
-   `https://github.com/cirone-ecoinvent/agritoolv.1/compare/main...<branch>?expand=1`.
+   `https://github.com/ecoinvent/agritoolv.1/compare/main...<branch>?expand=1`.
 4. **Review and merge: FC only.**
    - FC is the formal reviewer (`.github/CODEOWNERS`) and the only person who approves and
      merges into `main`.
